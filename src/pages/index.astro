@@ -1,82 +1,41 @@
 ---
-// עמוד בית זמני — שלב 1 בתוכנית העבודה.
-// העיצוב המלא ייבנה בשלב 3; העמוד הזה רק מאמת שצינור הפרסום עובד.
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import StoryCard from '../components/StoryCard.astro';
+import { TOPICS, TOPIC_SLUGS } from '../data/topics';
+
+const stories = (await getCollection('stories')).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
 ---
 
-<!doctype html>
-<html lang="he" dir="rtl">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="נקודת מבט — ספרייה חיה של סיפורים. כל סיפור מוביל למסע שקט אל נקודת מבט חדשה." />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <title>נקודת מבט</title>
-  </head>
-  <body>
-    <main>
-      <span class="mark" aria-hidden="true"></span>
-      <h1>נקודת מבט</h1>
-      <p>ספרייה חיה של סיפורים.<br />כל סיפור — מסע שקט אל נקודת מבט חדשה.</p>
-      <p class="soon">האתר בבנייה. הסיפורים בדרך.</p>
-    </main>
-  </body>
-</html>
+<Base
+  title="נקודת מבט — ספרייה חיה של סיפורים"
+  description="נקודת מבט — ספרייה חיה של סיפורים. כל סיפור מוביל למסע שקט אל נקודת מבט חדשה."
+>
+  <main>
+    <nav class="topics" aria-label="נושאים">
+      {TOPIC_SLUGS.map((slug) => <a class="topic-tag" href={`/topics/${slug}/`}>{TOPICS[slug]}</a>)}
+    </nav>
+    <ul class="story-list">
+      {stories.map((story) => <StoryCard story={story} />)}
+    </ul>
+  </main>
+</Base>
 
 <style>
-  :root {
-    --paper: #faf6ec;
-    --ink: #2b2620;
-    --accent: #1f5c57;
-    --gold: #c9a24d;
+  .topics {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    padding-bottom: 2rem;
   }
 
-  * {
-    margin: 0;
-    box-sizing: border-box;
-  }
-
-  html,
-  body {
-    height: 100%;
-  }
-
-  body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  .story-list {
+    list-style: none;
+    padding: 0;
     display: grid;
-    place-items: center;
-    text-align: center;
-    padding: 1.5rem;
-  }
-
-  .mark {
-    display: block;
-    width: 0.75rem;
-    height: 0.75rem;
-    border-radius: 50%;
-    background: var(--gold);
-    margin: 0 auto 1.75rem;
-  }
-
-  h1 {
-    font-size: clamp(2rem, 8vw, 3rem);
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    color: var(--accent);
-    margin-bottom: 1.25rem;
-  }
-
-  p {
-    font-size: clamp(1.05rem, 4vw, 1.25rem);
-    line-height: 1.9;
-    max-width: 28rem;
-    margin-inline: auto;
-  }
-
-  .soon {
-    margin-top: 2.5rem;
-    font-size: 0.95rem;
-    opacity: 0.6;
+    gap: 2.5rem;
   }
 </style>

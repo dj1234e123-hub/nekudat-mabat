@@ -1,0 +1,62 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import StoryCard from '../../components/StoryCard.astro';
+import { TOPICS, TOPIC_SLUGS, type TopicSlug } from '../../data/topics';
+
+export function getStaticPaths() {
+  return TOPIC_SLUGS.map((topic) => ({ params: { topic } }));
+}
+
+const topic = Astro.params.topic as TopicSlug;
+const label = TOPICS[topic];
+const stories = (await getCollection('stories', (s) => s.data.topic === topic)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+---
+
+<Base title={`${label} · נקודת מבט`} description={`סיפורים בנושא ${label} — נקודת מבט`}>
+  <main>
+    <h1 class="page-title">{label}</h1>
+    {
+      stories.length > 0 ? (
+        <ul class="story-list">
+          {stories.map((story) => (
+            <StoryCard story={story} />
+          ))}
+        </ul>
+      ) : (
+        <p class="empty">עוד אין סיפורים בנושא הזה. הם בדרך.</p>
+      )
+    }
+    <nav class="page-footer">
+      <a href="/">→ לכל הסיפורים</a>
+    </nav>
+  </main>
+</Base>
+
+<style>
+  .page-title {
+    text-align: center;
+    font-size: 1.8rem;
+    padding: 0.5rem 0 1.5rem;
+  }
+
+  .story-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 2rem;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--muted);
+    padding: 2rem 0;
+  }
+
+  .page-footer {
+    margin-top: 3rem;
+    text-align: center;
+  }
+</style>

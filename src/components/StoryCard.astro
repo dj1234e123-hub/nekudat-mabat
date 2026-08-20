@@ -1,0 +1,58 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import { TOPICS } from '../data/topics';
+import { formatDate } from '../utils/format-date';
+
+interface Props {
+  story: CollectionEntry<'stories'>;
+}
+
+const { story } = Astro.props;
+const { title, topic, cover, coverAlt, date, excerpt } = story.data;
+---
+
+<li class="card">
+  <a href={`/stories/${story.id}/`} class="card-link">
+    <Image src={cover} alt={coverAlt} widths={[480, 800]} sizes="(max-width: 42rem) 100vw, 42rem" class="card-cover" />
+    <h2>{title}</h2>
+  </a>
+  <p class="card-meta">
+    <a class="topic-tag" href={`/topics/${topic}/`}>{TOPICS[topic]}</a>
+    <time datetime={date.toISOString().slice(0, 10)}>{formatDate(date)}</time>
+  </p>
+  <p class="card-excerpt">{excerpt}</p>
+</li>
+
+<style>
+  .card-link {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .card-cover {
+    border-radius: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .card h2 {
+    font-size: 1.35rem;
+    line-height: 1.4;
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0.35rem 0;
+  }
+
+  .card-meta time {
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  .card-excerpt {
+    color: var(--muted);
+  }
+</style>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <!-- תמונת שער זמנית (placeholder) — תוחלף בתמונה אמיתית -->
+  <rect width="1200" height="630" fill="#F3E9D3"/>
+  <circle cx="320" cy="480" r="260" fill="#003B5C" opacity="0.25"/>
+  <rect x="560" y="120" width="16" height="380" rx="8" fill="#003B5C"/>
+  <rect x="470" y="120" width="196" height="16" rx="8" fill="#003B5C"/>
+  <circle cx="480" cy="128" r="26" fill="#C9A24D"/>
+</svg>
