@@ -20,6 +20,10 @@ export async function getStaticPaths() {
 const { story } = Astro.props;
 const { Content } = await render(story);
 const { title, section, topic, date, excerpt } = story.data;
+
+// זמן קריאה משוער לפי ספירת מילים (~180 מילים לדקה בעברית).
+const wordCount = (story.body ?? '').trim().split(/\s+/).length;
+const readingMinutes = Math.max(1, Math.round(wordCount / 180));
 const cover = story.data.cover ?? DEFAULT_COVERS[section];
 const coverAlt = story.data.coverAlt ?? DEFAULT_COVER_ALT;
 
@@ -46,7 +50,11 @@ const otherStoryUrls = (await getCollection('stories'))
         <a class="topic-tag" href={`/sections/${section}/`}>{SECTIONS[section]}</a>
         {topic && <a class="topic-tag" href={`/topics/${topic}/`}>{TOPICS[topic]}</a>}
         <h1>{title}</h1>
-        <time datetime={date.toISOString().slice(0, 10)}>{formatDate(date)}</time>
+        <p class="story-meta">
+          <time datetime={date.toISOString().slice(0, 10)}>{formatDate(date)}</time>
+          <span aria-hidden="true"> · </span>
+          <span>כ־{readingMinutes} דקות קריאה</span>
+        </p>
       </header>
       <Image src={cover} alt={coverAlt} widths={[480, 800, 1200]} sizes="(max-width: 42rem) 100vw, 42rem" class="cover" />
       <div class="story-body">
@@ -87,7 +95,7 @@ const otherStoryUrls = (await getCollection('stories'))
     margin: 0.85rem 0 0.5rem;
   }
 
-  .story-header time {
+  .story-meta {
     color: var(--muted);
     font-size: 0.9rem;
   }
