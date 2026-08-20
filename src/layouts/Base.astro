@@ -1,11 +1,18 @@
 ---
-// שלד עמוד משותף. העיצוב כאן בסיסי בכוונה — שפת העיצוב המלאה נבנית בשלב 3.
+// שלד עמוד משותף + שפת העיצוב של האתר (שלב 3).
+// הפונטים מוגדרים כמשתני CSS בלבד — ההחלטה הסופית תיקבע בדף ההשוואה /fonts,
+// והחלפה = שינוי שורת ה---font-body בלבד.
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.jpg';
+
 interface Props {
   title: string;
   description: string;
+  bodyClass?: string;
+  noindex?: boolean;
 }
 
-const { title, description } = Astro.props;
+const { title, description, bodyClass, noindex = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -14,30 +21,57 @@ const { title, description } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
     <title>{title}</title>
   </head>
-  <body>
+  <body class={bodyClass}>
     <header>
-      <a href="/" class="site-name">נקודת מבט</a>
-      <p class="tagline">ספרייה חיה של סיפורים</p>
+      <a href="/" class="brand">
+        <Image src={logo} alt="הלוגו של נקודת מבט" width={144} densities={[1, 2]} class="logo" />
+        <span class="site-name">נקודת מבט</span>
+      </a>
+      <p class="tagline">שמים את הנקודה במרכז</p>
     </header>
     <slot />
     <footer>
-      <a href="/">נקודת מבט</a>
+      <span class="dot" aria-hidden="true"></span>
+      <p><a href="/">נקודת מבט</a> · שמים את הנקודה במרכז</p>
+      <p class="credit">מאת אפרים עטיה</p>
     </footer>
   </body>
 </html>
 
 <style is:global>
   :root {
-    --paper: #faf6ec;
-    --ink: #2b2620;
-    --muted: #6f665a;
-    --accent: #1f5c57;
+    /* צבעים — בסיס נייר חם, צבעי המותג כנגיעות */
+    --paper: #fbf7ee;
+    --surface: #f3e9d3;
+    --line: #e7dcc4;
+    --ink: #2e2a24;
+    --muted: #75695a;
+    --teal: #1f5c57;
+    --teal-deep: #17453f;
+    --blue: #003b5c;
     --brick: #b0463b;
     --gold: #c9a24d;
-    --cream: #f3e9d3;
+
+    /* טיפוגרפיה — Frank Ruhl Libre לכותרות; גוף ברירת מחדל Assistant (טרם ננעל) */
+    --font-display: 'Frank Ruhl Libre', 'David Libre', serif;
+    --font-body: 'Assistant', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+
+    --radius: 0.9rem;
+    --shadow: 0 1px 3px rgba(46, 42, 36, 0.08);
+  }
+
+  body.font-heebo {
+    --font-body: 'Heebo', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
   }
 
   * {
@@ -48,52 +82,25 @@ const { title, description } = Astro.props;
   body {
     background: var(--paper);
     color: var(--ink);
-    font-family: system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
-    line-height: 1.8;
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.9;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    -webkit-font-smoothing: antialiased;
   }
 
-  header {
-    text-align: center;
-    padding: 2.5rem 1.5rem 1.5rem;
-  }
-
-  .site-name {
-    font-size: 1.6rem;
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
     font-weight: 700;
-    color: var(--accent);
-    text-decoration: none;
-  }
-
-  .tagline {
-    font-size: 0.9rem;
-    color: var(--muted);
-    margin-top: 0.25rem;
-  }
-
-  main {
-    width: 100%;
-    max-width: 42rem;
-    margin-inline: auto;
-    padding: 0 1.25rem 3rem;
-    flex: 1;
-  }
-
-  footer {
-    text-align: center;
-    padding: 2rem 1.5rem;
-    font-size: 0.85rem;
-  }
-
-  footer a {
-    color: var(--muted);
-    text-decoration: none;
+    color: var(--ink);
   }
 
   a {
-    color: var(--accent);
+    color: var(--teal);
   }
 
   img {
@@ -102,13 +109,96 @@ const { title, description } = Astro.props;
     display: block;
   }
 
+  /* כותרת האתר */
+  header {
+    text-align: center;
+    padding: 2.25rem 1.5rem 0.75rem;
+  }
+
+  .brand {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+  }
+
+  .logo {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #fff;
+    box-shadow: var(--shadow);
+  }
+
+  .site-name {
+    font-family: var(--font-display);
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--teal-deep);
+    letter-spacing: 0.01em;
+  }
+
+  .tagline {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-top: 0.3rem;
+  }
+
+  main {
+    width: 100%;
+    max-width: 42rem;
+    margin-inline: auto;
+    padding: 1.5rem 1.25rem 3rem;
+    flex: 1;
+  }
+
+  /* תחתית */
+  footer {
+    text-align: center;
+    padding: 2rem 1.5rem 2.5rem;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  footer .dot {
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--gold);
+    margin: 0 auto 1rem;
+  }
+
+  footer a {
+    color: var(--teal);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  footer .credit {
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+  }
+
+  /* תגית נושא */
   .topic-tag {
     display: inline-block;
-    background: var(--cream);
-    color: var(--accent);
+    background: var(--surface);
+    color: var(--teal-deep);
     text-decoration: none;
     font-size: 0.85rem;
-    padding: 0.15rem 0.7rem;
+    font-weight: 600;
+    padding: 0.2rem 0.8rem;
     border-radius: 1rem;
+    border: 1px solid var(--line);
+    transition: background 0.15s ease;
+  }
+
+  .topic-tag:hover {
+    background: var(--gold);
+    color: #fff;
+    border-color: var(--gold);
   }
 </style>

@@ -31,20 +31,26 @@ const { title, topic, cover, coverAlt, date, excerpt } = story.data;
   }
 
   .card-cover {
-    border-radius: 0.75rem;
-    margin-bottom: 0.75rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 0.9rem;
   }
 
   .card h2 {
-    font-size: 1.35rem;
+    font-size: 1.5rem;
     line-height: 1.4;
+    transition: color 0.15s ease;
+  }
+
+  .card-link:hover h2 {
+    color: var(--teal);
   }
 
   .card-meta {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    margin: 0.35rem 0;
+    margin: 0.4rem 0 0.2rem;
   }
 
   .card-meta time {
@@ -54,5 +60,6 @@ const { title, topic, cover, coverAlt, date, excerpt } = story.data;
 
   .card-excerpt {
     color: var(--muted);
+    line-height: 1.75;
   }
 </style>

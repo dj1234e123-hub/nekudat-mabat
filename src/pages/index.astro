@@ -14,6 +14,7 @@ const stories = (await getCollection('stories')).sort(
   description="נקודת מבט — ספרייה חיה של סיפורים. כל סיפור מוביל למסע שקט אל נקודת מבט חדשה."
 >
   <main>
+    <p class="intro">ספרייה חיה של סיפורים. כל סיפור — מסע שקט אל נקודת מבט חדשה.</p>
     <nav class="topics" aria-label="נושאים">
       {TOPIC_SLUGS.map((slug) => <a class="topic-tag" href={`/topics/${slug}/`}>{TOPICS[slug]}</a>)}
     </nav>
@@ -24,18 +25,25 @@ const stories = (await getCollection('stories')).sort(
 </Base>
 
 <style>
+  .intro {
+    text-align: center;
+    color: var(--muted);
+    max-width: 30rem;
+    margin: 0 auto 1.5rem;
+  }
+
   .topics {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.5rem;
-    padding-bottom: 2rem;
+    padding-bottom: 2.25rem;
   }
 
   .story-list {
     list-style: none;
     padding: 0;
     display: grid;
-    gap: 2.5rem;
+    gap: 2.75rem;
   }
 </style>
