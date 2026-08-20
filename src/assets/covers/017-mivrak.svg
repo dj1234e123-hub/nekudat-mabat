@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <!-- שער לסיפור #017: אותה מציאות, שתי נקודות מבט.
+       צד קריר (סגירה) מול צד חם (פתיחה), אותה זריחה בדיוק, ומעל כל דמות — המברק שלה. -->
+  <rect width="1200" height="630" fill="#F6EEDB"/>
+  <path d="M0 0 H625 L575 630 H0 Z" fill="#003B5C" opacity="0.12"/>
+  <path d="M625 0 H1200 V630 H575 Z" fill="#C9A24D" opacity="0.16"/>
+
+  <!-- קו האופק -->
+  <line x1="60" y1="430" x2="1140" y2="430" stroke="#75695A" stroke-width="3" opacity="0.45"/>
+
+  <!-- אותה שמש עולה, בדיוק באמצע -->
+  <path d="M505 430 A95 95 0 0 1 695 430 Z" fill="#C9A24D"/>
+  <path d="M505 430 A95 95 0 0 1 695 430" fill="none" stroke="#B0463B" stroke-width="5" opacity="0.55"/>
+
+  <!-- הדמות בצד הקריר -->
+  <circle cx="340" cy="296" r="27" fill="#003B5C"/>
+  <rect x="311" y="330" width="58" height="102" rx="27" fill="#003B5C"/>
+  <!-- המברק שלה: קו יורד -->
+  <rect x="286" y="188" width="108" height="60" rx="9" fill="#FDFAF2" stroke="#003B5C" stroke-width="3.5"/>
+  <line x1="306" y1="206" x2="374" y2="232" stroke="#003B5C" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- הדמות בצד החם -->
+  <circle cx="860" cy="296" r="27" fill="#B0463B"/>
+  <rect x="831" y="330" width="58" height="102" rx="27" fill="#B0463B"/>
+  <!-- המברק שלה: קו עולה -->
+  <rect x="806" y="188" width="108" height="60" rx="9" fill="#FDFAF2" stroke="#C9A24D" stroke-width="3.5"/>
+  <line x1="826" y1="232" x2="894" y2="206" stroke="#B0463B" stroke-width="5" stroke-linecap="round"/>
+</svg>

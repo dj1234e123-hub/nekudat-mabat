@@ -19,6 +19,12 @@ const stories = defineCollection({
         coverAlt: z.string().min(1).optional(),
         date: z.coerce.date(),
         excerpt: z.string().min(1),
+        /** מחליף את חישוב זמן הקריאה האוטומטי, למשל "כ־90 שניות" (מתוך כרטיס הסיפור) */
+        readingTime: z.string().optional(),
+        /** תגיות מכרטיס הסיפור — מטא-דאטה בלבד, לא מוצג לקורא בשלב זה */
+        tags: z.array(z.string()).optional(),
+        /** שורת המקור מכרטיס הסיפור — מטא-דאטה בלבד, לא מוצג לקורא בשלב זה */
+        source: z.string().optional(),
       })
       .refine((data) => !data.cover || !!data.coverAlt, {
         message: 'סיפור עם תמונת שער חייב גם טקסט חלופי (coverAlt)',

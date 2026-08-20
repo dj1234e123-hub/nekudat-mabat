@@ -21,9 +21,12 @@ const { story } = Astro.props;
 const { Content } = await render(story);
 const { title, section, topic, date, excerpt } = story.data;
 
-// זמן קריאה משוער לפי ספירת מילים (~180 מילים לדקה בעברית).
+// זמן קריאה: מכרטיס הסיפור אם צוין, אחרת לפי ספירת מילים (~180 מילים לדקה).
 const wordCount = (story.body ?? '').trim().split(/\s+/).length;
 const readingMinutes = Math.max(1, Math.round(wordCount / 180));
+const readingLabel = story.data.readingTime
+  ? `${story.data.readingTime} קריאה`
+  : `כ־${readingMinutes} דקות קריאה`;
 const cover = story.data.cover ?? DEFAULT_COVERS[section];
 const coverAlt = story.data.coverAlt ?? DEFAULT_COVER_ALT;
 
@@ -53,7 +56,7 @@ const otherStoryUrls = (await getCollection('stories'))
         <p class="story-meta">
           <time datetime={date.toISOString().slice(0, 10)}>{formatDate(date)}</time>
           <span aria-hidden="true"> · </span>
-          <span>כ־{readingMinutes} דקות קריאה</span>
+          <span>{readingLabel}</span>
         </p>
       </header>
       <Image src={cover} alt={coverAlt} widths={[480, 800, 1200]} sizes="(max-width: 42rem) 100vw, 42rem" class="cover" />
@@ -122,6 +125,20 @@ const otherStoryUrls = (await getCollection('stories'))
     padding-inline-start: 1.1rem;
     margin: 1.75rem 0;
     font-size: 1.25rem;
+  }
+
+  /* הדגשות (*כך*) — משקל במקום נטייה, שנראית רע בעברית */
+  .story-body :global(em) {
+    font-style: normal;
+    font-weight: 600;
+    color: var(--teal-deep);
+  }
+
+  /* החתימה האישית בסוף כל סיפור */
+  .story-body :global(.signature) {
+    font-family: var(--font-display);
+    color: var(--teal-deep);
+    margin-top: 2.5rem;
   }
 
   .end-dot {
