@@ -4,7 +4,7 @@
 title: "המברק ששלחת לעצמך"
 section: empowerment
 archiveId: "017"
-cover: ../../assets/covers/017-mivrak.svg
+cover: ../../assets/covers/017-mivrak.png
 coverAlt: "איור: שתי דמויות מביטות באותה זריחה — צד אחד קריר וצד אחד זהוב, ומעל כל דמות מברק משלה"
 date: 2026-02-15
 readingTime: "כ־90 שניות"

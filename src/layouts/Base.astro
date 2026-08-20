@@ -11,11 +11,21 @@ interface Props {
   /** כתובת מוחלטת לתמונת התצוגה המקדימה בשיתוף; ברירת מחדל — הלוגו */
   ogImage?: string;
   ogType?: 'website' | 'article';
+  /** כותרת מצומצמת (עמודי סיפור): שורת מותג אחת, בלי סלוגן ותפריט — הקורא מגיע מהר לסיפור */
+  compact?: boolean;
   bodyClass?: string;
   noindex?: boolean;
 }
 
-const { title, description, ogImage, ogType = 'website', bodyClass, noindex = false } = Astro.props;
+const {
+  title,
+  description,
+  ogImage,
+  ogType = 'website',
+  compact = false,
+  bodyClass,
+  noindex = false,
+} = Astro.props;
 
 const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
 const defaultOg = await getImage({ src: logo, width: 640, format: 'jpeg' });
@@ -48,18 +58,29 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
     <title>{title}</title>
   </head>
   <body class={bodyClass}>
-    <header>
-      <a href="/" class="brand">
-        <Image src={logo} alt="הלוגו של נקודת מבט" width={144} densities={[1, 2]} class="logo" />
-        <span class="site-name">נקודת מבט</span>
-      </a>
-      <p class="tagline">{SITE.slogan}</p>
-      <nav class="site-nav" aria-label="ניווט ראשי">
-        <a href="/">הסיפורים</a>
-        <a href="/about/">אודות</a>
-        <a href={SITE.whatsappGroupUrl} rel="noopener">קבוצת הוואטסאפ</a>
-      </nav>
-    </header>
+    {
+      compact ? (
+        <header class="header-compact">
+          <a href="/" class="brand-row">
+            <Image src={logo} alt="הלוגו של נקודת מבט" width={80} densities={[1, 2]} class="logo-sm" />
+            <span class="site-name-sm">נקודת מבט</span>
+          </a>
+        </header>
+      ) : (
+        <header>
+          <a href="/" class="brand">
+            <Image src={logo} alt="הלוגו של נקודת מבט" width={144} densities={[1, 2]} class="logo" />
+            <span class="site-name">נקודת מבט</span>
+          </a>
+          <p class="tagline">{SITE.slogan}</p>
+          <nav class="site-nav" aria-label="ניווט ראשי">
+            <a href="/">הסיפורים</a>
+            <a href="/about/">אודות</a>
+            <a href={SITE.whatsappGroupUrl} rel="noopener" target="_blank">קבוצת הוואטסאפ</a>
+          </nav>
+        </header>
+      )
+    }
     <slot />
     <footer>
       <span class="dot" aria-hidden="true"></span>
@@ -178,6 +199,35 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
   }
 
   .site-nav a:hover {
+    color: var(--teal-deep);
+  }
+
+  /* כותרת מצומצמת — עמודי סיפור */
+  .header-compact {
+    text-align: center;
+    padding: 1.1rem 1.5rem 0.25rem;
+  }
+
+  .brand-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    text-decoration: none;
+  }
+
+  .logo-sm {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #fff;
+    box-shadow: var(--shadow);
+  }
+
+  .site-name-sm {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 700;
     color: var(--teal-deep);
   }
 

@@ -46,7 +46,7 @@ const otherStoryUrls = (await getCollection('stories'))
   .map((s) => `/stories/${s.id}/`);
 ---
 
-<Base title={`${title} · נקודת מבט`} description={excerpt} ogType="article" ogImage={ogImage}>
+<Base title={`${title} · נקודת מבט`} description={excerpt} ogType="article" ogImage={ogImage} compact={true}>
   <main>
     <article>
       <header class="story-header">
