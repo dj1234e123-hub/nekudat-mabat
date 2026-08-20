@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <!-- שער זמני לקטגוריית מבט לשבת — שני נרות -->
+  <rect width="1200" height="630" fill="#F3E9D3"/>
+  <rect x="490" y="330" width="30" height="190" rx="8" fill="#1F5C57"/>
+  <rect x="680" y="330" width="30" height="190" rx="8" fill="#1F5C57"/>
+  <ellipse cx="505" cy="285" rx="24" ry="42" fill="#C9A24D"/>
+  <ellipse cx="695" cy="285" rx="24" ry="42" fill="#C9A24D"/>
+  <ellipse cx="505" cy="297" rx="11" ry="22" fill="#B0463B" opacity="0.75"/>
+  <ellipse cx="695" cy="297" rx="11" ry="22" fill="#B0463B" opacity="0.75"/>
+  <rect x="380" y="520" width="440" height="18" rx="9" fill="#C9A24D" opacity="0.5"/>
+</svg>

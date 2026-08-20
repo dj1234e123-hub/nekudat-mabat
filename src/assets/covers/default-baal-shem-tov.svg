@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <!-- שער זמני לקטגוריית סיפורי הבעל שם טוב — פנס בלילה -->
+  <rect width="1200" height="630" fill="#003B5C"/>
+  <circle cx="600" cy="330" r="180" fill="#C9A24D" opacity="0.18"/>
+  <circle cx="600" cy="330" r="110" fill="#C9A24D" opacity="0.25"/>
+  <rect x="570" y="250" width="60" height="120" rx="12" fill="none" stroke="#C9A24D" stroke-width="10"/>
+  <ellipse cx="600" cy="315" rx="14" ry="26" fill="#C9A24D"/>
+  <circle cx="260" cy="140" r="5" fill="#F3E9D3" opacity="0.8"/>
+  <circle cx="920" cy="110" r="4" fill="#F3E9D3" opacity="0.7"/>
+  <circle cx="1030" cy="230" r="5" fill="#F3E9D3" opacity="0.6"/>
+  <circle cx="180" cy="320" r="4" fill="#F3E9D3" opacity="0.6"/>
+</svg>

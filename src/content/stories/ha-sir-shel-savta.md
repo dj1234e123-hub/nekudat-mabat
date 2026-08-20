@@ -1,6 +1,7 @@
 ---
 # סיפור דוגמה זמני — יוחלף בסיפור אמיתי בשלב 5
 title: "הסיר של סבתא"
+section: empowerment
 topic: family
 cover: ../../assets/covers/demo-kitchen.svg
 coverAlt: "איור חם של סיר עגול במטבח"

@@ -1,7 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
-import { TOPICS } from '../data/topics';
+import { SECTIONS } from '../data/sections';
+import { DEFAULT_COVERS, DEFAULT_COVER_ALT } from '../data/default-covers';
 import { formatDate } from '../utils/format-date';
 
 interface Props {
@@ -9,7 +10,9 @@ interface Props {
 }
 
 const { story } = Astro.props;
-const { title, topic, cover, coverAlt, date, excerpt } = story.data;
+const { title, section, date, excerpt } = story.data;
+const cover = story.data.cover ?? DEFAULT_COVERS[section];
+const coverAlt = story.data.coverAlt ?? DEFAULT_COVER_ALT;
 ---
 
 <li class="card">
@@ -18,7 +21,7 @@ const { title, topic, cover, coverAlt, date, excerpt } = story.data;
     <h2>{title}</h2>
   </a>
   <p class="card-meta">
-    <a class="topic-tag" href={`/topics/${topic}/`}>{TOPICS[topic]}</a>
+    <a class="topic-tag" href={`/sections/${section}/`}>{SECTIONS[section]}</a>
     <time datetime={date.toISOString().slice(0, 10)}>{formatDate(date)}</time>
   </p>
   <p class="card-excerpt">{excerpt}</p>

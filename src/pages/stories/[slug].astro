@@ -5,6 +5,8 @@ import Base from '../../layouts/Base.astro';
 import ShareRow from '../../components/ShareRow.astro';
 import JoinGroup from '../../components/JoinGroup.astro';
 import { TOPICS } from '../../data/topics';
+import { SECTIONS } from '../../data/sections';
+import { DEFAULT_COVERS, DEFAULT_COVER_ALT } from '../../data/default-covers';
 import { formatDate } from '../../utils/format-date';
 
 export async function getStaticPaths() {
@@ -17,12 +19,14 @@ export async function getStaticPaths() {
 
 const { story } = Astro.props;
 const { Content } = await render(story);
-const { title, topic, cover, coverAlt, date, excerpt } = story.data;
+const { title, section, topic, date, excerpt } = story.data;
+const cover = story.data.cover ?? DEFAULT_COVERS[section];
+const coverAlt = story.data.coverAlt ?? DEFAULT_COVER_ALT;
 
 const pageUrl = new URL(`/stories/${story.id}/`, Astro.site).href;
 
 // תמונת תצוגה מקדימה לשיתוף: תמונת השער. וואטסאפ לא מציג SVG,
-// לכן לתמונות ה-placeholder הזמניות ניפול ללוגו (ברירת המחדל של Base).
+// לכן לשערים הזמניים (SVG) ניפול ללוגו (ברירת המחדל של Base).
 let ogImage: string | undefined;
 if (cover.format !== 'svg') {
   const og = await getImage({ src: cover, width: 1200, format: 'jpeg' });
@@ -39,7 +43,8 @@ const otherStoryUrls = (await getCollection('stories'))
   <main>
     <article>
       <header class="story-header">
-        <a class="topic-tag" href={`/topics/${topic}/`}>{TOPICS[topic]}</a>
+        <a class="topic-tag" href={`/sections/${section}/`}>{SECTIONS[section]}</a>
+        {topic && <a class="topic-tag" href={`/topics/${topic}/`}>{TOPICS[topic]}</a>}
         <h1>{title}</h1>
         <time datetime={date.toISOString().slice(0, 10)}>{formatDate(date)}</time>
       </header>

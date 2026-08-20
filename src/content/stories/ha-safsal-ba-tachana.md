@@ -1,6 +1,7 @@
 ---
 # סיפור דוגמה זמני — יוחלף בסיפור אמיתי בשלב 5
 title: "הספסל בתחנה"
+section: empowerment
 topic: journey
 cover: ../../assets/covers/demo-bench.svg
 coverAlt: "איור שקט של ספסל ירוק ושמש זהובה"

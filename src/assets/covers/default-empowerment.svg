@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <!-- שער זמני לקטגוריית סיפורי העצמה — זריחה -->
+  <rect width="1200" height="630" fill="#F3E9D3"/>
+  <circle cx="600" cy="640" r="330" fill="#C9A24D" opacity="0.4"/>
+  <circle cx="600" cy="640" r="220" fill="#C9A24D" opacity="0.55"/>
+  <circle cx="600" cy="640" r="120" fill="#B0463B" opacity="0.5"/>
+  <circle cx="600" cy="200" r="14" fill="#1F5C57"/>
+</svg>

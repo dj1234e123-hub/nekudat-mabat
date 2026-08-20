@@ -1,6 +1,7 @@
 ---
 # סיפור דוגמה זמני — יוחלף בסיפור אמיתי בשלב 5
 title: "המעיל בארון"
+section: empowerment
 topic: loss
 cover: ../../assets/covers/demo-coat.svg
 coverAlt: "איור שקט של קולב ומעיל בגוני כחול"

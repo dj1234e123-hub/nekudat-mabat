@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import StoryCard from '../components/StoryCard.astro';
 import JoinGroup from '../components/JoinGroup.astro';
-import { TOPICS, TOPIC_SLUGS } from '../data/topics';
+import { SECTIONS, SECTION_SLUGS } from '../data/sections';
 
 const stories = (await getCollection('stories')).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
@@ -17,8 +17,8 @@ const storyUrls = stories.map((s) => `/stories/${s.id}/`);
 >
   <main>
     <p class="intro">ספרייה חיה של סיפורים. כל סיפור — מסע שקט אל נקודת מבט חדשה.</p>
-    <nav class="topics" aria-label="נושאים">
-      {TOPIC_SLUGS.map((slug) => <a class="topic-tag" href={`/topics/${slug}/`}>{TOPICS[slug]}</a>)}
+    <nav class="topics" aria-label="עולמות התוכן">
+      {SECTION_SLUGS.map((slug) => <a class="topic-tag" href={`/sections/${slug}/`}>{SECTIONS[slug]}</a>)}
       <button id="random-story" class="topic-tag random" type="button">✦ סיפור אקראי</button>
     </nav>
     <ul class="story-list">
