@@ -1,0 +1,75 @@
+---
+// שורת שיתוף לסיפור: וואטסאפ + העתקת קישור. עברית בלבד.
+interface Props {
+  title: string;
+  url: string;
+}
+
+const { title, url } = Astro.props;
+const whatsappHref = `https://wa.me/?text=${encodeURIComponent(`${title} · נקודת מבט\n${url}`)}`;
+---
+
+<div class="share" data-url={url}>
+  <span class="share-label">אהבתם? שתפו:</span>
+  <a class="share-btn whatsapp" href={whatsappHref} rel="noopener" target="_blank">שיתוף בוואטסאפ</a>
+  <button class="share-btn copy" type="button">העתקת קישור</button>
+</div>
+
+<script>
+  for (const share of document.querySelectorAll<HTMLElement>('.share')) {
+    const url = share.dataset.url!;
+    const copyBtn = share.querySelector<HTMLButtonElement>('.copy')!;
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(url);
+        copyBtn.textContent = 'הקישור הועתק ✓';
+        setTimeout(() => (copyBtn.textContent = 'העתקת קישור'), 2500);
+      } catch {
+        prompt('העתיקו את הקישור:', url);
+      }
+    });
+  }
+</script>
+
+<style>
+  .share {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 2rem;
+  }
+
+  .share-label {
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  .share-btn {
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.45rem 1.1rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid var(--teal);
+    background: transparent;
+    color: var(--teal);
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .share-btn.whatsapp {
+    background: var(--teal);
+    color: #fff;
+  }
+
+  .share-btn.whatsapp:hover {
+    background: var(--teal-deep);
+  }
+
+  .share-btn.copy:hover {
+    background: var(--surface);
+  }
+</style>

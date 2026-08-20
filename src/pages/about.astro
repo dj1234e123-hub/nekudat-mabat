@@ -1,0 +1,61 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import JoinGroup from '../components/JoinGroup.astro';
+import portrait from '../assets/efraim.jpg';
+---
+
+<Base
+  title="אודות · נקודת מבט"
+  description="מי מאחורי נקודת מבט — אפרים עטיה על הרעיון שמאחורי ספריית הסיפורים."
+>
+  <main>
+    <h1 class="page-title">אודות</h1>
+    <Image src={portrait} alt="אפרים עטיה" widths={[320, 640]} sizes="(max-width: 24rem) 80vw, 20rem" class="portrait" />
+    <div class="about-body">
+      <p>שלום, טוב שבאתם. אני אפרים עטיה.</p>
+      <p>
+        "נקודת מבט" נולדה מתוך אהבה פשוטה: לעצור לרגע, להקשיב לסיפור, ולגלות שאפשר לראות את אותם
+        הדברים בעיניים אחרות.
+      </p>
+      <p>
+        אני מאמין שסיפור טוב לא צריך להרים את הקול. הוא מתיישב לידך בשקט, מספר את עצמו, ומשאיר
+        אחריו שאלה קטנה: אולי אפשר גם אחרת?
+      </p>
+      <p>
+        זה מה שאני מנסה לעשות כאן — לאסוף סיפורים קצרים מהחיים, כאלה שמזיזים משהו קטן בלב, ולשים
+        את הנקודה במרכז: נקודת המבט שלנו על העולם.
+      </p>
+      <p>
+        אם סיפור נגע בכם — שתפו אותו עם מי שיקר לכם. ואם תרצו עוד, בקבוצת הוואטסאפ השקטה שלנו
+        מתפרסם כל סיפור חדש. תרגישו בבית.
+      </p>
+    </div>
+    <JoinGroup />
+  </main>
+</Base>
+
+<style>
+  .page-title {
+    text-align: center;
+    font-size: 1.8rem;
+    padding: 0.5rem 0 1.5rem;
+  }
+
+  .portrait {
+    width: min(65%, 18rem);
+    height: auto;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin: 0 auto 2rem;
+  }
+
+  .about-body {
+    font-size: 1.15rem;
+    line-height: 2;
+  }
+
+  .about-body p + p {
+    margin-top: 1.25rem;
+  }
+</style>

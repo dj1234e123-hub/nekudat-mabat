@@ -2,11 +2,13 @@
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import StoryCard from '../components/StoryCard.astro';
+import JoinGroup from '../components/JoinGroup.astro';
 import { TOPICS, TOPIC_SLUGS } from '../data/topics';
 
 const stories = (await getCollection('stories')).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
+const storyUrls = stories.map((s) => `/stories/${s.id}/`);
 ---
 
 <Base
@@ -17,12 +19,20 @@ const stories = (await getCollection('stories')).sort(
     <p class="intro">ספרייה חיה של סיפורים. כל סיפור — מסע שקט אל נקודת מבט חדשה.</p>
     <nav class="topics" aria-label="נושאים">
       {TOPIC_SLUGS.map((slug) => <a class="topic-tag" href={`/topics/${slug}/`}>{TOPICS[slug]}</a>)}
+      <button id="random-story" class="topic-tag random" type="button">✦ סיפור אקראי</button>
     </nav>
     <ul class="story-list">
       {stories.map((story) => <StoryCard story={story} />)}
     </ul>
+    <JoinGroup />
   </main>
 </Base>
+
+<script is:inline define:vars={{ storyUrls }}>
+  document.getElementById('random-story').addEventListener('click', () => {
+    location.href = storyUrls[Math.floor(Math.random() * storyUrls.length)];
+  });
+</script>
 
 <style>
   .intro {
@@ -38,6 +48,12 @@ const stories = (await getCollection('stories')).sort(
     justify-content: center;
     gap: 0.5rem;
     padding-bottom: 2.25rem;
+  }
+
+  .random {
+    font-family: inherit;
+    cursor: pointer;
+    color: var(--brick);
   }
 
   .story-list {

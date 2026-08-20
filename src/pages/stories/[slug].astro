@@ -1,7 +1,9 @@
 ---
 import { getCollection, render } from 'astro:content';
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
+import ShareRow from '../../components/ShareRow.astro';
+import JoinGroup from '../../components/JoinGroup.astro';
 import { TOPICS } from '../../data/topics';
 import { formatDate } from '../../utils/format-date';
 
@@ -16,9 +18,24 @@ export async function getStaticPaths() {
 const { story } = Astro.props;
 const { Content } = await render(story);
 const { title, topic, cover, coverAlt, date, excerpt } = story.data;
+
+const pageUrl = new URL(`/stories/${story.id}/`, Astro.site).href;
+
+// תמונת תצוגה מקדימה לשיתוף: תמונת השער. וואטסאפ לא מציג SVG,
+// לכן לתמונות ה-placeholder הזמניות ניפול ללוגו (ברירת המחדל של Base).
+let ogImage: string | undefined;
+if (cover.format !== 'svg') {
+  const og = await getImage({ src: cover, width: 1200, format: 'jpeg' });
+  ogImage = new URL(og.src, Astro.site).href;
+}
+
+// רשימת כתובות ל"סיפור אקראי" — בלי הסיפור הנוכחי.
+const otherStoryUrls = (await getCollection('stories'))
+  .filter((s) => s.id !== story.id)
+  .map((s) => `/stories/${s.id}/`);
 ---
 
-<Base title={`${title} · נקודת מבט`} description={excerpt}>
+<Base title={`${title} · נקודת מבט`} description={excerpt} ogType="article" ogImage={ogImage}>
   <main>
     <article>
       <header class="story-header">
@@ -32,11 +49,26 @@ const { title, topic, cover, coverAlt, date, excerpt } = story.data;
       </div>
       <span class="end-dot" aria-hidden="true"></span>
     </article>
+
+    <ShareRow title={title} url={pageUrl} />
+    <JoinGroup />
+
     <nav class="story-footer">
-      <a href="/">→ לכל הסיפורים</a>
+      <a href="/">לכל הסיפורים</a>
+      {otherStoryUrls.length > 0 && <button id="random-story" type="button">לסיפור אקראי</button>}
     </nav>
   </main>
 </Base>
+
+{
+  otherStoryUrls.length > 0 && (
+    <script is:inline define:vars={{ otherStoryUrls }}>
+      document.getElementById('random-story').addEventListener('click', () => {
+        location.href = otherStoryUrls[Math.floor(Math.random() * otherStoryUrls.length)];
+      });
+    </script>
+  )
+}
 
 <style>
   .story-header {
@@ -90,11 +122,26 @@ const { title, topic, cover, coverAlt, date, excerpt } = story.data;
 
   .story-footer {
     margin-top: 2.5rem;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
   }
 
-  .story-footer a {
+  .story-footer a,
+  .story-footer button {
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--teal);
+    background: none;
+    border: none;
+    padding: 0;
     text-decoration: none;
     font-weight: 600;
+    cursor: pointer;
+  }
+
+  .story-footer a:hover,
+  .story-footer button:hover {
+    color: var(--teal-deep);
   }
 </style>
