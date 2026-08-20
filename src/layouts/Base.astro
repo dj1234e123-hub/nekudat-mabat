@@ -1,7 +1,6 @@
 ---
-// שלד עמוד משותף + שפת העיצוב של האתר (שלב 3).
-// הפונטים מוגדרים כמשתני CSS בלבד — ההחלטה הסופית תיקבע בדף ההשוואה /fonts,
-// והחלפה = שינוי שורת ה---font-body בלבד.
+// שלד עמוד משותף + שפת העיצוב של האתר.
+// פונטים (החלטה סופית): Frank Ruhl Libre לכותרות, Heebo לטקסט השוטף ולממשק.
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.jpg';
 
@@ -26,7 +25,7 @@ const { title, description, bodyClass, noindex = false } = Astro.props;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
     <title>{title}</title>
@@ -62,16 +61,12 @@ const { title, description, bodyClass, noindex = false } = Astro.props;
     --brick: #b0463b;
     --gold: #c9a24d;
 
-    /* טיפוגרפיה — Frank Ruhl Libre לכותרות; גוף ברירת מחדל Assistant (טרם ננעל) */
+    /* טיפוגרפיה — החלטה סופית: Frank Ruhl Libre לכותרות, Heebo לטקסט ולממשק */
     --font-display: 'Frank Ruhl Libre', 'David Libre', serif;
-    --font-body: 'Assistant', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+    --font-body: 'Heebo', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
 
     --radius: 0.9rem;
     --shadow: 0 1px 3px rgba(46, 42, 36, 0.08);
-  }
-
-  body.font-heebo {
-    --font-body: 'Heebo', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
   }
 
   * {
