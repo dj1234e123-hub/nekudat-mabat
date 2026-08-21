@@ -1,5 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { FEELING_SLUGS, type FeelingSlug } from './data/feelings';
 
 // אוסף הסיפורים: כל קובץ Markdown בתיקייה src/content/stories הוא סיפור.
 // section (עולם תוכן) — חובה. topic — תגית משנה אופציונלית.
@@ -31,4 +32,16 @@ const stories = defineCollection({
       }),
 });
 
-export const collections = { stories };
+// "רגע של נקודת מבט" — תכנים קצרים לפי מצב או רגש.
+// אוסף נפרד לגמרי מהסיפורים: לכל סוג תוכן הכללים שלו, כדי שהוולידציה תישאר קשיחה.
+// המבנה מכוון לפשטות מרבית בקליטת תוכן — רק המצב והתאריך, והטקסט עצמו בגוף הקובץ.
+// רשימת המצבים המותרים נגזרת אוטומטית מ-src/data/feelings.ts: מצב חדש שם = תקף כאן מיד.
+const moments = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/moments' }),
+  schema: z.object({
+    feeling: z.enum(FEELING_SLUGS as [FeelingSlug, ...FeelingSlug[]]),
+    date: z.coerce.date(),
+  }),
+});
+
+export const collections = { stories, moments };

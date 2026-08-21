@@ -1,16 +1,22 @@
 ---
-// שורת שיתוף לסיפור: וואטסאפ + העתקת קישור. עברית בלבד.
+// שורת שיתוף: וואטסאפ + העתקת קישור. עברית בלבד.
 interface Props {
   title: string;
   url: string;
+  /** טקסט השיתוף בוואטסאפ. ברירת מחדל — הכותרת (סיפורים).
+      ברגעים מעבירים כאן את הטקסט עצמו, כי הוא קצר ומיועד להישלח כמו שהוא. */
+  shareText?: string;
+  /** התווית שלפני הכפתורים */
+  label?: string;
 }
 
-const { title, url } = Astro.props;
-const whatsappHref = `https://wa.me/?text=${encodeURIComponent(`${title} · נקודת מבט\n${url}`)}`;
+const { title, url, shareText, label = 'אהבתם? שתפו:' } = Astro.props;
+const message = shareText ?? `${title} · נקודת מבט`;
+const whatsappHref = `https://wa.me/?text=${encodeURIComponent(`${message}\n${url}`)}`;
 ---
 
 <div class="share" data-url={url}>
-  <span class="share-label">אהבתם? שתפו:</span>
+  <span class="share-label">{label}</span>
   <a class="share-btn whatsapp" href={whatsappHref} rel="noopener" target="_blank">שיתוף בוואטסאפ</a>
   <button class="share-btn copy" type="button">העתקת קישור</button>
 </div>

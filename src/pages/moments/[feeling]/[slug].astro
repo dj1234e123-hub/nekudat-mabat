@@ -1,0 +1,107 @@
+---
+// עמוד של רגע בודד — הכתובת שמשתפים.
+// העמוד שקט בכוונה: הטקסט, ומסביבו אוויר. בלי תמונה, בלי תאריך, בלי זמן קריאה.
+import { getCollection, render } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import ShareRow from '../../../components/ShareRow.astro';
+import { feelingLabel, groupLabel, type FeelingSlug } from '../../../data/feelings';
+
+export async function getStaticPaths() {
+  const moments = await getCollection('moments');
+  return moments.map((moment) => ({
+    params: { feeling: moment.data.feeling, slug: moment.id },
+    props: { moment },
+  }));
+}
+
+const { moment } = Astro.props;
+const { Content } = await render(moment);
+const feeling = moment.data.feeling as FeelingSlug;
+const label = feelingLabel(feeling);
+
+// הטקסט כמלל נקי — לתיאור העמוד ולשיתוף בוואטסאפ (הרגע נשלח כמו שהוא).
+const plainText = moment.body!.replace(/\s+/g, ' ').trim();
+const summary = plainText.length > 200 ? `${plainText.slice(0, 197)}…` : plainText;
+
+const pageUrl = new URL(`/moments/${feeling}/${moment.id}/`, Astro.site).href;
+---
+
+<Base
+  title={`${label} · רגע של נקודת מבט`}
+  description={summary}
+  ogType="article"
+  compact={true}
+>
+  <main>
+    <article class="moment">
+      <p class="eyebrow">
+        <span class="group">{groupLabel(feeling)}</span>
+        <a class="topic-tag" href={`/moments/${feeling}/`}>{label}</a>
+      </p>
+      <div class="moment-body">
+        <Content />
+      </div>
+      <span class="end-dot" aria-hidden="true"></span>
+    </article>
+
+    <ShareRow title={label} url={pageUrl} shareText={plainText} label="לשלוח את זה למישהו:" />
+
+    <nav class="moment-footer">
+      <a href={`/moments/${feeling}/`}>עוד ב{label}</a>
+      <a href="/moments/">לכל המצבים</a>
+    </nav>
+  </main>
+</Base>
+
+<style>
+  .moment {
+    padding-top: 1.5rem;
+  }
+
+  .eyebrow {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .eyebrow .group {
+    display: block;
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* יישור לימין ולא למרכז: טקסט ממורכז על פני כמה שורות קשה לקריאה בטלפון,
+     ונוחות הקריאה קודמת לאפקט החזותי. */
+  .moment-body {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    line-height: 2.05;
+    max-width: 30rem;
+    margin-inline: auto;
+  }
+
+  .moment-body :global(p + p) {
+    margin-top: 1.5rem;
+  }
+
+  .end-dot {
+    display: block;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: var(--gold);
+    margin: 2.75rem auto 0;
+  }
+
+  .moment-footer {
+    margin-top: 2.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .moment-footer a {
+    text-decoration: none;
+    font-weight: 600;
+  }
+</style>

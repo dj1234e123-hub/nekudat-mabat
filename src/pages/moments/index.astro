@@ -1,0 +1,97 @@
+---
+// עמוד הכניסה ל"רגע של נקודת מבט".
+// הניווט כאן הוא לפי *רגש*, לא לפי זמן — הקורא מגיע עם מה שעובר עליו עכשיו.
+// שלוש הקבוצות מסודרות כתנועה: מכאב, דרך קושי, אל התחלה.
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { FEELING_GROUPS } from '../../data/feelings';
+
+const moments = await getCollection('moments');
+// מצב בלי תוכן עדיין מוצג (הוא חלק מהמבנה) אבל אינו קישור — כדי שלא להוביל למדף ריק.
+const filled = new Set(moments.map((moment) => moment.data.feeling));
+---
+
+<Base
+  title="רגע של נקודת מבט"
+  description="משפטים ותובנות קצרות לפי מה שעובר עליך עכשיו. רגע לעצור."
+>
+  <main>
+    <h1 class="page-title">רגע של נקודת מבט</h1>
+    <p class="question">מה עובר עליך עכשיו?</p>
+
+    {
+      FEELING_GROUPS.map((group) => (
+        <section class="group">
+          <h2 class="group-label">{group.label}</h2>
+          <ul class="feelings">
+            {group.feelings.map((feeling) =>
+              filled.has(feeling.slug) ? (
+                <li>
+                  <a class="topic-tag" href={`/moments/${feeling.slug}/`}>{feeling.label}</a>
+                </li>
+              ) : (
+                <li>
+                  <span class="topic-tag empty" aria-disabled="true">{feeling.label}</span>
+                </li>
+              )
+            )}
+          </ul>
+        </section>
+      ))
+    }
+
+    <p class="soon">מצבים נוספים ותכנים נוספים — בדרך.</p>
+  </main>
+</Base>
+
+<style>
+  .page-title {
+    text-align: center;
+    font-size: 1.8rem;
+    padding: 0.5rem 0 0.75rem;
+  }
+
+  .question {
+    text-align: center;
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    color: var(--teal-deep);
+    margin-bottom: 2.5rem;
+  }
+
+  .group {
+    margin-bottom: 2.25rem;
+  }
+
+  .group-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-align: center;
+    margin-bottom: 0.85rem;
+  }
+
+  .feelings {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  /* מצב שעדיין אין בו תוכן — נוכח במבנה, אך לא מוביל לשום מקום */
+  .topic-tag.empty {
+    color: var(--muted);
+    background: transparent;
+    border-style: dashed;
+    cursor: default;
+  }
+
+  .soon {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 2.5rem;
+  }
+</style>
