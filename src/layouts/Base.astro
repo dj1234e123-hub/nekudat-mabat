@@ -1,6 +1,8 @@
 ---
 // שלד עמוד משותף + שפת העיצוב של האתר.
 // פונטים (החלטה סופית): Frank Ruhl Libre לכותרות, Heebo לטקסט השוטף ולממשק.
+// הקבצים מוגשים מתוך האתר (public/fonts) ולא משרת חיצוני — מהירות, עמידות,
+// ותנאי מקדים ליצירת תמונות שיתוף בזמן בנייה (שלב 4.7).
 import { Image, getImage } from 'astro:assets';
 import logo from '../assets/logo.jpg';
 import { SITE } from '../data/site';
@@ -49,12 +51,14 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="canonical" href={pageUrl} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@400;600;700&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/frank-ruhl-libre-hebrew.woff2"
+      crossorigin
     />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/heebo-hebrew.woff2" crossorigin />
     <title>{title}</title>
   </head>
   <body class={bodyClass}>
@@ -92,12 +96,57 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
 </html>
 
 <style is:global>
+  /* שני הפונטים הם variable — קובץ אחד לכל תת-קבוצה משרת את כל המשקלים.
+     unicode-range מוריד את הקובץ הלטיני רק בעמוד שבאמת מציג ספרות או אותיות לטיניות. */
+  @font-face {
+    font-family: 'Frank Ruhl Libre';
+    font-style: normal;
+    font-weight: 300 900;
+    font-display: swap;
+    src: url('/fonts/frank-ruhl-libre-hebrew.woff2') format('woff2');
+    unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+  }
+
+  @font-face {
+    font-family: 'Frank Ruhl Libre';
+    font-style: normal;
+    font-weight: 300 900;
+    font-display: swap;
+    src: url('/fonts/frank-ruhl-libre-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+      U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+      U+FEFF, U+FFFD;
+  }
+
+  @font-face {
+    font-family: 'Heebo';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('/fonts/heebo-hebrew.woff2') format('woff2');
+    unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+  }
+
+  @font-face {
+    font-family: 'Heebo';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('/fonts/heebo-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+      U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+      U+FEFF, U+FFFD;
+  }
+
   :root {
     /* צבעים — בסיס נייר חם, צבעי המותג כנגיעות */
     --paper: #fbf7ee;
     --surface: #f3e9d3;
     --line: #e7dcc4;
     --ink: #2e2a24;
+    /* טקסט משני — תקצירים ופסקאות פתיחה. כהה מספיק כדי להיקרא, בהיר מספיק כדי לא להתחרות בכותרת. */
+    --secondary: #554b40;
+    /* טקסט שלישוני — תאריכים, סלוגן, תחתית. */
     --muted: #75695a;
     --teal: #1f5c57;
     --teal-deep: #17453f;
@@ -188,15 +237,20 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
   .site-nav {
     display: flex;
     justify-content: center;
-    gap: 1.25rem;
-    margin-top: 0.9rem;
+    flex-wrap: wrap;
+    gap: 0 1.25rem;
+    margin-top: 0.35rem;
     font-size: 0.95rem;
   }
 
+  /* שטח מגע של 44px בלי להגדיל את גובה הכותרת — הריווח הופך לשטח לחיץ. */
   .site-nav a {
     color: var(--teal);
     text-decoration: none;
     font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
   }
 
   .site-nav a:hover {
@@ -268,23 +322,56 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
     margin-top: 0.25rem;
   }
 
-  /* תגית נושא */
-  .topic-tag {
-    display: inline-block;
+  /* ---------- שלושת רכיבי הגלולה ----------
+     עד כה רכיב אחד (.topic-tag) שימש לארבע מטרות בארבע רמות חשיבות שונות.
+     אותה שפה עיצובית, אבל כל תפקיד מקבל את המשקל ושטח המגע שמתאימים לו:
+
+       .label   — תווית מידע. לא יעד עיקרי. קטנה ושקטה.
+       .choice  — בחירה או ניווט. יעד מגע מלא (44px).
+       .action  — פעולה (ולא מקום). כמו .choice, בצבע הפעולה של המותג.
+  */
+
+  .label,
+  .choice,
+  .action {
     background: var(--surface);
     color: var(--teal-deep);
     text-decoration: none;
-    font-size: 0.85rem;
     font-weight: 600;
-    padding: 0.2rem 0.8rem;
     border-radius: 1rem;
     border: 1px solid var(--line);
-    transition: background 0.15s ease;
+    transition: background 0.15s ease, border-color 0.15s ease;
   }
 
-  .topic-tag:hover {
-    background: var(--gold);
-    color: #fff;
-    border-color: var(--gold);
+  /* תווית */
+  .label {
+    display: inline-block;
+    font-size: 0.85rem;
+    padding: 0.2rem 0.8rem;
+  }
+
+  /* בחירה / ניווט */
+  .choice,
+  .action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    font-size: 0.9rem;
+    padding: 0.35rem 1.05rem;
+    font-family: inherit;
+    line-height: 1.3;
+  }
+
+  .action {
+    color: var(--brick);
+    cursor: pointer;
+  }
+
+  .label:hover,
+  .choice:hover,
+  .action:hover {
+    background: var(--line);
+    border-color: var(--muted);
   }
 </style>

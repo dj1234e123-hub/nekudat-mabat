@@ -36,7 +36,7 @@ const pageUrl = new URL(`/moments/${feeling}/${moment.id}/`, Astro.site).href;
     <article class="moment">
       <p class="eyebrow">
         <span class="group">{groupLabel(feeling)}</span>
-        <a class="topic-tag" href={`/moments/${feeling}/`}>{label}</a>
+        <a class="label" href={`/moments/${feeling}/`}>{label}</a>
       </p>
       <div class="moment-body">
         <Content />

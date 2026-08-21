@@ -21,7 +21,7 @@ const coverAlt = story.data.coverAlt ?? DEFAULT_COVER_ALT;
     <h2>{title}</h2>
   </a>
   <p class="card-meta">
-    <a class="topic-tag" href={`/sections/${section}/`}>{SECTIONS[section]}</a>
+    <a class="label" href={`/sections/${section}/`}>{SECTIONS[section]}</a>
     <time datetime={date.toISOString().slice(0, 10)}>{formatDate(date)}</time>
   </p>
   <p class="card-excerpt">{excerpt}</p>
@@ -62,7 +62,7 @@ const coverAlt = story.data.coverAlt ?? DEFAULT_COVER_ALT;
   }
 
   .card-excerpt {
-    color: var(--muted);
+    color: var(--secondary);
     line-height: 1.75;
   }
 </style>

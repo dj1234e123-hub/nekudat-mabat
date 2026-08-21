@@ -30,11 +30,11 @@ const momentUrls = moments.map((moment) => `/moments/${moment.data.feeling}/${mo
             {group.feelings.map((feeling) =>
               filled.has(feeling.slug) ? (
                 <li>
-                  <a class="topic-tag" href={`/moments/${feeling.slug}/`}>{feeling.label}</a>
+                  <a class="choice" href={`/moments/${feeling.slug}/`}>{feeling.label}</a>
                 </li>
               ) : (
                 <li>
-                  <span class="topic-tag empty" aria-disabled="true">{feeling.label}</span>
+                  <span class="choice is-empty" aria-disabled="true">{feeling.label}</span>
                 </li>
               )
             )}
@@ -71,6 +71,7 @@ const momentUrls = moments.map((moment) => `/moments/${moment.data.feeling}/${mo
   /* קישור שקט למי שלא מצליח לבחור מצב */
   .unsure {
     display: block;
+    min-height: 44px;
     margin: 0 auto 2.5rem;
     background: none;
     border: none;
@@ -95,7 +96,7 @@ const momentUrls = moments.map((moment) => `/moments/${moment.data.feeling}/${mo
   .group-label {
     font-size: 1rem;
     font-weight: 600;
-    color: var(--muted);
+    color: var(--secondary);
     text-align: center;
     margin-bottom: 0.85rem;
   }
@@ -110,11 +111,16 @@ const momentUrls = moments.map((moment) => `/moments/${moment.data.feeling}/${mo
   }
 
   /* מצב שעדיין אין בו תוכן — נוכח במבנה, אך לא מוביל לשום מקום */
-  .topic-tag.empty {
+  .choice.is-empty {
     color: var(--muted);
     background: transparent;
     border-style: dashed;
     cursor: default;
+  }
+
+  .choice.is-empty:hover {
+    background: transparent;
+    border-color: var(--line);
   }
 
   .soon {

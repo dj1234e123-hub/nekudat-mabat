@@ -50,8 +50,8 @@ const otherStoryUrls = (await getCollection('stories'))
   <main>
     <article>
       <header class="story-header">
-        <a class="topic-tag" href={`/sections/${section}/`}>{SECTIONS[section]}</a>
-        {topic && <a class="topic-tag" href={`/topics/${topic}/`}>{TOPICS[topic]}</a>}
+        <a class="label" href={`/sections/${section}/`}>{SECTIONS[section]}</a>
+        {topic && <a class="label" href={`/topics/${topic}/`}>{TOPICS[topic]}</a>}
         <h1>{title}</h1>
         <p class="story-meta">
           <time datetime={date.toISOString().slice(0, 10)}>{formatDate(date)}</time>

@@ -27,17 +27,21 @@ import { SITE } from '../data/site';
   }
 
   .join-text {
-    color: var(--muted);
+    color: var(--secondary);
     margin: 0.35rem 0 1rem;
   }
 
+  /* טקסט בצבע הדיו ולא לבן: לבן על זהב נותן יחס ניגודיות 2.40 ונכשל בתקן. */
   .join-btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
     background: var(--gold);
-    color: #fff;
+    color: var(--ink);
     font-weight: 700;
     text-decoration: none;
-    padding: 0.55rem 1.6rem;
+    padding: 0.55rem 1.7rem;
     border-radius: 2rem;
     transition: filter 0.15s ease;
   }
