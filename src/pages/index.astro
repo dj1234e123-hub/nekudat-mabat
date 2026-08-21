@@ -24,6 +24,7 @@ const storyUrls = stories.map((s) => `/stories/${s.id}/`);
     <ul class="story-list">
       {stories.map((story) => <StoryCard story={story} />)}
     </ul>
+    <p class="closing-line">כל סיפור מתחיל בנקודת מבט אחת.</p>
     <JoinGroup />
   </main>
 </Base>
@@ -61,5 +62,14 @@ const storyUrls = stories.map((s) => `/stories/${s.id}/`);
     padding: 0;
     display: grid;
     gap: 2.75rem;
+  }
+
+  /* שורת סיום שקטה מתחת לסיפורים — בגופן ובצבעים הקיימים */
+  .closing-line {
+    text-align: center;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    color: var(--muted);
+    margin-top: 2.75rem;
   }
 </style>
