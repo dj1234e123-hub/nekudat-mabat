@@ -31,22 +31,25 @@ import { SITE } from '../data/site';
     margin: 0.35rem 0 1rem;
   }
 
-  /* טקסט בצבע הדיו ולא לבן: לבן על זהב נותן יחס ניגודיות 2.40 ונכשל בתקן. */
+  /* פעולה משנית: מתאר במקום מילוי. הכפתור הראשי בדף הבית הוא "מצא רגע של
+     נקודת מבט" — שני כפתורים מלאים באותו עמוד מבטלים זה את זה. */
   .join-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     min-height: 44px;
-    background: var(--gold);
-    color: var(--ink);
+    background: transparent;
+    color: var(--teal);
+    border: 1.5px solid var(--teal);
     font-weight: 700;
     text-decoration: none;
-    padding: 0.55rem 1.7rem;
+    padding: 0.5rem 1.6rem;
     border-radius: 2rem;
-    transition: filter 0.15s ease;
+    transition: background 0.15s ease, color 0.15s ease;
   }
 
   .join-btn:hover {
-    filter: brightness(0.92);
+    background: var(--teal);
+    color: var(--paper);
   }
 </style>

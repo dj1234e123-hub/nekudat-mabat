@@ -15,6 +15,9 @@ interface Props {
   ogType?: 'website' | 'article';
   /** כותרת מצומצמת (עמודי סיפור): שורת מותג אחת, בלי סלוגן ותפריט — הקורא מגיע מהר לסיפור */
   compact?: boolean;
+  /** כותרת דף הבית: לוגו קטן יותר ובלי שורת סלוגן — הכותרת הראשית ממלאת את מקומה.
+      הסלוגן "שמים את הנקודה במרכז" נשאר סלוגן המותג וחי בתחתית ובשאר העמודים. */
+  homeHeader?: boolean;
   bodyClass?: string;
   noindex?: boolean;
 }
@@ -25,6 +28,7 @@ const {
   ogImage,
   ogType = 'website',
   compact = false,
+  homeHeader = false,
   bodyClass,
   noindex = false,
 } = Astro.props;
@@ -71,12 +75,18 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
           </a>
         </header>
       ) : (
-        <header>
+        <header class={homeHeader ? 'header-home' : undefined}>
           <a href="/" class="brand">
-            <Image src={logo} alt="הלוגו של נקודת מבט" width={144} densities={[1, 2]} class="logo" />
+            <Image
+              src={logo}
+              alt="הלוגו של נקודת מבט"
+              width={homeHeader ? 112 : 144}
+              densities={[1, 2]}
+              class="logo"
+            />
             <span class="site-name">נקודת מבט</span>
           </a>
-          <p class="tagline">{SITE.slogan}</p>
+          {!homeHeader && <p class="tagline">{SITE.slogan}</p>}
           <nav class="site-nav" aria-label="ניווט ראשי">
             <a href="/">הסיפורים</a>
             <a href="/moments/">רגעים</a>
@@ -257,6 +267,20 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
     color: var(--teal-deep);
   }
 
+  /* כותרת דף הבית — מפנה מקום לכותרת הראשית: 263px ← 192px */
+  .header-home {
+    padding-top: 1.75rem;
+  }
+
+  .header-home .logo {
+    width: 56px;
+    height: 56px;
+  }
+
+  .header-home .site-name {
+    font-size: 1.45rem;
+  }
+
   /* כותרת מצומצמת — עמודי סיפור */
   .header-compact {
     text-align: center;
@@ -373,5 +397,26 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
   .action:hover {
     background: var(--line);
     border-color: var(--muted);
+  }
+
+  /* הפעולה הראשית של האתר. אדום עמוק — הצבע המזוהה בלוגו, יחס 5.55 מול לבן.
+     יש רק כפתור אחד כזה בעמוד; ההצטרפות לקבוצה היא פעולה משנית ושקטה יותר. */
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    background: var(--brick);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.02rem;
+    text-decoration: none;
+    padding: 0.6rem 1.9rem;
+    border-radius: 2rem;
+    transition: filter 0.15s ease;
+  }
+
+  .cta:hover {
+    filter: brightness(0.93);
   }
 </style>

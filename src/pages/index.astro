@@ -1,54 +1,182 @@
 ---
-import { getCollection } from 'astro:content';
+// דף הבית — הכניסה לאתר, לא רשימת הסיפורים.
+// הסדר: מי אנחנו → הפעולה הראשית → רגע אמיתי → הסיפורים → הקבוצה.
+// עיקרון מנחה: הדף מציג רק תוכן שקיים בפועל. אין שורת קטגוריות ואין אזור
+// שמוביל לעולם ריק — עולם תוכן יקבל מקום בניווט כשיהיה בו תוכן לעמוד עליו.
+import { getCollection, render } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import StoryCard from '../components/StoryCard.astro';
 import JoinGroup from '../components/JoinGroup.astro';
-import { SECTIONS, SECTION_SLUGS } from '../data/sections';
 
 const stories = (await getCollection('stories')).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
 const storyUrls = stories.map((s) => `/stories/${s.id}/`);
+
+// הרגע שמוצג בדף הבית: החדש ביותר, אוטומטית — כך העמוד מתרענן מעצמו בכל
+// תוכן שנוסיף, בלי עבודה שוטפת. כרגע כל התכנים נושאים אותו תאריך, ולכן שובר
+// השוויון הוא שם הקובץ; מהתוכן הבא שיתווסף ואילך זה יהיה באמת החדש ביותר.
+const moments = (await getCollection('moments')).sort((a, b) => {
+  const byDate = b.data.date.getTime() - a.data.date.getTime();
+  return byDate !== 0 ? byDate : b.id.localeCompare(a.id);
+});
+const featured = moments[0];
+const FeaturedMoment = featured ? (await render(featured)).Content : null;
 ---
 
 <Base
-  title="נקודת מבט — ספרייה חיה של סיפורים"
-  description="נקודת מבט — ספרייה חיה של סיפורים. כל סיפור מוביל למסע שקט אל נקודת מבט חדשה."
+  title="נקודת מבט — מקום לעצור, ולראות אחרת"
+  description="מקום לעצור, לקבל נקודת מבט חדשה, ולקחת משהו איתך להמשך הדרך. סיפורים ורגעים קצרים של נקודת מבט."
+  homeHeader={true}
 >
   <main>
-    <p class="intro">ספרייה חיה של סיפורים. כל סיפור — מסע שקט אל נקודת מבט חדשה.</p>
-    <nav class="topics" aria-label="עולמות התוכן">
-      {SECTION_SLUGS.map((slug) => <a class="choice" href={`/sections/${slug}/`}>{SECTIONS[slug]}</a>)}
-      <button id="random-story" class="action" type="button">✦ סיפור אקראי</button>
-    </nav>
-    <ul class="story-list">
-      {stories.map((story) => <StoryCard story={story} />)}
-    </ul>
-    <p class="closing-line">כל סיפור מתחיל בנקודת מבט אחת.</p>
+    <section class="hero">
+      <h1>לראות אחרת. לחיות אחרת.</h1>
+      <p class="triad">סיפורים. רגעים. תובנות.</p>
+      <p class="promise">
+        מקום לעצור, לקבל נקודת מבט חדשה, ולקחת משהו איתך להמשך הדרך.
+      </p>
+    </section>
+
+    <section class="lead-action">
+      <p class="question">מה עובר עליך עכשיו?</p>
+      <a class="cta" href="/moments/">מצא רגע של נקודת מבט</a>
+    </section>
+
+    {
+      FeaturedMoment && (
+        <section class="feature" aria-labelledby="moment-label">
+          <h2 class="section-label" id="moment-label">
+            רגע של נקודת מבט
+          </h2>
+          <article class="moment-card">
+            <FeaturedMoment />
+          </article>
+          <p class="more">
+            <a href="/moments/">עוד רגעים</a>
+          </p>
+        </section>
+      )
+    }
+
+    <section class="feature" aria-labelledby="stories-label">
+      <h2 class="section-label" id="stories-label">הסיפורים</h2>
+      <ul class="story-list">
+        {stories.map((story) => <StoryCard story={story} />)}
+      </ul>
+      {
+        storyUrls.length > 1 && (
+          <p class="more">
+            <button id="random-story" class="action" type="button">
+              ✦ סיפור אקראי
+            </button>
+          </p>
+        )
+      }
+      <p class="closing-line">כל סיפור מתחיל בנקודת מבט אחת.</p>
+    </section>
+
     <JoinGroup />
   </main>
 </Base>
 
 <script is:inline define:vars={{ storyUrls }}>
-  document.getElementById('random-story').addEventListener('click', () => {
-    location.href = storyUrls[Math.floor(Math.random() * storyUrls.length)];
-  });
+  const randomStory = document.getElementById('random-story');
+  if (randomStory) {
+    randomStory.addEventListener('click', () => {
+      location.href = storyUrls[Math.floor(Math.random() * storyUrls.length)];
+    });
+  }
 </script>
 
 <style>
-  .intro {
+  /* אזור הפתיחה */
+  .hero {
     text-align: center;
-    color: var(--secondary);
-    max-width: 30rem;
-    margin: 0 auto 1.5rem;
+    padding-top: 0.5rem;
   }
 
-  .topics {
-    display: flex;
-    flex-wrap: wrap;
+  .hero h1 {
+    font-size: clamp(1.7rem, 8vw, 2.15rem);
+    line-height: 1.3;
+    margin-bottom: 0.6rem;
+    text-wrap: balance;
+  }
+
+  /* משפט אופי, לא שורת ניווט — "תובנות" עדיין אין לה אזור, ולכן היא לא קישור. */
+  .triad {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    color: var(--teal-deep);
+    letter-spacing: 0.02em;
+    margin-bottom: 0.5rem;
+  }
+
+  .promise {
+    color: var(--secondary);
+    max-width: 26rem;
+    margin-inline: auto;
+    line-height: 1.75;
+  }
+
+  /* הפעולה הראשית */
+  .lead-action {
+    text-align: center;
+    margin-top: 1.9rem;
+  }
+
+  .question {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    margin-bottom: 0.85rem;
+  }
+
+  /* תווית אזור — שקטה בכוונה: היא מסמנת גבול, לא מתחרה על תשומת הלב */
+  .section-label {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-align: center;
+    margin-bottom: 0.85rem;
+  }
+
+  .feature {
+    margin-top: 2.5rem;
+  }
+
+  /* רגע אחד, בשלמותו. טקסט הוא תוכן — האזור הזה לא יכול להיראות ריק. */
+  .moment-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.4rem 1.3rem;
+  }
+
+  .moment-card :global(p) {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+
+  .moment-card :global(p + p) {
+    margin-top: 0.85rem;
+  }
+
+  .more {
+    text-align: center;
+    margin-top: 1.1rem;
+  }
+
+  .more a {
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    padding-bottom: 2.25rem;
+    min-height: 44px;
+    padding-inline: 0.75rem;
+    text-decoration: none;
+    font-weight: 600;
   }
 
   .story-list {
@@ -58,12 +186,12 @@ const storyUrls = stories.map((s) => `/stories/${s.id}/`);
     gap: 2.75rem;
   }
 
-  /* שורת סיום שקטה מתחת לסיפורים — בגופן ובצבעים הקיימים */
+  /* שורת סיום שקטה מתחת לסיפורים */
   .closing-line {
     text-align: center;
     font-family: var(--font-display);
     font-size: 1.05rem;
     color: var(--muted);
-    margin-top: 2.75rem;
+    margin-top: 2.25rem;
   }
 </style>
