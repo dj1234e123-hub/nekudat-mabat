@@ -101,6 +101,7 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
       <span class="dot" aria-hidden="true"></span>
       <p><a href="/">{SITE.name}</a> · {SITE.slogan}</p>
       <p class="credit">מאת {SITE.ownerName} · <a href="/about/">אודות</a></p>
+      <p class="rights">כל הזכויות שמורות</p>
     </footer>
   </body>
 </html>
@@ -368,6 +369,13 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
   footer .credit {
     font-size: 0.8rem;
     margin-top: 0.25rem;
+  }
+
+  /* בעברית בלבד ובלי שנה — כדי שקובץ הפונט הלטיני (30KB) לא יירד בעמודים
+     שאין בהם ספרות, כמו הרגעים והאודות. */
+  footer .rights {
+    font-size: 0.75rem;
+    margin-top: 0.6rem;
   }
 
   /* ---------- שלושת רכיבי הגלולה ----------
