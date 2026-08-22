@@ -12,6 +12,21 @@ export const FEELING_GROUPS = [
       { slug: 'sadness', label: 'עצב' },
       { slug: 'loneliness', label: 'בדידות' },
       { slug: 'loss', label: 'אובדן' },
+      { slug: 'anger', label: 'כעס' },
+    ],
+  },
+  {
+    // הקבוצה הזו מחזיקה את משפחת הבושה: רגשות שהכאב בהם מופנה פנימה, אל הזהות
+    // עצמה ("אני כזה") ולא אל האירוע. כותרת הקבוצה מנוסחת כקושי ולא כפגם,
+    // ובכוונה אין בה שום תווית מאבחנת — מדף שדורש הודאה כתנאי כניסה לא ייפתח.
+    slug: 'self',
+    label: 'כשקשה מול עצמך',
+    feelings: [
+      { slug: 'guilt', label: 'אשמה' },
+      { slug: 'shame', label: 'בושה' },
+      { slug: 'envy', label: 'קנאה' },
+      { slug: 'secret', label: 'סוד' },
+      { slug: 'losing-control', label: 'חוסר שליטה' },
     ],
   },
   {
@@ -22,6 +37,9 @@ export const FEELING_GROUPS = [
       { slug: 'confusion', label: 'בלבול' },
       { slug: 'pressure', label: 'לחץ' },
       { slug: 'failure', label: 'כישלון' },
+      { slug: 'standstill', label: 'תקיעות' },
+      { slug: 'exhaustion', label: 'עייפות' },
+      { slug: 'waiting', label: 'המתנה' },
     ],
   },
   {
@@ -32,6 +50,7 @@ export const FEELING_GROUPS = [
       { slug: 'new-beginning', label: 'התחלה חדשה' },
       { slug: 'faith', label: 'אמונה' },
       { slug: 'confidence', label: 'ביטחון עצמי' },
+      { slug: 'good-moment', label: 'רגע טוב' },
     ],
   },
 ] as const;
