@@ -6,9 +6,13 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "cards": "node scripts/share-cards.mjs"
   },
   "dependencies": {
     "astro": "^5.13.2"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.62.1"
   }
 }

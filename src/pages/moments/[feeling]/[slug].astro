@@ -24,12 +24,18 @@ const plainText = moment.body!.replace(/\s+/g, ' ').trim();
 const summary = plainText.length > 200 ? `${plainText.slice(0, 197)}…` : plainText;
 
 const pageUrl = new URL(`/moments/${feeling}/${moment.id}/`, Astro.site).href;
+
+// תמונת השיתוף הממותגת של הרגע (שלב 4.7). נוצרת ב-`npm run cards` ויושבת
+// כקובץ מוכן ב-public; מי ששולח קישור לרגע רואה את הטקסט עצמו בתצוגה
+// המקדימה, ולא את הלוגו.
+const shareImage = new URL(`/share/moments/${moment.id}.png`, Astro.site).href;
 ---
 
 <Base
   title={`${label} · רגע של נקודת מבט`}
   description={summary}
   ogType="article"
+  ogImage={shareImage}
   compact={true}
 >
   <main>
