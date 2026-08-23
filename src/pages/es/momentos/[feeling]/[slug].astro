@@ -1,0 +1,100 @@
+---
+// עמוד של רגע בודד בספרדית — הכתובת שמשתפים.
+// כמו בעברית: הטקסט, ומסביבו אוויר. בלי תמונה ובלי תאריך.
+import { getCollection, render } from 'astro:content';
+import Base from '../../../../layouts/Base.astro';
+import ShareRow from '../../../../components/ShareRow.astro';
+import { FEELING_LABELS_ES } from '../../../../data/site-es';
+
+export async function getStaticPaths() {
+  const moments = await getCollection('momentsEs');
+  return moments.map((moment) => ({
+    params: { feeling: moment.data.feeling, slug: moment.id },
+    props: { moment },
+  }));
+}
+
+const { moment } = Astro.props;
+const { Content } = await render(moment);
+const feeling = moment.data.feeling;
+const label = FEELING_LABELS_ES[feeling];
+
+const plainText = moment.body!.replace(/\s+/g, ' ').trim();
+const summary = plainText.length > 200 ? `${plainText.slice(0, 197)}…` : plainText;
+const pageUrl = new URL(`/es/momentos/${feeling}/${moment.id}/`, Astro.site).href;
+---
+
+<Base
+  lang="es"
+  noindex={true}
+  title={`${label} · Un momento de perspectiva`}
+  description={summary}
+  ogType="article"
+  compact={true}
+>
+  <main>
+    <article class="moment">
+      <p class="eyebrow">
+        <a class="label" href={`/es/momentos/${feeling}/`}>{label}</a>
+      </p>
+      <div class="moment-body">
+        <Content />
+      </div>
+      <span class="end-dot" aria-hidden="true"></span>
+    </article>
+
+    <ShareRow lang="es" title={label} url={pageUrl} shareText={plainText} />
+
+    <nav class="moment-footer">
+      <a href={`/es/momentos/${feeling}/`}>Más sobre {label.toLowerCase()}</a>
+      <a href="/es/momentos/">Todos los estados</a>
+    </nav>
+  </main>
+</Base>
+
+<style>
+  .moment {
+    padding-top: 1.5rem;
+  }
+
+  .eyebrow {
+    text-align: center;
+    margin-bottom: 1.75rem;
+  }
+
+  .moment-body {
+    font-size: 1.2rem;
+    line-height: 2;
+  }
+
+  .moment-body :global(p + p) {
+    margin-top: 1.4rem;
+  }
+
+  .end-dot {
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--gold);
+    margin: 2.25rem auto 0;
+  }
+
+  .moment-footer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0 1.5rem;
+    margin-top: 2.5rem;
+    font-size: 0.95rem;
+  }
+
+  .moment-footer a {
+    color: var(--teal);
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+</style>

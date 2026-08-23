@@ -44,4 +44,15 @@ const moments = defineCollection({
   }),
 });
 
-export const collections = { stories, moments };
+// הרגעים בספרדית. אוסף נפרד עם אותם מזהי קבצים כמו העברי, כדי שהזיווג בין
+// המקור לתרגום יהיה אוטומטי. **מבחר ולא מראה:** רגע בלי תרגום פשוט אינו
+// קיים כאן, ואינו מייצר עמוד — כך האזור הספרדי לעולם אינו חוב שרודף כל תוכן חדש.
+const momentsEs = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/moments-es' }),
+  schema: z.object({
+    feeling: z.enum(FEELING_SLUGS as [FeelingSlug, ...FeelingSlug[]]),
+    date: z.coerce.date(),
+  }),
+});
+
+export const collections = { stories, moments, momentsEs };

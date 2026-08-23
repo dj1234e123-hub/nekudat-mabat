@@ -1,53 +1,165 @@
 ---
-import { Image } from 'astro:assets';
+// עמוד האודות — מסודר לפי סדר האמון: קודם אדם, אחר כך מקצוע, ורק בסוף הזמנה.
+// תעודות לא מייצרות אמון, הן מאשרות אמון שכבר נוצר — ולכן ההכשרה יושבת
+// אחרי הסיפור האישי ולא לפניו.
+import { Image, getImage } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import JoinGroup from '../components/JoinGroup.astro';
+import { SITE } from '../data/site';
 import portrait from '../assets/efraim.jpg';
+import { profileJsonLd } from '../lib/structured-data';
+
+// תמונת השיתוף של העמוד הזה היא הפנים ולא הלוגו: עמוד אודות שמשותף
+// בוואטסאפ נפתח בזכות פרצוף, לא בזכות סמל.
+const portraitOg = await getImage({ src: portrait, width: 640, format: 'jpeg' });
+const ogImage = new URL(portraitOg.src, Astro.site).href;
+
+const DESCRIPTION =
+  'אפרים עטיה, מאמן אישי ומלווה בחורים בדרך שלהם. על הדרך שעברתי, על מה שאני עושה היום, ולמה נולד האתר הזה.';
 ---
 
 <Base
-  title="אודות · נקודת מבט"
-  description="מי מאחורי נקודת מבט — אפרים עטיה על הרעיון שמאחורי ספריית הסיפורים."
+  title="אפרים עטיה — מאמן אישי · נקודת מבט"
+  description={DESCRIPTION}
+  ogImage={ogImage}
+  jsonLd={profileJsonLd(Astro.site!, DESCRIPTION, ogImage)}
 >
   <main>
-    <h1 class="page-title">אודות</h1>
-    <Image src={portrait} alt="אפרים עטיה" widths={[320, 640]} sizes="(max-width: 24rem) 80vw, 20rem" class="portrait" />
+    <section class="intro">
+      <Image
+        src={portrait}
+        alt={SITE.ownerName}
+        widths={[280, 560]}
+        sizes="(max-width: 40rem) 62vw, 15rem"
+        loading="eager"
+        fetchpriority="high"
+        class="portrait"
+      />
+      <div class="identity">
+        <h1>{SITE.ownerName}</h1>
+        <p class="role">מאמן אישי ומלווה · NLP Master</p>
+      </div>
+    </section>
+
     <div class="about-body">
-      <p>שלום, טוב שבאתם. אני אפרים עטיה.</p>
+      <p class="opening">נעים להכיר.</p>
+
       <p>
-        "נקודת מבט" נולדה מתוך אהבה פשוטה: לעצור לרגע, להקשיב לסיפור, ולגלות שאפשר לראות את אותם
-        הדברים בעיניים אחרות.
+        היו בחיי שנים שבהן לא ראיתי דרך. עברתי דברים קשים — כאלה שלוקח זמן להודות בהם, ועוד יותר
+        זמן לצאת מהם. לא אפרט אותם כאן. אבל מה שחשוב לי שתדע: יצאתי. ולא יצאתי אותו אדם.
       </p>
+
+      <p>מה שהחזיק אותי לא היה עצה חכמה שמישהו נתן לי. זו הייתה נקודה אחת שזזה.</p>
+
+      <blockquote class="pull">
+        הסתכלתי על אותו סיפור בדיוק — ופתאום ראיתי אותו אחרת. משם התחילה כל הדרך.
+      </blockquote>
+
+      <h2>מה אני עושה</h2>
+
       <p>
-        אני מאמין שסיפור טוב לא צריך להרים את הקול. הוא מתיישב לידך בשקט, מספר את עצמו, ומשאיר
-        אחריו שאלה קטנה: אולי אפשר גם אחרת?
+        אני מלווה בחורים שרוצים לזוז ממקום שהם תקועים בו — בעבודה, במשפחה, בראש, באמונה.
+        לא בהרצאות ולא בסיסמאות: שיחה אחת אחרי השנייה, עד שהתמונה מתחילה להיראות אחרת — ואפשר
+        לזוז.
       </p>
+
       <p>
-        זה מה שאני מנסה לעשות כאן — לאסוף סיפורים קצרים מהחיים, כאלה שמזיזים משהו קטן בלב, ולשים
-        את הנקודה במרכז: נקודת המבט שלנו על העולם.
+        אני לא אומר לך מה נכון בשבילך. אני עוזר לך לראות את מה שאתה כבר יודע, מזווית שממנה אפשר
+        סוף־סוף לעשות איתו משהו.
       </p>
+
       <p>
-        אם סיפור נגע בכם — שתפו אותו עם מי שיקר לכם. ואם תרצו עוד, בקבוצת הוואטסאפ השקטה שלנו
-        מתפרסם כל סיפור חדש. תרגישו בבית.
+        ומה שעברתי בעצמי לא הופך אותי לחכם יותר. הוא רק אומר שכשאתה מספר לי איפה אתה נמצא — אני
+        לא נבהל.
+      </p>
+
+      <h2>ההכשרה שלי</h2>
+
+      <ul class="creds">
+        <li>NLP — מאמן מוסמך ברמת Master</li>
+        <li>עזרה ראשונה נפשית</li>
+        <li>תוכנית 12 הצעדים</li>
+      </ul>
+
+      <h2>למה האתר הזה קיים</h2>
+
+      <p>
+        "נקודת מבט" נולד מאותו דבר עצמו. לא כל אחד צריך מאמן, ולא כל אחד מוכן לדבר. אבל כמעט כל
+        אחד מוכן לקרוא סיפור קצר. ולפעמים סיפור אחד עושה מה שעשרה משפטי מוסר לא עושים — הוא מזיז
+        נקודה.
       </p>
     </div>
+
+    <section class="talk">
+      <a class="cta" href={SITE.whatsappDirectUrl} rel="noopener" target="_blank">לשיחה אישית</a>
+      <p class="talk-note">אפשר לכתוב לי, בלי התחייבות ובלי טפסים.</p>
+      <p class="talk-phone">
+        או בטלפון: <a href={SITE.phoneHref}>{SITE.phone}</a>
+      </p>
+    </section>
+
     <JoinGroup />
   </main>
 </Base>
 
 <style>
-  .page-title {
+  /* בנייד — תמונה מעל השם. במסך רחב — זה לצד זה, התמונה בצד ההתחלה (ימין). */
+  .intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    font-size: 1.8rem;
-    padding: 0.5rem 0 1.5rem;
+    gap: 1.25rem;
+    padding: 0.75rem 0 2rem;
   }
 
   .portrait {
-    width: min(65%, 18rem);
-    height: auto;
+    width: min(62%, 15rem);
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
     border-radius: var(--radius);
     box-shadow: var(--shadow);
-    margin: 0 auto 2rem;
+  }
+
+  .identity h1 {
+    font-size: 2rem;
+    line-height: 1.3;
+  }
+
+  .role {
+    color: var(--secondary);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 0.35rem;
+  }
+
+  /* נקודת זהב קטנה מתחת לשורת הזהות — אותה נגיעה שסוגרת את התחתית. */
+  .identity::after {
+    content: '';
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--gold);
+    margin: 1.1rem auto 0;
+  }
+
+  @media (min-width: 40rem) {
+    .intro {
+      flex-direction: row;
+      align-items: center;
+      text-align: start;
+      gap: 2rem;
+    }
+
+    .portrait {
+      width: 13rem;
+      flex: none;
+    }
+
+    .identity::after {
+      margin-inline: 0;
+    }
   }
 
   .about-body {
@@ -57,5 +169,78 @@ import portrait from '../assets/efraim.jpg';
 
   .about-body p + p {
     margin-top: 1.25rem;
+  }
+
+  .opening {
+    color: var(--secondary);
+  }
+
+  .about-body h2 {
+    font-size: 1.35rem;
+    margin: 2.5rem 0 0.9rem;
+  }
+
+  /* המשפט שנחרט — הנגיעה העיצובית היחידה בעמוד. */
+  .pull {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: var(--teal-deep);
+    border-inline-start: 3px solid var(--gold);
+    padding-inline-start: 1.1rem;
+    margin: 1.75rem 0;
+  }
+
+  /* ההכשרה — קלף שקט. לא גלולות: גלולות באתר הזה הן תוויות וניווט,
+     ותעודה אינה אף אחד מהם. */
+  .creds {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.35rem;
+    list-style: none;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+
+  .creds li {
+    padding-inline-start: 1.1rem;
+    position: relative;
+  }
+
+  .creds li::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: 0;
+    top: 0.85em;
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  .talk {
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .talk-note {
+    color: var(--secondary);
+    font-size: 0.95rem;
+    margin-top: 0.8rem;
+  }
+
+  .talk-phone {
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  .talk-phone a {
+    color: var(--teal);
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
   }
 </style>
