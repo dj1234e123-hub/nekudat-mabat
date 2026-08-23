@@ -23,9 +23,13 @@ const momentUrls = moments.map((moment) => `/moments/${moment.data.feeling}/${mo
     <button id="random-moment" class="unsure" type="button">לא יודע מה אני מרגיש עכשיו</button>
 
     {
-      FEELING_GROUPS.map((group) => (
-        <section class="group">
-          <h2 class="group-label">{group.label}</h2>
+      /* קבוצה מתקפלת: עם 22 מצבים, רשימה פתוחה אחת הופכת לעמוד ארוך שצריך
+         לגלול בו כדי לסרוק. ארבע כותרות זו סריקה של שנייה. <details> נבחר
+         כי הוא עובד גם בלי JavaScript, נגיש למקלדת ולקורא מסך, וניתן לפתיחה
+         מכל מקום בלי שנצטרך לנהל מצב. הראשונה פתוחה כדי שהעמוד לא ייראה סגור. */
+      FEELING_GROUPS.map((group, index) => (
+        <details class="group" open={index === 0}>
+          <summary class="group-label">{group.label}</summary>
           <ul class="feelings">
             {group.feelings.map((feeling) =>
               filled.has(feeling.slug) ? (
@@ -39,7 +43,7 @@ const momentUrls = moments.map((moment) => `/moments/${moment.data.feeling}/${mo
               )
             )}
           </ul>
-        </section>
+        </details>
       ))
     }
 
@@ -90,15 +94,52 @@ const momentUrls = moments.map((moment) => `/moments/${moment.data.feeling}/${mo
   }
 
   .group {
-    margin-bottom: 2.25rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .group:last-of-type {
+    border-bottom: 1px solid var(--line);
   }
 
   .group-label {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--secondary);
-    text-align: center;
-    margin-bottom: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    min-height: 52px;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--teal-deep);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  /* ברירת המחדל של הדפדפן היא משולש בצד; מוחלף בחץ משלנו שמסתובב בפתיחה */
+  .group-label::-webkit-details-marker {
+    display: none;
+  }
+
+  .group-label::after {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    border-inline-start: 2px solid var(--gold);
+    border-block-end: 2px solid var(--gold);
+    transform: rotate(-45deg) translate(0.1rem, -0.1rem);
+    transition: transform 0.15s ease;
+  }
+
+  .group[open] > .group-label::after {
+    transform: rotate(135deg) translate(-0.05rem, -0.05rem);
+  }
+
+  .group-label:hover {
+    color: var(--teal);
+  }
+
+  .group .feelings {
+    padding-bottom: 1.4rem;
   }
 
   .feelings {
