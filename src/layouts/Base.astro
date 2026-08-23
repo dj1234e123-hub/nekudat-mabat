@@ -104,16 +104,12 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
       ) : (
         <header class={homeHeader ? 'header-home' : undefined}>
           <a href={homeHref} class="brand">
-            <Image
-              src={logo}
-              alt={logoAlt}
-              width={homeHeader ? 112 : 144}
-              densities={[1, 2]}
-              class="logo"
-            />
-            <span class="site-name">{brand.name}</span>
+            <Image src={logo} alt={logoAlt} width={128} densities={[1, 2]} class="logo" />
+            <span class="brand-text">
+              <span class="site-name">{brand.name}</span>
+              {!homeHeader && <span class="tagline">{brand.slogan}</span>}
+            </span>
           </a>
-          {!homeHeader && <p class="tagline">{brand.slogan}</p>}
           {/* שמות התפריט הם בשפת הקורא ולא בשפה הפנימית שלנו: "מה עובר עליך"
               הוא בדיוק נוסח הכפתור הראשי בדף הבית — אותה דלת, אותן מילים.
               קבוצת הוואטסאפ ירדה מכאן: היא הקישור היחיד שיוצא מהאתר, והיא כבר
@@ -241,20 +237,30 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
   /* כותרת האתר */
   header {
     text-align: center;
-    padding: 2.25rem 1.5rem 0.75rem;
+    padding: 1.5rem 1.5rem 0.5rem;
   }
 
+  /* שורת המותג: הלוגו והשם זה לצד זה, והסלוגן שורה מתחת לשם.
+     קודם לכן שלושתם היו זה מתחת לזה, והכותרת בעמודי הפנים תפסה 263px —
+     כמעט שליש ממסך טלפון לפני שהתחיל תוכן. */
   .brand {
     display: inline-flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.7rem;
     text-decoration: none;
   }
 
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.25;
+  }
+
   .logo {
-    width: 72px;
-    height: 72px;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
     object-fit: cover;
     background: #fff;
@@ -270,9 +276,9 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
   }
 
   .tagline {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--muted);
-    margin-top: 0.3rem;
+    margin-top: 0.1rem;
   }
 
   .site-nav {
@@ -298,14 +304,33 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
     color: var(--teal-deep);
   }
 
+  /* ממסך רחב מ-34rem יש מקום לשורה אחת: המותג בצד אחד, הניווט בשני.
+     בטלפון זה לא נכנס — נמדד ב-390px: הניווט לבדו 218px, ונשארים 108px
+     ללוגו ולשם שצריכים 124px. שם הכותרת נשארת שתי שורות. */
+  @media (min-width: 34rem) {
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      max-width: 46rem;
+      margin-inline: auto;
+      padding-block: 1.25rem 0.75rem;
+    }
+
+    .site-nav {
+      margin-top: 0;
+    }
+  }
+
   /* כותרת דף הבית — מפנה מקום לכותרת הראשית: 263px ← 192px */
   .header-home {
     padding-top: 1.75rem;
   }
 
   .header-home .logo {
-    width: 56px;
-    height: 56px;
+    width: 52px;
+    height: 52px;
   }
 
   .header-home .site-name {
