@@ -7,6 +7,6 @@ Te preguntaron qué salió de eso al final, y no tuviste respuesta.
 
 Ni dinero, ni un título, ni algo que se pueda mostrar.
 
-Solo tú sabes que ya no eres la misma persona que entró ahí — que hoy reconoces cosas por las que hace un año habrías pasado de largo sin notarlas.
+Y solo por dentro se sabe que ya no es la misma persona la que entró ahí — que hoy saltan a la vista cosas por las que hace un año habrías pasado de largo sin notarlas.
 
 No se ve en ninguna parte. Tampoco se va a ir a ninguna parte.
