@@ -1,12 +1,15 @@
 ---
 // עמוד של רגע בודד — הכתובת שמשתפים.
-// העמוד שקט בכוונה: הטקסט, ומסביבו אוויר. בלי תמונה, בלי תאריך, בלי זמן קריאה.
-import { getCollection, render } from 'astro:content';
+// המבנה נגזר מ-docs/MOMENT-FORMAT.md: כותרת → המציאות → המסקנה → הסיבוב →
+// קישוט → סיום. העמוד שקט מסביב: בלי תמונה, בלי תאריך, בלי זמן קריאה.
+import { getCollection } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
 import ShareRow from '../../../components/ShareRow.astro';
+import MomentBody from '../../../components/MomentBody.astro';
 import { feelingLabel, groupLabel, type FeelingSlug } from '../../../data/feelings';
 import { articleJsonLd } from '../../../lib/structured-data';
 import { momentTitle } from '../../../lib/moment-title';
+import { parseMoment, momentPlainText } from '../../../lib/moment-format';
 
 export async function getStaticPaths() {
   const moments = await getCollection('moments');
@@ -17,24 +20,28 @@ export async function getStaticPaths() {
 }
 
 const { moment } = Astro.props;
-const { Content } = await render(moment);
 const feeling = moment.data.feeling as FeelingSlug;
 const label = feelingLabel(feeling);
 
+const format = parseMoment(moment.body ?? '', moment.data.title);
+
 // הטקסט כמלל נקי — לתיאור העמוד ולשיתוף בוואטסאפ (הרגע נשלח כמו שהוא).
-const plainText = moment.body!.replace(/\s+/g, ' ').trim();
-const summary = plainText.length > 200 ? `${plainText.slice(0, 197)}…` : plainText;
+const plainText = momentPlainText(format);
+const flat = plainText.replace(/\s+/g, ' ').trim();
+const summary = flat.length > 200 ? `${flat.slice(0, 197)}…` : flat;
+
+// כותרת-הוו כשהיא נכתבה, ואחרת גזירה מהמשפט הראשון (moment-title.ts) —
+// כדי שרגע שטרם הוגר לפורמט החדש ימשיך לשאת כותרת ייחודית לגוגל.
+const title = format.title ?? momentTitle(moment.body!);
 
 const pageUrl = new URL(`/moments/${feeling}/${moment.id}/`, Astro.site).href;
 // תמונת שיתוף ממותגת, נוצרת בזמן הבנייה מהטקסט עצמו (ראו og.png.ts באותה תיקייה).
 // חשוב בעיקר לשיתוף בסטטוס, שבו הקישור נעלם והתמונה היא כל מה שנשאר.
 const ogImage = new URL(`/moments/${feeling}/${moment.id}/og.png`, Astro.site).href;
 
-// כותרת ייחודית לכל רגע, נגזרת מהטקסט (ראו moment-title.ts). קודם לכן שלושת
-// הרגעים של כל מצב חלקו כותרת אחת, וגוגל ראה בהם שכפול ובחר אחד מהם.
-// בלי שם המותג בסוף: הכותרת קצרה ממילא, ושם האתר כבר מגיע לגוגל דרך
-// og:site_name והנתונים המובנים — ולוותר על מילים מהמשפט לטובתו זה הפסד.
-const title = momentTitle(moment.body!);
+// בוואטסאפ נשלח הטקסט המלא ואחריו הקישור. הכותרת מצטרפת בראשו רק בפורמט
+// החדש: שם היא משפט-וו שנכתב במיוחד, ובלעדיה ההודעה נפתחת באמצע.
+const shareText = format.title ? `${format.title}\n\n${plainText}` : plainText;
 ---
 
 <Base
@@ -53,24 +60,34 @@ const title = momentTitle(moment.body!);
 >
   <main>
     <article class="moment">
-      {/* העמוד מעוצב בכוונה בלי כותרת גלויה — הטקסט עצמו הוא הפתיחה.
-          h1 מוסתר חזותית נותן לקורא מסך ולגוגל את הכותרת שהעמוד צריך,
-          בלי לשנות דבר במה שרואים. */}
-      <h1 class="visually-hidden">{title}</h1>
-      <p class="eyebrow">
-        <span class="group">{groupLabel(feeling)}</span>
-        <a class="label" href={`/moments/${feeling}/`}>{label}</a>
-      </p>
-      <div class="moment-body">
-        <Content />
-      </div>
-      <span class="end-dot" aria-hidden="true"></span>
+      {
+        format.title ? (
+          /* הכותרת היא הדבר הראשון שהקורא רואה, ושום דבר לא בא לפניה —
+             תווית מצב בראש העמוד מפרשת את הקורא לפני שהוא זיהה את עצמו. */
+          <header class="moment-head">
+            <h1 class="hook">{format.title}</h1>
+            <span class="hook-rule" aria-hidden="true" />
+          </header>
+        ) : (
+          /* רגע שטרם הוגר: העיצוב הישן הוא בלי כותרת גלויה, ולכן ה-h1 נשאר
+             מוסתר חזותית — נוכח לקורא מסך ולגוגל, בלי לשנות דבר במסך. */
+          <h1 class="visually-hidden">{title}</h1>
+        )
+      }
+
+      <MomentBody format={format} />
+
+      {!format.isNew && <span class="end-dot" aria-hidden="true" />}
     </article>
 
-    <ShareRow title={label} url={pageUrl} shareText={plainText} label="לשלוח את זה למישהו:" />
+    <ShareRow title={label} url={pageUrl} shareText={shareText} label="לשלוח את זה למישהו:" />
 
     <nav class="moment-footer">
-      <a href={`/moments/${feeling}/`}>עוד ב{label}</a>
+      {/* התווית חיה כאן ולא בראש העמוד: כאן היא ניווט והקשר, וזה מה שהיא באמת. */}
+      <span class="feeling-tag">
+        <span class="group">{groupLabel(feeling)}</span>
+        <a href={`/moments/${feeling}/`}>עוד ב{label}</a>
+      </span>
       <a href="/moments/">לכל המצבים</a>
     </nav>
   </main>
@@ -78,33 +95,29 @@ const title = momentTitle(moment.body!);
 
 <style>
   .moment {
-    padding-top: 1.5rem;
+    padding-top: 1rem;
   }
 
-  .eyebrow {
+  .moment-head {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 2.1rem;
   }
 
-  .eyebrow .group {
+  .hook {
+    font-size: 2rem;
+    line-height: 1.3;
+    color: var(--blue);
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .hook-rule {
     display: block;
-    color: var(--muted);
-    font-size: 0.85rem;
-    margin-bottom: 0.5rem;
-  }
-
-  /* יישור לימין ולא למרכז: טקסט ממורכז על פני כמה שורות קשה לקריאה בטלפון,
-     ונוחות הקריאה קודמת לאפקט החזותי. */
-  .moment-body {
-    font-family: var(--font-display);
-    font-size: 1.3rem;
-    line-height: 2.05;
-    max-width: 30rem;
-    margin-inline: auto;
-  }
-
-  .moment-body :global(p + p) {
-    margin-top: 1.5rem;
+    width: 4.5rem;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.8;
+    margin: 1.1rem auto 0;
   }
 
   .end-dot {
@@ -119,12 +132,20 @@ const title = momentTitle(moment.body!);
   .moment-footer {
     margin-top: 2.5rem;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 1.5rem;
+    align-items: center;
+    gap: 0.6rem 1.5rem;
   }
 
   .moment-footer a {
     text-decoration: none;
     font-weight: 600;
+  }
+
+  .feeling-tag .group {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-inline-end: 0.45rem;
   }
 </style>

@@ -1,0 +1,123 @@
+---
+// גוף של "רגע" — המהלכים, קישוט ההפרדה והסיום.
+// האפיון: docs/MOMENT-FORMAT.md
+//
+// רכיב אחד לשלושת המקומות שמציגים רגע (עמוד הרגע, דף הבית, מדף המצב), כדי
+// שהקצב ייראה זהה בכולם. הכותרת נשארת באחריות העמוד: שם היא h1, בדף הבית h3,
+// ובמדף היא בתוך קישור — ואותו רכיב לא יכול לשרת את שלושתם נכון.
+import { lineHtml, type MomentFormat } from '../lib/moment-format';
+
+interface Props {
+  format: MomentFormat;
+  /** מציג את מהלך המציאות בלבד — למדף, שבו הסיום לא נשרף מראש */
+  firstStanzaOnly?: boolean;
+}
+
+const { format, firstStanzaOnly = false } = Astro.props;
+const stanzas = firstStanzaOnly ? format.stanzas.slice(0, 1) : format.stanzas;
+const showClosing = !firstStanzaOnly && Boolean(format.closing);
+---
+
+<div class:list={['moment-body', format.isNew ? 'is-new' : 'is-flow']}>
+  {
+    stanzas.map((stanza) => (
+      <p class="stanza" set:html={stanza.map(lineHtml).join('<br />')} />
+    ))
+  }
+
+  {
+    showClosing && (
+      <>
+        {/* קישוט ההפרדה — פעם אחת בעמוד, אחרי הסיבוב ולפני הסיום.
+            מצויר ולא תו טקסט: תת-הקבוצה העברית של הפונט אינה מכילה פיסוק,
+            ותו מירכאות היה נופל לפונט מערכת ומשתנה ממכשיר למכשיר. */}
+        <div class="ornament" aria-hidden="true">
+          <span class="rule" />
+          <span class="diamond" />
+          <span class="rule" />
+        </div>
+        <p class="closing" set:html={format.closing!.map(lineHtml).join('<br />')} />
+      </>
+    )
+  }
+</div>
+
+<style>
+  .moment-body {
+    font-family: var(--font-display);
+    font-size: var(--moment-size, 1.3rem);
+    max-width: 30rem;
+    margin-inline: auto;
+  }
+
+  /* התצוגה הישנה: פסקאות זורמות, מיושרות לימין. נשמרת בדיוק כפי שהייתה
+     כדי שרגע שטרם הוגר לא ישתנה. */
+  .is-flow .stanza {
+    line-height: 2.05;
+  }
+
+  .is-flow .stanza + .stanza {
+    margin-top: 1.5rem;
+  }
+
+  /* הפורמט החדש: שורות של 2-5 מילים, ולכן מרכוז. הכלל הישן ("יישור לימין —
+     טקסט ממורכז על פני כמה שורות קשה לקריאה") נכתב לשורות ארוכות; בשורה של
+     שלוש מילים המרכוז הוא מה שנכון, וזה גם מה שהמקור בקאנווה עושה. */
+  .is-new {
+    text-align: center;
+  }
+
+  .is-new .stanza {
+    line-height: 1.75;
+  }
+
+  /* האוויר גדל בין מהלך למהלך — הקורא מרגיש שהוא מתקדם ולא שהוא קורא רשימה */
+  .is-new .stanza + .stanza {
+    margin-top: 1.65rem;
+  }
+
+  .is-new strong {
+    font-weight: 700;
+  }
+
+  .ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.85rem;
+    /* הרווח הגדול ביותר בעמוד. זו הנשימה שלפני הסיום, והיא גם מה שמחזיק את
+       הסיום מתחת לקו הקיפול בטלפון. */
+    margin: 2.7rem 0 2.5rem;
+  }
+
+  .ornament .rule {
+    display: block;
+    width: 3.2rem;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.75;
+  }
+
+  .ornament .diamond {
+    display: block;
+    width: 0.42rem;
+    height: 0.42rem;
+    background: var(--gold);
+    transform: rotate(45deg);
+  }
+
+  /* האובייקט היחיד בעמוד שנראה אחרת. האדום העמוק בטקסט שמור לו בלבד,
+     בכל האתר — הכוח שלו בא מנדירות. */
+  .closing {
+    font-size: 1.55em;
+    font-weight: 700;
+    line-height: 1.55;
+    color: var(--brick);
+    text-align: center;
+    text-wrap: balance;
+  }
+
+  .closing :global(strong) {
+    font-weight: 700;
+  }
+</style>

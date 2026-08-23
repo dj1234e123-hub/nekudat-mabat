@@ -48,6 +48,15 @@ const moments = defineCollection({
   schema: z.object({
     feeling: z.enum(FEELING_SLUGS as [FeelingSlug, ...FeelingSlug[]]),
     date: z.coerce.date(),
+    /**
+     * כותרת-הוו של הרגע (docs/MOMENT-FORMAT.md). 2-4 מילים, שאלה או הצהרה.
+     * היא והסיום נכתבים כזוג: הכותרת פותחת מסגרת והסיום נועל אותה.
+     *
+     * אופציונלית **בכוונה, וזמנית**: קיומה הוא המתג שמפעיל את הפורמט החדש,
+     * ולכן ההגירה של 66 התכנים היא קובץ-קובץ ואין רגע שבו האתר שבור. כשכולם
+     * יוגרו — השדה נעשה חובה, וזה בדיוק מה שיאכוף שלא נשכח אף אחד.
+     */
+    title: z.string().min(1).optional(),
   }),
 });
 

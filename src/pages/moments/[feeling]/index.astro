@@ -1,9 +1,11 @@
 ---
 // מדף של מצב אחד — כל הרגעים ששייכים אליו.
-// הטקסטים קצרים, ולכן הם מוצגים כאן במלואם: המדף עצמו הוא כבר קריאה, לא רשימת קישורים.
-import { getCollection, render } from 'astro:content';
+// המדף הוא מסנן: הקורא סורק ובוחר איזה מהרגעים הוא שלו (docs/MOMENT-FORMAT.md).
+import { getCollection } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
+import MomentBody from '../../../components/MomentBody.astro';
 import { FEELING_SLUGS, feelingLabel, groupLabel, type FeelingSlug } from '../../../data/feelings';
+import { parseMoment } from '../../../lib/moment-format';
 
 export async function getStaticPaths() {
   const moments = await getCollection('moments');
@@ -19,9 +21,14 @@ const label = feelingLabel(feeling);
 const moments = (await getCollection('moments', (m) => m.data.feeling === feeling)).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
-const rendered = await Promise.all(
-  moments.map(async (moment) => ({ moment, Content: (await render(moment)).Content }))
-);
+// בפורמט החדש המדף מציג **כותרת + מהלך המציאות בלבד**. עם כותרת-וו אמיתית
+// תפקיד המדף משתנה מ"לקרוא כאן" ל"איזה מהשלושה הוא שלי", ומהלך המציאות הוא
+// בדיוק המסנן הזה. הסיום אינו מוצג — לא שורפים אותו לפני שהקורא הגיע אליו.
+// רגע שטרם הוגר ממשיך להיות מוצג במלואו, בדיוק כפי שהיה.
+const cards = moments.map((moment) => ({
+  moment,
+  format: parseMoment(moment.body ?? '', moment.data.title),
+}));
 ---
 
 <Base title={`${label} · רגע של נקודת מבט`} description={`רגע של נקודת מבט — ${label}`}>
@@ -31,13 +38,14 @@ const rendered = await Promise.all(
 
     <ul class="moment-list">
       {
-        rendered.map(({ moment, Content }) => (
+        cards.map(({ moment, format }) => (
           <li class="moment-card">
             <a class="moment-link" href={`/moments/${feeling}/${moment.id}/`}>
-              <div class="moment-text">
-                <Content />
-              </div>
-              <span class="moment-more">לרגע הזה →</span>
+              {format.title && <span class="moment-hook">{format.title}</span>}
+              <MomentBody format={format} firstStanzaOnly={format.isNew} />
+              <span class="moment-more">
+                {format.isNew ? 'לרגע המלא →' : 'לרגע הזה →'}
+              </span>
             </a>
           </li>
         ))
@@ -82,20 +90,23 @@ const rendered = await Promise.all(
   }
 
   .moment-link {
+    --moment-size: 1.15rem;
     display: block;
     padding: 1.6rem 1.4rem 1.2rem;
     text-decoration: none;
     color: inherit;
   }
 
-  .moment-text {
+  .moment-hook {
+    display: block;
+    text-align: center;
     font-family: var(--font-display);
-    font-size: 1.15rem;
-    line-height: 1.95;
-  }
-
-  .moment-text :global(p + p) {
-    margin-top: 1rem;
+    font-size: 1.35rem;
+    line-height: 1.3;
+    font-weight: 700;
+    color: var(--blue);
+    margin-bottom: 1.1rem;
+    text-wrap: balance;
   }
 
   .moment-more {
