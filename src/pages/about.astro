@@ -26,6 +26,8 @@ const ogImage = new URL(portraitOg.src, Astro.site).href;
         alt={SITE.ownerName}
         widths={[280, 560]}
         sizes="(max-width: 40rem) 62vw, 15rem"
+        loading="eager"
+        fetchpriority="high"
         class="portrait"
       />
       <div class="identity">
