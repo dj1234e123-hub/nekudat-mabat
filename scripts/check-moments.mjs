@@ -219,6 +219,9 @@ if (migrated.length) {
     for (const [label, list] of [
       ['פתיחות כותרת', migrated.map((m) => frame(m.title))],
       ['פתיחות סיום', migrated.map((m) => frame(m.closing.join(' ')))],
+      // פתיחת המהלך הראשון היא מה שמוצג במדף, ולכן שתי פתיחות דומות
+      // נראות זו לצד זו. נמצא בפועל בסבב "חוסר שליטה".
+      ['פתיחות המהלך הראשון', migrated.map((m) => frame((m.moves[0] || []).join(' ')))],
     ]) {
       const rep = Object.entries(count(list)).filter(([, n]) => n > 2);
       if (rep.length) {
