@@ -312,29 +312,6 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
     font-size: 1.45rem;
   }
 
-  /* שם האתר בדף הבית — מעבר גוונים עדין בין שלושה מצבעי המותג:
-     כחול עמוק → ירוק־כחול → אדום עמוק. אותם צבעים שכבר חיים באתר ובלוגו,
-     רק שהם זורמים זה לתוך זה במקום להיות גוון אחד.
-     הצבע הרגיל מוגדר קודם ומשמש כנפילה לאחור; רק דפדפן שתומך בגזירת רקע
-     לטקסט מחליף אותו במעבר. כך אין מצב של שם בלתי נראה. */
-  .header-home .site-name {
-    background-image: linear-gradient(
-      100deg,
-      var(--blue) 0%,
-      var(--teal-deep) 34%,
-      var(--teal) 54%,
-      var(--brick) 94%
-    );
-  }
-
-  @supports (background-clip: text) or (-webkit-background-clip: text) {
-    .header-home .site-name {
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      -webkit-text-fill-color: transparent;
-    }
-  }
 
   /* כותרת מצומצמת — עמודי סיפור */
   .header-compact {
@@ -363,6 +340,34 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
     font-size: 1.2rem;
     font-weight: 700;
     color: var(--teal-deep);
+  }
+
+  /* ---------- סימן המותג ----------
+     שם האתר הוא סימן מותג, ולכן הוא נראה אותו דבר בכל עמוד: מעבר גוונים בין
+     שלושה מצבעי המותג — כחול עמוק → ירוק־כחול → אדום עמוק — באותו סדר שבו הם
+     מופיעים בלוגו. קודם לכן הכלל היה מוגבל לדף הבית, ואותה מילה נראתה שונה
+     בעמודי אודות, רגעים וסיפור.
+     הצבע האחיד מוגדר למעלה ומשמש כנפילה לאחור; רק דפדפן שתומך בגזירת רקע
+     לטקסט מחליף אותו במעבר, כך שאין מצב שבו השם בלתי נראה. */
+  .site-name,
+  .site-name-sm {
+    background-image: linear-gradient(
+      100deg,
+      var(--blue) 0%,
+      var(--teal-deep) 34%,
+      var(--teal) 54%,
+      var(--brick) 94%
+    );
+  }
+
+  @supports (background-clip: text) or (-webkit-background-clip: text) {
+    .site-name,
+    .site-name-sm {
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
   }
 
   main {
