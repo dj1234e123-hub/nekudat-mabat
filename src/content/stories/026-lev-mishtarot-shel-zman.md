@@ -5,7 +5,7 @@
 # הפתיחה נבדקה לפי הכלל ונמצאה תקינה — הסיפור נפתח בתוך הסצנה
 # הסיום קוצר לפי הכלל הקבוע — נעצר על "היא בנתה לב"
 title: "לב משטרות של זמן"
-section: empowerment
+section: yoman
 topic: family
 archiveId: "026"
 cover: ../../assets/covers/026.png

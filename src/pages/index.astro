@@ -9,10 +9,13 @@ import StoryCard from '../components/StoryCard.astro';
 import JoinGroup from '../components/JoinGroup.astro';
 import { websiteJsonLd } from '../lib/structured-data';
 
-const stories = (await getCollection('stories')).sort(
+// דף הבית נותן טעם ומוביל הלאה; הארכיון עצמו חי ב-/stories/.
+// שלושה אחרונים — מספיק כדי להראות מה יש כאן, בלי להפוך את הדף למחסן.
+const allStories = (await getCollection('stories')).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
-const storyUrls = stories.map((s) => `/stories/${s.id}/`);
+const stories = allStories.slice(0, 3);
+const storyUrls = allStories.map((s) => `/stories/${s.id}/`);
 
 // הרגע שמוצג בדף הבית: החדש ביותר, אוטומטית — כך העמוד מתרענן מעצמו בכל
 // תוכן שנוסיף, בלי עבודה שוטפת. כרגע כל התכנים נושאים אותו תאריך, ולכן שובר
@@ -69,15 +72,16 @@ const DESCRIPTION =
       <ul class="story-list">
         {stories.map((story) => <StoryCard story={story} />)}
       </ul>
-      {
-        storyUrls.length > 1 && (
-          <p class="more">
+      <p class="more">
+        <a href="/stories/">כל הסיפורים</a>
+        {
+          storyUrls.length > 1 && (
             <button id="random-story" class="action" type="button">
               ✦ סיפור אקראי
             </button>
-          </p>
-        )
-      }
+          )
+        }
+      </p>
       <p class="closing-line">כל סיפור מתחיל בנקודת מבט אחת.</p>
     </section>
 

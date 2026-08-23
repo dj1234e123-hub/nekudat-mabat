@@ -7,9 +7,10 @@ import baalShemTov from '../assets/covers/default-baal-shem-tov.png';
 import type { SectionSlug } from './sections';
 
 export const DEFAULT_COVERS: Record<SectionSlug, ImageMetadata> = {
-  empowerment,
+  meshalim: empowerment,
+  tzadikim: baalShemTov,
+  yoman: empowerment,
   shabbat,
-  'baal-shem-tov': baalShemTov,
 };
 
 export const DEFAULT_COVER_ALT = 'איור שער זמני בצבעי נקודת מבט';

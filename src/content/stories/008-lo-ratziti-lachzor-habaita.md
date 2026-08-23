@@ -2,7 +2,7 @@
 # ארכיון #008 · נקלט מהמקור ב-2026-08-23
 # גרסה אחת בלבד בדרייב · פתיחה וסיום נבדקו לפי הכללים ונמצאו תקינים — לא בוצע קיצור
 title: "לא רציתי לחזור הביתה"
-section: empowerment
+section: yoman
 topic: family
 archiveId: "008"
 cover: ../../assets/covers/008.png

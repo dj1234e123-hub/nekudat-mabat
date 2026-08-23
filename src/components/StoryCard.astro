@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
-import { SECTIONS } from '../data/sections';
+import { SECTIONS_META } from '../data/sections';
 import { DEFAULT_COVERS, DEFAULT_COVER_ALT } from '../data/default-covers';
 import { formatDate } from '../utils/format-date';
 
@@ -21,13 +21,29 @@ const coverAlt = story.data.coverAlt ?? DEFAULT_COVER_ALT;
     <h2>{title}</h2>
   </a>
   <p class="card-meta">
-    <a class="label" href={`/sections/${section}/`}>{SECTIONS[section]}</a>
+    <a class="label world" href={`/sections/${section}/`} style={`--accent: ${SECTIONS_META[section].accent}`}>
+      {SECTIONS_META[section].label}
+    </a>
     <time datetime={date.toISOString().slice(0, 10)}>{formatDate(date)}</time>
   </p>
   <p class="card-excerpt">{excerpt}</p>
 </li>
 
 <style>
+  /* התווית נושאת את צבע העולם שלה — אותו צבע שבדלת בעמוד הסיפורים.
+     כך הקורא לומד את המפה בלי שאיש מסביר לו. נקודה בלבד, לא מילוי:
+     צבעי המותג הם נגיעות עדינות ולא אתר צבעוני. */
+  .world::before {
+    content: '';
+    display: inline-block;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-inline-end: 0.4rem;
+    vertical-align: 0.05em;
+  }
+
   .card-link {
     text-decoration: none;
     color: inherit;

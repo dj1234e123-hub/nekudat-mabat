@@ -1,6 +1,7 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { FEELING_SLUGS, type FeelingSlug } from './data/feelings';
+import { SECTION_SLUGS, type SectionSlug } from './data/sections';
 
 // אוסף הסיפורים: כל קובץ Markdown בתיקייה src/content/stories הוא סיפור.
 // section (עולם תוכן) — חובה. topic — תגית משנה אופציונלית.
@@ -13,7 +14,7 @@ const stories = defineCollection({
     z
       .object({
         title: z.string().min(1),
-        section: z.enum(['empowerment', 'shabbat', 'baal-shem-tov']),
+        section: z.enum(SECTION_SLUGS as [SectionSlug, ...SectionSlug[]]),
         topic: z.enum(['family', 'journey', 'faith', 'loss']).optional(),
         archiveId: z.string().min(1).optional(),
         cover: image().optional(),

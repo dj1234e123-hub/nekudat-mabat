@@ -2,23 +2,24 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import StoryCard from '../../components/StoryCard.astro';
-import { SECTIONS, SECTION_SLUGS, type SectionSlug } from '../../data/sections';
+import { SECTIONS_META, SECTION_SLUGS, type SectionSlug } from '../../data/sections';
 
 export function getStaticPaths() {
   return SECTION_SLUGS.map((section) => ({ params: { section } }));
 }
 
 const section = Astro.params.section as SectionSlug;
-const label = SECTIONS[section];
+const { label, line } = SECTIONS_META[section];
 
 const stories = (await getCollection('stories', (s) => s.data.section === section)).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
 ---
 
-<Base title={`${label} · נקודת מבט`} description={`${label} — נקודת מבט`}>
+<Base title={`${label} · נקודת מבט`} description={line}>
   <main>
     <h1 class="page-title">{label}</h1>
+    <p class="section-line">{line}</p>
     {
       stories.length > 0 ? (
         <ul class="story-list">
@@ -30,11 +31,19 @@ const stories = (await getCollection('stories', (s) => s.data.section === sectio
         <p class="empty">עוד אין כאן סיפורים — הם בדרך.</p>
       )
     }
-    <p class="back"><a href="/">לכל הסיפורים</a></p>
+    <p class="back"><a href="/stories/">לכל הסיפורים</a></p>
   </main>
 </Base>
 
 <style>
+  .section-line {
+    text-align: center;
+    color: var(--secondary);
+    margin: 0 auto 2rem;
+    max-width: 26rem;
+    line-height: 1.7;
+  }
+
   .page-title {
     text-align: center;
     font-size: 1.8rem;

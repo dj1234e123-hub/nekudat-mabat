@@ -2,7 +2,7 @@
 # ארכיון #020 · נקלט מהמקור ב-2026-08-21
 # ליטוש ספרותי מלא בוצע באישור מפורש ובאחריות מלאה של בעל הפרויקט (חריג לכלל השמירה 1:1)
 title: "הגשר שהראש מפחד ממנו"
-section: empowerment
+section: meshalim
 topic: journey
 archiveId: "020"
 cover: ../../assets/covers/020.png

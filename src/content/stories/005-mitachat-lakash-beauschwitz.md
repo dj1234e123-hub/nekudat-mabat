@@ -2,7 +2,7 @@
 # ארכיון #005 · נקלט מהמקור ב-2026-08-23
 # גרסה אחת בלבד בדרייב · פתיחה וסיום נבדקו לפי הכללים ונמצאו תקינים — לא בוצע קיצור
 title: "מתחת לקש באושוויץ"
-section: empowerment
+section: tzadikim
 topic: faith
 archiveId: "005"
 cover: ../../assets/covers/005.png
