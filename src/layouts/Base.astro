@@ -87,11 +87,14 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
             <span class="site-name">נקודת מבט</span>
           </a>
           {!homeHeader && <p class="tagline">{SITE.slogan}</p>}
+          {/* שמות התפריט הם בשפת הקורא ולא בשפה הפנימית שלנו: "מה עובר עליך"
+              הוא בדיוק נוסח הכפתור הראשי בדף הבית — אותה דלת, אותן מילים.
+              קבוצת הוואטסאפ ירדה מכאן: היא הקישור היחיד שיוצא מהאתר, והיא כבר
+              מופיעה ככרטיס בתחתית כל עמוד. תפריט הוא לְמקומות בתוך הבית. */}
           <nav class="site-nav" aria-label="ניווט ראשי">
-            <a href="/">הסיפורים</a>
-            <a href="/moments/">רגעים</a>
-            <a href="/about/">אודות</a>
-            <a href={SITE.whatsappGroupUrl} rel="noopener" target="_blank">קבוצת הוואטסאפ</a>
+            <a href="/">סיפורים</a>
+            <a href="/moments/">מה עובר עליך</a>
+            <a href="/about/">מי אני</a>
           </nav>
         </header>
       )
@@ -101,6 +104,7 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
       <span class="dot" aria-hidden="true"></span>
       <p><a href="/">{SITE.name}</a> · {SITE.slogan}</p>
       <p class="credit">מאת {SITE.ownerName} · <a href="/about/">אודות</a></p>
+      <p class="rights">כל הזכויות שמורות</p>
     </footer>
   </body>
 </html>
@@ -368,6 +372,13 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
   footer .credit {
     font-size: 0.8rem;
     margin-top: 0.25rem;
+  }
+
+  /* בעברית בלבד ובלי שנה — כדי שקובץ הפונט הלטיני (30KB) לא יירד בעמודים
+     שאין בהם ספרות, כמו הרגעים והאודות. */
+  footer .rights {
+    font-size: 0.75rem;
+    margin-top: 0.6rem;
   }
 
   /* ---------- שלושת רכיבי הגלולה ----------
