@@ -6,6 +6,7 @@
 import { Image, getImage } from 'astro:assets';
 import logo from '../assets/logo.jpg';
 import { SITE } from '../data/site';
+import { SITE_ES } from '../data/site-es';
 
 interface Props {
   title: string;
@@ -20,6 +21,8 @@ interface Props {
   homeHeader?: boolean;
   bodyClass?: string;
   noindex?: boolean;
+  /** שפת העמוד. 'es' מחליף כיוון, תפריט ותחתית — האתר העברי אינו מושפע. */
+  lang?: 'he' | 'es';
 }
 
 const {
@@ -31,7 +34,28 @@ const {
   homeHeader = false,
   bodyClass,
   noindex = false,
+  lang = 'he',
 } = Astro.props;
+
+const es = lang === 'es';
+const dir = es ? 'ltr' : 'rtl';
+const brand = es ? SITE_ES : SITE;
+// התפריט הספרדי אינו מוביל לסיפורים: הם לא תורגמו, וקישור לעמוד שאי אפשר
+// לקרוא גרוע יותר מהיעדרו.
+const navLinks = es
+  ? [
+      { href: '/es/momentos/', label: 'Momentos' },
+      { href: '/es/sobre-mi/', label: 'Sobre mí' },
+    ]
+  : [
+      { href: '/', label: 'סיפורים' },
+      { href: '/moments/', label: 'מה עובר עליך' },
+      { href: '/about/', label: 'מי אני' },
+    ];
+const aboutHref = es ? '/es/sobre-mi/' : '/about/';
+const homeHref = es ? '/es/' : '/';
+const byLine = es ? 'Por' : 'מאת';
+const rights = es ? 'Todos los derechos reservados' : 'כל הזכויות שמורות';
 
 const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
 const defaultOg = await getImage({ src: logo, width: 640, format: 'jpeg' });
@@ -39,14 +63,14 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
 ---
 
 <!doctype html>
-<html lang="he" dir="rtl">
+<html lang={lang} dir={dir}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex" />}
-    <meta property="og:site_name" content={SITE.name} />
-    <meta property="og:locale" content="he_IL" />
+    <meta property="og:site_name" content={brand.name} />
+    <meta property="og:locale" content={es ? "es_ES" : "he_IL"} />
     <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -69,32 +93,30 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
     {
       compact ? (
         <header class="header-compact">
-          <a href="/" class="brand-row">
-            <Image src={logo} alt="הלוגו של נקודת מבט" width={80} densities={[1, 2]} class="logo-sm" />
-            <span class="site-name-sm">נקודת מבט</span>
+          <a href={homeHref} class="brand-row">
+            <Image src={logo} alt={`${brand.name} — לוגו`} width={80} densities={[1, 2]} class="logo-sm" />
+            <span class="site-name-sm">{brand.name}</span>
           </a>
         </header>
       ) : (
         <header class={homeHeader ? 'header-home' : undefined}>
-          <a href="/" class="brand">
+          <a href={homeHref} class="brand">
             <Image
               src={logo}
-              alt="הלוגו של נקודת מבט"
+              alt={`${brand.name} — לוגו`}
               width={homeHeader ? 112 : 144}
               densities={[1, 2]}
               class="logo"
             />
-            <span class="site-name">נקודת מבט</span>
+            <span class="site-name">{brand.name}</span>
           </a>
-          {!homeHeader && <p class="tagline">{SITE.slogan}</p>}
+          {!homeHeader && <p class="tagline">{brand.slogan}</p>}
           {/* שמות התפריט הם בשפת הקורא ולא בשפה הפנימית שלנו: "מה עובר עליך"
               הוא בדיוק נוסח הכפתור הראשי בדף הבית — אותה דלת, אותן מילים.
               קבוצת הוואטסאפ ירדה מכאן: היא הקישור היחיד שיוצא מהאתר, והיא כבר
               מופיעה ככרטיס בתחתית כל עמוד. תפריט הוא לְמקומות בתוך הבית. */}
-          <nav class="site-nav" aria-label="ניווט ראשי">
-            <a href="/">סיפורים</a>
-            <a href="/moments/">מה עובר עליך</a>
-            <a href="/about/">מי אני</a>
+          <nav class="site-nav" aria-label={es ? 'Navegación principal' : 'ניווט ראשי'}>
+            {navLinks.map((link) => <a href={link.href}>{link.label}</a>)}
           </nav>
         </header>
       )
@@ -102,9 +124,11 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
     <slot />
     <footer>
       <span class="dot" aria-hidden="true"></span>
-      <p><a href="/">{SITE.name}</a> · {SITE.slogan}</p>
-      <p class="credit">מאת {SITE.ownerName} · <a href="/about/">אודות</a></p>
-      <p class="rights">כל הזכויות שמורות</p>
+      <p><a href={homeHref}>{brand.name}</a> · {brand.slogan}</p>
+      <p class="credit">
+        {byLine} {brand.ownerName} · <a href={aboutHref}>{es ? 'Sobre mí' : 'אודות'}</a>
+      </p>
+      <p class="rights">{rights}</p>
     </footer>
   </body>
 </html>

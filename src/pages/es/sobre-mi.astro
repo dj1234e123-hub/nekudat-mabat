@@ -1,0 +1,224 @@
+---
+// עמוד האודות בספרדית — אותו סדר אמון כמו בעברית: קודם אדם, אחר כך מקצוע.
+//
+// ההבדל המהותי היחיד: **אין כאן הזמנה לשיחה אישית.** בעל הפרויקט אינו מאמן
+// בספרדית, והזמנה לשיחה שאי אפשר לקיים מייצרת רושם של מי שלא עונה. במקומה —
+// פסקה גלויה שמסבירה למה האזור הזה קיים ומה כן אפשר לקחת ממנו.
+import { Image, getImage } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import { SITE_ES } from '../../data/site-es';
+import portrait from '../../assets/efraim.jpg';
+
+const portraitOg = await getImage({ src: portrait, width: 640, format: 'jpeg' });
+const ogImage = new URL(portraitOg.src, Astro.site).href;
+---
+
+<Base
+  lang="es"
+  noindex={true}
+  title="Efraim Atia — Punto de Vista"
+  description="Quién está detrás de Punto de Vista: el camino que recorrí, a qué me dedico hoy, y por qué existe este sitio."
+  ogImage={ogImage}
+>
+  <main>
+    <section class="intro">
+      <Image
+        src={portrait}
+        alt={SITE_ES.ownerName}
+        widths={[280, 560]}
+        sizes="(max-width: 40rem) 62vw, 15rem"
+        loading="eager"
+        fetchpriority="high"
+        class="portrait"
+      />
+      <div class="identity">
+        <h1>{SITE_ES.ownerName}</h1>
+        <p class="role">Coach personal · NLP Master</p>
+      </div>
+    </section>
+
+    <div class="about-body">
+      <p class="opening">Mucho gusto.</p>
+
+      <p>
+        Hubo años en mi vida en los que no veía salida. Pasé por cosas difíciles — de esas que
+        toman tiempo admitir, y todavía más tiempo dejar atrás. No las voy a detallar aquí. Pero
+        lo que me importa que sepas es esto: salí. Y no salí siendo la misma persona.
+      </p>
+
+      <p>
+        Lo que me sostuvo no fue un buen consejo que alguien me dio. Fue un punto que se movió.
+      </p>
+
+      <blockquote class="pull">
+        Miré exactamente la misma historia — y de pronto la vi distinta. De ahí empezó todo el
+        camino.
+      </blockquote>
+
+      <h2>A qué me dedico</h2>
+
+      <p>
+        Acompaño a hombres jóvenes que quieren moverse de un lugar donde están atascados — en el
+        trabajo, en la familia, en la cabeza, en la fe. No con charlas ni con consignas: una
+        conversación tras otra, hasta que el cuadro empieza a verse distinto — y se puede avanzar.
+      </p>
+
+      <p>
+        No te digo qué es lo correcto para ti. Te ayudo a ver lo que ya sabes, desde un ángulo
+        desde el cual por fin se puede hacer algo con eso.
+      </p>
+
+      <p>
+        Y lo que yo mismo viví no me hace más sabio. Solo significa que cuando me cuentas dónde
+        estás — no me asusto.
+      </p>
+
+      <h2>Mi formación</h2>
+
+      <ul class="creds">
+        <li>NLP — coach certificado, nivel Master</li>
+        <li>Primeros auxilios psicológicos</li>
+        <li>Programa de los 12 pasos</li>
+      </ul>
+
+      <h2>Por qué existe este sitio</h2>
+
+      <p>
+        "Punto de Vista" nació de lo mismo. No todo el mundo necesita un coach, y no todo el mundo
+        está dispuesto a hablar. Pero casi todo el mundo está dispuesto a leer un texto corto. Y a
+        veces un solo texto hace lo que diez sermones no hacen — mueve un punto.
+      </p>
+
+      <h2>Sobre este espacio en español</h2>
+
+      <p>
+        Escribo en hebreo, y ahí nace este sitio. Lo que lees aquí es una selección traducida: los
+        textos breves, los que funcionan en cualquier idioma. Mi trabajo de acompañamiento es en
+        hebreo, así que aquí no vas a encontrar una invitación a conversar — vas a encontrar algo
+        para llevarte.
+      </p>
+    </div>
+
+    <section class="next">
+      <a class="cta" href="/es/momentos/">Un momento de perspectiva</a>
+    </section>
+  </main>
+</Base>
+
+<style>
+  .intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.25rem;
+    padding: 0.75rem 0 2rem;
+  }
+
+  .portrait {
+    width: min(62%, 15rem);
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .identity h1 {
+    font-size: 2rem;
+    line-height: 1.3;
+  }
+
+  .role {
+    color: var(--secondary);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 0.35rem;
+  }
+
+  .identity::after {
+    content: '';
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--gold);
+    margin: 1.1rem auto 0;
+  }
+
+  @media (min-width: 40rem) {
+    .intro {
+      flex-direction: row;
+      align-items: center;
+      text-align: start;
+      gap: 2rem;
+    }
+
+    .portrait {
+      width: 13rem;
+      flex: none;
+    }
+
+    .identity::after {
+      margin-inline: 0;
+    }
+  }
+
+  .about-body {
+    font-size: 1.15rem;
+    line-height: 2;
+  }
+
+  .about-body p + p {
+    margin-top: 1.25rem;
+  }
+
+  .opening {
+    color: var(--secondary);
+  }
+
+  .about-body h2 {
+    font-size: 1.35rem;
+    margin: 2.5rem 0 0.9rem;
+  }
+
+  .pull {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: var(--teal-deep);
+    border-inline-start: 3px solid var(--gold);
+    padding-inline-start: 1.1rem;
+    margin: 1.75rem 0;
+  }
+
+  .creds {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.35rem;
+    list-style: none;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+
+  .creds li {
+    padding-inline-start: 1.1rem;
+    position: relative;
+  }
+
+  .creds li::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: 0;
+    top: 0.85em;
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  .next {
+    text-align: center;
+    margin-top: 3rem;
+  }
+</style>

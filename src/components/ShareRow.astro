@@ -1,5 +1,7 @@
 ---
-// שורת שיתוף: וואטסאפ + העתקת קישור. עברית בלבד.
+// שורת שיתוף: וואטסאפ + העתקת קישור.
+// הטקסט על הכפתורים נגזר משפת העמוד — כפתור בעברית בתוך עמוד ספרדי
+// שובר את החוויה בדיוק במקום שבו מבקשים מהקורא לפעול.
 interface Props {
   title: string;
   url: string;
@@ -8,17 +10,29 @@ interface Props {
   shareText?: string;
   /** התווית שלפני הכפתורים */
   label?: string;
+  /** שפת הכפתורים */
+  lang?: 'he' | 'es';
 }
 
-const { title, url, shareText, label = 'אהבתם? שתפו:' } = Astro.props;
-const message = shareText ?? `${title} · נקודת מבט`;
+const { title, url, shareText, label, lang = 'he' } = Astro.props;
+const es = lang === 'es';
+const t = es
+  ? { label: '¿Te llegó? Compártelo:', whatsapp: 'Compartir por WhatsApp', copy: 'Copiar enlace', copied: 'Enlace copiado ✓', prompt: 'Copia el enlace:', brand: 'Punto de Vista' }
+  : { label: 'אהבתם? שתפו:', whatsapp: 'שיתוף בוואטסאפ', copy: 'העתקת קישור', copied: 'הקישור הועתק ✓', prompt: 'העתיקו את הקישור:', brand: 'נקודת מבט' };
+const message = shareText ?? `${title} · ${t.brand}`;
 const whatsappHref = `https://wa.me/?text=${encodeURIComponent(`${message}\n${url}`)}`;
 ---
 
-<div class="share" data-url={url}>
-  <span class="share-label">{label}</span>
-  <a class="share-btn whatsapp" href={whatsappHref} rel="noopener" target="_blank">שיתוף בוואטסאפ</a>
-  <button class="share-btn copy" type="button">העתקת קישור</button>
+<div
+  class="share"
+  data-url={url}
+  data-copy={t.copy}
+  data-copied={t.copied}
+  data-prompt={t.prompt}
+>
+  <span class="share-label">{label ?? t.label}</span>
+  <a class="share-btn whatsapp" href={whatsappHref} rel="noopener" target="_blank">{t.whatsapp}</a>
+  <button class="share-btn copy" type="button">{t.copy}</button>
 </div>
 
 <script>
@@ -28,10 +42,10 @@ const whatsappHref = `https://wa.me/?text=${encodeURIComponent(`${message}\n${ur
     copyBtn.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(url);
-        copyBtn.textContent = 'הקישור הועתק ✓';
-        setTimeout(() => (copyBtn.textContent = 'העתקת קישור'), 2500);
+        copyBtn.textContent = share.dataset.copied!;
+        setTimeout(() => (copyBtn.textContent = share.dataset.copy!), 2500);
       } catch {
-        prompt('העתיקו את הקישור:', url);
+        prompt(share.dataset.prompt!, url);
       }
     });
   }
