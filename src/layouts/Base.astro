@@ -56,6 +56,12 @@ const aboutHref = es ? '/es/sobre-mi/' : '/about/';
 const homeHref = es ? '/es/' : '/';
 const byLine = es ? 'Por' : 'מאת';
 const rights = es ? 'Todos los derechos reservados' : 'כל הזכויות שמורות';
+const logoAlt = es ? `${SITE_ES.name} — logo` : 'הלוגו של נקודת מבט';
+// טעינה מוקדמת של תת-הקבוצה שהעמוד באמת מציג: עמוד ספרדי שטוען מראש
+// את הקבצים העבריים משלם על שני קבצים שלא ישמשו אותו, ומחכה לשניים שכן.
+const preloadFonts = es
+  ? ['/fonts/frank-ruhl-libre-latin.woff2', '/fonts/heebo-latin.woff2']
+  : ['/fonts/frank-ruhl-libre-hebrew.woff2', '/fonts/heebo-hebrew.woff2'];
 
 const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
 const defaultOg = await getImage({ src: logo, width: 640, format: 'jpeg' });
@@ -79,14 +85,11 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="canonical" href={pageUrl} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link
-      rel="preload"
-      as="font"
-      type="font/woff2"
-      href="/fonts/frank-ruhl-libre-hebrew.woff2"
-      crossorigin
-    />
-    <link rel="preload" as="font" type="font/woff2" href="/fonts/heebo-hebrew.woff2" crossorigin />
+    {
+      preloadFonts.map((href) => (
+        <link rel="preload" as="font" type="font/woff2" href={href} crossorigin />
+      ))
+    }
     <title>{title}</title>
   </head>
   <body class={bodyClass}>
@@ -94,7 +97,7 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
       compact ? (
         <header class="header-compact">
           <a href={homeHref} class="brand-row">
-            <Image src={logo} alt={`${brand.name} — לוגו`} width={80} densities={[1, 2]} class="logo-sm" />
+            <Image src={logo} alt={logoAlt} width={80} densities={[1, 2]} class="logo-sm" />
             <span class="site-name-sm">{brand.name}</span>
           </a>
         </header>
@@ -103,7 +106,7 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
           <a href={homeHref} class="brand">
             <Image
               src={logo}
-              alt={`${brand.name} — לוגו`}
+              alt={logoAlt}
               width={homeHeader ? 112 : 144}
               densities={[1, 2]}
               class="logo"
