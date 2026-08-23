@@ -5,6 +5,8 @@ import { getCollection, render } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
 import ShareRow from '../../../components/ShareRow.astro';
 import { feelingLabel, groupLabel, type FeelingSlug } from '../../../data/feelings';
+import { articleJsonLd } from '../../../lib/structured-data';
+import { momentTitle } from '../../../lib/moment-title';
 
 export async function getStaticPaths() {
   const moments = await getCollection('moments');
@@ -27,17 +29,34 @@ const pageUrl = new URL(`/moments/${feeling}/${moment.id}/`, Astro.site).href;
 // תמונת שיתוף ממותגת, נוצרת בזמן הבנייה מהטקסט עצמו (ראו og.png.ts באותה תיקייה).
 // חשוב בעיקר לשיתוף בסטטוס, שבו הקישור נעלם והתמונה היא כל מה שנשאר.
 const ogImage = new URL(`/moments/${feeling}/${moment.id}/og.png`, Astro.site).href;
+
+// כותרת ייחודית לכל רגע, נגזרת מהטקסט (ראו moment-title.ts). קודם לכן שלושת
+// הרגעים של כל מצב חלקו כותרת אחת, וגוגל ראה בהם שכפול ובחר אחד מהם.
+// בלי שם המותג בסוף: הכותרת קצרה ממילא, ושם האתר כבר מגיע לגוגל דרך
+// og:site_name והנתונים המובנים — ולוותר על מילים מהמשפט לטובתו זה הפסד.
+const title = momentTitle(moment.body!);
 ---
 
 <Base
-  title={`${label} · רגע של נקודת מבט`}
+  title={title}
   description={summary}
   ogImage={ogImage}
   ogType="article"
   compact={true}
+  jsonLd={articleJsonLd(Astro.site!, {
+    url: pageUrl,
+    headline: title,
+    description: summary,
+    datePublished: moment.data.date,
+    image: ogImage,
+  })}
 >
   <main>
     <article class="moment">
+      {/* העמוד מעוצב בכוונה בלי כותרת גלויה — הטקסט עצמו הוא הפתיחה.
+          h1 מוסתר חזותית נותן לקורא מסך ולגוגל את הכותרת שהעמוד צריך,
+          בלי לשנות דבר במה שרואים. */}
+      <h1 class="visually-hidden">{title}</h1>
       <p class="eyebrow">
         <span class="group">{groupLabel(feeling)}</span>
         <a class="label" href={`/moments/${feeling}/`}>{label}</a>

@@ -7,6 +7,7 @@ import { getCollection, render } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import StoryCard from '../components/StoryCard.astro';
 import JoinGroup from '../components/JoinGroup.astro';
+import { websiteJsonLd } from '../lib/structured-data';
 
 const stories = (await getCollection('stories')).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
@@ -22,12 +23,16 @@ const moments = (await getCollection('moments')).sort((a, b) => {
 });
 const featured = moments[0];
 const FeaturedMoment = featured ? (await render(featured)).Content : null;
+
+const DESCRIPTION =
+  'מקום לעצור, לקבל נקודת מבט חדשה, ולקחת משהו איתך להמשך הדרך. סיפורים ורגעים קצרים של נקודת מבט.';
 ---
 
 <Base
   title="נקודת מבט — מקום לעצור, ולראות אחרת"
-  description="מקום לעצור, לקבל נקודת מבט חדשה, ולקחת משהו איתך להמשך הדרך. סיפורים ורגעים קצרים של נקודת מבט."
+  description={DESCRIPTION}
   homeHeader={true}
+  jsonLd={websiteJsonLd(Astro.site!, DESCRIPTION)}
 >
   <main>
     <section class="hero">
