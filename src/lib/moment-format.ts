@@ -89,12 +89,18 @@ export function plain(line: string): string {
 }
 
 /**
- * הרגע כמלל רציף — הטקסט שנשלח בוואטסאפ ומשמש כתיאור העמוד.
- * השורות בתוך מהלך מתאחדות למשפט, והמהלכים מופרדים בשורה ריקה: כך ההודעה
- * נשארת קריאה בוואטסאפ, שבו שורה קצרה לכל פסוקית נראית שבורה ולא מכוונת.
+ * הרגע כמלל — הטקסט שנשלח בוואטסאפ.
+ *
+ * **בפורמט החדש השורות נשמרות כפי שנכתבו.** ניסיתי קודם לאחד אותן למשפטים
+ * רציפים, וזה שבר את הטקסט: הפסיקים כאן הם פסיקים של דיבור ולא של דקדוק
+ * ("יודעים בדיוק, / מה צריך לעשות"), ובשורה אחת הם נקראים כשגיאת פיסוק.
+ * וואטסאפ מציג שורות מרובות בלי בעיה, ולכן ההודעה נושאת את הקצב עצמו.
+ *
+ * בתצוגה הישנה כל מהלך הוא פסקה אחת ממילא, ולכן שם אין הבדל.
  */
 export function momentPlainText(format: MomentFormat): string {
-  const blocks = format.stanzas.map((stanza) => plain(stanza.join(' ')));
-  if (format.closing) blocks.push(plain(format.closing.join(' ')));
+  const join = (stanza: Stanza) => plain(format.isNew ? stanza.join('\n') : stanza.join(' '));
+  const blocks = format.stanzas.map(join);
+  if (format.closing) blocks.push(join(format.closing));
   return blocks.join('\n\n');
 }
