@@ -7,6 +7,9 @@ import { Image, getImage } from 'astro:assets';
 import logo from '../assets/logo.jpg';
 import { SITE } from '../data/site';
 import { SITE_ES } from '../data/site-es';
+// מדידה: כמה נכנסו לכל עמוד ומאיפה הגיעו. בלי עוגיות ובלי מעקב אחרי אדם —
+// הבסיס להחלטות תוכן ("איזה סיפור באמת נקרא"), במקום מונה לייקים גלוי.
+import Analytics from '@vercel/analytics/astro';
 
 interface Props {
   title: string;
@@ -138,6 +141,7 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
       </p>
       <p class="rights">{rights}</p>
     </footer>
+    <Analytics />
   </body>
 </html>
 

@@ -1,0 +1,50 @@
+---
+// תגובה פרטית לסוף סיפור — במקום תגובות ציבוריות (החלטה 2026-08-23).
+// קופסת תגובות מבקשת מהקורא להיחשף בשמו בקהילה שכולם מכירים בה, ודווקא מי
+// שהתוכן נכתב בשבילו לא יכתוב שם. הודעה פרטית לאפרים היא אותה מחווה בלי המחיר,
+// והיא גם התחלה של שיחה אמיתית ולא מספר בעמוד.
+//
+// הפנייה בלשון יחיד ("נגע בך") ולא ברבים כמו שורת השיתוף שמעליה: זו מחווה של
+// אדם אחד אל אדם אחד. בכתיב לא מנוקד "בך" זהה לשני המינים.
+import { SITE } from '../data/site';
+
+interface Props {
+  /** שם הסיפור — נכנס לתוך ההודעה כדי שאפרים ידע על מה מדובר */
+  title: string;
+}
+
+const { title } = Astro.props;
+
+// טקסט פתיחה מוכן, ואחריו שורה ריקה שבה הקורא כותב את שלו.
+const message = `שלום אפרים, קראתי את "${title}" באתר.\n`;
+const href = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(message)}`;
+---
+
+<p class="write-to-me">
+  נגע בך? <a href={href} rel="noopener" target="_blank">אפשר לכתוב לי</a>
+</p>
+
+<style>
+  .write-to-me {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-top: 1.4rem;
+  }
+
+  /* קישור שקט ולא כפתור: שורת השיתוף שמעליה וכרטיס הקבוצה שמתחתיה כבר
+     מבקשים פעולה, ופעולה שלישית באותו משקל הייתה מבטלת את שתיהן. */
+  .write-to-me a {
+    color: var(--teal);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+    /* שטח מגע נוח בלי לשבור את השורה */
+    display: inline-block;
+    padding-block: 0.5rem;
+  }
+
+  .write-to-me a:hover {
+    color: var(--teal-deep);
+  }
+</style>
