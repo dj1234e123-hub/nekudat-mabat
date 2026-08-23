@@ -6,6 +6,10 @@
 //
 // הפנייה בלשון יחיד ("נגע בך") ולא ברבים כמו שורת השיתוף שמעליה: זו מחווה של
 // אדם אחד אל אדם אחד. בכתיב לא מנוקד "בך" זהה לשני המינים.
+//
+// הנוסח ("להמשיך שיחה" ולא "להתחיל" אחת) נבחר כי הוא מחסום נמוך בהרבה: הקורא
+// כבר בילה כמה דקות עם אפרים, והמשפט רק מציע לא לעצור. זו גם ההזמנה השיווקית
+// היחידה בעמוד, והיא בעדינות — בלי "לתיאום שיחה" ובלי הבטחה.
 import { SITE } from '../data/site';
 
 interface Props {
@@ -21,15 +25,26 @@ const href = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(mes
 ---
 
 <p class="write-to-me">
-  נגע בך? <a href={href} rel="noopener" target="_blank">אפשר לכתוב לי</a>
+  <span class="lead">סיפור הוא התחלה של שיחה.</span>
+  <span>אם משהו כאן נגע בך — <a href={href} rel="noopener" target="_blank">אפשר להמשיך אותה איתי</a></span>
 </p>
 
 <style>
   .write-to-me {
     text-align: center;
-    color: var(--muted);
+    color: var(--secondary);
     font-size: 0.95rem;
-    margin-top: 1.4rem;
+    margin-top: 1.8rem;
+    line-height: 1.75;
+  }
+
+  /* שתי שורות ולא אחת: המשפט הפותח צריך רגע משלו לפני ההזמנה. */
+  .write-to-me span {
+    display: block;
+  }
+
+  .lead {
+    color: var(--muted);
   }
 
   /* קישור שקט ולא כפתור: שורת השיתוף שמעליה וכרטיס הקבוצה שמתחתיה כבר
@@ -41,7 +56,7 @@ const href = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(mes
     text-underline-offset: 0.25em;
     /* שטח מגע נוח בלי לשבור את השורה */
     display: inline-block;
-    padding-block: 0.5rem;
+    padding-block: 0.6rem;
   }
 
   .write-to-me a:hover {
