@@ -41,12 +41,23 @@ const STOP = new Set(['זה', 'זו', 'לא', 'מה', 'מי', 'את', 'של', '�
 const words = (s) => s.replace(/\*\*/g, '').split(/\s+/).filter(Boolean);
 /** מילה בלי פיסוק נדבק — "עצלות." ו"עצלות" הן אותה מילה */
 const bare = (w) => w.replace(/^[^\u0590-\u05FFa-zA-Z0-9]+|[^\u0590-\u05FFa-zA-Z0-9]+$/g, '');
-/** שורש גס לעברית: מסיר אות שימוש בראש ומחזיר אות סופית לצורתה, כדי
- *  ש"עצלות." ,"בעצלות" ו"עצלות" ייחשבו אותה מילה */
-const stem = (w) =>
-  bare(w)
-    .replace(/^[הוכלבשמ]/, '')
-    .replace(/[ךםןףץ]$/, (c) => 'כמנפצ'['ךםןףץ'.indexOf(c)]);
+/** אות סופית לצורתה הרגילה */
+const unfinal = (w) => w.replace(/[ךםןףץ]$/, (c) => 'כמנפצ'['ךםןףץ'.indexOf(c)]);
+
+/**
+ * הצורות האפשריות של מילה — עם אות שימוש בראש ובלעדיה.
+ *
+ * מחזיר **קבוצה** ולא שורש יחיד, כי שורש יחיד טועה: "מקום" מתחיל ב-מ',
+ * והמסיר-אות-שימוש חתך אותה והפך אותו ל"קום" — כך ש"המקום" בכותרת
+ * ו"מקום" בגוף נראו כשתי מילים שונות, והכלל הכשיל טקסט תקין.
+ * השוואה בין קבוצות מוצאת התאמה בלי לנחש מה קידומת ומה חלק מהמילה.
+ */
+const forms = (w) => {
+  const b = unfinal(bare(w));
+  const set = new Set([b]);
+  if (b.length > 3 && /^[הוכלבשמ]/.test(b)) set.add(b.slice(1));
+  return set;
+};
 
 function parse(file) {
   const raw = fs.readFileSync(file, 'utf8').replace(/\r\n/g, '\n');
@@ -97,12 +108,12 @@ function check(m) {
   range(tw, T.titleWords, 'אורך הכותרת', 'מילים');
 
   // 2 · מילה מהכותרת חיה בגוף — ולא רק בסיום
-  const bodyStems = new Set(m.moves.flat().flatMap((l) => words(l).map(stem)));
-  const titleStems = words(m.title).map(stem).filter((w) => !STOP.has(w) && w.length > 2);
-  const rooted = titleStems.filter((w) => bodyStems.has(w));
-  if (!titleStems.length) add('WARNING', 'הכותרת מושרשת בגוף', 'הכותרת כולה מילות עצירה');
+  const bodyForms = new Set(m.moves.flat().flatMap((l) => words(l).flatMap((w) => [...forms(w)])));
+  const titleWords = words(m.title).filter((w) => !STOP.has(bare(w)) && bare(w).length > 2);
+  const rooted = titleWords.filter((w) => [...forms(w)].some((f) => bodyForms.has(f)));
+  if (!titleWords.length) add('WARNING', 'הכותרת מושרשת בגוף', 'הכותרת כולה מילות עצירה');
   else if (rooted.length) add('PASS', 'הכותרת מושרשת בגוף', `"${rooted.join('", "')}"`);
-  else add('FAIL', 'הכותרת מושרשת בגוף', `אף מילה מהכותרת אינה בגוף (${titleStems.join(', ')})`);
+  else add('FAIL', 'הכותרת מושרשת בגוף', `אף מילה מהכותרת אינה בגוף (${titleWords.join(', ')})`);
 
   // 3 · שלושה מהלכים
   if (m.moves.length === T.moves) add('PASS', 'מספר המהלכים', '3');
