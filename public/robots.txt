@@ -1,0 +1,5 @@
+# נקודת מבט — כל האתר פתוח לסריקה.
+User-agent: *
+Allow: /
+
+Sitemap: https://nekudatmabat.blog/sitemap-index.xml

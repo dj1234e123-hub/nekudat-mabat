@@ -7,17 +7,22 @@ import Base from '../layouts/Base.astro';
 import JoinGroup from '../components/JoinGroup.astro';
 import { SITE } from '../data/site';
 import portrait from '../assets/efraim.jpg';
+import { profileJsonLd } from '../lib/structured-data';
 
 // תמונת השיתוף של העמוד הזה היא הפנים ולא הלוגו: עמוד אודות שמשותף
 // בוואטסאפ נפתח בזכות פרצוף, לא בזכות סמל.
 const portraitOg = await getImage({ src: portrait, width: 640, format: 'jpeg' });
 const ogImage = new URL(portraitOg.src, Astro.site).href;
+
+const DESCRIPTION =
+  'אפרים עטיה, מאמן אישי ומלווה בחורים בדרך שלהם. על הדרך שעברתי, על מה שאני עושה היום, ולמה נולד האתר הזה.';
 ---
 
 <Base
   title="אפרים עטיה — מאמן אישי · נקודת מבט"
-  description="אפרים עטיה, מאמן אישי ומלווה בחורים בדרך שלהם. על הדרך שעברתי, על מה שאני עושה היום, ולמה נולד האתר הזה."
+  description={DESCRIPTION}
   ogImage={ogImage}
+  jsonLd={profileJsonLd(Astro.site!, DESCRIPTION, ogImage)}
 >
   <main>
     <section class="intro">

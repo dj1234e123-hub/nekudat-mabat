@@ -5,6 +5,7 @@ import { getCollection, render } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
 import ShareRow from '../../../components/ShareRow.astro';
 import { feelingLabel, groupLabel, type FeelingSlug } from '../../../data/feelings';
+import { articleJsonLd } from '../../../lib/structured-data';
 
 export async function getStaticPaths() {
   const moments = await getCollection('moments');
@@ -35,6 +36,13 @@ const ogImage = new URL(`/moments/${feeling}/${moment.id}/og.png`, Astro.site).h
   ogImage={ogImage}
   ogType="article"
   compact={true}
+  jsonLd={articleJsonLd(Astro.site!, {
+    url: pageUrl,
+    headline: summary,
+    description: summary,
+    datePublished: moment.data.date,
+    image: ogImage,
+  })}
 >
   <main>
     <article class="moment">
