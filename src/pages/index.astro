@@ -26,16 +26,24 @@ const picked = allStories
 const stories = picked.length >= 3 ? picked.slice(0, 3) : allStories.slice(0, 3);
 const storyUrls = allStories.map((s) => `/stories/${s.id}/`);
 
-// הרגע שמוצג בדף הבית: החדש ביותר, אוטומטית — כך העמוד מתרענן מעצמו בכל
-// תוכן שנוסיף, בלי עבודה שוטפת. כרגע כל התכנים נושאים אותו תאריך, ולכן שובר
-// השוויון הוא שם הקובץ; מהתוכן הבא שיתווסף ואילך זה יהיה באמת החדש ביותר.
+// הרגע שמוצג בדף הבית: מוגרל מחדש בכל טעינה, בצד הקורא — כדי שמי שחוזר לאתר
+// לא יראה שוב ושוב את אותו רגע קבוע. כל 66 הרגעים נבנים כאן לתבניות מוסתרות
+// (<template>), והסקריפט בתחתית הקובץ בוחר אחת מהן באקראי ומשתיל אותה במקום.
+// זה עובד בלי הפרש גובה בין רגע לרגע: הפורמט קבע שכל שלושת המהלכים תמיד
+// באותו גובה בדיוק (docs/MOMENT-FORMAT.md), ולכן אין קפיצת פריסה בהחלפה.
+//
+// בלי JavaScript — ולקוראי מסך/מנועי חיפוש שלא מריצים סקריפט — נשאר הרגע
+// החדש ביותר, בדיוק כמו שהיה כאן קודם: שובר השוויון על פני תאריך זהה הוא
+// שם הקובץ.
 const moments = (await getCollection('moments')).sort((a, b) => {
   const byDate = b.data.date.getTime() - a.data.date.getTime();
   return byDate !== 0 ? byDate : b.id.localeCompare(a.id);
 });
-const featured = moments[0];
-const featuredFormat = featured ? parseMoment(featured.body ?? '', featured.data.title) : null;
-const featuredUrl = featured ? `/moments/${featured.data.feeling}/${featured.id}/` : null;
+const momentPool = moments.map((m) => ({
+  url: `/moments/${m.data.feeling}/${m.id}/`,
+  format: parseMoment(m.body ?? '', m.data.title),
+}));
+const featuredMoment = momentPool[0] ?? null;
 
 const DESCRIPTION =
   'מקום לעצור, לקבל נקודת מבט חדשה, ולקחת משהו איתך להמשך הדרך. סיפורים ורגעים קצרים של נקודת מבט.';
@@ -62,22 +70,36 @@ const DESCRIPTION =
     </section>
 
     {
-      featuredFormat && (
+      featuredMoment && (
         <section class="feature" aria-labelledby="moment-label">
           <h2 class="section-label" id="moment-label">
             רגע של נקודת מבט
           </h2>
           <article class="moment-card">
-            {featuredFormat.title && (
-              <h3 class="moment-hook">
-                <a href={featuredUrl!}>{featuredFormat.title}</a>
-              </h3>
-            )}
-            <MomentBody format={featuredFormat} />
+            <h3 class="moment-hook">
+              <a id="moment-title-link" href={featuredMoment.url}>
+                {featuredMoment.format.title}
+              </a>
+            </h3>
+            <div id="moment-body-mount">
+              <MomentBody format={featuredMoment.format} />
+            </div>
           </article>
           <p class="more">
             <a href="/moments/">עוד רגעים</a>
           </p>
+
+          {
+            /* המאגר שממנו מוגרל הרגע (ראו הסקריפט בתחתית הקובץ). <template>
+               אינו מוצג ואינו נכלל בפריסה — קורא מסך ומנוע חיפוש שאינם
+               מריצים סקריפט פשוט לא רואים אותו, והרגע החדש ביותר שלמעלה
+               נשאר מה שהם מקבלים. */
+            momentPool.map((m) => (
+              <template data-moment-option data-url={m.url} data-title={m.format.title}>
+                <MomentBody format={m.format} />
+              </template>
+            ))
+          }
         </section>
       )
     }
@@ -110,6 +132,20 @@ const DESCRIPTION =
     randomStory.addEventListener('click', () => {
       location.href = storyUrls[Math.floor(Math.random() * storyUrls.length)];
     });
+  }
+</script>
+
+<script is:inline>
+  const momentOptions = document.querySelectorAll('template[data-moment-option]');
+  if (momentOptions.length > 1) {
+    const choice = momentOptions[Math.floor(Math.random() * momentOptions.length)];
+    const mount = document.getElementById('moment-body-mount');
+    const titleLink = document.getElementById('moment-title-link');
+    if (mount) mount.replaceChildren(choice.content.cloneNode(true));
+    if (titleLink) {
+      titleLink.href = choice.dataset.url;
+      titleLink.textContent = choice.dataset.title;
+    }
   }
 </script>
 
