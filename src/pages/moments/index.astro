@@ -1,10 +1,14 @@
 ---
 // עמוד הכניסה ל"רגע של נקודת מבט".
 // הניווט כאן הוא לפי *רגש*, לא לפי זמן — הקורא מגיע עם מה שעובר עליו עכשיו.
-// שלוש הקבוצות מסודרות כתנועה: מכאב, דרך קושי, אל התחלה.
+//
+// כל מצב הוא "דלת": שם המצב, שורת דלת שמזהה ("זה מוכר לי") בלי לתייג,
+// וסימן — מחווה של קו שמתנהגת כמו הרגש. שורת מדף, לא כרטיס: בלי רקע
+// ובלי צל, רק קו מפריד דק — כך 22 מצבים נשארים עמוד שסורקים, לא פיד.
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { FEELING_GROUPS } from '../../data/feelings';
+import { FEELING_MARKS } from '../../data/feeling-marks';
 
 const moments = await getCollection('moments');
 // מצב בלי תוכן עדיין מוצג (הוא חלק מהמבנה) אבל אינו קישור — כדי שלא להוביל למדף ריק.
@@ -28,20 +32,39 @@ const momentUrls = moments.map((moment) => `/moments/${moment.data.feeling}/${mo
          כי הוא עובד גם בלי JavaScript, נגיש למקלדת ולקורא מסך, וניתן לפתיחה
          מכל מקום בלי שנצטרך לנהל מצב. הראשונה פתוחה כדי שהעמוד לא ייראה סגור. */
       FEELING_GROUPS.map((group, index) => (
-        <details class="group" open={index === 0}>
-          <summary class="group-label">{group.label}</summary>
-          <ul class="feelings">
-            {group.feelings.map((feeling) =>
-              filled.has(feeling.slug) ? (
+        <details class="group" open={index === 0} style={`--accent: ${group.accent}`}>
+          <summary class="group-label">
+            <span class="group-dot" aria-hidden="true" />
+            {group.label}
+          </summary>
+          <ul class="doors">
+            {group.feelings.map((feeling) => {
+              const inner = (
+                <>
+                  <span class="door-text">
+                    <span class="door-name">{feeling.label}</span>
+                    <span class="door-line">{feeling.line}</span>
+                  </span>
+                  <svg
+                    class="door-mark"
+                    width="56"
+                    height="28"
+                    viewBox="0 0 56 28"
+                    aria-hidden="true"
+                    set:html={FEELING_MARKS[feeling.slug]}
+                  />
+                </>
+              );
+              return (
                 <li>
-                  <a class="choice" href={`/moments/${feeling.slug}/`}>{feeling.label}</a>
+                  {filled.has(feeling.slug) ? (
+                    <a class="door" href={`/moments/${feeling.slug}/`}>{inner}</a>
+                  ) : (
+                    <span class="door is-empty" aria-disabled="true">{inner}</span>
+                  )}
                 </li>
-              ) : (
-                <li>
-                  <span class="choice is-empty" aria-disabled="true">{feeling.label}</span>
-                </li>
-              )
-            )}
+              );
+            })}
           </ul>
         </details>
       ))
@@ -115,6 +138,14 @@ const momentUrls = moments.map((moment) => `/moments/${moment.data.feeling}/${mo
     list-style: none;
   }
 
+  /* נקודת הצבע של הקבוצה — אותו דפוס של עולמות הסיפורים: נקודה, לא מילוי */
+  .group-dot {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
   /* ברירת המחדל של הדפדפן היא משולש בצד; מוחלף בחץ משלנו שמסתובב בפתיחה */
   .group-label::-webkit-details-marker {
     display: none;
@@ -138,30 +169,71 @@ const momentUrls = moments.map((moment) => `/moments/${moment.data.feeling}/${mo
     color: var(--teal);
   }
 
-  .group .feelings {
-    padding-bottom: 1.4rem;
+  .doors {
+    list-style: none;
+    padding: 0 0 1rem;
+    margin: 0;
   }
 
-  .feelings {
-    list-style: none;
-    padding: 0;
+  .doors li + li {
+    border-top: 1px solid var(--line);
+  }
+
+  /* דלת: שורה ברוחב מלא, כמו מדף בספרייה. לא קופסה ולא כרטיס פוסט. */
+  .door {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.5rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    min-height: 72px;
+    padding: 1rem 0.4rem;
+    text-decoration: none;
+  }
+
+  .door-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .door-name {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--ink);
+    transition: color 0.15s ease;
+  }
+
+  .door-line {
+    color: var(--secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-top: 0.15rem;
+  }
+
+  /* הסימן יושב בקצה השורה, שקט. בריחוף הוא מתחזק מעט — הדלת עונה למגע. */
+  .door-mark {
+    flex-shrink: 0;
+    opacity: 0.65;
+    transition: opacity 0.15s ease;
+  }
+
+  a.door:hover .door-name {
+    color: var(--accent);
+  }
+
+  a.door:hover .door-mark {
+    opacity: 1;
   }
 
   /* מצב שעדיין אין בו תוכן — נוכח במבנה, אך לא מוביל לשום מקום */
-  .choice.is-empty {
+  .door.is-empty .door-name,
+  .door.is-empty .door-line {
     color: var(--muted);
-    background: transparent;
-    border-style: dashed;
-    cursor: default;
   }
 
-  .choice.is-empty:hover {
-    background: transparent;
-    border-color: var(--line);
+  .door.is-empty .door-mark {
+    opacity: 0.3;
   }
 
   .soon {

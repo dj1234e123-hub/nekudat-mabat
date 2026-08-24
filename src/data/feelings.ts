@@ -3,16 +3,23 @@
 // זו רשימה *פתוחה* ולא סגורה: להוספת מצב חדש מוסיפים כאן שורה אחת, וזהו.
 // כל השאר (הוולידציה, עמוד הכניסה, המדפים והכתובות) נגזר אוטומטית מהרשימה הזו.
 // slug באנגלית לכתובות נקיות לשיתוף; התווית בעברית לתצוגה.
+//
+// line — "שורת הדלת" בעמוד הכניסה: משפט קצר שמזהה ולא מתייג. היא פוגשת את
+// הקורא ("זה מוכר לי") בלי להסביר, בלי לייעץ ובלי לחשוף את נקודת המבט של
+// הרגעים שבפנים. נבדקת גם כמכלול — שלא תיווצר נוסחה חוזרת בין השורות.
+// accent — צבע מותג אחד לכל קבוצה (נקודות וקווים בלבד, לא מילוי), באותו
+// דפוס של עולמות הסיפורים.
 export const FEELING_GROUPS = [
   {
     slug: 'hurting',
     label: 'כשכואב',
+    accent: 'var(--brick)',
     feelings: [
-      { slug: 'pain', label: 'כאב' },
-      { slug: 'sadness', label: 'עצב' },
-      { slug: 'loneliness', label: 'בדידות' },
-      { slug: 'loss', label: 'אובדן' },
-      { slug: 'anger', label: 'כעס' },
+      { slug: 'pain', label: 'כאב', line: 'הזמן עבר, והוא עדיין כאן.' },
+      { slug: 'sadness', label: 'עצב', line: 'דברים קטנים נהיו כבדים.' },
+      { slug: 'loneliness', label: 'בדידות', line: 'גם כשיש אנשים מסביב.' },
+      { slug: 'loss', label: 'אובדן', line: 'משהו חסר, כל הזמן.' },
+      { slug: 'anger', label: 'כעס', line: 'רותח בפנים, שקט בחוץ.' },
     ],
   },
   {
@@ -21,25 +28,27 @@ export const FEELING_GROUPS = [
     // ובכוונה אין בה שום תווית מאבחנת — מדף שדורש הודאה כתנאי כניסה לא ייפתח.
     slug: 'self',
     label: 'כשקשה מול עצמך',
+    accent: 'var(--blue)',
     feelings: [
-      { slug: 'guilt', label: 'אשמה' },
-      { slug: 'shame', label: 'בושה' },
-      { slug: 'envy', label: 'קנאה' },
-      { slug: 'secret', label: 'סוד' },
-      { slug: 'losing-control', label: 'חוסר שליטה' },
+      { slug: 'guilt', label: 'אשמה', line: 'על מה שעשית, ועל מה שלא.' },
+      { slug: 'shame', label: 'בושה', line: 'עולה פתאום, גם אחרי שנים.' },
+      { slug: 'envy', label: 'קנאה', line: 'שמחים בשבילם. כמעט.' },
+      { slug: 'secret', label: 'סוד', line: 'הולך איתך לכל מקום.' },
+      { slug: 'losing-control', label: 'חוסר שליטה', line: 'לראות את זה קורה, שוב.' },
     ],
   },
   {
     slug: 'stuck',
     label: 'כשקשה להתקדם',
+    accent: 'var(--teal)',
     feelings: [
-      { slug: 'fear', label: 'פחד' },
-      { slug: 'confusion', label: 'בלבול' },
-      { slug: 'pressure', label: 'לחץ' },
-      { slug: 'failure', label: 'כישלון' },
-      { slug: 'standstill', label: 'תקיעות' },
-      { slug: 'exhaustion', label: 'עייפות' },
-      { slug: 'waiting', label: 'המתנה' },
+      { slug: 'fear', label: 'פחד', line: 'עומדים ליד הדלת, ולא פותחים.' },
+      { slug: 'confusion', label: 'בלבול', line: 'כל הדרכים נראות אותו דבר.' },
+      { slug: 'pressure', label: 'לחץ', line: 'היום נגמר לפני שהתחיל.' },
+      { slug: 'failure', label: 'כישלון', line: 'הרגע ההוא, בהילוך חוזר.' },
+      { slug: 'standstill', label: 'תקיעות', line: 'עוד שבוע. שום דבר לא זז.' },
+      { slug: 'exhaustion', label: 'עייפות', line: 'לקום בבוקר, וכבר לחכות לערב.' },
+      { slug: 'waiting', label: 'המתנה', line: 'לבדוק את הטלפון, עוד פעם.' },
     ],
   },
   {
@@ -47,12 +56,13 @@ export const FEELING_GROUPS = [
     // "רגע טוב" — שאיננו התחלה של שום דבר, אלא פשוט משהו שנפתח לרגע.
     slug: 'beginning',
     label: 'כשמשהו נפתח',
+    accent: 'var(--gold)',
     feelings: [
-      { slug: 'hope', label: 'תקווה' },
-      { slug: 'new-beginning', label: 'התחלה חדשה' },
-      { slug: 'faith', label: 'אמונה' },
-      { slug: 'confidence', label: 'ביטחון עצמי' },
-      { slug: 'good-moment', label: 'רגע טוב' },
+      { slug: 'hope', label: 'תקווה', line: 'עוד לא קרה כלום, ובכל זאת.' },
+      { slug: 'new-beginning', label: 'התחלה חדשה', line: 'דף חדש. היד קצת רועדת.' },
+      { slug: 'faith', label: 'אמונה', line: 'פעם זה הרגיש פשוט יותר.' },
+      { slug: 'confidence', label: 'ביטחון עצמי', line: 'לדעת את התשובה, ולשתוק.' },
+      { slug: 'good-moment', label: 'רגע טוב', line: 'אולי היה אחד כזה היום.' },
     ],
   },
 ] as const;
