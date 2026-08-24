@@ -1,0 +1,147 @@
+---
+// עמוד דוגמה זמני — שלושה כרטיסי "דלת" לעמוד הכניסה של הרגעים.
+// לבדיקת שפה חזותית בלבד; יימחק לפני מיזוג. noindex ואין אליו קישור.
+//
+// העיקרון: הסימן הוא מחווה של קו, לא איור. נקודות וקו דק — אותו אוצר
+// מילים חזותי שכבר חי באתר (נקודת הזהב, הקו והמעוין, נקודות העולמות).
+// הקו מתנהג כמו הרגש; הוא אינו ממחיש את המשפט.
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="דוגמה — דלתות הרגעים"
+  description="עמוד בדיקה פנימי."
+  noindex={true}
+>
+  <main>
+    <h1 class="page-title">רגע של נקודת מבט</h1>
+    <p class="question">מה עובר עליך עכשיו?</p>
+
+    <ul class="doors">
+      <li>
+        <a class="door" href="/moments/loneliness/" style="--accent: var(--brick)">
+          <span class="door-text">
+            <span class="door-name">בדידות</span>
+            <span class="door-line">גם כשיש אנשים מסביב.</span>
+          </span>
+          <svg class="door-mark" width="56" height="28" viewBox="0 0 56 28" aria-hidden="true">
+            <circle cx="44" cy="13" r="2" fill="var(--accent)" />
+            <circle cx="38.5" cy="10" r="2" fill="var(--accent)" />
+            <circle cx="40.5" cy="17" r="2" fill="var(--accent)" />
+            <circle cx="9" cy="14" r="2.2" fill="var(--accent)" />
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="door" href="/moments/standstill/" style="--accent: var(--teal)">
+          <span class="door-text">
+            <span class="door-name">תקיעות</span>
+            <span class="door-line">עוד שבוע. שום דבר לא זז.</span>
+          </span>
+          <svg class="door-mark" width="56" height="28" viewBox="0 0 56 28" aria-hidden="true">
+            <path
+              d="M54 14 L33 14 C25 14 24 6 17 7 C11 8 10 17 16 19 C21 20.5 23 15 19 13"
+              fill="none"
+              stroke="var(--accent)"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="door" href="/moments/hope/" style="--accent: var(--gold)">
+          <span class="door-text">
+            <span class="door-name">תקווה</span>
+            <span class="door-line">עוד לא קרה כלום, ובכל זאת.</span>
+          </span>
+          <svg class="door-mark" width="56" height="28" viewBox="0 0 56 28" aria-hidden="true">
+            <path
+              d="M52 23 C42 23 31 22 21 11"
+              fill="none"
+              stroke="var(--accent)"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+            <circle cx="11" cy="5.5" r="2" fill="var(--accent)" />
+          </svg>
+        </a>
+      </li>
+    </ul>
+  </main>
+</Base>
+
+<style>
+  .page-title {
+    text-align: center;
+    font-size: 1.8rem;
+    padding: 0.5rem 0 0.75rem;
+  }
+
+  .question {
+    text-align: center;
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    color: var(--teal-deep);
+    margin-bottom: 1.6rem;
+  }
+
+  .doors {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .doors li + li {
+    border-top: 1px solid var(--line);
+  }
+
+  /* דלת: שורה ברוחב מלא, כמו מדף בספרייה. לא קופסה ולא כרטיס פוסט. */
+  .door {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    min-height: 72px;
+    padding: 1.15rem 0.4rem;
+    text-decoration: none;
+  }
+
+  .door-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .door-name {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--ink);
+    transition: color 0.15s ease;
+  }
+
+  .door-line {
+    color: var(--secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-top: 0.15rem;
+  }
+
+  /* הסימן יושב בקצה השורה, שקט. בריחוף הוא מתחזק מעט — הדלת עונה למגע. */
+  .door-mark {
+    flex-shrink: 0;
+    opacity: 0.65;
+    transition: opacity 0.15s ease;
+  }
+
+  .door:hover .door-name {
+    color: var(--accent);
+  }
+
+  .door:hover .door-mark {
+    opacity: 1;
+  }
+</style>
