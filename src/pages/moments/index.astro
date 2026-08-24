@@ -9,12 +9,20 @@ import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { FEELING_GROUPS } from '../../data/feelings';
 import { FEELING_MARKS } from '../../data/feeling-marks';
+import { SITE } from '../../data/site';
 
 const moments = await getCollection('moments');
 // מצב בלי תוכן עדיין מוצג (הוא חלק מהמבנה) אבל אינו קישור — כדי שלא להוביל למדף ריק.
 const filled = new Set(moments.map((moment) => moment.data.feeling));
 // דלת למי שלא מצליח לקרוא לזה בשם — רגע אקראי במקום בחירה מתוך רשימה.
 const momentUrls = moments.map((moment) => `/moments/${moment.data.feeling}/${moment.id}/`);
+
+// דלת למי שדווקא יודע מה עובר עליו — ואין לזה מדף. פנייה פרטית לאפרים,
+// באותה שפה של שורת התגובה שבסוף הסיפורים: קישור שקט, לא כפתור.
+// זה גם ערוץ האמת היחיד לדעת אילו מצבים חסרים. הרגעים עצמם נשארים נקיים —
+// הדלת הזו חיה בעמוד הכניסה בלבד (החלטת בעל הפרויקט 2026-08-24).
+const tellMeMessage = 'שלום אפרים, חיפשתי בפינת הרגעים משהו שעובר עליי, ולא מצאתי:\n';
+const tellMeHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(tellMeMessage)}`;
 ---
 
 <Base
@@ -34,6 +42,7 @@ const momentUrls = moments.map((moment) => `/moments/${moment.data.feeling}/${mo
       FEELING_GROUPS.map((group, index) => (
         <details
           class="group"
+          id={group.slug}
           open={index === 0}
           style={`--accent: ${group.accent}; --title: ${group.titleAccent}`}
         >
@@ -75,6 +84,10 @@ const momentUrls = moments.map((moment) => `/moments/${moment.data.feeling}/${mo
     }
 
     <p class="soon">מצבים נוספים ותכנים נוספים — בדרך.</p>
+    <p class="tell-me">
+      לא מצאת כאן את מה שעובר עליך?
+      <a href={tellMeHref} rel="noopener" target="_blank">אפשר לספר לי</a>
+    </p>
   </main>
 </Base>
 
@@ -82,6 +95,15 @@ const momentUrls = moments.map((moment) => `/moments/${moment.data.feeling}/${mo
   document.getElementById('random-moment').addEventListener('click', () => {
     location.href = momentUrls[Math.floor(Math.random() * momentUrls.length)];
   });
+
+  // עוגן קבוצה: כתובת עם סולמית (למשל /moments/#upward) פותחת את הקבוצה
+  // וגוללת אליה — כך אפשר לשתף קבוצה שלמה בוואטסאפ. בלי JavaScript הדפדפן
+  // עדיין גולל לכותרת הקבוצה; היא רק נשארת סגורה עד הקשה.
+  const targetGroup = document.getElementById(location.hash.slice(1));
+  if (targetGroup && targetGroup.tagName === 'DETAILS') {
+    targetGroup.open = true;
+    targetGroup.scrollIntoView();
+  }
 </script>
 
 <style>
@@ -249,5 +271,28 @@ const momentUrls = moments.map((moment) => `/moments/${moment.data.feeling}/${mo
     color: var(--muted);
     font-size: 0.85rem;
     margin-top: 2.5rem;
+  }
+
+  /* דלת למי שלא מצא את המצב שלו — קישור שקט באותה שפה של שורת התגובה
+     שבסוף הסיפורים. פעולה שלישית בעמוד הייתה רועשת מדי ככפתור. */
+  .tell-me {
+    text-align: center;
+    color: var(--secondary);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+
+  .tell-me a {
+    color: var(--teal);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+    /* שטח מגע נוח בלי לשבור את השורה */
+    display: inline-block;
+    padding-block: 0.6rem;
+  }
+
+  .tell-me a:hover {
+    color: var(--teal-deep);
   }
 </style>
