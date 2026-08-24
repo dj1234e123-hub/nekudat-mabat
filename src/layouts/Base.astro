@@ -19,8 +19,9 @@ interface Props {
   ogType?: 'website' | 'article';
   /** כותרת מצומצמת (עמודי סיפור): שורת מותג אחת, בלי סלוגן ותפריט — הקורא מגיע מהר לסיפור */
   compact?: boolean;
-  /** כותרת דף הבית: לוגו קטן יותר ובלי שורת סלוגן — הכותרת הראשית ממלאת את מקומה.
-      הסלוגן "שמים את הנקודה במרכז" נשאר סלוגן המותג וחי בתחתית ובשאר העמודים. */
+  /** כותרת דף הבית: לוגו ושם קטנים מעט — מפנה מקום לכותרת הראשית.
+      הסלוגן מופיע גם כאן, באותו מקום ובאותו עיצוב כמו בשאר העמודים —
+      זהות אחידה של האתר (החלטת בעל הפרויקט, 2026-08-24). */
   homeHeader?: boolean;
   bodyClass?: string;
   noindex?: boolean;
@@ -119,7 +120,7 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
             <Image src={logo} alt={logoAlt} width={128} densities={[1, 2]} class="logo" />
             <span class="brand-text">
               <span class="site-name">{brand.name}</span>
-              {!homeHeader && <span class="tagline">{brand.slogan}</span>}
+              <span class="tagline">{brand.slogan}</span>
             </span>
           </a>
           {/* שמות התפריט הם בשפת הקורא ולא בשפה הפנימית שלנו: "מה עובר עליך"
