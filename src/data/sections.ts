@@ -29,12 +29,6 @@ export const SECTIONS_META = {
     line: 'מה שקרה לי, ומה שראיתי בדרך',
     accent: 'var(--blue)',
   },
-  shabbat: {
-    label: 'מבט לשבת',
-    line: 'תוכן רוחני סביב שבת ופרשת השבוע',
-    accent: 'var(--gold)',
-    hidden: true,
-  },
 } as const satisfies Record<string, Section>;
 
 export type SectionSlug = keyof typeof SECTIONS_META;
