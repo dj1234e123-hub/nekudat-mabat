@@ -32,7 +32,11 @@ const momentUrls = moments.map((moment) => `/moments/${moment.data.feeling}/${mo
          כי הוא עובד גם בלי JavaScript, נגיש למקלדת ולקורא מסך, וניתן לפתיחה
          מכל מקום בלי שנצטרך לנהל מצב. הראשונה פתוחה כדי שהעמוד לא ייראה סגור. */
       FEELING_GROUPS.map((group, index) => (
-        <details class="group" open={index === 0} style={`--accent: ${group.accent}`}>
+        <details
+          class="group"
+          open={index === 0}
+          style={`--accent: ${group.accent}; --title: ${group.titleAccent}`}
+        >
           <summary class="group-label">
             <span class="group-dot" aria-hidden="true" />
             {group.label}
@@ -124,6 +128,8 @@ const momentUrls = moments.map((moment) => `/moments/${moment.data.feeling}/${mo
     border-bottom: 1px solid var(--line);
   }
 
+  /* כותרת הקבוצה נושאת את צבע הזהות (--title). ברוב הקבוצות הוא זהה
+     ל---accent; בקבוצת הזהב הוא דיו — זהב נמדד 2.24:1 כטקסט (התקן 4.5). */
   .group-label {
     display: flex;
     align-items: center;
@@ -133,7 +139,7 @@ const momentUrls = moments.map((moment) => `/moments/${moment.data.feeling}/${mo
     font-family: var(--font-display);
     font-size: 1.15rem;
     font-weight: 700;
-    color: var(--teal-deep);
+    color: var(--title);
     cursor: pointer;
     list-style: none;
   }
@@ -166,7 +172,7 @@ const momentUrls = moments.map((moment) => `/moments/${moment.data.feeling}/${mo
   }
 
   .group-label:hover {
-    color: var(--teal);
+    opacity: 0.8;
   }
 
   .doors {
@@ -221,7 +227,7 @@ const momentUrls = moments.map((moment) => `/moments/${moment.data.feeling}/${mo
   }
 
   a.door:hover .door-name {
-    color: var(--accent);
+    color: var(--title);
   }
 
   a.door:hover .door-mark {

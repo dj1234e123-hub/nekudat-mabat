@@ -14,6 +14,7 @@ export const FEELING_GROUPS = [
     slug: 'hurting',
     label: 'כשכואב',
     accent: 'var(--brick)',
+    titleAccent: 'var(--brick)',
     feelings: [
       { slug: 'pain', label: 'כאב', line: 'הזמן עבר, והוא עדיין כאן.' },
       { slug: 'sadness', label: 'עצב', line: 'דברים קטנים נהיו כבדים.' },
@@ -29,6 +30,7 @@ export const FEELING_GROUPS = [
     slug: 'self',
     label: 'כשקשה מול עצמך',
     accent: 'var(--blue)',
+    titleAccent: 'var(--blue)',
     feelings: [
       { slug: 'guilt', label: 'אשמה', line: 'על מה שעשית, ועל מה שלא.' },
       { slug: 'shame', label: 'בושה', line: 'עולה פתאום, גם אחרי שנים.' },
@@ -41,6 +43,7 @@ export const FEELING_GROUPS = [
     slug: 'stuck',
     label: 'כשקשה להתקדם',
     accent: 'var(--teal)',
+    titleAccent: 'var(--teal)',
     feelings: [
       { slug: 'fear', label: 'פחד', line: 'עומדים ליד הדלת, ולא פותחים.' },
       { slug: 'confusion', label: 'בלבול', line: 'כל הדרכים נראות אותו דבר.' },
@@ -57,6 +60,9 @@ export const FEELING_GROUPS = [
     slug: 'beginning',
     label: 'כשמשהו נפתח',
     accent: 'var(--gold)',
+    // זהב נמדד 2.24:1 כטקסט על הנייר (התקן: 4.5) — אותה מדידה שפסלה אותו
+    // בשלב 4.8. הזהות נשארת בנקודה ובסימנים; הכותרת בדיו.
+    titleAccent: 'var(--ink)',
     feelings: [
       { slug: 'hope', label: 'תקווה', line: 'עוד לא קרה כלום, ובכל זאת.' },
       { slug: 'new-beginning', label: 'התחלה חדשה', line: 'דף חדש. היד קצת רועדת.' },
@@ -72,6 +78,7 @@ export const FEELING_GROUPS = [
     slug: 'upward',
     label: 'כשפונים למעלה',
     accent: 'var(--teal-deep)',
+    titleAccent: 'var(--teal-deep)',
     feelings: [
       { slug: 'faith', label: 'אמונה', line: 'פעם זה הרגיש פשוט יותר.' },
       { slug: 'prayer', label: 'תפילה', line: 'מדברים, ולא בטוח ששומעים.' },
