@@ -1,0 +1,317 @@
+---
+// עמוד הרגעים החדש — "Infinite Moment Stream"
+// בלי בחירה עיקרית. בלי רשימת מצבים.
+// רק רגע אקראי בהתחלה, ואתה גולל — המצב מופיע, ורגעים דומים מתחת.
+//
+// זה הופך את עמוד הרגעים מ"מסך בחירה" ל"מסע קריאה".
+
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import MomentBody from '../../components/MomentBody.astro';
+import { FEELING_GROUPS, feelingLabel } from '../../data/feelings';
+import { parseMoment } from '../../lib/moment-format';
+
+const moments = await getCollection('moments');
+
+// אוספים רגעים לפי מצב
+const momentsByFeeling = new Map<string, any[]>();
+for (const moment of moments) {
+  const feeling = moment.data.feeling;
+  if (!momentsByFeeling.has(feeling)) {
+    momentsByFeeling.set(feeling, []);
+  }
+  momentsByFeeling.get(feeling)!.push(moment);
+}
+
+// רגע פתיחה אקראי
+const allMomentsArray = Array.from(moments);
+const starterMoment = allMomentsArray[Math.floor(Math.random() * allMomentsArray.length)];
+const starterFeeling = starterMoment.data.feeling;
+const starterFormat = parseMoment(starterMoment.body ?? '', starterMoment.data.title);
+
+// רגעים דומים (אותו מצב)
+const relatedMoments = (momentsByFeeling.get(starterFeeling) || [])
+  .filter(m => m.id !== starterMoment.id)
+  .map(m => ({
+    id: m.id,
+    feeling: m.data.feeling,
+    format: parseMoment(m.body ?? '', m.data.title),
+    url: `/moments/${m.data.feeling}/${m.id}/`,
+  }));
+
+// כל הרגעים האחרים, לגלילה אינסופית
+const allOtherMoments = Array.from(moments)
+  .filter(m => m.id !== starterMoment.id)
+  .map(m => ({
+    id: m.id,
+    feeling: m.data.feeling,
+    format: parseMoment(m.body ?? '', m.data.title),
+    url: `/moments/${m.data.feeling}/${m.id}/`,
+    label: feelingLabel(m.data.feeling),
+  }))
+  .sort(() => Math.random() - 0.5); // שיבוט אקראי
+
+const starterLabel = feelingLabel(starterFeeling);
+---
+
+<Base
+  title="רגע של נקודת מבט"
+  description="משפטים ותובנות קצרות לפי מה שעובר עליך עכשיו."
+>
+  <main class="moments-stream">
+    {/* הרגע הפותח — בלי הקשר, בלי בחירה */}
+    <section class="stream-opening" id="stream-opening">
+      <article class="moment-card">
+        <h1 class="moment-title">
+          <a href={`/moments/${starterFeeling}/${starterMoment.id}/`}>
+            {starterFormat.title}
+          </a>
+        </h1>
+        <div class="moment-content">
+          <MomentBody format={starterFormat} />
+        </div>
+      </article>
+    </section>
+
+    {/* המצב שלו מופיע בהדרגה */}
+    <section class="stream-feeling" id="stream-feeling">
+      <div class="feeling-reveal">
+        <span class="feeling-dot" aria-hidden="true"></span>
+        <span class="feeling-name">{starterLabel}</span>
+      </div>
+    </section>
+
+    {/* רגעים דומים — מתחת */}
+    {relatedMoments.length > 0 && (
+      <section class="stream-related" id="stream-related">
+        <h2 class="section-title">עוד ב{starterLabel}</h2>
+        <ul class="moment-list">
+          {relatedMoments.map(m => (
+            <li class="moment-item">
+              <a href={m.url} class="moment-link">
+                <h3 class="moment-link-title">{m.format.title}</h3>
+                <div class="moment-preview">
+                  <MomentBody format={m.format} firstStanzaOnly={true} />
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {/* גלילה אינסופית — כל הרגעים האחרים */}
+    <section class="stream-infinite" id="stream-infinite">
+      <h2 class="section-title">רגעים נוספים</h2>
+      <ul class="moment-list" id="infinite-list">
+        {allOtherMoments.slice(0, 12).map(m => (
+          <li class="moment-item" data-moment-id={m.id}>
+            <a href={m.url} class="moment-link">
+              <span class="moment-feeling-tag">{m.label}</span>
+              <h3 class="moment-link-title">{m.format.title}</h3>
+              <div class="moment-preview">
+                <MomentBody format={m.format} firstStanzaOnly={true} />
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <div id="load-more" class="load-more-trigger"></div>
+    </section>
+
+    <script define:vars={{ allOtherMoments: JSON.stringify(allOtherMoments) }}>
+      // Intersection Observer — כשמגיע לתחתון העמוד, טוענים עוד רגעים
+      let displayedCount = 12;
+      const infiniteList = document.getElementById('infinite-list');
+      const loadMoreTrigger = document.getElementById('load-more-trigger');
+      const momentsData = JSON.parse(allOtherMoments);
+
+      if (loadMoreTrigger && infiniteList) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              // טוענים עוד 12 רגעים
+              const nextItems = momentsData.slice(displayedCount, displayedCount + 12);
+              nextItems.forEach(m => {
+                const li = document.createElement('li');
+                li.className = 'moment-item';
+                li.innerHTML = `
+                  <a href="${m.url}" class="moment-link">
+                    <span class="moment-feeling-tag">${m.label}</span>
+                    <h3 class="moment-link-title">${m.format.title}</h3>
+                  </a>
+                `;
+                infiniteList.appendChild(li);
+              });
+              displayedCount += 12;
+              if (displayedCount >= momentsData.length) {
+                observer.unobserve(loadMoreTrigger);
+              }
+            }
+          });
+        });
+        observer.observe(loadMoreTrigger);
+      }
+    </script>
+
+    {/* גלילה עדינה — המצב מתגלה בהדרגה */}
+    <script>
+      const feeling = document.getElementById('stream-feeling');
+      const opening = document.getElementById('stream-opening');
+
+      if (feeling && opening) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              feeling.classList.add('is-visible');
+            }
+          });
+        }, { threshold: 0.3 });
+
+        observer.observe(opening);
+      }
+    </script>
+  </main>
+</Base>
+
+<style>
+  .moments-stream {
+    padding-top: 2rem;
+  }
+
+  /* הרגע הפותח — בפוקוס מלא */
+  .stream-opening {
+    margin-bottom: 4rem;
+  }
+
+  .moment-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  .moment-title {
+    font-size: 1.8rem;
+    line-height: 1.3;
+    color: var(--blue);
+    margin-bottom: 1.8rem;
+    text-wrap: balance;
+  }
+
+  .moment-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .moment-content {
+    --moment-size: 1.25rem;
+  }
+
+  /* המצב מופיע בהדרגה */
+  .stream-feeling {
+    text-align: center;
+    margin-bottom: 3rem;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+
+  .stream-feeling.is-visible {
+    opacity: 1;
+  }
+
+  .feeling-reveal {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.8rem 1.5rem;
+    background: var(--surface);
+    border-radius: 2rem;
+    border: 1px solid var(--line);
+  }
+
+  .feeling-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--teal);
+  }
+
+  .feeling-name {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  /* רגעים דומים */
+  .stream-related {
+    margin-bottom: 4rem;
+  }
+
+  .section-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--secondary);
+    margin-bottom: 1.5rem;
+  }
+
+  .moment-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .moment-item {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .moment-item:hover {
+    border-color: var(--muted);
+    box-shadow: var(--shadow);
+  }
+
+  .moment-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .moment-feeling-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  .moment-link-title {
+    font-size: 1.2rem;
+    line-height: 1.4;
+    color: var(--ink);
+    margin-bottom: 0.8rem;
+  }
+
+  .moment-preview {
+    --moment-size: 0.95rem;
+    color: var(--secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* גלילה אינסופית */
+  .stream-infinite {
+    margin-bottom: 3rem;
+  }
+
+  .load-more-trigger {
+    height: 100px;
+    margin-top: 2rem;
+  }
+</style>
