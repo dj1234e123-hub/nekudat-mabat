@@ -211,6 +211,40 @@ const DESCRIPTION =
     </article>
 
     <JoinGroup />
+
+    <script is:inline>
+      // נשימת קריאה: כל בית מופיע בעדינות כשמגיעים אליו בגלילה.
+      // רץ רק כשיש JavaScript ורק כשהקורא לא ביקש פחות תנועה —
+      // בכל מקרה אחר הטקסט פשוט שם, גלוי, כרגיל.
+      (function () {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if (!('IntersectionObserver' in window)) return;
+
+        var els = document.querySelectorAll(
+          '.about-body > p, .opening > p, .turn, .quiet, .photo, .closing, .ps'
+        );
+
+        els.forEach(function (el) {
+          el.classList.add('will-reveal');
+        });
+
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                e.target.classList.add('revealed');
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { rootMargin: '0px 0px -8% 0px' }
+        );
+
+        els.forEach(function (el) {
+          io.observe(el);
+        });
+      })();
+    </script>
   </main>
 </Base>
 
@@ -413,37 +447,3 @@ const DESCRIPTION =
     transform: rotate(-2deg);
   }
 </style>
-
-<script is:inline>
-  // נשימת קריאה: כל בית מופיע בעדינות כשמגיעים אליו בגלילה.
-  // רץ רק כשיש JavaScript ורק כשהקורא לא ביקש פחות תנועה —
-  // בכל מקרה אחר הטקסט פשוט שם, גלוי, כרגיל.
-  (function () {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    if (!('IntersectionObserver' in window)) return;
-
-    var els = document.querySelectorAll(
-      '.about-body > p, .opening > p, .turn, .quiet, .photo, .closing, .ps'
-    );
-
-    els.forEach(function (el) {
-      el.classList.add('will-reveal');
-    });
-
-    var io = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) {
-            e.target.classList.add('revealed');
-            io.unobserve(e.target);
-          }
-        });
-      },
-      { rootMargin: '0px 0px -8% 0px' }
-    );
-
-    els.forEach(function (el) {
-      io.observe(el);
-    });
-  })();
-</script>
