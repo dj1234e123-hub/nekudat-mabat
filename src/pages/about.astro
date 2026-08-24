@@ -1,7 +1,13 @@
 ---
-// עמוד האודות — מסודר לפי סדר האמון: קודם אדם, אחר כך מקצוע, ורק בסוף הזמנה.
-// תעודות לא מייצרות אמון, הן מאשרות אמון שכבר נוצר — ולכן ההכשרה יושבת
-// אחרי הסיפור האישי ולא לפניו.
+// עמוד מי אני — מכתב אישי. הטקסט המלא של בעל הפרויקט (אושר 2026-08-24)
+// יושב על "דף" בהיר מעט מרקע האתר, כמו מכתב שמונח על שולחן.
+// שלוש החלטות מבנה שנולדו מהטקסט עצמו:
+//   1. אין שם ואין תמונה בראש העמוד — הטקסט בנוי על חשיפה הדרגתית,
+//      והשם מתגלה רק ב"אז מי עומד מאחורי כל זה?". התמונה מופיעה שם,
+//      כתצלום מודפס שמצורף למכתב.
+//   2. ההזמנה לשיחה היא נ.ב. בתוך המכתב — כמו שמכתב אמיתי נגמר.
+//   3. המכתב נחתם ביד: "אפרים" בפונט כתב-יד עברי (חריגת פונט שאושרה —
+//      קובץ של 6KB, אותיות עבריות בלבד, לשם הפרטי בלבד).
 import { Image, getImage } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import JoinGroup from '../components/JoinGroup.astro';
@@ -15,151 +21,248 @@ const portraitOg = await getImage({ src: portrait, width: 640, format: 'jpeg' })
 const ogImage = new URL(portraitOg.src, Astro.site).href;
 
 const DESCRIPTION =
-  'אפרים עטיה, מאמן אישי ומלווה בחורים בדרך שלהם. על הדרך שעברתי, על מה שאני עושה היום, ולמה נולד האתר הזה.';
+  'המכתב האישי של אפרים עטיה: הדרך שעברתי, איך נולדה נקודת מבט, ולמה דווקא סיפורים. מקום שאפשר לעצור בו, ולפעמים למצוא בו משהו מעצמך.';
 ---
 
 <Base
-  title="אפרים עטיה — מאמן אישי · נקודת מבט"
+  title="מי אני — אפרים עטיה · נקודת מבט"
   description={DESCRIPTION}
   ogImage={ogImage}
   jsonLd={profileJsonLd(Astro.site!, DESCRIPTION, ogImage)}
 >
   <main>
-    <section class="intro">
-      <Image
-        src={portrait}
-        alt={SITE.ownerName}
-        widths={[280, 560]}
-        sizes="(max-width: 40rem) 62vw, 15rem"
-        loading="eager"
-        fetchpriority="high"
-        class="portrait"
-      />
-      <div class="identity">
-        <h1>{SITE.ownerName}</h1>
-        <p class="role">מאמן אישי ומלווה · NLP Master</p>
+    <article class="letter">
+      <div class="letter-head">
+        <span class="seal" aria-hidden="true"></span>
+        <h1>מי אני</h1>
       </div>
-    </section>
 
-    <div class="about-body">
-      <p class="opening">נעים להכיר.</p>
+      <div class="about-body">
+        <div class="opening">
+          <p>
+            יש דברים שאדם עובר בחיים,<br />
+            וגם אחרי שהזמן עובר, משהו מהם נשאר איתו.
+          </p>
+          <p>
+            יש דברים שאנשים לא רואים.<br />
+            דברים שאדם לומד לחיות איתם,<br />
+            גם כשהם נשארים בפנים.
+          </p>
+          <p>
+            אני לא כותב את הדברים האלה רק ממה שלמדתי.<br />
+            אני כותב אותם גם מתוך הדרך שלי.
+          </p>
+        </div>
 
-      <p>
-        היו בחיי שנים שבהן לא ראיתי דרך. עברתי דברים קשים — כאלה שלוקח זמן להודות בהם, ועוד יותר
-        זמן לצאת מהם. לא אפרט אותם כאן. אבל מה שחשוב לי שתדע: יצאתי. ולא יצאתי אותו אדם.
-      </p>
+        <p>גם אני לא צמחתי מתוך דרך פשוטה.</p>
+        <p>עברתי בחיים משברים ופגיעות שהשאירו בי חותם עמוק.</p>
+        <p>
+          היו תקופות שבהן ניסיתי להבין את עצמי,<br />
+          להבין את מה שעברתי,<br />
+          ולמצוא דרך להמשיך.
+        </p>
+        <p>
+          לא תמיד היו לי תשובות.<br />
+          ולא תמיד ידעתי איך ממשיכים.
+        </p>
+        <p>אבל לאורך הדרך התחלתי לגלות משהו.</p>
+        <p>לא תמיד אפשר לשנות את מה שקרה לנו.</p>
+        <p>אבל אפשר, עם הזמן, לנסות להבין מחדש איך חיים עם מה שקרה.</p>
+        <p>
+          לא כדי למחוק את הכאב.<br />
+          ולא כדי להעמיד פנים שהכול הסתדר.
+        </p>
+        <p>אלא כדי לשאול אם יש אולי עוד משהו שלא ראינו.</p>
+        <p>לפעמים זה לא משנה את מה שהיה.</p>
+        <p>אבל זה יכול לשנות את מה שקורה מכאן והלאה.</p>
 
-      <p>מה שהחזיק אותי לא היה עצה חכמה שמישהו נתן לי. זו הייתה נקודה אחת שזזה.</p>
+        <h2 class="turn">וכאן התחילה נקודת מבט</h2>
 
-      <blockquote class="pull">
-        הסתכלתי על אותו סיפור בדיוק — ופתאום ראיתי אותו אחרת. משם התחילה כל הדרך.
-      </blockquote>
+        <p>נקודת מבט נולדה ממקום אישי מאוד.</p>
+        <p>לאורך הדרך גיליתי שהכתיבה עוזרת לי לעצור.</p>
+        <p>
+          לפעמים, לפני שאני יודע בדיוק מה אני חושב או מרגיש,<br />
+          אני צריך לכתוב.
+        </p>
+        <p>
+          לקחת מחשבה או סיפור,<br />
+          ולנסות לשים עליו מילים.
+        </p>
+        <p>
+          הכתיבה עוזרת לי לעשות סדר,<br />
+          להסתכל מחדש,<br />
+          ולפעמים לגלות משהו שלא ראיתי קודם.
+        </p>
+        <p>עם הזמן עלה בי הרצון לפתוח את המקום הזה גם לאחרים.</p>
+        <p>לא מקום שמבטיח לשנות לך את החיים.</p>
+        <p>ולא מקום שמישהו יגיד לך בו איך אתה צריך לחיות.</p>
+        <p>
+          אלא מקום שאפשר לעצור בו לרגע,<br />
+          לקרוא סיפור,<br />
+          ולפעמים למצוא בתוכו משהו מעצמך.
+        </p>
 
-      <h2>מה אני עושה</h2>
+        <h3 class="quiet">למה דווקא סיפורים?</h3>
 
-      <p>
-        אני מלווה בחורים שרוצים לזוז ממקום שהם תקועים בו — בעבודה, במשפחה, בראש, באמונה.
-        לא בהרצאות ולא בסיסמאות: שיחה אחת אחרי השנייה, עד שהתמונה מתחילה להיראות אחרת — ואפשר
-        לזוז.
-      </p>
+        <p>כי לא תמיד אדם רוצה שיגידו לו מה לעשות.</p>
+        <p>ולא כל דבר אפשר להגיד בקול.</p>
+        <p>
+          אבל לפעמים הוא יכול לקרוא סיפור על מישהו אחר,<br />
+          ופתאום לזהות בתוכו משהו מעצמו.
+        </p>
+        <p>לא כי זה בדיוק הסיפור שלו.</p>
+        <p>אלא כי משהו שם מוכר.</p>
+        <p>
+          לפעמים זו מחשבה.<br />
+          לפעמים תחושה.<br />
+          ולפעמים משהו שהוא עדיין לא ידע איך לשים עליו מילים.
+        </p>
+        <p>וזה כל מה שאני מקווה שסיפור יוכל לעשות.</p>
+        <p>לא לפתור הכול.</p>
+        <p>רק לפתוח לרגע משהו בפנים.</p>
 
-      <p>
-        אני לא אומר לך מה נכון בשבילך. אני עוזר לך לראות את מה שאתה כבר יודע, מזווית שממנה אפשר
-        סוף־סוף לעשות איתו משהו.
-      </p>
+        <h3 class="quiet">אז מי עומד מאחורי כל זה?</h3>
 
-      <p>
-        ומה שעברתי בעצמי לא הופך אותי לחכם יותר. הוא רק אומר שכשאתה מספר לי איפה אתה נמצא — אני
-        לא נבהל.
-      </p>
+        {/* התמונה מצורפת למכתב בדיוק ברגע שהשאלה נשאלת — תצלום מודפס:
+            מסגרת לבנה, הטיה קלה. תוחלף בצילום שקט כשיהיה (החלטת בעל הפרויקט). */}
+        <figure class="photo">
+          <Image
+            src={portrait}
+            alt={SITE.ownerName}
+            widths={[160, 320]}
+            sizes="10rem"
+            loading="lazy"
+          />
+        </figure>
 
-      <h2>ההכשרה שלי</h2>
+        <p>אני אפרים עטיה.</p>
+        <p>עברתי דרך של התמודדות, חיפוש ולמידה.</p>
+        <p>לא הגעתי לכאן כי הכול הסתדר לי.</p>
+        <p>וגם היום אני לא עומד בסוף הדרך ומספר לאחרים איך הם צריכים לחיות.</p>
+        <p>אני עדיין בדרך.</p>
+        <p>אבל בדרך הזאת למדתי שלפעמים אדם לא צריך שמישהו יגיד לו מה נכון בשבילו.</p>
+        <p>לפעמים הוא צריך מקום שבו לא שופטים אותו.</p>
+        <p>
+          מקום שאפשר לעצור בו,<br />
+          לנסות להבין,<br />
+          ולפעמים לראות משהו שהוא כבר ידע בפנים, מזווית אחרת.
+        </p>
+        <p>
+          אני מלווה אנשים בתהליכים אישיים,<br />
+          בעיקר במקומות שבהם הם מרגישים תקועים, מבולבלים או מחפשים דרך לזוז.
+        </p>
+        <p>
+          ההכשרה שלי כוללת NLP ברמת Master,<br />
+          עזרה ראשונה נפשית,<br />
+          ולימוד של תהליכי שינוי והתמודדות.
+        </p>
+        <p>אבל מעבר למה שלמדתי, אני מביא איתי גם את הדרך שעברתי.</p>
+        <p>ואת מה שאני עדיין לומד גם היום.</p>
 
-      <ul class="creds">
-        <li>NLP — מאמן מוסמך ברמת Master</li>
-        <li>עזרה ראשונה נפשית</li>
-        <li>תוכנית 12 הצעדים</li>
-      </ul>
+        <h2 class="turn">ואם הגעת לכאן עכשיו</h2>
 
-      <h2>למה האתר הזה קיים</h2>
+        <p>אני לא יודע מה עובר עליך.</p>
+        <p>
+          אבל אני מקווה שתמצא כאן מקום שלא ממהר לשפוט אותך,<br />
+          ולא ממהר להסביר לך מי אתה צריך להיות.
+        </p>
+        <p>מקום שאפשר פשוט לעצור בו לרגע.</p>
+        <p>לקרוא.</p>
+        <p>להרגיש.</p>
+        <p>ולפעמים להבין שאתה לא היחיד שמרגיש ככה.</p>
+        <p>
+          האתר הזה נכתב למי שלפעמים נושא בתוכו דברים שקשה להסביר,<br />
+          ולא תמיד יש לו למי לומר אותם.
+        </p>
+        <p>
+          ואם סיפור אחד יצליח לגעת במקום שקשה לך לשים עליו מילים,<br />
+          אולי כבר קרה כאן משהו.
+        </p>
 
-      <p>
-        "נקודת מבט" נולד מאותו דבר עצמו. לא כל אחד צריך מאמן, ולא כל אחד מוכן לדבר. אבל כמעט כל
-        אחד מוכן לקרוא סיפור קצר. ולפעמים סיפור אחד עושה מה שעשרה משפטי מוסר לא עושים — הוא מזיז
-        נקודה.
-      </p>
-    </div>
+        <div class="closing">
+          <p class="welcome">ברוך הבא לנקודת מבט</p>
+          <p>
+            מקום שאפשר לעצור בו,<br />
+            להסתכל מחדש,<br />
+            ואולי לגלות שיש עוד נקודת מבט.
+          </p>
+          <p class="signature">אפרים</p>
+        </div>
 
-    <section class="talk">
-      <a class="cta" href={SITE.whatsappDirectUrl} rel="noopener" target="_blank">לשיחה אישית</a>
-      <p class="talk-note">אפשר לכתוב לי, בלי התחייבות ובלי טפסים.</p>
-      <p class="talk-phone">
-        או בטלפון: <a href={SITE.phoneHref}>{SITE.phone}</a>
-      </p>
-    </section>
+        {/* נ.ב. — ההזמנה לשיחה חיה בתוך המכתב, כמו שמכתב אמיתי נגמר.
+            מחליף את סעיף "לשיחה אישית" שישב מחוץ לטקסט. */}
+        <div class="ps">
+          <p>
+            <strong>נ.ב.</strong>
+            המכתב הזה לא חייב להישאר חד־צדדי.<br />
+            אם משהו כאן פגש אותך, ובא לך להמשיך את השיחה — אפשר פשוט לכתוב לי.
+          </p>
+          <div class="ps-talk">
+            <a class="cta" href={SITE.whatsappDirectUrl} rel="noopener" target="_blank"
+              >לשיחה אישית</a
+            >
+            <p class="talk-note">אפשר לכתוב גם משפט אחד. אני עונה בעצמי.</p>
+            <p class="talk-phone">
+              או בטלפון: <a href={SITE.phoneHref}>{SITE.phone}</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </article>
 
     <JoinGroup />
   </main>
 </Base>
 
+<style is:global>
+  /* פונט החתימה — כתב יד עברי, אותיות בלבד (6KB), מוגש מהאתר כמו שאר
+     הפונטים. משמש פעם אחת באתר: השם הפרטי בסוף המכתב. */
+  @font-face {
+    font-family: 'Playpen Sans Hebrew';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/playpen-hebrew.woff2') format('woff2');
+    unicode-range: U+05D0-05EA;
+  }
+</style>
+
 <style>
-  /* בנייד — תמונה מעל השם. במסך רחב — זה לצד זה, התמונה בצד ההתחלה (ימין). */
-  .intro {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 1.25rem;
-    padding: 0.75rem 0 2rem;
-  }
-
-  .portrait {
-    width: min(62%, 15rem);
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
+  /* הדף: מכתב שמונח על רקע האתר. בהיר מעט מהשמנת, גבול דק, צל רך. */
+  .letter {
+    background: #fffdf6;
+    border: 1px solid var(--line);
     border-radius: var(--radius);
-    box-shadow: var(--shadow);
+    box-shadow: 0 2px 12px rgba(46, 42, 36, 0.07);
+    padding: 2.25rem 1.4rem 2.75rem;
+    margin-top: 0.5rem;
   }
 
-  .identity h1 {
-    font-size: 2rem;
-    line-height: 1.3;
+  @media (min-width: 40rem) {
+    .letter {
+      padding: 3.25rem 3rem 3.5rem;
+    }
   }
 
-  .role {
-    color: var(--secondary);
-    font-size: 1rem;
-    font-weight: 600;
-    margin-top: 0.35rem;
+  /* ראש המכתב: חותם — נקודת הזהב של האתר — והכותרת. בלי שם ובלי תמונה:
+     הם מגיעים בתוך המכתב, ברגע שהטקסט שואל. */
+  .letter-head {
+    text-align: center;
+    margin-bottom: 2.75rem;
   }
 
-  /* נקודת זהב קטנה מתחת לשורת הזהות — אותה נגיעה שסוגרת את התחתית. */
-  .identity::after {
-    content: '';
-    display: block;
+  .letter-head .seal {
+    display: inline-block;
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 50%;
     background: var(--gold);
-    margin: 1.1rem auto 0;
+    margin-bottom: 1rem;
   }
 
-  @media (min-width: 40rem) {
-    .intro {
-      flex-direction: row;
-      align-items: center;
-      text-align: start;
-      gap: 2rem;
-    }
-
-    .portrait {
-      width: 13rem;
-      flex: none;
-    }
-
-    .identity::after {
-      margin-inline: 0;
-    }
+  .letter-head h1 {
+    font-size: 1.9rem;
+    line-height: 1.3;
   }
 
   .about-body {
@@ -171,57 +274,99 @@ const DESCRIPTION =
     margin-top: 1.25rem;
   }
 
+  /* הפתיחה — שער רגשי: גודל מלא, צבע מלא, רק נשימה גדולה יותר. */
   .opening {
-    color: var(--secondary);
+    margin-bottom: 3.25rem;
   }
 
-  .about-body h2 {
+  .opening p + p {
+    margin-top: 1.7rem;
+  }
+
+  /* כותרת מעבר — בין גוף לכותרת. בלי צבע ובלי קו: הריווח עושה את העבודה. */
+  .turn {
+    font-family: var(--font-display);
     font-size: 1.35rem;
-    margin: 2.5rem 0 0.9rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--ink);
+    margin: 3.25rem 0 1.6rem;
   }
 
-  /* המשפט שנחרט — הנגיעה העיצובית היחידה בעמוד. */
-  .pull {
+  /* כותרת פנימית שקטה */
+  .quiet {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--ink);
+    margin: 2.5rem 0 0.85rem;
+  }
+
+  /* התמונה — תצלום מודפס שמונח על המכתב: מסגרת לבנה, הטיה קלה, צל רך. */
+  .photo {
+    width: 10rem;
+    padding: 0.45rem 0.45rem 0.9rem;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    box-shadow: 0 4px 14px rgba(46, 42, 36, 0.13);
+    transform: rotate(-2deg);
+    margin: 2rem auto 1.9rem;
+  }
+
+  .photo img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+
+  /* הסיום — קו זהב עדין ויחיד */
+  .closing {
+    margin-top: 3.5rem;
+  }
+
+  .closing::before {
+    content: '';
+    display: block;
+    width: 3rem;
+    height: 2px;
+    border-radius: 1px;
+    background: var(--gold);
+    margin-bottom: 1.6rem;
+  }
+
+  .welcome {
     font-family: var(--font-display);
     font-size: 1.3rem;
-    line-height: 1.8;
-    color: var(--teal-deep);
-    border-inline-start: 3px solid var(--gold);
-    padding-inline-start: 1.1rem;
-    margin: 1.75rem 0;
+    font-weight: 600;
+    color: var(--ink);
   }
 
-  /* ההכשרה — קלף שקט. לא גלולות: גלולות באתר הזה הן תוויות וניווט,
-     ותעודה אינה אף אחד מהם. */
-  .creds {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 1.1rem 1.35rem;
-    list-style: none;
-    font-size: 1.05rem;
-    line-height: 1.8;
+  .closing p + p {
+    margin-top: 1.25rem;
   }
 
-  .creds li {
-    padding-inline-start: 1.1rem;
-    position: relative;
+  /* חתימה — מכתב נחתם ביד. נפילה לאחור: הפונט הסריפי של האתר. */
+  .signature {
+    font-family: 'Playpen Sans Hebrew', var(--font-display);
+    font-size: 2rem;
+    line-height: 1.3;
+    color: var(--ink);
+    margin-top: 2.5rem;
   }
 
-  .creds li::before {
-    content: '';
-    position: absolute;
-    inset-inline-start: 0;
-    top: 0.85em;
-    width: 0.4rem;
-    height: 0.4rem;
-    border-radius: 50%;
-    background: var(--gold);
-  }
-
-  .talk {
-    text-align: center;
+  /* נ.ב. — ההזמנה לשיחה, בתוך המכתב */
+  .ps {
     margin-top: 3rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .ps-talk {
+    text-align: center;
+    margin-top: 1.75rem;
   }
 
   .talk-note {
@@ -243,4 +388,62 @@ const DESCRIPTION =
     align-items: center;
     min-height: 44px;
   }
+
+  /* נשימת קריאה: כל בית עולה בעדינות כשמגיעים אליו. המחלקות מוצמדות
+     ב-JavaScript בלבד — בלעדיו הכול גלוי כרגיל. */
+  .about-body :global(.will-reveal) {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 0.6s ease,
+      transform 0.6s ease;
+  }
+
+  .about-body :global(.will-reveal.revealed) {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* לתצלום יש הטיה קבועה — התנועה נוספת אליה ולא מוחקת אותה */
+  .about-body :global(.photo.will-reveal) {
+    transform: rotate(-2deg) translateY(12px);
+  }
+
+  .about-body :global(.photo.will-reveal.revealed) {
+    transform: rotate(-2deg);
+  }
 </style>
+
+<script is:inline>
+  // נשימת קריאה: כל בית מופיע בעדינות כשמגיעים אליו בגלילה.
+  // רץ רק כשיש JavaScript ורק כשהקורא לא ביקש פחות תנועה —
+  // בכל מקרה אחר הטקסט פשוט שם, גלוי, כרגיל.
+  (function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!('IntersectionObserver' in window)) return;
+
+    var els = document.querySelectorAll(
+      '.about-body > p, .opening > p, .turn, .quiet, .photo, .closing, .ps'
+    );
+
+    els.forEach(function (el) {
+      el.classList.add('will-reveal');
+    });
+
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('revealed');
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { rootMargin: '0px 0px -8% 0px' }
+    );
+
+    els.forEach(function (el) {
+      io.observe(el);
+    });
+  })();
+</script>
