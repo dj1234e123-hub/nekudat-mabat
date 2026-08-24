@@ -6,21 +6,35 @@ interface Props {
   title: string;
   url: string;
   /** טקסט השיתוף בוואטסאפ. ברירת מחדל — הכותרת (סיפורים).
-      ברגעים מעבירים כאן את הטקסט עצמו, כי הוא קצר ומיועד להישלח כמו שהוא. */
+      ברגעים מעבירים כאן את הטקסט עצמו, כי הוא קצר ומיועד להישלח כמו שהוא.
+      מתעלמים ממנו כש-imageUrl קיים — שם ההודעה נשארת ריקה מטקסט בכוונה. */
   shareText?: string;
   /** התווית שלפני הכפתורים */
   label?: string;
   /** שפת הכפתורים */
   lang?: 'he' | 'es';
+  /**
+   * תמונת שיתוף מוכנה (כמו og.png של רגע). כשהיא קיימת, כפתור וואטסאפ
+   * מנסה לשתף את התמונה עצמה כקובץ — בלי טקסט ובלי קישור בהודעה, בדיוק
+   * כמו ששולחים תמונה מהגלריה — כדי שהמלל (שכבר חי בתוך התמונה עצמה)
+   * לא ישוכפל גם כהודעת טקסט נפרדת.
+   * בלי תמיכה ב-Web Share API עם קבצים (בעיקר שולחן עבודה) — נפילה
+   * לאחור לקישור נקי בלבד, גם הוא בלי טקסט, מאותה סיבה.
+   */
+  imageUrl?: string;
 }
 
-const { title, url, shareText, label, lang = 'he' } = Astro.props;
+const { title, url, shareText, label, lang = 'he', imageUrl } = Astro.props;
 const es = lang === 'es';
 const t = es
   ? { label: '¿Te llegó? Compártelo:', whatsapp: 'Compartir por WhatsApp', copy: 'Copiar enlace', copied: 'Enlace copiado ✓', prompt: 'Copia el enlace:', brand: 'Punto de Vista' }
   : { label: 'אהבתם? שתפו:', whatsapp: 'שיתוף בוואטסאפ', copy: 'העתקת קישור', copied: 'הקישור הועתק ✓', prompt: 'העתיקו את הקישור:', brand: 'נקודת מבט' };
 const message = shareText ?? `${title} · ${t.brand}`;
-const whatsappHref = `https://wa.me/?text=${encodeURIComponent(`${message}\n${url}`)}`;
+// imageUrl קיים → הקישור עצמו (ה-href, וגם נפילת החזרה של הסקריפט למטה)
+// נשאר נקי מטקסט, כדי שלא תיווצר כפילות מול מה שכבר כתוב בתוך התמונה.
+const whatsappHref = imageUrl
+  ? `https://wa.me/?text=${encodeURIComponent(url)}`
+  : `https://wa.me/?text=${encodeURIComponent(`${message}\n${url}`)}`;
 ---
 
 <div
@@ -31,7 +45,15 @@ const whatsappHref = `https://wa.me/?text=${encodeURIComponent(`${message}\n${ur
   data-prompt={t.prompt}
 >
   <span class="share-label">{label ?? t.label}</span>
-  <a class="share-btn whatsapp" href={whatsappHref} rel="noopener" target="_blank">{t.whatsapp}</a>
+  <a
+    class="share-btn whatsapp"
+    href={whatsappHref}
+    rel="noopener"
+    target="_blank"
+    data-image-url={imageUrl}
+  >
+    {t.whatsapp}
+  </a>
   <button class="share-btn copy" type="button">{t.copy}</button>
 </div>
 
@@ -48,6 +70,31 @@ const whatsappHref = `https://wa.me/?text=${encodeURIComponent(`${message}\n${ur
         prompt(share.dataset.prompt!, url);
       }
     });
+
+    // שיתוף התמונה עצמה כקובץ — רק כשהועברה imageUrl (data-image-url קיים
+    // רק אז; Astro משמיט attribute שערכו undefined). בלי Web Share API עם
+    // תמיכה בקבצים, הכפתור פשוט מנווט כרגיל לקישור הנקי שכבר מוגדר לו.
+    const whatsappBtn = share.querySelector<HTMLAnchorElement>('.whatsapp');
+    const imageUrl = whatsappBtn?.dataset.imageUrl;
+    if (whatsappBtn && imageUrl) {
+      whatsappBtn.addEventListener('click', async (event) => {
+        if (!navigator.share) return; // אין Web Share כלל — ניווט רגיל לקישור הנקי
+        event.preventDefault();
+        try {
+          const response = await fetch(imageUrl);
+          const blob = await response.blob();
+          const file = new File([blob], 'moment.png', { type: blob.type || 'image/png' });
+          if (navigator.canShare?.({ files: [file] })) {
+            await navigator.share({ files: [file] });
+            return;
+          }
+        } catch (err) {
+          // הקורא ביטל את חלון השיתוף בעצמו — לא נפילת חזרה, לא לעשות כלום.
+          if (err instanceof Error && err.name === 'AbortError') return;
+        }
+        window.open(whatsappBtn.href, '_blank', 'noopener');
+      });
+    }
   }
 </script>
 
