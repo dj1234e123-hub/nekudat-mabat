@@ -47,8 +47,8 @@ const momentUrls = moments.map((moment) => `/moments/${moment.data.feeling}/${mo
                   </span>
                   <svg
                     class="door-mark"
-                    width="56"
-                    height="28"
+                    width="66"
+                    height="33"
                     viewBox="0 0 56 28"
                     aria-hidden="true"
                     set:html={FEELING_MARKS[feeling.slug]}
@@ -211,10 +211,12 @@ const momentUrls = moments.map((moment) => `/moments/${moment.data.feeling}/${mo
     margin-top: 0.15rem;
   }
 
-  /* הסימן יושב בקצה השורה, שקט. בריחוף הוא מתחזק מעט — הדלת עונה למגע. */
+  /* הסימן יושב בקצה השורה, שקט אך נוכח. בריחוף הוא מתחזק — הדלת עונה למגע.
+     מוגדל מעט מגודל הציור (viewBox) כדי שלא ייעלם בגלילה מהירה בטלפון. */
   .door-mark {
     flex-shrink: 0;
-    opacity: 0.65;
+    margin-inline-start: 0.35rem;
+    opacity: 0.8;
     transition: opacity 0.15s ease;
   }
 
