@@ -1,138 +1,127 @@
 ---
-// עמוד הרגעים — בגרסה חדשה ומהפכנית.
+// עמוד הכניסה ל"רגע של נקודת מבט" — חמישה שערים.
 //
-// במקום רשימת מצבים מתקפלת, הקורא נקלט בלי בחירה:
-// - רגע אקראי בהתחלה (בלי הקשר)
-// - גלילה → המצב שלו מופיע בהדרגה
-// - גלילה → רגעים דומים מופיעים בהדרגה
-// - זרימה אינסופית: כל הרגעים הנותרים
+// הקורא לא סורק רשימה: הוא עומד מול חמש קשתות, אחת לכל קבוצת מצבים, ובוחר
+// לאן להיכנס. לחיצה על שער פותחת את קבוצת המצבים שלו וגוללת אליה — המדפים,
+// שורות הדלת, הסימנים והעוגנים של שלב 4.18/4.21 נשארים בדיוק כמו שהיו.
 //
-// זה הופך את עמוד הרגעים מ"מסך בחירה" ל"מסע קריאה".
-
+// התמונות שבתוך הקשתות הן ממלאות מקום (src/components/GateArt.astro) עד
+// שבעל הפרויקט ייצור ויעלה תמונות משלו — קובץ אחד לכל שער. הקשת, מסגרת
+// הזהב, השם והשורה קבועים ואינם תלויים בתמונה.
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import { FEELING_GROUPS, feelingLabel } from '../../data/feelings';
+import { FEELING_GROUPS } from '../../data/feelings';
 import { FEELING_MARKS } from '../../data/feeling-marks';
 import { SITE } from '../../data/site';
-import MomentBody from '../../components/MomentBody.astro';
-import { parseMoment } from '../../lib/moment-format';
+import GateArt from '../../components/GateArt.astro';
 
 const moments = await getCollection('moments');
+// מצב בלי תוכן עדיין מוצג (הוא חלק מהמבנה) אבל אינו קישור — כדי שלא להוביל למדף ריק.
+const filled = new Set(moments.map((moment) => moment.data.feeling));
+// דלת למי שלא מצליח לקרוא לזה בשם — רגע אקראי במקום בחירה מתוך רשימה.
+const momentUrls = moments.map((moment) => `/moments/${moment.data.feeling}/${moment.id}/`);
 
-// אוספים רגעים לפי מצב
-const momentsByFeeling = new Map<string, any[]>();
-for (const moment of moments) {
-  const feeling = moment.data.feeling;
-  if (!momentsByFeeling.has(feeling)) {
-    momentsByFeeling.set(feeling, []);
-  }
-  momentsByFeeling.get(feeling)!.push(moment);
-}
+// שורת השער: משפט קצר מתחת לשם הקבוצה. כמו שורות הדלת של המצבים —
+// מזהה בלי לתייג, ואינה חושפת את נקודת המבט של הרגעים שבפנים.
+const GATE_LINES: Record<string, string> = {
+  hurting: 'יש דברים שכואבים בשקט.',
+  self: 'המלחמות שאף אחד לא רואה.',
+  stuck: 'הרגליים רוצות, ומשהו לא זז.',
+  beginning: 'רגעים שנכנס בהם אור.',
+  upward: 'בין אדם למי שמעליו.',
+};
 
-// רגע פתיחה אקראי — בלי בחירה
-const allMomentsArray = Array.from(moments);
-const starterMoment = allMomentsArray[Math.floor(Math.random() * allMomentsArray.length)];
-const starterFeeling = starterMoment.data.feeling;
-const starterFormat = parseMoment(starterMoment.body ?? '', starterMoment.data.title);
-const starterLabel = feelingLabel(starterFeeling);
-
-// רגעים דומים (אותו מצב)
-const relatedMoments = (momentsByFeeling.get(starterFeeling) || [])
-  .filter((m) => m.id !== starterMoment.id)
-  .map((m) => ({
-    id: m.id,
-    feeling: m.data.feeling,
-    format: parseMoment(m.body ?? '', m.data.title),
-    url: `/moments/${m.data.feeling}/${m.id}/`,
-  }))
-  .slice(0, 6); // מראים שישה רגעים דומים בלבד
-
-// כל הרגעים האחרים, לגלילה אינסופית
-const allOtherMoments = Array.from(moments)
-  .filter((m) => m.id !== starterMoment.id)
-  .map((m) => ({
-    id: m.id,
-    feeling: m.data.feeling,
-    format: parseMoment(m.body ?? '', m.data.title),
-    url: `/moments/${m.data.feeling}/${m.id}/`,
-    label: feelingLabel(m.data.feeling),
-  }))
-  .sort(() => Math.random() - 0.5); // שיבוט אקראי
-
-// דלת למי שלא מצא את המצב שלו
+// דלת למי שדווקא יודע מה עובר עליו — ואין לזה מדף. פנייה פרטית לאפרים,
+// באותה שפה של שורת התגובה שבסוף הסיפורים: קישור שקט, לא כפתור.
+// זה גם ערוץ האמת היחיד לדעת אילו מצבים חסרים. הרגעים עצמם נשארים נקיים —
+// הדלת הזו חיה בעמוד הכניסה בלבד (החלטת בעל הפרויקט 2026-08-24).
 const tellMeMessage = 'שלום אפרים, חיפשתי בפינת הרגעים משהו שעובר עליי, ולא מצאתי:\n';
 const tellMeHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(tellMeMessage)}`;
 ---
 
 <Base
   title="רגע של נקודת מבט"
-  description="משפטים ותובנות קצרות לפי מה שעובר עליך עכשיו."
+  description="משפטים ותובנות קצרות לפי מה שעובר עליך עכשיו. רגע לעצור."
 >
-  <main class="moments-stream">
-    {/* רגע פתיחה אקראי — בלי בחירה, בלי הקשר */}
-    <section class="stream-opening" id="stream-opening">
-      <article class="moment-intro">
-        <h1 class="moment-title">
-          <a href={`/moments/${starterFeeling}/${starterMoment.id}/`}>
-            {starterFormat.title}
-          </a>
-        </h1>
-        <div class="moment-content">
-          <MomentBody format={starterFormat} />
-        </div>
-        <p class="moment-hint">גלול למטה לחקירה עמוקה יותר</p>
-      </article>
-    </section>
+  <main>
+    <h1 class="page-title">רגע של נקודת מבט</h1>
+    <p class="question">מה עובר עליך עכשיו?</p>
+    <p class="invite">חמישה שערים. תיכנס בזה שקורא לך.</p>
 
-    {/* המצב שלו מופיע בהדרגה */}
-    <section class="stream-feeling" id="stream-feeling">
-      <div class="feeling-reveal">
-        <span class="feeling-dot" aria-hidden="true"></span>
-        <span class="feeling-name">{starterLabel}</span>
-      </div>
-      <a href={`/moments/${starterFeeling}/`} class="feeling-door">
-        כל הרגעים של {starterLabel}
-      </a>
-    </section>
-
-    {/* רגעים דומים — מתחת */}
-    {relatedMoments.length > 0 && (
-      <section class="stream-related" id="stream-related">
-        <h2 class="section-title">עוד ב{starterLabel}</h2>
-        <ul class="moment-cards">
-          {relatedMoments.map((m) => (
-            <li class="moment-card-item">
-              <a href={m.url} class="moment-card-link">
-                <h3 class="moment-card-title">{m.format.title}</h3>
-                <div class="moment-preview">
-                  <MomentBody format={m.format} firstStanzaOnly={true} />
-                </div>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </section>
-    )}
-
-    {/* גלילה אינסופית — כל הרגעים האחרים */}
-    <section class="stream-infinite" id="stream-infinite">
-      <h2 class="section-title">רגעים נוספים</h2>
-      <ul class="moment-cards" id="infinite-list">
-        {allOtherMoments.slice(0, 12).map((m) => (
-          <li class="moment-card-item" data-moment-id={m.id}>
-            <a href={m.url} class="moment-card-link">
-              <span class="moment-feeling-tag">{m.label}</span>
-              <h3 class="moment-card-title">{m.format.title}</h3>
-              <div class="moment-preview">
-                <MomentBody format={m.format} firstStanzaOnly={true} />
-              </div>
+    <ul class="gates">
+      {
+        FEELING_GROUPS.map((group) => (
+          <li>
+            <a
+              class="gate"
+              href={`#${group.slug}`}
+              style={`--accent: ${group.accent}; --title: ${group.titleAccent}`}
+            >
+              <span class="arch">
+                <GateArt group={group.slug} />
+              </span>
+              <span class="gate-name">{group.label}</span>
+              <span class="gate-line">{GATE_LINES[group.slug]}</span>
             </a>
           </li>
-        ))}
-      </ul>
-      <div id="load-more" class="load-more-trigger"></div>
-    </section>
+        ))
+      }
+    </ul>
 
+    <button id="random-moment" class="unsure" type="button">לא יודע מה אני מרגיש עכשיו</button>
+
+    <h2 class="map-label" id="all-feelings">כל המצבים</h2>
+
+    {
+      /* קבוצה מתקפלת: עם 22 מצבים, רשימה פתוחה אחת הופכת לעמוד ארוך שצריך
+         לגלול בו כדי לסרוק. <details> נבחר כי הוא עובד גם בלי JavaScript,
+         נגיש למקלדת ולקורא מסך, וניתן לפתיחה מכל מקום בלי שנצטרך לנהל מצב.
+         כשהשערים למעלה הם הדלת הראשית, כל הקבוצות מתחילות סגורות — שער
+         שנלחץ פותח את שלו. */
+      FEELING_GROUPS.map((group) => (
+        <details
+          class="group"
+          id={group.slug}
+          style={`--accent: ${group.accent}; --title: ${group.titleAccent}`}
+        >
+          <summary class="group-label">
+            <span class="group-dot" aria-hidden="true" />
+            {group.label}
+          </summary>
+          <ul class="doors">
+            {group.feelings.map((feeling) => {
+              const inner = (
+                <>
+                  <span class="door-text">
+                    <span class="door-name">{feeling.label}</span>
+                    <span class="door-line">{feeling.line}</span>
+                  </span>
+                  <svg
+                    class="door-mark"
+                    width="66"
+                    height="33"
+                    viewBox="0 0 56 28"
+                    aria-hidden="true"
+                    set:html={FEELING_MARKS[feeling.slug]}
+                  />
+                </>
+              );
+              return (
+                <li>
+                  {filled.has(feeling.slug) ? (
+                    <a class="door" href={`/moments/${feeling.slug}/`}>{inner}</a>
+                  ) : (
+                    <span class="door is-empty" aria-disabled="true">{inner}</span>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        </details>
+      ))
+    }
+
+    <p class="soon">מצבים נוספים ותכנים נוספים — בדרך.</p>
     <p class="tell-me">
       לא מצאת כאן את מה שעובר עליך?
       <a href={tellMeHref} rel="noopener" target="_blank">אפשר לספר לי</a>
@@ -140,262 +129,302 @@ const tellMeHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURICompone
   </main>
 </Base>
 
-<script define:vars={{ allOtherMoments: JSON.stringify(allOtherMoments) }}>
-  // גלילה אינסופית — כשמגיע לתחתון, טוענים עוד רגעים
-  let displayedCount = 12;
-  const infiniteList = document.getElementById('infinite-list');
-  const loadMoreTrigger = document.getElementById('load-more');
-  const momentsData = JSON.parse(allOtherMoments);
+<script is:inline define:vars={{ momentUrls }}>
+  document.getElementById('random-moment').addEventListener('click', () => {
+    location.href = momentUrls[Math.floor(Math.random() * momentUrls.length)];
+  });
 
-  if (loadMoreTrigger && infiniteList) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const nextItems = momentsData.slice(displayedCount, displayedCount + 12);
-          if (nextItems.length === 0) {
-            observer.unobserve(loadMoreTrigger);
-            loadMoreTrigger.style.display = 'none';
-            return;
-          }
+  // שער או עוגן (למשל /moments/#upward) פותח את הקבוצה שלו וגולל אליה —
+  // כך גם לחיצה על שער וגם כתובת משותפת בוואטסאפ מגיעות לקבוצה פתוחה.
+  // בלי JavaScript הדפדפן עדיין גולל לכותרת הקבוצה; היא רק נשארת סגורה עד הקשה.
+  const openGroup = (id) => {
+    const group = document.getElementById(id);
+    if (group && group.tagName === 'DETAILS') {
+      group.open = true;
+      return group;
+    }
+    return null;
+  };
 
-          nextItems.forEach((m) => {
-            const li = document.createElement('li');
-            li.className = 'moment-card-item';
-            li.innerHTML = `
-              <a href="${m.url}" class="moment-card-link">
-                <span class="moment-feeling-tag">${m.label}</span>
-                <h3 class="moment-card-title">${m.format.title}</h3>
-              </a>
-            `;
-            infiniteList.appendChild(li);
-          });
+  const fromHash = location.hash && openGroup(location.hash.slice(1));
+  if (fromHash) fromHash.scrollIntoView();
 
-          displayedCount += 12;
-
-          if (displayedCount >= momentsData.length) {
-            observer.unobserve(loadMoreTrigger);
-          }
-        }
-      });
+  document.querySelectorAll('a.gate').forEach((gate) => {
+    gate.addEventListener('click', () => {
+      openGroup(gate.getAttribute('href').slice(1));
     });
-
-    observer.observe(loadMoreTrigger);
-  }
-
-  // המצב מתגלה בהדרגה כשגוללים
-  const feeling = document.getElementById('stream-feeling');
-  const opening = document.getElementById('stream-opening');
-
-  if (feeling && opening) {
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            feeling.classList.add('is-visible');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    revealObserver.observe(opening);
-  }
+  });
 </script>
 
 <style>
-  .moments-stream {
-    padding-top: 1rem;
-  }
-
-  /* רגע פתיחה — בפוקוס מלא, בלי בחירה */
-  .stream-opening {
-    margin-bottom: 5rem;
-  }
-
-  .moment-intro {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 2.5rem 2rem;
+  .page-title {
     text-align: center;
+    font-size: 1.8rem;
+    padding: 0.5rem 0 0.75rem;
   }
 
-  .moment-title {
-    font-size: 1.85rem;
-    line-height: 1.3;
-    color: var(--blue);
-    margin-bottom: 2rem;
-    text-wrap: balance;
-  }
-
-  .moment-title a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .moment-title a:hover {
-    color: var(--teal-deep);
-  }
-
-  .moment-content {
-    --moment-size: 1.3rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .moment-hint {
-    font-size: 0.85rem;
-    color: var(--muted);
-    font-style: italic;
-    margin-top: 2rem;
-  }
-
-  /* המצב מופיע בהדרגה */
-  .stream-feeling {
+  .question {
     text-align: center;
-    padding: 3.5rem 0;
-    opacity: 0;
-    transition: opacity 0.8s ease-out;
-  }
-
-  .stream-feeling.is-visible {
-    opacity: 1;
-  }
-
-  .feeling-reveal {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.7rem;
-    padding: 0.95rem 1.8rem;
-    background: var(--surface);
-    border-radius: 2rem;
-    border: 1px solid var(--line);
-    margin-bottom: 1.5rem;
-  }
-
-  .feeling-dot {
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 50%;
-    background: var(--teal);
-    animation: pulse 2s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.6;
-    }
-  }
-
-  .feeling-name {
-    font-weight: 600;
-    color: var(--ink);
     font-family: var(--font-display);
+    font-size: 1.35rem;
+    color: var(--teal-deep);
+    margin-bottom: 0.35rem;
   }
 
-  .feeling-door {
-    display: inline-block;
-    min-height: 44px;
-    padding: 0.6rem 1.2rem;
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 1rem;
-    color: var(--teal);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: background 0.2s ease, border-color 0.2s ease;
-  }
-
-  .feeling-door:hover {
-    background: var(--line);
-    border-color: var(--muted);
-  }
-
-  /* רגעים דומים */
-  .stream-related {
-    margin-bottom: 4rem;
-  }
-
-  .section-title {
-    font-size: 1.15rem;
-    font-weight: 600;
+  .invite {
     text-align: center;
     color: var(--secondary);
-    margin-bottom: 1.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
   }
 
-  .moment-cards {
+  /* ── השערים ── */
+  .gates {
     list-style: none;
+    margin: 0 auto;
     padding: 0;
+    max-width: 26rem;
     display: grid;
-    gap: 1.75rem;
+    gap: 1.7rem;
   }
 
-  .moment-card-item {
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 1.75rem;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-  }
-
-  .moment-card-item:hover {
-    border-color: var(--muted);
-    box-shadow: var(--shadow);
-    transform: translateY(-2px);
-  }
-
-  .moment-card-link {
+  .gate {
+    display: block;
+    text-align: center;
     text-decoration: none;
-    color: inherit;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* קשת השער: התמונה יושבת בתוך המסגרת, והמסגרת נשארת גם כשהתמונה תתחלף */
+  .arch {
+    position: relative;
+    display: block;
+    height: 170px;
+    border-radius: 130px 130px 6px 6px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    box-shadow: 0 10px 26px rgba(46, 42, 36, 0.14);
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  /* מסגרת זהב פנימית דקה — חתימת השער, נשארת מעל כל תמונה */
+  .arch::after {
+    content: '';
+    position: absolute;
+    inset: 7px;
+    border: 1px solid rgba(201, 162, 77, 0.55);
+    border-radius: 122px 122px 3px 3px;
+    pointer-events: none;
+  }
+
+  .arch :global(svg) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     display: block;
   }
 
-  .moment-feeling-tag {
-    display: inline-block;
-    font-size: 0.75rem;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.6rem;
+  .gate:hover .arch,
+  .gate:focus-visible .arch {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 32px rgba(46, 42, 36, 0.2);
   }
 
-  .moment-card-title {
-    font-size: 1.25rem;
-    line-height: 1.4;
-    color: var(--ink);
-    margin-bottom: 1rem;
+  .gate:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 6px;
+    border-radius: 8px;
+  }
+
+  .gate-name {
+    display: block;
+    margin-top: 0.8rem;
     font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--title);
   }
 
-  .moment-preview {
-    --moment-size: 0.95rem;
+  .gate-line {
+    display: block;
+    margin-top: 0.1rem;
+    color: var(--secondary);
+    font-size: 0.92rem;
+  }
+
+  /* קישור שקט למי שלא מצליח לבחור שער */
+  .unsure {
+    display: block;
+    min-height: 44px;
+    margin: 2.4rem auto 3rem;
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--muted);
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+    text-decoration-color: var(--line);
+    cursor: pointer;
+  }
+
+  .unsure:hover {
+    color: var(--teal);
+    text-decoration-color: var(--teal);
+  }
+
+  /* ── מפת המצבים המלאה ── */
+  .map-label {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    text-align: center;
+    margin: 0 0 0.9rem;
+  }
+
+  .group {
+    border-top: 1px solid var(--line);
+  }
+
+  .group:last-of-type {
+    border-bottom: 1px solid var(--line);
+  }
+
+  /* כותרת הקבוצה נושאת את צבע הזהות (--title). ברוב הקבוצות הוא זהה
+     ל---accent; בקבוצת הזהב הוא דיו — זהב נמדד 2.24:1 כטקסט (התקן 4.5). */
+  .group-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    min-height: 52px;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--title);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  /* נקודת הצבע של הקבוצה — אותו דפוס של עולמות הסיפורים: נקודה, לא מילוי */
+  .group-dot {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* ברירת המחדל של הדפדפן היא משולש בצד; מוחלף בחץ משלנו שמסתובב בפתיחה */
+  .group-label::-webkit-details-marker {
+    display: none;
+  }
+
+  .group-label::after {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    border-inline-start: 2px solid var(--gold);
+    border-block-end: 2px solid var(--gold);
+    transform: rotate(-45deg) translate(0.1rem, -0.1rem);
+    transition: transform 0.15s ease;
+  }
+
+  .group[open] > .group-label::after {
+    transform: rotate(135deg) translate(-0.05rem, -0.05rem);
+  }
+
+  .group-label:hover {
+    opacity: 0.8;
+  }
+
+  .doors {
+    list-style: none;
+    padding: 0 0 1rem;
+    margin: 0;
+  }
+
+  .doors li + li {
+    border-top: 1px solid var(--line);
+  }
+
+  /* דלת: שורה ברוחב מלא, כמו מדף בספרייה. לא קופסה ולא כרטיס פוסט. */
+  .door {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    min-height: 72px;
+    padding: 1rem 0.4rem;
+    text-decoration: none;
+  }
+
+  .door-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .door-name {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--ink);
+    transition: color 0.15s ease;
+  }
+
+  .door-line {
     color: var(--secondary);
     font-size: 0.95rem;
-    line-height: 1.7;
+    line-height: 1.6;
+    margin-top: 0.15rem;
   }
 
-  /* גלילה אינסופית */
-  .stream-infinite {
-    margin-bottom: 3rem;
+  /* הסימן יושב בקצה השורה, שקט אך נוכח. בריחוף הוא מתחזק — הדלת עונה למגע.
+     מוגדל מעט מגודל הציור (viewBox) כדי שלא ייעלם בגלילה מהירה בטלפון. */
+  .door-mark {
+    flex-shrink: 0;
+    margin-inline-start: 0.35rem;
+    opacity: 0.8;
+    transition: opacity 0.15s ease;
   }
 
-  .load-more-trigger {
-    height: 100px;
-    margin-top: 3rem;
+  a.door:hover .door-name {
+    color: var(--title);
   }
 
-  /* דלת למי שלא מצא את המצב שלו */
+  a.door:hover .door-mark {
+    opacity: 1;
+  }
+
+  /* מצב שעדיין אין בו תוכן — נוכח במבנה, אך לא מוביל לשום מקום */
+  .door.is-empty .door-name,
+  .door.is-empty .door-line {
+    color: var(--muted);
+  }
+
+  .door.is-empty .door-mark {
+    opacity: 0.3;
+  }
+
+  .soon {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 2.5rem;
+  }
+
+  /* דלת למי שלא מצא את המצב שלו — קישור שקט באותה שפה של שורת התגובה
+     שבסוף הסיפורים. פעולה שלישית בעמוד הייתה רועשת מדי ככפתור. */
   .tell-me {
     text-align: center;
     color: var(--secondary);
     font-size: 0.9rem;
-    margin-top: 3rem;
+    margin-top: 0.5rem;
   }
 
   .tell-me a {
@@ -403,11 +432,19 @@ const tellMeHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURICompone
     font-weight: 600;
     text-decoration: underline;
     text-underline-offset: 0.25em;
+    /* שטח מגע נוח בלי לשבור את השורה */
     display: inline-block;
     padding-block: 0.6rem;
   }
 
   .tell-me a:hover {
     color: var(--teal-deep);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gate:hover .arch,
+    .gate:focus-visible .arch {
+      transform: none;
+    }
   }
 </style>
