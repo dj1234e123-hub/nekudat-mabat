@@ -130,12 +130,25 @@ const escape = (s: string) =>
   s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 /**
+ * RLO (U+202E) … PDF (U+202C): תווי כיווניות בלתי-נראים, לא סימני פיסוק.
+ * בלעדיהם resvg ממקם תווים ניטרליים (פיסוק, גרשיים) בקצה ה*לא* נכון של
+ * שורה עברית ממורכזת — ולפעמים אף הופך שניים כאלה זה ביחס לזה — במיוחד
+ * כשיש יותר מאשכול ניטרלי אחד בשורה (למשל גרש פותח וגרש+נקודה סוגרים).
+ * נבדק ואומת ישירות בפיקסלים של ה-PNG שנוצר, לא רק בקוד. RLO כופה סדר
+ * תצוגה נכון (override) על פני כל אלגוריתם ניחוש; PDF סוגר את התחום.
+ * עוטף את כל השורה — כולל דרך tspan של הדגשה — כי resvg מעצב את כל
+ * אלמנט הטקסט כיחידה אחת. לא נוגע בתו אחד מהטקסט הנראה.
+ */
+const RLO = '‮';
+const PDF = '‬';
+
+/**
  * שורה אחת → תוכן של <text>, עם ההדגשות כ-tspan בגופן הכבד.
  * resvg מעצב את כל אלמנט הטקסט כיחידה אחת, ולכן ה-bidi נשמר גם כשיש בתוכו
  * כמה גופנים — וזה מה שמאפשר להדגיש מילה בתוך שורה עברית.
  */
 function inline(line: string): string {
-  return line
+  const body = line
     .split(/(\*\*[^*]+\*\*)/)
     .filter(Boolean)
     .map((part) =>
@@ -144,6 +157,7 @@ function inline(line: string): string {
         : escape(part)
     )
     .join('');
+  return `${RLO}${body}${PDF}`;
 }
 
 /** פריט מוכן לציור, עם מיקום אנכי מוחלט */
@@ -289,7 +303,7 @@ export function renderMomentCard(body: string, siteHost: string, title?: string 
   <circle cx="${CENTER}" cy="${DOT_Y}" r="${DOT_R}" fill="${GOLD}"/>
   ${svg.join('\n  ')}
   <line x1="${CENTER - RULE_HALF}" y1="${RULE_Y}" x2="${CENTER + RULE_HALF}" y2="${RULE_Y}" stroke="${GOLD}" stroke-width="2"/>
-  <text x="${CENTER}" y="${SIGN_Y}" font-family="Heebo Bold" font-size="30" fill="${TEAL_DEEP}" direction="rtl" text-anchor="middle">נקודת מבט · אפרים עטיה</text>
+  <text x="${CENTER}" y="${SIGN_Y}" font-family="Heebo Bold" font-size="30" fill="${TEAL_DEEP}" direction="rtl" text-anchor="middle">${RLO}נקודת מבט · אפרים עטיה${PDF}</text>
   <text x="${CENTER}" y="${URL_Y}" font-family="Heebo" font-size="24" fill="${MUTED}" text-anchor="middle">${escape(siteHost)}</text>
 </svg>`;
 
