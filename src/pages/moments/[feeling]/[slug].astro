@@ -38,10 +38,6 @@ const pageUrl = new URL(`/moments/${feeling}/${moment.id}/`, Astro.site).href;
 // תמונת שיתוף ממותגת, נוצרת בזמן הבנייה מהטקסט עצמו (ראו og.png.ts באותה תיקייה).
 // חשוב בעיקר לשיתוף בסטטוס, שבו הקישור נעלם והתמונה היא כל מה שנשאר.
 const ogImage = new URL(`/moments/${feeling}/${moment.id}/og.png`, Astro.site).href;
-
-// בוואטסאפ נשלח הטקסט המלא ואחריו הקישור. הכותרת מצטרפת בראשו רק בפורמט
-// החדש: שם היא משפט-וו שנכתב במיוחד, ובלעדיה ההודעה נפתחת באמצע.
-const shareText = format.title ? `${format.title}\n\n${plainText}` : plainText;
 ---
 
 <Base
@@ -80,7 +76,7 @@ const shareText = format.title ? `${format.title}\n\n${plainText}` : plainText;
       {!format.isNew && <span class="end-dot" aria-hidden="true" />}
     </article>
 
-    <ShareRow title={label} url={pageUrl} shareText={shareText} label="לשלוח את זה למישהו:" />
+    <ShareRow title={label} url={pageUrl} label="לשלוח את זה למישהו:" imageUrl={ogImage} />
 
     <nav class="moment-footer">
       {/* התווית חיה כאן ולא בראש העמוד: כאן היא ניווט והקשר, וזה מה שהיא באמת. */}
