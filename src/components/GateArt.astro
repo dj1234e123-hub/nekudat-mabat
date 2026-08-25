@@ -11,6 +11,7 @@
 import { Image } from 'astro:assets';
 import hurtingImg from '../assets/gates/hurting.jpg';
 import selfImg from '../assets/gates/self.jpg';
+import stuckImg from '../assets/gates/stuck.jpg';
 
 interface Props {
   group: 'hurting' | 'self' | 'stuck' | 'beginning' | 'upward';
@@ -44,24 +45,13 @@ const { group } = Astro.props;
 
 {
   group === 'stuck' && (
-    <svg viewBox="0 0 260 170" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <defs>
-        <linearGradient id="gate-stuck" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#DCE5DC" />
-          <stop offset="0.55" stop-color="#5D8781" />
-          <stop offset="1" stop-color="#1F5C57" />
-        </linearGradient>
-      </defs>
-      <rect width="260" height="170" fill="url(#gate-stuck)" />
-      <path
-        d="M40 160 L100 160 L100 130 L150 130 L150 100 L196 100 L196 74 L236 74"
-        fill="none"
-        stroke="#F3E9D3"
-        stroke-width="2"
-        opacity="0.9"
-      />
-      <circle cx="244" cy="62" r="3" fill="#F3E9D3" opacity="0.8" />
-    </svg>
+    <Image
+      src={stuckImg}
+      alt=""
+      widths={[480, 960]}
+      sizes="(max-width: 30rem) 100vw, 416px"
+      loading="eager"
+    />
   )
 }
 
