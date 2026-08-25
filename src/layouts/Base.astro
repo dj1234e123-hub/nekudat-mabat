@@ -26,8 +26,9 @@ interface Props {
   bodyClass?: string;
   noindex?: boolean;
   /** נתונים מובנים (JSON-LD) — כך גוגל מבין שהעמוד הוא מאמר של אפרים עטיה
-      ולא סתם דף. מתקבל כאובייקט מוכן מהעמוד עצמו. */
-  jsonLd?: Record<string, unknown>;
+      ולא סתם דף. מתקבל כאובייקט מוכן מהעמוד עצמו, או כמה אובייקטים (למשל
+      Article + BreadcrumbList) — כל אחד יוצא כתגית <script> נפרדת. */
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   /** שפת העמוד. 'es' מחליף כיוון, תפריט ותחתית — האתר העברי אינו מושפע. */
   lang?: 'he' | 'es';
 }
@@ -100,9 +101,10 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
     }
     <title>{title}</title>
     {
-      jsonLd && (
-        <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-      )
+      jsonLd &&
+        (Array.isArray(jsonLd) ? jsonLd : [jsonLd]).map((item) => (
+          <script type="application/ld+json" set:html={JSON.stringify(item)} />
+        ))
     }
   </head>
   <body class={bodyClass}>

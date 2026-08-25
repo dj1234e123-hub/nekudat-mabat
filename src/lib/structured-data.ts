@@ -62,6 +62,22 @@ export function articleJsonLd(
   };
 }
 
+/** נתיב פירורי לחם (Breadcrumb) — ההיררכיה שגוגל יכול להציג בתוצאת החיפוש
+    במקום כתובת גולמית. הפריט האחרון (העמוד הנוכחי) נשאר בלי path, לפי
+    המוסכמה של גוגל לפריט הסופי ברשימה. */
+export function breadcrumbJsonLd(site: URL, items: { name: string; path?: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      ...(item.path ? { item: abs(item.path, site) } : {}),
+    })),
+  };
+}
+
 /** עמוד האודות — עמוד שכולו על אדם אחד. */
 export function profileJsonLd(site: URL, description: string, image?: string) {
   return {

@@ -6,8 +6,8 @@ import { getCollection } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
 import ShareRow from '../../../components/ShareRow.astro';
 import MomentBody from '../../../components/MomentBody.astro';
-import { feelingLabel, groupLabel, type FeelingSlug } from '../../../data/feelings';
-import { articleJsonLd } from '../../../lib/structured-data';
+import { feelingLabel, groupLabel, groupOf, type FeelingSlug } from '../../../data/feelings';
+import { articleJsonLd, breadcrumbJsonLd } from '../../../lib/structured-data';
 import { momentTitle } from '../../../lib/moment-title';
 import { parseMoment, momentPlainText } from '../../../lib/moment-format';
 
@@ -22,6 +22,7 @@ export async function getStaticPaths() {
 const { moment } = Astro.props;
 const feeling = moment.data.feeling as FeelingSlug;
 const label = feelingLabel(feeling);
+const group = groupOf(feeling);
 
 const format = parseMoment(moment.body ?? '', moment.data.title);
 
@@ -46,13 +47,22 @@ const ogImage = new URL(`/moments/${feeling}/${moment.id}/og.png`, Astro.site).h
   ogImage={ogImage}
   ogType="article"
   compact={true}
-  jsonLd={articleJsonLd(Astro.site!, {
-    url: pageUrl,
-    headline: title,
-    description: summary,
-    datePublished: moment.data.date,
-    image: ogImage,
-  })}
+  jsonLd={[
+    articleJsonLd(Astro.site!, {
+      url: pageUrl,
+      headline: title,
+      description: summary,
+      datePublished: moment.data.date,
+      image: ogImage,
+    }),
+    breadcrumbJsonLd(Astro.site!, [
+      { name: 'נקודת מבט', path: '/' },
+      { name: 'מה עובר עליך', path: '/moments/' },
+      ...(group ? [{ name: group.label, path: `/moments/${group.slug}/` }] : []),
+      { name: label, path: `/moments/${feeling}/` },
+      { name: title },
+    ]),
+  ]}
 >
   <main>
     <article class="moment">

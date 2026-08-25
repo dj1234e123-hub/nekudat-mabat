@@ -9,7 +9,7 @@ import { TOPICS } from '../../data/topics';
 import { SECTIONS } from '../../data/sections';
 import { DEFAULT_COVERS, DEFAULT_COVER_ALT } from '../../data/default-covers';
 import { formatDate } from '../../utils/format-date';
-import { articleJsonLd } from '../../lib/structured-data';
+import { articleJsonLd, breadcrumbJsonLd } from '../../lib/structured-data';
 
 export async function getStaticPaths() {
   const stories = await getCollection('stories');
@@ -54,13 +54,21 @@ const otherStoryUrls = (await getCollection('stories'))
   ogType="article"
   ogImage={ogImage}
   compact={true}
-  jsonLd={articleJsonLd(Astro.site!, {
-    url: pageUrl,
-    headline: title,
-    description: excerpt,
-    datePublished: date,
-    image: ogImage,
-  })}
+  jsonLd={[
+    articleJsonLd(Astro.site!, {
+      url: pageUrl,
+      headline: title,
+      description: excerpt,
+      datePublished: date,
+      image: ogImage,
+    }),
+    breadcrumbJsonLd(Astro.site!, [
+      { name: 'נקודת מבט', path: '/' },
+      { name: 'סיפורים', path: '/stories/' },
+      { name: SECTIONS[section], path: `/sections/${section}/` },
+      { name: title },
+    ]),
+  ]}
 >
   <main>
     <article>
