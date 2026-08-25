@@ -219,12 +219,14 @@ const tellMeHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURICompone
     pointer-events: none;
   }
 
-  .arch :global(svg) {
+  .arch :global(svg),
+  .arch :global(img) {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     display: block;
+    object-fit: cover;
   }
 
   .gate:hover .arch,

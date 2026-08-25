@@ -1,13 +1,16 @@
 ---
-// ציור השער של קבוצת מצבים — ממלא מקום עד שבעל הפרויקט יעלה תמונות משלו.
+// תמונת השער של קבוצת מצבים.
 //
-// כל ציור הוא מחווה מופשטת בצבעי הקבוצה, בלי דמויות (בהתאם להחלטת שערי
-// הסיפורים): קנה נכפף באדום, השתקפות בכחול, מדרגות בערפל, אור זהב, סולם
-// אל כוכבים. הציורים חיים כאן בלבד.
+// קבוצה עם תמונה אמיתית מבעל הפרויקט מציגה אותה (src/assets/gates/<slug>.jpg);
+// השאר מציגות ציור ממלא-מקום — מחווה מופשטת בצבעי הקבוצה, בלי דמויות
+// (בהתאם להחלטת שערי הסיפורים).
 //
-// החלפה בתמונה אמיתית: מניחים קובץ ב-src/assets/gates/<slug>.jpg ומחליפים
-// כאן את ה-SVG של אותה קבוצה ב-<Image>. המסגרת, הקשת והשם יושבים בעמוד
-// עצמו ואינם משתנים — תמונה מתחלפת, השער נשאר שער.
+// החלפת ציור בתמונה: מניחים קובץ ב-src/assets/gates/<slug>.jpg ומחליפים
+// כאן את ה-SVG של אותה קבוצה ב-<Image>, כמו בקבוצת hurting. המסגרת, הקשת
+// והשם יושבים בעמוד עצמו ואינם משתנים — תמונה מתחלפת, השער נשאר שער.
+import { Image } from 'astro:assets';
+import hurtingImg from '../assets/gates/hurting.jpg';
+
 interface Props {
   group: 'hurting' | 'self' | 'stuck' | 'beginning' | 'upward';
 }
@@ -16,20 +19,13 @@ const { group } = Astro.props;
 
 {
   group === 'hurting' && (
-    <svg viewBox="0 0 260 170" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <defs>
-        <linearGradient id="gate-hurting" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#8E3931" />
-          <stop offset="0.65" stop-color="#B0463B" />
-          <stop offset="1" stop-color="#D9A08A" />
-        </linearGradient>
-      </defs>
-      <rect width="260" height="170" fill="url(#gate-hurting)" />
-      <line x1="0" y1="128" x2="260" y2="128" stroke="#F3E9D3" stroke-width="1" opacity="0.5" />
-      <path d="M150 128 Q150 88 128 74 Q140 96 138 128" fill="#F3E9D3" opacity="0.55" />
-      <circle cx="60" cy="50" r="2" fill="#F3E9D3" opacity="0.4" />
-      <circle cx="205" cy="38" r="1.5" fill="#F3E9D3" opacity="0.3" />
-    </svg>
+    <Image
+      src={hurtingImg}
+      alt=""
+      widths={[480, 960]}
+      sizes="(max-width: 30rem) 100vw, 416px"
+      loading="eager"
+    />
   )
 }
 
