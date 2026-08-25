@@ -12,6 +12,7 @@ import { Image } from 'astro:assets';
 import hurtingImg from '../assets/gates/hurting.jpg';
 import selfImg from '../assets/gates/self.jpg';
 import stuckImg from '../assets/gates/stuck.jpg';
+import beginningImg from '../assets/gates/beginning.jpg';
 
 interface Props {
   group: 'hurting' | 'self' | 'stuck' | 'beginning' | 'upward';
@@ -57,21 +58,13 @@ const { group } = Astro.props;
 
 {
   group === 'beginning' && (
-    <svg viewBox="0 0 260 170" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <defs>
-        <linearGradient id="gate-beginning" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#F6E9C8" />
-          <stop offset="0.6" stop-color="#E4C583" />
-          <stop offset="1" stop-color="#C9A24D" />
-        </linearGradient>
-      </defs>
-      <rect width="260" height="170" fill="url(#gate-beginning)" />
-      <circle cx="130" cy="120" r="34" fill="#FBF3DC" opacity="0.9" />
-      <line x1="130" y1="62" x2="130" y2="46" stroke="#FBF3DC" stroke-width="2" opacity="0.8" />
-      <line x1="86" y1="82" x2="74" y2="70" stroke="#FBF3DC" stroke-width="2" opacity="0.6" />
-      <line x1="174" y1="82" x2="186" y2="70" stroke="#FBF3DC" stroke-width="2" opacity="0.6" />
-      <line x1="0" y1="152" x2="260" y2="152" stroke="#A8823A" stroke-width="1.5" opacity="0.6" />
-    </svg>
+    <Image
+      src={beginningImg}
+      alt=""
+      widths={[480, 960]}
+      sizes="(max-width: 30rem) 100vw, 416px"
+      loading="eager"
+    />
   )
 }
 
