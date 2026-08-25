@@ -10,6 +10,7 @@
 // והשם יושבים בעמוד עצמו ואינם משתנים — תמונה מתחלפת, השער נשאר שער.
 import { Image } from 'astro:assets';
 import hurtingImg from '../assets/gates/hurting.jpg';
+import selfImg from '../assets/gates/self.jpg';
 
 interface Props {
   group: 'hurting' | 'self' | 'stuck' | 'beginning' | 'upward';
@@ -31,19 +32,13 @@ const { group } = Astro.props;
 
 {
   group === 'self' && (
-    <svg viewBox="0 0 260 170" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <defs>
-        <linearGradient id="gate-self" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#00293F" />
-          <stop offset="0.7" stop-color="#003B5C" />
-          <stop offset="1" stop-color="#2E6285" />
-        </linearGradient>
-      </defs>
-      <rect width="260" height="170" fill="url(#gate-self)" />
-      <circle cx="130" cy="66" r="24" fill="none" stroke="#F3E9D3" stroke-width="1.4" opacity="0.85" />
-      <circle cx="130" cy="138" r="24" fill="none" stroke="#F3E9D3" stroke-width="1" opacity="0.28" />
-      <line x1="86" y1="102" x2="174" y2="102" stroke="#F3E9D3" stroke-width="1" opacity="0.5" />
-    </svg>
+    <Image
+      src={selfImg}
+      alt=""
+      widths={[480, 960]}
+      sizes="(max-width: 30rem) 100vw, 416px"
+      loading="eager"
+    />
   )
 }
 
