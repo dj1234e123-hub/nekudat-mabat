@@ -7,12 +7,15 @@
 // line — "שורת הדלת" בעמוד הכניסה: משפט קצר שמזהה ולא מתייג. היא פוגשת את
 // הקורא ("זה מוכר לי") בלי להסביר, בלי לייעץ ובלי לחשוף את נקודת המבט של
 // הרגעים שבפנים. נבדקת גם כמכלול — שלא תיווצר נוסחה חוזרת בין השורות.
+// לקבוצה יש line משלה — "שורת השער": יושבת מתחת לשם השער בעמוד הכניסה
+// ובראש עמוד השער. נולדה מקריאת כל רגעי הקבוצה (שלב 4.23.1).
 // accent — צבע מותג אחד לכל קבוצה (נקודות וקווים בלבד, לא מילוי), באותו
 // דפוס של עולמות הסיפורים.
 export const FEELING_GROUPS = [
   {
     slug: 'hurting',
     label: 'כשכואב',
+    line: 'יש דברים שכואבים בשקט.',
     accent: 'var(--brick)',
     titleAccent: 'var(--brick)',
     feelings: [
@@ -29,6 +32,7 @@ export const FEELING_GROUPS = [
     // ובכוונה אין בה שום תווית מאבחנת — מדף שדורש הודאה כתנאי כניסה לא ייפתח.
     slug: 'self',
     label: 'כשקשה מול עצמך',
+    line: 'אף אחד לא שופט אותך כמוך.',
     accent: 'var(--blue)',
     titleAccent: 'var(--blue)',
     feelings: [
@@ -42,6 +46,7 @@ export const FEELING_GROUPS = [
   {
     slug: 'stuck',
     label: 'כשקשה להתקדם',
+    line: 'הרגליים רוצות, ומשהו לא זז.',
     accent: 'var(--teal)',
     titleAccent: 'var(--teal)',
     feelings: [
@@ -59,6 +64,7 @@ export const FEELING_GROUPS = [
     // "רגע טוב" — שאיננו התחלה של שום דבר, אלא פשוט משהו שנפתח לרגע.
     slug: 'beginning',
     label: 'כשמשהו נפתח',
+    line: 'לא תמיד זה מרגיש כמו אור.',
     accent: 'var(--gold)',
     // זהב נמדד 2.24:1 כטקסט על הנייר (התקן: 4.5) — אותה מדידה שפסלה אותו
     // בשלב 4.8. הזהות נשארת בנקודה ובסימנים; הכותרת בדיו.
@@ -78,6 +84,7 @@ export const FEELING_GROUPS = [
     // 12 הרגעים (2026-08-25): מחווה גופנית במקום כיוון, והד לשם האתר.
     slug: 'upward',
     label: 'כשמרימים את המבט',
+    line: 'גם כשלא מרגישים כלום.',
     accent: 'var(--teal-deep)',
     titleAccent: 'var(--teal-deep)',
     feelings: [
@@ -108,8 +115,15 @@ export function feelingLabel(slug: FeelingSlug): string {
 
 /** התווית של הקבוצה שאליה שייך המצב, למשל loneliness → כשכואב */
 export function groupLabel(slug: FeelingSlug): string {
-  for (const group of FEELING_GROUPS) {
-    if (group.feelings.some((feeling) => feeling.slug === slug)) return group.label;
-  }
-  return '';
+  return groupOf(slug)?.label ?? '';
+}
+
+export type FeelingGroup = (typeof FEELING_GROUPS)[number];
+export type GroupSlug = FeelingGroup['slug'];
+
+/** הקבוצה שאליה שייך מצב, למשל loneliness → הקבוצה "כשכואב" */
+export function groupOf(slug: FeelingSlug): FeelingGroup | undefined {
+  return FEELING_GROUPS.find((group) =>
+    group.feelings.some((feeling) => feeling.slug === slug)
+  );
 }

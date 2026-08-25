@@ -8,28 +8,17 @@
 // החלפת תמונה: קובץ חדש ב-src/assets/gates/<slug>.jpg — הקשת, מסגרת הזהב
 // והשם יושבים בעמוד עצמו ואינם משתנים. תמונה מתחלפת, השער נשאר שער.
 import { Image } from 'astro:assets';
-import hurtingImg from '../assets/gates/hurting.jpg';
-import selfImg from '../assets/gates/self.jpg';
-import stuckImg from '../assets/gates/stuck.jpg';
-import beginningImg from '../assets/gates/beginning.jpg';
-import upwardImg from '../assets/gates/upward.jpg';
+import { GATE_IMAGES } from '../data/gate-images';
+import type { GroupSlug } from '../data/feelings';
 
 interface Props {
-  group: 'hurting' | 'self' | 'stuck' | 'beginning' | 'upward';
+  group: GroupSlug;
 }
 const { group } = Astro.props;
-
-const IMAGES = {
-  hurting: hurtingImg,
-  self: selfImg,
-  stuck: stuckImg,
-  beginning: beginningImg,
-  upward: upwardImg,
-} as const;
 ---
 
 <Image
-  src={IMAGES[group]}
+  src={GATE_IMAGES[group]}
   alt=""
   widths={[480, 960]}
   sizes="(max-width: 30rem) 100vw, 416px"

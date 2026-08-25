@@ -11,25 +11,15 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { FEELING_GROUPS } from '../../data/feelings';
-import { FEELING_MARKS } from '../../data/feeling-marks';
 import { SITE } from '../../data/site';
 import GateArt from '../../components/GateArt.astro';
+import FeelingDoors from '../../components/FeelingDoors.astro';
 
 const moments = await getCollection('moments');
 // מצב בלי תוכן עדיין מוצג (הוא חלק מהמבנה) אבל אינו קישור — כדי שלא להוביל למדף ריק.
 const filled = new Set(moments.map((moment) => moment.data.feeling));
 // דלת למי שלא מצליח לקרוא לזה בשם — רגע אקראי במקום בחירה מתוך רשימה.
 const momentUrls = moments.map((moment) => `/moments/${moment.data.feeling}/${moment.id}/`);
-
-// שורת השער: משפט קצר מתחת לשם הקבוצה. כמו שורות הדלת של המצבים —
-// מזהה בלי לתייג, ואינה חושפת את נקודת המבט של הרגעים שבפנים.
-const GATE_LINES: Record<string, string> = {
-  hurting: 'יש דברים שכואבים בשקט.',
-  self: 'אף אחד לא שופט אותך כמוך.',
-  stuck: 'הרגליים רוצות, ומשהו לא זז.',
-  beginning: 'לא תמיד זה מרגיש כמו אור.',
-  upward: 'גם כשלא מרגישים כלום.',
-};
 
 // דלת למי שדווקא יודע מה עובר עליו — ואין לזה מדף. פנייה פרטית לאפרים,
 // באותה שפה של שורת התגובה שבסוף הסיפורים: קישור שקט, לא כפתור.
@@ -54,14 +44,14 @@ const tellMeHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURICompone
           <li>
             <a
               class="gate"
-              href={`#${group.slug}`}
+              href={`/moments/${group.slug}/`}
               style={`--accent: ${group.accent}; --title: ${group.titleAccent}`}
             >
               <span class="arch">
                 <GateArt group={group.slug} />
               </span>
               <span class="gate-name">{group.label}</span>
-              <span class="gate-line">{GATE_LINES[group.slug]}</span>
+              <span class="gate-line">{group.line}</span>
             </a>
           </li>
         ))
@@ -88,35 +78,7 @@ const tellMeHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURICompone
             <span class="group-dot" aria-hidden="true" />
             {group.label}
           </summary>
-          <ul class="doors">
-            {group.feelings.map((feeling) => {
-              const inner = (
-                <>
-                  <span class="door-text">
-                    <span class="door-name">{feeling.label}</span>
-                    <span class="door-line">{feeling.line}</span>
-                  </span>
-                  <svg
-                    class="door-mark"
-                    width="66"
-                    height="33"
-                    viewBox="0 0 56 28"
-                    aria-hidden="true"
-                    set:html={FEELING_MARKS[feeling.slug]}
-                  />
-                </>
-              );
-              return (
-                <li>
-                  {filled.has(feeling.slug) ? (
-                    <a class="door" href={`/moments/${feeling.slug}/`}>{inner}</a>
-                  ) : (
-                    <span class="door is-empty" aria-disabled="true">{inner}</span>
-                  )}
-                </li>
-              );
-            })}
-          </ul>
+          <FeelingDoors group={group} filled={filled} />
         </details>
       ))
     }
@@ -134,26 +96,14 @@ const tellMeHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURICompone
     location.href = momentUrls[Math.floor(Math.random() * momentUrls.length)];
   });
 
-  // שער או עוגן (למשל /moments/#upward) פותח את הקבוצה שלו וגולל אליה —
-  // כך גם לחיצה על שער וגם כתובת משותפת בוואטסאפ מגיעות לקבוצה פתוחה.
+  // עוגן ישן (למשל /moments/#upward, מהתקופה שלפני עמודי השער) עדיין פותח
+  // את הקבוצה שלו במפת "כל המצבים" וגולל אליה — כתובות ששותפו לא נשברות.
   // בלי JavaScript הדפדפן עדיין גולל לכותרת הקבוצה; היא רק נשארת סגורה עד הקשה.
-  const openGroup = (id) => {
-    const group = document.getElementById(id);
-    if (group && group.tagName === 'DETAILS') {
-      group.open = true;
-      return group;
-    }
-    return null;
-  };
-
-  const fromHash = location.hash && openGroup(location.hash.slice(1));
-  if (fromHash) fromHash.scrollIntoView();
-
-  document.querySelectorAll('a.gate').forEach((gate) => {
-    gate.addEventListener('click', () => {
-      openGroup(gate.getAttribute('href').slice(1));
-    });
-  });
+  const target = location.hash && document.getElementById(location.hash.slice(1));
+  if (target && target.tagName === 'DETAILS') {
+    target.open = true;
+    target.scrollIntoView();
+  }
 </script>
 
 <style>
@@ -342,75 +292,6 @@ const tellMeHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURICompone
 
   .group-label:hover {
     opacity: 0.8;
-  }
-
-  .doors {
-    list-style: none;
-    padding: 0 0 1rem;
-    margin: 0;
-  }
-
-  .doors li + li {
-    border-top: 1px solid var(--line);
-  }
-
-  /* דלת: שורה ברוחב מלא, כמו מדף בספרייה. לא קופסה ולא כרטיס פוסט. */
-  .door {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.25rem;
-    min-height: 72px;
-    padding: 1rem 0.4rem;
-    text-decoration: none;
-  }
-
-  .door-text {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .door-name {
-    font-family: var(--font-display);
-    font-size: 1.3rem;
-    font-weight: 700;
-    line-height: 1.35;
-    color: var(--ink);
-    transition: color 0.15s ease;
-  }
-
-  .door-line {
-    color: var(--secondary);
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-top: 0.15rem;
-  }
-
-  /* הסימן יושב בקצה השורה, שקט אך נוכח. בריחוף הוא מתחזק — הדלת עונה למגע.
-     מוגדל מעט מגודל הציור (viewBox) כדי שלא ייעלם בגלילה מהירה בטלפון. */
-  .door-mark {
-    flex-shrink: 0;
-    margin-inline-start: 0.35rem;
-    opacity: 0.8;
-    transition: opacity 0.15s ease;
-  }
-
-  a.door:hover .door-name {
-    color: var(--title);
-  }
-
-  a.door:hover .door-mark {
-    opacity: 1;
-  }
-
-  /* מצב שעדיין אין בו תוכן — נוכח במבנה, אך לא מוביל לשום מקום */
-  .door.is-empty .door-name,
-  .door.is-empty .door-line {
-    color: var(--muted);
-  }
-
-  .door.is-empty .door-mark {
-    opacity: 0.3;
   }
 
   .soon {

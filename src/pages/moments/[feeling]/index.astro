@@ -1,26 +1,61 @@
 ---
-// מדף של מצב אחד — כל הרגעים ששייכים אליו.
-// המדף הוא מסנן: הקורא סורק ובוחר איזה מהרגעים הוא שלו (docs/MOMENT-FORMAT.md).
+// הנתיב הזה משרת שני סוגי עמודים שחיים תחת /moments/:
+//
+// 1. עמוד שער (/moments/hurting/) — ה"בפנים" של שער מעמוד הכניסה: אותה
+//    קשת עם התמונה למעלה, שם השער ושורת השער, ומתחתיהם דלתות המצבים של
+//    הקבוצה. תמונת השער היא גם תמונת השיתוף של העמוד.
+// 2. מדף של מצב אחד (/moments/loneliness/) — כל הרגעים ששייכים אליו.
+//    המדף הוא מסנן: הקורא סורק ובוחר איזה מהרגעים הוא שלו (docs/MOMENT-FORMAT.md).
+//
+// שניהם באותו קובץ כי הם חולקים את אותה רמת כתובת — של קבוצות ושל מצבים
+// אין חפיפת שמות (הוולידציה של הסכמה שומרת שמצב חדש לא יתנגש).
 import { getCollection } from 'astro:content';
+import { getImage } from 'astro:assets';
 import Base from '../../../layouts/Base.astro';
 import MomentBody from '../../../components/MomentBody.astro';
-import { FEELING_SLUGS, feelingLabel, groupLabel, type FeelingSlug } from '../../../data/feelings';
+import GateArt from '../../../components/GateArt.astro';
+import FeelingDoors from '../../../components/FeelingDoors.astro';
+import {
+  FEELING_GROUPS,
+  FEELING_SLUGS,
+  feelingLabel,
+  groupOf,
+  type FeelingSlug,
+} from '../../../data/feelings';
+import { GATE_IMAGES } from '../../../data/gate-images';
 import { parseMoment } from '../../../lib/moment-format';
 
 export async function getStaticPaths() {
   const moments = await getCollection('moments');
-  // נבנים רק מדפים שיש בהם תוכן — כדי שלא ייווצרו עמודים ריקים.
-  return FEELING_SLUGS.filter((feeling) =>
+  // מדפי מצבים — נבנים רק כשיש בהם תוכן, כדי שלא ייווצרו עמודים ריקים.
+  const feelingPaths = FEELING_SLUGS.filter((feeling) =>
     moments.some((moment) => moment.data.feeling === feeling)
   ).map((feeling) => ({ params: { feeling } }));
+  // עמודי שער — אחד לכל קבוצה.
+  const gatePaths = FEELING_GROUPS.map((group) => ({ params: { feeling: group.slug } }));
+  return [...feelingPaths, ...gatePaths];
 }
 
-const feeling = Astro.params.feeling as FeelingSlug;
-const label = feelingLabel(feeling);
+const param = Astro.params.feeling!;
+const gate = FEELING_GROUPS.find((group) => group.slug === param);
 
-const moments = (await getCollection('moments', (m) => m.data.feeling === feeling)).sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime()
-);
+// ── נתוני עמוד שער ──
+const allMoments = gate ? await getCollection('moments') : [];
+const filled = new Set(allMoments.map((moment) => moment.data.feeling));
+// תמונת השיתוף של עמוד השער היא תמונת השער עצמה.
+const gateOg = gate
+  ? await getImage({ src: GATE_IMAGES[gate.slug], width: 1200, format: 'jpeg' })
+  : null;
+
+// ── נתוני מדף מצב ──
+const feeling = param as FeelingSlug;
+const label = gate ? '' : feelingLabel(feeling);
+const parentGroup = gate ? undefined : groupOf(feeling);
+const moments = gate
+  ? []
+  : (await getCollection('moments', (m) => m.data.feeling === feeling)).sort(
+      (a, b) => b.data.date.getTime() - a.data.date.getTime()
+    );
 // בפורמט החדש המדף מציג **כותרת + מהלך המציאות בלבד**. עם כותרת-וו אמיתית
 // תפקיד המדף משתנה מ"לקרוא כאן" ל"איזה מהשלושה הוא שלי", ומהלך המציאות הוא
 // בדיוק המסנן הזה. הסיום אינו מוצג — לא שורפים אותו לפני שהקורא הגיע אליו.
@@ -29,40 +64,131 @@ const cards = moments.map((moment) => ({
   moment,
   format: parseMoment(moment.body ?? '', moment.data.title),
 }));
+
+const title = gate ? `${gate.label} · רגע של נקודת מבט` : `${label} · רגע של נקודת מבט`;
+const description = gate ? gate.line : `רגע של נקודת מבט — ${label}`;
 ---
 
-<Base title={`${label} · רגע של נקודת מבט`} description={`רגע של נקודת מבט — ${label}`}>
+<Base
+  title={title}
+  description={description}
+  ogImage={gateOg ? new URL(gateOg.src, Astro.site).href : undefined}
+>
   <main>
-    <p class="group-label">{groupLabel(feeling)}</p>
-    <h1 class="page-title">{label}</h1>
+    {
+      gate ? (
+        <div class="gate-hall" style={`--accent: ${gate.accent}; --title: ${gate.titleAccent}`}>
+          <span class="arch">
+            <GateArt group={gate.slug} />
+          </span>
+          <h1 class="gate-name">{gate.label}</h1>
+          <p class="gate-line">{gate.line}</p>
 
-    <ul class="moment-list">
-      {
-        cards.map(({ moment, format }) => (
-          <li class="moment-card">
-            <a class="moment-link" href={`/moments/${feeling}/${moment.id}/`}>
-              {format.title && <span class="moment-hook">{format.title}</span>}
-              <MomentBody format={format} firstStanzaOnly={format.isNew} />
-              <span class="moment-more">
-                {format.isNew ? 'לרגע המלא →' : 'לרגע הזה →'}
-              </span>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+          <FeelingDoors group={gate} filled={filled} />
 
-    <nav class="page-footer">
-      <a href="/moments/">→ לכל המצבים</a>
-    </nav>
+          <nav class="page-footer">
+            <a href="/moments/">→ לכל השערים</a>
+          </nav>
+        </div>
+      ) : (
+        <>
+          <p class="group-label">
+            {parentGroup && <a href={`/moments/${parentGroup.slug}/`}>{parentGroup.label}</a>}
+          </p>
+          <h1 class="page-title">{label}</h1>
+
+          <ul class="moment-list">
+            {cards.map(({ moment, format }) => (
+              <li class="moment-card">
+                <a class="moment-link" href={`/moments/${feeling}/${moment.id}/`}>
+                  {format.title && <span class="moment-hook">{format.title}</span>}
+                  <MomentBody format={format} firstStanzaOnly={format.isNew} />
+                  <span class="moment-more">
+                    {format.isNew ? 'לרגע המלא →' : 'לרגע הזה →'}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <nav class="page-footer">
+            <a href="/moments/">→ לכל המצבים</a>
+          </nav>
+        </>
+      )
+    }
   </main>
 </Base>
 
 <style>
+  /* ── עמוד שער ── */
+  .gate-hall {
+    max-width: 26rem;
+    margin: 0 auto;
+  }
+
+  /* אותה קשת של עמוד הכניסה — השער נשאר שער גם בפנים */
+  .arch {
+    position: relative;
+    display: block;
+    height: 170px;
+    border-radius: 130px 130px 6px 6px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    box-shadow: 0 10px 26px rgba(46, 42, 36, 0.14);
+    margin-top: 0.75rem;
+  }
+
+  .arch::after {
+    content: '';
+    position: absolute;
+    inset: 7px;
+    border: 1px solid rgba(201, 162, 77, 0.55);
+    border-radius: 122px 122px 3px 3px;
+    pointer-events: none;
+  }
+
+  .arch :global(img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  .gate-name {
+    text-align: center;
+    font-size: 1.8rem;
+    color: var(--title);
+    margin: 1.1rem 0 0.1rem;
+  }
+
+  .gate-line {
+    text-align: center;
+    color: var(--secondary);
+    font-size: 0.98rem;
+    margin-bottom: 1.6rem;
+  }
+
+  /* ── מדף מצב ── */
   .group-label {
     text-align: center;
     color: var(--muted);
     font-size: 0.9rem;
+  }
+
+  /* שם הקבוצה במדף הוא עכשיו דלת חזרה לעמוד השער */
+  .group-label a {
+    color: inherit;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    padding-block: 0.35rem;
+  }
+
+  .group-label a:hover {
+    color: var(--teal);
   }
 
   .page-title {
