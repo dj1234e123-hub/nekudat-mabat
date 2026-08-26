@@ -146,8 +146,11 @@ const PDF = '‬';
  * שורה אחת → תוכן של <text>, עם ההדגשות כ-tspan בגופן הכבד.
  * resvg מעצב את כל אלמנט הטקסט כיחידה אחת, ולכן ה-bidi נשמר גם כשיש בתוכו
  * כמה גופנים — וזה מה שמאפשר להדגיש מילה בתוך שורה עברית.
+ *
+ * עטיפת ה-RLO היא תיקון לשורה עברית בלבד: בשורה לטינית (ספרדית) היא הייתה
+ * הופכת את הטקסט כולו, ושם הכיווניות ממילא חד-משמעית — לכן rtl=false מדלג.
  */
-function inline(line: string): string {
+function inline(line: string, rtl: boolean): string {
   const body = line
     .split(/(\*\*[^*]+\*\*)/)
     .filter(Boolean)
@@ -157,7 +160,7 @@ function inline(line: string): string {
         : escape(part)
     )
     .join('');
-  return `${RLO}${body}${PDF}`;
+  return rtl ? `${RLO}${body}${PDF}` : body;
 }
 
 /** פריט מוכן לציור, עם מיקום אנכי מוחלט */
@@ -270,9 +273,20 @@ function ornamentSvg(y: number): string {
   ].join('\n  ');
 }
 
-export function renderMomentCard(body: string, siteHost: string, title?: string | null): Buffer {
+export function renderMomentCard(
+  body: string,
+  siteHost: string,
+  title?: string | null,
+  lang: 'he' | 'es' = 'he'
+): Buffer {
   const format = parseMoment(body, title);
   const { items, height } = fit(format);
+  const rtl = lang !== 'es';
+  const direction = rtl ? 'rtl' : 'ltr';
+  // אותה שפה עיצובית, חתימה בשפת הקורא. הכתובת בספרדית מצביעה על שער האזור —
+  // מי שיקליד את הדומיין לבדו ינחת בעברית.
+  const signature = rtl ? `${RLO}נקודת מבט · אפרים עטיה${PDF}` : 'Punto de Vista · Efraim Atia';
+  const urlText = rtl ? siteHost : `${siteHost}/es`;
 
   // מרכוז אנכי של גוש הטקסט בתוך התחום שלו. Math.max שומר על הקצה העליון:
   // רגע ארוך מהרגיל יגלוש למטה ולא ידרוס את נקודת הזהב שבראש הכרטיס.
@@ -284,7 +298,7 @@ export function renderMomentCard(body: string, siteHost: string, title?: string 
       if (item.text) {
         const y = cursor + item.baseline;
         svg.push(
-          `<text x="${CENTER}" y="${y.toFixed(1)}" font-family="${item.family}" font-size="${item.size}" fill="${item.fill}" direction="rtl" text-anchor="middle">${inline(item.text)}</text>`
+          `<text x="${CENTER}" y="${y.toFixed(1)}" font-family="${item.family}" font-size="${item.size}" fill="${item.fill}" direction="${direction}" text-anchor="middle">${inline(item.text, rtl)}</text>`
         );
       }
     } else if (item.kind === 'ornament') {
@@ -303,8 +317,8 @@ export function renderMomentCard(body: string, siteHost: string, title?: string 
   <circle cx="${CENTER}" cy="${DOT_Y}" r="${DOT_R}" fill="${GOLD}"/>
   ${svg.join('\n  ')}
   <line x1="${CENTER - RULE_HALF}" y1="${RULE_Y}" x2="${CENTER + RULE_HALF}" y2="${RULE_Y}" stroke="${GOLD}" stroke-width="2"/>
-  <text x="${CENTER}" y="${SIGN_Y}" font-family="Heebo Bold" font-size="30" fill="${TEAL_DEEP}" direction="rtl" text-anchor="middle">${RLO}נקודת מבט · אפרים עטיה${PDF}</text>
-  <text x="${CENTER}" y="${URL_Y}" font-family="Heebo" font-size="24" fill="${MUTED}" text-anchor="middle">${escape(siteHost)}</text>
+  <text x="${CENTER}" y="${SIGN_Y}" font-family="Heebo Bold" font-size="30" fill="${TEAL_DEEP}" direction="${direction}" text-anchor="middle">${signature}</text>
+  <text x="${CENTER}" y="${URL_Y}" font-family="Heebo" font-size="24" fill="${MUTED}" text-anchor="middle">${escape(urlText)}</text>
 </svg>`;
 
   return new Resvg(doc, {
