@@ -1,40 +1,57 @@
 ---
 // דף הבית — הכניסה לאתר, לא רשימת הסיפורים.
-// הסדר: מי אנחנו → הפעולה הראשית → רגע אמיתי → הסיפורים → הקבוצה.
-// עיקרון מנחה: הדף מציג רק תוכן שקיים בפועל. אין שורת קטגוריות ואין אזור
-// שמוביל לעולם ריק — עולם תוכן יקבל מקום בניווט כשיהיה בו תוכן לעמוד עליו.
+// שני עולמות התוכן המרכזיים מוצגים כשתי דלתות בקנה מידה שווה:
+// רגע של נקודת מבט (עם רגע אמיתי בשלמותו) מול שלושת עולמות הסיפורים.
+// עיקרון מנחה: הדף מציג רק תוכן שקיים בפועל.
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import StoryCard from '../components/StoryCard.astro';
 import JoinGroup from '../components/JoinGroup.astro';
 import { websiteJsonLd } from '../lib/structured-data';
 import MomentBody from '../components/MomentBody.astro';
 import { parseMoment } from '../lib/moment-format';
+import { SECTIONS_META, SECTION_SLUGS, type SectionSlug } from '../data/sections';
 
 // דף הבית נותן טעם ומוביל הלאה; הארכיון עצמו חי ב-/stories/.
 const allStories = (await getCollection('stories')).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
 
-// שלושה סיפורים נבחרים, אחד מכל עולם — כך דף הבית מלמד את המפה בלי להסביר
-// אותה. הבחירה ידנית ולא לפי תאריך: הרושם הראשון הוא החלטה, לא תוצאה של סדר
-// פרסום. השדה featured קובע גם חברות וגם מיקום, ושינוי הוא מספר אחד בקובץ.
-// אם לא סומן מספיק — נפילה לאחור לשלושה האחרונים, כדי שהדף לעולם לא יתרוקן.
+// שלושה סיפורים נבחרים, אחד מכל עולם — הרושם הראשון הוא החלטה, לא תוצאה
+// של סדר פרסום. השדה featured קובע גם חברות וגם מיקום; בלי סימון — נפילה
+// לאחור לחדש ביותר בכל עולם, כדי שהדלת לעולם לא תתרוקן.
 const picked = allStories
   .filter((s) => s.data.featured !== undefined)
   .sort((a, b) => a.data.featured! - b.data.featured!);
-const stories = picked.length >= 3 ? picked.slice(0, 3) : allStories.slice(0, 3);
-const storyUrls = allStories.map((s) => `/stories/${s.id}/`);
+const featuredStories = picked.length >= 3 ? picked.slice(0, 3) : allStories.slice(0, 3);
 
-// הרגע שמוצג בדף הבית: מוגרל מחדש בכל טעינה, בצד הקורא — כדי שמי שחוזר לאתר
-// לא יראה שוב ושוב את אותו רגע קבוע. כל 66 הרגעים נבנים כאן לתבניות מוסתרות
+// דלת הסיפורים: כרטיס לכל עולם תוכן שיש בו סיפורים, עם סיפור-דוגמה אמיתי —
+// הנבחר של אותו עולם, או החדש ביותר בו.
+const GATE_EMOJI: Record<SectionSlug, string> = {
+  meshalim: '📖',
+  tzadikim: '✨',
+  yoman: '📔',
+};
+const WORLD_LINK_TEXT: Record<SectionSlug, string> = {
+  meshalim: 'כל המשלים',
+  tzadikim: 'כל סיפורי הצדיקים',
+  yoman: 'הכל מהיומן',
+};
+const worlds = SECTION_SLUGS.map((slug) => {
+  const meta = SECTIONS_META[slug];
+  if ('hidden' in meta && meta.hidden) return null;
+  const story =
+    featuredStories.find((s) => s.data.section === slug) ??
+    allStories.find((s) => s.data.section === slug);
+  if (!story) return null;
+  return { slug, meta, story, emoji: GATE_EMOJI[slug], linkText: WORLD_LINK_TEXT[slug] };
+}).filter((w) => w !== null);
+
+// הרגע שמוצג בדלת הרגעים: מוגרל מחדש בכל טעינה, בצד הקורא — כדי שמי שחוזר
+// לאתר לא יראה שוב ושוב את אותו רגע קבוע. כל הרגעים נבנים לתבניות מוסתרות
 // (<template>), והסקריפט בתחתית הקובץ בוחר אחת מהן באקראי ומשתיל אותה במקום.
-// זה עובד בלי הפרש גובה בין רגע לרגע: הפורמט קבע שכל שלושת המהלכים תמיד
-// באותו גובה בדיוק (docs/MOMENT-FORMAT.md), ולכן אין קפיצת פריסה בהחלפה.
 //
 // בלי JavaScript — ולקוראי מסך/מנועי חיפוש שלא מריצים סקריפט — נשאר הרגע
-// החדש ביותר, בדיוק כמו שהיה כאן קודם: שובר השוויון על פני תאריך זהה הוא
-// שם הקובץ.
+// החדש ביותר: שובר השוויון על פני תאריך זהה הוא שם הקובץ.
 const moments = (await getCollection('moments')).sort((a, b) => {
   const byDate = b.data.date.getTime() - a.data.date.getTime();
   return byDate !== 0 ? byDate : b.id.localeCompare(a.id);
@@ -64,9 +81,9 @@ const DESCRIPTION =
       </p>
     </section>
 
-    <!-- =========== שתי דלתות צד אל צד ============ -->
+    <!-- שתי דלתות בקנה מידה שווה: רגעים מול סיפורים -->
     <section class="dual-section">
-      <!-- דלת שמאל: רגעים -->
+      <!-- דלת הרגעים -->
       {
         featuredMoment && (
           <div class="door door-moments">
@@ -75,7 +92,7 @@ const DESCRIPTION =
               <p class="door-subheader">רגע קצר שמדבר ישירות אליך</p>
             </div>
 
-            <div class="door-gate">💭</div>
+            <div class="door-gate" aria-hidden="true">💭</div>
 
             <div class="door-content">
               <article class="moment-sample">
@@ -84,7 +101,7 @@ const DESCRIPTION =
                     {featuredMoment.format.title}
                   </a>
                 </h3>
-                <div id="moment-body-mount" class="moment-body-preview">
+                <div id="moment-body-mount">
                   <MomentBody format={featuredMoment.format} />
                 </div>
               </article>
@@ -95,7 +112,8 @@ const DESCRIPTION =
             </div>
 
             {
-              /* המאגר שממנו מוגרל הרגע */
+              /* המאגר שממנו מוגרל הרגע (ראו הסקריפט בתחתית הקובץ). <template>
+                 אינו מוצג ואינו נכלל בפריסה. */
               momentPool.map((m) => (
                 <template data-moment-option data-url={m.url} data-title={m.format.title}>
                   <MomentBody format={m.format} />
@@ -106,38 +124,33 @@ const DESCRIPTION =
         )
       }
 
-      <!-- דלת ימין: סיפורים -->
-      <div class="door door-stories">
+      <!-- דלת הסיפורים: שלושת עולמות התוכן -->
+      <div class="door-stories">
         <div class="stories-header">
           <h2>סיפורים</h2>
-          <p>בחר את עולמך וקרא עמוק</p>
+          <p>שלושה עולמות. בחר מאיפה להתחיל.</p>
         </div>
 
         <div class="stories-grid">
-          {stories.map((story) => (
-            <div class="story-card" data-section={story.data.section}>
-              <div class="story-gate">
-                {story.data.section === 'mishals' && '📖'}
-                {story.data.section === 'sages' && '✨'}
-                {story.data.section === 'journal' && '📔'}
+          {
+            worlds.map(({ slug, meta, story, emoji, linkText }) => (
+              <div class="story-card" data-section={slug}>
+                <div class="story-gate" aria-hidden="true">{emoji}</div>
+                <div class="story-header">
+                  <h3>{meta.label}</h3>
+                  <p class="story-line">{meta.line}</p>
+                </div>
+                <div class="story-body">
+                  <a class="story-example" href={`/stories/${story.id}/`}>
+                    {story.data.title}
+                  </a>
+                  <a href={`/sections/${slug}/`} class="story-link">
+                    {linkText}
+                  </a>
+                </div>
               </div>
-              <div class="story-header">
-                <h3>
-                  {story.data.section === 'mishals' && 'משלים'}
-                  {story.data.section === 'sages' && 'סיפורי צדיקים'}
-                  {story.data.section === 'journal' && 'מהיומן שלי'}
-                </h3>
-              </div>
-              <div class="story-body">
-                <p class="story-examples">{story.data.title}</p>
-                <a href={`/stories/${story.id}/`} class="story-link">
-                  {story.data.section === 'mishals' && 'כל המשלים →'}
-                  {story.data.section === 'sages' && 'כל הצדיקים →'}
-                  {story.data.section === 'journal' && 'הכל מהיומן →'}
-                </a>
-              </div>
-            </div>
-          ))}
+            ))
+          }
         </div>
       </div>
     </section>
@@ -145,15 +158,6 @@ const DESCRIPTION =
     <JoinGroup />
   </main>
 </Base>
-
-<script is:inline define:vars={{ storyUrls }}>
-  const randomStory = document.getElementById('random-story');
-  if (randomStory) {
-    randomStory.addEventListener('click', () => {
-      location.href = storyUrls[Math.floor(Math.random() * storyUrls.length)];
-    });
-  }
-</script>
 
 <script is:inline>
   const momentOptions = document.querySelectorAll('template[data-moment-option]');
@@ -174,7 +178,7 @@ const DESCRIPTION =
   .hero {
     text-align: center;
     padding-top: 0.5rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2.25rem;
   }
 
   .hero h1 {
@@ -184,6 +188,7 @@ const DESCRIPTION =
     text-wrap: balance;
   }
 
+  /* משפט אופי, לא שורת ניווט — "תובנות" עדיין אין לה אזור, ולכן היא לא קישור. */
   .triad {
     font-family: var(--font-display);
     font-size: 1.05rem;
@@ -199,31 +204,42 @@ const DESCRIPTION =
     line-height: 1.75;
   }
 
-  /* =========== דלתות צד אל צד ============ */
+  /* ============ שתי הדלתות ============ */
+  /* הדלתות פורצות את עמודת התוכן הרגילה (42rem) כדי לשבת זו לצד זו במסך רחב.
+     שני השוליים שליליים באותה מידה, ולכן המרכוז נשמר גם ב-RTL. */
   .dual-section {
+    --bleed: min(62rem, 100vw - 3rem);
+    width: var(--bleed);
+    margin-inline: calc((100% - var(--bleed)) / 2);
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-bottom: 2rem;
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+    align-items: start;
+    margin-bottom: 2.5rem;
   }
 
-  .door {
-    background: white;
+  @media (min-width: 800px) {
+    .dual-section {
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+  }
+
+  /* דלת הרגעים */
+  .door-moments {
+    background: var(--paper);
+    border: 2px solid var(--brick);
     border-radius: var(--radius);
     overflow: hidden;
     display: flex;
     flex-direction: column;
-  }
-
-  /* דלת שמאל: רגעים */
-  .door-moments {
-    border: 2px solid var(--red-deep);
+    box-shadow: var(--shadow);
   }
 
   .door-header {
-    background: var(--red-deep);
-    color: white;
-    padding: 1.2rem;
+    background: var(--brick);
+    color: #fff;
+    padding: 1.1rem 1rem;
     text-align: center;
   }
 
@@ -232,26 +248,30 @@ const DESCRIPTION =
     font-size: 1.3rem;
     margin: 0;
     font-weight: 700;
+    color: #fff;
   }
 
   .door-subheader {
     font-size: 0.85rem;
-    opacity: 0.9;
-    margin-top: 0.3rem;
+    opacity: 0.92;
+    margin: 0.3rem 0 0;
   }
 
+  /* תמונת שער — כרגע ממלא-מקום; תוחלף בצילום */
   .door-gate {
     width: 100%;
-    height: 200px;
-    background: linear-gradient(135deg, rgba(176, 70, 59, 0.1) 0%, rgba(176, 70, 59, 0.05) 100%);
+    height: 180px;
+    background: linear-gradient(135deg, rgba(176, 70, 59, 0.12) 0%, rgba(176, 70, 59, 0.04) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 4rem;
+    font-size: 3.5rem;
   }
 
   .door-content {
-    padding: 1.5rem;
+    /* הרגע בדלת קטן מזה שבעמוד שלו — כאן הוא אורח */
+    --moment-size: 1rem;
+    padding: 1.4rem 1.2rem 1.2rem;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -262,13 +282,12 @@ const DESCRIPTION =
   }
 
   .moment-title {
-    font-family: var(--font-display);
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--red-deep);
-    line-height: 1.2;
-    margin: 0 0 0.7rem;
     text-align: center;
+    font-size: 1.25rem;
+    line-height: 1.3;
+    color: var(--blue);
+    margin: 0 0 1.2rem;
+    text-wrap: balance;
   }
 
   .moment-title a {
@@ -276,20 +295,9 @@ const DESCRIPTION =
     text-decoration: none;
   }
 
-  .moment-title a:hover {
-    text-decoration: underline;
-  }
-
-  .moment-body-preview {
-    font-size: 0.9rem;
-    line-height: 1.7;
-    text-align: center;
-    color: var(--ink);
-  }
-
   .moment-footer {
     margin-top: auto;
-    padding-top: 1rem;
+    padding-top: 1.1rem;
     border-top: 1px solid var(--line);
   }
 
@@ -299,24 +307,21 @@ const DESCRIPTION =
     justify-content: center;
     width: 100%;
     min-height: 44px;
-    padding: 0.75rem;
-    background: var(--red-deep);
-    color: white;
-    border: none;
-    border-radius: var(--radius);
-    font-family: var(--font-body);
+    padding: 0.7rem;
+    background: var(--brick);
+    color: #fff;
+    border-radius: calc(var(--radius) / 1.5);
     font-size: 0.95rem;
     font-weight: 600;
     text-decoration: none;
-    cursor: pointer;
-    transition: opacity 0.2s;
+    transition: opacity 0.15s;
   }
 
   .door-cta:hover {
     opacity: 0.9;
   }
 
-  /* דלת ימין: סיפורים */
+  /* דלת הסיפורים */
   .door-stories {
     display: flex;
     flex-direction: column;
@@ -324,14 +329,13 @@ const DESCRIPTION =
 
   .stories-header {
     text-align: center;
-    margin-bottom: 1.3rem;
+    margin-bottom: 1.2rem;
   }
 
   .stories-header h2 {
     font-family: var(--font-display);
     font-size: 1.3rem;
     margin: 0 0 0.3rem;
-    color: var(--ink);
   }
 
   .stories-header p {
@@ -343,97 +347,107 @@ const DESCRIPTION =
   .stories-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.2rem;
+    gap: 1.1rem;
   }
 
   .story-card {
-    background: white;
+    background: var(--paper);
     border: 1px solid var(--line);
     border-radius: var(--radius);
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    box-shadow: var(--shadow);
   }
 
+  /* תמונת שער לעולם — כרגע ממלא-מקום; תוחלף בצילום */
   .story-gate {
     width: 100%;
-    height: 120px;
+    height: 96px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
 
-  .story-card[data-section="mishals"] .story-gate {
-    background: linear-gradient(135deg, rgba(176, 70, 59, 0.1) 0%, rgba(176, 70, 59, 0.05) 100%);
+  .story-card[data-section='meshalim'] .story-gate {
+    background: linear-gradient(135deg, rgba(176, 70, 59, 0.12) 0%, rgba(176, 70, 59, 0.04) 100%);
   }
 
-  .story-card[data-section="sages"] .story-gate {
-    background: linear-gradient(135deg, rgba(31, 92, 87, 0.1) 0%, rgba(31, 92, 87, 0.05) 100%);
+  .story-card[data-section='tzadikim'] .story-gate {
+    background: linear-gradient(135deg, rgba(31, 92, 87, 0.12) 0%, rgba(31, 92, 87, 0.04) 100%);
   }
 
-  .story-card[data-section="journal"] .story-gate {
-    background: linear-gradient(135deg, rgba(0, 59, 92, 0.1) 0%, rgba(0, 59, 92, 0.05) 100%);
+  .story-card[data-section='yoman'] .story-gate {
+    background: linear-gradient(135deg, rgba(0, 59, 92, 0.12) 0%, rgba(0, 59, 92, 0.04) 100%);
   }
 
   .story-header {
-    padding: 0.9rem 1rem;
+    padding: 0.85rem 1rem 0.7rem;
     border-bottom: 1px solid var(--line);
   }
 
   .story-header h3 {
     font-family: var(--font-display);
-    font-size: 1rem;
+    font-size: 1.1rem;
     margin: 0;
     font-weight: 700;
   }
 
-  .story-card[data-section="mishals"] .story-header h3 {
-    color: var(--red-deep);
+  .story-card[data-section='meshalim'] .story-header h3 {
+    color: var(--brick);
   }
 
-  .story-card[data-section="sages"] .story-header h3 {
-    color: var(--teal-deep);
+  .story-card[data-section='tzadikim'] .story-header h3 {
+    color: var(--teal);
   }
 
-  .story-card[data-section="journal"] .story-header h3 {
-    color: var(--blue-deep);
+  .story-card[data-section='yoman'] .story-header h3 {
+    color: var(--blue);
+  }
+
+  .story-line {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin: 0.25rem 0 0;
+    line-height: 1.5;
   }
 
   .story-body {
-    padding: 0.8rem 1rem;
+    padding: 0.75rem 1rem 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
   }
 
-  .story-examples {
-    display: block;
-    font-size: 0.75rem;
-    color: var(--muted);
-    margin: 0 0 0.6rem;
+  /* סיפור-דוגמה אמיתי מהעולם — טעימה, לא רשימה */
+  .story-example {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--ink);
+    text-decoration: none;
     line-height: 1.4;
+    min-height: 32px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .story-example:hover {
+    text-decoration: underline;
   }
 
   .story-link {
-    display: inline-block;
-    font-size: 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    font-size: 0.85rem;
     font-weight: 600;
-    color: var(--teal-deep);
+    color: var(--teal);
     text-decoration: none;
   }
 
   .story-link:hover {
     text-decoration: underline;
-  }
-
-  /* בטלפון */
-  @media (max-width: 800px) {
-    .dual-section {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-
-    .door-gate {
-      height: 150px;
-      font-size: 3rem;
-    }
   }
 </style>
