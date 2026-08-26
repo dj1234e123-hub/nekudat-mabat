@@ -4,6 +4,7 @@
 // רגע של נקודת מבט (עם רגע אמיתי בשלמותו) מול שלושת עולמות הסיפורים.
 // עיקרון מנחה: הדף מציג רק תוכן שקיים בפועל.
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import JoinGroup from '../components/JoinGroup.astro';
 import { websiteJsonLd } from '../lib/structured-data';
@@ -102,7 +103,13 @@ const DESCRIPTION =
             </div>
 
             <a href="/moments/" class="gate-link" aria-label="לכל הרגעים">
-              <img src={momentGate.src} alt="" class="door-gate" decoding="async" />
+              <Image
+                src={momentGate}
+                alt=""
+                widths={[480, 960]}
+                sizes="(max-width: 50rem) 100vw, 460px"
+                class="door-gate"
+              />
             </a>
 
             <div class="door-content">
@@ -148,12 +155,13 @@ const DESCRIPTION =
               <div class="story-card" data-section={slug}>
                 {image ? (
                   <a href={`/sections/${slug}/`} class="gate-link" aria-label={linkText}>
-                    <img
-                      src={image.image.src}
+                    <Image
+                      src={image.image}
                       alt=""
+                      widths={[480, 960]}
+                      sizes="(max-width: 50rem) 100vw, 460px"
                       class="story-gate"
                       style={`object-position: ${image.position}`}
-                      decoding="async"
                     />
                   </a>
                 ) : (

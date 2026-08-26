@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import StoryCard from '../../components/StoryCard.astro';
 import { SECTIONS_META, SECTION_SLUGS, type SectionSlug } from '../../data/sections';
@@ -23,12 +24,14 @@ const stories = (await getCollection('stories', (s) => s.data.section === sectio
   <main>
     {
       gateImage && (
-        <img
-          src={gateImage.image.src}
+        <Image
+          src={gateImage.image}
           alt=""
+          widths={[480, 960, 1344]}
+          sizes="(max-width: 42rem) 100vw, 42rem"
           class="section-gate"
           style={`object-position: ${gateImage.position}`}
-          decoding="async"
+          loading="eager"
         />
       )
     }
