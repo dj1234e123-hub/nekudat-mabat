@@ -60,7 +60,9 @@ const pageUrl = new URL(`/es/momentos/${feeling}/${moment.id}/`, Astro.site).hre
       {!format.isNew && <span class="end-dot" aria-hidden="true" />}
     </article>
 
-    <ShareRow title={label} url={pageUrl} label="Compartir:" imageUrl="" />
+    {/* כמו בעברית לפני תמונות השיתוף: וואטסאפ שולח את הטקסט המלא + קישור.
+        כשתיבנינה תמונות שיתוף לספרדית — יועבר לכאן imageUrl כמו בעמוד העברי. */}
+    <ShareRow title={title} url={pageUrl} lang="es" shareText={plainText} />
 
     <nav class="moment-footer">
       <a href={`/es/momentos/${feeling}/`}>Más sobre {label.toLowerCase()}</a>
