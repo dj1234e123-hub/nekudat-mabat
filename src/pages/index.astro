@@ -33,11 +33,6 @@ const GATE_EMOJI: Record<SectionSlug, string> = {
   tzadikim: '✨',
   yoman: '📔',
 };
-const WORLD_LINK_TEXT: Record<SectionSlug, string> = {
-  meshalim: 'כל המשלים',
-  tzadikim: 'כל סיפורי הצדיקים',
-  yoman: 'הכל מהיומן',
-};
 const worlds = SECTION_SLUGS.map((slug) => {
   const meta = SECTIONS_META[slug];
   if ('hidden' in meta && meta.hidden) return null;
@@ -51,7 +46,7 @@ const worlds = SECTION_SLUGS.map((slug) => {
     story,
     emoji: GATE_EMOJI[slug],
     image: SECTION_GATE_IMAGES[slug] ?? null,
-    linkText: WORLD_LINK_TEXT[slug],
+    linkText: meta.linkText,
   };
 }).filter((w) => w !== null);
 

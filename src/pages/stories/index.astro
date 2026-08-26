@@ -5,31 +5,40 @@
 //
 // הניווט כאן הוא לפי *מה הסיפור הוא* ולא לפי מה שהקורא מרגיש — הציר הרגשי
 // כבר חי בפינת הרגעים, ושתי דלתות לאותו חדר מחלישות זו את זו.
+//
+// **רצועה לכל עולם, ובתוכה סיפור אמיתי.** הדלתות הקודמות הסבירו איך התוכן
+// מחולק, ואף אחת מהן לא נתנה סיבה להיכנס. שם של סיפור עושה את זה בשורה אחת.
+// זו גם הסיבה שאין כאן עוד "סיפור פתיחה" נפרד: הוא היה #001, והוא ממילא
+// הסיפור הנבחר של "מהיומן שלי" — כלומר הוא כבר מוצג, בתוך הרצועה שלו.
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import StoryCard from '../../components/StoryCard.astro';
 import JoinGroup from '../../components/JoinGroup.astro';
 import { SECTIONS_META, SECTION_SLUGS } from '../../data/sections';
+import { SECTION_GATE_IMAGES } from '../../data/section-gate-images';
 import { newestFirst } from '../../lib/sort';
 
-const stories = (await getCollection('stories')).sort(
-  newestFirst
-);
+const stories = (await getCollection('stories')).sort(newestFirst);
 
-const counts = new Map<string, number>();
-for (const story of stories) {
-  counts.set(story.data.section, (counts.get(story.data.section) ?? 0) + 1);
-}
+// הסיפור שמייצג כל עולם: הנבחר שלו, ואם אין — החדש ביותר בו. אותה בחירה
+// בדיוק כמו בדף הבית, כדי שהקורא שעבר בין השניים יפגוש את אותו סיפור.
+const featured = stories
+  .filter((s) => s.data.featured !== undefined)
+  .sort((a, b) => a.data.featured! - b.data.featured!);
 
 // עולם ריק אינו מוצג כדלת: דלת שמובילה למדף ריק נראית כתקלה ולא כהבטחה.
 // הכלל רץ מעצמו — ברגע שיתווסף סיפור ראשון לעולם שמור, הדלת נפתחת.
-const doors = SECTION_SLUGS.filter((slug) => (counts.get(slug) ?? 0) > 0);
+const worlds = SECTION_SLUGS.map((slug) => {
+  const meta = SECTIONS_META[slug];
+  if ('hidden' in meta && meta.hidden) return null;
+  const inWorld = stories.filter((s) => s.data.section === slug);
+  if (inWorld.length === 0) return null;
+  const sample = featured.find((s) => s.data.section === slug) ?? inWorld[0];
+  return { slug, meta, sample, count: inWorld.length, gate: SECTION_GATE_IMAGES[slug] ?? null };
+}).filter((w) => w !== null);
 
-const label = (n: number) => (n === 1 ? 'סיפור אחד' : `${n} סיפורים`);
-
-// סיפור הפתיחה נבחר ידנית ולא באקראי: הרושם הראשון הוא החלטה, לא הגרלה.
-const OPENER = '001-kvar-hechlateti-mi-hem';
-const opener = stories.find((story) => story.id === OPENER);
+const countLabel = (n: number) => (n === 1 ? 'סיפור אחד' : `${n} סיפורים`);
 ---
 
 <Base
@@ -39,33 +48,41 @@ const opener = stories.find((story) => story.id === OPENER);
   <main>
     <h1 class="page-title">סיפורים</h1>
     <p class="intro">
-      {stories.length} סיפורים. כל אחד נגמר במקום אחר ממה שהתחיל.
+      שלושה עולמות. {stories.length} סיפורים. כל אחד נגמר במקום אחר ממה שהתחיל.
     </p>
 
-    <ul class="doors">
+    <ul class="bands">
       {
-        doors.map((slug) => (
-          <li class="door" style={`--accent: ${SECTIONS_META[slug].accent}`}>
-            <a href={`/sections/${slug}/`}>
-              <span class="door-name">{SECTIONS_META[slug].label}</span>
-              <span class="door-line">{SECTIONS_META[slug].line}</span>
-              <span class="door-count">{label(counts.get(slug)!)}</span>
-            </a>
+        worlds.map(({ slug, meta, sample, count, gate }) => (
+          <li class="band" style={`--accent: ${meta.accent}`}>
+            {gate && (
+              <a href={`/sections/${slug}/`} class="band-gate" aria-label={meta.linkText}>
+                <Image
+                  src={gate.image}
+                  alt=""
+                  widths={[480, 960]}
+                  sizes="(max-width: 48rem) 100vw, 380px"
+                  style={`object-position: ${gate.position}`}
+                />
+              </a>
+            )}
+            <div class="band-body">
+              <h2 class="band-name">
+                <a href={`/sections/${slug}/`}>{meta.label}</a>
+              </h2>
+              <p class="band-line">{meta.line}</p>
+              <p class="band-sample">
+                למשל: <a href={`/stories/${sample.id}/`}>{sample.data.title}</a>
+              </p>
+              <p class="band-more">
+                <span>{countLabel(count)}</span>
+                <a href={`/sections/${slug}/`}>{meta.linkText} ←</a>
+              </p>
+            </div>
           </li>
         ))
       }
     </ul>
-
-    {
-      opener && (
-        <section class="opener" aria-labelledby="opener-label">
-          <h2 class="section-label" id="opener-label">אם אתה לא יודע מאיפה להתחיל</h2>
-          <ul class="story-list is-single">
-            <StoryCard story={opener} />
-          </ul>
-        </section>
-      )
-    }
 
     <section class="all" aria-labelledby="all-label">
       <h2 class="section-label" id="all-label">הכול, מהחדש לישן</h2>
@@ -93,61 +110,134 @@ const opener = stories.find((story) => story.id === OPENER);
     line-height: 1.7;
   }
 
-  .doors {
+  /* ── רצועת עולם ── */
+  .bands {
     list-style: none;
     padding: 0;
-    margin: 0 0 3rem;
+    margin: 0 0 3.25rem;
     display: grid;
-    gap: 0.9rem;
+    gap: 1.4rem;
   }
 
-  @media (min-width: 48rem) {
-    .doors {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  .door a {
-    display: block;
-    height: 100%;
-    padding: 1.15rem 1.1rem 1rem;
+  .band {
     background: var(--paper);
     border: 1px solid var(--line);
     border-top: 3px solid var(--accent);
     border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  /* התמונה היא הדלת — לחיצה עליה נכנסת לעולם */
+  .band-gate {
+    display: block;
+    line-height: 0;
+  }
+
+  .band-gate :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 7;
+    object-fit: cover;
+  }
+
+  .band-body {
+    padding: 1rem 1.1rem 1.1rem;
+  }
+
+  .band-name {
+    font-size: 1.35rem;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .band-name a {
+    color: var(--accent);
     text-decoration: none;
-    color: inherit;
-    transition:
-      box-shadow 0.15s ease,
-      transform 0.15s ease;
   }
 
-  .door a:hover,
-  .door a:focus-visible {
-    box-shadow: 0 2px 10px rgba(46, 42, 36, 0.1);
-    transform: translateY(-1px);
+  .band-name a:hover,
+  .band-name a:focus-visible {
+    text-decoration: underline;
   }
 
-  .door-name {
-    display: block;
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    color: var(--ink);
-  }
-
-  .door-line {
-    display: block;
-    margin-top: 0.35rem;
+  .band-line {
     color: var(--secondary);
     font-size: 0.95rem;
-    line-height: 1.6;
+    line-height: 1.65;
+    margin: 0.35rem 0 0;
   }
 
-  .door-count {
-    display: block;
-    margin-top: 0.6rem;
+  /* הסיבה להיכנס: שם של סיפור אמיתי, לא עוד תיאור */
+  .band-sample {
+    margin: 0.9rem 0 0;
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.9rem;
     color: var(--muted);
+  }
+
+  .band-sample a {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .band-sample a:hover,
+  .band-sample a:focus-visible {
+    text-decoration: underline;
+  }
+
+  .band-more {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 0.5rem 0 0;
     font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .band-more a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-weight: 600;
+    color: var(--teal);
+    text-decoration: none;
+  }
+
+  .band-more a:hover,
+  .band-more a:focus-visible {
+    text-decoration: underline;
+  }
+
+  /* במסך רחב הרצועה נעשית רצועה באמת: תמונה בצד, טקסט לצידה. */
+  @media (min-width: 48rem) {
+    .band {
+      display: grid;
+      grid-template-columns: 22rem 1fr;
+      align-items: stretch;
+    }
+
+    .band-gate {
+      height: 100%;
+    }
+
+    .band-gate :global(img) {
+      height: 100%;
+      aspect-ratio: auto;
+    }
+
+    .band-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1.5rem 1.6rem;
+    }
   }
 
   .section-label {
@@ -159,19 +249,11 @@ const opener = stories.find((story) => story.id === OPENER);
     margin: 0 0 1.2rem;
   }
 
-  .opener {
-    margin-bottom: 3rem;
-  }
-
   .story-list {
     list-style: none;
     padding: 0;
     margin: 0;
     display: grid;
     gap: 2.6rem;
-  }
-
-  .story-list.is-single {
-    gap: 0;
   }
 </style>
