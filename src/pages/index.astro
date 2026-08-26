@@ -291,11 +291,26 @@ const DESCRIPTION =
     font-size: 3.5rem;
   }
 
-  /* כשהשער הוא צילום ולא ממלא-מקום — למלא את כל השטח */
+  /* כשהשער הוא צילום ולא ממלא-מקום — למלא את כל השטח.
+     גובה יחסי לרוחב (ולא קבוע) — כך החיתוך לא בולע את נושא הצילום. */
   img.door-gate,
   img.story-gate {
     display: block;
     object-fit: cover;
+    height: auto;
+  }
+
+  img.door-gate {
+    aspect-ratio: 5 / 3;
+  }
+
+  img.story-gate {
+    aspect-ratio: 2 / 1;
+  }
+
+  /* הדלת האדומה יושבת בצד שמאל-מרכז של הצילום — לכוון את החיתוך אליה */
+  .story-card[data-section='meshalim'] img.story-gate {
+    object-position: 62% 42%;
   }
 
   .door-content {
