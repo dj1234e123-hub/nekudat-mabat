@@ -10,6 +10,8 @@ import { websiteJsonLd } from '../lib/structured-data';
 import MomentBody from '../components/MomentBody.astro';
 import { parseMoment } from '../lib/moment-format';
 import { SECTIONS_META, SECTION_SLUGS, type SectionSlug } from '../data/sections';
+import momentGate from '../assets/gates/moments.png';
+import storiesRedGate from '../assets/gates/stories-red.png';
 
 // דף הבית נותן טעם ומוביל הלאה; הארכיון עצמו חי ב-/stories/.
 const allStories = (await getCollection('stories')).sort(
@@ -31,6 +33,11 @@ const GATE_EMOJI: Record<SectionSlug, string> = {
   tzadikim: '✨',
   yoman: '📔',
 };
+const GATE_IMAGES: Record<SectionSlug, any> = {
+  meshalim: storiesRedGate,
+  tzadikim: null, // await stories-teal.png
+  yoman: null,    // await stories-blue.png
+};
 const WORLD_LINK_TEXT: Record<SectionSlug, string> = {
   meshalim: 'כל המשלים',
   tzadikim: 'כל סיפורי הצדיקים',
@@ -43,7 +50,14 @@ const worlds = SECTION_SLUGS.map((slug) => {
     featuredStories.find((s) => s.data.section === slug) ??
     allStories.find((s) => s.data.section === slug);
   if (!story) return null;
-  return { slug, meta, story, emoji: GATE_EMOJI[slug], linkText: WORLD_LINK_TEXT[slug] };
+  return {
+    slug,
+    meta,
+    story,
+    emoji: GATE_EMOJI[slug],
+    image: GATE_IMAGES[slug],
+    linkText: WORLD_LINK_TEXT[slug],
+  };
 }).filter((w) => w !== null);
 
 // הרגע שמוצג בדלת הרגעים: מוגרל מחדש בכל טעינה, בצד הקורא — כדי שמי שחוזר
@@ -133,9 +147,18 @@ const DESCRIPTION =
 
         <div class="stories-grid">
           {
-            worlds.map(({ slug, meta, story, emoji, linkText }) => (
+            worlds.map(({ slug, meta, story, emoji, image, linkText }) => (
               <div class="story-card" data-section={slug}>
-                <div class="story-gate" aria-hidden="true">{emoji}</div>
+                {image ? (
+                  <img
+                    src={image.src}
+                    alt={meta.label}
+                    class="story-gate"
+                    decoding="async"
+                  />
+                ) : (
+                  <div class="story-gate" aria-hidden="true">{emoji}</div>
+                )}
                 <div class="story-header">
                   <h3>{meta.label}</h3>
                   <p class="story-line">{meta.line}</p>
