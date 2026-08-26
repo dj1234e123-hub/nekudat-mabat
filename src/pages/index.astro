@@ -11,7 +11,7 @@ import MomentBody from '../components/MomentBody.astro';
 import { parseMoment } from '../lib/moment-format';
 import { SECTIONS_META, SECTION_SLUGS, type SectionSlug } from '../data/sections';
 import momentGate from '../assets/gates/moments.png';
-import storiesRedGate from '../assets/gates/stories-red.png';
+import { SECTION_GATE_IMAGES } from '../data/section-gate-images';
 
 // דף הבית נותן טעם ומוביל הלאה; הארכיון עצמו חי ב-/stories/.
 const allStories = (await getCollection('stories')).sort(
@@ -33,11 +33,6 @@ const GATE_EMOJI: Record<SectionSlug, string> = {
   tzadikim: '✨',
   yoman: '📔',
 };
-const GATE_IMAGES: Record<SectionSlug, any> = {
-  meshalim: storiesRedGate,
-  tzadikim: null, // await stories-teal.png
-  yoman: null,    // await stories-blue.png
-};
 const WORLD_LINK_TEXT: Record<SectionSlug, string> = {
   meshalim: 'כל המשלים',
   tzadikim: 'כל סיפורי הצדיקים',
@@ -55,7 +50,7 @@ const worlds = SECTION_SLUGS.map((slug) => {
     meta,
     story,
     emoji: GATE_EMOJI[slug],
-    image: GATE_IMAGES[slug],
+    image: SECTION_GATE_IMAGES[slug] ?? null,
     linkText: WORLD_LINK_TEXT[slug],
   };
 }).filter((w) => w !== null);
@@ -106,7 +101,9 @@ const DESCRIPTION =
               <p class="door-subheader">רגע קצר שמדבר ישירות אליך</p>
             </div>
 
-            <img src={momentGate.src} alt="" class="door-gate" decoding="async" />
+            <a href="/moments/" class="gate-link" aria-label="לכל הרגעים">
+              <img src={momentGate.src} alt="" class="door-gate" decoding="async" />
+            </a>
 
             <div class="door-content">
               <article class="moment-sample">
@@ -150,12 +147,15 @@ const DESCRIPTION =
             worlds.map(({ slug, meta, story, emoji, image, linkText }) => (
               <div class="story-card" data-section={slug}>
                 {image ? (
-                  <img
-                    src={image.src}
-                    alt={meta.label}
-                    class="story-gate"
-                    decoding="async"
-                  />
+                  <a href={`/sections/${slug}/`} class="gate-link" aria-label={linkText}>
+                    <img
+                      src={image.image.src}
+                      alt=""
+                      class="story-gate"
+                      style={`object-position: ${image.position}`}
+                      decoding="async"
+                    />
+                  </a>
                 ) : (
                   <div class="story-gate" aria-hidden="true">{emoji}</div>
                 )}
@@ -291,6 +291,12 @@ const DESCRIPTION =
     font-size: 3.5rem;
   }
 
+  /* התמונה עצמה היא דלת — לחיצה עליה נכנסת פנימה */
+  .gate-link {
+    display: block;
+    line-height: 0;
+  }
+
   /* כשהשער הוא צילום ולא ממלא-מקום — למלא את כל השטח.
      גובה יחסי לרוחב (ולא קבוע) — כך החיתוך לא בולע את נושא הצילום. */
   img.door-gate,
@@ -306,11 +312,6 @@ const DESCRIPTION =
 
   img.story-gate {
     aspect-ratio: 2 / 1;
-  }
-
-  /* הדלת האדומה יושבת בצד שמאל-מרכז של הצילום — לכוון את החיתוך אליה */
-  .story-card[data-section='meshalim'] img.story-gate {
-    object-position: 62% 42%;
   }
 
   .door-content {

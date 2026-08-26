@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import StoryCard from '../../components/StoryCard.astro';
 import { SECTIONS_META, SECTION_SLUGS, type SectionSlug } from '../../data/sections';
+import { SECTION_GATE_IMAGES } from '../../data/section-gate-images';
 
 export function getStaticPaths() {
   return SECTION_SLUGS.map((section) => ({ params: { section } }));
@@ -10,6 +11,8 @@ export function getStaticPaths() {
 
 const section = Astro.params.section as SectionSlug;
 const { label, line } = SECTIONS_META[section];
+// אותה תמונת שער שמופיעה בדלת של דף הבית — הקורא שנכנס דרכה מגיע לאותו מראה.
+const gateImage = SECTION_GATE_IMAGES[section] ?? null;
 
 const stories = (await getCollection('stories', (s) => s.data.section === section)).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
@@ -18,6 +21,17 @@ const stories = (await getCollection('stories', (s) => s.data.section === sectio
 
 <Base title={`${label} · נקודת מבט`} description={line}>
   <main>
+    {
+      gateImage && (
+        <img
+          src={gateImage.image.src}
+          alt=""
+          class="section-gate"
+          style={`object-position: ${gateImage.position}`}
+          decoding="async"
+        />
+      )
+    }
     <h1 class="page-title">{label}</h1>
     <p class="section-line">{line}</p>
     {
@@ -36,6 +50,17 @@ const stories = (await getCollection('stories', (s) => s.data.section === sectio
 </Base>
 
 <style>
+  /* תמונת השער של העולם — אותו צילום ואותו חיתוך כמו בדלת של דף הבית */
+  .section-gate {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2 / 1;
+    object-fit: cover;
+    border-radius: var(--radius);
+    margin-bottom: 1.5rem;
+  }
+
   .section-line {
     text-align: center;
     color: var(--secondary);
