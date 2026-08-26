@@ -1,10 +1,13 @@
 ---
 // עמוד של רגע בודד בספרדית — הכתובת שמשתפים.
 // כמו בעברית: הטקסט, ומסביבו אוויר. בלי תמונה ובלי תאריך.
-import { getCollection, render } from 'astro:content';
+import { getCollection } from 'astro:content';
 import Base from '../../../../layouts/Base.astro';
 import ShareRow from '../../../../components/ShareRow.astro';
-import { FEELING_LABELS_ES } from '../../../../data/site-es';
+import MomentBody from '../../../../components/MomentBody.astro';
+import { FEELING_LABELS_ES, GROUP_LABELS_ES } from '../../../../data/site-es';
+import { momentTitle } from '../../../../lib/moment-title';
+import { parseMoment, momentPlainText } from '../../../../lib/moment-format';
 
 export async function getStaticPaths() {
   const moments = await getCollection('momentsEs');
@@ -15,35 +18,49 @@ export async function getStaticPaths() {
 }
 
 const { moment } = Astro.props;
-const { Content } = await render(moment);
 const feeling = moment.data.feeling;
 const label = FEELING_LABELS_ES[feeling];
 
-const plainText = moment.body!.replace(/\s+/g, ' ').trim();
-const summary = plainText.length > 200 ? `${plainText.slice(0, 197)}…` : plainText;
+const format = parseMoment(moment.body ?? '', moment.data.title);
+
+// הטקסט כמלל נקי — לתיאור העמוד ולשיתוף בוואטסאפ (הרגע נשלח כמו שהוא).
+const plainText = momentPlainText(format);
+const flat = plainText.replace(/\s+/g, ' ').trim();
+const summary = flat.length > 200 ? `${flat.slice(0, 197)}…` : flat;
+
+// כותרת-הוו כשהיא נכתבה, ואחרת גזירה מהמשפט הראשון (moment-title.ts)
+const title = format.title ?? momentTitle(moment.body!);
+
 const pageUrl = new URL(`/es/momentos/${feeling}/${moment.id}/`, Astro.site).href;
 ---
 
 <Base
   lang="es"
   noindex={true}
-  title={`${label} · Un momento de perspectiva`}
+  title={title}
   description={summary}
   ogType="article"
   compact={true}
 >
   <main>
     <article class="moment">
-      <p class="eyebrow">
-        <a class="label" href={`/es/momentos/${feeling}/`}>{label}</a>
-      </p>
-      <div class="moment-body">
-        <Content />
-      </div>
-      <span class="end-dot" aria-hidden="true"></span>
+      {
+        format.title ? (
+          <header class="moment-head">
+            <h1 class="hook">{format.title}</h1>
+            <span class="hook-rule" aria-hidden="true" />
+          </header>
+        ) : (
+          <h1 class="visually-hidden">{title}</h1>
+        )
+      }
+
+      <MomentBody format={format} />
+
+      {!format.isNew && <span class="end-dot" aria-hidden="true" />}
     </article>
 
-    <ShareRow lang="es" title={label} url={pageUrl} shareText={plainText} />
+    <ShareRow title={label} url={pageUrl} label="Compartir:" imageUrl="" />
 
     <nav class="moment-footer">
       <a href={`/es/momentos/${feeling}/`}>Más sobre {label.toLowerCase()}</a>
