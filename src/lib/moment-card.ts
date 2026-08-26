@@ -277,11 +277,24 @@ function ornamentSvg(y: number): string {
   ].join('\n  ');
 }
 
+/** LRO (U+202D): כפיית LTR — למספר טלפון בתוך שורה עברית שנכפתה RTL,
+    שבלעדיה הספרות היו מתהפכות. PDF סוגר, כמו אצל RLO. */
+const LRO = '‭';
+
+/** שורת ההזמנה בתחתית הכרטיס העברי. מספר טלפון בתוכה נעטף LTR מעצמו. */
+const HE_GROUP_LINE = 'להצטרפות לקבוצת הוואטסאפ — באתר';
+
+function groupLineSvg(text: string): string {
+  const withPhone = escape(text).replace(/\d[\d-]*\d/g, (m) => `${LRO}${m}${PDF}`);
+  return `<text x="${CENTER}" y="${HE_GROUP_Y}" font-family="Heebo" font-size="24" fill="${MUTED}" direction="rtl" text-anchor="middle">${RLO}${withPhone}${PDF}</text>`;
+}
+
 export function renderMomentCard(
   body: string,
   siteHost: string,
   title?: string | null,
-  lang: 'he' | 'es' = 'he'
+  lang: 'he' | 'es' = 'he',
+  groupLine: string = HE_GROUP_LINE
 ): Buffer {
   const format = parseMoment(body, title);
   const { items, height } = fit(format);
@@ -322,11 +335,7 @@ export function renderMomentCard(
   ${svg.join('\n  ')}
   <line x1="${CENTER - RULE_HALF}" y1="${RULE_Y}" x2="${CENTER + RULE_HALF}" y2="${RULE_Y}" stroke="${GOLD}" stroke-width="2"/>
   <text x="${CENTER}" y="${rtl ? HE_SIGN_Y : SIGN_Y}" font-family="Heebo Bold" font-size="30" fill="${TEAL_DEEP}" direction="${direction}" text-anchor="middle">${signature}</text>
-  ${
-    rtl
-      ? `<text x="${CENTER}" y="${HE_GROUP_Y}" font-family="Heebo" font-size="24" fill="${MUTED}" direction="rtl" text-anchor="middle">${RLO}להצטרפות לקבוצת הוואטסאפ — באתר${PDF}</text>`
-      : ''
-  }
+  ${rtl ? groupLineSvg(groupLine) : ''}
   <text x="${CENTER}" y="${rtl ? HE_URL_Y : URL_Y}" font-family="Heebo" font-size="24" fill="${MUTED}" text-anchor="middle">${escape(urlText)}</text>
 </svg>`;
 
