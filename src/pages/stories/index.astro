@@ -10,9 +10,10 @@ import Base from '../../layouts/Base.astro';
 import StoryCard from '../../components/StoryCard.astro';
 import JoinGroup from '../../components/JoinGroup.astro';
 import { SECTIONS_META, SECTION_SLUGS } from '../../data/sections';
+import { newestFirst } from '../../lib/sort';
 
 const stories = (await getCollection('stories')).sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+  newestFirst
 );
 
 const counts = new Map<string, number>();

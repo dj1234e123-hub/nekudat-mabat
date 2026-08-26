@@ -13,11 +13,10 @@ import { parseMoment } from '../lib/moment-format';
 import { SECTIONS_META, SECTION_SLUGS, type SectionSlug } from '../data/sections';
 import momentGate from '../assets/gates/moments.png';
 import { SECTION_GATE_IMAGES } from '../data/section-gate-images';
+import { newestFirst } from '../lib/sort';
 
 // דף הבית נותן טעם ומוביל הלאה; הארכיון עצמו חי ב-/stories/.
-const allStories = (await getCollection('stories')).sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime()
-);
+const allStories = (await getCollection('stories')).sort(newestFirst);
 
 // שלושה סיפורים נבחרים, אחד מכל עולם — הרושם הראשון הוא החלטה, לא תוצאה
 // של סדר פרסום. השדה featured קובע גם חברות וגם מיקום; בלי סימון — נפילה
@@ -61,11 +60,8 @@ const worlds = SECTION_SLUGS.map((slug) => {
 // (<template>), והסקריפט בתחתית הקובץ בוחר אחת מהן באקראי ומשתיל אותה במקום.
 //
 // בלי JavaScript — ולקוראי מסך/מנועי חיפוש שלא מריצים סקריפט — נשאר הרגע
-// החדש ביותר: שובר השוויון על פני תאריך זהה הוא שם הקובץ.
-const moments = (await getCollection('moments')).sort((a, b) => {
-  const byDate = b.data.date.getTime() - a.data.date.getTime();
-  return byDate !== 0 ? byDate : b.id.localeCompare(a.id);
-});
+// החדש ביותר: שובר השוויון על פני תאריך זהה הוא שם הקובץ (src/lib/sort.ts).
+const moments = (await getCollection('moments')).sort(newestFirst);
 const momentPool = moments.map((m) => ({
   url: `/moments/${m.data.feeling}/${m.id}/`,
   format: parseMoment(m.body ?? '', m.data.title),

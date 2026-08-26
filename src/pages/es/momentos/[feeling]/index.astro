@@ -7,6 +7,7 @@ import Base from '../../../../layouts/Base.astro';
 import MomentBody from '../../../../components/MomentBody.astro';
 import { FEELING_LABELS_ES } from '../../../../data/site-es';
 import { parseMoment } from '../../../../lib/moment-format';
+import { newestFirst } from '../../../../lib/sort';
 
 export async function getStaticPaths() {
   const moments = await getCollection('momentsEs');
@@ -25,7 +26,7 @@ const { feeling } = Astro.params;
 const label = FEELING_LABELS_ES[feeling!];
 
 const cards = items
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .sort(newestFirst)
   .map((moment) => ({
     moment,
     format: parseMoment(moment.body ?? '', moment.data.title),

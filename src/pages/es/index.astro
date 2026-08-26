@@ -5,12 +5,10 @@ import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import MomentBody from '../../components/MomentBody.astro';
 import { parseMoment } from '../../lib/moment-format';
+import { newestFirst } from '../../lib/sort';
 
 // רגע אקראי מהאוסף בספרדית
-const moments = (await getCollection('momentsEs')).sort((a, b) => {
-  const byDate = b.data.date.getTime() - a.data.date.getTime();
-  return byDate !== 0 ? byDate : b.id.localeCompare(a.id);
-});
+const moments = (await getCollection('momentsEs')).sort(newestFirst);
 const momentPool = moments.map((m) => ({
   url: `/es/momentos/${m.data.feeling}/${m.id}/`,
   format: parseMoment(m.body ?? '', m.data.title),

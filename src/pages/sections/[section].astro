@@ -5,6 +5,7 @@ import Base from '../../layouts/Base.astro';
 import StoryCard from '../../components/StoryCard.astro';
 import { SECTIONS_META, SECTION_SLUGS, type SectionSlug } from '../../data/sections';
 import { SECTION_GATE_IMAGES } from '../../data/section-gate-images';
+import { newestFirst } from '../../lib/sort';
 
 export function getStaticPaths() {
   return SECTION_SLUGS.map((section) => ({ params: { section } }));
@@ -16,7 +17,7 @@ const { label, line } = SECTIONS_META[section];
 const gateImage = SECTION_GATE_IMAGES[section] ?? null;
 
 const stories = (await getCollection('stories', (s) => s.data.section === section)).sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+  newestFirst
 );
 ---
 

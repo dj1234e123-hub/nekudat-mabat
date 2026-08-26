@@ -24,6 +24,7 @@ import {
 } from '../../../data/feelings';
 import { GATE_IMAGES } from '../../../data/gate-images';
 import { parseMoment } from '../../../lib/moment-format';
+import { newestFirst } from '../../../lib/sort';
 
 export async function getStaticPaths() {
   const moments = await getCollection('moments');
@@ -54,7 +55,7 @@ const parentGroup = gate ? undefined : groupOf(feeling);
 const moments = gate
   ? []
   : (await getCollection('moments', (m) => m.data.feeling === feeling)).sort(
-      (a, b) => b.data.date.getTime() - a.data.date.getTime()
+      newestFirst
     );
 // בפורמט החדש המדף מציג **כותרת + מהלך המציאות בלבד**. עם כותרת-וו אמיתית
 // תפקיד המדף משתנה מ"לקרוא כאן" ל"איזה מהשלושה הוא שלי", ומהלך המציאות הוא
