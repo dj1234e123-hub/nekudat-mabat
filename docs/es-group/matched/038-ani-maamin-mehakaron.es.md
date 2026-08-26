@@ -3,10 +3,9 @@
 # כותרת באתר: 'ה"אני מאמין" מהקרון'
 # נוקה: חתימה · קריאת הצטרפות + קישור
 # תוקנה טעות הקלדה בכותרת: nacio ← nació
-# פער מול גרסת האתר: העברית נעצרת על "אני מאמין." (= "para susurrar por dentro: Yo creo. Ani Maamin");
-# הפסקה האחרונה כאן ("Y quizá esa es la enseñanza...") קוצרה בעברית — להחלטת בעל הפרויקט.
-# הערה: בעברית נוסף שם החסיד (ר' עזריאל דוד פאסטאג) באישור בעל הפרויקט, והמילה "צעיר" ירדה;
-# כאן עדיין "un joven jasid de Modzitz" ללא שם — לשיקול אם ליישר לגרסת האתר.
+# קוצר ויושר לגרסת האתר בהחלטת בעל הפרויקט (2026-08-26): הוסרה פסקת מוסר ההשכל שאחרי
+# "Yo creo. Ani Maamin"; נוסף שם החסיד (R' Azriel David Fastag) והוסרה "joven" — כמו בעברית.
+# נוספה חתימה כמו בעברית.
 archiveId: "038"
 numeroEs: 48
 ---
@@ -22,7 +21,8 @@ y nadie sabe
 adónde viajan.
 
 En uno de los vagones
-se sienta un joven jasid de Modzitz,
+se sienta R' Azriel David Fastag,
+un jasid de Modzitz,
 un hombre de plegaria y de melodía.
 Rostro delgado,
 ojos cansados,
@@ -107,11 +107,5 @@ y encuentran en él fuerza
 para susurrar por dentro:
 *Yo creo*.  *Ani Maamin*
 
-Y quizá esa es la enseñanza
-de aquel vagón cerrado:
-hay cosas que quedan
-en manos del cielo,
-pero en tus manos
-queda la elección
-de cuál melodía silenciosa dentro de ti
-no renuncia a *la fe*.
+Con amor,
+Efraim Attia

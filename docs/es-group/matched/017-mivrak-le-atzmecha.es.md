@@ -81,3 +81,6 @@ Que tengamos el mérito de elegir una mirada
 que cree *movimiento*,
 y de enviarnos hoy
 un telegrama de *inicio*.
+
+Con amor,
+Efraim Attia

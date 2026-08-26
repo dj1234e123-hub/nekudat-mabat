@@ -2,11 +2,9 @@
 # ארכיון #005 · ספרדית 100 · מקור: raw/batch-01.txt
 # כותרת באתר: "מתחת לקש באושוויץ"
 # נוקה: חתימה · קריאת הצטרפות + קישור
-# הקדשה אישית של המתרגמת בראש ההודעה (לעילוי נשמת בן דודה, Mordejai ben Zalman)
-# הוסרה מהנוסח הנקי ונשמרת כאן להחלטת בעל הפרויקט:
-# "A la bendita memoria de mi primo a quien ame que estuvo en Auschwitz *Mordejai ben Zalman* Z"L
-#  Fallecio 11 de Sivan 1996. No dejo hijos. (Chana)"
-# פער מול גרסת האתר: אין — הסיום זהה ("כשהשעון מצלצל בבוקר...").
+# ההקדשה האישית של המתרגמת (לעילוי נשמת בן דודה) הוסרה סופית — החלטת בעל הפרויקט 2026-08-26
+# ("להוריד כל דבר שמוציא הקשר מהסיפור"). המקור המלא ב-raw/batch-01.txt.
+# פער מול גרסת האתר: אין — הסיום זהה. נוספה חתימה כמו בעברית.
 archiveId: "005"
 numeroEs: 100
 ---
@@ -139,3 +137,6 @@ se me viene a la mente
 un chico de 16 años,
 
 debajo de la paja en Auschwitz.
+
+Con amor,
+Efraim Attia

@@ -2,9 +2,8 @@
 # ארכיון #050 · ספרדית 32 · מקור: raw/batch-03c.txt
 # כותרת באתר: "המלך רואה את הלב"
 # נוקה: חתימה · קריאת הצטרפות + קישור (במקור אין שורת זמן קריאה)
-# פער מול גרסת האתר: משמעותי. העברית נעצרת על "מאיר בא לתת. השכן בא לקבל."
-# (= "Meir vino a dar... Daniel vino a impresionar, y salió con un florero.");
-# כל ההמשך כאן (דרשת "מלך מלכי המלכים", ~30 שורות) קוצר בעברית — להחלטת בעל הפרויקט.
+# קוצר לגרסת האתר בהחלטת בעל הפרויקט (2026-08-26): הוסרה הדרשה שאחרי "y salió con un florero".
+# הנוסח המלא נשמר ב-raw/batch-03c.txt. נוספה חתימה כמו בעברית.
 # הערה: בעברית השכן ללא שם; כאן שמו Daniel.
 archiveId: "050"
 numeroEs: 32
@@ -96,57 +95,5 @@ y salió con un *tesoro.*
 Daniel vino a impresionar,
 y salió con un florero.
 
-Porque ante
-*el Rey de Reyes,*
-no preguntan cuánto
-vale lo que trajiste,
-preguntan cuánta *verdad* pusiste,
-y cuánta intención había detrás.
-
-Porque en los cielos,
-no buscan perfección,
-buscan *verdad.*
-No el tamaño del acto,
-sino la profundidad del deseo.
-
-Y quien viene con sinceridad,
-aunque sin grandes palabras,
-el rey lo ve.
-
-Y a veces, es solo un corazón simple,
-que cree que puede *tocar el cielo.*
-
-Y quizá…
-ese sea todo nuestro trabajo,
-no reunir regalos,
-sino *pulir el corazón,*
-hasta hacerlo digno de presentarlo.
-
-Cada pequeña oración,
-cada buena acción,
-son pequeños floreros
-que traemos al rey,
-quizás agrietados,
-pero *llenos de luz.*
-
-Y quien viene con fe,
-aunque no haya encontrado
-lo que buscaba,
-el rey ya lo espera en la puerta.
-
-Porque las puertas de lo alto
-no se abren con fuerza,
-ni con méritos,
-sino con un corazón que cree que también él es digno.
-
-Un solo corazón que llega sencillo,
-sin grandes palabras,
-con el deseo sincero de encontrarse con *el rey.*
-
-Y ese es
-*el portal que abre todos los tesoros.*
-
-Ojalá recordemos
-que incluso un regalo pequeño,
-cuando es verdadero,
-abre grandes portales.
+Con amor,
+Efraim Attia

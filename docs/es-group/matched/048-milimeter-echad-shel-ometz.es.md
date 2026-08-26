@@ -2,24 +2,16 @@
 # ארכיון #048 · ספרדית 44 · מקור: raw/batch-03e.txt
 # כותרת באתר: "מילימטר אחד של אומץ"
 # נוקה: ברכת סיום ("Con amor y con oración...") + חתימה · קריאת הצטרפות + קישור
-# פער מול גרסת האתר: משמעותי, בשני הקצוות.
-# פתיחה: בעברית הוסרה פסקת המסגרת (ואיתה "ואז זה הגיע") והסיפור נפתח בתאונה —
-# כאן היא קיימת ("Hay un momento que empieza de algo pequeño... Y entonces llegó.").
-# סיום: העברית נעצרת על "היא הרימה פחד, והפכה אותו לאמת" (= "Levantó un miedo, y lo convirtió en verdad");
-# ההמשך כאן ("Y aquí es donde la historia te toca a ti..." ואילך) קוצר בעברית — להחלטת בעל הפרויקט.
-# הערת מתרגמת בגוף הטקסט: "(aparato que se utilization para levantar un carro)" — הסבר למילה gato (מגבה);
-# טעות הקלדה במקור (utilization ← utiliza). תוקן כאן; לשיקול אם ההסבר נשאר בגרסת האתר.
+# קוצר לגרסת האתר בהחלטת בעל הפרויקט (2026-08-26): הוסרו פסקת המסגרת בפתיחה, שתי פסקאות
+# ("Allí, en aquel pueblo..." · "Porque lo que ocurrió allí...") שאינן בעברית, והפנייה האישית שאחרי
+# "Levantó un miedo, y lo convirtió en verdad". הוסרה גם הערת המתרגמת בסוגריים (הסבר למילה gato) —
+# לפי החלטת "להוריד כל דבר שמוציא הקשר מהסיפור". הנוסח המלא נשמר ב-raw/batch-03e.txt. נוספה חתימה כמו בעברית.
 archiveId: "048"
 numeroEs: 44
 ---
 
 *Un milímetro de coraje*
 
-Hay un momento que empieza de algo pequeño,
-algo que el corazón siente
-antes de que la mente entienda.
-
-Y entonces llegó.
 Un temblor corto en el aire,
 metal gimiendo,
 un gato deslizándose sobre el asfalto,
@@ -46,7 +38,7 @@ ahora faltaba un sonido.
 El coche viejo de Tony
 estaba torcido en la entrada.
 Cuando se acercó
-vio el gato (aparato que se utiliza para levantar un carro) tirado a un lado,
+vio el gato tirado a un lado,
 y un par de piernas
 asomando debajo del metal.
 
@@ -133,20 +125,6 @@ Solo *recé,*
 y no estaba dispuesta
 *a que se quedara debajo del coche.*
 
-Allí, en aquel pueblo tranquilo,
-cuando la noche volvió a sí misma,
-terminó el día de Angela.
-Pero desde ese momento
-algo empezó en cada persona que lo oyó.
-
-Porque lo que ocurrió allí
-no fue solo un coche que cayó.
-Fue un instante en el que el corazón
-*se niega a rendirse*,
-y de él brotó una fuerza
-que una persona no reconoce
-en un día normal.
-
 La ciencia lo llamará
 *una descarga de adrenalina*.
 Los psicólogos lo llamarán
@@ -160,29 +138,5 @@ Ella no levantó un coche.
 Levantó un *miedo*,
 y lo convirtió en verdad.
 
-Y aquí es donde la historia te toca a ti.
-
-Porque también en ti,
-debajo de algo pesado,
-descansa algo vivo:
-*un miedo antiguo*,
-*una reacción que no encaja*,
-o un pensamiento sobre ti mismo
-que te dibuja *pequeño*.
-
-Y está esperando.
-No que corras.
-No que cambies el mundo.
-Solo que lo levantes un poco,
-*un milímetro*,
-como el metal levantándose del asfalto.
-
-Un momento en el que te plantas,
-pones ambas manos,
-y te dices:
-
-*Aquí no huyo.*
-Aquí levanto
-hasta donde puedo,
-y *un milímetro* más
-*de lo que pensé que tenía en mí.*
+Con amor,
+Efraim Attia

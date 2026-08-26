@@ -2,8 +2,8 @@
 # ארכיון #013 · ספרדית 98 · מקור: raw/batch-01.txt
 # כותרת באתר: "אני היחיד שלא ניגש"
 # נוקה: שורת זמן קריאה · "Con aprecio" + חתימה · שורת מעבר ("Hay frases que un niño recuerda toda la vida.") · קריאת הצטרפות + קישור
-# פער מול גרסת האתר: העברית נעצרת על "נתן לי שלוש סוכריות" (= "Y me dio tres caramelos.");
-# הפסקה האחרונה כאן ("En ese momento... lo veían.") היא 18 מילות ההסבר שקוצרו בעברית — להחלטת בעל הפרויקט.
+# קוצר לגרסת האתר בהחלטת בעל הפרויקט (2026-08-26): הוסרו 18 מילות ההסבר שאחרי "שלוש סוכריות".
+# נוספה חתימה כמו בעברית ("באהבה, אפרים עטיה" = "Con amor, Efraim Attia").
 archiveId: "013"
 numeroEs: 98
 ---
@@ -108,8 +108,5 @@ Metió la mano en el recipiente.
 
 Y me dio tres caramelos.
 
-En ese momento,
-
-Un niño pequeño que se sentía menos que todos,
-
-Sintió de repente que lo veían.
+Con amor,
+Efraim Attia

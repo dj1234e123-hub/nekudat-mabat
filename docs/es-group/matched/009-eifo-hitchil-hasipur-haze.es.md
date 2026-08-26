@@ -170,3 +170,6 @@ el gran sabio Rabí Yosef Shalom Elyashiv z"l.
 Y solo ella sabía
 
 *dónde comenzó esta historia.*
+
+Con amor,
+Efraim Attia

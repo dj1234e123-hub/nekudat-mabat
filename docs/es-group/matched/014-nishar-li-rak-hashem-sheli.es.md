@@ -2,9 +2,8 @@
 # ארכיון #014 · ספרדית 99 · מקור: raw/batch-01.txt
 # כותרת באתר: "נשאר לי רק השם שלי"
 # נוקה: שורת זמן קריאה · קריאת שיתוף ("Si crees.que puede ayudar a otro, comparte!") · חתימה · קריאת הצטרפות + קישור
-# פער מול גרסת האתר: בעברית הוסר משפט מסכם של המספר שהקדים את דברי הרב;
-# כאן קיים המקביל לו ("Pero más que el dinero que volvió, algo dentro suyo volvió a ponerse de pie.") — לבדוק בקליטה.
-# הסיום זהה: דברי הרב "לדבר עם עצמך כמו אדם שבור".
+# קוצר לגרסת האתר בהחלטת בעל הפרויקט (2026-08-26): הוסר משפט המספר שהקדים את דברי הרב
+# ("Pero más que el dinero que volvió..."). נוספה חתימה כמו בעברית.
 archiveId: "014"
 numeroEs: 99
 ---
@@ -194,11 +193,6 @@ Yosef ya respiraba diferente.
 En pocas semanas,
 pagó todas sus deudas.
 
-Pero más que el dinero que volvió,
-
-algo dentro suyo
-volvió a ponerse de pie.
-
 Cuando regresó a ver al rabino
 para agradecerle,
 
@@ -211,3 +205,6 @@ no volvió el día que vendiste.”
 el día en que dejaste de
 *hablar contigo mismo*
 como un hombre *roto.*”
+
+Con amor,
+Efraim Attia

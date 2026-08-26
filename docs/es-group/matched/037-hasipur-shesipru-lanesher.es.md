@@ -2,9 +2,8 @@
 # ארכיון #037 · ספרדית 47 · מקור: raw/batch-03e.txt
 # כותרת באתר: "הסיפור שסיפרו לנשר"
 # נוקה: ברכת סיום ("Mi corazón te bendice...") · חתימה · קריאת הצטרפות + קישור
-# פער מול גרסת האתר: משמעותי. העברית נעצרת על "כמה קטן היה הסיפור שסיפרו לו על עצמו"
-# (= "lo pequeño que había sido el cuento que le contaron sobre sí mismo") — בדיוק 150 מילות ההסבר
-# שקוצרו בעברית קיימות כאן בהמשך ("Hay personas que la vida colocó en un gallinero..." ואילך) — להחלטת בעל הפרויקט.
+# קוצר לגרסת האתר בהחלטת בעל הפרויקט (2026-08-26): הוסרו 150 מילות ההסבר שאחרי
+# "lo pequeño que había sido el cuento". הנוסח המלא נשמר ב-raw/batch-03e.txt. נוספה חתימה כמו בעברית.
 # הערה: כאן הטקסט בפסקאות מלאות (כמו המקור בארכיון), לא בשורות קצרות.
 archiveId: "037"
 numeroEs: 47
@@ -58,14 +57,5 @@ Subió hacia arriba, círculo tras círculo, hasta que el gallinero se volvió u
 
 Allí, en lo alto, comprendió finalmente lo pequeño que había sido el cuento que le contaron sobre sí mismo.
 
-Hay personas que la vida colocó en un gallinero: palabras cortantes, risas a su costa, “No saldrá nada de ti”, “¿Quién te crees que eres?”.
-
-Durante años caminan encorvados, adaptándose al gallinero, achicándose para encajar en la historia que les contaron.
-
-Pero la verdad es que, en lo profundo, hay alas que ninguna palabra puede romper.
-
-El camino hacia afuera no siempre empieza con un salto. Hay un momento silencioso, entre el gallinero y la montaña, en el que el corazón susurra: “*No soy lo que dijeron de mí*. Soy más”.
-
-Después llega el momento en que hay que abrir las alas, aunque las rodillas tiemblen, y alejarse un poco de quienes se acostumbraron a empequeñecer.
-
-Nadie en el gallinero entenderá lo que haces, pero en el cielo se verá completamente natural.
+Con amor,
+Efraim Attia

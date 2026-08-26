@@ -2,8 +2,8 @@
 # ארכיון #010 · ספרדית 94 · מקור: raw/batch-02.txt
 # כותרת באתר: "למה הוא בחר רחוק"
 # נוקה: שורת זמן קריאה · קריאת שיתוף ("Si te gusto comparte👌") · "Con aprecio" + חתימה · קריאת הצטרפות + קישור
-# פער מול גרסת האתר: העברית נעצרת על "ומשהו בי נשאר שם" (= "algo en mí se quedó allí");
-# שורת הסגירה כאן ("Hay quienes no se apresuran incluso cuando pueden.") קוצרה בעברית — להחלטת בעל הפרויקט.
+# קוצר לגרסת האתר בהחלטת בעל הפרויקט (2026-08-26): הוסרה שורת הסגירה שאחרי "se quedó allí".
+# נוספה חתימה כמו בעברית.
 archiveId: "010"
 numeroEs: 94
 ---
@@ -77,6 +77,5 @@ Me acerqué un poco menos a la puerta.
 Pero algo en mí
 *se quedó allí.*
 
-Hay quienes
-no se apresuran
-incluso cuando pueden.
+Con amor,
+Efraim Attia
