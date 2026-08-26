@@ -106,7 +106,7 @@ const DESCRIPTION =
               <p class="door-subheader">רגע קצר שמדבר ישירות אליך</p>
             </div>
 
-            <div class="door-gate" aria-hidden="true">💭</div>
+            <img src={momentGate.src} alt="" class="door-gate" decoding="async" />
 
             <div class="door-content">
               <article class="moment-sample">
@@ -280,15 +280,22 @@ const DESCRIPTION =
     margin: 0.3rem 0 0;
   }
 
-  /* תמונת שער — כרגע ממלא-מקום; תוחלף בצילום */
+  /* תמונת השער של דלת הרגעים */
   .door-gate {
     width: 100%;
-    height: 180px;
+    height: 230px;
     background: linear-gradient(135deg, rgba(176, 70, 59, 0.12) 0%, rgba(176, 70, 59, 0.04) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 3.5rem;
+  }
+
+  /* כשהשער הוא צילום ולא ממלא-מקום — למלא את כל השטח */
+  img.door-gate,
+  img.story-gate {
+    display: block;
+    object-fit: cover;
   }
 
   .door-content {
@@ -383,10 +390,10 @@ const DESCRIPTION =
     box-shadow: var(--shadow);
   }
 
-  /* תמונת שער לעולם — כרגע ממלא-מקום; תוחלף בצילום */
+  /* תמונת שער לעולם */
   .story-gate {
     width: 100%;
-    height: 96px;
+    height: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
