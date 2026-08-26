@@ -1,107 +1,194 @@
 ---
-// שער האזור הספרדי. אותו עיקרון של דף הבית העברי: מציגים רגע אמיתי בשלמותו
-// במקום לתאר את האתר — טקסט אחד מדגים יותר ממה שמשפט הסבר יסביר.
-import { getCollection, render } from 'astro:content';
+// דף הבית בספרדית — גרסה של "Punto de Vista"
+// טקסט בספרדית בלבד, כפתור ראשי למומנטוס, אין סיפורים (נתרגמים מאוחר יותר)
+import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import MomentBody from '../../components/MomentBody.astro';
+import { parseMoment } from '../../lib/moment-format';
 
+// רגע אקראי מהאוסף בספרדית
 const moments = (await getCollection('momentsEs')).sort((a, b) => {
   const byDate = b.data.date.getTime() - a.data.date.getTime();
   return byDate !== 0 ? byDate : b.id.localeCompare(a.id);
 });
-const featured = moments[0];
-const FeaturedMoment = featured ? (await render(featured)).Content : null;
-const featuredUrl = featured
-  ? `/es/momentos/${featured.data.feeling}/${featured.id}/`
-  : '/es/momentos/';
+const momentPool = moments.map((m) => ({
+  url: `/es/momentos/${m.data.feeling}/${m.id}/`,
+  format: parseMoment(m.body ?? '', m.data.title),
+}));
+const featuredMoment = momentPool[0] ?? null;
+
+const DESCRIPTION =
+  'Un lugar para detenerse, obtener un nuevo punto de vista y llevar algo contigo en tu camino. Historias y momentos breves de Punto de Vista.';
 ---
 
 <Base
   lang="es"
   noindex={true}
+  title="Punto de Vista — un lugar para detenerse y ver diferente"
+  description={DESCRIPTION}
   homeHeader={true}
-  title="Punto de Vista — un lugar para detenerte y mirar distinto"
-  description="Un lugar para detenerte, tomar un punto de vista nuevo, y llevarte algo para el camino. Textos breves de Efraim Atia."
 >
   <main>
+    <div class="language-switch">
+      <a href="/" class="lang-link" lang="he">עברית</a>
+    </div>
+
     <section class="hero">
-      <h1>Mirar distinto. Vivir distinto.</h1>
+      <h1>Ver diferente. Vivir diferente.</h1>
+      <p class="triad">Historias. Momentos. Perspectivas.</p>
       <p class="promise">
-        Un lugar para detenerte, tomar un punto de vista nuevo, y llevarte algo para el camino.
+        Un lugar para detenerse, obtener un nuevo punto de vista y llevar algo contigo en tu camino.
       </p>
     </section>
 
     <section class="lead-action">
-      <p class="question">¿Qué estás pasando ahora?</p>
-      <a class="cta" href="/es/momentos/">Encuentra un momento</a>
+      <p class="question">¿Qué está pasando contigo ahora?</p>
+      <a class="cta" href="/es/momentos/">Encuentra un momento de Punto de Vista</a>
     </section>
 
     {
-      FeaturedMoment && (
-        <section class="feature">
-          <h2 class="section-label">Un momento de perspectiva</h2>
+      featuredMoment && (
+        <section class="feature" aria-labelledby="moment-label">
+          <h2 class="section-label" id="moment-label">
+            Un momento de Punto de Vista
+          </h2>
           <article class="moment-card">
-            <FeaturedMoment />
+            <h3 class="moment-hook">
+              <a id="moment-title-link" href={featuredMoment.url}>
+                {featuredMoment.format.title}
+              </a>
+            </h3>
+            <div id="moment-body-mount">
+              <MomentBody format={featuredMoment.format} />
+            </div>
           </article>
           <p class="more">
-            <a href={featuredUrl}>Ver este momento</a>
+            <a href="/es/momentos/">Más momentos</a>
           </p>
+
+          {
+            momentPool.map((m) => (
+              <template data-moment-option data-url={m.url} data-title={m.format.title}>
+                <MomentBody format={m.format} />
+              </template>
+            ))
+          }
         </section>
       )
     }
-
-    <p class="about-line">
-      <a href="/es/sobre-mi/">Quién escribe esto</a>
-    </p>
   </main>
 </Base>
 
+<script is:inline>
+  const momentOptions = document.querySelectorAll('template[data-moment-option]');
+  if (momentOptions.length > 1) {
+    const choice = momentOptions[Math.floor(Math.random() * momentOptions.length)];
+    const mount = document.getElementById('moment-body-mount');
+    const titleLink = document.getElementById('moment-title-link');
+    if (mount) mount.replaceChildren(choice.content.cloneNode(true));
+    if (titleLink) {
+      titleLink.href = choice.dataset.url;
+      titleLink.textContent = choice.dataset.title;
+    }
+  }
+</script>
+
 <style>
+  /* מעבר שפה — עדין בחלק העליון */
+  .language-switch {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .lang-link {
+    display: inline-block;
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 0.35rem 0.6rem;
+    border: 1px solid var(--line);
+    border-radius: 0.25rem;
+    transition: all 0.2s ease;
+  }
+
+  .lang-link:hover {
+    color: var(--teal);
+    border-color: var(--teal);
+  }
+
+  /* אזור הפתיחה */
   .hero {
     text-align: center;
-    padding: 0.5rem 0 2rem;
+    padding-top: 0.5rem;
   }
 
   .hero h1 {
-    font-size: 2rem;
-    line-height: 1.35;
+    font-size: clamp(1.7rem, 8vw, 2.15rem);
+    line-height: 1.3;
+    margin-bottom: 0.6rem;
+    text-wrap: balance;
+  }
+
+  .triad {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    color: var(--teal-deep);
+    letter-spacing: 0.02em;
+    margin-bottom: 0.5rem;
   }
 
   .promise {
     color: var(--secondary);
-    margin-top: 0.9rem;
+    max-width: 26rem;
+    margin-inline: auto;
+    line-height: 1.75;
   }
 
   .lead-action {
     text-align: center;
-    padding-bottom: 2.75rem;
+    margin-top: 1.9rem;
   }
 
   .question {
     font-family: var(--font-display);
     font-size: 1.3rem;
-    color: var(--teal-deep);
-    margin-bottom: 1rem;
+    margin-bottom: 0.85rem;
   }
 
   .section-label {
-    font-size: 1rem;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
     font-weight: 600;
-    color: var(--secondary);
+    letter-spacing: 0.1em;
+    color: var(--muted);
     text-align: center;
-    margin-bottom: 1rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .feature {
+    margin-top: 2.5rem;
   }
 
   .moment-card {
+    --moment-size: 1.1rem;
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    padding: 1.6rem 1.4rem;
-    font-size: 1.1rem;
-    line-height: 1.95;
+    padding: 1.4rem 1.3rem;
   }
 
-  .moment-card :global(p + p) {
-    margin-top: 1.2rem;
+  .moment-hook {
+    text-align: center;
+    font-size: 1.4rem;
+    line-height: 1.3;
+    color: var(--blue);
+    margin: 0 0 1.4rem;
+    text-wrap: balance;
+  }
+
+  .moment-hook a {
+    color: inherit;
+    text-decoration: none;
   }
 
   .more {
@@ -110,21 +197,12 @@ const featuredUrl = featured
   }
 
   .more a {
-    color: var(--teal);
-    text-decoration: none;
-    font-weight: 600;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     min-height: 44px;
-  }
-
-  .about-line {
-    text-align: center;
-    margin-top: 2.5rem;
-    font-size: 0.95rem;
-  }
-
-  .about-line a {
-    color: var(--muted);
+    padding-inline: 0.75rem;
+    text-decoration: none;
+    font-weight: 600;
   }
 </style>

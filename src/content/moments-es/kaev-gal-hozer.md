@@ -1,12 +1,24 @@
 ---
 feeling: pain
 date: 2026-08-21
+title: Una ola que vuelve
+---
+Pasan días,
+y el dolor está callado.
+Y casi se cree,
+que se **terminó**.
+
+Y entonces una palabra, un olor,
+una canción en la radio.
+Y todo vuelve.
+Como si hubieras **retrocedido**.
+
+Pero la ola no mide,
+cuánto avanzaste.
+Ella solo muestra,
+que hay algo más **adentro**.
+
 ---
 
-El dolor no siempre llega cuando lo esperas.
-
-A veces pasan días y está callado, y casi se llega a creer que terminó — y entonces una palabra, un olor, una canción en la radio, y todo vuelve con la misma fuerza.
-
 No retrocediste.
-
-Así se ve, exactamente, algo que sigue vivo por dentro.
+Algo en ti sigue vivo.
