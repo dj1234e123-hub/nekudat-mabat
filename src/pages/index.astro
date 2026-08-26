@@ -64,62 +64,82 @@ const DESCRIPTION =
       </p>
     </section>
 
-    <section class="lead-action">
-      <p class="question">מה עובר עליך עכשיו?</p>
-      <a class="cta" href="/moments/">מצא רגע של נקודת מבט</a>
-    </section>
-
-    {
-      featuredMoment && (
-        <section class="feature" aria-labelledby="moment-label">
-          <h2 class="section-label" id="moment-label">
-            רגע של נקודת מבט
-          </h2>
-          <article class="moment-card">
-            <h3 class="moment-hook">
-              <a id="moment-title-link" href={featuredMoment.url}>
-                {featuredMoment.format.title}
-              </a>
-            </h3>
-            <div id="moment-body-mount">
-              <MomentBody format={featuredMoment.format} />
+    <!-- =========== שתי דלתות צד אל צד ============ -->
+    <section class="dual-section">
+      <!-- דלת שמאל: רגעים -->
+      {
+        featuredMoment && (
+          <div class="door door-moments">
+            <div class="door-header">
+              <h2>רגע של נקודת מבט</h2>
+              <p class="door-subheader">רגע קצר שמדבר ישירות אליך</p>
             </div>
-          </article>
-          <p class="more">
-            <a href="/moments/">עוד רגעים</a>
-          </p>
 
-          {
-            /* המאגר שממנו מוגרל הרגע (ראו הסקריפט בתחתית הקובץ). <template>
-               אינו מוצג ואינו נכלל בפריסה — קורא מסך ומנוע חיפוש שאינם
-               מריצים סקריפט פשוט לא רואים אותו, והרגע החדש ביותר שלמעלה
-               נשאר מה שהם מקבלים. */
-            momentPool.map((m) => (
-              <template data-moment-option data-url={m.url} data-title={m.format.title}>
-                <MomentBody format={m.format} />
-              </template>
-            ))
-          }
-        </section>
-      )
-    }
+            <div class="door-gate">💭</div>
 
-    <section class="feature" aria-labelledby="stories-label">
-      <h2 class="section-label" id="stories-label">הסיפורים</h2>
-      <ul class="story-list">
-        {stories.map((story) => <StoryCard story={story} />)}
-      </ul>
-      <p class="more">
-        <a href="/stories/">כל הסיפורים</a>
-        {
-          storyUrls.length > 1 && (
-            <button id="random-story" class="action" type="button">
-              ✦ סיפור אקראי
-            </button>
-          )
-        }
-      </p>
-      <p class="closing-line">כל סיפור מתחיל בנקודת מבט אחת.</p>
+            <div class="door-content">
+              <article class="moment-sample">
+                <h3 class="moment-title">
+                  <a id="moment-title-link" href={featuredMoment.url}>
+                    {featuredMoment.format.title}
+                  </a>
+                </h3>
+                <div id="moment-body-mount" class="moment-body-preview">
+                  <MomentBody format={featuredMoment.format} />
+                </div>
+              </article>
+
+              <div class="moment-footer">
+                <a href="/moments/" class="door-cta">מצא רגע שלך</a>
+              </div>
+            </div>
+
+            {
+              /* המאגר שממנו מוגרל הרגע */
+              momentPool.map((m) => (
+                <template data-moment-option data-url={m.url} data-title={m.format.title}>
+                  <MomentBody format={m.format} />
+                </template>
+              ))
+            }
+          </div>
+        )
+      }
+
+      <!-- דלת ימין: סיפורים -->
+      <div class="door door-stories">
+        <div class="stories-header">
+          <h2>סיפורים</h2>
+          <p>בחר את עולמך וקרא עמוק</p>
+        </div>
+
+        <div class="stories-grid">
+          {stories.map((story) => (
+            <div class="story-card" data-section={story.data.section}>
+              <div class="story-gate">
+                {story.data.section === 'mishals' && '📖'}
+                {story.data.section === 'sages' && '✨'}
+                {story.data.section === 'journal' && '📔'}
+              </div>
+              <div class="story-header">
+                <h3>
+                  {story.data.section === 'mishals' && 'משלים'}
+                  {story.data.section === 'sages' && 'סיפורי צדיקים'}
+                  {story.data.section === 'journal' && 'מהיומן שלי'}
+                </h3>
+              </div>
+              <div class="story-body">
+                <p class="story-examples">{story.data.title}</p>
+                <a href={`/stories/${story.id}/`} class="story-link">
+                  {story.data.section === 'mishals' && 'כל המשלים →'}
+                  {story.data.section === 'sages' && 'כל הצדיקים →'}
+                  {story.data.section === 'journal' && 'הכל מהיומן →'}
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
 
     <JoinGroup />
@@ -154,6 +174,7 @@ const DESCRIPTION =
   .hero {
     text-align: center;
     padding-top: 0.5rem;
+    margin-bottom: 2.5rem;
   }
 
   .hero h1 {
@@ -163,7 +184,6 @@ const DESCRIPTION =
     text-wrap: balance;
   }
 
-  /* משפט אופי, לא שורת ניווט — "תובנות" עדיין אין לה אזור, ולכן היא לא קישור. */
   .triad {
     font-family: var(--font-display);
     font-size: 1.05rem;
@@ -179,86 +199,241 @@ const DESCRIPTION =
     line-height: 1.75;
   }
 
-  /* הפעולה הראשית */
-  .lead-action {
-    text-align: center;
-    margin-top: 1.9rem;
+  /* =========== דלתות צד אל צד ============ */
+  .dual-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
   }
 
-  .question {
+  .door {
+    background: white;
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* דלת שמאל: רגעים */
+  .door-moments {
+    border: 2px solid var(--red-deep);
+  }
+
+  .door-header {
+    background: var(--red-deep);
+    color: white;
+    padding: 1.2rem;
+    text-align: center;
+  }
+
+  .door-header h2 {
     font-family: var(--font-display);
     font-size: 1.3rem;
-    margin-bottom: 0.85rem;
+    margin: 0;
+    font-weight: 700;
   }
 
-  /* תווית אזור — שקטה בכוונה: היא מסמנת גבול, לא מתחרה על תשומת הלב */
-  .section-label {
-    font-family: var(--font-body);
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    color: var(--muted);
+  .door-subheader {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    margin-top: 0.3rem;
+  }
+
+  .door-gate {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, rgba(176, 70, 59, 0.1) 0%, rgba(176, 70, 59, 0.05) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+  }
+
+  .door-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .moment-sample {
+    margin-bottom: 1.2rem;
+  }
+
+  .moment-title {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--red-deep);
+    line-height: 1.2;
+    margin: 0 0 0.7rem;
     text-align: center;
-    margin-bottom: 0.85rem;
   }
 
-  .feature {
-    margin-top: 2.5rem;
-  }
-
-  /* רגע אחד, בשלמותו. טקסט הוא תוכן — האזור הזה לא יכול להיראות ריק. */
-  /* גודל הבסיס של הרגע בדף הבית קטן מזה שבעמוד שלו — כאן הוא אורח בעמוד,
-     ושם הוא העמוד. שאר הטיפוגרפיה מגיעה מהרכיב, כדי שהקצב יהיה זהה בשניהם. */
-  .moment-card {
-    --moment-size: 1.1rem;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 1.4rem 1.3rem;
-  }
-
-  .moment-hook {
-    text-align: center;
-    font-size: 1.4rem;
-    line-height: 1.3;
-    color: var(--blue);
-    margin: 0 0 1.4rem;
-    text-wrap: balance;
-  }
-
-  .moment-hook a {
+  .moment-title a {
     color: inherit;
     text-decoration: none;
   }
 
-  .more {
-    text-align: center;
-    margin-top: 1.1rem;
+  .moment-title a:hover {
+    text-decoration: underline;
   }
 
-  .more a {
+  .moment-body-preview {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    text-align: center;
+    color: var(--ink);
+  }
+
+  .moment-footer {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .door-cta {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
     min-height: 44px;
-    padding-inline: 0.75rem;
-    text-decoration: none;
+    padding: 0.75rem;
+    background: var(--red-deep);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
     font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
   }
 
-  .story-list {
-    list-style: none;
-    padding: 0;
-    display: grid;
-    gap: 2.75rem;
+  .door-cta:hover {
+    opacity: 0.9;
   }
 
-  /* שורת סיום שקטה מתחת לסיפורים */
-  .closing-line {
+  /* דלת ימין: סיפורים */
+  .door-stories {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stories-header {
     text-align: center;
+    margin-bottom: 1.3rem;
+  }
+
+  .stories-header h2 {
     font-family: var(--font-display);
-    font-size: 1.05rem;
+    font-size: 1.3rem;
+    margin: 0 0 0.3rem;
+    color: var(--ink);
+  }
+
+  .stories-header p {
+    font-size: 0.85rem;
+    color: var(--secondary);
+    margin: 0;
+  }
+
+  .stories-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .story-card {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .story-gate {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+  }
+
+  .story-card[data-section="mishals"] .story-gate {
+    background: linear-gradient(135deg, rgba(176, 70, 59, 0.1) 0%, rgba(176, 70, 59, 0.05) 100%);
+  }
+
+  .story-card[data-section="sages"] .story-gate {
+    background: linear-gradient(135deg, rgba(31, 92, 87, 0.1) 0%, rgba(31, 92, 87, 0.05) 100%);
+  }
+
+  .story-card[data-section="journal"] .story-gate {
+    background: linear-gradient(135deg, rgba(0, 59, 92, 0.1) 0%, rgba(0, 59, 92, 0.05) 100%);
+  }
+
+  .story-header {
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .story-header h3 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    margin: 0;
+    font-weight: 700;
+  }
+
+  .story-card[data-section="mishals"] .story-header h3 {
+    color: var(--red-deep);
+  }
+
+  .story-card[data-section="sages"] .story-header h3 {
+    color: var(--teal-deep);
+  }
+
+  .story-card[data-section="journal"] .story-header h3 {
+    color: var(--blue-deep);
+  }
+
+  .story-body {
+    padding: 0.8rem 1rem;
+  }
+
+  .story-examples {
+    display: block;
+    font-size: 0.75rem;
     color: var(--muted);
-    margin-top: 2.25rem;
+    margin: 0 0 0.6rem;
+    line-height: 1.4;
+  }
+
+  .story-link {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--teal-deep);
+    text-decoration: none;
+  }
+
+  .story-link:hover {
+    text-decoration: underline;
+  }
+
+  /* בטלפון */
+  @media (max-width: 800px) {
+    .dual-section {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .door-gate {
+      height: 150px;
+      font-size: 3rem;
+    }
   }
 </style>
