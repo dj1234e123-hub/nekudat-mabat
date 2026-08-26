@@ -39,6 +39,10 @@ const RULE_Y = 1169;
 const RULE_HALF = 35;
 const SIGN_Y = 1232;
 const URL_Y = 1272;
+/** הכרטיס העברי נושא שורת קבוצה עדינה, ולכן התחתית שלו נדחסת מעט אחרת */
+const HE_SIGN_Y = 1224;
+const HE_GROUP_Y = 1266;
+const HE_URL_Y = 1304;
 
 const PAPER = '#f3e9d3';
 const INK = '#2e2a24';
@@ -317,8 +321,13 @@ export function renderMomentCard(
   <circle cx="${CENTER}" cy="${DOT_Y}" r="${DOT_R}" fill="${GOLD}"/>
   ${svg.join('\n  ')}
   <line x1="${CENTER - RULE_HALF}" y1="${RULE_Y}" x2="${CENTER + RULE_HALF}" y2="${RULE_Y}" stroke="${GOLD}" stroke-width="2"/>
-  <text x="${CENTER}" y="${SIGN_Y}" font-family="Heebo Bold" font-size="30" fill="${TEAL_DEEP}" direction="${direction}" text-anchor="middle">${signature}</text>
-  <text x="${CENTER}" y="${URL_Y}" font-family="Heebo" font-size="24" fill="${MUTED}" text-anchor="middle">${escape(urlText)}</text>
+  <text x="${CENTER}" y="${rtl ? HE_SIGN_Y : SIGN_Y}" font-family="Heebo Bold" font-size="30" fill="${TEAL_DEEP}" direction="${direction}" text-anchor="middle">${signature}</text>
+  ${
+    rtl
+      ? `<text x="${CENTER}" y="${HE_GROUP_Y}" font-family="Heebo" font-size="24" fill="${MUTED}" direction="rtl" text-anchor="middle">${RLO}להצטרפות לקבוצת הוואטסאפ — באתר${PDF}</text>`
+      : ''
+  }
+  <text x="${CENTER}" y="${rtl ? HE_URL_Y : URL_Y}" font-family="Heebo" font-size="24" fill="${MUTED}" text-anchor="middle">${escape(urlText)}</text>
 </svg>`;
 
   return new Resvg(doc, {
