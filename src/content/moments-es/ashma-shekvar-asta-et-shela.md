@@ -1,8 +1,8 @@
 ---
 feeling: guilt
 date: 2026-08-22
+title: Una deuda pagada
 ---
-
 La culpa tiene un solo trabajo,
 y lo hace rápido.
 Marca que cruzaste una línea,
@@ -16,9 +16,9 @@ Y sin embargo,
 Pero todo lo que sigue,
 ya no arregla nada.
 Solo cobra un precio,
-por una deuda **que ya pagaste**.
+por una deuda ya **pagada**.
 
 ---
 
 Queda una sola pregunta:
-Qué hacemos de aquí en adelante.
+qué hacemos desde aquí.

@@ -1,21 +1,21 @@
 ---
 feeling: guilt
 date: 2026-08-22
+title: Las otras veces
 ---
-
-Contamos las veces
-que perdiste paciencia.
-Y no contamos
+Cuentas las veces,
+que perdiste la paciencia.
+Y no cuentas,
 las **otras**.
 
-Y cada una se graba
+Y cada una se graba,
 más profundo.
-Hasta que solo queda
-quien no **lo logró**.
+Hasta que solo queda,
+quien no lo **logró**.
 
-Pero lo que se grabó en la herida,
+Pero lo que dolió se graba,
 y lo que estuvo bien,
-simplemente sucedió.
+simplemente pasó.
 Sin dejar **huella**.
 
 ---

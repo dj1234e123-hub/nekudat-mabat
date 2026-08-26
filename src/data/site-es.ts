@@ -39,6 +39,9 @@ export const FEELING_LABELS_ES: Record<string, string> = {
   faith: 'Fe',
   confidence: 'Confianza en uno mismo',
   'good-moment': 'Un buen momento',
+  prayer: 'Oración',
+  providence: 'Providencia',
+  gratitude: 'Gratitud',
 };
 
 /** כותרות הקבוצות בספרדית — לפי אותו slug של הרשימה העברית. */
@@ -47,4 +50,5 @@ export const GROUP_LABELS_ES: Record<string, string> = {
   self: 'Cuando cuesta contigo mismo',
   stuck: 'Cuando cuesta avanzar',
   beginning: 'Cuando algo se abre',
+  upward: 'Cuando levantamos la mirada',
 };

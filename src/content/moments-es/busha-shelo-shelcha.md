@@ -1,12 +1,24 @@
 ---
 feeling: shame
 date: 2026-08-22
+title: No con tu voz
+---
+Alguien dijo una frase sobre ti.
+A una edad,
+en la que aún no sabías,
+comprobar si era **cierta**.
+
+Y desde entonces se quedó contigo,
+como si fuera tuya.
+Y cada año suena,
+más **verdadera**.
+
+Pero se puede notar,
+una sola vez,
+que ni siquiera suena,
+con tu **voz**.
+
 ---
 
-Hay una vergüenza que no nació en ti.
-
-Alguien dijo una frase sobre ti, a una edad en la que todavía no sabías comprobar si era cierta, y desde entonces se quedó contigo como si fuera tuya.
-
-Se puede notar, una vez, que ni siquiera suena con tu voz cuando aparece en la cabeza.
-
-Hay cosas que se quedan con nosotros solo porque nunca se volvieron a revisar.
+Hay cosas que se quedan,
+solo porque no se volvieron a revisar.

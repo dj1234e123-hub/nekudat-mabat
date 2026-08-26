@@ -69,6 +69,9 @@ const momentsEs = defineCollection({
   schema: z.object({
     feeling: z.enum(FEELING_SLUGS as [FeelingSlug, ...FeelingSlug[]]),
     date: z.coerce.date(),
+    // כותרת-הוו בספרדית — אותו תפקיד ואותה חובה כמו באוסף העברי:
+    // כל 75 הרגעים תורגמו בפורמט החדש, ורגע בלי כותרת מכשיל את הבנייה.
+    title: z.string().min(1),
   }),
 });
 

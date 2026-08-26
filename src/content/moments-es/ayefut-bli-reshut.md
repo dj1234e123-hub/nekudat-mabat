@@ -1,12 +1,24 @@
 ---
 feeling: exhaustion
 date: 2026-08-22
+title: Un sistema que sigue
+---
+Hay gente que depende de ti.
+Entonces sigues.
+Y lo haces,
+**bien**.
+
+Y eso es justo lo que esconde.
+Porque desde afuera todo continúa,
+como siempre.
+Entonces no hay verdadero **permiso**.
+
+Pero un sistema que sigue,
+funcionando,
+no es un sistema,
+al que se le puede cargar **más**.
+
 ---
 
-Cuando hay personas que dependen de ti, no queda realmente lugar para el cansancio.
-
-Así que sigues. Y lo haces bien — y eso es justamente lo que lo esconde, porque desde afuera todo continúa como siempre.
-
-Un sistema que sigue funcionando no es un sistema al que se pueda seguir cargando.
-
-Y nadie va a venir a decirte cuándo. Eso se escucha solo por dentro.
+No hay quien diga cuándo.
+Se escucha desde adentro.

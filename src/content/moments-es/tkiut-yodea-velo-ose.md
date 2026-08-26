@@ -1,12 +1,24 @@
 ---
 feeling: standstill
 date: 2026-08-22
+title: No es pereza
+---
+Sabes exactamente,
+qué hay que hacer.
+Y aun así,
+no lo **haces**.
+
+No hay a quién culpar,
+y no hay excusa.
+Entonces lo que queda,
+es **pereza**.
+
+Pero quizás,
+hay una **razón**.
+Algo ahí te cuida,
+de volver a decepcionarte.
+
 ---
 
-Se sabe exactamente qué hay que hacer. Simplemente no se hace.
-
-Y eso enoja más que nada, porque no hay a quién culpar ni hay una excusa real.
-
-Pero nadie deja de hacer algo sin motivo. En todo estancamiento hay una parte que está cuidando algo: la dignidad, la calma, el miedo a decepcionarse otra vez.
-
-Quien intenta vencerla pelea contra sí. Quien le pregunta qué está cuidando — empieza a moverse.
+Pereza es un nombre.
+No una razón.

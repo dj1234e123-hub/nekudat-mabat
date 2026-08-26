@@ -1,12 +1,24 @@
 ---
 feeling: envy
 date: 2026-08-22
+title: Lo que no te permitiste
+---
+De la envidia hay más vergüenza,
+que de cualquier otra emoción.
+Por eso casi nunca,
+la **miramos**.
+
+Porque qué habría que mirar.
+Dice sobre mí,
+exactamente lo que,
+no quería **saber**.
+
+Pero no aparece,
+frente a cualquiera que logró.
+Solo frente a quien tiene,
+lo que no te **permitiste**.
+
 ---
 
-De la envidia nos avergonzamos más que de cualquier otra emoción, y por eso casi nadie se detiene a mirar qué fue exactamente lo que señaló.
-
-No aparece frente a cualquier persona exitosa. Solo frente a quien tiene justo aquello que quisiste, y que no te permitiste querer.
-
-Sobre esa persona dice muy poco.
-
-Sobre ti es asombrosamente precisa.
+De él dice poco.
+De ti, mucho.
