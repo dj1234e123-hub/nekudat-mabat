@@ -87,10 +87,6 @@ const DESCRIPTION =
   jsonLd={websiteJsonLd(Astro.site!, DESCRIPTION)}
 >
   <main>
-    <div class="language-switch">
-      <a href="/es/" class="lang-link" lang="es">Español</a>
-    </div>
-
     <section class="hero">
       <h1>לראות אחרת. לחיות אחרת.</h1>
       <p class="triad">סיפורים. רגעים. תובנות.</p>
@@ -201,28 +197,6 @@ const DESCRIPTION =
 </script>
 
 <style>
-  /* מעבר שפה — עדין בחלק העליון */
-  .language-switch {
-    text-align: center;
-    margin-bottom: 1.5rem;
-  }
-
-  .lang-link {
-    display: inline-block;
-    font-size: 0.85rem;
-    color: var(--muted);
-    text-decoration: none;
-    padding: 0.35rem 0.6rem;
-    border: 1px solid var(--line);
-    border-radius: 0.25rem;
-    transition: all 0.2s ease;
-  }
-
-  .lang-link:hover {
-    color: var(--teal);
-    border-color: var(--teal);
-  }
-
   /* אזור הפתיחה */
   .hero {
     text-align: center;
