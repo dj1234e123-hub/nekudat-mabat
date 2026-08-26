@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Bash(npm test)",
+      "Bash(npm run test)"
+    ],
+    "deny": [
+      "Bash(rm *)",
+      "Bash(rm -rf *)",
+      "Edit(.env*)",
+      "Edit(*settings.json)"
+    ],
+    "defaultMode": "default"
+  }
+}
