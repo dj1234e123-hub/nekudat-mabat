@@ -16,7 +16,12 @@ export default defineConfig({
       //
       // עולם תוכן שמור שאין בו עדיין סיפורים אינו נכנס למפה: עמוד ריק שמוגש
       // לגוגל הוא הבטחה שלא מתקיימת. הוא ייכנס מעצמו ברגע שיהיה בו תוכן.
-      filter: (page) => !page.includes('/es/') && !page.includes('/sections/shabbat/'),
+      // /welcome/ — דף נחיתה בבדיקה (2026-08-27), noindex עד הכרעה אם הוא
+      // מחליף את דף הבית או נשאר עמוד ייעודי לשיתוף.
+      filter: (page) =>
+        !page.includes('/es/') &&
+        !page.includes('/sections/shabbat/') &&
+        !page.includes('/welcome/'),
     }),
   ],
 });

@@ -1,0 +1,522 @@
+---
+// דף נחיתה — כתובת /welcome/, עצמאי ולא מקושר מהתפריט או מדף הבית (2026-08-27).
+// מטרתו שונה מדף הבית: דף הבית הוא צומת ניווט למי שכבר מכיר את האתר; זה
+// דף שמסביר תוך שניות מה נקודת מבט, למי, ולמה כדאי להישאר — כתובת עצמאית
+// לשיתוף, עד שיוחלט אם הוא מחליף את דף הבית או נשאר עמוד ייעודי.
+// noindex: לא חלק מהאתר המפורסם עד הכרעה — אותו עיקרון שחל על אזורים
+// שממתינים לאישור (למשל האזור הספרדי).
+//
+// כל הרכיבים, הצבעים, הפונטים והתמונות הם אלה שכבר קיימים באתר — שום
+// דבר כאן אינו מותג חדש.
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import JoinGroup from '../components/JoinGroup.astro';
+import MomentBody from '../components/MomentBody.astro';
+import { parseMoment } from '../lib/moment-format';
+import { SECTIONS_META, SECTION_SLUGS, type SectionSlug } from '../data/sections';
+import momentGate from '../assets/gates/moments.png';
+import { SECTION_GATE_IMAGES } from '../data/section-gate-images';
+import { newestFirst } from '../lib/sort';
+import { SITE } from '../data/site';
+import portrait from '../assets/efraim.jpg';
+
+// אותו רגע מוגרל מחדש בכל טעינה, בדיוק כמו בדף הבית — כדי שקורא שחוזר
+// לקישור הזה לא יראה שוב ושוב את אותו רגע קבוע.
+const moments = (await getCollection('moments')).sort(newestFirst);
+const momentPool = moments.map((m) => ({
+  url: `/moments/${m.data.feeling}/${m.id}/`,
+  format: parseMoment(m.body ?? '', m.data.title),
+}));
+const featuredMoment = momentPool[0] ?? null;
+
+// שלושת עולמות הסיפורים, עם סיפור-דוגמה אמיתי לכל אחד — אותה שיטה כמו
+// בדף הבית: הנבחר (featured) אם יש, אחרת החדש ביותר באותו עולם.
+const allStories = (await getCollection('stories')).sort(newestFirst);
+const picked = allStories
+  .filter((s) => s.data.featured !== undefined)
+  .sort((a, b) => a.data.featured! - b.data.featured!);
+const featuredStories = picked.length >= 3 ? picked.slice(0, 3) : allStories.slice(0, 3);
+
+const GATE_EMOJI: Record<SectionSlug, string> = {
+  meshalim: '📖',
+  tzadikim: '✨',
+  yoman: '📔',
+};
+const worlds = SECTION_SLUGS.map((slug) => {
+  const meta = SECTIONS_META[slug];
+  if ('hidden' in meta && meta.hidden) return null;
+  const story =
+    featuredStories.find((s) => s.data.section === slug) ??
+    allStories.find((s) => s.data.section === slug);
+  if (!story) return null;
+  return {
+    slug,
+    meta,
+    story,
+    emoji: GATE_EMOJI[slug],
+    image: SECTION_GATE_IMAGES[slug] ?? null,
+  };
+}).filter((w) => w !== null);
+
+// הגיליון האחרון של "מבט לשבت" — טעימה שקטה, לא דלת שלישית באותו משקל.
+const mabatPieces = (await getCollection('mabatLeshabbat')).sort(newestFirst);
+const latestMabat = mabatPieces[0] ?? null;
+
+const DESCRIPTION =
+  'מקום קטן ושקט לעצור בו: סיפורים ורגעים קצרים של נקודת מבט. לא עצה, לא פתרון — זווית שעוד לא ראית על מה שכבר קרה לך.';
+---
+
+<Base
+  title="נקודת מבט — מה שקרה לא ישתנה, מה שרואים בו כן"
+  description={DESCRIPTION}
+  homeHeader={true}
+  noindex={true}
+>
+  <main>
+    <section class="hero">
+      <h1>מה שקרה לא ישתנה.<br />מה שרואים בו — כן.</h1>
+      <p class="lead">
+        נקודת מבט הוא מקום קטן ושקט לעצור בו: סיפורים ורגעים קצרים —
+        לא כדי להגיד לך מה לעשות, רק כדי להראות לך זווית שעוד לא ראית.
+      </p>
+      <a class="cta" href="/moments/">מצא רגע שלך</a>
+    </section>
+
+    <!-- הדגמה חיה: רגע אחד בשלמותו, במקום לתאר מה זה "רגע". -->
+    {
+      featuredMoment && (
+        <section class="demo">
+          <span class="label demo-label">רגע של נקודת מבט</span>
+
+          <article class="moment-sample">
+            <h2 class="moment-title">
+              <a id="moment-title-link" href={featuredMoment.url}>
+                {featuredMoment.format.title}
+              </a>
+            </h2>
+            <div id="moment-body-mount">
+              <MomentBody format={featuredMoment.format} />
+            </div>
+          </article>
+
+          <p class="demo-note">
+            אחד מתוך {momentPool.length} — לפי מה שעובר עליך עכשיו.
+            <a href="/moments/">לכל הרגעים</a>
+          </p>
+
+          {
+            /* המאגר שממנו מוגרל הרגע (הסקריפט בתחתית הקובץ). <template>
+               אינו מוצג ואינו נכלל בפריסה — אותו מנגנון כמו בדף הבית. */
+            momentPool.map((m) => (
+              <template data-moment-option data-url={m.url} data-title={m.format.title}>
+                <MomentBody format={m.format} />
+              </template>
+            ))
+          }
+        </section>
+      )
+    }
+
+    <!-- מה עוד יש כאן: שלושת עולמות הסיפורים, וטעימה מ"מבط لشبت". -->
+    <section class="worlds">
+      <div class="worlds-header">
+        <h2>יש כאן גם סיפורים</h2>
+        <p>שלושה עולמות. תבחר מאיפה להתחיל.</p>
+      </div>
+
+      <div class="worlds-grid">
+        {
+          worlds.map(({ slug, meta, story, emoji, image }) => (
+            <div class="world-card" data-section={slug}>
+              {image ? (
+                <a href={`/sections/${slug}/`} class="gate-link" aria-label={meta.label}>
+                  <Image
+                    src={image.image}
+                    alt=""
+                    widths={[480, 960]}
+                    sizes="(max-width: 50rem) 100vw, 340px"
+                    class="world-gate"
+                    style={`object-position: ${image.position}`}
+                  />
+                </a>
+              ) : (
+                <div class="world-gate" aria-hidden="true">{emoji}</div>
+              )}
+              <div class="world-header">
+                <h3>{meta.label}</h3>
+                <p class="world-line">{meta.line}</p>
+              </div>
+              <div class="world-body">
+                <a class="world-example" href={`/stories/${story.id}/`}>
+                  {story.data.title}
+                </a>
+                <a href={`/sections/${slug}/`} class="world-link">
+                  {meta.linkText}
+                </a>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      {
+        latestMabat && (
+          <a class="mabat-row" href={`/mabat-leshabbat/${latestMabat.id}/`}>
+            <span class="mabat-rail" aria-hidden="true" />
+            <span class="mabat-text">
+              <span class="mabat-kicker">מבט לשבת · פרשת {latestMabat.data.parasha}</span>
+              <span class="mabat-title">{latestMabat.data.title}</span>
+            </span>
+          </a>
+        )
+      }
+    </section>
+
+    <!-- אמון: מי כותב את זה. -->
+    <section class="trust">
+      <div class="trust-photo">
+        <Image src={portrait} alt={SITE.ownerName} width={96} densities={[1, 2]} />
+      </div>
+      <p class="trust-text">
+        אני אפרים עטיה. עברתי דרך של התמודדות, חיפוש ולמידה — ומתוכה נולד
+        המקום הזה. אני מלווה בחורים בתהליכים אישיים, וכל מילה כאן עוברת
+        קודם דרכי.
+      </p>
+      <a class="trust-link" href="/about/">לקרוא את המכתב המלא</a>
+    </section>
+
+    <!-- סיום: אותה קריאה לפעולה, בשקט. -->
+    <section class="closing-cta">
+      <h2>מה שקרה לא ישתנה.</h2>
+      <p>אבל אולי יש כאן זווית שעוד לא ראית.</p>
+      <a class="cta" href="/moments/">מצא רגע שלך</a>
+      <a class="closing-alt" href="/stories/">או תתחיל מסיפור</a>
+    </section>
+
+    <JoinGroup />
+  </main>
+</Base>
+
+<script is:inline>
+  const momentOptions = document.querySelectorAll('template[data-moment-option]');
+  if (momentOptions.length > 1) {
+    const choice = momentOptions[Math.floor(Math.random() * momentOptions.length)];
+    const mount = document.getElementById('moment-body-mount');
+    const titleLink = document.getElementById('moment-title-link');
+    if (mount) mount.replaceChildren(choice.content.cloneNode(true));
+    if (titleLink) {
+      titleLink.href = choice.dataset.url;
+      titleLink.textContent = choice.dataset.title;
+    }
+  }
+</script>
+
+<style>
+  /* ============ פתיחה ============ */
+  .hero {
+    text-align: center;
+    padding-top: 0.75rem;
+    margin-bottom: 3rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.85rem, 8vw, 2.5rem);
+    line-height: 1.35;
+    margin-bottom: 1rem;
+    text-wrap: balance;
+  }
+
+  .hero .lead {
+    color: var(--secondary);
+    max-width: 30rem;
+    margin-inline: auto;
+    line-height: 1.8;
+    margin-bottom: 1.6rem;
+  }
+
+  /* ============ הדגמה: רגע שלם ============ */
+  .demo {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .demo-label {
+    margin-bottom: 1.6rem;
+  }
+
+  .moment-title {
+    font-size: 1.35rem;
+    line-height: 1.35;
+    color: var(--blue);
+    margin: 0 0 1.3rem;
+    text-wrap: balance;
+  }
+
+  .moment-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .demo-note {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-top: 1rem;
+  }
+
+  .demo-note a {
+    color: var(--teal);
+    font-weight: 600;
+    text-decoration: none;
+    margin-inline-start: 0.4rem;
+  }
+
+  .demo-note a:hover {
+    text-decoration: underline;
+  }
+
+  /* ============ עולמות הסיפורים ============ */
+  .worlds {
+    /* אותה טכניקת "בליעה" כמו בדף הבית — פורצת את עמוד 42rem כדי לתת
+       לשלושת הכרטיסים שורה אחת נוחה במסך רחב, בלי לצמצם אותם. */
+    --bleed: min(58rem, 100vw - 3rem);
+    width: var(--bleed);
+    margin-inline: calc((100% - var(--bleed)) / 2);
+    margin-bottom: 3.5rem;
+  }
+
+  .worlds-header {
+    text-align: center;
+    margin-bottom: 1.4rem;
+  }
+
+  .worlds-header h2 {
+    font-size: 1.5rem;
+    margin: 0 0 0.35rem;
+  }
+
+  .worlds-header p {
+    color: var(--secondary);
+    margin: 0;
+  }
+
+  .worlds-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 42rem) {
+    .worlds-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .world-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow);
+  }
+
+  .gate-link {
+    display: block;
+    line-height: 0;
+  }
+
+  img.world-gate {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+  }
+
+  .world-header {
+    padding: 0.85rem 1rem 0.7rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .world-header h3 {
+    font-size: 1.1rem;
+    margin: 0;
+  }
+
+  .world-card[data-section='meshalim'] .world-header h3 {
+    color: var(--brick);
+  }
+
+  .world-card[data-section='tzadikim'] .world-header h3 {
+    color: var(--teal);
+  }
+
+  .world-card[data-section='yoman'] .world-header h3 {
+    color: var(--blue);
+  }
+
+  .world-line {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin: 0.25rem 0 0;
+    line-height: 1.5;
+  }
+
+  .world-body {
+    padding: 0.75rem 1rem 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .world-example {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--ink);
+    text-decoration: none;
+    line-height: 1.4;
+    min-height: 32px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .world-example:hover {
+    text-decoration: underline;
+  }
+
+  .world-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--teal);
+    text-decoration: none;
+  }
+
+  .world-link:hover {
+    text-decoration: underline;
+  }
+
+  /* טעימת "מבط لشبت" — רצועה שקטה, לא כרטיס רביעי באותו משקל */
+  .mabat-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1rem 1.2rem;
+    text-decoration: none;
+  }
+
+  .mabat-rail {
+    width: 3px;
+    align-self: stretch;
+    min-height: 2.5rem;
+    background: var(--blue);
+    border-radius: 2px;
+    flex: 0 0 auto;
+  }
+
+  .mabat-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    min-height: 44px;
+    justify-content: center;
+  }
+
+  .mabat-kicker {
+    color: var(--blue);
+    font-size: 0.76rem;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+  }
+
+  .mabat-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+
+  .mabat-row:hover .mabat-title {
+    color: var(--blue);
+  }
+
+  /* ============ אמון ============ */
+  .trust {
+    text-align: center;
+    max-width: 28rem;
+    margin: 0 auto 3.5rem;
+  }
+
+  .trust-photo {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 1.1rem;
+    box-shadow: var(--shadow);
+  }
+
+  .trust-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .trust-text {
+    color: var(--secondary);
+    line-height: 1.8;
+    margin-bottom: 0.9rem;
+  }
+
+  .trust-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-weight: 600;
+    color: var(--teal);
+    text-decoration: none;
+  }
+
+  .trust-link:hover {
+    text-decoration: underline;
+  }
+
+  /* ============ סיום ============ */
+  .closing-cta {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .closing-cta h2 {
+    font-size: 1.4rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .closing-cta p {
+    color: var(--secondary);
+    margin-bottom: 1.5rem;
+  }
+
+  .closing-alt {
+    display: block;
+    margin-top: 1rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+    text-decoration: none;
+  }
+
+  .closing-alt:hover {
+    color: var(--teal);
+    text-decoration: underline;
+  }
+</style>
