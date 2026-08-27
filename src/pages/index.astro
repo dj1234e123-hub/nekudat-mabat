@@ -14,6 +14,8 @@ import { SECTIONS_META, SECTION_SLUGS, type SectionSlug } from '../data/sections
 import momentGate from '../assets/gates/moments.png';
 import { SECTION_GATE_IMAGES } from '../data/section-gate-images';
 import { newestFirst } from '../lib/sort';
+import MabatBody from '../components/MabatBody.astro';
+import { parseBody } from '../lib/mabat-format';
 
 // דף הבית נותן טעם ומוביל הלאה; הארכיון עצמו חי ב-/stories/.
 const allStories = (await getCollection('stories')).sort(newestFirst);
@@ -62,6 +64,13 @@ const momentPool = moments.map((m) => ({
   format: parseMoment(m.body ?? '', m.data.title),
 }));
 const featuredMoment = momentPool[0] ?? null;
+
+// טעימה מ"מבט לשבת" — הגיליון האחרון בלבד, ורק שני המהלכים הראשונים שלו.
+// הדף מציג רק תוכן שקיים בפועל: בלי גיליון, האזור כולו לא מוצג.
+const mabatPieces = (await getCollection('mabatLeshabbat')).sort(newestFirst);
+const latestMabat = mabatPieces[0]
+  ? { piece: mabatPieces[0], blocks: parseBody(mabatPieces[0].body ?? '') }
+  : null;
 
 const DESCRIPTION =
   'מקום לעצור, לקבל נקודת מבט חדשה, ולקחת משהו איתך להמשך הדרך. סיפורים ורגעים קצרים של נקודת מבט.';
@@ -176,6 +185,25 @@ const DESCRIPTION =
         </div>
       </div>
     </section>
+
+    <!-- טעימה מ"מבט לשבת": נוכחות שקטה בדף הבית, לא דלת שלישית באותו משקל. -->
+    {
+      latestMabat && (
+        <section class="mabat-teaser">
+          <span class="teaser-rail" aria-hidden="true" />
+          <div class="teaser-body">
+            <p class="teaser-kicker">מבט לשבת · פרשת {latestMabat.piece.data.parasha}</p>
+            <a class="teaser-title" href={`/mabat-leshabbat/${latestMabat.piece.id}/`}>
+              {latestMabat.piece.data.title}
+            </a>
+            <MabatBody blocks={latestMabat.blocks} stanzaLimit={2} />
+            <a class="teaser-more" href={`/mabat-leshabbat/${latestMabat.piece.id}/`}>
+              להמשיך לקרוא
+            </a>
+          </div>
+        </section>
+      )
+    }
 
     <JoinGroup />
   </main>
@@ -493,6 +521,72 @@ const DESCRIPTION =
   }
 
   .story-link:hover {
+    text-decoration: underline;
+  }
+
+  /* ============ טעימת "מבט לשבת" ============ */
+  .mabat-teaser {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1.3rem 1.4rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .teaser-rail {
+    width: 3px;
+    align-self: stretch;
+    min-height: 3.5rem;
+    background: var(--blue);
+    border-radius: 2px;
+    flex: 0 0 auto;
+  }
+
+  .teaser-body {
+    flex: 1;
+    text-align: center;
+  }
+
+  .teaser-kicker {
+    color: var(--blue);
+    font-size: 0.76rem;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    margin: 0 0 0.4rem;
+  }
+
+  .teaser-title {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--ink);
+    text-decoration: none;
+    line-height: 1.4;
+    margin-bottom: 1.1rem;
+    text-wrap: balance;
+  }
+
+  .teaser-title:hover {
+    color: var(--blue);
+  }
+
+  .teaser-more {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: 0.6rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--teal);
+    text-decoration: none;
+  }
+
+  .teaser-more:hover {
     text-decoration: underline;
   }
 </style>

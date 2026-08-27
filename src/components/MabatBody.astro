@@ -1,0 +1,92 @@
+---
+// גוף של "מבט לשבת" — מהלכי הטקסט והמפרידים השקטים ביניהם.
+// רכיב אחד לשני המקומות שמציגים מאמר (עמוד המאמר, וטעימה בדף הבית),
+// כדי שהקצב ייראה זהה בשניהם.
+import type { Block } from '../lib/mabat-format';
+import { lineHtml } from '../lib/mabat-format';
+
+interface Props {
+  blocks: Block[];
+  /** לטעימה בדף הבית: כמה מהלכים (לא כולל מפרידים) להציג לפני עצירה */
+  stanzaLimit?: number;
+}
+
+const { blocks, stanzaLimit } = Astro.props;
+
+let shown = blocks;
+if (stanzaLimit !== undefined) {
+  const cut: Block[] = [];
+  let count = 0;
+  for (const block of blocks) {
+    if (block.type === 'stanza') {
+      if (count >= stanzaLimit) break;
+      count++;
+    }
+    cut.push(block);
+  }
+  // מפריד בקצה הטעימה לא מציג כלום אחריו — יורד.
+  while (cut.length && cut[cut.length - 1].type === 'divider') cut.pop();
+  shown = cut;
+}
+---
+
+<div class="mabat-body">
+  {
+    shown.map((block) =>
+      block.type === 'divider' ? (
+        <div class="mark" aria-hidden="true">
+          <span class="mark-line" />
+          <span class="mark-dot" />
+          <span class="mark-line" />
+        </div>
+      ) : (
+        <p class="line" set:html={block.lines.map(lineHtml).join('<br />')} />
+      ),
+    )
+  }
+</div>
+
+<style>
+  .mabat-body {
+    text-align: center;
+  }
+
+  .mabat-body .line {
+    margin: 0 0 1.15rem;
+    font-size: 1.02rem;
+    font-weight: 500;
+    line-height: 1.65;
+  }
+
+  .mabat-body .line:last-child {
+    margin-bottom: 0;
+  }
+
+  .mabat-body :global(strong) {
+    color: var(--blue);
+    font-weight: 700;
+  }
+
+  .mabat-body .mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    margin: 2rem 0;
+  }
+
+  .mabat-body .mark-line {
+    width: 26px;
+    height: 1px;
+    background: var(--blue);
+    opacity: 0.5;
+  }
+
+  .mabat-body .mark-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--blue);
+    opacity: 0.85;
+  }
+</style>
