@@ -140,6 +140,35 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
       )
     }
     <slot />
+    <script>
+      // מדידת התנהגות (PostHog, שלב 4.28) — משלימה את Vercel Analytics:
+      // מסלולים, נקודות עזיבה ולחיצות, לא רק ספירת צפיות.
+      // הנתונים עוברים דרך האתר עצמו (/ingest ב-vercel.json) — בלי סקריפט
+      // מדומיין זר, בלי פתיחת ה-CSP, ועמיד בפני חוסמים וסינון.
+      // רץ רק בדומיין הציבורי: תצוגות מקדימות והגלישות של בעל הפרויקט
+      // בכתובת ה-vercel.app לא מזהמות את המדידה.
+      import posthog from 'posthog-js';
+
+      if (['nekudatmabat.blog', 'www.nekudatmabat.blog'].includes(location.hostname)) {
+        posthog.init('phc_Ao9zMFiwEvJyA7G3LchesR4N7mmJdfggEkrMZF86Z3Lb', {
+          api_host: '/ingest',
+          ui_host: 'https://us.posthog.com',
+          defaults: '2025-05-24',
+          // localStorage ולא עוגיות — הזיהוי חדש/חוזר נשאר בדפדפן של הקורא בלבד.
+          persistence: 'localStorage',
+          disable_session_recording: true,
+        });
+
+        // אירועים מותאמים: רכיב מסמן data-ph="שם" וההאזנה חיה כאן פעם אחת.
+        // sendBeacon — כדי שגם לחיצה שמנווטת מיד (סיפור אקראי, טלפון) תיקלט.
+        document.addEventListener('click', (event) => {
+          const el = (event.target as Element).closest?.('[data-ph]');
+          if (el instanceof HTMLElement && el.dataset.ph) {
+            posthog.capture(el.dataset.ph, undefined, { transport: 'sendBeacon' });
+          }
+        });
+      }
+    </script>
     <footer>
       <span class="dot" aria-hidden="true"></span>
       <p><a href={homeHref}>{brand.name}</a> · {brand.slogan}</p>
