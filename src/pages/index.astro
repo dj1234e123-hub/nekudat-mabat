@@ -91,31 +91,17 @@ const DESCRIPTION =
       </p>
     </section>
 
-    <!-- טעימה מ"מבט לשבת": מוצגת מעל דלת הרגעים, לא כדלת שלישית באותו משקל. -->
-    {
-      latestMabat && (
-        <section class="mabat-teaser">
-          <span class="teaser-rail" aria-hidden="true" />
-          <div class="teaser-body">
-            <p class="teaser-kicker">מבט לשבת · פרשת {latestMabat.piece.data.parasha}</p>
-            <a class="teaser-title" href={`/mabat-leshabbat/${latestMabat.piece.id}/`}>
-              {latestMabat.piece.data.title}
-            </a>
-            <MabatBody blocks={latestMabat.blocks} stanzaLimit={2} />
-            <a class="teaser-more" href={`/mabat-leshabbat/${latestMabat.piece.id}/`}>
-              להמשיך לקרוא
-            </a>
-          </div>
-        </section>
-      )
-    }
-
-    <!-- שתי דלתות בקנה מידה שווה: רגעים מול סיפורים -->
+    <!-- שתי דלתות בקנה מידה שווה: רגעים מול סיפורים, ובין לבין — טעימה
+         מ"מבط لشبت" (לא דלת שלישית באותו משקל). במסך צר שלושתם מתקפלים
+         לעמודה אחת בסדר הזה בדיוק; במסך רחב, ששתי הדלתות יושבות זו לצד זו
+         בשורה אחת, הטעימה יורדת לרצועה מלאה מתחתיהן — "בין" לא קיים
+         גיאומטרית כששני האיברים כבר צמודים אופקית. -->
     <section class="dual-section">
       <!-- דלת הרגעים -->
       {
         featuredMoment && (
-          <div class="door door-moments">
+          <div class="door door-moments" style="grid-area: moments">
+
             <div class="door-header">
               <h2>רגע של נקודת מבט</h2>
               <p class="door-subheader">רגע קצר שמדבר ישירות אליך</p>
@@ -161,8 +147,26 @@ const DESCRIPTION =
         )
       }
 
+      {
+        latestMabat && (
+          <section class="mabat-teaser" style="grid-area: mabat">
+            <span class="teaser-rail" aria-hidden="true" />
+            <div class="teaser-body">
+              <p class="teaser-kicker">מבט לשבת · פרשת {latestMabat.piece.data.parasha}</p>
+              <a class="teaser-title" href={`/mabat-leshabbat/${latestMabat.piece.id}/`}>
+                {latestMabat.piece.data.title}
+              </a>
+              <MabatBody blocks={latestMabat.blocks} stanzaLimit={2} />
+              <a class="teaser-more" href={`/mabat-leshabbat/${latestMabat.piece.id}/`}>
+                להמשיך לקרוא
+              </a>
+            </div>
+          </section>
+        )
+      }
+
       <!-- דלת הסיפורים: שלושת עולמות התוכן -->
-      <div class="door-stories">
+      <div class="door-stories" style="grid-area: stories">
         <div class="stories-header">
           <h2>סיפורים</h2>
           <p>שלושה עולמות. בחר מאיפה להתחיל.</p>
@@ -263,14 +267,17 @@ const DESCRIPTION =
     margin-inline: calc((100% - var(--bleed)) / 2);
     display: grid;
     grid-template-columns: 1fr;
+    grid-template-areas: 'moments' 'mabat' 'stories';
     gap: 1.75rem;
     align-items: start;
     margin-bottom: 2.5rem;
   }
 
+  /* במסך רחב הדלתות יושבות זו לצד זו, והטעימה יורדת לרצועה מלאה מתחתיהן. */
   @media (min-width: 800px) {
     .dual-section {
       grid-template-columns: 1fr 1fr;
+      grid-template-areas: 'moments stories' 'mabat mabat';
       gap: 2rem;
     }
   }
@@ -534,7 +541,6 @@ const DESCRIPTION =
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     padding: 1.3rem 1.4rem;
-    margin-bottom: 2.5rem;
   }
 
   .teaser-rail {
