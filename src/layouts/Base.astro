@@ -114,9 +114,11 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
         <header class="header-compact">
           <a href={homeHref} class="brand-row">
             <Image src={logo} alt={logoAlt} width={80} densities={[1, 2]} class="logo-sm" />
-            <span class="site-name-sm">{brand.name}</span>
+            <span class="brand-text">
+              <span class="site-name-sm">{brand.name}</span>
+              <span class="tagline">{brand.slogan}</span>
+            </span>
           </a>
-          <p class="tagline-sm">{brand.slogan}</p>
         </header>
       ) : (
         <header class={homeHeader ? 'header-home' : undefined}>
@@ -372,16 +374,12 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
   /* כותרת מצומצמת — עמודי סיפור, רגעים ומבט לשבת.
      הסלוגן חוזר גם כאן (2026-08-27): קודם הכותרת המצומצמת דילגה עליו
      בכוונה כדי לקצר את הדרך לתוכן — בעל הפרויקט ביקש זהות אחידה בכל
-     עמוד על פני הקיצור, ולכן זה חל אוטומטית על כל מי שמשתמש ב-compact. */
+     עמוד על פני הקיצור, ולכן זה חל אוטומטית על כל מי שמשתמש ב-compact.
+     נבנה עם .brand-text ו-.tagline הקיימים — אותה מסגרת בדיוק כמו בכותרת
+     הרגילה (שם מתחת ללוגו, סלוגן מתחתיו), לא רק אותם ערכים בקירוב. */
   .header-compact {
     text-align: center;
-    padding: 1.1rem 1.5rem 0.6rem;
-  }
-
-  .tagline-sm {
-    font-size: 0.8rem;
-    color: var(--muted);
-    margin-top: 0.3rem;
+    padding: 1.1rem 1.5rem 0.25rem;
   }
 
   .brand-row {
