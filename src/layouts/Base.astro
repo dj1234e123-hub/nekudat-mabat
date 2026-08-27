@@ -116,6 +116,7 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
             <Image src={logo} alt={logoAlt} width={80} densities={[1, 2]} class="logo-sm" />
             <span class="site-name-sm">{brand.name}</span>
           </a>
+          <p class="tagline-sm">{brand.slogan}</p>
         </header>
       ) : (
         <header class={homeHeader ? 'header-home' : undefined}>
@@ -368,10 +369,19 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
   }
 
 
-  /* כותרת מצומצמת — עמודי סיפור */
+  /* כותרת מצומצמת — עמודי סיפור, רגעים ומבט לשבת.
+     הסלוגן חוזר גם כאן (2026-08-27): קודם הכותרת המצומצמת דילגה עליו
+     בכוונה כדי לקצר את הדרך לתוכן — בעל הפרויקט ביקש זהות אחידה בכל
+     עמוד על פני הקיצור, ולכן זה חל אוטומטית על כל מי שמשתמש ב-compact. */
   .header-compact {
     text-align: center;
-    padding: 1.1rem 1.5rem 0.25rem;
+    padding: 1.1rem 1.5rem 0.6rem;
+  }
+
+  .tagline-sm {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 0.3rem;
   }
 
   .brand-row {

@@ -91,6 +91,25 @@ const DESCRIPTION =
       </p>
     </section>
 
+    <!-- טעימה מ"מבט לשבת": מוצגת מעל דלת הרגעים, לא כדלת שלישית באותו משקל. -->
+    {
+      latestMabat && (
+        <section class="mabat-teaser">
+          <span class="teaser-rail" aria-hidden="true" />
+          <div class="teaser-body">
+            <p class="teaser-kicker">מבט לשבת · פרשת {latestMabat.piece.data.parasha}</p>
+            <a class="teaser-title" href={`/mabat-leshabbat/${latestMabat.piece.id}/`}>
+              {latestMabat.piece.data.title}
+            </a>
+            <MabatBody blocks={latestMabat.blocks} stanzaLimit={2} />
+            <a class="teaser-more" href={`/mabat-leshabbat/${latestMabat.piece.id}/`}>
+              להמשיך לקרוא
+            </a>
+          </div>
+        </section>
+      )
+    }
+
     <!-- שתי דלתות בקנה מידה שווה: רגעים מול סיפורים -->
     <section class="dual-section">
       <!-- דלת הרגעים -->
@@ -185,25 +204,6 @@ const DESCRIPTION =
         </div>
       </div>
     </section>
-
-    <!-- טעימה מ"מבט לשבת": נוכחות שקטה בדף הבית, לא דלת שלישית באותו משקל. -->
-    {
-      latestMabat && (
-        <section class="mabat-teaser">
-          <span class="teaser-rail" aria-hidden="true" />
-          <div class="teaser-body">
-            <p class="teaser-kicker">מבט לשבת · פרשת {latestMabat.piece.data.parasha}</p>
-            <a class="teaser-title" href={`/mabat-leshabbat/${latestMabat.piece.id}/`}>
-              {latestMabat.piece.data.title}
-            </a>
-            <MabatBody blocks={latestMabat.blocks} stanzaLimit={2} />
-            <a class="teaser-more" href={`/mabat-leshabbat/${latestMabat.piece.id}/`}>
-              להמשיך לקרוא
-            </a>
-          </div>
-        </section>
-      )
-    }
 
     <JoinGroup />
   </main>
