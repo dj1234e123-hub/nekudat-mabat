@@ -4,6 +4,7 @@ import Base from '../../layouts/Base.astro';
 import StoryCard from '../../components/StoryCard.astro';
 import { TOPICS, TOPIC_SLUGS, type TopicSlug } from '../../data/topics';
 import { newestFirst } from '../../lib/sort';
+import { isPublished } from '../../lib/published';
 
 export function getStaticPaths() {
   return TOPIC_SLUGS.map((topic) => ({ params: { topic } }));
@@ -11,9 +12,9 @@ export function getStaticPaths() {
 
 const topic = Astro.params.topic as TopicSlug;
 const label = TOPICS[topic];
-const stories = (await getCollection('stories', (s) => s.data.topic === topic)).sort(
-  newestFirst
-);
+const stories = (
+  await getCollection('stories', (s) => s.data.topic === topic && isPublished(s))
+).sort(newestFirst);
 ---
 
 <Base title={`${label} · נקודת מבט`} description={`סיפורים בנושא ${label} — נקודת מבט`}>

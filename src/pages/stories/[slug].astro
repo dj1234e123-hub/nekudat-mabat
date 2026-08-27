@@ -10,9 +10,10 @@ import { SECTIONS } from '../../data/sections';
 import { DEFAULT_COVERS, DEFAULT_COVER_ALT } from '../../data/default-covers';
 import { formatDate } from '../../utils/format-date';
 import { articleJsonLd, breadcrumbJsonLd } from '../../lib/structured-data';
+import { isPublished } from '../../lib/published';
 
 export async function getStaticPaths() {
-  const stories = await getCollection('stories');
+  const stories = await getCollection('stories', isPublished);
   return stories.map((story) => ({
     params: { slug: story.id },
     props: { story },
@@ -43,7 +44,7 @@ if (cover.format !== 'svg') {
 }
 
 // רשימת כתובות ל"סיפור אקראי" — בלי הסיפור הנוכחי.
-const otherStoryUrls = (await getCollection('stories'))
+const otherStoryUrls = (await getCollection('stories', isPublished))
   .filter((s) => s.id !== story.id)
   .map((s) => `/stories/${s.id}/`);
 ---

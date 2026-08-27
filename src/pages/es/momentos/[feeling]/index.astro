@@ -8,9 +8,10 @@ import MomentBody from '../../../../components/MomentBody.astro';
 import { FEELING_LABELS_ES } from '../../../../data/site-es';
 import { parseMoment } from '../../../../lib/moment-format';
 import { newestFirst } from '../../../../lib/sort';
+import { isPublished } from '../../../../lib/published';
 
 export async function getStaticPaths() {
-  const moments = await getCollection('momentsEs');
+  const moments = await getCollection('momentsEs', isPublished);
   const byFeeling = new Map<string, typeof moments>();
   for (const m of moments) {
     byFeeling.set(m.data.feeling, [...(byFeeling.get(m.data.feeling) ?? []), m]);

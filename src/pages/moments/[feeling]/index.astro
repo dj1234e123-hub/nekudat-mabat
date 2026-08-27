@@ -25,9 +25,10 @@ import {
 import { GATE_IMAGES } from '../../../data/gate-images';
 import { parseMoment } from '../../../lib/moment-format';
 import { newestFirst } from '../../../lib/sort';
+import { isPublished } from '../../../lib/published';
 
 export async function getStaticPaths() {
-  const moments = await getCollection('moments');
+  const moments = await getCollection('moments', isPublished);
   // מדפי מצבים — נבנים רק כשיש בהם תוכן, כדי שלא ייווצרו עמודים ריקים.
   const feelingPaths = FEELING_SLUGS.filter((feeling) =>
     moments.some((moment) => moment.data.feeling === feeling)
@@ -41,7 +42,7 @@ const param = Astro.params.feeling!;
 const gate = FEELING_GROUPS.find((group) => group.slug === param);
 
 // ── נתוני עמוד שער ──
-const allMoments = gate ? await getCollection('moments') : [];
+const allMoments = gate ? await getCollection('moments', isPublished) : [];
 const filled = new Set(allMoments.map((moment) => moment.data.feeling));
 // תמונת השיתוף של עמוד השער היא תמונת השער עצמה.
 const gateOg = gate
@@ -54,9 +55,9 @@ const label = gate ? '' : feelingLabel(feeling);
 const parentGroup = gate ? undefined : groupOf(feeling);
 const moments = gate
   ? []
-  : (await getCollection('moments', (m) => m.data.feeling === feeling)).sort(
-      newestFirst
-    );
+  : (
+      await getCollection('moments', (m) => m.data.feeling === feeling && isPublished(m))
+    ).sort(newestFirst);
 // בפורמט החדש המדף מציג **כותרת + מהלך המציאות בלבד**. עם כותרת-וו אמיתית
 // תפקיד המדף משתנה מ"לקרוא כאן" ל"איזה מהשלושה הוא שלי", ומהלך המציאות הוא
 // בדיוק המסנן הזה. הסיום אינו מוצג — לא שורפים אותו לפני שהקורא הגיע אליו.

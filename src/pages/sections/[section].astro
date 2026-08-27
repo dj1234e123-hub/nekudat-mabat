@@ -6,6 +6,7 @@ import StoryCard from '../../components/StoryCard.astro';
 import { SECTIONS_META, SECTION_SLUGS, type SectionSlug } from '../../data/sections';
 import { SECTION_GATE_IMAGES } from '../../data/section-gate-images';
 import { newestFirst } from '../../lib/sort';
+import { isPublished } from '../../lib/published';
 
 export function getStaticPaths() {
   return SECTION_SLUGS.map((section) => ({ params: { section } }));
@@ -16,9 +17,9 @@ const { label, line } = SECTIONS_META[section];
 // אותה תמונת שער שמופיעה בדלת של דף הבית — הקורא שנכנס דרכה מגיע לאותו מראה.
 const gateImage = SECTION_GATE_IMAGES[section] ?? null;
 
-const stories = (await getCollection('stories', (s) => s.data.section === section)).sort(
-  newestFirst
-);
+const stories = (
+  await getCollection('stories', (s) => s.data.section === section && isPublished(s))
+).sort(newestFirst);
 ---
 
 <Base title={`${label} · נקודת מבט`} description={line}>

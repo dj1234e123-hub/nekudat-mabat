@@ -11,8 +11,9 @@ import StoryCard from '../../components/StoryCard.astro';
 import JoinGroup from '../../components/JoinGroup.astro';
 import { SECTIONS_META, SECTION_SLUGS } from '../../data/sections';
 import { newestFirst } from '../../lib/sort';
+import { isPublished } from '../../lib/published';
 
-const stories = (await getCollection('stories')).sort(
+const stories = (await getCollection('stories', isPublished)).sort(
   newestFirst
 );
 
