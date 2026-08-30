@@ -1,61 +1,93 @@
 ---
-// עמוד הכניסה של האזור הספרדי — "מה עובר עליך עכשיו?" בספרדית.
-// מצב בלי תוכן מתורגם מוצג באפור ואינו קישור, בדיוק כמו בעברית:
-// **מבחר ולא מראה** — האזור מציג רק את מה שקיים בו בפועל.
+// עמוד הכניסה של הרגעים בספרדית — חמשת השערים, כמו בעברית (שלב 4.23):
+// קשתות עם הצילומים, שם הקבוצה בצבע הזהות שלה ושורת שער; ומתחת — מפת
+// "כל המצבים" המתקפלת עם שורות הדלת והסימנים (שלב 4.18).
+//
+// שני הבדלים מכוונים מהעברית, שניהם מהחלטות מתועדות:
+//   1. אין "אפשר לספר לי" — הפנייה הפרטית לאפרים היא בעברית בלבד
+//      (בעל הפרויקט אינו מאמן בספרדית).
+//   2. מצב בלי תוכן מתורגם אינו קישור — "מבחר ולא מראה".
 import { getCollection } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
 import { FEELING_GROUPS } from '../../../data/feelings';
-import { FEELING_LABELS_ES, GROUP_LABELS_ES } from '../../../data/site-es';
+import { GROUP_LABELS_ES, GROUP_LINES_ES } from '../../../data/site-es';
+import GateArt from '../../../components/GateArt.astro';
+import FeelingDoors from '../../../components/FeelingDoors.astro';
 
 const moments = await getCollection('momentsEs');
-const counts = new Map<string, number>();
-for (const m of moments) {
-  counts.set(m.data.feeling, (counts.get(m.data.feeling) ?? 0) + 1);
-}
-const urls = moments.map((m) => `/es/momentos/${m.data.feeling}/${m.id}/`);
+const filled = new Set(moments.map((moment) => moment.data.feeling));
+const momentUrls = moments.map((moment) => `/es/momentos/${moment.data.feeling}/${moment.id}/`);
 ---
 
 <Base
   lang="es"
-  noindex={true}
-  title="Un momento de perspectiva"
+  title="Un momento de Punto de Vista"
   description="Textos breves para lo que estás pasando ahora. Un momento para detenerte."
+  altLangHref="/moments/"
 >
   <main>
-    <h1 class="page-title">Un momento de perspectiva</h1>
+    <h1 class="page-title">Un momento de Punto de Vista</h1>
     <p class="question">¿Qué te está pasando ahora?</p>
+    <p class="invite">Cinco puertas. Entra por la que te llama.</p>
+
+    <ul class="gates">
+      {
+        FEELING_GROUPS.map((group) => (
+          <li>
+            <a
+              class="gate"
+              href={`/es/momentos/${group.slug}/`}
+              style={`--accent: ${group.accent}; --title: ${group.titleAccent}`}
+            >
+              <span class="arch">
+                <GateArt group={group.slug} />
+              </span>
+              <span class="gate-name">{GROUP_LABELS_ES[group.slug]}</span>
+              <span class="gate-line">{GROUP_LINES_ES[group.slug]}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
     <button id="random-moment" class="unsure" type="button" data-ph="random_moment">
       No sé qué estoy sintiendo ahora
     </button>
 
+    <h2 class="map-label" id="all-feelings">Todos los estados</h2>
+
     {
-      FEELING_GROUPS.map((group) => {
-        const available = group.feelings.filter((f) => counts.get(f.slug));
-        return available.length === 0 ? null : (
-          <section class="group">
-            <h2 class="group-label">{GROUP_LABELS_ES[group.slug]}</h2>
-            <ul class="feelings">
-              {available.map((f) => (
-                <li>
-                  <a class="choice" href={`/es/momentos/${f.slug}/`}>
-                    {FEELING_LABELS_ES[f.slug]}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </section>
-        );
-      })
+      FEELING_GROUPS.map((group) => (
+        <details
+          class="group"
+          id={group.slug}
+          style={`--accent: ${group.accent}; --title: ${group.titleAccent}`}
+        >
+          <summary class="group-label">
+            <span class="group-dot" aria-hidden="true" />
+            {GROUP_LABELS_ES[group.slug]}
+          </summary>
+          <FeelingDoors group={group} filled={filled} lang="es" />
+        </details>
+      ))
     }
 
-    <p class="soon">Más textos, en camino.</p>
+    <p class="soon">Más estados y más textos — en camino.</p>
   </main>
 </Base>
 
-<script is:inline define:vars={{ urls }}>
+<script is:inline define:vars={{ momentUrls }}>
   document.getElementById('random-moment').addEventListener('click', () => {
-    location.href = urls[Math.floor(Math.random() * urls.length)];
+    location.href = momentUrls[Math.floor(Math.random() * momentUrls.length)];
   });
+
+  // עוגן (/es/momentos/#upward) פותח את הקבוצה שלו במפה וגולל אליה —
+  // אותו מנגנון כמו בעברית, לשיתוף קבוצה שלמה בהודעה.
+  const target = location.hash && document.getElementById(location.hash.slice(1));
+  if (target && target.tagName === 'DETAILS') {
+    target.open = true;
+    target.scrollIntoView();
+  }
 </script>
 
 <style>
@@ -70,13 +102,97 @@ const urls = moments.map((m) => `/es/momentos/${m.data.feeling}/${m.id}/`);
     font-family: var(--font-display);
     font-size: 1.35rem;
     color: var(--teal-deep);
-    margin-bottom: 0.9rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .invite {
+    text-align: center;
+    color: var(--secondary);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+
+  /* ── השערים — אותם ערכים כמו בעמוד העברי ── */
+  .gates {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 26rem;
+    display: grid;
+    gap: 1.7rem;
+  }
+
+  .gate {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .arch {
+    position: relative;
+    display: block;
+    height: 170px;
+    border-radius: 130px 130px 6px 6px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    box-shadow: 0 10px 26px rgba(46, 42, 36, 0.14);
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  .arch::after {
+    content: '';
+    position: absolute;
+    inset: 7px;
+    border: 1px solid rgba(201, 162, 77, 0.55);
+    border-radius: 122px 122px 3px 3px;
+    pointer-events: none;
+  }
+
+  .arch :global(svg),
+  .arch :global(img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  .gate:hover .arch,
+  .gate:focus-visible .arch {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 32px rgba(46, 42, 36, 0.2);
+  }
+
+  .gate:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 6px;
+    border-radius: 8px;
+  }
+
+  .gate-name {
+    display: block;
+    margin-top: 0.8rem;
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--title);
+  }
+
+  .gate-line {
+    display: block;
+    margin-top: 0.1rem;
+    color: var(--secondary);
+    font-size: 0.92rem;
   }
 
   .unsure {
     display: block;
     min-height: 44px;
-    margin: 0 auto 2.5rem;
+    margin: 2.4rem auto 3rem;
     background: none;
     border: none;
     font-family: inherit;
@@ -93,25 +209,66 @@ const urls = moments.map((m) => `/es/momentos/${m.data.feeling}/${m.id}/`);
     text-decoration-color: var(--teal);
   }
 
+  /* ── מפת המצבים המלאה ── */
+  .map-label {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    text-align: center;
+    margin: 0 0 0.9rem;
+  }
+
   .group {
-    margin-bottom: 2.25rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .group:last-of-type {
+    border-bottom: 1px solid var(--line);
   }
 
   .group-label {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--secondary);
-    text-align: center;
-    margin-bottom: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    min-height: 52px;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--title);
+    cursor: pointer;
+    list-style: none;
   }
 
-  .feelings {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.5rem;
+  .group-dot {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .group-label::-webkit-details-marker {
+    display: none;
+  }
+
+  .group-label::after {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    border-inline-start: 2px solid var(--gold);
+    border-block-end: 2px solid var(--gold);
+    transform: rotate(-45deg) translate(0.1rem, -0.1rem);
+    transition: transform 0.15s ease;
+  }
+
+  .group[open] > .group-label::after {
+    transform: rotate(135deg) translate(-0.05rem, -0.05rem);
+  }
+
+  .group-label:hover {
+    opacity: 0.8;
   }
 
   .soon {
@@ -119,5 +276,12 @@ const urls = moments.map((m) => `/es/momentos/${m.data.feeling}/${m.id}/`);
     color: var(--muted);
     font-size: 0.85rem;
     margin-top: 2.5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gate:hover .arch,
+    .gate:focus-visible .arch {
+      transform: none;
+    }
   }
 </style>

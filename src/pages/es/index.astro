@@ -1,79 +1,142 @@
 ---
-// דף הבית בספרדית — גרסה של "Punto de Vista"
-// טקסט בספרדית בלבד, כפתור ראשי למומנטוס, אין סיפורים (נתרגמים מאוחר יותר)
+// דף הבית בספרדית — אותו דף בית כמו העברי החדש (שלב 4.30), בשפה אחרת:
+// פתיחה, ודלת הרגעים בקשת — נקודת זהות, קשת עם התמונה, רגע מוגרל מקופל
+// מאחורי "Seguir leyendo", שיתוף (תמונה ממותגת קודם, קישור נקי כנפילת
+// חזרה) וכפתור ראשי. אין דלת סיפורים ואין מבט לשבת — הם לא תורגמו,
+// והדף מציג רק תוכן שקיים בפועל ("מבחר ולא מראה").
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
+import JoinGroup from '../../components/JoinGroup.astro';
 import MomentBody from '../../components/MomentBody.astro';
 import { parseMoment } from '../../lib/moment-format';
+import { groupOf, type FeelingSlug } from '../../data/feelings';
+import momentGate from '../../assets/gates/moments.png';
 import { newestFirst } from '../../lib/sort';
 
-// רגע אקראי מהאוסף בספרדית
+// אותו מנגנון כמו בעברית: הרגע מוגרל מחדש בכל טעינה בצד הקורא; בלי
+// JavaScript נשאר החדש ביותר.
 const moments = (await getCollection('momentsEs')).sort(newestFirst);
-const momentPool = moments.map((m) => ({
-  url: `/es/momentos/${m.data.feeling}/${m.id}/`,
-  format: parseMoment(m.body ?? '', m.data.title),
-}));
+const momentPool = moments.map((m) => {
+  const feeling = m.data.feeling as FeelingSlug;
+  const path = `/es/momentos/${feeling}/${m.id}/`;
+  return {
+    url: path,
+    href: new URL(path, Astro.site).href,
+    format: parseMoment(m.body ?? '', m.data.title),
+    accent: groupOf(feeling)?.accent ?? 'var(--gold)',
+    ogImage: new URL(`${path}og.png`, Astro.site).href,
+  };
+});
 const featuredMoment = momentPool[0] ?? null;
 
 const DESCRIPTION =
-  'Un lugar para detenerse, obtener un nuevo punto de vista y llevar algo contigo en tu camino. Historias y momentos breves de Punto de Vista.';
+  'Un lugar para detenerse, obtener un nuevo punto de vista y llevar algo contigo en tu camino. Momentos breves de Punto de Vista.';
 ---
 
 <Base
   lang="es"
-  noindex={true}
   title="Punto de Vista — un lugar para detenerse y ver diferente"
   description={DESCRIPTION}
   homeHeader={true}
+  altLangHref="/"
+  altLangInline={true}
 >
   <main>
-    <div class="language-switch">
-      <a href="/" class="lang-link" lang="he">עברית</a>
-    </div>
-
     <section class="hero">
       <h1>Ver diferente. Vivir diferente.</h1>
       <p class="triad">Historias. Momentos. Perspectivas.</p>
       <p class="promise">
-        Un lugar para detenerse, obtener un nuevo punto de vista y llevar algo contigo en tu camino.
+        Un lugar para detenerse, obtener un nuevo punto de vista y llevar algo contigo en tu
+        camino.
       </p>
-    </section>
-
-    <section class="lead-action">
-      <p class="question">¿Qué está pasando contigo ahora?</p>
-      <a class="cta" href="/es/momentos/">Encuentra un momento de Punto de Vista</a>
+      {/* המבנה שאושר על סקיצה (2026-08-26): שורת הזמנה לשפה השנייה מתחת
+          למשפט ההבטחה — המראה של שורת "Punto de Vista — en español" בעברית. */}
+      <p class="lang-invite">
+        <a href="/" lang="he" dir="rtl">נקודת מבט — בעברית</a>
+      </p>
     </section>
 
     {
       featuredMoment && (
-        <section class="feature" aria-labelledby="moment-label">
-          <h2 class="section-label" id="moment-label">
-            Un momento de Punto de Vista
-          </h2>
-          <article class="moment-card">
-            <h3 class="moment-hook">
-              <a id="moment-title-link" href={featuredMoment.url}>
-                {featuredMoment.format.title}
-              </a>
-            </h3>
-            <div id="moment-body-mount">
-              <MomentBody format={featuredMoment.format} />
+        <section class="dual-section">
+          <div class="door door-moments">
+            <div class="door-header">
+              <h2>
+                <span
+                  id="moment-dot"
+                  class="door-dot"
+                  style={`background:${featuredMoment.accent}`}
+                />
+                Un momento de Punto de Vista
+              </h2>
+              <p class="door-subheader">Decenas de momentos, según lo que estás pasando ahora.</p>
             </div>
-          </article>
-          <p class="more">
-            <a href="/es/momentos/">Más momentos</a>
-          </p>
 
-          {
-            momentPool.map((m) => (
-              <template data-moment-option data-url={m.url} data-title={m.format.title}>
-                <MomentBody format={m.format} />
+            <a href="/es/momentos/" class="moment-arch-link" aria-label="Todos los momentos">
+              <span class="moment-arch">
+                <Image src={momentGate} alt="" widths={[240, 480]} sizes="220px" />
+              </span>
+            </a>
+
+            <div class="door-content">
+              <article class="moment-sample">
+                <h3 class="moment-title">
+                  <a id="moment-title-link" href={featuredMoment.url}>
+                    {featuredMoment.format.title}
+                  </a>
+                </h3>
+                <div id="moment-body-mount">
+                  <MomentBody format={featuredMoment.format} collapsed moreLabel="Seguir leyendo" />
+                </div>
+              </article>
+
+              <div
+                id="moment-share"
+                class="moment-share"
+                data-url={featuredMoment.href}
+                data-image={featuredMoment.ogImage}
+              >
+                <a
+                  class="share-pill whatsapp"
+                  href={`https://wa.me/?text=${encodeURIComponent(featuredMoment.href)}`}
+                  rel="noopener"
+                  target="_blank"
+                  data-ph="share_whatsapp"
+                >
+                  Compartir por WhatsApp
+                </a>
+                <button type="button" class="share-pill copy" data-ph="share_copy">
+                  Copiar enlace
+                </button>
+              </div>
+
+              <div class="moment-footer">
+                <a href="/es/momentos/" class="door-cta" data-ph="find_moment">
+                  Encuentra tu momento
+                </a>
+                <p class="door-cta-sub">Más momentos, según lo que estás pasando</p>
+              </div>
+            </div>
+
+            {momentPool.map((m) => (
+              <template
+                data-moment-option
+                data-url={m.url}
+                data-title={m.format.title}
+                data-accent={m.accent}
+                data-href={m.href}
+                data-image={m.ogImage}
+              >
+                <MomentBody format={m.format} collapsed moreLabel="Seguir leyendo" />
               </template>
-            ))
-          }
+            ))}
+          </div>
         </section>
       )
     }
+
+    <JoinGroup lang="es" />
   </main>
 </Base>
 
@@ -83,41 +146,66 @@ const DESCRIPTION =
     const choice = momentOptions[Math.floor(Math.random() * momentOptions.length)];
     const mount = document.getElementById('moment-body-mount');
     const titleLink = document.getElementById('moment-title-link');
+    const dot = document.getElementById('moment-dot');
+    const share = document.getElementById('moment-share');
     if (mount) mount.replaceChildren(choice.content.cloneNode(true));
     if (titleLink) {
       titleLink.href = choice.dataset.url;
       titleLink.textContent = choice.dataset.title;
     }
+    if (dot) dot.style.background = choice.dataset.accent;
+    if (share) {
+      share.dataset.url = choice.dataset.href;
+      share.dataset.image = choice.dataset.image;
+      const wa = share.querySelector('.whatsapp');
+      if (wa) wa.href = `https://wa.me/?text=${encodeURIComponent(choice.dataset.href)}`;
+    }
+  }
+
+  // שיתוף — אותה שיטה כמו בדף הבית העברי: תמונה ממותגת קודם דרך
+  // Web Share API, קישור נקי כנפילת חזרה. הכתובות נקראות מ-dataset
+  // בזמן הלחיצה, כי הרגע מוגרל ומוחלף בצד הלקוח.
+  const shareEl = document.getElementById('moment-share');
+  if (shareEl) {
+    const copyBtn = shareEl.querySelector('.copy');
+    copyBtn?.addEventListener('click', async () => {
+      const url = shareEl.dataset.url;
+      try {
+        await navigator.clipboard.writeText(url);
+        copyBtn.textContent = 'Enlace copiado ✓';
+        setTimeout(() => (copyBtn.textContent = 'Copiar enlace'), 2500);
+      } catch {
+        prompt('Copia el enlace:', url);
+      }
+    });
+
+    const waLink = shareEl.querySelector('.whatsapp');
+    waLink?.addEventListener('click', async (event) => {
+      const imageUrl = shareEl.dataset.image;
+      if (!navigator.share || !imageUrl) return;
+      event.preventDefault();
+      try {
+        const response = await fetch(imageUrl);
+        const blob = await response.blob();
+        const file = new File([blob], 'moment.png', { type: blob.type || 'image/png' });
+        if (navigator.canShare?.({ files: [file] })) {
+          await navigator.share({ files: [file] });
+          return;
+        }
+      } catch (err) {
+        if (err instanceof Error && err.name === 'AbortError') return;
+      }
+      window.open(waLink.href, '_blank', 'noopener');
+    });
   }
 </script>
 
 <style>
-  /* מעבר שפה — עדין בחלק העליון */
-  .language-switch {
-    text-align: center;
-    margin-bottom: 1.5rem;
-  }
-
-  .lang-link {
-    display: inline-block;
-    font-size: 0.85rem;
-    color: var(--muted);
-    text-decoration: none;
-    padding: 0.35rem 0.6rem;
-    border: 1px solid var(--line);
-    border-radius: 0.25rem;
-    transition: all 0.2s ease;
-  }
-
-  .lang-link:hover {
-    color: var(--teal);
-    border-color: var(--teal);
-  }
-
-  /* אזור הפתיחה */
+  /* אזור הפתיחה — אותם ערכים כמו בדף הבית העברי */
   .hero {
     text-align: center;
     padding-top: 0.5rem;
+    margin-bottom: 2.25rem;
   }
 
   .hero h1 {
@@ -125,6 +213,7 @@ const DESCRIPTION =
     line-height: 1.3;
     margin-bottom: 0.6rem;
     text-wrap: balance;
+    color: var(--teal-deep);
   }
 
   .triad {
@@ -142,65 +231,218 @@ const DESCRIPTION =
     line-height: 1.75;
   }
 
-  .lead-action {
-    text-align: center;
-    margin-top: 1.9rem;
+  .lang-invite {
+    margin-top: 0.85rem;
+    font-size: 0.9rem;
   }
 
-  .question {
-    font-family: var(--font-display);
-    font-size: 1.3rem;
-    margin-bottom: 0.85rem;
-  }
-
-  .section-label {
-    font-family: var(--font-body);
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
+  .lang-invite a {
     color: var(--muted);
-    text-align: center;
-    margin-bottom: 0.85rem;
+    text-decoration: none;
+    display: inline-block;
+    padding-block: 0.45rem;
+    border-bottom: 1px solid var(--line);
+    transition: color 0.15s ease, border-color 0.15s ease;
   }
 
-  .feature {
-    margin-top: 2.5rem;
+  .lang-invite a:hover {
+    color: var(--teal);
+    border-color: var(--teal);
   }
 
-  .moment-card {
-    --moment-size: 1.1rem;
-    background: var(--surface);
-    border: 1px solid var(--line);
+  /* דלת הרגעים — אותם ערכים כמו בדלת העברית, בעמודה אחת: בלי דלת סיפורים,
+     הדלת יושבת ברוחב של דלת אחת מתוך השתיים ולא נמתחת על כל המסך. */
+  .dual-section {
+    max-width: 29rem;
+    margin-inline: auto;
+    margin-bottom: 2.5rem;
+  }
+
+  .door-moments {
+    background: var(--paper);
+    border: 2px solid var(--brick);
     border-radius: var(--radius);
-    padding: 1.4rem 1.3rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow);
   }
 
-  .moment-hook {
+  .door-header {
+    padding: 1.3rem 1.2rem 0;
     text-align: center;
-    font-size: 1.4rem;
+  }
+
+  .door-header h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: var(--font-display);
+    /* מעט קטן מהעברית: "Un momento de Punto de Vista" ארוך מ"רגע של נקודת
+       מבט", וכך הכותרת נשארת שורה אחת גם ב-390px. */
+    font-size: 1.2rem;
+    margin: 0 0 0.4rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .door-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .door-subheader {
+    font-size: 0.85rem;
+    color: var(--secondary);
+    margin: 0 0 1.1rem;
+  }
+
+  .moment-arch-link {
+    display: block;
+    width: fit-content;
+    margin: 0 auto 1.1rem;
+  }
+
+  .moment-arch {
+    position: relative;
+    display: block;
+    width: 190px;
+    height: 160px;
+    border-radius: 140px 140px 10px 10px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    box-shadow: 0 10px 26px rgba(46, 42, 36, 0.14);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .moment-arch::after {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 1px solid rgba(201, 162, 77, 0.55);
+    border-radius: 132px 132px 6px 6px;
+    pointer-events: none;
+  }
+
+  .moment-arch :global(img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  .moment-arch-link:hover .moment-arch,
+  .moment-arch-link:focus-visible .moment-arch {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 32px rgba(46, 42, 36, 0.2);
+  }
+
+  .moment-arch-link:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 6px;
+    border-radius: 10px;
+  }
+
+  .door-content {
+    --moment-size: 1rem;
+    padding: 0 1.2rem 1.3rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .moment-sample {
+    margin-bottom: 1rem;
+  }
+
+  .moment-title {
+    text-align: center;
+    font-size: 1.25rem;
     line-height: 1.3;
     color: var(--blue);
-    margin: 0 0 1.4rem;
+    margin: 0 0 1.2rem;
     text-wrap: balance;
   }
 
-  .moment-hook a {
+  .moment-title a {
     color: inherit;
     text-decoration: none;
   }
 
-  .more {
-    text-align: center;
-    margin-top: 1.1rem;
+  .moment-share {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 0.2rem;
   }
 
-  .more a {
+  .share-pill {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     min-height: 44px;
-    padding-inline: 0.75rem;
-    text-decoration: none;
+    padding: 0.4rem 1.1rem;
+    border-radius: 2rem;
+    font-family: inherit;
+    font-size: 0.9rem;
     font-weight: 600;
+    text-decoration: none;
+    border: 1px solid var(--teal);
+    background: transparent;
+    color: var(--teal);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .share-pill.whatsapp {
+    background: var(--teal);
+    color: #fff;
+  }
+
+  .share-pill.whatsapp:hover {
+    background: var(--teal-deep);
+  }
+
+  .share-pill.copy:hover {
+    background: var(--surface);
+  }
+
+  .moment-footer {
+    margin-top: 1.1rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--line);
+    text-align: center;
+  }
+
+  .door-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 44px;
+    padding: 0.7rem;
+    background: var(--brick);
+    color: #fff;
+    border-radius: calc(var(--radius) / 1.5);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+
+  .door-cta:hover {
+    opacity: 0.9;
+  }
+
+  .door-cta-sub {
+    margin: 0.55rem 0 0;
+    font-size: 0.8rem;
+    color: var(--muted);
   }
 </style>

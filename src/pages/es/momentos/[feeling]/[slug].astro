@@ -1,11 +1,14 @@
 ---
 // עמוד של רגע בודד בספרדית — הכתובת שמשתפים.
-// כמו בעברית: הטקסט, ומסביבו אוויר. בלי תמונה ובלי תאריך.
+// כמו בעברית: הטקסט, ומסביבו אוויר. בלי תמונה ובלי תאריך. התווית יורדת
+// לתחתית (ניווט, לא פרשנות), בצבע הזהות של הקבוצה — עד סוף המסע (4.31).
 import { getCollection } from 'astro:content';
 import Base from '../../../../layouts/Base.astro';
 import ShareRow from '../../../../components/ShareRow.astro';
 import MomentBody from '../../../../components/MomentBody.astro';
+import { groupOf, type FeelingSlug } from '../../../../data/feelings';
 import { FEELING_LABELS_ES, GROUP_LABELS_ES } from '../../../../data/site-es';
+import { articleJsonLd, breadcrumbJsonLd } from '../../../../lib/structured-data';
 import { momentTitle } from '../../../../lib/moment-title';
 import { parseMoment, momentPlainText } from '../../../../lib/moment-format';
 
@@ -18,8 +21,9 @@ export async function getStaticPaths() {
 }
 
 const { moment } = Astro.props;
-const feeling = moment.data.feeling;
+const feeling = moment.data.feeling as FeelingSlug;
 const label = FEELING_LABELS_ES[feeling];
+const group = groupOf(feeling);
 
 const format = parseMoment(moment.body ?? '', moment.data.title);
 
@@ -33,18 +37,40 @@ const title = format.title ?? momentTitle(moment.body!);
 
 const pageUrl = new URL(`/es/momentos/${feeling}/${moment.id}/`, Astro.site).href;
 
-// תמונת השיתוף של הרגע — נבנית לצד העמוד (og.png.ts), כמו בעברית.
+// תמונת השיתוף של הרגע — נבנית לצד העמוד (og.png.ts), בספרדית בלבד.
 const ogImage = new URL(`/es/momentos/${feeling}/${moment.id}/og.png`, Astro.site).href;
+
+// העמוד התאום בעברית — אותו רגע, אותו שם קובץ.
+const altLangHref = `/moments/${feeling}/${moment.id}/`;
 ---
 
 <Base
   lang="es"
-  noindex={true}
   title={title}
   description={summary}
   ogType="article"
   ogImage={ogImage}
   compact={true}
+  altLangHref={altLangHref}
+  jsonLd={[
+    articleJsonLd(Astro.site!, {
+      url: pageUrl,
+      headline: title,
+      description: summary,
+      datePublished: moment.data.date,
+      image: ogImage,
+      inLanguage: 'es',
+    }),
+    breadcrumbJsonLd(Astro.site!, [
+      { name: 'Punto de Vista', path: '/es/' },
+      { name: 'Qué te está pasando', path: '/es/momentos/' },
+      ...(group
+        ? [{ name: GROUP_LABELS_ES[group.slug], path: `/es/momentos/${group.slug}/` }]
+        : []),
+      { name: label, path: `/es/momentos/${feeling}/` },
+      { name: title },
+    ]),
+  ]}
 >
   <main>
     <article class="moment">
@@ -65,10 +91,22 @@ const ogImage = new URL(`/es/momentos/${feeling}/${moment.id}/og.png`, Astro.sit
     </article>
 
     {/* כמו בעברית: וואטסאפ משתף את התמונה עצמה כקובץ; בלי תמיכה — קישור נקי. */}
-    <ShareRow title={title} url={pageUrl} lang="es" shareText={plainText} imageUrl={ogImage} />
+    <ShareRow
+      title={title}
+      url={pageUrl}
+      lang="es"
+      label="Envíaselo a alguien:"
+      shareText={plainText}
+      imageUrl={ogImage}
+    />
 
     <nav class="moment-footer">
-      <a href={`/es/momentos/${feeling}/`}>Más sobre {label.toLowerCase()}</a>
+      <span class="feeling-tag">
+        <span class="group" style={group ? `color: ${group.titleAccent}` : undefined}>
+          {group ? GROUP_LABELS_ES[group.slug] : ''}
+        </span>
+        <a href={`/es/momentos/${feeling}/`}>Más sobre {label.toLowerCase()}</a>
+      </span>
       <a href="/es/momentos/">Todos los estados</a>
     </nav>
   </main>
@@ -76,47 +114,58 @@ const ogImage = new URL(`/es/momentos/${feeling}/${moment.id}/og.png`, Astro.sit
 
 <style>
   .moment {
-    padding-top: 1.5rem;
+    padding-top: 1rem;
   }
 
-  .eyebrow {
+  .moment-head {
     text-align: center;
-    margin-bottom: 1.75rem;
+    margin-bottom: 2.1rem;
   }
 
-  .moment-body {
-    font-size: 1.2rem;
-    line-height: 2;
+  .hook {
+    font-size: 2rem;
+    line-height: 1.3;
+    color: var(--blue);
+    margin: 0;
+    text-wrap: balance;
   }
 
-  .moment-body :global(p + p) {
-    margin-top: 1.4rem;
+  .hook-rule {
+    display: block;
+    width: 4.5rem;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.8;
+    margin: 1.1rem auto 0;
   }
 
   .end-dot {
     display: block;
-    width: 0.5rem;
-    height: 0.5rem;
+    width: 0.55rem;
+    height: 0.55rem;
     border-radius: 50%;
     background: var(--gold);
-    margin: 2.25rem auto 0;
+    margin: 2.75rem auto 0;
   }
 
   .moment-footer {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0 1.5rem;
     margin-top: 2.5rem;
-    font-size: 0.95rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem 1.5rem;
   }
 
   .moment-footer a {
-    color: var(--teal);
     text-decoration: none;
     font-weight: 600;
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
+  }
+
+  .feeling-tag .group {
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-inline-end: 0.45rem;
   }
 </style>
