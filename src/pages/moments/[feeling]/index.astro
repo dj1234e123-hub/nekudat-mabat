@@ -92,7 +92,10 @@ const description = gate ? gate.line : `רגע של נקודת מבט — ${labe
           </nav>
         </div>
       ) : (
-        <>
+        <div
+          class="feeling-shelf"
+          style={parentGroup ? `--title: ${parentGroup.titleAccent}` : undefined}
+        >
           <p class="group-label">
             {parentGroup && <a href={`/moments/${parentGroup.slug}/`}>{parentGroup.label}</a>}
           </p>
@@ -104,9 +107,7 @@ const description = gate ? gate.line : `רגע של נקודת מבט — ${labe
                 <a class="moment-link" href={`/moments/${feeling}/${moment.id}/`}>
                   {format.title && <span class="moment-hook">{format.title}</span>}
                   <MomentBody format={format} firstStanzaOnly={format.isNew} />
-                  <span class="moment-more">
-                    {format.isNew ? 'לרגע המלא →' : 'לרגע הזה →'}
-                  </span>
+                  <span class="moment-more">לרגע המלא →</span>
                 </a>
               </li>
             ))}
@@ -115,7 +116,7 @@ const description = gate ? gate.line : `רגע של נקודת מבט — ${labe
           <nav class="page-footer">
             <a href="/moments/">→ לכל המצבים</a>
           </nav>
-        </>
+        </div>
       )
     }
   </main>
@@ -173,9 +174,11 @@ const description = gate ? gate.line : `רגע של נקודת מבט — ${labe
   }
 
   /* ── מדף מצב ── */
+  /* התווית והכותרת בצבע הזהות של הקבוצה — כך "כשכואב" ממשיך להיראות
+     כמו "כשכואב" גם אחרי שעוזבים את השער, ולא רק בשלב הראשון של המסע. */
   .group-label {
     text-align: center;
-    color: var(--muted);
+    color: var(--title, var(--muted));
     font-size: 0.9rem;
   }
 
@@ -189,13 +192,15 @@ const description = gate ? gate.line : `רגע של נקודת מבט — ${labe
   }
 
   .group-label a:hover {
-    color: var(--teal);
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
   }
 
   .page-title {
     text-align: center;
     font-size: 1.8rem;
     padding: 0.2rem 0 2rem;
+    color: var(--title, var(--ink));
   }
 
   .moment-list {

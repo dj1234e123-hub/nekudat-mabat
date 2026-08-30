@@ -91,7 +91,9 @@ const ogImage = new URL(`/moments/${feeling}/${moment.id}/og.png`, Astro.site).h
     <nav class="moment-footer">
       {/* התווית חיה כאן ולא בראש העמוד: כאן היא ניווט והקשר, וזה מה שהיא באמת. */}
       <span class="feeling-tag">
-        <span class="group">{groupLabel(feeling)}</span>
+        <span class="group" style={group ? `color: ${group.titleAccent}` : undefined}>
+          {groupLabel(feeling)}
+        </span>
         <a href={`/moments/${feeling}/`}>עוד ב{label}</a>
       </span>
       <a href="/moments/">לכל המצבים</a>
@@ -151,6 +153,7 @@ const ogImage = new URL(`/moments/${feeling}/${moment.id}/og.png`, Astro.site).h
 
   .feeling-tag .group {
     color: var(--muted);
+    font-weight: 600;
     font-size: 0.85rem;
     margin-inline-end: 0.45rem;
   }
