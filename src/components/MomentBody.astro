@@ -11,33 +11,67 @@ interface Props {
   format: MomentFormat;
   /** מציג את מהלך המציאות בלבד — למדף, שבו הסיום לא נשרף מראש */
   firstStanzaOnly?: boolean;
+  /**
+   * מציג את המהלך הראשון בגלוי, ומקפל את השאר (הסיבוב והסיום) מאחורי
+   * "להמשיך לקרוא" — לדף הבית, שבו רגע מוגרל בשלמותו תופס יותר מדי גובה.
+   * שונה מ-firstStanzaOnly: שם הסיום לא קיים בתצוגה בכלל; כאן הוא קיים,
+   * רק מאחורי לחיצה.
+   */
+  collapsed?: boolean;
 }
 
-const { format, firstStanzaOnly = false } = Astro.props;
+const { format, firstStanzaOnly = false, collapsed = false } = Astro.props;
 const stanzas = firstStanzaOnly ? format.stanzas.slice(0, 1) : format.stanzas;
 const showClosing = !firstStanzaOnly && Boolean(format.closing);
+// הקיפול מתאים רק לפורמט החדש, ורק כשיש בכלל מה לקפל אחרי המהלך הראשון.
+const isCollapsed = collapsed && format.isNew && !firstStanzaOnly && stanzas.length > 1;
+const visibleStanzas = isCollapsed ? stanzas.slice(0, 1) : stanzas;
+const restStanzas = isCollapsed ? stanzas.slice(1) : [];
 ---
 
 <div class:list={['moment-body', format.isNew ? 'is-new' : 'is-flow']}>
   {
-    stanzas.map((stanza) => (
+    visibleStanzas.map((stanza) => (
       <p class="stanza" set:html={stanza.map(lineHtml).join('<br />')} />
     ))
   }
 
   {
-    showClosing && (
-      <>
-        {/* קישוט ההפרדה — פעם אחת בעמוד, אחרי הסיבוב ולפני הסיום.
-            מצויר ולא תו טקסט: תת-הקבוצה העברית של הפונט אינה מכילה פיסוק,
-            ותו מירכאות היה נופל לפונט מערכת ומשתנה ממכשיר למכשיר. */}
-        <div class="ornament" aria-hidden="true">
-          <span class="rule" />
-          <span class="diamond" />
-          <span class="rule" />
-        </div>
-        <p class="closing" set:html={format.closing!.map(lineHtml).join('<br />')} />
-      </>
+    isCollapsed ? (
+      <details class="reveal">
+        <summary>להמשיך לקרוא</summary>
+        {
+          restStanzas.map((stanza) => (
+            <p class="stanza" set:html={stanza.map(lineHtml).join('<br />')} />
+          ))
+        }
+        {
+          showClosing && (
+            <>
+              <div class="ornament" aria-hidden="true">
+                <span class="rule" />
+                <span class="diamond" />
+                <span class="rule" />
+              </div>
+              <p class="closing" set:html={format.closing!.map(lineHtml).join('<br />')} />
+            </>
+          )
+        }
+      </details>
+    ) : (
+      showClosing && (
+        <>
+          {/* קישוט ההפרדה — פעם אחת בעמוד, אחרי הסיבוב ולפני הסיום.
+              מצויר ולא תו טקסט: תת-הקבוצה העברית של הפונט אינה מכילה פיסוק,
+              ותו מירכאות היה נופל לפונט מערכת ומשתנה ממכשיר למכשיר. */}
+          <div class="ornament" aria-hidden="true">
+            <span class="rule" />
+            <span class="diamond" />
+            <span class="rule" />
+          </div>
+          <p class="closing" set:html={format.closing!.map(lineHtml).join('<br />')} />
+        </>
+      )
     )
   }
 </div>
@@ -78,6 +112,46 @@ const showClosing = !firstStanzaOnly && Boolean(format.closing);
 
   .is-new strong {
     font-weight: 700;
+  }
+
+  /* «להמשיך לקרוא» — פעולה משנית, מתאר במקום מילוי (כמו כפתור ההצטרפות
+     לקבוצה). עובד גם בלי JavaScript: <details> הוא HTML רגיל. */
+  .reveal {
+    margin-top: 1.65rem;
+  }
+
+  .reveal > summary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0.4rem 1.3rem;
+    border-radius: 2rem;
+    border: 1.5px solid var(--teal);
+    color: var(--teal);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    list-style: none;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .reveal > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .reveal > summary:hover {
+    background: var(--teal);
+    color: var(--paper);
+  }
+
+  .reveal[open] > summary {
+    display: none;
+  }
+
+  .reveal[open] > .stanza:first-of-type {
+    margin-top: 1.2rem;
   }
 
   .ornament {

@@ -1,7 +1,8 @@
 ---
 // דף הבית — הכניסה לאתר, לא רשימת הסיפורים.
-// שני עולמות התוכן המרכזיים מוצגים כשתי דלתות בקנה מידה שווה:
-// רגע של נקודת מבט (עם רגע אמיתי בשלמותו) מול שלושת עולמות הסיפורים.
+// שני עולמות התוכן המרכזיים מוצגים כשתי דלתות בקנה מידה שווה: רגע של נקודת
+// מבט (קשת + רגע מקופל) מול שלושת עולמות הסיפורים (קשתות קטנות). שתי
+// הדלתות חולקות עכשיו שפה חזותית אחת — הקשת — שכבר קיימת בשערי /moments/.
 // עיקרון מנחה: הדף מציג רק תוכן שקיים בפועל.
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
@@ -10,6 +11,7 @@ import JoinGroup from '../components/JoinGroup.astro';
 import { websiteJsonLd } from '../lib/structured-data';
 import MomentBody from '../components/MomentBody.astro';
 import { parseMoment } from '../lib/moment-format';
+import { groupOf, type FeelingSlug } from '../data/feelings';
 import { SECTIONS_META, SECTION_SLUGS, type SectionSlug } from '../data/sections';
 import momentGate from '../assets/gates/moments.png';
 import { SECTION_GATE_IMAGES } from '../data/section-gate-images';
@@ -50,17 +52,26 @@ const worlds = SECTION_SLUGS.map((slug) => {
   };
 }).filter((w) => w !== null);
 
-// הרגע שמוצג בדלת הרגעים: מוגרל מחדש בכל טעינה, בצד הקורא — כדי שמי שחוזר
-// לאתר לא יראה שוב ושוב את אותו רגע קבוע. כל הרגעים נבנים לתבניות מוסתרות
-// (<template>), והסקריפט בתחתית הקובץ בוחר אחת מהן באקראי ומשתיל אותה במקום.
+// הרגע שמוצג בדלת הרגעים: מוגרל מחדש בכל טעינה, בצד הקורא (הסקריפט בתחתית
+// הקובץ) — כדי שמי שחוזר לאתר לא יראה שוב ושוב את אותו רגע קבוע. כל רגע
+// בבריכה נושא גם accent (צבע הזהות של קבוצת הרגש שלו, לנקודה שליד הכותרת)
+// וגם href/ogImage מלאים — כדי ששיתוף מדף הבית יעבוד בדיוק כמו בעמוד הרגע
+// עצמו: תמונה ממותגת קודם (Web Share API), קישור נקי כנפילת חזרה.
 //
 // בלי JavaScript — ולקוראי מסך/מנועי חיפוש שלא מריצים סקריפט — נשאר הרגע
 // החדש ביותר: שובר השוויון על פני תאריך זהה הוא שם הקובץ (src/lib/sort.ts).
 const moments = (await getCollection('moments')).sort(newestFirst);
-const momentPool = moments.map((m) => ({
-  url: `/moments/${m.data.feeling}/${m.id}/`,
-  format: parseMoment(m.body ?? '', m.data.title),
-}));
+const momentPool = moments.map((m) => {
+  const feeling = m.data.feeling as FeelingSlug;
+  const path = `/moments/${feeling}/${m.id}/`;
+  return {
+    url: path,
+    href: new URL(path, Astro.site).href,
+    format: parseMoment(m.body ?? '', m.data.title),
+    accent: groupOf(feeling)?.accent ?? 'var(--gold)',
+    ogImage: new URL(`${path}og.png`, Astro.site).href,
+  };
+});
 const featuredMoment = momentPool[0] ?? null;
 
 const DESCRIPTION =
@@ -89,18 +100,17 @@ const DESCRIPTION =
         featuredMoment && (
           <div class="door door-moments">
             <div class="door-header">
-              <h2>רגע של נקודת מבט</h2>
-              <p class="door-subheader">רגע קצר שמדבר ישירות אליך</p>
+              <h2>
+                <span id="moment-dot" class="door-dot" style={`background:${featuredMoment.accent}`} />
+                רגע של נקודת מבט
+              </h2>
+              <p class="door-subheader">עשרות רגעים, לפי מה שעובר עליך עכשיו.</p>
             </div>
 
-            <a href="/moments/" class="gate-link" aria-label="לכל הרגעים">
-              <Image
-                src={momentGate}
-                alt=""
-                widths={[480, 960]}
-                sizes="(max-width: 50rem) 100vw, 460px"
-                class="door-gate"
-              />
+            <a href="/moments/" class="moment-arch-link" aria-label="לכל הרגעים">
+              <span class="moment-arch">
+                <Image src={momentGate} alt="" widths={[240, 480]} sizes="220px" />
+              </span>
             </a>
 
             <div class="door-content">
@@ -111,12 +121,30 @@ const DESCRIPTION =
                   </a>
                 </h3>
                 <div id="moment-body-mount">
-                  <MomentBody format={featuredMoment.format} />
+                  <MomentBody format={featuredMoment.format} collapsed />
                 </div>
               </article>
 
+              <div
+                id="moment-share"
+                class="moment-share"
+                data-url={featuredMoment.href}
+                data-image={featuredMoment.ogImage}
+              >
+                <a
+                  class="share-pill whatsapp"
+                  href={`https://wa.me/?text=${encodeURIComponent(featuredMoment.href)}`}
+                  rel="noopener"
+                  target="_blank"
+                >
+                  שיתוף בוואטסאפ
+                </a>
+                <button type="button" class="share-pill copy">העתקת קישור</button>
+              </div>
+
               <div class="moment-footer">
                 <a href="/moments/" class="door-cta">מצא רגע שלך</a>
+                <p class="door-cta-sub">עוד רגעים, לפי מה שעובר עליך</p>
               </div>
             </div>
 
@@ -124,8 +152,15 @@ const DESCRIPTION =
               /* המאגר שממנו מוגרל הרגע (ראו הסקריפט בתחתית הקובץ). <template>
                  אינו מוצג ואינו נכלל בפריסה. */
               momentPool.map((m) => (
-                <template data-moment-option data-url={m.url} data-title={m.format.title}>
-                  <MomentBody format={m.format} />
+                <template
+                  data-moment-option
+                  data-url={m.url}
+                  data-title={m.format.title}
+                  data-accent={m.accent}
+                  data-href={m.href}
+                  data-image={m.ogImage}
+                >
+                  <MomentBody format={m.format} collapsed />
                 </template>
               ))
             }
@@ -143,31 +178,31 @@ const DESCRIPTION =
         <div class="stories-grid">
           {
             worlds.map(({ slug, meta, story, emoji, image, linkText }) => (
-              <div class="story-card" data-section={slug}>
-                {image ? (
-                  <a href={`/sections/${slug}/`} class="gate-link" aria-label={linkText}>
-                    <Image
-                      src={image.image}
-                      alt=""
-                      widths={[480, 960]}
-                      sizes="(max-width: 50rem) 100vw, 460px"
-                      class="story-gate"
-                      style={`object-position: ${image.position}`}
-                    />
-                  </a>
-                ) : (
-                  <div class="story-gate" aria-hidden="true">{emoji}</div>
-                )}
-                <div class="story-header">
-                  <h3>{meta.label}</h3>
-                  <p class="story-line">{meta.line}</p>
-                </div>
-                <div class="story-body">
-                  <a class="story-example" href={`/stories/${story.id}/`}>
-                    {story.data.title}
-                  </a>
+              <div class="world-card" style={`--accent: ${meta.accent}`}>
+                <a href={`/sections/${slug}/`} class="world-arch-link" aria-label={linkText}>
+                  <span class="world-arch">
+                    {image ? (
+                      <Image
+                        src={image.image}
+                        alt=""
+                        widths={[200, 400]}
+                        sizes="84px"
+                        style={`object-position: ${image.position}`}
+                      />
+                    ) : (
+                      <span class="world-arch-fallback" aria-hidden="true">
+                        {emoji}
+                      </span>
+                    )}
+                  </span>
+                </a>
+                <div class="world-text">
+                  <h3 class="world-name">{meta.label}</h3>
+                  <p class="story-example">
+                    למשל: <a href={`/stories/${story.id}/`}>{story.data.title}</a>
+                  </p>
                   <a href={`/sections/${slug}/`} class="story-link">
-                    {linkText}
+                    {linkText} ←
                   </a>
                 </div>
               </div>
@@ -187,11 +222,58 @@ const DESCRIPTION =
     const choice = momentOptions[Math.floor(Math.random() * momentOptions.length)];
     const mount = document.getElementById('moment-body-mount');
     const titleLink = document.getElementById('moment-title-link');
+    const dot = document.getElementById('moment-dot');
+    const share = document.getElementById('moment-share');
     if (mount) mount.replaceChildren(choice.content.cloneNode(true));
     if (titleLink) {
       titleLink.href = choice.dataset.url;
       titleLink.textContent = choice.dataset.title;
     }
+    if (dot) dot.style.background = choice.dataset.accent;
+    if (share) {
+      share.dataset.url = choice.dataset.href;
+      share.dataset.image = choice.dataset.image;
+      const wa = share.querySelector('.whatsapp');
+      if (wa) wa.href = `https://wa.me/?text=${encodeURIComponent(choice.dataset.href)}`;
+    }
+  }
+
+  // שיתוף מדף הבית — אותה שיטה בדיוק כמו בעמוד הרגע (ShareRow.astro): תמונה
+  // ממותגת קודם דרך Web Share API, קישור נקי כנפילת חזרה. הרגע כאן מוגרל
+  // ומוחלף בצד הלקוח, ולכן הכתובות נקראות תמיד מ-dataset בזמן הלחיצה,
+  // ולא נקבעות פעם אחת מראש.
+  const shareEl = document.getElementById('moment-share');
+  if (shareEl) {
+    const copyBtn = shareEl.querySelector('.copy');
+    copyBtn?.addEventListener('click', async () => {
+      const url = shareEl.dataset.url;
+      try {
+        await navigator.clipboard.writeText(url);
+        copyBtn.textContent = 'הקישור הועתק ✓';
+        setTimeout(() => (copyBtn.textContent = 'העתקת קישור'), 2500);
+      } catch {
+        prompt('העתיקו את הקישור:', url);
+      }
+    });
+
+    const waLink = shareEl.querySelector('.whatsapp');
+    waLink?.addEventListener('click', async (event) => {
+      const imageUrl = shareEl.dataset.image;
+      if (!navigator.share || !imageUrl) return;
+      event.preventDefault();
+      try {
+        const response = await fetch(imageUrl);
+        const blob = await response.blob();
+        const file = new File([blob], 'moment.png', { type: blob.type || 'image/png' });
+        if (navigator.canShare?.({ files: [file] })) {
+          await navigator.share({ files: [file] });
+          return;
+        }
+      } catch (err) {
+        if (err instanceof Error && err.name === 'AbortError') return;
+      }
+      window.open(waLink.href, '_blank', 'noopener');
+    });
   }
 </script>
 
@@ -247,7 +329,8 @@ const DESCRIPTION =
     }
   }
 
-  /* דלת הרגעים */
+  /* דלת הרגעים. המסגרת האדומה העמוקה היא זהות הדלת; התוכן שבפנים נשאר שקט
+     כמו הצד השני — בלי שורת כותרת ממולאת, ובלי תמונת שער בגודל מלא. */
   .door-moments {
     background: var(--paper);
     border: 2px solid var(--brick);
@@ -259,71 +342,99 @@ const DESCRIPTION =
   }
 
   .door-header {
-    background: var(--brick);
-    color: #fff;
-    padding: 1.1rem 1rem;
+    padding: 1.3rem 1.2rem 0;
     text-align: center;
   }
 
   .door-header h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
     font-family: var(--font-display);
     font-size: 1.3rem;
-    margin: 0;
+    margin: 0 0 0.4rem;
     font-weight: 700;
-    color: #fff;
+    color: var(--ink);
+  }
+
+  /* נקודת הזהות של קבוצת הרגש שהוגרלה — אותו דפוס בדיוק של עולמות הסיפורים
+     ושל שערי הרגעים: נקודה, לא מילוי. מתעדכנת בצד הלקוח עם הרגע. */
+  .door-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    flex-shrink: 0;
   }
 
   .door-subheader {
     font-size: 0.85rem;
-    opacity: 0.92;
-    margin: 0.3rem 0 0;
+    color: var(--secondary);
+    margin: 0 0 1.1rem;
   }
 
-  /* תמונת השער של דלת הרגעים */
-  .door-gate {
-    width: 100%;
-    height: 230px;
-    background: linear-gradient(135deg, rgba(176, 70, 59, 0.12) 0%, rgba(176, 70, 59, 0.04) 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3.5rem;
-  }
-
-  /* התמונה עצמה היא דלת — לחיצה עליה נכנסת פנימה */
-  .gate-link {
+  /* קשת הרגעים — הד לשערי /moments/, בגודל מוקטן: כאן היא הזמנה, לא הבחירה
+     עצמה. התמונה היא דלת: לחיצה עליה נכנסת פנימה. */
+  .moment-arch-link {
     display: block;
-    line-height: 0;
+    width: fit-content;
+    margin: 0 auto 1.1rem;
   }
 
-  /* כשהשער הוא צילום ולא ממלא-מקום — למלא את כל השטח.
-     גובה יחסי לרוחב (ולא קבוע) — כך החיתוך לא בולע את נושא הצילום. */
-  img.door-gate,
-  img.story-gate {
+  .moment-arch {
+    position: relative;
+    display: block;
+    width: 190px;
+    height: 160px;
+    border-radius: 140px 140px 10px 10px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    box-shadow: 0 10px 26px rgba(46, 42, 36, 0.14);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  /* מסגרת זהב פנימית דקה — אותה חתימה כמו בשערי הרגעים */
+  .moment-arch::after {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 1px solid rgba(201, 162, 77, 0.55);
+    border-radius: 132px 132px 6px 6px;
+    pointer-events: none;
+  }
+
+  .moment-arch :global(img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     display: block;
     object-fit: cover;
-    height: auto;
   }
 
-  img.door-gate {
-    aspect-ratio: 5 / 3;
+  .moment-arch-link:hover .moment-arch,
+  .moment-arch-link:focus-visible .moment-arch {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 32px rgba(46, 42, 36, 0.2);
   }
 
-  img.story-gate {
-    aspect-ratio: 2 / 1;
+  .moment-arch-link:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 6px;
+    border-radius: 10px;
   }
 
   .door-content {
     /* הרגע בדלת קטן מזה שבעמוד שלו — כאן הוא אורח */
     --moment-size: 1rem;
-    padding: 1.4rem 1.2rem 1.2rem;
+    padding: 0 1.2rem 1.3rem;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
   }
 
   .moment-sample {
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
   }
 
   .moment-title {
@@ -340,10 +451,52 @@ const DESCRIPTION =
     text-decoration: none;
   }
 
+  /* שיתוף — אותה שיטה בדיוק כמו בעמוד הרגע (ShareRow.astro): וואטסאפ מלא,
+     העתקת קישור מתאר. */
+  .moment-share {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 0.2rem;
+  }
+
+  .share-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0.4rem 1.1rem;
+    border-radius: 2rem;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid var(--teal);
+    background: transparent;
+    color: var(--teal);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .share-pill.whatsapp {
+    background: var(--teal);
+    color: #fff;
+  }
+
+  .share-pill.whatsapp:hover {
+    background: var(--teal-deep);
+  }
+
+  .share-pill.copy:hover {
+    background: var(--surface);
+  }
+
   .moment-footer {
-    margin-top: auto;
+    margin-top: 1.1rem;
     padding-top: 1.1rem;
     border-top: 1px solid var(--line);
+    text-align: center;
   }
 
   .door-cta {
@@ -364,6 +517,13 @@ const DESCRIPTION =
 
   .door-cta:hover {
     opacity: 0.9;
+  }
+
+  /* משפט תמיכה: גם מי שלא קרא את הרגע במלואו מבין לאן הכפתור מוביל */
+  .door-cta-sub {
+    margin: 0.55rem 0 0;
+    font-size: 0.8rem;
+    color: var(--muted);
   }
 
   /* דלת הסיפורים */
@@ -395,97 +555,111 @@ const DESCRIPTION =
     gap: 1.1rem;
   }
 
-  .story-card {
+  /* כרטיס עולם: קשת קטנה + טקסט לצידה — אותה שפה חזותית של הקשת הגדולה
+     בדלת הרגעים ושל שערי /moments/, בצבע הזהות של העולם. */
+  .world-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
     background: var(--paper);
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+    padding: 0.85rem 1rem;
     box-shadow: var(--shadow);
   }
 
-  /* תמונת שער לעולם */
-  .story-gate {
+  .world-arch-link {
+    flex-shrink: 0;
+    display: block;
+    line-height: 0;
+  }
+
+  .world-arch {
+    position: relative;
+    display: block;
+    width: 84px;
+    height: 84px;
+    border-radius: 60px 60px 8px 8px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    transition: transform 0.2s ease;
+  }
+
+  .world-arch::after {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    border: 1px solid rgba(201, 162, 77, 0.55);
+    border-radius: 54px 54px 4px 4px;
+    pointer-events: none;
+  }
+
+  .world-arch :global(img) {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    height: 150px;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  .world-arch-fallback {
+    position: absolute;
+    inset: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.2rem;
+    font-size: 1.6rem;
+    background: var(--surface);
   }
 
-  .story-card[data-section='meshalim'] .story-gate {
-    background: linear-gradient(135deg, rgba(176, 70, 59, 0.12) 0%, rgba(176, 70, 59, 0.04) 100%);
+  .world-arch-link:hover .world-arch,
+  .world-arch-link:focus-visible .world-arch {
+    transform: translateY(-2px);
   }
 
-  .story-card[data-section='tzadikim'] .story-gate {
-    background: linear-gradient(135deg, rgba(31, 92, 87, 0.12) 0%, rgba(31, 92, 87, 0.04) 100%);
+  .world-arch-link:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 4px;
+    border-radius: 8px;
   }
 
-  .story-card[data-section='yoman'] .story-gate {
-    background: linear-gradient(135deg, rgba(0, 59, 92, 0.12) 0%, rgba(0, 59, 92, 0.04) 100%);
-  }
-
-  .story-header {
-    padding: 0.85rem 1rem 0.7rem;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .story-header h3 {
-    font-family: var(--font-display);
-    font-size: 1.1rem;
-    margin: 0;
-    font-weight: 700;
-  }
-
-  .story-card[data-section='meshalim'] .story-header h3 {
-    color: var(--brick);
-  }
-
-  .story-card[data-section='tzadikim'] .story-header h3 {
-    color: var(--teal);
-  }
-
-  .story-card[data-section='yoman'] .story-header h3 {
-    color: var(--blue);
-  }
-
-  .story-line {
-    font-size: 0.8rem;
-    color: var(--muted);
-    margin: 0.25rem 0 0;
-    line-height: 1.5;
-  }
-
-  .story-body {
-    padding: 0.75rem 1rem 0.9rem;
+  .world-text {
+    min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
+    gap: 0.15rem;
+  }
+
+  .world-name {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin: 0;
   }
 
   /* סיפור-דוגמה אמיתי מהעולם — טעימה, לא רשימה */
   .story-example {
-    font-family: var(--font-display);
-    font-size: 0.95rem;
-    font-weight: 700;
+    font-size: 0.9rem;
     color: var(--ink);
-    text-decoration: none;
-    line-height: 1.4;
-    min-height: 32px;
-    display: inline-flex;
-    align-items: center;
+    margin: 0;
   }
 
-  .story-example:hover {
+  .story-example a {
+    color: inherit;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .story-example a:hover {
     text-decoration: underline;
   }
 
   .story-link {
     display: inline-flex;
     align-items: center;
-    min-height: 36px;
+    min-height: 32px;
     font-size: 0.85rem;
     font-weight: 600;
     color: var(--teal);
