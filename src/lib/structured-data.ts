@@ -38,12 +38,14 @@ export function websiteJsonLd(site: URL, description: string) {
 /** עמוד סיפור או רגע — פריט כתוב אחד. */
 export function articleJsonLd(
   site: URL,
-  { url, headline, description, datePublished, image }: {
+  { url, headline, description, datePublished, image, inLanguage = 'he-IL' }: {
     url: string;
     headline: string;
     description: string;
     datePublished: Date;
     image?: string;
+    /** רגע ספרדי מצהיר es — אותו מחבר, שפה אחרת. */
+    inLanguage?: string;
   },
 ) {
   return {
@@ -53,7 +55,7 @@ export function articleJsonLd(
     url,
     headline,
     description,
-    inLanguage: 'he-IL',
+    inLanguage,
     datePublished: datePublished.toISOString().slice(0, 10),
     author: person(site),
     publisher: person(site),

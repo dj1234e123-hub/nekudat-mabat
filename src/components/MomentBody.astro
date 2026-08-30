@@ -18,9 +18,16 @@ interface Props {
    * רק מאחורי לחיצה.
    */
   collapsed?: boolean;
+  /** הטקסט על כפתור הקיפול — בעמוד ספרדי הוא בספרדית. */
+  moreLabel?: string;
 }
 
-const { format, firstStanzaOnly = false, collapsed = false } = Astro.props;
+const {
+  format,
+  firstStanzaOnly = false,
+  collapsed = false,
+  moreLabel = 'להמשיך לקרוא',
+} = Astro.props;
 const stanzas = firstStanzaOnly ? format.stanzas.slice(0, 1) : format.stanzas;
 const showClosing = !firstStanzaOnly && Boolean(format.closing);
 // הקיפול מתאים רק לפורמט החדש, ורק כשיש בכלל מה לקפל אחרי המהלך הראשון.
@@ -39,7 +46,7 @@ const restStanzas = isCollapsed ? stanzas.slice(1) : [];
   {
     isCollapsed ? (
       <details class="reveal">
-        <summary>להמשיך לקרוא</summary>
+        <summary>{moreLabel}</summary>
         {
           restStanzas.map((stanza) => (
             <p class="stanza" set:html={stanza.map(lineHtml).join('<br />')} />

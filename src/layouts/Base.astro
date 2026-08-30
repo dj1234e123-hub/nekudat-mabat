@@ -31,6 +31,15 @@ interface Props {
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   /** שפת העמוד. 'es' מחליף כיוון, תפריט ותחתית — האתר העברי אינו מושפע. */
   lang?: 'he' | 'es';
+  /** העמוד התאום בשפה השנייה (המבנה שאושר על סקיצה 2026-08-26): גלולת שפה
+      בכותרת שמובילה אליו, וזוג תגיות hreflang שמסבירות לגוגל שאלו אותו
+      עמוד בשתי שפות. עמוד בלי תאום פשוט לא מעביר את הפרופ. */
+  altLangHref?: string;
+  /** false — הקישור הוא לשער השפה ולא לתאום אמיתי: גלולה כן, hreflang לא. */
+  altLangTwin?: boolean;
+  /** true — העמוד מציג את מעבר השפה בגוף העמוד (שורת ההזמנה בדפי הבית),
+      ו-Base מוסיף hreflang בלבד, בלי גלולה. */
+  altLangInline?: boolean;
 }
 
 const {
@@ -44,6 +53,9 @@ const {
   noindex = false,
   jsonLd,
   lang = 'he',
+  altLangHref,
+  altLangTwin = true,
+  altLangInline = false,
 } = Astro.props;
 
 const es = lang === 'es';
@@ -73,6 +85,19 @@ const preloadFonts = es
   ? ['/fonts/frank-ruhl-libre-latin.woff2', '/fonts/heebo-latin.woff2']
   : ['/fonts/frank-ruhl-libre-hebrew.woff2', '/fonts/heebo-hebrew.woff2'];
 
+// גלולת השפה: בעברית היא אומרת "Español" ומובילה לספרדית, ולהפך.
+// lang/dir על הקישור עצמו — מילה עברית בתוך עמוד LTR (ולהפך) מוצגת נכון.
+const altLang = altLangHref
+  ? {
+      href: altLangHref,
+      label: es ? 'עברית' : 'Español',
+      lang: es ? 'he' : 'es',
+      dir: es ? 'rtl' : 'ltr',
+      aria: es ? 'Este texto en hebreo' : 'העמוד הזה בספרדית',
+    }
+  : null;
+const showLangPill = altLang !== null && !altLangInline;
+
 const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
 const defaultOg = await getImage({ src: logo, width: 640, format: 'jpeg' });
 const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
@@ -94,6 +119,18 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
     <meta property="og:image" content={ogImageUrl} />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="canonical" href={pageUrl} />
+    {
+      altLang && altLangTwin && (
+        <>
+          <link rel="alternate" hreflang={es ? 'es' : 'he'} href={pageUrl} />
+          <link
+            rel="alternate"
+            hreflang={es ? 'he' : 'es'}
+            href={new URL(altLang.href, Astro.site).href}
+          />
+        </>
+      )
+    }
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     {
       preloadFonts.map((href) => (
@@ -119,6 +156,17 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
               <span class="tagline">{brand.slogan}</span>
             </span>
           </a>
+          {showLangPill && (
+            <a
+              class="lang-pill lang-pill-corner"
+              href={altLang.href}
+              lang={altLang.lang}
+              dir={altLang.dir}
+              aria-label={altLang.aria}
+            >
+              {altLang.label}
+            </a>
+          )}
         </header>
       ) : (
         <header class={homeHeader ? 'header-home' : undefined}>
@@ -135,6 +183,17 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
               מופיעה ככרטיס בתחתית כל עמוד. תפריט הוא לְמקומות בתוך הבית. */}
           <nav class="site-nav" aria-label={es ? 'Navegación principal' : 'ניווט ראשי'}>
             {navLinks.map((link) => <a href={link.href}>{link.label}</a>)}
+            {showLangPill && (
+              <a
+                class="lang-pill"
+                href={altLang.href}
+                lang={altLang.lang}
+                dir={altLang.dir}
+                aria-label={altLang.aria}
+              >
+                {altLang.label}
+              </a>
+            )}
           </nav>
         </header>
       )
@@ -267,6 +326,8 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
   }
 
   body {
+    /* עוגן לגלולת השפה בפינת הדף (.lang-pill-corner) */
+    position: relative;
     background: var(--paper);
     color: var(--ink);
     font-family: var(--font-body);
@@ -399,6 +460,44 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
     font-size: 1.45rem;
   }
 
+
+  /* ---------- גלולת השפה ----------
+     המבנה שאושר על סקיצה (2026-08-26): בעמודים פנימיים גלולה קטנה שמובילה
+     לעמוד התאום בשפה השנייה; בדפי הבית — שורת הזמנה בגוף העמוד במקומה.
+     בכותרת המלאה היא יושבת בסוף שורת הניווט; בכותרת המצומצמת (עמודי רגע
+     וסיפור) — בפינת הכותרת, כדי לא להוסיף שורה לפני התוכן. */
+  .lang-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 32px;
+    align-self: center;
+    padding: 0.1rem 0.75rem;
+    border: 1px solid var(--line);
+    border-radius: 1rem;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .lang-pill:hover {
+    color: var(--teal);
+    border-color: var(--teal);
+  }
+
+  /* הגלולה מעוגנת לפינת הדף עצמו (body) ולא לכותרת: הכותרת המצומצמת היא
+     פריט flex עם margin-inline: auto שמתכווץ לרוחב התוכן במסך רחב, וגלולה
+     שנצמדת אליה נוחתת על המותג. inset-inline-end נמדד לפי כיוון הגלולה
+     עצמה (dir על הקישור, הפוך משפת העמוד): עברי — פינה ימנית־עליונה,
+     ספרדי — שמאלית־עליונה. המותג בכותרת המצומצמת ממורכז, ושתי הפינות פנויות. */
+  .lang-pill-corner {
+    position: absolute;
+    top: 1.1rem;
+    inset-inline-end: 1rem;
+  }
 
   /* כותרת מצומצמת — עמודי סיפור, רגעים ומבט לשבת.
      הסלוגן חוזר גם כאן (2026-08-27): קודם הכותרת המצומצמת דילגה עליו
