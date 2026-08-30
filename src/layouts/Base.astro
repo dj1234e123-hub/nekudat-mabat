@@ -59,6 +59,7 @@ const navLinks = es
   : [
       { href: '/stories/', label: 'סיפורים' },
       { href: '/moments/', label: 'מה עובר עליך' },
+      { href: '/mabat-leshabbat/', label: 'מבט לשבת' },
       { href: '/about/', label: 'מי אני' },
     ];
 const aboutHref = es ? '/es/sobre-mi/' : '/about/';
@@ -113,7 +114,10 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
         <header class="header-compact">
           <a href={homeHref} class="brand-row">
             <Image src={logo} alt={logoAlt} width={80} densities={[1, 2]} class="logo-sm" />
-            <span class="site-name-sm">{brand.name}</span>
+            <span class="brand-text">
+              <span class="site-name-sm">{brand.name}</span>
+              <span class="tagline">{brand.slogan}</span>
+            </span>
           </a>
         </header>
       ) : (
@@ -136,6 +140,35 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
       )
     }
     <slot />
+    <script>
+      // מדידת התנהגות (PostHog, שלב 4.28) — משלימה את Vercel Analytics:
+      // מסלולים, נקודות עזיבה ולחיצות, לא רק ספירת צפיות.
+      // הנתונים עוברים דרך האתר עצמו (/ingest ב-vercel.json) — בלי סקריפט
+      // מדומיין זר, בלי פתיחת ה-CSP, ועמיד בפני חוסמים וסינון.
+      // רץ רק בדומיין הציבורי: תצוגות מקדימות והגלישות של בעל הפרויקט
+      // בכתובת ה-vercel.app לא מזהמות את המדידה.
+      import posthog from 'posthog-js';
+
+      if (['nekudatmabat.blog', 'www.nekudatmabat.blog'].includes(location.hostname)) {
+        posthog.init('phc_Ao9zMFiwEvJyA7G3LchesR4N7mmJdfggEkrMZF86Z3Lb', {
+          api_host: '/ingest',
+          ui_host: 'https://us.posthog.com',
+          defaults: '2025-05-24',
+          // localStorage ולא עוגיות — הזיהוי חדש/חוזר נשאר בדפדפן של הקורא בלבד.
+          persistence: 'localStorage',
+          disable_session_recording: true,
+        });
+
+        // אירועים מותאמים: רכיב מסמן data-ph="שם" וההאזנה חיה כאן פעם אחת.
+        // sendBeacon — כדי שגם לחיצה שמנווטת מיד (סיפור אקראי, טלפון) תיקלט.
+        document.addEventListener('click', (event) => {
+          const el = (event.target as Element).closest?.('[data-ph]');
+          if (el instanceof HTMLElement && el.dataset.ph) {
+            posthog.capture(el.dataset.ph, undefined, { transport: 'sendBeacon' });
+          }
+        });
+      }
+    </script>
     <footer>
       <span class="dot" aria-hidden="true"></span>
       <p><a href={homeHref}>{brand.name}</a> · {brand.slogan}</p>
@@ -367,7 +400,12 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
   }
 
 
-  /* כותרת מצומצמת — עמודי סיפור */
+  /* כותרת מצומצמת — עמודי סיפור, רגעים ומבט לשבת.
+     הסלוגן חוזר גם כאן (2026-08-27): קודם הכותרת המצומצמת דילגה עליו
+     בכוונה כדי לקצר את הדרך לתוכן — בעל הפרויקט ביקש זהות אחידה בכל
+     עמוד על פני הקיצור, ולכן זה חל אוטומטית על כל מי שמשתמש ב-compact.
+     נבנה עם .brand-text ו-.tagline הקיימים — אותה מסגרת בדיוק כמו בכותרת
+     הרגילה (שם מתחת ללוגו, סלוגן מתחתיו), לא רק אותם ערכים בקירוב. */
   .header-compact {
     text-align: center;
     padding: 1.1rem 1.5rem 0.25rem;

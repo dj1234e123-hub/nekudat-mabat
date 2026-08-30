@@ -75,4 +75,21 @@ const momentsEs = defineCollection({
   }),
 });
 
-export const collections = { stories, moments, momentsEs };
+// "מבט לשבת" — טור שבועי: סיפור אמיתי, חיבור לפרשת השבוע, ומבט על האדם.
+// בשונה מסיפורים ומרגעים, כאן מותר (ואפילו נדרש) להסביר ולעצור על הרעיון —
+// זו בדיוק הסיבה שזה אוסף נפרד ולא עוד עולם בתוך הסיפורים.
+// חתימת השבת (signoff) נשמרת בפרונטמאטר ולא בגוף, כי היא לא חלק מהמאמר
+// עצמו אלא תוספת אישית של אפרים — יכולה להשתנות מבנה משבוע לשבוע.
+const mabatLeshabbat = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/mabat-leshabbat' }),
+  schema: z.object({
+    title: z.string().min(1),
+    parasha: z.string().min(1),
+    hebrewDate: z.string().min(1),
+    date: z.coerce.date(),
+    signoff: z.string().min(1),
+    signedBy: z.string().min(1),
+  }),
+});
+
+export const collections = { stories, moments, momentsEs, mabatLeshabbat };

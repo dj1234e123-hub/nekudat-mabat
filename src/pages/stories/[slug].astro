@@ -95,7 +95,7 @@ const otherStoryUrls = (await getCollection('stories'))
 
     <nav class="story-footer">
       <a href="/">לכל הסיפורים</a>
-      {otherStoryUrls.length > 0 && <button id="random-story" type="button">לסיפור אקראי</button>}
+      {otherStoryUrls.length > 0 && <button id="random-story" type="button" data-ph="random_story">לסיפור אקראי</button>}
     </nav>
   </main>
 </Base>

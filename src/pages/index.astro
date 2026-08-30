@@ -16,6 +16,8 @@ import { SECTIONS_META, SECTION_SLUGS, type SectionSlug } from '../data/sections
 import momentGate from '../assets/gates/moments.png';
 import { SECTION_GATE_IMAGES } from '../data/section-gate-images';
 import { newestFirst } from '../lib/sort';
+import MabatBody from '../components/MabatBody.astro';
+import { parseBody } from '../lib/mabat-format';
 
 // דף הבית נותן טעם ומוביל הלאה; הארכיון עצמו חי ב-/stories/.
 const allStories = (await getCollection('stories')).sort(newestFirst);
@@ -74,6 +76,13 @@ const momentPool = moments.map((m) => {
 });
 const featuredMoment = momentPool[0] ?? null;
 
+// טעימה מ"מבט לשבת" — הגיליון האחרון בלבד, ורק שני המהלכים הראשונים שלו.
+// הדף מציג רק תוכן שקיים בפועל: בלי גיליון, האזור כולו לא מוצג.
+const mabatPieces = (await getCollection('mabatLeshabbat')).sort(newestFirst);
+const latestMabat = mabatPieces[0]
+  ? { piece: mabatPieces[0], blocks: parseBody(mabatPieces[0].body ?? '') }
+  : null;
+
 const DESCRIPTION =
   'מקום לעצור, לקבל נקודת מבט חדשה, ולקחת משהו איתך להמשך הדרך. סיפורים ורגעים קצרים של נקודת מבט.';
 ---
@@ -93,12 +102,17 @@ const DESCRIPTION =
       </p>
     </section>
 
-    <!-- שתי דלתות בקנה מידה שווה: רגעים מול סיפורים -->
+    <!-- שתי דלתות בקנה מידה שווה: רגעים מול סיפורים, ובין לבין — טעימה
+         מ"מבط لشبت" (לא דלת שלישית באותו משקל). במסך צר שלושתם מתקפלים
+         לעמודה אחת בסדר הזה בדיוק; במסך רחב, ששתי הדלתות יושבות זו לצד זו
+         בשורה אחת, הטעימה יורדת לרצועה מלאה מתחתיהן — "בין" לא קיים
+         גיאומטרית כששני האיברים כבר צמודים אופקית. -->
     <section class="dual-section">
       <!-- דלת הרגעים -->
       {
         featuredMoment && (
-          <div class="door door-moments">
+          <div class="door door-moments" style="grid-area: moments">
+
             <div class="door-header">
               <h2>
                 <span id="moment-dot" class="door-dot" style={`background:${featuredMoment.accent}`} />
@@ -136,14 +150,15 @@ const DESCRIPTION =
                   href={`https://wa.me/?text=${encodeURIComponent(featuredMoment.href)}`}
                   rel="noopener"
                   target="_blank"
+                  data-ph="share_whatsapp"
                 >
                   שיתוף בוואטסאפ
                 </a>
-                <button type="button" class="share-pill copy">העתקת קישור</button>
+                <button type="button" class="share-pill copy" data-ph="share_copy">העתקת קישור</button>
               </div>
 
               <div class="moment-footer">
-                <a href="/moments/" class="door-cta">מצא רגע שלך</a>
+                <a href="/moments/" class="door-cta" data-ph="find_moment">מצא רגע שלך</a>
                 <p class="door-cta-sub">עוד רגעים, לפי מה שעובר עליך</p>
               </div>
             </div>
@@ -168,8 +183,26 @@ const DESCRIPTION =
         )
       }
 
+      {
+        latestMabat && (
+          <section class="mabat-teaser" style="grid-area: mabat">
+            <span class="teaser-rail" aria-hidden="true" />
+            <div class="teaser-body">
+              <p class="teaser-kicker">מבט לשבת · פרשת {latestMabat.piece.data.parasha}</p>
+              <a class="teaser-title" href={`/mabat-leshabbat/${latestMabat.piece.id}/`}>
+                {latestMabat.piece.data.title}
+              </a>
+              <MabatBody blocks={latestMabat.blocks} stanzaLimit={2} />
+              <a class="teaser-more" href={`/mabat-leshabbat/${latestMabat.piece.id}/`}>
+                להמשיך לקרוא
+              </a>
+            </div>
+          </section>
+        )
+      }
+
       <!-- דלת הסיפורים: שלושת עולמות התוכן -->
-      <div class="door-stories">
+      <div class="door-stories" style="grid-area: stories">
         <div class="stories-header">
           <h2>סיפורים</h2>
           <p>שלושה עולמות. בחר מאיפה להתחיל.</p>
@@ -318,14 +351,17 @@ const DESCRIPTION =
     margin-inline: calc((100% - var(--bleed)) / 2);
     display: grid;
     grid-template-columns: 1fr;
+    grid-template-areas: 'moments' 'mabat' 'stories';
     gap: 1.75rem;
     align-items: start;
     margin-bottom: 2.5rem;
   }
 
+  /* במסך רחב הדלתות יושבות זו לצד זו, והטעימה יורדת לרצועה מלאה מתחתיהן. */
   @media (min-width: 800px) {
     .dual-section {
       grid-template-columns: 1fr 1fr;
+      grid-template-areas: 'moments stories' 'mabat mabat';
       gap: 2rem;
     }
   }
@@ -668,6 +704,71 @@ const DESCRIPTION =
   }
 
   .story-link:hover {
+    text-decoration: underline;
+  }
+
+  /* ============ טעימת "מבט לשבת" ============ */
+  .mabat-teaser {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1.3rem 1.4rem;
+  }
+
+  .teaser-rail {
+    width: 3px;
+    align-self: stretch;
+    min-height: 3.5rem;
+    background: var(--blue);
+    border-radius: 2px;
+    flex: 0 0 auto;
+  }
+
+  .teaser-body {
+    flex: 1;
+    text-align: center;
+  }
+
+  .teaser-kicker {
+    color: var(--blue);
+    font-size: 0.76rem;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    margin: 0 0 0.4rem;
+  }
+
+  .teaser-title {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--ink);
+    text-decoration: none;
+    line-height: 1.4;
+    margin-bottom: 1.1rem;
+    text-wrap: balance;
+  }
+
+  .teaser-title:hover {
+    color: var(--blue);
+  }
+
+  .teaser-more {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: 0.6rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--teal);
+    text-decoration: none;
+  }
+
+  .teaser-more:hover {
     text-decoration: underline;
   }
 </style>

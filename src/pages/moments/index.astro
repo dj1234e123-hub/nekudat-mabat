@@ -58,7 +58,7 @@ const tellMeHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURICompone
       }
     </ul>
 
-    <button id="random-moment" class="unsure" type="button">לא יודע מה אני מרגיש עכשיו</button>
+    <button id="random-moment" class="unsure" type="button" data-ph="random_moment">לא יודע מה אני מרגיש עכשיו</button>
 
     <h2 class="map-label" id="all-feelings">כל המצבים</h2>
 
@@ -86,7 +86,7 @@ const tellMeHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURICompone
     <p class="soon">מצבים נוספים ותכנים נוספים — בדרך.</p>
     <p class="tell-me">
       לא מצאת כאן את מה שעובר עליך?
-      <a href={tellMeHref} rel="noopener" target="_blank">אפשר לספר לי</a>
+      <a href={tellMeHref} rel="noopener" target="_blank" data-ph="tell_me">אפשר לספר לי</a>
     </p>
   </main>
 </Base>

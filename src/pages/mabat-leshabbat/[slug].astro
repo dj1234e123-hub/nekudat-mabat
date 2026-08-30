@@ -1,0 +1,166 @@
+---
+// עמוד מאמר בודד ב"מבט לשבת" — הכתובת שמשתפים.
+// עיצוב "החתימה השקטה" (אושר על סקיצה): נשאר על נייר האתר הרגיל, זהות
+// הפינה היא רייל כחול דק ליד הכותרת, תווית קטנה, ומפרידים שקטים — לא בלוק
+// צבע נפרד ולא כותרות פנימיות. הכחול הוא --blue הקיים באתר (אותו צבע של
+// "מהיומן שלי"), לא גוון חדש.
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import ShareRow from '../../components/ShareRow.astro';
+import MabatBody from '../../components/MabatBody.astro';
+import { parseBody, plainText } from '../../lib/mabat-format';
+import { articleJsonLd, breadcrumbJsonLd } from '../../lib/structured-data';
+
+export async function getStaticPaths() {
+  const pieces = await getCollection('mabatLeshabbat');
+  return pieces.map((piece) => ({ params: { slug: piece.id }, props: { piece } }));
+}
+
+const { piece } = Astro.props;
+const { title, parasha, hebrewDate, date, signoff, signedBy } = piece.data;
+const blocks = parseBody(piece.body ?? '');
+
+const flat = plainText(blocks).replace(/\s+/g, ' ').trim();
+const summary = flat.length > 200 ? `${flat.slice(0, 197)}…` : flat;
+
+const pageUrl = new URL(`/mabat-leshabbat/${piece.id}/`, Astro.site).href;
+const shareText = `${plainText(blocks)}\n\n${pageUrl}`;
+---
+
+<Base
+  title={`${title} · מבט לשבת`}
+  description={summary}
+  ogType="article"
+  compact={true}
+  jsonLd={[
+    articleJsonLd(Astro.site!, {
+      url: pageUrl,
+      headline: title,
+      description: summary,
+      datePublished: date,
+    }),
+    breadcrumbJsonLd(Astro.site!, [
+      { name: 'נקודת מבט', path: '/' },
+      { name: 'מבט לשבת', path: '/mabat-leshabbat/' },
+      { name: title },
+    ]),
+  ]}
+>
+  <main>
+    <article class="mabat">
+      <header class="mabat-head">
+        <span class="rail" aria-hidden="true"></span>
+        <div class="head-text">
+          <p class="kicker-main">מבט לשבת</p>
+          <p class="kicker-sub">פרשת {parasha} · {hebrewDate}</p>
+          <h1>{title}</h1>
+        </div>
+      </header>
+
+      <MabatBody blocks={blocks} />
+
+      <div class="close-mark" aria-hidden="true"><span></span></div>
+
+      <div class="signoff">
+        <p set:html={signoff.trim().replace(/\n/g, '<br />')} />
+        <p class="sig">{signedBy}</p>
+      </div>
+    </article>
+
+    <ShareRow title={`${title} · מבט לשבת`} url={pageUrl} shareText={shareText} label="לשלוח את זה למישהו:" />
+
+    <nav class="mabat-footer">
+      <a href="/mabat-leshabbat/">לכל הגיליונות של מבט לשבת</a>
+    </nav>
+  </main>
+</Base>
+
+<style>
+  .mabat {
+    padding-top: 0.5rem;
+  }
+
+  .mabat-head {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-bottom: 2.2rem;
+  }
+
+  .rail {
+    width: 3px;
+    align-self: stretch;
+    min-height: 5.6rem;
+    background: var(--blue);
+    border-radius: 2px;
+    flex: 0 0 auto;
+  }
+
+  .head-text {
+    flex: 1;
+  }
+
+  .kicker-main {
+    color: var(--blue);
+    font-size: 0.76rem;
+    letter-spacing: 0.14em;
+    font-weight: 700;
+    margin: 0 0 0.35rem;
+  }
+
+  .kicker-sub {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin: 0 0 1rem;
+  }
+
+  .mabat-head h1 {
+    font-size: 1.7rem;
+    line-height: 1.42;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .close-mark {
+    display: flex;
+    justify-content: center;
+    margin: 2.3rem 0 1.6rem;
+  }
+
+  .close-mark span {
+    width: 3px;
+    height: 16px;
+    border-radius: 2px;
+    background: var(--blue);
+    opacity: 0.55;
+  }
+
+  .signoff {
+    text-align: center;
+    margin: 0 0 0.5rem;
+  }
+
+  .signoff p {
+    margin: 0 0 0.5rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .signoff .sig {
+    font-weight: 700;
+    color: var(--blue);
+    margin-bottom: 0;
+  }
+
+  .mabat-footer {
+    text-align: center;
+    margin-top: 2.5rem;
+  }
+
+  .mabat-footer a {
+    text-decoration: none;
+    font-weight: 600;
+  }
+</style>
