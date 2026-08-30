@@ -14,3 +14,4 @@ export const DEFAULT_COVERS: Record<SectionSlug, ImageMetadata> = {
 };
 
 export const DEFAULT_COVER_ALT = 'איור שער זמני בצבעי נקודת מבט';
+export const DEFAULT_COVER_ALT_ES = 'Ilustración de portada provisional en los colores de Punto de Vista';

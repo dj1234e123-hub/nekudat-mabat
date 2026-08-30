@@ -1,0 +1,99 @@
+---
+// עמוד עולם תוכן בספרדית — אותו מבנה כמו /sections/ העברי: תמונת השער של
+// העולם, כותרת, שורת ההסבר, ורשימת הסיפורים. נבנה רק לעולם שיש בו
+// סיפורים מתורגמים ("מבחר ולא מראה").
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../../../layouts/Base.astro';
+import StoryCard from '../../../components/StoryCard.astro';
+import { type SectionSlug } from '../../../data/sections';
+import { SECTIONS_ES } from '../../../data/site-es';
+import { SECTION_GATE_IMAGES } from '../../../data/section-gate-images';
+import { newestFirst } from '../../../lib/sort';
+
+export async function getStaticPaths() {
+  const stories = await getCollection('storiesEs');
+  const sections = [...new Set(stories.map((s) => s.data.section))];
+  return sections.map((section) => ({ params: { section } }));
+}
+
+const section = Astro.params.section as SectionSlug;
+const { label, line } = SECTIONS_ES[section];
+const gateImage = SECTION_GATE_IMAGES[section] ?? null;
+
+const stories = (await getCollection('storiesEs', (s) => s.data.section === section)).sort(
+  newestFirst
+);
+---
+
+<Base
+  lang="es"
+  title={`${label} · Punto de Vista`}
+  description={line}
+  altLangHref={`/sections/${section}/`}
+>
+  <main>
+    {
+      gateImage && (
+        <Image
+          src={gateImage.image}
+          alt=""
+          widths={[480, 960, 1344]}
+          sizes="(max-width: 42rem) 100vw, 42rem"
+          class="section-gate"
+          style={`object-position: ${gateImage.position}`}
+          loading="eager"
+        />
+      )
+    }
+    <h1 class="page-title">{label}</h1>
+    <p class="section-line">{line}</p>
+    <ul class="story-list">
+      {stories.map((story) => <StoryCard story={story} lang="es" />)}
+    </ul>
+    <p class="back"><a href="/es/historias/">Todas las historias</a></p>
+  </main>
+</Base>
+
+<style>
+  .section-gate {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2 / 1;
+    object-fit: cover;
+    border-radius: var(--radius);
+    margin-bottom: 1.5rem;
+  }
+
+  .section-line {
+    text-align: center;
+    color: var(--secondary);
+    margin: 0 auto 2rem;
+    max-width: 26rem;
+    line-height: 1.7;
+  }
+
+  .page-title {
+    text-align: center;
+    font-size: 1.8rem;
+    padding: 0.5rem 0 1.75rem;
+  }
+
+  .story-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 2.75rem;
+  }
+
+  .back {
+    text-align: center;
+    margin-top: 2.5rem;
+  }
+
+  .back a {
+    text-decoration: none;
+    font-weight: 600;
+  }
+</style>

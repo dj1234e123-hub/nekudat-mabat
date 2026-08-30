@@ -2,29 +2,36 @@
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import { SECTIONS_META } from '../data/sections';
-import { DEFAULT_COVERS, DEFAULT_COVER_ALT } from '../data/default-covers';
+import { SECTIONS_ES } from '../data/site-es';
+import { DEFAULT_COVERS, DEFAULT_COVER_ALT, DEFAULT_COVER_ALT_ES } from '../data/default-covers';
 import { formatDate } from '../utils/format-date';
 
 interface Props {
-  story: CollectionEntry<'stories'>;
+  story: CollectionEntry<'stories'> | CollectionEntry<'storiesEs'>;
+  /** 'es' — תוויות, תאריך וכתובות של האזור הספרדי. הצבעים והמבנה זהים. */
+  lang?: 'he' | 'es';
 }
 
-const { story } = Astro.props;
+const { story, lang = 'he' } = Astro.props;
+const es = lang === 'es';
 const { title, section, date, excerpt } = story.data;
 const cover = story.data.cover ?? DEFAULT_COVERS[section];
-const coverAlt = story.data.coverAlt ?? DEFAULT_COVER_ALT;
+const coverAlt = story.data.coverAlt ?? (es ? DEFAULT_COVER_ALT_ES : DEFAULT_COVER_ALT);
+const storyHref = es ? `/es/historias/${story.id}/` : `/stories/${story.id}/`;
+const sectionHref = es ? `/es/secciones/${section}/` : `/sections/${section}/`;
+const sectionLabel = es ? SECTIONS_ES[section].label : SECTIONS_META[section].label;
 ---
 
 <li class="card">
-  <a href={`/stories/${story.id}/`} class="card-link">
+  <a href={storyHref} class="card-link">
     <Image src={cover} alt={coverAlt} widths={[480, 800]} sizes="(max-width: 42rem) 100vw, 42rem" class="card-cover" />
     <h2>{title}</h2>
   </a>
   <p class="card-meta">
-    <a class="label world" href={`/sections/${section}/`} style={`--accent: ${SECTIONS_META[section].accent}`}>
-      {SECTIONS_META[section].label}
+    <a class="label world" href={sectionHref} style={`--accent: ${SECTIONS_META[section].accent}`}>
+      {sectionLabel}
     </a>
-    <time datetime={date.toISOString().slice(0, 10)}>{formatDate(date)}</time>
+    <time datetime={date.toISOString().slice(0, 10)}>{formatDate(date, lang)}</time>
   </p>
   <p class="card-excerpt">{excerpt}</p>
 </li>

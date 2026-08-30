@@ -1,9 +1,8 @@
 ---
-// דף הבית בספרדית — אותו דף בית כמו העברי החדש (שלב 4.30), בשפה אחרת:
-// פתיחה, ודלת הרגעים בקשת — נקודת זהות, קשת עם התמונה, רגע מוגרל מקופל
-// מאחורי "Seguir leyendo", שיתוף (תמונה ממותגת קודם, קישור נקי כנפילת
-// חזרה) וכפתור ראשי. אין דלת סיפורים ואין מבט לשבת — הם לא תורגמו,
-// והדף מציג רק תוכן שקיים בפועל ("מבחר ולא מראה").
+// דף הבית בספרדית — אותו דף בית כמו העברי (שלב 4.30), בשפה אחרת:
+// פתיחה, דלת הרגעים (קשת, רגע מוגרל מקופל, שיתוף, כפתור ראשי), טעימת
+// "מבט לשבת", ודלת הסיפורים עם שלושת העולמות — כל המבנה, אותם ערכים.
+// הדף מציג רק תוכן שקיים בפועל: עולם בלי סיפורים מתורגמים אינו מוצג.
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
@@ -11,8 +10,42 @@ import JoinGroup from '../../components/JoinGroup.astro';
 import MomentBody from '../../components/MomentBody.astro';
 import { parseMoment } from '../../lib/moment-format';
 import { groupOf, type FeelingSlug } from '../../data/feelings';
+import { SECTIONS_META, SECTION_SLUGS, type SectionSlug } from '../../data/sections';
+import { SECTIONS_ES, MABAT_ES } from '../../data/site-es';
 import momentGate from '../../assets/gates/moments.png';
+import { SECTION_GATE_IMAGES } from '../../data/section-gate-images';
 import { newestFirst } from '../../lib/sort';
+import MabatBody from '../../components/MabatBody.astro';
+import { parseBody } from '../../lib/mabat-format';
+
+const allStories = (await getCollection('storiesEs')).sort(newestFirst);
+
+const picked = allStories
+  .filter((s) => s.data.featured !== undefined)
+  .sort((a, b) => a.data.featured! - b.data.featured!);
+const featuredStories = picked.length >= 3 ? picked.slice(0, 3) : allStories.slice(0, 3);
+
+const GATE_EMOJI: Record<SectionSlug, string> = {
+  meshalim: '📖',
+  tzadikim: '✨',
+  yoman: '📔',
+};
+const worlds = SECTION_SLUGS.map((slug) => {
+  const meta = SECTIONS_META[slug];
+  if ('hidden' in meta && meta.hidden) return null;
+  const story =
+    featuredStories.find((s) => s.data.section === slug) ??
+    allStories.find((s) => s.data.section === slug);
+  if (!story) return null;
+  return {
+    slug,
+    meta,
+    metaEs: SECTIONS_ES[slug],
+    story,
+    emoji: GATE_EMOJI[slug],
+    image: SECTION_GATE_IMAGES[slug] ?? null,
+  };
+}).filter((w) => w !== null);
 
 // אותו מנגנון כמו בעברית: הרגע מוגרל מחדש בכל טעינה בצד הקורא; בלי
 // JavaScript נשאר החדש ביותר.
@@ -30,8 +63,14 @@ const momentPool = moments.map((m) => {
 });
 const featuredMoment = momentPool[0] ?? null;
 
+// טעימה מ"מבט לשבת" — הגיליון האחרון בלבד, שני מהלכים ראשונים.
+const mabatPieces = (await getCollection('mabatEs')).sort(newestFirst);
+const latestMabat = mabatPieces[0]
+  ? { piece: mabatPieces[0], blocks: parseBody(mabatPieces[0].body ?? '') }
+  : null;
+
 const DESCRIPTION =
-  'Un lugar para detenerse, obtener un nuevo punto de vista y llevar algo contigo en tu camino. Momentos breves de Punto de Vista.';
+  'Un lugar para detenerse, obtener un nuevo punto de vista y llevar algo contigo en tu camino. Historias y momentos breves de Punto de Vista.';
 ---
 
 <Base
@@ -57,17 +96,14 @@ const DESCRIPTION =
       </p>
     </section>
 
-    {
-      featuredMoment && (
-        <section class="dual-section">
-          <div class="door door-moments">
+    <section class="dual-section">
+      <!-- דלת הרגעים -->
+      {
+        featuredMoment && (
+          <div class="door door-moments" style="grid-area: moments">
             <div class="door-header">
               <h2>
-                <span
-                  id="moment-dot"
-                  class="door-dot"
-                  style={`background:${featuredMoment.accent}`}
-                />
+                <span id="moment-dot" class="door-dot" style={`background:${featuredMoment.accent}`} />
                 Un momento de Punto de Vista
               </h2>
               <p class="door-subheader">Decenas de momentos, según lo que estás pasando ahora.</p>
@@ -132,9 +168,74 @@ const DESCRIPTION =
               </template>
             ))}
           </div>
-        </section>
-      )
-    }
+        )
+      }
+
+      {
+        latestMabat && (
+          <section class="mabat-teaser" style="grid-area: mabat">
+            <span class="teaser-rail" aria-hidden="true" />
+            <div class="teaser-body">
+              <p class="teaser-kicker">
+                {MABAT_ES.name} · {MABAT_ES.parashaPrefix} {latestMabat.piece.data.parasha}
+              </p>
+              <a class="teaser-title" href={`/es/shabat/${latestMabat.piece.id}/`}>
+                {latestMabat.piece.data.title}
+              </a>
+              <MabatBody blocks={latestMabat.blocks} stanzaLimit={2} />
+              <a class="teaser-more" href={`/es/shabat/${latestMabat.piece.id}/`}>
+                Seguir leyendo
+              </a>
+            </div>
+          </section>
+        )
+      }
+
+      <!-- דלת הסיפורים: שלושת עולמות התוכן -->
+      {
+        worlds.length > 0 && (
+          <div class="door-stories" style="grid-area: stories">
+            <div class="stories-header">
+              <h2>Historias</h2>
+              <p>Tres mundos. Elige por dónde empezar.</p>
+            </div>
+
+            <div class="stories-grid">
+              {worlds.map(({ slug, meta, metaEs, story, emoji, image }) => (
+                <div class="world-card" style={`--accent: ${meta.accent}`}>
+                  <a href={`/es/secciones/${slug}/`} class="world-arch-link" aria-label={metaEs.linkText}>
+                    <span class="world-arch">
+                      {image ? (
+                        <Image
+                          src={image.image}
+                          alt=""
+                          widths={[200, 400]}
+                          sizes="84px"
+                          style={`object-position: ${image.position}`}
+                        />
+                      ) : (
+                        <span class="world-arch-fallback" aria-hidden="true">
+                          {emoji}
+                        </span>
+                      )}
+                    </span>
+                  </a>
+                  <div class="world-text">
+                    <h3 class="world-name">{metaEs.label}</h3>
+                    <p class="story-example">
+                      Por ejemplo: <a href={`/es/historias/${story.id}/`}>{story.data.title}</a>
+                    </p>
+                    <a href={`/es/secciones/${slug}/`} class="story-link">
+                      {metaEs.linkText} →
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )
+      }
+    </section>
 
     <JoinGroup lang="es" />
   </main>
@@ -250,12 +351,25 @@ const DESCRIPTION =
     border-color: var(--teal);
   }
 
-  /* דלת הרגעים — אותם ערכים כמו בדלת העברית, בעמודה אחת: בלי דלת סיפורים,
-     הדלת יושבת ברוחב של דלת אחת מתוך השתיים ולא נמתחת על כל המסך. */
+  /* ============ שתי הדלתות — אותם ערכים כמו בדף הבית העברי ============ */
   .dual-section {
-    max-width: 29rem;
-    margin-inline: auto;
+    --bleed: min(62rem, 100vw - 3rem);
+    width: var(--bleed);
+    margin-inline: calc((100% - var(--bleed)) / 2);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: 'moments' 'mabat' 'stories';
+    gap: 1.75rem;
+    align-items: start;
     margin-bottom: 2.5rem;
+  }
+
+  @media (min-width: 800px) {
+    .dual-section {
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas: 'moments stories' 'mabat mabat';
+      gap: 2rem;
+    }
   }
 
   .door-moments {
@@ -444,5 +558,211 @@ const DESCRIPTION =
     margin: 0.55rem 0 0;
     font-size: 0.8rem;
     color: var(--muted);
+  }
+
+  /* דלת הסיפורים */
+  .door-stories {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stories-header {
+    text-align: center;
+    margin-bottom: 1.2rem;
+  }
+
+  .stories-header h2 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    margin: 0 0 0.3rem;
+  }
+
+  .stories-header p {
+    font-size: 0.85rem;
+    color: var(--secondary);
+    margin: 0;
+  }
+
+  .stories-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+  }
+
+  .world-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 0.85rem 1rem;
+    box-shadow: var(--shadow);
+  }
+
+  .world-arch-link {
+    flex-shrink: 0;
+    display: block;
+    line-height: 0;
+  }
+
+  .world-arch {
+    position: relative;
+    display: block;
+    width: 84px;
+    height: 84px;
+    border-radius: 60px 60px 8px 8px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    transition: transform 0.2s ease;
+  }
+
+  .world-arch::after {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    border: 1px solid rgba(201, 162, 77, 0.55);
+    border-radius: 54px 54px 4px 4px;
+    pointer-events: none;
+  }
+
+  .world-arch :global(img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  .world-arch-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    background: var(--surface);
+  }
+
+  .world-arch-link:hover .world-arch,
+  .world-arch-link:focus-visible .world-arch {
+    transform: translateY(-2px);
+  }
+
+  .world-arch-link:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 4px;
+    border-radius: 8px;
+  }
+
+  .world-text {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .world-name {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin: 0;
+  }
+
+  .story-example {
+    font-size: 0.9rem;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  .story-example a {
+    color: inherit;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .story-example a:hover {
+    text-decoration: underline;
+  }
+
+  .story-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--teal);
+    text-decoration: none;
+  }
+
+  .story-link:hover {
+    text-decoration: underline;
+  }
+
+  /* ============ טעימת "מבט לשבת" ============ */
+  .mabat-teaser {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1.3rem 1.4rem;
+  }
+
+  .teaser-rail {
+    width: 3px;
+    align-self: stretch;
+    min-height: 3.5rem;
+    background: var(--blue);
+    border-radius: 2px;
+    flex: 0 0 auto;
+  }
+
+  .teaser-body {
+    flex: 1;
+    text-align: center;
+  }
+
+  .teaser-kicker {
+    color: var(--blue);
+    font-size: 0.76rem;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    margin: 0 0 0.4rem;
+  }
+
+  .teaser-title {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--ink);
+    text-decoration: none;
+    line-height: 1.4;
+    margin-bottom: 1.1rem;
+    text-wrap: balance;
+  }
+
+  .teaser-title:hover {
+    color: var(--blue);
+  }
+
+  .teaser-more {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: 0.6rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--teal);
+    text-decoration: none;
+  }
+
+  .teaser-more:hover {
+    text-decoration: underline;
   }
 </style>

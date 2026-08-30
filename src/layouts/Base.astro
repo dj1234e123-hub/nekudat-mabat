@@ -61,11 +61,13 @@ const {
 const es = lang === 'es';
 const dir = es ? 'ltr' : 'rtl';
 const brand = es ? SITE_ES : SITE;
-// התפריט הספרדי אינו מוביל לסיפורים: הם לא תורגמו, וקישור לעמוד שאי אפשר
-// לקרוא גרוע יותר מהיעדרו.
+// התפריט הספרדי — אותם יעדים כמו העברי, מאז שהסיפורים ומבט לשבת תורגמו
+// (שלב 4.33): סיפורים, רגעים, שבת, מי אני.
 const navLinks = es
   ? [
+      { href: '/es/historias/', label: 'Historias' },
       { href: '/es/momentos/', label: 'Momentos' },
+      { href: '/es/shabat/', label: 'Shabat' },
       { href: '/es/sobre-mi/', label: 'Sobre mí' },
     ]
   : [

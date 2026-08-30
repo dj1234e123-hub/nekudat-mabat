@@ -1,18 +1,16 @@
 ---
-// עמוד מאמר בודד ב"מבט לשבת" — הכתובת שמשתפים.
-// עיצוב "החתימה השקטה" (אושר על סקיצה): נשאר על נייר האתר הרגיל, זהות
-// הפינה היא רייל כחול דק ליד הכותרת, תווית קטנה, ומפרידים שקטים — לא בלוק
-// צבע נפרד ולא כותרות פנימיות. הכחול הוא --blue הקיים באתר (אותו צבע של
-// "מהיומן שלי"), לא גוון חדש.
+// עמוד גיליון "מבט לשבת" בספרדית — אותו עיצוב "החתימה השקטה" כמו העברי:
+// רייל כחול, תווית, גוף עם מפרידים שקטים, חתימת שבת.
 import { getCollection } from 'astro:content';
-import Base from '../../layouts/Base.astro';
-import ShareRow from '../../components/ShareRow.astro';
-import MabatBody from '../../components/MabatBody.astro';
-import { parseBody, plainText } from '../../lib/mabat-format';
-import { articleJsonLd, breadcrumbJsonLd } from '../../lib/structured-data';
+import Base from '../../../layouts/Base.astro';
+import ShareRow from '../../../components/ShareRow.astro';
+import MabatBody from '../../../components/MabatBody.astro';
+import { MABAT_ES } from '../../../data/site-es';
+import { parseBody, plainText } from '../../../lib/mabat-format';
+import { articleJsonLd, breadcrumbJsonLd } from '../../../lib/structured-data';
 
 export async function getStaticPaths() {
-  const pieces = await getCollection('mabatLeshabbat');
+  const pieces = await getCollection('mabatEs');
   return pieces.map((piece) => ({ params: { slug: piece.id }, props: { piece } }));
 }
 
@@ -23,32 +21,28 @@ const blocks = parseBody(piece.body ?? '');
 const flat = plainText(blocks).replace(/\s+/g, ' ').trim();
 const summary = flat.length > 200 ? `${flat.slice(0, 197)}…` : flat;
 
-const pageUrl = new URL(`/mabat-leshabbat/${piece.id}/`, Astro.site).href;
+const pageUrl = new URL(`/es/shabat/${piece.id}/`, Astro.site).href;
 const shareText = `${plainText(blocks)}\n\n${pageUrl}`;
-
-// הגיליון התאום בספרדית — אותו שם קובץ באוסף mabatEs.
-const mabatEs = await getCollection('mabatEs');
-const hasEsTwin = mabatEs.some((p) => p.id === piece.id);
-const altLangHref = hasEsTwin ? `/es/shabat/${piece.id}/` : '/es/shabat/';
 ---
 
 <Base
-  title={`${title} · מבט לשבת`}
+  lang="es"
+  title={`${title} · ${MABAT_ES.name}`}
   description={summary}
   ogType="article"
   compact={true}
-  altLangHref={altLangHref}
-  altLangTwin={hasEsTwin}
+  altLangHref={`/mabat-leshabbat/${piece.id}/`}
   jsonLd={[
     articleJsonLd(Astro.site!, {
       url: pageUrl,
       headline: title,
       description: summary,
       datePublished: date,
+      inLanguage: 'es',
     }),
     breadcrumbJsonLd(Astro.site!, [
-      { name: 'נקודת מבט', path: '/' },
-      { name: 'מבט לשבת', path: '/mabat-leshabbat/' },
+      { name: 'Punto de Vista', path: '/es/' },
+      { name: MABAT_ES.name, path: '/es/shabat/' },
       { name: title },
     ]),
   ]}
@@ -58,8 +52,8 @@ const altLangHref = hasEsTwin ? `/es/shabat/${piece.id}/` : '/es/shabat/';
       <header class="mabat-head">
         <span class="rail" aria-hidden="true"></span>
         <div class="head-text">
-          <p class="kicker-main">מבט לשבת</p>
-          <p class="kicker-sub">פרשת {parasha} · {hebrewDate}</p>
+          <p class="kicker-main">{MABAT_ES.name}</p>
+          <p class="kicker-sub">{MABAT_ES.parashaPrefix} {parasha} · {hebrewDate}</p>
           <h1>{title}</h1>
         </div>
       </header>
@@ -74,10 +68,16 @@ const altLangHref = hasEsTwin ? `/es/shabat/${piece.id}/` : '/es/shabat/';
       </div>
     </article>
 
-    <ShareRow title={`${title} · מבט לשבת`} url={pageUrl} shareText={shareText} label="לשלוח את זה למישהו:" />
+    <ShareRow
+      title={`${title} · ${MABAT_ES.name}`}
+      url={pageUrl}
+      lang="es"
+      shareText={shareText}
+      label="Envíaselo a alguien:"
+    />
 
     <nav class="mabat-footer">
-      <a href="/mabat-leshabbat/">לכל הגיליונות של מבט לשבת</a>
+      <a href="/es/shabat/">Todas las ediciones de {MABAT_ES.name}</a>
     </nav>
   </main>
 </Base>

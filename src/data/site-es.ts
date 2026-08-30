@@ -18,6 +18,32 @@ export const SITE_ES = {
   whatsappGroupUrl: '',
 } as const;
 
+/** עולמות הסיפורים בספרדית — תווית, שורה וקישור, לפי אותו slug של sections.ts.
+    התרגום שומר על העיקרון "השורה מסבירה ולא רומזת" — היא גם תיאור המטא בגוגל. */
+export const SECTIONS_ES: Record<string, { label: string; line: string; linkText: string }> = {
+  meshalim: {
+    label: 'Parábolas',
+    line: 'Un rey, un puente, un águila. Ninguno existió — y justo por eso es más fácil verte en ellos.',
+    linkText: 'Todas las parábolas',
+  },
+  tzadikim: {
+    label: 'Historias de tzadikim',
+    line: 'Ni milagros ni prodigios. Un pequeño momento en el que un gran hombre hizo lo que hizo — y ahí está todo.',
+    linkText: 'Todas las historias de tzadikim',
+  },
+  yoman: {
+    label: 'De mi diario',
+    line: 'No son historias que escuché. Cosas que viví de cerca — incluso las que no me dejan bien parado.',
+    linkText: 'Todo el diario',
+  },
+};
+
+/** "מבט לשבת" בספרדית — שם הפינה ומחרוזות הקבע שלה. */
+export const MABAT_ES = {
+  name: 'Mirada de Shabat',
+  parashaPrefix: 'Parashá',
+} as const;
+
 /** תוויות המצבים בספרדית — מפתח לפי אותו slug של הרשימה העברית. */
 export const FEELING_LABELS_ES: Record<string, string> = {
   pain: 'Dolor',

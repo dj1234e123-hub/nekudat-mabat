@@ -75,6 +75,45 @@ const momentsEs = defineCollection({
   }),
 });
 
+// הסיפורים בספרדית. אותו עיקרון כמו momentsEs: אוסף נפרד עם אותם מזהי
+// קבצים כמו העברי — הזיווג בין מקור לתרגום אוטומטי, וסיפור בלי תרגום
+// פשוט אינו קיים באזור הספרדי ("מבחר ולא מראה").
+// cover אופציונלי: רוב הסיפורים מפנים לאותה תמונת שער כמו העברית; סיפור
+// שהתמונה שלו נושאת כיתוב עברי (#009, #013, #017, #038) נשאר בלי cover
+// ומקבל את שער הקטגוריה הזמני — עד שבעל הפרויקט יכין גרסה בלי כיתוב.
+const storiesEs = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/stories-es' }),
+  schema: ({ image }) =>
+    z
+      .object({
+        title: z.string().min(1),
+        section: z.enum(SECTION_SLUGS as [SectionSlug, ...SectionSlug[]]),
+        archiveId: z.string().min(1).optional(),
+        cover: image().optional(),
+        coverAlt: z.string().min(1).optional(),
+        date: z.coerce.date(),
+        excerpt: z.string().min(1),
+        readingTime: z.string().optional(),
+        featured: z.number().int().positive().optional(),
+      })
+      .refine((data) => !data.cover || !!data.coverAlt, {
+        message: 'סיפור עם תמונת שער חייב גם טקסט חלופי (coverAlt)',
+      }),
+});
+
+// "מבט לשבת" בספרדית — אותו זיווג לפי שם קובץ.
+const mabatEs = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/mabat-es' }),
+  schema: z.object({
+    title: z.string().min(1),
+    parasha: z.string().min(1),
+    hebrewDate: z.string().min(1),
+    date: z.coerce.date(),
+    signoff: z.string().min(1),
+    signedBy: z.string().min(1),
+  }),
+});
+
 // "מבט לשבת" — טור שבועי: סיפור אמיתי, חיבור לפרשת השבוע, ומבט על האדם.
 // בשונה מסיפורים ומרגעים, כאן מותר (ואפילו נדרש) להסביר ולעצור על הרעיון —
 // זו בדיוק הסיבה שזה אוסף נפרד ולא עוד עולם בתוך הסיפורים.
@@ -92,4 +131,4 @@ const mabatLeshabbat = defineCollection({
   }),
 });
 
-export const collections = { stories, moments, momentsEs, mabatLeshabbat };
+export const collections = { stories, moments, momentsEs, mabatLeshabbat, storiesEs, mabatEs };
