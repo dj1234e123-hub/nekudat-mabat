@@ -14,8 +14,8 @@ export const SITE_ES = {
   slogan: 'Ponemos el punto en el centro',
   ownerName: 'Efraim Atia',
   /** קבוצת הוואטסאפ הספרדית — ערוץ נפרד לחלוטין מהקבוצה העברית.
-      ריק = כרטיס ההצטרפות אינו מוצג כלל. ימולא כשבעל הפרויקט ימסור את הקישור. */
-  whatsappGroupUrl: '',
+      נמסר ע"י בעל הפרויקט 2026-08-30 (נשמר בלי פרמטר ה-mode של מסך ההעתקה). */
+  whatsappGroupUrl: 'https://chat.whatsapp.com/Guowx1In317DPruSb0iylo',
 } as const;
 
 /** עולמות הסיפורים בספרדית — תווית, שורה וקישור, לפי אותו slug של sections.ts.
