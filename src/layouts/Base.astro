@@ -141,15 +141,27 @@ const ogImageUrl = ogImage ?? new URL(defaultOg.src, Astro.site).href;
     }
     <slot />
     <script>
+      import posthog from 'posthog-js';
+
+      // מצב "בעלים": ביקור בכתובת עם ‎?owner=1 שומר דגל בדפדפן הזה (localStorage
+      // בלבד, בלי עוגיות) — ומאותו רגע אף ביקור מהדפדפן הזה לא נספר, לא ב-PostHog
+      // ולא ב-Vercel Analytics. ‎?owner=0 מבטל את הדגל. חד-פעמי לכל דפדפן/מכשיר.
+      const ownerParam = new URLSearchParams(location.search).get('owner');
+      if (ownerParam === '1') localStorage.setItem('nm_owner', '1');
+      else if (ownerParam === '0') localStorage.removeItem('nm_owner');
+      const isOwner = localStorage.getItem('nm_owner') === '1';
+
+      // Vercel Analytics קורא למשתנה הגלובלי הזה (מנגנון מתועד של הרכיב ל-Astro)
+      // ומבטל כל אירוע לפני שליחה כשמצב הבעלים דלוק.
+      window.webAnalyticsBeforeSend = (event) => (isOwner ? null : event);
+
       // מדידת התנהגות (PostHog, שלב 4.28) — משלימה את Vercel Analytics:
       // מסלולים, נקודות עזיבה ולחיצות, לא רק ספירת צפיות.
       // הנתונים עוברים דרך האתר עצמו (/ingest ב-vercel.json) — בלי סקריפט
       // מדומיין זר, בלי פתיחת ה-CSP, ועמיד בפני חוסמים וסינון.
       // רץ רק בדומיין הציבורי: תצוגות מקדימות והגלישות של בעל הפרויקט
-      // בכתובת ה-vercel.app לא מזהמות את המדידה.
-      import posthog from 'posthog-js';
-
-      if (['nekudatmabat.blog', 'www.nekudatmabat.blog'].includes(location.hostname)) {
+      // בכתובת ה-vercel.app לא מזהמות את המדידה. מצב הבעלים חוסם גם כאן.
+      if (!isOwner && ['nekudatmabat.blog', 'www.nekudatmabat.blog'].includes(location.hostname)) {
         posthog.init('phc_Ao9zMFiwEvJyA7G3LchesR4N7mmJdfggEkrMZF86Z3Lb', {
           api_host: '/ingest',
           ui_host: 'https://us.posthog.com',
