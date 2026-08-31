@@ -1,85 +1,199 @@
 ---
-// מדף של מצב אחד באזור הספרדי — אותה תצוגה כמו המדף העברי:
-// כותרת-וו + מהלך המציאות בלבד. הסיום אינו מוצג — לא שורפים אותו
-// לפני שהקורא הגיע אליו (docs/MOMENT-FORMAT.md).
+// כמו בעברית, הנתיב הזה משרת שני סוגי עמודים תחת /es/momentos/:
+//
+// 1. עמוד שער (/es/momentos/hurting/) — הקשת עם התמונה, שם השער ושורת
+//    השער בספרדית, ומתחתיהם דלתות המצבים של הקבוצה. תמונת השער היא גם
+//    תמונת השיתוף של העמוד.
+// 2. מדף של מצב אחד (/es/momentos/loneliness/ — אותם slugs כמו בעברית,
+//    כך שהזיווג בין העמודים התאומים הוא לפי שם) — כותרת-וו + מהלך
+//    המציאות בלבד, הסיום לא נשרף מראש.
 import { getCollection } from 'astro:content';
+import { getImage } from 'astro:assets';
 import Base from '../../../../layouts/Base.astro';
 import MomentBody from '../../../../components/MomentBody.astro';
-import { FEELING_LABELS_ES } from '../../../../data/site-es';
+import GateArt from '../../../../components/GateArt.astro';
+import FeelingDoors from '../../../../components/FeelingDoors.astro';
+import { FEELING_GROUPS, groupOf, type FeelingSlug } from '../../../../data/feelings';
+import {
+  FEELING_LABELS_ES,
+  GROUP_LABELS_ES,
+  GROUP_LINES_ES,
+} from '../../../../data/site-es';
+import { GATE_IMAGES } from '../../../../data/gate-images';
 import { parseMoment } from '../../../../lib/moment-format';
 import { newestFirst } from '../../../../lib/sort';
 
 export async function getStaticPaths() {
   const moments = await getCollection('momentsEs');
-  const byFeeling = new Map<string, typeof moments>();
-  for (const m of moments) {
-    byFeeling.set(m.data.feeling, [...(byFeeling.get(m.data.feeling) ?? []), m]);
-  }
-  return [...byFeeling].map(([feeling, items]) => ({
-    params: { feeling },
-    props: { items },
-  }));
+  // מדפי מצבים — רק מצבים שיש בהם תוכן מתורגם ("מבחר ולא מראה").
+  const feelings = [...new Set(moments.map((m) => m.data.feeling))];
+  const feelingPaths = feelings.map((feeling) => ({ params: { feeling } }));
+  // עמודי שער — אחד לכל קבוצה.
+  const gatePaths = FEELING_GROUPS.map((group) => ({ params: { feeling: group.slug } }));
+  return [...feelingPaths, ...gatePaths];
 }
 
-const { items } = Astro.props;
-const { feeling } = Astro.params;
-const label = FEELING_LABELS_ES[feeling!];
+const param = Astro.params.feeling!;
+const gate = FEELING_GROUPS.find((group) => group.slug === param);
 
-const cards = items
-  .sort(newestFirst)
-  .map((moment) => ({
-    moment,
-    format: parseMoment(moment.body ?? '', moment.data.title),
-  }));
+// ── נתוני עמוד שער ──
+const allMoments = gate ? await getCollection('momentsEs') : [];
+const filled = new Set(allMoments.map((moment) => moment.data.feeling));
+const gateOg = gate
+  ? await getImage({ src: GATE_IMAGES[gate.slug], width: 1200, format: 'jpeg' })
+  : null;
+
+// ── נתוני מדף מצב ──
+const feeling = param as FeelingSlug;
+const label = gate ? '' : FEELING_LABELS_ES[feeling];
+const parentGroup = gate ? undefined : groupOf(feeling);
+const moments = gate
+  ? []
+  : (await getCollection('momentsEs', (m) => m.data.feeling === feeling)).sort(newestFirst);
+const cards = moments.map((moment) => ({
+  moment,
+  format: parseMoment(moment.body ?? '', moment.data.title),
+}));
+
+const title = gate
+  ? `${GROUP_LABELS_ES[gate.slug]} · Un momento de Punto de Vista`
+  : `${label} · Un momento de Punto de Vista`;
+const description = gate ? GROUP_LINES_ES[gate.slug] : `Textos breves sobre ${label.toLowerCase()}.`;
+// העמוד התאום בעברית — אותה רמת כתובת בדיוק, רק בלי /es (הזיווג לפי שם קובץ).
+const altLangHref = `/moments/${param}/`;
 ---
 
 <Base
   lang="es"
-  noindex={true}
-  title={`${label} · Un momento de perspectiva`}
-  description={`Textos breves sobre ${label.toLowerCase()}.`}
+  title={title}
+  description={description}
+  ogImage={gateOg ? new URL(gateOg.src, Astro.site).href : undefined}
+  altLangHref={altLangHref}
 >
   <main>
-    <p class="eyebrow"><a href="/es/momentos/">Todos los estados</a></p>
-    <h1 class="page-title">{label}</h1>
+    {
+      gate ? (
+        <div class="gate-hall" style={`--accent: ${gate.accent}; --title: ${gate.titleAccent}`}>
+          <span class="arch">
+            <GateArt group={gate.slug} />
+          </span>
+          <h1 class="gate-name">{GROUP_LABELS_ES[gate.slug]}</h1>
+          <p class="gate-line">{GROUP_LINES_ES[gate.slug]}</p>
 
-    <ul class="moment-list">
-      {
-        cards.map(({ moment, format }) => (
-          <li class="moment-card">
-            <a class="moment-link" href={`/es/momentos/${feeling}/${moment.id}/`}>
-              {format.title && <span class="moment-hook">{format.title}</span>}
-              <MomentBody format={format} firstStanzaOnly={format.isNew} />
-              <span class="moment-more">Al momento completo →</span>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+          <FeelingDoors group={gate} filled={filled} lang="es" />
+
+          <nav class="page-footer">
+            <a href="/es/momentos/">← Todas las puertas</a>
+          </nav>
+        </div>
+      ) : (
+        <div
+          class="feeling-shelf"
+          style={parentGroup ? `--title: ${parentGroup.titleAccent}` : undefined}
+        >
+          <p class="group-label">
+            {parentGroup && (
+              <a href={`/es/momentos/${parentGroup.slug}/`}>{GROUP_LABELS_ES[parentGroup.slug]}</a>
+            )}
+          </p>
+          <h1 class="page-title">{label}</h1>
+
+          <ul class="moment-list">
+            {cards.map(({ moment, format }) => (
+              <li class="moment-card">
+                <a class="moment-link" href={`/es/momentos/${feeling}/${moment.id}/`}>
+                  {format.title && <span class="moment-hook">{format.title}</span>}
+                  <MomentBody format={format} firstStanzaOnly={format.isNew} />
+                  <span class="moment-more">Al momento completo →</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <nav class="page-footer">
+            <a href="/es/momentos/">← Todos los estados</a>
+          </nav>
+        </div>
+      )
+    }
   </main>
 </Base>
 
 <style>
-  .eyebrow {
+  /* ── עמוד שער — אותם ערכים כמו בעברית ── */
+  .gate-hall {
+    max-width: 26rem;
+    margin: 0 auto;
+  }
+
+  .arch {
+    position: relative;
+    display: block;
+    height: 170px;
+    border-radius: 130px 130px 6px 6px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    box-shadow: 0 10px 26px rgba(46, 42, 36, 0.14);
+    margin-top: 0.75rem;
+  }
+
+  .arch::after {
+    content: '';
+    position: absolute;
+    inset: 7px;
+    border: 1px solid rgba(201, 162, 77, 0.55);
+    border-radius: 122px 122px 3px 3px;
+    pointer-events: none;
+  }
+
+  .arch :global(img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  .gate-name {
     text-align: center;
+    font-size: 1.8rem;
+    color: var(--title);
+    margin: 1.1rem 0 0.1rem;
+  }
+
+  .gate-line {
+    text-align: center;
+    color: var(--secondary);
+    font-size: 0.98rem;
+    margin-bottom: 1.6rem;
+  }
+
+  /* ── מדף מצב — זהות הקבוצה נמשכת עד סוף המסע, כמו בעברית (4.31) ── */
+  .group-label {
+    text-align: center;
+    color: var(--title, var(--muted));
     font-size: 0.9rem;
   }
 
-  .eyebrow a {
-    color: var(--muted);
+  .group-label a {
+    color: inherit;
+    font-weight: 600;
     text-decoration: none;
     display: inline-block;
     padding-block: 0.35rem;
   }
 
-  .eyebrow a:hover {
-    color: var(--teal);
+  .group-label a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
   }
 
   .page-title {
     text-align: center;
     font-size: 1.8rem;
     padding: 0.2rem 0 2rem;
+    color: var(--title, var(--ink));
   }
 
   .moment-list {
@@ -126,5 +240,15 @@ const cards = items
     font-size: 0.85rem;
     font-weight: 600;
     color: var(--teal);
+  }
+
+  .page-footer {
+    text-align: center;
+    margin-top: 2.75rem;
+  }
+
+  .page-footer a {
+    text-decoration: none;
+    font-weight: 600;
   }
 </style>

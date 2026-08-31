@@ -1,63 +1,61 @@
 ---
-// עמוד הסיפורים — הכניסה לארכיון.
-// עד היום "סיפורים" בתפריט הוביל לדף הבית, והארכיון היה רשימה שטוחה בתחתיתו.
-// זה עבד עם שני סיפורים; עם תשעה־עשר הקורא כבר לא רואה מה יש כאן.
-//
-// הניווט כאן הוא לפי *מה הסיפור הוא* ולא לפי מה שהקורא מרגיש — הציר הרגשי
-// כבר חי בפינת הרגעים, ושתי דלתות לאותו חדר מחלישות זו את זו.
-//
-// **רצועה לכל עולם, ובתוכה סיפור אמיתי.** הדלתות הקודמות הסבירו איך התוכן
-// מחולק, ואף אחת מהן לא נתנה סיבה להיכנס. שם של סיפור עושה את זה בשורה אחת.
-// זו גם הסיבה שאין כאן עוד "סיפור פתיחה" נפרד: הוא היה #001, והוא ממילא
-// הסיפור הנבחר של "מהיומן שלי" — כלומר הוא כבר מוצג, בתוך הרצועה שלו.
+// עמוד הסיפורים בספרדית — אותו מבנה כמו /stories/ העברי (שלב 4.27):
+// רצועה לכל עולם עם סיפור אמיתי בתוכה, ואחריה הארכיון המלא מהחדש לישן.
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
-import Base from '../../layouts/Base.astro';
-import StoryCard from '../../components/StoryCard.astro';
-import JoinGroup from '../../components/JoinGroup.astro';
-import { SECTIONS_META, SECTION_SLUGS } from '../../data/sections';
-import { SECTION_GATE_IMAGES } from '../../data/section-gate-images';
-import { newestFirst } from '../../lib/sort';
+import Base from '../../../layouts/Base.astro';
+import StoryCard from '../../../components/StoryCard.astro';
+import JoinGroup from '../../../components/JoinGroup.astro';
+import { SECTIONS_META, SECTION_SLUGS } from '../../../data/sections';
+import { SECTIONS_ES } from '../../../data/site-es';
+import { SECTION_GATE_IMAGES } from '../../../data/section-gate-images';
+import { newestFirst } from '../../../lib/sort';
 
-const stories = (await getCollection('stories')).sort(newestFirst);
+const stories = (await getCollection('storiesEs')).sort(newestFirst);
 
-// הסיפור שמייצג כל עולם: הנבחר שלו, ואם אין — החדש ביותר בו. אותה בחירה
-// בדיוק כמו בדף הבית, כדי שהקורא שעבר בין השניים יפגוש את אותו סיפור.
 const featured = stories
   .filter((s) => s.data.featured !== undefined)
   .sort((a, b) => a.data.featured! - b.data.featured!);
 
-// עולם ריק אינו מוצג כדלת: דלת שמובילה למדף ריק נראית כתקלה ולא כהבטחה.
-// הכלל רץ מעצמו — ברגע שיתווסף סיפור ראשון לעולם שמור, הדלת נפתחת.
+// עולם בלי סיפורים מתורגמים אינו מוצג — "מבחר ולא מראה".
 const worlds = SECTION_SLUGS.map((slug) => {
   const meta = SECTIONS_META[slug];
   if ('hidden' in meta && meta.hidden) return null;
   const inWorld = stories.filter((s) => s.data.section === slug);
   if (inWorld.length === 0) return null;
   const sample = featured.find((s) => s.data.section === slug) ?? inWorld[0];
-  return { slug, meta, sample, count: inWorld.length, gate: SECTION_GATE_IMAGES[slug] ?? null };
+  return {
+    slug,
+    meta,
+    metaEs: SECTIONS_ES[slug],
+    sample,
+    count: inWorld.length,
+    gate: SECTION_GATE_IMAGES[slug] ?? null,
+  };
 }).filter((w) => w !== null);
 
-const countLabel = (n: number) => (n === 1 ? 'סיפור אחד' : `${n} סיפורים`);
+const countLabel = (n: number) => (n === 1 ? 'una historia' : `${n} historias`);
 ---
 
 <Base
-  title="סיפורים · נקודת מבט"
-  description="סיפורים מהחיים, משלים וסיפורי צדיקים. כל אחד נגמר במקום אחר ממה שהתחיל."
-  altLangHref="/es/historias/"
+  lang="es"
+  title="Historias · Punto de Vista"
+  description="Historias de la vida, parábolas e historias de tzadikim. Cada una termina en un lugar distinto de donde empezó."
+  altLangHref="/stories/"
 >
   <main>
-    <h1 class="page-title">סיפורים</h1>
+    <h1 class="page-title">Historias</h1>
     <p class="intro">
-      שלושה עולמות. {stories.length} סיפורים. כל אחד נגמר במקום אחר ממה שהתחיל.
+      Tres mundos. {stories.length} historias. Cada una termina en un lugar distinto de donde
+      empezó.
     </p>
 
     <ul class="bands">
       {
-        worlds.map(({ slug, meta, sample, count, gate }) => (
+        worlds.map(({ slug, meta, metaEs, sample, count, gate }) => (
           <li class="band" style={`--accent: ${meta.accent}`}>
             {gate && (
-              <a href={`/sections/${slug}/`} class="band-gate" aria-label={meta.linkText}>
+              <a href={`/es/secciones/${slug}/`} class="band-gate" aria-label={metaEs.linkText}>
                 <Image
                   src={gate.image}
                   alt=""
@@ -69,15 +67,15 @@ const countLabel = (n: number) => (n === 1 ? 'סיפור אחד' : `${n} סיפ�
             )}
             <div class="band-body">
               <h2 class="band-name">
-                <a href={`/sections/${slug}/`}>{meta.label}</a>
+                <a href={`/es/secciones/${slug}/`}>{metaEs.label}</a>
               </h2>
-              <p class="band-line">{meta.line}</p>
+              <p class="band-line">{metaEs.line}</p>
               <p class="band-sample">
-                למשל: <a href={`/stories/${sample.id}/`}>{sample.data.title}</a>
+                Por ejemplo: <a href={`/es/historias/${sample.id}/`}>{sample.data.title}</a>
               </p>
               <p class="band-more">
                 <span>{countLabel(count)}</span>
-                <a href={`/sections/${slug}/`}>{meta.linkText} ←</a>
+                <a href={`/es/secciones/${slug}/`}>{metaEs.linkText} →</a>
               </p>
             </div>
           </li>
@@ -86,13 +84,13 @@ const countLabel = (n: number) => (n === 1 ? 'סיפור אחד' : `${n} סיפ�
     </ul>
 
     <section class="all" aria-labelledby="all-label">
-      <h2 class="section-label" id="all-label">הכול, מהחדש לישן</h2>
+      <h2 class="section-label" id="all-label">Todo, de lo más nuevo a lo más viejo</h2>
       <ul class="story-list">
-        {stories.map((story) => <StoryCard story={story} />)}
+        {stories.map((story) => <StoryCard story={story} lang="es" />)}
       </ul>
     </section>
 
-    <JoinGroup />
+    <JoinGroup lang="es" />
   </main>
 </Base>
 
@@ -111,7 +109,6 @@ const countLabel = (n: number) => (n === 1 ? 'סיפור אחד' : `${n} סיפ�
     line-height: 1.7;
   }
 
-  /* ── רצועת עולם ── */
   .bands {
     list-style: none;
     padding: 0;
@@ -129,7 +126,6 @@ const countLabel = (n: number) => (n === 1 ? 'סיפור אחד' : `${n} סיפ�
     box-shadow: var(--shadow);
   }
 
-  /* התמונה היא הדלת — לחיצה עליה נכנסת לעולם */
   .band-gate {
     display: block;
     line-height: 0;
@@ -170,7 +166,6 @@ const countLabel = (n: number) => (n === 1 ? 'סיפור אחד' : `${n} סיפ�
     margin: 0.35rem 0 0;
   }
 
-  /* הסיבה להיכנס: שם של סיפור אמיתי, לא עוד תיאור */
   .band-sample {
     margin: 0.9rem 0 0;
     padding-top: 0.8rem;
@@ -216,7 +211,6 @@ const countLabel = (n: number) => (n === 1 ? 'סיפור אחד' : `${n} סיפ�
     text-decoration: underline;
   }
 
-  /* במסך רחב הרצועה נעשית רצועה באמת: תמונה בצד, טקסט לצידה. */
   @media (min-width: 48rem) {
     .band {
       display: grid;

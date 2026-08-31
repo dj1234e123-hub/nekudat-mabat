@@ -1,18 +1,19 @@
 ---
+// עמוד סיפור בספרדית — אותו מבנה כמו העברי: תווית עולם, כותרת, שער, גוף,
+// שיתוף, קבוצה (אם יש קישור), ותחתית עם סיפור אקראי.
+// בלי WriteToMe: ההזמנה לשיחה פרטית היא בעברית בלבד (החלטה מתועדת).
 import { getCollection, render } from 'astro:content';
 import { Image, getImage } from 'astro:assets';
-import Base from '../../layouts/Base.astro';
-import ShareRow from '../../components/ShareRow.astro';
-import JoinGroup from '../../components/JoinGroup.astro';
-import WriteToMe from '../../components/WriteToMe.astro';
-import { TOPICS } from '../../data/topics';
-import { SECTIONS } from '../../data/sections';
-import { DEFAULT_COVERS, DEFAULT_COVER_ALT } from '../../data/default-covers';
-import { formatDate } from '../../utils/format-date';
-import { articleJsonLd, breadcrumbJsonLd } from '../../lib/structured-data';
+import Base from '../../../layouts/Base.astro';
+import ShareRow from '../../../components/ShareRow.astro';
+import JoinGroup from '../../../components/JoinGroup.astro';
+import { SECTIONS_ES } from '../../../data/site-es';
+import { DEFAULT_COVERS, DEFAULT_COVER_ALT_ES } from '../../../data/default-covers';
+import { formatDate } from '../../../utils/format-date';
+import { articleJsonLd, breadcrumbJsonLd } from '../../../lib/structured-data';
 
 export async function getStaticPaths() {
-  const stories = await getCollection('stories');
+  const stories = await getCollection('storiesEs');
   return stories.map((story) => ({
     params: { slug: story.id },
     props: { story },
@@ -21,47 +22,37 @@ export async function getStaticPaths() {
 
 const { story } = Astro.props;
 const { Content } = await render(story);
-const { title, section, topic, date, excerpt } = story.data;
+const { title, section, date, excerpt } = story.data;
 
-// זמן קריאה: מכרטיס הסיפור אם צוין, אחרת לפי ספירת מילים (~180 מילים לדקה).
 const wordCount = (story.body ?? '').trim().split(/\s+/).length;
 const readingMinutes = Math.max(1, Math.round(wordCount / 180));
 const readingLabel = story.data.readingTime
-  ? `${story.data.readingTime} קריאה`
-  : `כ־${readingMinutes} דקות קריאה`;
+  ? `${story.data.readingTime} de lectura`
+  : `unos ${readingMinutes} minutos de lectura`;
 const cover = story.data.cover ?? DEFAULT_COVERS[section];
-const coverAlt = story.data.coverAlt ?? DEFAULT_COVER_ALT;
+const coverAlt = story.data.coverAlt ?? DEFAULT_COVER_ALT_ES;
 
-const pageUrl = new URL(`/stories/${story.id}/`, Astro.site).href;
+const pageUrl = new URL(`/es/historias/${story.id}/`, Astro.site).href;
 
-// תמונת תצוגה מקדימה לשיתוף: תמונת השער. וואטסאפ לא מציג SVG,
-// לכן לשערים הזמניים (SVG) ניפול ללוגו (ברירת המחדל של Base).
 let ogImage: string | undefined;
 if (cover.format !== 'svg') {
   const og = await getImage({ src: cover, width: 1200, format: 'jpeg' });
   ogImage = new URL(og.src, Astro.site).href;
 }
 
-// רשימת כתובות ל"סיפור אקראי" — בלי הסיפור הנוכחי.
-const otherStoryUrls = (await getCollection('stories'))
+const otherStoryUrls = (await getCollection('storiesEs'))
   .filter((s) => s.id !== story.id)
-  .map((s) => `/stories/${s.id}/`);
-
-// הסיפור התאום בספרדית — אותו שם קובץ באוסף storiesEs. סיפור שטרם תורגם:
-// הגלולה מובילה לשער הסיפורים הספרדי, בלי hreflang (זה לא אותו עמוד).
-const storiesEs = await getCollection('storiesEs');
-const hasEsTwin = storiesEs.some((s) => s.id === story.id);
-const altLangHref = hasEsTwin ? `/es/historias/${story.id}/` : '/es/historias/';
+  .map((s) => `/es/historias/${s.id}/`);
 ---
 
 <Base
-  title={`${title} · נקודת מבט`}
+  lang="es"
+  title={`${title} · Punto de Vista`}
   description={excerpt}
   ogType="article"
   ogImage={ogImage}
   compact={true}
-  altLangHref={altLangHref}
-  altLangTwin={hasEsTwin}
+  altLangHref={`/stories/${story.id}/`}
   jsonLd={[
     articleJsonLd(Astro.site!, {
       url: pageUrl,
@@ -69,11 +60,12 @@ const altLangHref = hasEsTwin ? `/es/historias/${story.id}/` : '/es/historias/';
       description: excerpt,
       datePublished: date,
       image: ogImage,
+      inLanguage: 'es',
     }),
     breadcrumbJsonLd(Astro.site!, [
-      { name: 'נקודת מבט', path: '/' },
-      { name: 'סיפורים', path: '/stories/' },
-      { name: SECTIONS[section], path: `/sections/${section}/` },
+      { name: 'Punto de Vista', path: '/es/' },
+      { name: 'Historias', path: '/es/historias/' },
+      { name: SECTIONS_ES[section].label, path: `/es/secciones/${section}/` },
       { name: title },
     ]),
   ]}
@@ -81,11 +73,10 @@ const altLangHref = hasEsTwin ? `/es/historias/${story.id}/` : '/es/historias/';
   <main>
     <article>
       <header class="story-header">
-        <a class="label" href={`/sections/${section}/`}>{SECTIONS[section]}</a>
-        {topic && <a class="label" href={`/topics/${topic}/`}>{TOPICS[topic]}</a>}
+        <a class="label" href={`/es/secciones/${section}/`}>{SECTIONS_ES[section].label}</a>
         <h1>{title}</h1>
         <p class="story-meta">
-          <time datetime={date.toISOString().slice(0, 10)}>{formatDate(date)}</time>
+          <time datetime={date.toISOString().slice(0, 10)}>{formatDate(date, 'es')}</time>
           <span aria-hidden="true"> · </span>
           <span>{readingLabel}</span>
         </p>
@@ -97,13 +88,12 @@ const altLangHref = hasEsTwin ? `/es/historias/${story.id}/` : '/es/historias/';
       <span class="end-dot" aria-hidden="true"></span>
     </article>
 
-    <ShareRow title={title} url={pageUrl} />
-    <WriteToMe title={title} />
-    <JoinGroup />
+    <ShareRow title={title} url={pageUrl} lang="es" />
+    <JoinGroup lang="es" />
 
     <nav class="story-footer">
-      <a href="/">לכל הסיפורים</a>
-      {otherStoryUrls.length > 0 && <button id="random-story" type="button" data-ph="random_story">לסיפור אקראי</button>}
+      <a href="/es/historias/">Todas las historias</a>
+      {otherStoryUrls.length > 0 && <button id="random-story" type="button" data-ph="random_story">Una historia al azar</button>}
     </nav>
   </main>
 </Base>
@@ -159,14 +149,14 @@ const altLangHref = hasEsTwin ? `/es/historias/${story.id}/` : '/es/historias/';
     font-size: 1.25rem;
   }
 
-  /* הדגשות (*כך*) — משקל במקום נטייה, שנראית רע בעברית */
+  /* בעברית ההדגשה היא משקל במקום נטייה; בספרדית נטייה טבעית, אבל נשמרת
+     אותה שפה חזותית של האתר — משקל וצבע, כדי ששני האזורים ייראו זהים. */
   .story-body :global(em) {
     font-style: normal;
     font-weight: 600;
     color: var(--teal-deep);
   }
 
-  /* החתימה האישית בסוף כל סיפור */
   .story-body :global(.signature) {
     font-family: var(--font-display);
     color: var(--teal-deep);

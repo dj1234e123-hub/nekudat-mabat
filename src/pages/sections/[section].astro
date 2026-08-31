@@ -19,9 +19,19 @@ const gateImage = SECTION_GATE_IMAGES[section] ?? null;
 const stories = (await getCollection('stories', (s) => s.data.section === section)).sort(
   newestFirst
 );
+
+// עמוד העולם התאום בספרדית — קיים רק כשיש בעולם סיפורים מתורגמים.
+const storiesEs = await getCollection('storiesEs');
+const hasEsTwin = storiesEs.some((s) => s.data.section === section);
+const altLangHref = hasEsTwin ? `/es/secciones/${section}/` : '/es/historias/';
 ---
 
-<Base title={`${label} · נקודת מבט`} description={line}>
+<Base
+  title={`${label} · נקודת מבט`}
+  description={line}
+  altLangHref={altLangHref}
+  altLangTwin={hasEsTwin}
+>
   <main>
     {
       gateImage && (

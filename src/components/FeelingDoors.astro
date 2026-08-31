@@ -7,12 +7,18 @@
 // שמוגדרים אצל ההורה.
 import { FEELING_MARKS } from '../data/feeling-marks';
 import type { FeelingGroup } from '../data/feelings';
+import { FEELING_LABELS_ES, FEELING_LINES_ES } from '../data/site-es';
 
 interface Props {
   group: FeelingGroup;
   filled: Set<string>;
+  /** 'es' — תוויות ושורות בספרדית, וכתובות תחת /es/momentos/. המבנה, הסימנים
+      והצבעים זהים לעברית — אותן דלתות, שפה אחרת. */
+  lang?: 'he' | 'es';
 }
-const { group, filled } = Astro.props;
+const { group, filled, lang = 'he' } = Astro.props;
+const es = lang === 'es';
+const hrefBase = es ? '/es/momentos' : '/moments';
 ---
 
 <ul class="doors">
@@ -21,8 +27,8 @@ const { group, filled } = Astro.props;
       const inner = (
         <>
           <span class="door-text">
-            <span class="door-name">{feeling.label}</span>
-            <span class="door-line">{feeling.line}</span>
+            <span class="door-name">{es ? FEELING_LABELS_ES[feeling.slug] : feeling.label}</span>
+            <span class="door-line">{es ? FEELING_LINES_ES[feeling.slug] : feeling.line}</span>
           </span>
           <svg
             class="door-mark"
@@ -37,7 +43,7 @@ const { group, filled } = Astro.props;
       return (
         <li>
           {filled.has(feeling.slug) ? (
-            <a class="door" href={`/moments/${feeling.slug}/`}>{inner}</a>
+            <a class="door" href={`${hrefBase}/${feeling.slug}/`}>{inner}</a>
           ) : (
             <span class="door is-empty" aria-disabled="true">{inner}</span>
           )}

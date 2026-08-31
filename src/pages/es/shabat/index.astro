@@ -1,12 +1,13 @@
 ---
-// עמוד הכניסה ל"מבט לשבת" — ארכיון הגיליונות, מהחדש לישן.
-// עם גיליון אחד זה עדיין רשימה קצרה; המבנה מוכן לצמוח בלי שינוי.
+// עמוד הכניסה של "מבט לשבת" בספרדית — Mirada de Shabat. אותו מבנה כמו
+// העברי: ארכיון הגיליונות מהחדש לישן.
 import { getCollection } from 'astro:content';
-import Base from '../../layouts/Base.astro';
-import { newestFirst } from '../../lib/sort';
-import { parseBody, plainText } from '../../lib/mabat-format';
+import Base from '../../../layouts/Base.astro';
+import { MABAT_ES } from '../../../data/site-es';
+import { newestFirst } from '../../../lib/sort';
+import { parseBody, plainText } from '../../../lib/mabat-format';
 
-const pieces = (await getCollection('mabatLeshabbat')).sort(newestFirst);
+const pieces = (await getCollection('mabatEs')).sort(newestFirst);
 
 const cards = pieces.map((piece) => {
   const blocks = parseBody(piece.body ?? '');
@@ -19,20 +20,26 @@ const cards = pieces.map((piece) => {
 ---
 
 <Base
-  title="מבט לשבת · נקודת מבט"
-  description="טור שבועי: סיפור אמיתי, חיבור לפרשת השבוע, ומבט על מה שקורה בתוכנו."
-  altLangHref="/es/shabat/"
+  lang="es"
+  title={`${MABAT_ES.name} · Punto de Vista`}
+  description="Una columna semanal: una historia real, una conexión con la parashá de la semana, y una mirada a lo que pasa dentro de nosotros."
+  altLangHref="/mabat-leshabbat/"
 >
   <main>
-    <h1 class="page-title">מבט לשבת</h1>
-    <p class="intro">סיפור אמיתי בכל שבוע, וחיבור לפרשת השבת — לא רק מה היא אומרת, אלא מה היא פותחת.</p>
+    <h1 class="page-title">{MABAT_ES.name}</h1>
+    <p class="intro">
+      Una historia real cada semana, y una conexión con la parashá — no solo qué dice, sino qué
+      abre.
+    </p>
 
     <ul class="issues">
       {
         cards.map(({ piece, excerpt }) => (
           <li class="issue">
-            <a class="issue-link" href={`/mabat-leshabbat/${piece.id}/`}>
-              <p class="issue-kicker">פרשת {piece.data.parasha} · {piece.data.hebrewDate}</p>
+            <a class="issue-link" href={`/es/shabat/${piece.id}/`}>
+              <p class="issue-kicker">
+                {MABAT_ES.parashaPrefix} {piece.data.parasha} · {piece.data.hebrewDate}
+              </p>
               <h2>{piece.data.title}</h2>
               <p class="issue-excerpt">{excerpt}</p>
             </a>
@@ -50,6 +57,7 @@ const cards = pieces.map((piece) => {
     padding: 0.5rem 0 0.5rem;
   }
 
+  /* אותם ערכים כמו העמוד העברי /mabat-leshabbat/ */
   .intro {
     text-align: center;
     color: var(--secondary);

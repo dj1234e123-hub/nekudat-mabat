@@ -68,12 +68,20 @@ const cards = moments.map((moment) => ({
 
 const title = gate ? `${gate.label} · רגע של נקודת מבט` : `${label} · רגע של נקודת מבט`;
 const description = gate ? gate.line : `רגע של נקודת מבט — ${label}`;
+
+// העמוד התאום בספרדית — אותה רמת כתובת, תחת /es/momentos/. שער קיים תמיד;
+// מדף קיים רק כשיש בו תוכן מתורגם — בלי תאום, הגלולה מובילה לשער השפה.
+const momentsEs = await getCollection('momentsEs');
+const hasEsTwin = gate ? true : momentsEs.some((m) => m.data.feeling === feeling);
+const altLangHref = hasEsTwin ? `/es/momentos/${param}/` : '/es/momentos/';
 ---
 
 <Base
   title={title}
   description={description}
   ogImage={gateOg ? new URL(gateOg.src, Astro.site).href : undefined}
+  altLangHref={altLangHref}
+  altLangTwin={hasEsTwin}
 >
   <main>
     {

@@ -39,6 +39,12 @@ const pageUrl = new URL(`/moments/${feeling}/${moment.id}/`, Astro.site).href;
 // תמונת שיתוף ממותגת, נוצרת בזמן הבנייה מהטקסט עצמו (ראו og.png.ts באותה תיקייה).
 // חשוב בעיקר לשיתוף בסטטוס, שבו הקישור נעלם והתמונה היא כל מה שנשאר.
 const ogImage = new URL(`/moments/${feeling}/${moment.id}/og.png`, Astro.site).href;
+
+// הרגע התאום בספרדית — אותו שם קובץ באוסף momentsEs. רגע שטרם תורגם:
+// הגלולה מובילה לשער השפה, בלי hreflang (זה לא אותו עמוד).
+const momentsEs = await getCollection('momentsEs');
+const hasEsTwin = momentsEs.some((m) => m.id === moment.id);
+const altLangHref = hasEsTwin ? `/es/momentos/${feeling}/${moment.id}/` : '/es/momentos/';
 ---
 
 <Base
@@ -47,6 +53,8 @@ const ogImage = new URL(`/moments/${feeling}/${moment.id}/og.png`, Astro.site).h
   ogImage={ogImage}
   ogType="article"
   compact={true}
+  altLangHref={altLangHref}
+  altLangTwin={hasEsTwin}
   jsonLd={[
     articleJsonLd(Astro.site!, {
       url: pageUrl,

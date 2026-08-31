@@ -1,13 +1,42 @@
 ---
 // הזמנה שקטה להצטרפות לקבוצת הוואטסאפ של נקודת מבט.
+//
+// הפרדה מלאה בין הקבוצות: עמוד עברי מזמין לקבוצה העברית בלבד, עמוד ספרדי
+// לקבוצה הספרדית בלבד. כל עוד אין קישור לקבוצה הספרדית (site-es.ts) —
+// הכרטיס פשוט אינו מוצג בעמודים הספרדיים, כדי לא להזמין לדלת שאינה קיימת.
 import { SITE } from '../data/site';
+import { SITE_ES } from '../data/site-es';
+
+interface Props {
+  lang?: 'he' | 'es';
+}
+const { lang = 'he' } = Astro.props;
+const es = lang === 'es';
+const groupUrl = es ? SITE_ES.whatsappGroupUrl : SITE.whatsappGroupUrl;
+const t = es
+  ? {
+      title: '¿Quieres más Punto de Vista?',
+      text: 'Cada momento nuevo llega primero a nuestro grupo silencioso de WhatsApp.',
+      btn: 'Unirme al grupo',
+    }
+  : {
+      title: 'רוצים עוד נקודת מבט?',
+      text: 'כל סיפור חדש מגיע קודם לקבוצת הוואטסאפ השקטה שלנו.',
+      btn: 'להצטרפות לקבוצה',
+    };
 ---
 
-<aside class="join">
-  <p class="join-title">רוצים עוד נקודת מבט?</p>
-  <p class="join-text">כל סיפור חדש מגיע קודם לקבוצת הוואטסאפ השקטה שלנו.</p>
-  <a class="join-btn" href={SITE.whatsappGroupUrl} rel="noopener" target="_blank" data-ph="join_group">להצטרפות לקבוצה</a>
-</aside>
+{
+  groupUrl && (
+    <aside class="join">
+      <p class="join-title">{t.title}</p>
+      <p class="join-text">{t.text}</p>
+      <a class="join-btn" href={groupUrl} rel="noopener" target="_blank" data-ph="join_group">
+        {t.btn}
+      </a>
+    </aside>
+  )
+}
 
 <style>
   .join {

@@ -92,6 +92,8 @@ const DESCRIPTION =
   description={DESCRIPTION}
   homeHeader={true}
   jsonLd={websiteJsonLd(Astro.site!, DESCRIPTION)}
+  altLangHref="/es/"
+  altLangInline={true}
 >
   <main>
     <section class="hero">
@@ -99,6 +101,11 @@ const DESCRIPTION =
       <p class="triad">סיפורים. רגעים. תובנות.</p>
       <p class="promise">
         מקום לעצור, לקבל נקודת מבט חדשה, ולקחת משהו איתך להמשך הדרך.
+      </p>
+      {/* המבנה שאושר על סקיצה (2026-08-26): שורת הזמנה לאזור הספרדי מתחת
+          למשפט ההבטחה. בעמודים הפנימיים — גלולת פינה (Base.astro). */}
+      <p class="lang-invite">
+        <a href="/es/" lang="es" dir="ltr">Punto de Vista — en español</a>
       </p>
     </section>
 
@@ -340,6 +347,27 @@ const DESCRIPTION =
     max-width: 26rem;
     margin-inline: auto;
     line-height: 1.75;
+  }
+
+  /* שורת ההזמנה לאזור הספרדי — קישור שקט, לא כפתור: דלת למי שמחפש אותה,
+     בלי להתחרות בפעולה הראשית. */
+  .lang-invite {
+    margin-top: 0.85rem;
+    font-size: 0.9rem;
+  }
+
+  .lang-invite a {
+    color: var(--muted);
+    text-decoration: none;
+    display: inline-block;
+    padding-block: 0.45rem;
+    border-bottom: 1px solid var(--line);
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .lang-invite a:hover {
+    color: var(--teal);
+    border-color: var(--teal);
   }
 
   /* ============ שתי הדלתות ============ */
