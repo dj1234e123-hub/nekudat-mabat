@@ -18,8 +18,9 @@ import JoinGroup from '../../components/JoinGroup.astro';
 import { SECTIONS_META, SECTION_SLUGS } from '../../data/sections';
 import { SECTION_GATE_IMAGES } from '../../data/section-gate-images';
 import { newestFirst } from '../../lib/sort';
+import { isPublished } from '../../lib/published';
 
-const stories = (await getCollection('stories')).sort(newestFirst);
+const stories = (await getCollection('stories', isPublished)).sort(newestFirst);
 
 // הסיפור שמייצג כל עולם: הנבחר שלו, ואם אין — החדש ביותר בו. אותה בחירה
 // בדיוק כמו בדף הבית, כדי שהקורא שעבר בין השניים יפגוש את אותו סיפור.

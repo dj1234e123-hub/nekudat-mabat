@@ -13,8 +13,9 @@ import { FEELING_GROUPS } from '../../../data/feelings';
 import { GROUP_LABELS_ES, GROUP_LINES_ES } from '../../../data/site-es';
 import GateArt from '../../../components/GateArt.astro';
 import FeelingDoors from '../../../components/FeelingDoors.astro';
+import { isPublished } from '../../../lib/published';
 
-const moments = await getCollection('momentsEs');
+const moments = await getCollection('momentsEs', isPublished);
 const filled = new Set(moments.map((moment) => moment.data.feeling));
 const momentUrls = moments.map((moment) => `/es/momentos/${moment.data.feeling}/${moment.id}/`);
 ---

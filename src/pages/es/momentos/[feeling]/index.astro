@@ -22,9 +22,10 @@ import {
 import { GATE_IMAGES } from '../../../../data/gate-images';
 import { parseMoment } from '../../../../lib/moment-format';
 import { newestFirst } from '../../../../lib/sort';
+import { isPublished } from '../../../../lib/published';
 
 export async function getStaticPaths() {
-  const moments = await getCollection('momentsEs');
+  const moments = await getCollection('momentsEs', isPublished);
   // מדפי מצבים — רק מצבים שיש בהם תוכן מתורגם ("מבחר ולא מראה").
   const feelings = [...new Set(moments.map((m) => m.data.feeling))];
   const feelingPaths = feelings.map((feeling) => ({ params: { feeling } }));
@@ -37,7 +38,7 @@ const param = Astro.params.feeling!;
 const gate = FEELING_GROUPS.find((group) => group.slug === param);
 
 // ── נתוני עמוד שער ──
-const allMoments = gate ? await getCollection('momentsEs') : [];
+const allMoments = gate ? await getCollection('momentsEs', isPublished) : [];
 const filled = new Set(allMoments.map((moment) => moment.data.feeling));
 const gateOg = gate
   ? await getImage({ src: GATE_IMAGES[gate.slug], width: 1200, format: 'jpeg' })
@@ -49,7 +50,9 @@ const label = gate ? '' : FEELING_LABELS_ES[feeling];
 const parentGroup = gate ? undefined : groupOf(feeling);
 const moments = gate
   ? []
-  : (await getCollection('momentsEs', (m) => m.data.feeling === feeling)).sort(newestFirst);
+  : (
+      await getCollection('momentsEs', (m) => m.data.feeling === feeling && isPublished(m))
+    ).sort(newestFirst);
 const cards = moments.map((moment) => ({
   moment,
   format: parseMoment(moment.body ?? '', moment.data.title),

@@ -17,8 +17,9 @@ import { SECTION_GATE_IMAGES } from '../../data/section-gate-images';
 import { newestFirst } from '../../lib/sort';
 import MabatBody from '../../components/MabatBody.astro';
 import { parseBody } from '../../lib/mabat-format';
+import { isPublished } from '../../lib/published';
 
-const allStories = (await getCollection('storiesEs')).sort(newestFirst);
+const allStories = (await getCollection('storiesEs', isPublished)).sort(newestFirst);
 
 const picked = allStories
   .filter((s) => s.data.featured !== undefined)
@@ -49,7 +50,7 @@ const worlds = SECTION_SLUGS.map((slug) => {
 
 // אותו מנגנון כמו בעברית: הרגע מוגרל מחדש בכל טעינה בצד הקורא; בלי
 // JavaScript נשאר החדש ביותר.
-const moments = (await getCollection('momentsEs')).sort(newestFirst);
+const moments = (await getCollection('momentsEs', isPublished)).sort(newestFirst);
 const momentPool = moments.map((m) => {
   const feeling = m.data.feeling as FeelingSlug;
   const path = `/es/momentos/${feeling}/${m.id}/`;
@@ -64,7 +65,7 @@ const momentPool = moments.map((m) => {
 const featuredMoment = momentPool[0] ?? null;
 
 // טעימה מ"מבט לשבת" — הגיליון האחרון בלבד, שני מהלכים ראשונים.
-const mabatPieces = (await getCollection('mabatEs')).sort(newestFirst);
+const mabatPieces = (await getCollection('mabatEs', isPublished)).sort(newestFirst);
 const latestMabat = mabatPieces[0]
   ? { piece: mabatPieces[0], blocks: parseBody(mabatPieces[0].body ?? '') }
   : null;

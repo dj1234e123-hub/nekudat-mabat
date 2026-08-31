@@ -6,8 +6,9 @@ import Base from '../../../layouts/Base.astro';
 import { MABAT_ES } from '../../../data/site-es';
 import { newestFirst } from '../../../lib/sort';
 import { parseBody, plainText } from '../../../lib/mabat-format';
+import { isPublished } from '../../../lib/published';
 
-const pieces = (await getCollection('mabatEs')).sort(newestFirst);
+const pieces = (await getCollection('mabatEs', isPublished)).sort(newestFirst);
 
 const cards = pieces.map((piece) => {
   const blocks = parseBody(piece.body ?? '');

@@ -14,8 +14,9 @@ import { FEELING_GROUPS } from '../../data/feelings';
 import { SITE } from '../../data/site';
 import GateArt from '../../components/GateArt.astro';
 import FeelingDoors from '../../components/FeelingDoors.astro';
+import { isPublished } from '../../lib/published';
 
-const moments = await getCollection('moments');
+const moments = await getCollection('moments', isPublished);
 // מצב בלי תוכן עדיין מוצג (הוא חלק מהמבנה) אבל אינו קישור — כדי שלא להוביל למדף ריק.
 const filled = new Set(moments.map((moment) => moment.data.feeling));
 // דלת למי שלא מצליח לקרוא לזה בשם — רגע אקראי במקום בחירה מתוך רשימה.

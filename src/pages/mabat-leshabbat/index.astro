@@ -5,8 +5,9 @@ import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { newestFirst } from '../../lib/sort';
 import { parseBody, plainText } from '../../lib/mabat-format';
+import { isPublished } from '../../lib/published';
 
-const pieces = (await getCollection('mabatLeshabbat')).sort(newestFirst);
+const pieces = (await getCollection('mabatLeshabbat', isPublished)).sort(newestFirst);
 
 const cards = pieces.map((piece) => {
   const blocks = parseBody(piece.body ?? '');

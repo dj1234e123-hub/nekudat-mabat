@@ -10,8 +10,9 @@ import { SECTIONS_META, SECTION_SLUGS } from '../../../data/sections';
 import { SECTIONS_ES } from '../../../data/site-es';
 import { SECTION_GATE_IMAGES } from '../../../data/section-gate-images';
 import { newestFirst } from '../../../lib/sort';
+import { isPublished } from '../../../lib/published';
 
-const stories = (await getCollection('storiesEs')).sort(newestFirst);
+const stories = (await getCollection('storiesEs', isPublished)).sort(newestFirst);
 
 const featured = stories
   .filter((s) => s.data.featured !== undefined)

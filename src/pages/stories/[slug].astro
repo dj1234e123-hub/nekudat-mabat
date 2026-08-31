@@ -10,9 +10,10 @@ import { SECTIONS } from '../../data/sections';
 import { DEFAULT_COVERS, DEFAULT_COVER_ALT } from '../../data/default-covers';
 import { formatDate } from '../../utils/format-date';
 import { articleJsonLd, breadcrumbJsonLd } from '../../lib/structured-data';
+import { isPublished } from '../../lib/published';
 
 export async function getStaticPaths() {
-  const stories = await getCollection('stories');
+  const stories = await getCollection('stories', isPublished);
   return stories.map((story) => ({
     params: { slug: story.id },
     props: { story },
@@ -43,13 +44,13 @@ if (cover.format !== 'svg') {
 }
 
 // רשימת כתובות ל"סיפור אקראי" — בלי הסיפור הנוכחי.
-const otherStoryUrls = (await getCollection('stories'))
+const otherStoryUrls = (await getCollection('stories', isPublished))
   .filter((s) => s.id !== story.id)
   .map((s) => `/stories/${s.id}/`);
 
 // הסיפור התאום בספרדית — אותו שם קובץ באוסף storiesEs. סיפור שטרם תורגם:
 // הגלולה מובילה לשער הסיפורים הספרדי, בלי hreflang (זה לא אותו עמוד).
-const storiesEs = await getCollection('storiesEs');
+const storiesEs = await getCollection('storiesEs', isPublished);
 const hasEsTwin = storiesEs.some((s) => s.id === story.id);
 const altLangHref = hasEsTwin ? `/es/historias/${story.id}/` : '/es/historias/';
 ---

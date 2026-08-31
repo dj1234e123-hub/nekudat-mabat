@@ -3,9 +3,10 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import { renderMomentCard } from '../../../../lib/moment-card';
+import { isPublished } from '../../../../lib/published';
 
 export async function getStaticPaths() {
-  const moments = await getCollection('moments');
+  const moments = await getCollection('moments', isPublished);
   return moments.map((moment) => ({
     params: { feeling: moment.data.feeling, slug: moment.id },
     props: { body: moment.body ?? '', title: moment.data.title ?? null },

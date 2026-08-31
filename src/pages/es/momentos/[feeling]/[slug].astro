@@ -11,9 +11,10 @@ import { FEELING_LABELS_ES, GROUP_LABELS_ES } from '../../../../data/site-es';
 import { articleJsonLd, breadcrumbJsonLd } from '../../../../lib/structured-data';
 import { momentTitle } from '../../../../lib/moment-title';
 import { parseMoment, momentPlainText } from '../../../../lib/moment-format';
+import { isPublished } from '../../../../lib/published';
 
 export async function getStaticPaths() {
-  const moments = await getCollection('momentsEs');
+  const moments = await getCollection('momentsEs', isPublished);
   return moments.map((moment) => ({
     params: { feeling: moment.data.feeling, slug: moment.id },
     props: { moment },

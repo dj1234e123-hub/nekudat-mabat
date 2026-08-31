@@ -10,9 +10,10 @@ import { type SectionSlug } from '../../../data/sections';
 import { SECTIONS_ES } from '../../../data/site-es';
 import { SECTION_GATE_IMAGES } from '../../../data/section-gate-images';
 import { newestFirst } from '../../../lib/sort';
+import { isPublished } from '../../../lib/published';
 
 export async function getStaticPaths() {
-  const stories = await getCollection('storiesEs');
+  const stories = await getCollection('storiesEs', isPublished);
   const sections = [...new Set(stories.map((s) => s.data.section))];
   return sections.map((section) => ({ params: { section } }));
 }
@@ -21,9 +22,9 @@ const section = Astro.params.section as SectionSlug;
 const { label, line } = SECTIONS_ES[section];
 const gateImage = SECTION_GATE_IMAGES[section] ?? null;
 
-const stories = (await getCollection('storiesEs', (s) => s.data.section === section)).sort(
-  newestFirst
-);
+const stories = (
+  await getCollection('storiesEs', (s) => s.data.section === section && isPublished(s))
+).sort(newestFirst);
 ---
 
 <Base

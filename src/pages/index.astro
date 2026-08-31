@@ -18,9 +18,10 @@ import { SECTION_GATE_IMAGES } from '../data/section-gate-images';
 import { newestFirst } from '../lib/sort';
 import MabatBody from '../components/MabatBody.astro';
 import { parseBody } from '../lib/mabat-format';
+import { isPublished } from '../lib/published';
 
 // דף הבית נותן טעם ומוביל הלאה; הארכיון עצמו חי ב-/stories/.
-const allStories = (await getCollection('stories')).sort(newestFirst);
+const allStories = (await getCollection('stories', isPublished)).sort(newestFirst);
 
 // שלושה סיפורים נבחרים, אחד מכל עולם — הרושם הראשון הוא החלטה, לא תוצאה
 // של סדר פרסום. השדה featured קובע גם חברות וגם מיקום; בלי סימון — נפילה
@@ -62,7 +63,7 @@ const worlds = SECTION_SLUGS.map((slug) => {
 //
 // בלי JavaScript — ולקוראי מסך/מנועי חיפוש שלא מריצים סקריפט — נשאר הרגע
 // החדש ביותר: שובר השוויון על פני תאריך זהה הוא שם הקובץ (src/lib/sort.ts).
-const moments = (await getCollection('moments')).sort(newestFirst);
+const moments = (await getCollection('moments', isPublished)).sort(newestFirst);
 const momentPool = moments.map((m) => {
   const feeling = m.data.feeling as FeelingSlug;
   const path = `/moments/${feeling}/${m.id}/`;
@@ -78,7 +79,7 @@ const featuredMoment = momentPool[0] ?? null;
 
 // טעימה מ"מבט לשבת" — הגיליון האחרון בלבד, ורק שני המהלכים הראשונים שלו.
 // הדף מציג רק תוכן שקיים בפועל: בלי גיליון, האזור כולו לא מוצג.
-const mabatPieces = (await getCollection('mabatLeshabbat')).sort(newestFirst);
+const mabatPieces = (await getCollection('mabatLeshabbat', isPublished)).sort(newestFirst);
 const latestMabat = mabatPieces[0]
   ? { piece: mabatPieces[0], blocks: parseBody(mabatPieces[0].body ?? '') }
   : null;
