@@ -8,66 +8,86 @@
 // הבחירה נעשית מהתוכן עצמו (תגיות, נושא, עולם), לא מהתנהגות של אנשים:
 // אין שרת ואין מעקב אחרי אדם. מה שכן נזכר — בדפדפן של הקורא בלבד
 // (localStorage) — הוא אילו סיפורים כבר קרא, כדי שלא יוצע לו שוב אותו סיפור.
+//
+// **בספרדית** התגיות והנושא חיים רק בקובץ העברי, ולכן הקרבה נמדדת דרך
+// התאום העברי (אותו שם קובץ), והמועמדים והרגע נלקחים מהאוספים הספרדיים —
+// רק מה שקיים בספרדית ("מבחר ולא מראה").
 import type { CollectionEntry } from 'astro:content';
 import { TAG_TO_FEELING, TOPIC_TO_FEELING } from '../data/story-moment-links';
 import type { FeelingSlug } from '../data/feelings';
 import { newestFirst } from './sort';
 
-type Story = CollectionEntry<'stories'>;
-type Moment = CollectionEntry<'moments'>;
+type HeStory = CollectionEntry<'stories'>;
+type AnyStory = CollectionEntry<'stories'> | CollectionEntry<'storiesEs'>;
+type AnyMoment = CollectionEntry<'moments'> | CollectionEntry<'momentsEs'>;
 
-/** זמן קריאה — אותו חישוב שבעמוד הסיפור (~180 מילים לדקה), או השדה הידני. */
-export function readingLabel(story: Story): string {
-  if (story.data.readingTime) return story.data.readingTime;
-  const words = (story.body ?? '').trim().split(/\s+/).length;
-  return `כ־${Math.max(1, Math.round(words / 180))} דקות`;
+/** התגיות והנושא של סיפור — מהקובץ העברי; לסיפור ספרדי, דרך התאום. */
+function meta(story: AnyStory, hebrew?: HeStory[]): { tags: string[]; topic?: string } {
+  const source: AnyStory | undefined =
+    'tags' in story.data ? story : (hebrew?.find((h) => h.id === story.id) ?? story);
+  const data = source.data as { tags?: string[]; topic?: string };
+  return { tags: (data.tags ?? []).map((t) => t.trim()), topic: data.topic };
 }
 
-const tagsOf = (story: Story) => (story.data.tags ?? []).map((t) => t.trim());
-
 /** המצב בפינת הרגעים שהסיפור הכי קרוב אליו, לפי תגיות (ואז נושא). */
-export function feelingForStory(story: Story): FeelingSlug | null {
+export function feelingForStory(story: AnyStory, hebrew?: HeStory[]): FeelingSlug | null {
+  const { tags, topic } = meta(story, hebrew);
   let best: { feeling: FeelingSlug; weight: number } | null = null;
-  for (const tag of tagsOf(story)) {
+  for (const tag of tags) {
     const link = TAG_TO_FEELING[tag];
     // תיקו → הראשון בסדר התגיות (הכותב שם את העיקר ראשון).
     if (link && (!best || link.weight > best.weight)) best = link;
   }
   if (best) return best.feeling;
-  return story.data.topic ? TOPIC_TO_FEELING[story.data.topic] : null;
+  return topic ? TOPIC_TO_FEELING[topic as keyof typeof TOPIC_TO_FEELING] : null;
 }
 
-export interface NextStory {
-  story: Story;
+export interface NextStory<T extends AnyStory = AnyStory> {
+  story: T;
   /** שורת "למה דווקא הוא" — התגית המשותפת, או העולם השונה. */
   reason: string;
 }
 
 /**
  * שלושה מועמדים ל"סיפור הבא", מהטוב ביותר ומטה. העמוד מציג את הראשון;
- * הסקריפט בצד הקורא מדלג על מה שכבר נקרא (localStorage) ומציג את הבא.
+ * הסקריפט בצד הקורא מגריל בכל טעינה אחד מבין אלה שטרם נקראו (localStorage).
  *
  * הניקוד: תגית משותפת ×3 · אותו נושא +2 · אותו מצב ברגעים +2 · עולם אחר +1
  * (מעט גיוון: מי שנכנס דרך משל יגלה שיש גם יומן). תיקו — החדש קודם.
  */
-export function nextStories(current: Story, all: Story[], sectionLabels: Record<string, string>): NextStory[] {
-  const myTags = new Set(tagsOf(current));
-  const myFeeling = feelingForStory(current);
+export function nextStories<T extends AnyStory>(
+  current: T,
+  all: T[],
+  sectionLabels: Record<string, string>,
+  hebrew?: HeStory[]
+): NextStory<T>[] {
+  const es = !('tags' in current.data);
+  const mine = meta(current, hebrew);
+  const myTags = new Set(mine.tags);
+  const myFeeling = feelingForStory(current, hebrew);
   const scored = all
     .filter((s) => s.id !== current.id)
     .map((story) => {
-      const shared = tagsOf(story).filter((t) => myTags.has(t));
+      const theirs = meta(story, hebrew);
+      const shared = theirs.tags.filter((t) => myTags.has(t));
       let score = shared.length * 3;
-      if (current.data.topic && story.data.topic === current.data.topic) score += 2;
-      if (myFeeling && feelingForStory(story) === myFeeling) score += 2;
+      if (mine.topic && theirs.topic === mine.topic) score += 2;
+      if (myFeeling && feelingForStory(story, hebrew) === myFeeling) score += 2;
       const otherWorld = story.data.section !== current.data.section;
       if (otherWorld) score += 1;
-      const reason =
-        shared.length > 0
+      const world = sectionLabels[story.data.section];
+      // בספרדית התגיות עבריות ואינן מוצגות — השורה מדברת על העולם בלבד.
+      const reason = es
+        ? shared.length > 0
+          ? 'Sobre lo mismo, desde otro ángulo'
+          : otherWorld
+            ? `De otro mundo: ${world}`
+            : `Más de ${world}`
+        : shared.length > 0
           ? `גם הוא על ${shared.slice(0, 2).join(' ועל ')}`
           : otherWorld
-            ? `מעולם אחר: ${sectionLabels[story.data.section]}`
-            : `עוד מ${sectionLabels[story.data.section]}`;
+            ? `מעולם אחר: ${world}`
+            : `עוד מ${world}`;
       return { story, score, reason };
     })
     .sort((a, b) => b.score - a.score || newestFirst(a.story, b.story));
@@ -78,8 +98,12 @@ export function nextStories(current: Story, all: Story[], sectionLabels: Record<
  * רגע אחד למצב של הסיפור. הבחירה בין שלושת רגעי המדף קבועה לכל סיפור
  * (לפי שם הקובץ), כך ששני סיפורים על אמונה לא יציעו בהכרח את אותו רגע.
  */
-export function momentForStory(current: Story, moments: Moment[]): Moment | null {
-  const feeling = feelingForStory(current);
+export function momentForStory<M extends AnyMoment>(
+  current: AnyStory,
+  moments: M[],
+  hebrew?: HeStory[]
+): M | null {
+  const feeling = feelingForStory(current, hebrew);
   if (!feeling) return null;
   const shelf = moments.filter((m) => m.data.feeling === feeling).sort(newestFirst);
   if (shelf.length === 0) return null;

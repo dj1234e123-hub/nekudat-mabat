@@ -9,39 +9,49 @@
 // הרכיב מציע שני דברים, שניהם עם שם ועם סיבה:
 //   1. הסיפור הבא — נבחר לפי קרבה תוכנית (src/lib/related.ts), עם שורת
 //      "למה דווקא הוא" (התגית המשותפת או העולם השונה). שלושה מועמדים נבנים;
-//      הסקריפט מדלג על מה שהקורא כבר קרא ומציג את הבא. בלי JavaScript —
-//      הראשון.
+//      הסקריפט מגריל בכל טעינה אחד מבין אלה שטרם נקראו ("שתמיד יהיה
+//      מתחלף" — בקשת בעל הפרויקט). בלי JavaScript — הקרוב ביותר.
 //   2. רגע של נקודת מבט על זה — הגשר מהסיפורים לפינת הרגעים (במדידה:
 //      3 מעברים בלבד מסיפור לרגעים ב-30 יום). נבחר מהמצב שהתגיות מצביעות
 //      עליו; אם אין חיבור אמיתי — השורה אינה מוצגת. לא כופים.
+//
+// **מתנה ולא בקשה:** שלושת האזורים שסביבו (שיתוף, שיחה, קבוצה) מבקשים משהו
+// מהקורא; הכרטיס נותן לו משהו, ולכן יושב מיד אחרי שורת השיתוף.
 //
 // אותה שפה עיצובית של כרטיסי דף הבית: תמונה קטנה, נקודת צבע של העולם, כותרת
 // בפונט הכותרות, שורת מטא שקטה. בלי מסגרת צבועה — נקודה, לא מילוי.
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import { SECTIONS_META } from '../data/sections';
+import { SECTIONS_ES, FEELING_LABELS_ES, GROUP_LABELS_ES } from '../data/site-es';
 import { DEFAULT_COVERS } from '../data/default-covers';
 import { feelingLabel, groupOf, type FeelingSlug } from '../data/feelings';
 import { parseMoment } from '../lib/moment-format';
-import { readingLabel, type NextStory } from '../lib/related';
+import { readingLabel } from '../lib/reading-time';
+import type { NextStory } from '../lib/related';
 
 interface Props {
   current: string;
   candidates: NextStory[];
-  moment: CollectionEntry<'moments'> | null;
+  moment: CollectionEntry<'moments'> | CollectionEntry<'momentsEs'> | null;
+  lang?: 'he' | 'es';
 }
 
-const { current, candidates, moment } = Astro.props;
+const { current, candidates, moment, lang = 'he' } = Astro.props;
+const es = lang === 'es';
+const t = es
+  ? { next: 'La siguiente historia', moment: 'Un momento de Punto de Vista sobre esto', aria: 'Para seguir' }
+  : { next: 'הסיפור הבא', moment: 'רגע של נקודת מבט על זה', aria: 'ההמשך' };
 
 const momentCard = moment
   ? (() => {
       const feeling = moment.data.feeling as FeelingSlug;
       const group = groupOf(feeling);
       return {
-        href: `/moments/${feeling}/${moment.id}/`,
+        href: es ? `/es/momentos/${feeling}/${moment.id}/` : `/moments/${feeling}/${moment.id}/`,
         title: parseMoment(moment.body ?? '', moment.data.title).title ?? moment.data.title,
-        feeling: feelingLabel(feeling),
-        group: group?.label ?? '',
+        feeling: es ? FEELING_LABELS_ES[feeling] : feelingLabel(feeling),
+        group: group ? (es ? GROUP_LABELS_ES[group.slug] : group.label) : '',
         accent: group?.accent ?? 'var(--gold)',
       };
     })()
@@ -50,17 +60,18 @@ const momentCard = moment
 
 {
   (candidates.length > 0 || momentCard) && (
-    <aside class="next-up" data-current={current} aria-label="ההמשך">
+    <aside class="next-up" data-current={current} aria-label={t.aria}>
       {candidates.length > 0 && (
         <ul class="next-list">
           {candidates.map(({ story, reason }, i) => {
             const { title, section } = story.data;
             const cover = story.data.cover ?? DEFAULT_COVERS[section];
             const meta = SECTIONS_META[section];
+            const world = es ? SECTIONS_ES[section].label : meta.label;
             return (
               <li class="next-story" data-story={story.id} hidden={i > 0}>
                 <a
-                  href={`/stories/${story.id}/`}
+                  href={es ? `/es/historias/${story.id}/` : `/stories/${story.id}/`}
                   class="next-link"
                   data-ph="next_story"
                   style={`--accent: ${meta.accent}`}
@@ -69,11 +80,11 @@ const momentCard = moment
                   <span class="next-text">
                     <span class="next-kicker">
                       <span class="next-dot" aria-hidden="true" />
-                      הסיפור הבא · {meta.label}
+                      {t.next} · {world}
                     </span>
                     <span class="next-title">{title}</span>
                     <span class="next-meta">
-                      {reason} · <span class="nowrap">{readingLabel(story)}</span>
+                      {reason} · <span class="nowrap">{readingLabel(story, lang)}</span>
                     </span>
                   </span>
                 </a>
@@ -92,7 +103,7 @@ const momentCard = moment
         >
           <span class="next-kicker">
             <span class="next-dot" aria-hidden="true" />
-            רגע של נקודת מבט על זה
+            {t.moment}
           </span>
           <span class="moment-hook">{momentCard.title}</span>
           <span class="next-meta">
@@ -107,7 +118,8 @@ const momentCard = moment
 <script>
   // זיכרון קריאה — בדפדפן של הקורא בלבד. בלי עוגיות, בלי שרת, בלי זהות:
   // רשימת מזהי הסיפורים שנקראו, כדי ש"הסיפור הבא" לא יציע סיפור שכבר נקרא.
-  // כשהכול נקרא — נשאר המועמד הראשון, שהוא הקרוב ביותר בתוכן.
+  // מבין המועמדים שטרם נקראו מוגרל אחד בכל טעינה (כמו הרגע בדף הבית);
+  // כשהכול נקרא — מוגרל מכולם.
   const KEY = 'nm_read';
   const root = document.querySelector<HTMLElement>('.next-up');
   if (root) {
@@ -118,9 +130,11 @@ const momentCard = moment
       read = [];
     }
     const items = [...root.querySelectorAll<HTMLElement>('.next-story')];
-    const unread = items.find((li) => !read.includes(li.dataset.story!));
-    if (unread && unread.hidden) {
-      for (const li of items) li.hidden = li !== unread;
+    if (items.length > 1) {
+      const unread = items.filter((li) => !read.includes(li.dataset.story!));
+      const pool = unread.length > 0 ? unread : items;
+      const pick = pool[Math.floor(Math.random() * pool.length)];
+      for (const li of items) li.hidden = li !== pick;
     }
     const current = root.dataset.current!;
     if (!read.includes(current)) {
@@ -136,7 +150,7 @@ const momentCard = moment
 
 <style>
   .next-up {
-    margin-top: 2.25rem;
+    margin-top: 2rem;
     display: grid;
     gap: 0.9rem;
   }

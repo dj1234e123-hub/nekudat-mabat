@@ -7,11 +7,16 @@ import { Image, getImage } from 'astro:assets';
 import Base from '../../../layouts/Base.astro';
 import ShareRow from '../../../components/ShareRow.astro';
 import JoinGroup from '../../../components/JoinGroup.astro';
+import NextUp from '../../../components/NextUp.astro';
 import { SECTIONS_ES } from '../../../data/site-es';
+const SECTIONS_ES_LABELS = Object.fromEntries(Object.entries(SECTIONS_ES).map(([k, v]) => [k, v.label]));
 import { DEFAULT_COVERS, DEFAULT_COVER_ALT_ES } from '../../../data/default-covers';
 import { formatDate } from '../../../utils/format-date';
 import { articleJsonLd, breadcrumbJsonLd } from '../../../lib/structured-data';
 import { isPublished } from '../../../lib/published';
+import { newestFirst } from '../../../lib/sort';
+import { nextStories, momentForStory } from '../../../lib/related';
+import { readingLabel as readingLabelFor } from '../../../lib/reading-time';
 
 export async function getStaticPaths() {
   const stories = await getCollection('storiesEs', isPublished);
@@ -25,11 +30,7 @@ const { story } = Astro.props;
 const { Content } = await render(story);
 const { title, section, date, excerpt } = story.data;
 
-const wordCount = (story.body ?? '').trim().split(/\s+/).length;
-const readingMinutes = Math.max(1, Math.round(wordCount / 180));
-const readingLabel = story.data.readingTime
-  ? `${story.data.readingTime} de lectura`
-  : `unos ${readingMinutes} minutos de lectura`;
+const readingLabel = readingLabelFor(story, 'es');
 const cover = story.data.cover ?? DEFAULT_COVERS[section];
 const coverAlt = story.data.coverAlt ?? DEFAULT_COVER_ALT_ES;
 
@@ -41,9 +42,13 @@ if (cover.format !== 'svg') {
   ogImage = new URL(og.src, Astro.site).href;
 }
 
-const otherStoryUrls = (await getCollection('storiesEs', isPublished))
-  .filter((s) => s.id !== story.id)
-  .map((s) => `/es/historias/${s.id}/`);
+const allStories = (await getCollection('storiesEs', isPublished)).sort(newestFirst);
+const otherStoryUrls = allStories.filter((s) => s.id !== story.id).map((s) => `/es/historias/${s.id}/`);
+// "ההמשך" (NextUp) בספרדית: הקרבה התוכנית נמדדת דרך התאום העברי (התגיות
+// חיות שם), והמועמדים והרגע — רק מה שקיים בספרדית ("מבחר ולא מראה").
+const hebrewStories = await getCollection('stories', isPublished);
+const nextCandidates = nextStories(story, allStories, SECTIONS_ES_LABELS, hebrewStories);
+const relatedMoment = momentForStory(story, await getCollection('momentsEs', isPublished), hebrewStories);
 ---
 
 <Base
@@ -90,10 +95,11 @@ const otherStoryUrls = (await getCollection('storiesEs', isPublished))
     </article>
 
     <ShareRow title={title} url={pageUrl} lang="es" />
+    <NextUp current={story.id} candidates={nextCandidates} moment={relatedMoment} lang="es" />
     <JoinGroup lang="es" />
 
     <nav class="story-footer">
-      <a href="/es/historias/">Todas las historias</a>
+      <a href="/es/historias/">Ver las {allStories.length} historias</a>
       {otherStoryUrls.length > 0 && <button id="random-story" type="button" data-ph="random_story">Una historia al azar</button>}
     </nav>
   </main>
@@ -103,7 +109,14 @@ const otherStoryUrls = (await getCollection('storiesEs', isPublished))
   otherStoryUrls.length > 0 && (
     <script is:inline define:vars={{ otherStoryUrls }}>
       document.getElementById('random-story').addEventListener('click', () => {
-        location.href = otherStoryUrls[Math.floor(Math.random() * otherStoryUrls.length)];
+        // Al azar entre lo que aún no se leyó (memoria de lectura de NextUp); si ya se leyó todo, entre todas.
+        let read = [];
+        try {
+          read = JSON.parse(localStorage.getItem('nm_read') ?? '[]');
+        } catch {}
+        const unread = otherStoryUrls.filter((url) => !read.includes(url.split('/')[3]));
+        const pool = unread.length > 0 ? unread : otherStoryUrls;
+        location.href = pool[Math.floor(Math.random() * pool.length)];
       });
     </script>
   )
@@ -180,21 +193,23 @@ const otherStoryUrls = (await getCollection('storiesEs', isPublished))
     gap: 1.5rem;
   }
 
+  /* שקט ואפור: כרטיס "הסיפור הבא" הוא ההצעה; אלה דלתות למי שרוצה את המפה. */
   .story-footer a,
   .story-footer button {
     font-family: inherit;
-    font-size: 1rem;
-    color: var(--teal);
+    font-size: 0.92rem;
+    color: var(--muted);
     background: none;
     border: none;
     padding: 0;
-    text-decoration: none;
-    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+    font-weight: 500;
     cursor: pointer;
   }
 
   .story-footer a:hover,
   .story-footer button:hover {
-    color: var(--teal-deep);
+    color: var(--teal);
   }
 </style>
