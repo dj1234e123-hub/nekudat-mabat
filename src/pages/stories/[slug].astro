@@ -5,12 +5,14 @@ import Base from '../../layouts/Base.astro';
 import ShareRow from '../../components/ShareRow.astro';
 import JoinGroup from '../../components/JoinGroup.astro';
 import WriteToMe from '../../components/WriteToMe.astro';
+import NextUp from '../../components/NextUp.astro';
 import { TOPICS } from '../../data/topics';
 import { SECTIONS } from '../../data/sections';
 import { DEFAULT_COVERS, DEFAULT_COVER_ALT } from '../../data/default-covers';
 import { formatDate } from '../../utils/format-date';
 import { articleJsonLd, breadcrumbJsonLd } from '../../lib/structured-data';
 import { isPublished } from '../../lib/published';
+import { nextStories, momentForStory } from '../../lib/related';
 
 export async function getStaticPaths() {
   const stories = await getCollection('stories', isPublished);
@@ -43,10 +45,15 @@ if (cover.format !== 'svg') {
   ogImage = new URL(og.src, Astro.site).href;
 }
 
-// רשימת כתובות ל"סיפור אקראי" — בלי הסיפור הנוכחי.
-const otherStoryUrls = (await getCollection('stories', isPublished))
-  .filter((s) => s.id !== story.id)
-  .map((s) => `/stories/${s.id}/`);
+// רשימת כתובות ל"סיפור אקראי" — בלי הסיפור הנוכחי. בצד הקורא הרשימה
+// מצטמצמת גם למה שטרם נקרא (זיכרון הקריאה של NextUp, localStorage).
+const allStories = await getCollection('stories', isPublished);
+const otherStoryUrls = allStories.filter((s) => s.id !== story.id).map((s) => `/stories/${s.id}/`);
+
+// "ההמשך" (NextUp): הסיפור הבא לפי קרבה תוכנית, ורגע של נקודת מבט שמתאים
+// לסיפור. נבחרים בזמן הבנייה מהתוכן עצמו — src/lib/related.ts.
+const nextCandidates = nextStories(story, allStories, SECTIONS);
+const relatedMoment = momentForStory(story, await getCollection('moments', isPublished));
 
 // הסיפור התאום בספרדית — אותו שם קובץ באוסף storiesEs. סיפור שטרם תורגם:
 // הגלולה מובילה לשער הסיפורים הספרדי, בלי hreflang (זה לא אותו עמוד).
@@ -100,6 +107,7 @@ const altLangHref = hasEsTwin ? `/es/historias/${story.id}/` : '/es/historias/';
 
     <ShareRow title={title} url={pageUrl} />
     <WriteToMe title={title} />
+    <NextUp current={story.id} candidates={nextCandidates} moment={relatedMoment} />
     <JoinGroup />
 
     <nav class="story-footer">
@@ -113,7 +121,14 @@ const altLangHref = hasEsTwin ? `/es/historias/${story.id}/` : '/es/historias/';
   otherStoryUrls.length > 0 && (
     <script is:inline define:vars={{ otherStoryUrls }}>
       document.getElementById('random-story').addEventListener('click', () => {
-        location.href = otherStoryUrls[Math.floor(Math.random() * otherStoryUrls.length)];
+        // אקראי מתוך מה שטרם נקרא (זיכרון הקריאה של NextUp); כשהכול נקרא — מכולם.
+        let read = [];
+        try {
+          read = JSON.parse(localStorage.getItem('nm_read') ?? '[]');
+        } catch {}
+        const unread = otherStoryUrls.filter((url) => !read.includes(url.split('/')[2]));
+        const pool = unread.length > 0 ? unread : otherStoryUrls;
+        location.href = pool[Math.floor(Math.random() * pool.length)];
       });
     </script>
   )

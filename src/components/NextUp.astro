@@ -1,0 +1,253 @@
+---
+// "ההמשך" — סוף הסיפור הוא רגע הזהב של האתר, והוא היה מבוי סתום.
+//
+// 188 מתוך 310 ביקורים (30 יום עד 2026-09-01) נכנסו ישר לעמוד סיפור מקישור
+// בוואטסאפ, בלי תפריט (הכותרת המצומצמת) ובלי דף בית. 60% מהצפיות בסיפור
+// הסתיימו ביציאה. הקורא סיים, ומה שחיכה לו: שיתוף, שיחה, קבוצה — ו"סיפור
+// אקראי", דלת בלי שם ובלי תמונה.
+//
+// הרכיב מציע שני דברים, שניהם עם שם ועם סיבה:
+//   1. הסיפור הבא — נבחר לפי קרבה תוכנית (src/lib/related.ts), עם שורת
+//      "למה דווקא הוא" (התגית המשותפת או העולם השונה). שלושה מועמדים נבנים;
+//      הסקריפט מדלג על מה שהקורא כבר קרא ומציג את הבא. בלי JavaScript —
+//      הראשון.
+//   2. רגע של נקודת מבט על זה — הגשר מהסיפורים לפינת הרגעים (במדידה:
+//      3 מעברים בלבד מסיפור לרגעים ב-30 יום). נבחר מהמצב שהתגיות מצביעות
+//      עליו; אם אין חיבור אמיתי — השורה אינה מוצגת. לא כופים.
+//
+// אותה שפה עיצובית של כרטיסי דף הבית: תמונה קטנה, נקודת צבע של העולם, כותרת
+// בפונט הכותרות, שורת מטא שקטה. בלי מסגרת צבועה — נקודה, לא מילוי.
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import { SECTIONS_META } from '../data/sections';
+import { DEFAULT_COVERS } from '../data/default-covers';
+import { feelingLabel, groupOf, type FeelingSlug } from '../data/feelings';
+import { parseMoment } from '../lib/moment-format';
+import { readingLabel, type NextStory } from '../lib/related';
+
+interface Props {
+  current: string;
+  candidates: NextStory[];
+  moment: CollectionEntry<'moments'> | null;
+}
+
+const { current, candidates, moment } = Astro.props;
+
+const momentCard = moment
+  ? (() => {
+      const feeling = moment.data.feeling as FeelingSlug;
+      const group = groupOf(feeling);
+      return {
+        href: `/moments/${feeling}/${moment.id}/`,
+        title: parseMoment(moment.body ?? '', moment.data.title).title ?? moment.data.title,
+        feeling: feelingLabel(feeling),
+        group: group?.label ?? '',
+        accent: group?.accent ?? 'var(--gold)',
+      };
+    })()
+  : null;
+---
+
+{
+  (candidates.length > 0 || momentCard) && (
+    <aside class="next-up" data-current={current} aria-label="ההמשך">
+      {candidates.length > 0 && (
+        <ul class="next-list">
+          {candidates.map(({ story, reason }, i) => {
+            const { title, section } = story.data;
+            const cover = story.data.cover ?? DEFAULT_COVERS[section];
+            const meta = SECTIONS_META[section];
+            return (
+              <li class="next-story" data-story={story.id} hidden={i > 0}>
+                <a
+                  href={`/stories/${story.id}/`}
+                  class="next-link"
+                  data-ph="next_story"
+                  style={`--accent: ${meta.accent}`}
+                >
+                  <Image src={cover} alt="" widths={[160, 320]} sizes="80px" class="next-thumb" />
+                  <span class="next-text">
+                    <span class="next-kicker">
+                      <span class="next-dot" aria-hidden="true" />
+                      הסיפור הבא · {meta.label}
+                    </span>
+                    <span class="next-title">{title}</span>
+                    <span class="next-meta">
+                      {reason} · <span class="nowrap">{readingLabel(story)}</span>
+                    </span>
+                  </span>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+
+      {momentCard && (
+        <a
+          href={momentCard.href}
+          class="next-moment"
+          data-ph="next_moment"
+          style={`--accent: ${momentCard.accent}`}
+        >
+          <span class="next-kicker">
+            <span class="next-dot" aria-hidden="true" />
+            רגע של נקודת מבט על זה
+          </span>
+          <span class="moment-hook">{momentCard.title}</span>
+          <span class="next-meta">
+            {momentCard.group} · {momentCard.feeling}
+          </span>
+        </a>
+      )}
+    </aside>
+  )
+}
+
+<script>
+  // זיכרון קריאה — בדפדפן של הקורא בלבד. בלי עוגיות, בלי שרת, בלי זהות:
+  // רשימת מזהי הסיפורים שנקראו, כדי ש"הסיפור הבא" לא יציע סיפור שכבר נקרא.
+  // כשהכול נקרא — נשאר המועמד הראשון, שהוא הקרוב ביותר בתוכן.
+  const KEY = 'nm_read';
+  const root = document.querySelector<HTMLElement>('.next-up');
+  if (root) {
+    let read: string[] = [];
+    try {
+      read = JSON.parse(localStorage.getItem(KEY) ?? '[]');
+    } catch {
+      read = [];
+    }
+    const items = [...root.querySelectorAll<HTMLElement>('.next-story')];
+    const unread = items.find((li) => !read.includes(li.dataset.story!));
+    if (unread && unread.hidden) {
+      for (const li of items) li.hidden = li !== unread;
+    }
+    const current = root.dataset.current!;
+    if (!read.includes(current)) {
+      read.push(current);
+      try {
+        localStorage.setItem(KEY, JSON.stringify(read.slice(-200)));
+      } catch {
+        /* אחסון חסום — הקורא פשוט יראה את המועמד הראשון בפעם הבאה */
+      }
+    }
+  }
+</script>
+
+<style>
+  .next-up {
+    margin-top: 2.25rem;
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .next-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .next-link,
+  .next-moment {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 0.85rem 1rem;
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s ease, transform 0.2s ease;
+  }
+
+  .next-link:hover,
+  .next-moment:hover,
+  .next-link:focus-visible,
+  .next-moment:focus-visible {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+
+  .next-link:focus-visible,
+  .next-moment:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  .next-thumb {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: calc(var(--radius) / 1.5);
+    border: 1px solid var(--line);
+  }
+
+  .next-text {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  /* התווית הקטנה: מה זה הדבר הזה. נקודת צבע של העולם/הקבוצה — אותו דפוס
+     כמו בכרטיסי הסיפורים ובשערי הרגעים. */
+  .next-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  .next-dot {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .next-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+
+  .next-link:hover .next-title {
+    color: var(--teal);
+  }
+
+  .next-meta {
+    font-size: 0.85rem;
+    color: var(--secondary);
+    line-height: 1.5;
+  }
+
+  /* זמן הקריאה לא נשבר באמצע ("כ־2 / דקות") */
+  .nowrap {
+    white-space: nowrap;
+  }
+
+  /* הרגע: בלי תמונה (רגע הוא טקסט), כותרת-הוו בכחול — הסימן הקבוע של
+     "פה מתחיל רגע" בכל האתר. */
+  .next-moment {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+  }
+
+  .moment-hook {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--blue);
+  }
+</style>
