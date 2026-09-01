@@ -1,0 +1,190 @@
+---
+// "הסיפור הבא" — כרטיס אחד בסוף עמוד הסיפור, מיד אחרי שורת השיתוף.
+//
+// **למה כרטיס אחד ולא רשימה.** קורא שסיים סיפור מוכן לעוד אחד, לא לתפריט.
+// שם של סיפור אמיתי מושך יותר מכל "לכל הסיפורים" — אותה מסקנה שהובילה
+// לרצועות העולם בעמוד הסיפורים. מי שרוצה את המפה מקבל אותה בשורה שמתחת.
+//
+// **מתנה ולא בקשה.** שלושת האזורים שסביבו (שיתוף, שיחה, קבוצה) מבקשים משהו
+// מהקורא; הכרטיס נותן לו משהו, ולכן הוא יכול לשבת ביניהם בלי להתחרות בהם.
+//
+// המאגר והכלל שבוחר (תמיד מעולם אחר, מוגרל בכל טעינה) — ב-src/lib/next-story.ts.
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import { SECTIONS_META } from '../data/sections';
+import { SECTIONS_ES } from '../data/site-es';
+import { DEFAULT_COVERS, DEFAULT_COVER_ALT, DEFAULT_COVER_ALT_ES } from '../data/default-covers';
+import { readingLabel } from '../lib/reading-time';
+
+type Story = CollectionEntry<'stories'> | CollectionEntry<'storiesEs'>;
+
+interface Props {
+  /** המאגר, כשהראשון הוא ברירת המחדל ללא JavaScript (ראו next-story.ts) */
+  pool: Story[];
+  lang?: 'he' | 'es';
+}
+
+const { pool, lang = 'he' } = Astro.props;
+const es = lang === 'es';
+const t = es
+  ? { heading: 'La siguiente historia', read: 'Leer\u00a0→' }
+  : { heading: 'הסיפור הבא', read: 'לקריאה\u00a0←' };
+
+const cards = pool.map((story) => {
+  const { title, section, excerpt } = story.data;
+  return {
+    id: story.id,
+    href: es ? `/es/historias/${story.id}/` : `/stories/${story.id}/`,
+    title,
+    excerpt,
+    world: es ? SECTIONS_ES[section].label : SECTIONS_META[section].label,
+    accent: SECTIONS_META[section].accent,
+    cover: story.data.cover ?? DEFAULT_COVERS[section],
+    coverAlt: story.data.coverAlt ?? (es ? DEFAULT_COVER_ALT_ES : DEFAULT_COVER_ALT),
+    reading: readingLabel(story, lang),
+  };
+});
+---
+
+{
+  cards.length > 0 && (
+    <section class="next" aria-labelledby="next-story-heading">
+      <p class="next-label" id="next-story-heading">{t.heading}</p>
+      <div id="next-story-mount">
+        <a class="next-card" href={cards[0].href} data-ph="next_story">
+          <Image src={cards[0].cover} alt={cards[0].coverAlt} width={192} height={192} class="next-cover" />
+          <span class="next-text">
+            <span class="label world" style={`--accent: ${cards[0].accent}`}>{cards[0].world}</span>
+            <span class="next-title">{cards[0].title}</span>
+            <span class="next-excerpt">{cards[0].excerpt}</span>
+            <span class="next-meta">{cards[0].reading} · {t.read}</span>
+          </span>
+        </a>
+      </div>
+      {
+        /* המאגר שממנו מוגרל הכרטיס. <template> אינו מוצג ואינו נכלל בפריסה,
+           והתמונות שבתוכו אינן נטענות עד שהכרטיס נבחר. */
+        cards.length > 1 &&
+          cards.map((c) => (
+            <template data-next-option>
+              <a class="next-card" href={c.href} data-ph="next_story">
+                <Image src={c.cover} alt={c.coverAlt} width={192} height={192} class="next-cover" />
+                <span class="next-text">
+                  <span class="label world" style={`--accent: ${c.accent}`}>{c.world}</span>
+                  <span class="next-title">{c.title}</span>
+                  <span class="next-excerpt">{c.excerpt}</span>
+                  <span class="next-meta">{c.reading} · {t.read}</span>
+                </span>
+              </a>
+            </template>
+          ))
+      }
+    </section>
+  )
+}
+
+<script is:inline>
+  {
+    const options = document.querySelectorAll('template[data-next-option]');
+    const mount = document.getElementById('next-story-mount');
+    if (mount && options.length > 1) {
+      const choice = options[Math.floor(Math.random() * options.length)];
+      mount.replaceChildren(choice.content.cloneNode(true));
+    }
+  }
+</script>
+
+<style>
+  .next {
+    margin-top: 2.25rem;
+  }
+
+  .next-label {
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    text-align: center;
+    margin: 0 0 0.7rem;
+  }
+
+  .next-card {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: 0.9rem;
+    align-items: start;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 0.75rem;
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s ease;
+  }
+
+  .next-card:hover {
+    border-color: var(--teal);
+  }
+
+  .next-card:hover .next-title {
+    color: var(--teal);
+  }
+
+  .next-cover {
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+    border-radius: 0.6rem;
+    display: block;
+  }
+
+  .next-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+  }
+
+  /* התווית נושאת את צבע העולם — נקודה ולא מילוי, כמו בכרטיס הסיפור.
+     align-self: הגלולה מחבקת את הטקסט שלה ולא נמתחת לרוחב העמודה. */
+  .next-text .world {
+    align-self: flex-start;
+  }
+
+  .world::before {
+    content: '';
+    display: inline-block;
+    width: 0.42rem;
+    height: 0.42rem;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-inline-end: 0.35rem;
+    vertical-align: 0.05em;
+  }
+
+  .next-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.3rem;
+    line-height: 1.3;
+    color: var(--ink);
+    transition: color 0.15s ease;
+  }
+
+  .next-excerpt {
+    font-size: 0.9rem;
+    color: var(--secondary);
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .next-meta {
+    font-size: 0.82rem;
+    color: var(--teal);
+    font-weight: 600;
+    margin-top: 0.25rem;
+  }
+</style>

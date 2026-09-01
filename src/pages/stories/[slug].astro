@@ -5,12 +5,16 @@ import Base from '../../layouts/Base.astro';
 import ShareRow from '../../components/ShareRow.astro';
 import JoinGroup from '../../components/JoinGroup.astro';
 import WriteToMe from '../../components/WriteToMe.astro';
+import NextStory from '../../components/NextStory.astro';
 import { TOPICS } from '../../data/topics';
 import { SECTIONS } from '../../data/sections';
 import { DEFAULT_COVERS, DEFAULT_COVER_ALT } from '../../data/default-covers';
 import { formatDate } from '../../utils/format-date';
 import { articleJsonLd, breadcrumbJsonLd } from '../../lib/structured-data';
 import { isPublished } from '../../lib/published';
+import { newestFirst } from '../../lib/sort';
+import { nextStoryPool } from '../../lib/next-story';
+import { readingLabel as readingLabelFor } from '../../lib/reading-time';
 
 export async function getStaticPaths() {
   const stories = await getCollection('stories', isPublished);
@@ -24,12 +28,7 @@ const { story } = Astro.props;
 const { Content } = await render(story);
 const { title, section, topic, date, excerpt } = story.data;
 
-// זמן קריאה: מכרטיס הסיפור אם צוין, אחרת לפי ספירת מילים (~180 מילים לדקה).
-const wordCount = (story.body ?? '').trim().split(/\s+/).length;
-const readingMinutes = Math.max(1, Math.round(wordCount / 180));
-const readingLabel = story.data.readingTime
-  ? `${story.data.readingTime} קריאה`
-  : `כ־${readingMinutes} דקות קריאה`;
+const readingLabel = readingLabelFor(story);
 const cover = story.data.cover ?? DEFAULT_COVERS[section];
 const coverAlt = story.data.coverAlt ?? DEFAULT_COVER_ALT;
 
@@ -43,10 +42,11 @@ if (cover.format !== 'svg') {
   ogImage = new URL(og.src, Astro.site).href;
 }
 
+const allStories = (await getCollection('stories', isPublished)).sort(newestFirst);
 // רשימת כתובות ל"סיפור אקראי" — בלי הסיפור הנוכחי.
-const otherStoryUrls = (await getCollection('stories', isPublished))
-  .filter((s) => s.id !== story.id)
-  .map((s) => `/stories/${s.id}/`);
+const otherStoryUrls = allStories.filter((s) => s.id !== story.id).map((s) => `/stories/${s.id}/`);
+// "הסיפור הבא" — תמיד מעולם אחר, מוגרל בכל טעינה (src/lib/next-story.ts).
+const nextPool = nextStoryPool(allStories, story);
 
 // הסיפור התאום בספרדית — אותו שם קובץ באוסף storiesEs. סיפור שטרם תורגם:
 // הגלולה מובילה לשער הסיפורים הספרדי, בלי hreflang (זה לא אותו עמוד).
@@ -99,11 +99,12 @@ const altLangHref = hasEsTwin ? `/es/historias/${story.id}/` : '/es/historias/';
     </article>
 
     <ShareRow title={title} url={pageUrl} />
+    <NextStory pool={nextPool} />
     <WriteToMe title={title} />
     <JoinGroup />
 
     <nav class="story-footer">
-      <a href="/">לכל הסיפורים</a>
+      <a href="/stories/">לכל {allStories.length} הסיפורים</a>
       {otherStoryUrls.length > 0 && <button id="random-story" type="button" data-ph="random_story">לסיפור אקראי</button>}
     </nav>
   </main>
@@ -190,21 +191,23 @@ const altLangHref = hasEsTwin ? `/es/historias/${story.id}/` : '/es/historias/';
     gap: 1.5rem;
   }
 
+  /* שקט ואפור: כרטיס "הסיפור הבא" הוא ההצעה; אלה דלתות למי שרוצה את המפה. */
   .story-footer a,
   .story-footer button {
     font-family: inherit;
-    font-size: 1rem;
-    color: var(--teal);
+    font-size: 0.92rem;
+    color: var(--muted);
     background: none;
     border: none;
     padding: 0;
-    text-decoration: none;
-    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+    font-weight: 500;
     cursor: pointer;
   }
 
   .story-footer a:hover,
   .story-footer button:hover {
-    color: var(--teal-deep);
+    color: var(--teal);
   }
 </style>
