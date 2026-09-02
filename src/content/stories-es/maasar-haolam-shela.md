@@ -3,6 +3,7 @@
 # que el hebreo para el emparejamiento automático (gemelo de idioma + hreflang).
 # Basado en la historia real de Mary Johnson y Oshea Israel, Minneapolis, Minnesota,
 # EE. UU. — documentada por StoryCorps (2011) y MPR News.
+# Escrito en párrafos normales, como el resto de las historias del sitio.
 title: "Su cadena perpetua"
 section: yoman
 cover: ../../assets/covers/maasar-haolam-shela.png
@@ -12,140 +13,34 @@ readingTime: "unos 2 minutos"
 excerpt: "El hombre que asesinó a su hijo fue condenado a 25 años de cárcel. \"La que recibió cadena perpetua fui yo\", dijo Mary Johnson. Doce años después pidió verlo en la cárcel — y lo que pasó en esa sala no terminó ahí."
 ---
 
-El hombre que asesinó a su hijo<br />
-fue condenado a 25 años de cárcel.
+El hombre que asesinó a su hijo fue condenado a 25 años de cárcel. Pero Mary Johnson dijo: "La que recibió cadena perpetua fui yo."
 
-Pero Mary Johnson dijo:
+A su hijo lo llamaban Laramiun. Tenía 20 años. Una discusión breve en una fiesta, un solo disparo — y no volvió a casa.
 
-"La que recibió<br />
-cadena perpetua fui yo."
+Quien apretó el gatillo fue Oshea, un adolescente de 16 años. Fue enviado a prisión, y Mary se quedó afuera.
 
-A su hijo lo llamaban Laramiun.
+En su juicio, contó ella después, quiso hacerlo pedazos. Durante 12 años cargó con eso: la rabia, el odio.
 
-Tenía 20 años.
+Y entonces Mary pidió verlo. Oshea se sorprendió. Al principio se negó, y al final aceptó.
 
-Una discusión breve en una fiesta.
+Se sentaron juntos en una sala de la cárcel y hablaron. Dos horas.
 
-Un solo disparo.
+Al terminar el encuentro, Mary le preguntó: "¿Puedo abrazarte?" Oshea se levantó, y Mary se acercó a él. Le rodeó con los brazos, y apoyó la cabeza en su hombro.
 
-Y no volvió a casa.
+Y entonces las piernas simplemente le fallaron. El hombre que asesinó a su hijo *la sostuvo*, y la sujetó para que no cayera.
 
-Quien apretó el gatillo<br />
-fue Oshea.
+Más tarde ella contó: "En ese instante, sentí que algo salía de mí."
 
-Un adolescente de 16 años.
+Su cadena perpetua terminó ahí.
 
-En su juicio,
+Cinco años después Oshea salió de la cárcel, y Mary estaba ahí. Ella lo ayudó a alquilar un departamento — justo al lado, puerta con puerta.
 
-contó ella después,
+El hombre que asesinó a su hijo *se convirtió en su vecino.* Y Mary lo llamaba: "Mi hijo espiritual."
 
-quiso<br />
-hacerlo pedazos.
+Empezaron a contar juntos su historia, en cárceles y en comunidades.
 
-Oshea fue enviado a prisión.
+En los últimos años Mary enfermó de demencia, y Oshea se quedó a su lado.
 
-Y Mary se quedó afuera.
-
-Durante 12 años<br />
-cargó con eso.
-
-La rabia.
-
-El odio.
-
-Y entonces,
-
-Mary pidió verlo.
-
-Oshea se sorprendió.
-
-Al principio se negó.
-
-Al final aceptó.
-
-Se sentaron juntos<br />
-en una sala de la cárcel.
-
-Y hablaron.
-
-Dos horas.
-
-Al terminar el encuentro,
-
-Mary le preguntó:
-
-"¿Puedo abrazarte?"
-
-Oshea se levantó.
-
-Y Mary se acercó a él.
-
-Le rodeó<br />
-con los brazos.
-
-Apoyó la cabeza<br />
-en su hombro.
-
-Y entonces,
-
-las piernas<br />
-simplemente le fallaron.
-
-El hombre que asesinó a su hijo<br />
-*la sostuvo.*
-
-Y la sujetó<br />
-para que no cayera.
-
-Más tarde ella contó:
-
-"En ese instante,<br />
-sentí que algo<br />
-salía de mí."
-
-Su cadena perpetua<br />
-terminó ahí.
-
-Cinco años después,
-
-Oshea salió de la cárcel.
-
-Y Mary estaba ahí.
-
-Ella lo ayudó<br />
-a alquilar un departamento.
-
-Justo al lado.
-
-Puerta con puerta.
-
-El hombre que asesinó a su hijo<br />
-*se convirtió en su vecino.*
-
-Y Mary lo llamaba:
-
-"Mi hijo espiritual."
-
-Empezaron a contar juntos<br />
-su historia.
-
-En cárceles.
-
-En comunidades.
-
-En los últimos años,
-
-Mary enfermó de demencia.
-
-Y Oshea se quedó a su lado.
-
-> Aquel hombre<br />
-> que ella una vez no pudo<br />
-> olvidar,
->
-> estuvo ahí,
->
-> cuando ella ya no pudo<br />
-> recordar.
+> Aquel hombre que ella una vez no pudo olvidar, estuvo ahí cuando ella ya no pudo recordar.
 
 <p class="signature">Con cariño,<br />Efraim Atia</p>
