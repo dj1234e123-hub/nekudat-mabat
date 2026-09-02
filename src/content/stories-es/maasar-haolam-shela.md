@@ -8,7 +8,7 @@ title: "Su cadena perpetua"
 section: yoman
 cover: ../../assets/covers/maasar-haolam-shela.png
 coverAlt: "Una celda oscura, unas esposas rotas y una cadena partida en el suelo, y un pequeño brote verde creciendo en una grieta junto a un rayo de luz que entra por una ventana enrejada"
-date: 2026-09-02T19:00:00Z
+date: 2026-09-02T18:01:00Z
 readingTime: "unos 2 minutos"
 excerpt: "El hombre que asesinó a su hijo fue condenado a 25 años de cárcel. \"La que recibió cadena perpetua fui yo\", dijo Mary Johnson. Doce años después pidió verlo en la cárcel — y lo que pasó en esa sala no terminó ahí."
 ---
