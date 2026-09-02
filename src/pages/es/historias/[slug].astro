@@ -37,9 +37,13 @@ const coverAlt = story.data.coverAlt ?? DEFAULT_COVER_ALT_ES;
 const pageUrl = new URL(`/es/historias/${story.id}/`, Astro.site).href;
 
 let ogImage: string | undefined;
+let ogImageWidth: number | undefined;
+let ogImageHeight: number | undefined;
 if (cover.format !== 'svg') {
   const og = await getImage({ src: cover, width: 1200, format: 'jpeg' });
   ogImage = new URL(og.src, Astro.site).href;
+  ogImageWidth = og.attributes.width;
+  ogImageHeight = og.attributes.height;
 }
 
 const allStories = (await getCollection('storiesEs', isPublished)).sort(newestFirst);
@@ -57,6 +61,8 @@ const relatedMoment = momentForStory(story, await getCollection('momentsEs', isP
   description={excerpt}
   ogType="article"
   ogImage={ogImage}
+  ogImageWidth={ogImageWidth}
+  ogImageHeight={ogImageHeight}
   compact={true}
   altLangHref={`/stories/${story.id}/`}
   jsonLd={[
