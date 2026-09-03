@@ -119,16 +119,27 @@ const mabatEs = defineCollection({
 // זו בדיוק הסיבה שזה אוסף נפרד ולא עוד עולם בתוך הסיפורים.
 // חתימת השבת (signoff) נשמרת בפרונטמאטר ולא בגוף, כי היא לא חלק מהמאמר
 // עצמו אלא תוספת אישית של אפרים — יכולה להשתנות מבנה משבוע לשבוע.
+// quoteImage — אופציונלי, לפי סקיל mabat-quote-image (.claude/skills/mabat-quote-image):
+// תמונת ציטוט 1080×1350 בשפת המותג, מוצגת בסוף המאמר ולא בתחילתו (כדי
+// שלא תספיילר את המסקנה שהטור בנוי כדי להחזיק עד הסוף). אותו כלל
+// cover/coverAlt כמו בסיפורים — תמונה חייבת טקסט חלופי.
 const mabatLeshabbat = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/mabat-leshabbat' }),
-  schema: z.object({
-    title: z.string().min(1),
-    parasha: z.string().min(1),
-    hebrewDate: z.string().min(1),
-    date: z.coerce.date(),
-    signoff: z.string().min(1),
-    signedBy: z.string().min(1),
-  }),
+  schema: ({ image }) =>
+    z
+      .object({
+        title: z.string().min(1),
+        parasha: z.string().min(1),
+        hebrewDate: z.string().min(1),
+        date: z.coerce.date(),
+        signoff: z.string().min(1),
+        signedBy: z.string().min(1),
+        quoteImage: image().optional(),
+        quoteImageAlt: z.string().min(1).optional(),
+      })
+      .refine((data) => !data.quoteImage || !!data.quoteImageAlt, {
+        message: 'תמונת ציטוט חייבת גם טקסט חלופי (quoteImageAlt)',
+      }),
 });
 
 export const collections = { stories, moments, momentsEs, mabatLeshabbat, storiesEs, mabatEs };
