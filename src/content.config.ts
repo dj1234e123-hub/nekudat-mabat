@@ -102,16 +102,25 @@ const storiesEs = defineCollection({
 });
 
 // "מבט לשבת" בספרדית — אותו זיווג לפי שם קובץ.
+// quoteImage — אותו כלל כמו בעברית: תמונת ציטוט אופציונלית (בספרדית, LTR),
+// מוצגת בסוף המאמר. "הספרדית משקפת את העברית העדכנית" — אותו מבנה ואותה היררכיה.
 const mabatEs = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/mabat-es' }),
-  schema: z.object({
-    title: z.string().min(1),
-    parasha: z.string().min(1),
-    hebrewDate: z.string().min(1),
-    date: z.coerce.date(),
-    signoff: z.string().min(1),
-    signedBy: z.string().min(1),
-  }),
+  schema: ({ image }) =>
+    z
+      .object({
+        title: z.string().min(1),
+        parasha: z.string().min(1),
+        hebrewDate: z.string().min(1),
+        date: z.coerce.date(),
+        signoff: z.string().min(1),
+        signedBy: z.string().min(1),
+        quoteImage: image().optional(),
+        quoteImageAlt: z.string().min(1).optional(),
+      })
+      .refine((data) => !data.quoteImage || !!data.quoteImageAlt, {
+        message: 'תמונת ציטוט חייבת גם טקסט חלופי (quoteImageAlt)',
+      }),
 });
 
 // "מבט לשבת" — טור שבועי: סיפור אמיתי, חיבור לפרשת השבוע, ומבט על האדם.

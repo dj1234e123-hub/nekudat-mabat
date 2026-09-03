@@ -2,7 +2,7 @@
 title: מי כבר עומד כאן בזכותך?
 parasha: ניצבים
 hebrewDate: כ"ב באלול תשפ"ו
-date: 2026-09-05
+date: 2026-09-03
 quoteImage: ../../assets/mabat-leshabbat/nitzavim-quote.png
 quoteImageAlt: "הקשר כבר היה שם. הוא רק חיכה שמישהו יבקש מאיתנו לקום."
 signoff: |
