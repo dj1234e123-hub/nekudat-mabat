@@ -23,8 +23,8 @@ import opentype from 'opentype.js';
 import { Resvg } from '@resvg/resvg-js';
 import { parseMoment, plain, type MomentFormat } from './moment-format';
 
-const WIDTH = 1080;
-const HEIGHT = 1350;
+export const WIDTH = 1080;
+export const HEIGHT = 1350;
 const CENTER = WIDTH / 2;
 const MARGIN = 118;
 const MAX_TEXT_WIDTH = WIDTH - MARGIN * 2;

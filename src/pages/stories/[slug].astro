@@ -37,9 +37,13 @@ const pageUrl = new URL(`/stories/${story.id}/`, Astro.site).href;
 // תמונת תצוגה מקדימה לשיתוף: תמונת השער. וואטסאפ לא מציג SVG,
 // לכן לשערים הזמניים (SVG) ניפול ללוגו (ברירת המחדל של Base).
 let ogImage: string | undefined;
+let ogImageWidth: number | undefined;
+let ogImageHeight: number | undefined;
 if (cover.format !== 'svg') {
   const og = await getImage({ src: cover, width: 1200, format: 'jpeg' });
   ogImage = new URL(og.src, Astro.site).href;
+  ogImageWidth = og.attributes.width;
+  ogImageHeight = og.attributes.height;
 }
 
 const allStories = (await getCollection('stories', isPublished)).sort(newestFirst);
@@ -63,6 +67,8 @@ const altLangHref = hasEsTwin ? `/es/historias/${story.id}/` : '/es/historias/';
   description={excerpt}
   ogType="article"
   ogImage={ogImage}
+  ogImageWidth={ogImageWidth}
+  ogImageHeight={ogImageHeight}
   compact={true}
   altLangHref={altLangHref}
   altLangTwin={hasEsTwin}
