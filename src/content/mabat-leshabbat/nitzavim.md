@@ -3,6 +3,8 @@ title: מי כבר עומד כאן בזכותך?
 parasha: ניצבים-וילך
 hebrewDate: כ"ב באלול תשפ"ו
 date: 2026-09-03
+quoteImage: ../../assets/mabat-leshabbat/nitzavim-quote.png
+quoteImageAlt: "יש מעשים שממשיכים לצמוח הרבה אחרי שכבר שכחת שעשית אותם."
 signoff: |
   שבת שלום ומבורך.
   שנזכה לעשות את שלנו,
