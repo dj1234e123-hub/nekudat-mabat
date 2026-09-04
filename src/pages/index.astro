@@ -92,7 +92,7 @@ const DESCRIPTION =
   title="נקודת מבט — מקום לעצור, ולראות אחרת"
   description={DESCRIPTION}
   homeHeader={true}
-  jsonLd={websiteJsonLd(Astro.site!, DESCRIPTION)}
+  jsonLd={await websiteJsonLd(Astro.site!, DESCRIPTION)}
   altLangHref="/es/"
   altLangInline={true}
 >
