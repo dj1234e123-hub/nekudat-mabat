@@ -2,11 +2,9 @@
 # תרגום גיליון "ניצבים" (2026-09-03). שבירות השורות נשמרו — הן תוכן, לא עיצוב.
 # התרגום נעשה ללא בדיקת דוברת ספרדית (החלטת ההשקה של 2026-08-30) — לבדיקה כשתתפנה.
 title: ¿Quién ya está de pie aquí gracias a ti?
-parasha: Nitzavim
+parasha: Nitzavim-Vayelej
 hebrewDate: 22 de Elul 5786
 date: 2026-09-03
-quoteImage: ../../assets/mabat-leshabbat/nitzavim-quote-es.png
-quoteImageAlt: "El vínculo ya estaba ahí. Solo esperaba a que alguien nos pidiera levantarnos."
 signoff: |
   Shabat Shalom umevoraj.
   Que merezcamos hacer nuestra parte,
