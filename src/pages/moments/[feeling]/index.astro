@@ -81,6 +81,8 @@ const altLangHref = hasEsTwin ? `/es/momentos/${param}/` : '/es/momentos/';
   title={title}
   description={description}
   ogImage={gateOg ? new URL(gateOg.src, Astro.site).href : undefined}
+  ogImageWidth={gateOg?.attributes.width}
+  ogImageHeight={gateOg?.attributes.height}
   altLangHref={altLangHref}
   altLangTwin={hasEsTwin}
 >

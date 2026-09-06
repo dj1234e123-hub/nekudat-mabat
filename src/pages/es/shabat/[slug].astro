@@ -2,6 +2,7 @@
 // עמוד גיליון "מבט לשבת" בספרדית — אותו עיצוב "החתימה השקטה" כמו העברי:
 // רייל כחול, תווית, גוף עם מפרידים שקטים, חתימת שבת.
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import Base from '../../../layouts/Base.astro';
 import ShareRow from '../../../components/ShareRow.astro';
 import MabatBody from '../../../components/MabatBody.astro';
@@ -16,7 +17,7 @@ export async function getStaticPaths() {
 }
 
 const { piece } = Astro.props;
-const { title, parasha, hebrewDate, date, signoff, signedBy } = piece.data;
+const { title, parasha, hebrewDate, date, signoff, signedBy, quoteImage, quoteImageAlt } = piece.data;
 const blocks = parseBody(piece.body ?? '');
 
 const flat = plainText(blocks).replace(/\s+/g, ' ').trim();
@@ -60,6 +61,14 @@ const shareText = `${plainText(blocks)}\n\n${pageUrl}`;
       </header>
 
       <MabatBody blocks={blocks} />
+
+      {
+        quoteImage && (
+          <div class="quote-image">
+            <Image src={quoteImage} alt={quoteImageAlt!} widths={[320, 480, 640]} sizes="(max-width: 30rem) 70vw, 320px" />
+          </div>
+        )
+      }
 
       <div class="close-mark" aria-hidden="true"><span></span></div>
 
@@ -127,6 +136,20 @@ const shareText = `${plainText(blocks)}\n\n${pageUrl}`;
     line-height: 1.42;
     margin: 0;
     text-wrap: balance;
+  }
+
+  .quote-image {
+    display: flex;
+    justify-content: center;
+    margin: 2.6rem 0 0.4rem;
+  }
+
+  .quote-image :global(img) {
+    width: 100%;
+    max-width: 15rem;
+    height: auto;
+    border-radius: 3px;
+    box-shadow: var(--shadow);
   }
 
   .close-mark {

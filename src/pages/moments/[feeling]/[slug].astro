@@ -11,6 +11,7 @@ import { articleJsonLd, breadcrumbJsonLd } from '../../../lib/structured-data';
 import { momentTitle } from '../../../lib/moment-title';
 import { parseMoment, momentPlainText } from '../../../lib/moment-format';
 import { isPublished } from '../../../lib/published';
+import { WIDTH as OG_WIDTH, HEIGHT as OG_HEIGHT } from '../../../lib/moment-card';
 
 export async function getStaticPaths() {
   const moments = await getCollection('moments', isPublished);
@@ -52,6 +53,8 @@ const altLangHref = hasEsTwin ? `/es/momentos/${feeling}/${moment.id}/` : '/es/m
   title={title}
   description={summary}
   ogImage={ogImage}
+  ogImageWidth={OG_WIDTH}
+  ogImageHeight={OG_HEIGHT}
   ogType="article"
   compact={true}
   altLangHref={altLangHref}

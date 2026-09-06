@@ -1,5 +1,7 @@
 // נתונים מובנים (JSON-LD) — התיאור שגוגל קורא כדי להבין מה יש בעמוד.
 // המבנה כאן מכוון למינימום ההכרחי: מי כתב, מה זה, ומתי. בלי שדות שאין להם כיסוי אמיתי.
+import { getImage } from 'astro:assets';
+import logo from '../assets/logo.jpg';
 import { SITE } from '../data/site';
 
 /** מזהים קבועים — כתובת עם # מאפשרת לעמודים שונים להצביע על אותה ישות. */
@@ -19,8 +21,11 @@ export function person(site: URL) {
   };
 }
 
-/** דף הבית — האתר עצמו והאדם שמאחוריו. */
-export function websiteJsonLd(site: URL, description: string) {
+/** דף הבית — האתר עצמו והאדם שמאחוריו.
+    image הוא הלוגו האמיתי (לא תמונת "עין" זמנית) — סימן נוסף לגוגל
+    על זהות המותג, מעבר ל-favicon. */
+export async function websiteJsonLd(site: URL, description: string) {
+  const logoImage = await getImage({ src: logo, width: 640, format: 'jpeg' });
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
@@ -29,6 +34,7 @@ export function websiteJsonLd(site: URL, description: string) {
     alternateName: SITE.slogan,
     url: abs('/', site),
     description,
+    image: abs(logoImage.src, site),
     inLanguage: 'he-IL',
     author: person(site),
     publisher: person(site),

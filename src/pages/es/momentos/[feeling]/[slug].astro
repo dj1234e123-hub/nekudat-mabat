@@ -12,6 +12,7 @@ import { articleJsonLd, breadcrumbJsonLd } from '../../../../lib/structured-data
 import { momentTitle } from '../../../../lib/moment-title';
 import { parseMoment, momentPlainText } from '../../../../lib/moment-format';
 import { isPublished } from '../../../../lib/published';
+import { WIDTH as OG_WIDTH, HEIGHT as OG_HEIGHT } from '../../../../lib/moment-card';
 
 export async function getStaticPaths() {
   const moments = await getCollection('momentsEs', isPublished);
@@ -51,6 +52,8 @@ const altLangHref = `/moments/${feeling}/${moment.id}/`;
   description={summary}
   ogType="article"
   ogImage={ogImage}
+  ogImageWidth={OG_WIDTH}
+  ogImageHeight={OG_HEIGHT}
   compact={true}
   altLangHref={altLangHref}
   jsonLd={[
