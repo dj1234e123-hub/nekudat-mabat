@@ -1,24 +1,24 @@
 ---
 feeling: good-moment
 date: 2026-08-22
-title: Sin dejar marca
+title: Dos segundos
 ---
 Ahora está bien.
-Y ya se está buscando,
-lo que se va a **arruinar**,
-y cuándo va a **terminar**.
+Y ya buscas,
+qué se va a **romper**,
+y cuándo se va a acabar.
 
-Y eso se parece a pesimismo.
+Y parece pesimismo.
 Como si no se pudiera,
 simplemente disfrutar,
-de un **momento** solo.
+de un **momento**.
 
-Pero el cerebro está hecho,
-para recordar peligros.
-Y un momento bueno lo atraviesa,
-sin dejar **marca**.
+Pero un buen momento no pide mucho.
+Dos **segundos** de prestar atención,
+antes de buscar,
+qué se va a romper.
 
 ---
 
-Un momento bueno no se guarda solo.
-Dos segundos alcanzan.
+Un buen momento no se guarda solo.
+Le bastan dos segundos.

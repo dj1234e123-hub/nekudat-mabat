@@ -71,6 +71,14 @@ export const FEELING_LABELS_ES: Record<string, string> = {
   prayer: 'Oración',
   providence: 'Providencia',
   gratitude: 'Gratitud',
+  longing: 'Añoranza',
+  betrayal: 'Traición',
+  insult: 'Ofensa',
+  'missed-opportunity': 'Ocasión perdida',
+  ruminating: 'Pensamientos que no paran',
+  joy: 'Alegría',
+  pride: 'Orgullo',
+  relief: 'Alivio',
 };
 
 /** כותרות הקבוצות בספרדית — לפי אותו slug של הרשימה העברית. */
@@ -121,4 +129,12 @@ export const FEELING_LINES_ES: Record<string, string> = {
   prayer: 'Hablar, sin saber si alguien escucha.',
   providence: 'En medio de la historia, sin conocer el final.',
   gratitude: 'No siempre hay fuerzas para decir gracias.',
+  longing: 'Quieres volver, a algo que ya no se puede.',
+  betrayal: 'Alguien en quien confiabas, no estuvo a la altura.',
+  insult: 'Una frase pequeña, que se quedó toda la noche.',
+  'missed-opportunity': 'Hay otro camino, que no tomaste.',
+  ruminating: 'El mismo pensamiento, una y otra vez, todo el día.',
+  joy: 'Pasó algo bueno, y da un poco de miedo.',
+  pride: 'Hiciste algo, y no sabías si podías decirlo.',
+  relief: 'Terminó, y todavía no puedes respirar hondo.',
 };

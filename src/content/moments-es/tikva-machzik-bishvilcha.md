@@ -1,24 +1,24 @@
 ---
 feeling: hope
 date: 2026-08-21
-title: La sostiene por ti
+title: Lo sostiene por ti
 ---
-Hay épocas,
-en que no hay esperanza en ti.
-Y no se puede fabricarla,
-a la **fuerza**.
+Alguien te dijo,
+que esto se va a arreglar.
+Y asentiste con cortesía,
+sin **creerle**.
 
-Y entonces llega alguien,
-y sigue creyendo.
-Y molesta,
-porque no **entiende**.
+Porque cómo va a saberlo él.
+No está ahí, no ve,
+y a él,
+le resulta fácil **creer**.
 
-Pero no sermonea,
-ni explica.
-Solo la sostiene por ti,
-hasta que vuelva tu **fuerza**.
+Pero no te pidió que estuvieras de acuerdo.
+Lo sostiene por ti,
+hasta que vuelvas a tener,
+**fuerza**.
 
 ---
 
 No hace falta estar de acuerdo.
-Basta con no echarlo.
+Basta con no tirarlo.

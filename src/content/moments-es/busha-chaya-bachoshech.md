@@ -1,22 +1,22 @@
 ---
 feeling: shame
 date: 2026-08-22
-title: Una sola condición
+title: Su única condición
 ---
-La vergüenza tiene una condición,
-para existir.
-Una sola condición:
-que no lo **sepan**.
+Hay algo,
+que no le has contado a nadie.
+Y cuando alguien se acerca,
+cambias de **tema**.
 
-Por eso crece en silencio,
-y te convence,
-de que si alguien lo sabe,
-se va a **alejar**.
+Porque si lo supieran,
+se **acabaría**.
+Te mirarían distinto,
+simplemente se alejarían.
 
-Pero en la práctica pasa lo contrario.
-Lo que era enorme,
-mientras era solo tuyo,
-empieza a **encogerse**.
+Pero de eso vive la vergüenza.
+Esa es su única condición para existir:
+que no lo sepan.
+Y en el momento en que alguien lo sabe, empieza a **encogerse**.
 
 ---
 

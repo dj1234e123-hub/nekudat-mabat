@@ -3,22 +3,22 @@ feeling: envy
 date: 2026-08-22
 title: Con un extraño es fácil
 ---
-Con un extraño es fácil.
-Te alegras por él,
-sin esfuerzo,
-y sin **pensar**.
+En el grupo de la familia,
+una buena noticia.
+De un hermano.
+Y escribiste "felicidades" **rápido**.
 
-Y con un hermano, un amigo,
-el vecino del edificio —
-lo que recibieron se mide,
-en distancia de lo que **falta**.
+Demasiado rápido.
+Porque con un extraño hubiera sido fácil.
+Y con un hermano,
+lo que él recibió se mide por la distancia de lo que te **falta**.
 
-Pero se puede sentir,
-alegría por él,
-y dolor por ti.
-En la misma **respiración**.
+Pero se puede alegrar por él,
+y sentir dolor propio.
+En el mismo momento,
+en el mismo **aliento**.
 
 ---
 
-La alegría y el dolor,
-viven en el mismo cuarto.
+La alegría es real.
+También el dolor.

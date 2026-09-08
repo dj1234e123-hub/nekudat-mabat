@@ -3,22 +3,22 @@ feeling: faith
 date: 2026-08-21
 title: Días que buscan
 ---
-Hay días,
-en que la fe es algo que se sostiene.
-Y hay días,
-en que es algo que se **busca**.
+Ayer era simple.
+Rezabas, y había a quién.
+Hoy las mismas palabras,
+y no llegan a ningún **lado**.
 
-Y eso confunde,
-porque nos enseñan,
-que la fe debe,
-ser **estable**.
+Y eso da miedo,
+porque te enseñaron
+que la fe debía ser
+**estable**.
 
-Pero en los días que buscan,
-nadie la abandonó.
-Simplemente se busca,
+Pero en un día de búsqueda,
+no la abandonaste.
+Saliste a buscar,
 la misma **cosa**.
 
 ---
 
-Una pregunta no es lo contrario de la fe.
+La pregunta no es lo opuesto a la fe.
 Es parte de ella.
