@@ -56,12 +56,13 @@
    "shift": "אשמה שסיימה את תפקידה גובה על חוב ששולם",
    "motion": 2,
    "takeaway": "Y",
-   "opening": "הגדרה",
+   "opening": "סצנה/מצב",
    "shape": "הפרדה",
    "clusters": [],
    "twin": null,
-   "verdict": "טוב",
-   "status": "published"
+   "verdict": "חזק",
+   "status": "published",
+   "revised": "2026-09-08"
   },
   {
    "slug": "ashma-shel-horut",
@@ -105,7 +106,8 @@
    ],
    "twin": "etzev-mitpaked",
    "verdict": "טוב",
-   "status": "published"
+   "status": "published",
+   "revised": "2026-09-08"
   },
   {
    "slug": "ayefut-lo-kol-menucha",
@@ -147,9 +149,10 @@
    "clusters": [
     "שמונה שעות"
    ],
-   "twin": "ayefut-lo-kol-menucha",
-   "verdict": "חופף",
-   "status": "published"
+   "twin": null,
+   "verdict": "טוב",
+   "status": "published",
+   "revised": "2026-09-08"
   },
   {
    "slug": "bdidut-bein-anashim",
@@ -183,7 +186,7 @@
    "entries": [
     "someone"
    ],
-   "move": "NAME",
+   "move": "PERM",
    "move2": null,
    "inner": "\"אין לי זכות להתלונן\"",
    "reader": "בודד בבית מלא",
@@ -195,9 +198,10 @@
    "clusters": [
     "הדבר האחד שחסר בבית מלא"
    ],
-   "twin": "bdidut-bein-anashim",
-   "verdict": "חופף",
-   "status": "published"
+   "twin": null,
+   "verdict": "טוב",
+   "status": "published",
+   "revised": "2026-09-08"
   },
   {
    "slug": "bdidut-mi-shemachzik",
@@ -221,7 +225,8 @@
    ],
    "twin": "etzev-mitpaked",
    "verdict": "טוב",
-   "status": "published"
+   "status": "published",
+   "revised": "2026-09-08"
   },
   {
    "slug": "bilbul-ein-lo-shem",
@@ -243,9 +248,10 @@
    "clusters": [
     "בלי סיבה, בלי שם"
    ],
-   "twin": "etzev-bli-siba",
-   "verdict": "חופף",
-   "status": "published"
+   "twin": null,
+   "verdict": "טוב",
+   "status": "published",
+   "revised": "2026-09-08"
   },
   {
    "slug": "bilbul-kol-echad-yodea",
@@ -327,14 +333,15 @@
    "shift": "באותו חדר יושבים עוד כמה עם אותה שתיקה",
    "motion": 2,
    "takeaway": "P",
-   "opening": "הגדרה",
+   "opening": "סצנה/מצב",
    "shape": "הפרדה",
    "clusters": [
     "מבחוץ בסדר, בפנים לא"
    ],
    "twin": "kishalon-hagirsa-haaruca",
-   "verdict": "טוב",
-   "status": "published"
+   "verdict": "חזק",
+   "status": "published",
+   "revised": "2026-09-08"
   },
   {
    "slug": "bitachon-nishar-acharei",
@@ -369,14 +376,15 @@
    "shift": "בושה גדלה רק בסוד ומתכווצת כשנודעת",
    "motion": 2,
    "takeaway": "Y",
-   "opening": "הגדרה",
+   "opening": "סצנה/מצב",
    "shape": "הפרדה",
    "clusters": [
     "הסרט שבראש מול המציאות"
    ],
    "twin": "sod-haseret",
-   "verdict": "טוב",
-   "status": "published"
+   "verdict": "חזק",
+   "status": "published",
+   "revised": "2026-09-08"
   },
   {
    "slug": "busha-mul-ashma",
@@ -453,12 +461,13 @@
    "shift": "לחפש אינו לוותר",
    "motion": 2,
    "takeaway": "P",
-   "opening": "הגדרה",
+   "opening": "סצנה/מצב",
    "shape": "הפרדה",
    "clusters": [],
    "twin": "emuna-yom-yavesh",
-   "verdict": "טוב",
-   "status": "published"
+   "verdict": "חזק",
+   "status": "published",
+   "revised": "2026-09-08"
   },
   {
    "slug": "emuna-yom-yavesh",
@@ -682,7 +691,8 @@
    "clusters": [],
    "twin": null,
    "verdict": "טוב",
-   "status": "published"
+   "status": "published",
+   "revised": "2026-09-08"
   },
   {
    "slug": "hatchala-bapaam-hachamishit",
@@ -959,14 +969,15 @@
    "shift": "אפשר לשמוח עליו ולכאוב על עצמך באותה נשימה",
    "motion": 2,
    "takeaway": "P",
-   "opening": "הגדרה",
+   "opening": "סצנה/מצב",
    "shape": "הפרדה",
    "clusters": [
     "שתי אמיתות באותו לב"
    ],
-   "twin": "hodaya-beoto-lev",
-   "verdict": "טוב",
-   "status": "published"
+   "twin": null,
+   "verdict": "חזק",
+   "status": "published",
+   "revised": "2026-09-08"
   },
   {
    "slug": "kina-matzpen",
@@ -1111,8 +1122,9 @@
    "shape": "הפרדה",
    "clusters": [],
    "twin": null,
-   "verdict": "חלש",
-   "status": "published"
+   "verdict": "טוב",
+   "status": "published",
+   "revised": "2026-09-08"
   },
   {
    "slug": "lachatz-ken-shelo-mesarev",
@@ -1211,14 +1223,15 @@
    "inner": "\"כל עוד הוא כאן משהו לא בסדר\"",
    "reader": "רוצה שהפחד ייעלם",
    "shift": "אין פחד במקום שלא אכפת בו",
-   "motion": 2,
+   "motion": 3,
    "takeaway": "Y",
-   "opening": "הגדרה",
+   "opening": "סצנה/מצב",
    "shape": "הפרדה",
    "clusters": [],
    "twin": null,
-   "verdict": "טוב",
-   "status": "published"
+   "verdict": "חזק",
+   "status": "published",
+   "revised": "2026-09-08"
   },
   {
    "slug": "pachad-lo-margish-kmo-pachad",
@@ -1257,14 +1270,15 @@
    "shift": "אין עדיין מול מה לעמוד",
    "motion": 2,
    "takeaway": "P",
-   "opening": "הגדרה",
+   "opening": "סצנה/מצב",
    "shape": "הפרדה",
    "clusters": [
     "המשפט השני"
    ],
    "twin": null,
-   "verdict": "טוב",
-   "status": "published"
+   "verdict": "חזק",
+   "status": "published",
+   "revised": "2026-09-08"
   },
   {
    "slug": "rega-tov-betoch-tkufa-kasha",
@@ -1312,12 +1326,12 @@
   },
   {
    "slug": "rega-tov-lasim-lev",
-   "title": "בלי להשאיר סימן",
+   "title": "שתי שניות",
    "home": "good-moment",
    "gate": "good",
    "entries": [],
-   "move": "MECH",
-   "move2": "SCALE",
+   "move": "STEP",
+   "move2": null,
    "inner": "\"אני פסימי\"",
    "reader": "מחפש מה יתקלקל",
    "shift": "הראש בנוי לזכור סכנות",
@@ -1325,13 +1339,11 @@
    "takeaway": "P",
    "opening": "סצנה/מצב",
    "shape": "הפרדה",
-   "clusters": [
-    "הראש רושם רק את הרע",
-    "זהירות של מי ששילם"
-   ],
-   "twin": "ashma-shel-horut",
-   "verdict": "חופף",
-   "status": "published"
+   "clusters": [],
+   "twin": null,
+   "verdict": "טוב",
+   "status": "published",
+   "revised": "2026-09-08"
   },
   {
    "slug": "shlita-chamesh-dakot",
@@ -1536,12 +1548,13 @@
    "shift": "הוא רק מחזיק אותה עד שיהיה בך כוח",
    "motion": 2,
    "takeaway": "P",
-   "opening": "הגדרה",
+   "opening": "סצנה/מצב",
    "shape": "הפרדה",
    "clusters": [],
    "twin": null,
-   "verdict": "טוב",
-   "status": "published"
+   "verdict": "חזק",
+   "status": "published",
+   "revised": "2026-09-08"
   },
   {
    "slug": "tikva-mafchida",
@@ -1556,14 +1569,15 @@
    "shift": "זהירות של מי ששילם, לא פסימיות",
    "motion": 2,
    "takeaway": "P",
-   "opening": "הגדרה",
+   "opening": "סצנה/מצב",
    "shape": "הפרדה",
    "clusters": [
     "זהירות של מי ששילם"
    ],
    "twin": "rega-tov-hapachad-lismoach",
-   "verdict": "טוב",
-   "status": "published"
+   "verdict": "חזק",
+   "status": "published",
+   "revised": "2026-09-08"
   },
   {
    "slug": "tikva-yesh-hemshech",
