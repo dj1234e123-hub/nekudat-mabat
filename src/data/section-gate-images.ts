@@ -10,6 +10,7 @@
 import meshalim from '../assets/gates/stories-red.png';
 import tzadikim from '../assets/gates/stories-teal.png';
 import yoman from '../assets/gates/stories-blue.png';
+import chaim from '../assets/gates/stories-gold.png';
 import type { SectionSlug } from './sections';
 import type { ImageMetadata } from 'astro';
 
@@ -24,4 +25,7 @@ export const SECTION_GATE_IMAGES: Partial<Record<SectionSlug, SectionGateImage>>
   tzadikim: { image: tzadikim, position: '50% 50%' },
   // היומן הפתוח והעט הם הנושא — החיתוך יורד מעט מטה, אל השולחן
   yoman: { image: yoman, position: '50% 62%' },
+  // תצלומים ישנים ושעון כיס זהב, ממורכזים — נבדק בחיתוך הריבועי (הצר ביותר)
+  // ששניהם נשארים בתוך הפריים
+  chaim: { image: chaim, position: '50% 50%' },
 };
