@@ -8,17 +8,17 @@ Entonces sigues.
 Y lo haces,
 **bien**.
 
-Y eso es justo lo que esconde.
-Porque desde afuera todo continúa,
+Y eso es justo lo que oculta.
+Porque desde afuera todo sigue,
 como siempre.
 Entonces no hay verdadero **permiso**.
 
 Pero un sistema que sigue,
-funcionando,
-no es un sistema,
-al que se le puede cargar **más**.
+no sigue de la nada.
+Toma,
+de lo que te **queda**.
 
 ---
 
-No hay quien diga cuándo.
-Se escucha desde adentro.
+Nadie te dice cuándo.
+Eso se escucha por dentro.

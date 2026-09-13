@@ -24,6 +24,9 @@ export const FEELING_GROUPS = [
       { slug: 'loneliness', label: 'בדידות', line: 'גם כשיש אנשים מסביב.' },
       { slug: 'loss', label: 'אובדן', line: 'משהו חסר, כל הזמן.' },
       { slug: 'anger', label: 'כעס', line: 'רותח בפנים, שקט בחוץ.' },
+      { slug: 'longing', label: 'געגוע', line: 'רוצה לחזור, למשהו שכבר אי אפשר.' },
+      { slug: 'betrayal', label: 'בגידה', line: 'מישהו שסמכת עליו, לא עמד בזה.' },
+      { slug: 'insult', label: 'עלבון', line: 'משפט קטן אחד, שנשאר כל הערב.' },
     ],
   },
   {
@@ -41,6 +44,7 @@ export const FEELING_GROUPS = [
       { slug: 'envy', label: 'קנאה', line: 'שמחים בשבילם. כמעט.' },
       { slug: 'secret', label: 'סוד', line: 'הולך איתך לכל מקום.' },
       { slug: 'losing-control', label: 'חוסר שליטה', line: 'לראות את זה קורה, שוב.' },
+      { slug: 'missed-opportunity', label: 'החמצה', line: 'יש דרך אחרת, שלא הלכת בה.' },
     ],
   },
   {
@@ -57,6 +61,7 @@ export const FEELING_GROUPS = [
       { slug: 'standstill', label: 'תקיעות', line: 'עוד שבוע. שום דבר לא זז.' },
       { slug: 'exhaustion', label: 'עייפות', line: 'לקום בבוקר, וכבר לחכות לערב.' },
       { slug: 'waiting', label: 'המתנה', line: 'לבדוק את הטלפון, עוד פעם.' },
+      { slug: 'ruminating', label: 'מחשבות חוזרות', line: 'אותה מחשבה, שוב ושוב, כל היום.' },
     ],
   },
   {
@@ -74,6 +79,9 @@ export const FEELING_GROUPS = [
       { slug: 'new-beginning', label: 'התחלה חדשה', line: 'דף חדש. היד קצת רועדת.' },
       { slug: 'confidence', label: 'ביטחון עצמי', line: 'לדעת את התשובה, ולשתוק.' },
       { slug: 'good-moment', label: 'רגע טוב', line: 'אולי היה אחד כזה היום.' },
+      { slug: 'joy', label: 'שמחה', line: 'קרה משהו טוב, וזה קצת מפחיד.' },
+      { slug: 'pride', label: 'גאווה', line: 'עשית משהו, ולא ידעת אם מותר להגיד.' },
+      { slug: 'relief', label: 'הקלה', line: 'זה נגמר, ואי אפשר עדיין לנשום עמוק.' },
     ],
   },
   {

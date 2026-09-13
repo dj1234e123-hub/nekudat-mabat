@@ -1,24 +1,24 @@
 ---
 feeling: loneliness
 date: 2026-08-21
-title: Una casa llena
+title: No hay de qué quejarse
 ---
-Se puede estar en casa,
-con todos los que te quieren,
-y aun así,
-sentir **distancia**.
+En una mesa llena,
+todos hablan.
+Y en medio de todo eso,
+una nostalgia sin **nombre**.
 
-Y eso confunde,
-porque no hay de qué quejarse.
-Hay gente. Hay calor.
-Hay **pertenencia**.
+Y llega el reproche:
+lo tienes todo.
+No hay de qué **quejarse**.
+¿Entonces qué te falta?
 
-Solo falta una cosa:
-que alguien sepa,
-qué te está pasando,
-sin que tengas que **explicar**.
+Pero la nostalgia no se queja.
+No dice que algo está mal.
+Dice que algo,
+**todavía** no llegó.
 
 ---
 
 La nostalgia sabe vivir,
-también en una casa llena.
+incluso en una casa llena.

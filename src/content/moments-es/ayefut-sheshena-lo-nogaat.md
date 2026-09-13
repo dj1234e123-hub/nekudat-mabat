@@ -1,24 +1,24 @@
 ---
 feeling: exhaustion
 date: 2026-08-22
-title: El mismo lugar
+title: Desde el mismo lugar
 ---
-Te levantaste tras ocho horas.
-Y el día empieza,
-exactamente en el mismo lugar,
-donde terminó el **anterior**.
+La mañana no empezó.
+Continuó.
+Desde el mismo **lugar**,
+donde terminó ayer.
 
-Y suena a excusa.
-Porque dormiste, descansaste,
-y aun así no hay fuerzas.
-Entonces quizás ya es **permanente**.
+Y te dices que es cansancio,
+que va a pasar.
+Pero no pasa,
+hace **meses**.
 
-Pero lo que se vació,
+Porque lo que se vació,
 no es el cuerpo.
-Es el lugar del que vienen,
-las ganas, la paciencia y el **interés**.
+Es el lugar de donde vienen,
+las ganas y la paciencia y **el interés**.
 
 ---
 
-Diste más de lo que entró,
+Diste más de lo que entraba,
 durante demasiado tiempo.
