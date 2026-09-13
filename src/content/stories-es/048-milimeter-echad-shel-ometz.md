@@ -1,7 +1,7 @@
 ---
 # תרגום של ארכיון #048 (2026-08-30). התמונה נקייה מכיתוב — אותה תמונה כמו בעברית.
 title: "Un milímetro de coraje"
-section: yoman
+section: chaim
 archiveId: "048"
 cover: ../../assets/covers/048.png
 coverAlt: "Foto a ras del suelo: la rueda de un auto pesado descansa sobre una piedra pequeña que lo levanta apenas del asfalto agrietado, a la luz baja del amanecer; en el fondo desenfocado, una barra de pesas apoyada en la tierra"

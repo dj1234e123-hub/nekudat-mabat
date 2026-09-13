@@ -4,7 +4,7 @@
 # (gemelo de idioma + hreflang). La portada no lleva texto, así que es
 # la misma imagen que en hebreo.
 title: "¿Qué quieres hacer con tu vida?"
-section: yoman
+section: chaim
 cover: ../../assets/covers/ma-ata-rotze-bachayim.png
 coverAlt: "Un guante de boxeo antiguo y desgastado sobre una mesa de madera, junto a un cuaderno abierto con una lapicera, una pila de libros y un vaso de lápices, y por la ventana el perfil de una ciudad a la luz del atardecer"
 date: 2026-09-08T18:30:00Z

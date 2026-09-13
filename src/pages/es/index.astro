@@ -30,6 +30,7 @@ const GATE_EMOJI: Record<SectionSlug, string> = {
   meshalim: '📖',
   tzadikim: '✨',
   yoman: '📔',
+  chaim: '🌍',
 };
 const worlds = SECTION_SLUGS.map((slug) => {
   const meta = SECTIONS_META[slug];
@@ -192,13 +193,13 @@ const DESCRIPTION =
         )
       }
 
-      <!-- דלת הסיפורים: שלושת עולמות התוכן -->
+      <!-- דלת הסיפורים: ארבעת עולמות התוכן -->
       {
         worlds.length > 0 && (
           <div class="door-stories" style="grid-area: stories">
             <div class="stories-header">
               <h2>Historias</h2>
-              <p>Tres mundos. Elige por dónde empezar.</p>
+              <p>Cuatro mundos. Elige por dónde empezar.</p>
             </div>
 
             <div class="stories-grid">

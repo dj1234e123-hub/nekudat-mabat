@@ -3,7 +3,7 @@
 # para el emparejamiento automático (gemelo de idioma + hreflang).
 # La portada no lleva texto, así que es la misma imagen que en hebreo.
 title: "Si sobrevives"
-section: yoman
+section: chaim
 cover: ../../assets/covers/im-tisrod.png
 coverAlt: "Un shofar sobre una vieja tela de arpillera en la cubierta de un barco, junto a una taza de hojalata y una cuchara, y más allá de la baranda, el Carmelo y Haifa al atardecer"
 date: 2026-09-10T17:00:00Z

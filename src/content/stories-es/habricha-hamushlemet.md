@@ -2,7 +2,7 @@
 # תרגום של "הבריחה המושלמת" (2026-08-30). התמונה נקייה מכיתוב עברי (שלט באנגלית) —
 # אותה תמונה כמו בעברית.
 title: "La fuga perfecta"
-section: yoman
+section: chaim
 cover: ../../assets/covers/habricha-hamushlemet.png
 coverAlt: "La silueta de un hombre de traje oscuro camina por el pasillo de mármol dorado de un banco, con una bolsa de papel marrón en la mano; un cartel en la pared marca el 11 de julio de 1969, y la luz del sol entra por las puertas abiertas al final del pasillo"
 date: 2026-08-30T18:00:00Z
