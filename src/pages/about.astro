@@ -154,6 +154,9 @@ const DESCRIPTION =
           אני מלווה בחורים בתהליכים אישיים,<br />
           בעיקר במקומות שבהם הם מרגישים תקועים, מבולבלים או מחפשים דרך לזוז.
         </p>
+        <p class="liluy-note">
+          <a href="/liluy-ishi/" data-ph="liluy_link_about">אפשר לקרוא על הליווי האישי שאני מציע ←</a>
+        </p>
         <p>
           ההכשרה שלי כוללת NLP ברמת Master,<br />
           עזרה ראשונה נפשית,<br />
@@ -313,6 +316,25 @@ const DESCRIPTION =
 
   .opening p + p {
     margin-top: 1.7rem;
+  }
+
+  /* קישור שקט לעמוד "ליווי אישי" — לא כפתור, לא הבטחה נוספת. אותו רישום
+     עדין כמו הקישורים השקטים האחרים באתר (WriteToMe וכו'). */
+  .liluy-note {
+    text-align: center;
+    font-size: 0.98rem;
+    margin-top: 0.5rem !important;
+  }
+
+  .liluy-note a {
+    color: var(--muted);
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+    font-weight: 500;
+  }
+
+  .liluy-note a:hover {
+    color: var(--teal);
   }
 
   /* כותרת מעבר — בין גוף לכותרת. בלי צבע ובלי קו: הריווח עושה את העבודה. */
