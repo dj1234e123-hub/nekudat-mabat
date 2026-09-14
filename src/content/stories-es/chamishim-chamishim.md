@@ -3,7 +3,7 @@
 # hebreo para el emparejamiento automático (gemelo de idioma + hreflang).
 # Misma portada que la versión hebrea (sin texto en la imagen).
 title: "Cincuenta-cincuenta"
-section: yoman
+section: chaim
 cover: ../../assets/covers/chamishim-chamishim.png
 coverAlt: "Vista a través de la ventana de un búnker de noche: cinco estelas de luz roja cruzan el cielo, y abajo una vieja pantalla de radar verde, un teléfono rojo, una taza de hojalata y un lapicero sobre un escritorio lleno de papeles"
 date: 2026-09-11T14:00:00Z

@@ -3,7 +3,7 @@
 # hebreo para el emparejamiento automático (gemelo de idioma + hreflang).
 # La portada no lleva texto, así que es la misma imagen que en hebreo.
 title: "Cien años de retraso"
-section: yoman
+section: chaim
 cover: ../../assets/covers/meah-shana-beichur.png
 coverAlt: "Un rollo de la Torá abierto y un talit sobre una mesa de madera antigua, a la luz dorada del atardecer que entra por una ventana con vista a las colinas de Jerusalén, y una Estrella de David bordada al fondo"
 date: 2026-09-14T06:00:00Z
