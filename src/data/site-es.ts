@@ -19,22 +19,29 @@ export const SITE_ES = {
 } as const;
 
 /** עולמות הסיפורים בספרדית — תווית, שורה וקישור, לפי אותו slug של sections.ts.
-    התרגום שומר על העיקרון "השורה מסבירה ולא רומזת" — היא גם תיאור המטא בגוגל. */
+    התרגום שומר על העיקרון "השורה מסבירה ולא רומזת" — היא גם תיאור המטא בגוגל.
+    "chaim" נוסף ב-2026-09-13 יחד עם העולם העברי; תרגום ראשוני, טרם עבר
+    בדיקת דוברת ספרדית (כמו כל שאר האזור — ראו החלטת "השקת האזור הספרדי"). */
 export const SECTIONS_ES: Record<string, { label: string; line: string; linkText: string }> = {
   meshalim: {
     label: 'Parábolas',
-    line: 'Un rey, un puente, un águila. Ninguno existió — y justo por eso es más fácil verte en ellos.',
+    line: 'Un rey, un puente, un águila — personajes inventados justo para que te veas en ellos.',
     linkText: 'Todas las parábolas',
   },
   tzadikim: {
     label: 'Historias de tzadikim',
-    line: 'Ni milagros ni prodigios. Un pequeño momento en el que un gran hombre hizo lo que hizo — y ahí está todo.',
+    line: 'Un momento en la vida de un gran hombre — y en él se ve por qué era realmente grande.',
     linkText: 'Todas las historias de tzadikim',
   },
   yoman: {
     label: 'De mi diario',
-    line: 'No son historias que escuché. Cosas que viví de cerca — incluso las que no me dejan bien parado.',
+    line: 'Lo que me pasó, tal como pasó — incluidos los momentos en que no fui el mejor de mí.',
     linkText: 'Todo el diario',
+  },
+  chaim: {
+    label: 'De la vida',
+    line: 'Personas reales, a las que les pasó algo difícil de creer — y aun así pasó.',
+    linkText: 'Todo de la vida',
   },
 };
 
@@ -71,6 +78,14 @@ export const FEELING_LABELS_ES: Record<string, string> = {
   prayer: 'Oración',
   providence: 'Providencia',
   gratitude: 'Gratitud',
+  longing: 'Añoranza',
+  betrayal: 'Traición',
+  insult: 'Ofensa',
+  'missed-opportunity': 'Ocasión perdida',
+  ruminating: 'Pensamientos que no paran',
+  joy: 'Alegría',
+  pride: 'Orgullo',
+  relief: 'Alivio',
 };
 
 /** כותרות הקבוצות בספרדית — לפי אותו slug של הרשימה העברית. */
@@ -121,4 +136,12 @@ export const FEELING_LINES_ES: Record<string, string> = {
   prayer: 'Hablar, sin saber si alguien escucha.',
   providence: 'En medio de la historia, sin conocer el final.',
   gratitude: 'No siempre hay fuerzas para decir gracias.',
+  longing: 'Quieres volver, a algo que ya no se puede.',
+  betrayal: 'Alguien en quien confiabas, no estuvo a la altura.',
+  insult: 'Una frase pequeña, que se quedó toda la noche.',
+  'missed-opportunity': 'Hay otro camino, que no tomaste.',
+  ruminating: 'El mismo pensamiento, una y otra vez, todo el día.',
+  joy: 'Pasó algo bueno, y da un poco de miedo.',
+  pride: 'Hiciste algo, y no sabías si podías decirlo.',
+  relief: 'Terminó, y todavía no puedes respirar hondo.',
 };

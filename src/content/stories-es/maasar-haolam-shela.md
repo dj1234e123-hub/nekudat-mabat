@@ -5,7 +5,7 @@
 # EE. UU. — documentada por StoryCorps (2011) y MPR News.
 # Escrito en párrafos normales, como el resto de las historias del sitio.
 title: "Su cadena perpetua"
-section: yoman
+section: chaim
 cover: ../../assets/covers/maasar-haolam-shela.png
 coverAlt: "Una celda oscura, unas esposas rotas y una cadena partida en el suelo, y un pequeño brote verde creciendo en una grieta junto a un rayo de luz que entra por una ventana enrejada"
 date: 2026-09-02T18:01:00Z

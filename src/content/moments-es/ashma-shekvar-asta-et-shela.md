@@ -3,22 +3,22 @@ feeling: guilt
 date: 2026-08-22
 title: Una deuda pagada
 ---
-La culpa tiene un solo trabajo,
-y lo hace rápido.
-Marca que cruzaste una línea,
-que para ti **importa**.
+Pediste perdón.
+Reparaste lo que se podía.
+Y la noche, todavía,
+viene de **visita**.
 
-Y en el momento en que lo entiendes,
-ella terminó.
-Y sin embargo,
-**se queda**.
+Y si todavía está aquí,
+tal vez no reparaste de verdad.
+Tal vez te falta,
+un poco **más**.
 
-Pero todo lo que sigue,
-ya no arregla nada.
-Solo cobra un precio,
-por una deuda ya **pagada**.
+Pero la culpa terminó hace tiempo.
+Marcó una línea,
+y la entendiste.
+Lo que sigue, cobra por una deuda ya **pagada**.
 
 ---
 
 Queda una sola pregunta:
-qué hacemos desde aquí.
+qué hacer desde aquí.

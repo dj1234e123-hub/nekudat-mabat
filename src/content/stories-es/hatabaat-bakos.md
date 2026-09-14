@@ -3,7 +3,7 @@
 # que el hebreo para el emparejamiento automático (gemelo de idioma + hreflang).
 # La portada no lleva texto, así que es la misma imagen que en hebreo.
 title: "El anillo en el vaso de cartón"
-section: yoman
+section: chaim
 cover: ../../assets/covers/hatabaat-bakos.png
 coverAlt: "Una mano deja caer monedas en un vaso de cartón sobre una acera, a la luz del atardecer, y entre ellas brilla un anillo de compromiso"
 date: 2026-09-01T16:00:00Z

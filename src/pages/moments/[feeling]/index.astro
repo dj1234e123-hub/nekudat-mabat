@@ -15,6 +15,8 @@ import Base from '../../../layouts/Base.astro';
 import MomentBody from '../../../components/MomentBody.astro';
 import GateArt from '../../../components/GateArt.astro';
 import FeelingDoors from '../../../components/FeelingDoors.astro';
+import LiluyLink from '../../../components/LiluyLink.astro';
+import { LILUY_FEELING_SLUGS } from '../../../data/liluy-links';
 import {
   FEELING_GROUPS,
   FEELING_SLUGS,
@@ -123,6 +125,8 @@ const altLangHref = hasEsTwin ? `/es/momentos/${param}/` : '/es/momentos/';
               </li>
             ))}
           </ul>
+
+          {LILUY_FEELING_SLUGS.includes(feeling) && <LiluyLink />}
 
           <nav class="page-footer">
             <a href="/moments/">→ לכל המצבים</a>

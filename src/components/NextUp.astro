@@ -28,6 +28,7 @@ import { DEFAULT_COVERS } from '../data/default-covers';
 import { feelingLabel, groupOf, type FeelingSlug } from '../data/feelings';
 import { parseMoment } from '../lib/moment-format';
 import { readingLabel } from '../lib/reading-time';
+import { storyOpening } from '../lib/story-opening';
 import type { NextStory } from '../lib/related';
 
 interface Props {
@@ -66,6 +67,7 @@ const momentCard = moment
           {candidates.map(({ story, reason }, i) => {
             const { title, section } = story.data;
             const cover = story.data.cover ?? DEFAULT_COVERS[section];
+            const opening = storyOpening(story.body);
             const meta = SECTIONS_META[section];
             const world = es ? SECTIONS_ES[section].label : meta.label;
             return (
@@ -83,6 +85,7 @@ const momentCard = moment
                       {t.next} · {world}
                     </span>
                     <span class="next-title">{title}</span>
+                    {opening && <span class="next-opening">{opening}</span>}
                     <span class="next-meta">
                       {reason} · <span class="nowrap">{readingLabel(story, lang)}</span>
                     </span>
@@ -236,6 +239,20 @@ const momentCard = moment
 
   .next-link:hover .next-title {
     color: var(--teal);
+  }
+
+  /* שתי שורות הפתיחה של הסיפור הבא — טעימה, לא תקציר. נקטם לשתי שורות
+     כדי שהכרטיס יישאר בגובה קבוע ולא יתחרה בסיפור שזה עתה נגמר. */
+  .next-opening {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--secondary);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    margin-top: 0.1rem;
   }
 
   .next-meta {

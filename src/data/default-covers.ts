@@ -10,6 +10,9 @@ export const DEFAULT_COVERS: Record<SectionSlug, ImageMetadata> = {
   meshalim: empowerment,
   tzadikim: baalShemTov,
   yoman: empowerment,
+  // אין עדיין תמונת שער זמנית ייעודית לעולם החדש (מהחיים) — נופל לאחור
+  // לאותה תמונה כללית כמו יומן, עד שתיווצר אחת משלו.
+  chaim: empowerment,
   shabbat,
 };
 

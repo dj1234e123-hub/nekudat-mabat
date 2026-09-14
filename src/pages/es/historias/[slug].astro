@@ -183,6 +183,44 @@ const relatedMoment = momentForStory(story, await getCollection('momentsEs', isP
     margin-top: 2.5rem;
   }
 
+  /* Foto dentro del relato — mismo estilo que la página hebrea (2026-09-14).
+     מגיע מיד אחרי השורה שאומרת את השם — הפנים הם תשובה, לא הקדמה, ולכן
+     אינם בשער. "תצלום מודפס": מסגרת לבנה דקה וצל רך, כמו בעמוד מי אני.
+     חיתוך 4:5 סביב הפנים כדי שיהיו גדולים וברורים גם בטלפון; נקודת המיקוד
+     היא של הצילום (הפנים בתצלום המקורי יושבים ב-41% מהרוחב).
+     ה-Markdown של Astro עוטף את התמונה ב-<p> — לכן האיפוס שלו כאן. */
+  .story-body :global(.inline-photo) {
+    width: min(100%, 22rem);
+    margin: 2.25rem auto;
+    padding: 0.45rem 0.45rem 0.6rem;
+    background: #fff;
+    border-radius: var(--radius);
+    box-shadow: 0 4px 18px rgba(46, 42, 36, 0.14);
+  }
+
+  .story-body :global(.inline-photo p) {
+    margin: 0;
+  }
+
+  .story-body :global(.inline-photo img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: 41% 50%;
+    border-radius: calc(var(--radius) - 0.3rem);
+  }
+
+  .story-body :global(.inline-photo figcaption) {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--secondary);
+    text-align: center;
+    margin-top: 0.55rem;
+  }
+
   .end-dot {
     display: block;
     width: 0.55rem;

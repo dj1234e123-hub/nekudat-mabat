@@ -3,22 +3,22 @@ feeling: hope
 date: 2026-08-21
 title: Quien ya pagó
 ---
-La esperanza asusta,
-más de lo que se cuenta.
-Porque esperar,
-es aceptar de **nuevo**.
+Dijeron que hay un nuevo camino.
+Y algo en ti,
+ya cerró la puerta,
+antes de **escuchar**.
 
-Aceptar que quizás no pase.
-Y quien ya se decepcionó,
-sabe exactamente,
-cuánto **cuesta**.
+Y entonces llega el juicio:
+seguro es pesimismo.
+Así no se construye,
+así no se **empieza**.
 
-Pero esta cautela,
-no es pesimismo.
-Es la cautela de alguien,
-que ya **pagó**.
+Pero esto no es pesimismo.
+Quien ya tuvo esperanza y se rompió,
+sabe cuánto cuesta.
+Es la cautela, de quien ya **pagó**.
 
 ---
 
 Quien más se rompió,
-más cuida al esperar.
+más cuidado tiene al esperar.

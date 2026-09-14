@@ -1,0 +1,359 @@
+---
+// עמוד "ליווי אישי" — ההצעה החדשה של אפרים, לבחורים מהעולם הישיבתי/דתי
+// בתקופה של קושי, בלבול או התרחקות מהמסגרת.
+//
+// שלושה סבבי תכנון קדמו לשורת הקוד הראשונה כאן (אבחון האתר, הגדרת הזהות
+// המקצועית, תכנון ההצעה והמחיר), ואחריהם שלושה סבבי הדגמה ויזואלית עד
+// שהמבנה הבשיל. ההכרעה הסופית: לא עמוד שירות מחולק לאזורים, אלא מכתב
+// זורם אחד — אותו מבנה בדיוק כמו src/pages/about.astro (.letter/.opening/
+// .quiet/.photo/.closing/.ps) — כדי שהעמוד ירגיש כהמשך של "מי אני" ולא
+// כדף נחיתה. שום תרשים שלבים, שום תגית הכשרות, שום כרטיסי CTA זה-לצד-זה.
+//
+// בלי מחיר: הוחלט (שלב 3) שהתמחור מוכרע בנפרד ואינו מופיע כאן בשלב זה.
+// בלי נתונים מובנים ובלי גרסה ספרדית: זה עמוד שירות, לא תוכן, ובלי מקבילה
+// באזור הספרדי (לא נדון ולא הוחלט שם כלל).
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import JoinGroup from '../components/JoinGroup.astro';
+import { SITE } from '../data/site';
+import portrait from '../assets/efraim.jpg';
+import pathImage from '../assets/gates/stuck.jpg';
+
+const DESCRIPTION =
+  'ליווי אישי לבחורים מהעולם הישיבתי/דתי בתקופה של קושי, בלבול או התרחקות מהמסגרת. שיחה אמיתית עם אפרים עטיה, יוצר נקודת מבט.';
+
+// שתי דלתות כניסה (שלב 3, חלק 11) — אותו אדם ואותו מספר, שתי הודעות
+// פתיחה שונות: הבחור עצמו, או מישהו שפונה בשמו.
+const talkMessage = 'שלום אפרים, קראתי על הליווי האישי באתר ורציתי לדבר.\n';
+const talkHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(talkMessage)}`;
+
+const onBehalfMessage = 'שלום אפרים, אני פונה בשם מישהו קרוב אליי לגבי הליווי האישי.\n';
+const onBehalfHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(onBehalfMessage)}`;
+---
+
+<Base title="ליווי אישי לבחורים בקושי · נקודת מבט" description={DESCRIPTION}>
+  <main>
+    <article class="letter">
+      <div class="letter-head">
+        <span class="seal" aria-hidden="true"></span>
+        <h1>ליווי אישי לבחורים מהעולם הישיבתי/דתי</h1>
+      </div>
+
+      <div class="letter-body">
+        <div class="opening">
+          <p>
+            קשה להסביר מה עובר עליך.<br />
+            לא צריך להגיע עם תשובות.<br />
+            אפשר להתחיל מהמקום שבו אתה נמצא.
+          </p>
+        </div>
+
+        <p>אולי משהו כבר לא מסתדר לך, ואתה לא לגמרי מבין למה.</p>
+        <p>אולי התרחקת מהמסגרת, ולא ברור לך מה הצעד הבא.</p>
+        <p>שמעת כבר הרבה עצות. אף אחת מהן לא באמת נגעה במה שקורה בפנים.</p>
+        <p>קשה לך להסביר לאחרים מה עובר עליך, כי גם אתה עדיין מנסה להבין את זה.</p>
+
+        <div class="atmo">
+          <Image
+            src={pathImage}
+            alt="שביל אבן בערפל, ופנס דולק בהמשך הדרך"
+            widths={[480, 800]}
+            sizes="(max-width: 40rem) 100vw, 34rem"
+          />
+        </div>
+
+        <p class="hook-line">
+          אני לא מגיע כדי להחליט בשבילך מה אתה צריך לעשות.
+          <span class="hook-rule" aria-hidden="true"></span>
+        </p>
+
+        <p>קודם צריך להבין מה קורה. משם אפשר להתחיל לראות מה נכון לך.</p>
+        <p>אז פשוט מתחילים לדבר. לא צריך לדעת מראש מה להגיד.</p>
+        <p>
+          משם מנסים להבין מה באמת קורה — מה השתנה, מה קשה, מה יושב מתחת למה
+          שרואים מבחוץ.
+        </p>
+        <p>מנסים למצוא מה בדיוק תוקע אותך. לא הכול ביום אחד. שלב אחרי שלב.</p>
+        <p>ומשם, לאט, מתחילה להיראות כיוון — כיוון שלך, לא כיוון שמישהו אחר החליט בשבילך.</p>
+
+        <h3 class="quiet">קצת עליי</h3>
+
+        <figure class="photo">
+          <Image src={portrait} alt={SITE.ownerName} widths={[160, 320]} sizes="9.5rem" loading="lazy" />
+        </figure>
+
+        <p>אני אפרים עטיה, יוצר "נקודת מבט".</p>
+        <p>אני לא בא לתת לך תשובות מוכנות.</p>
+        <p>
+          אני רוצה להבין איתך מה באמת קורה — מה השתנה, מה קשה, מה אתה כבר לא
+          מצליח להגיד בקול, ומה אולי עומד מאחורי הדברים שרואים מבחוץ.
+        </p>
+        <p>ומשם, לנסות להבין יחד מה יכול להיות הצעד הבא.</p>
+        <p>
+          מה שאני מביא איתי לשיחה זה גם הכשרה ב-NLP ברמת Master, בעזרה ראשונה
+          נפשית, ובקורס 12 הצעדים מטעם רטורנו. אבל בעיקר, השיחה עצמה תמיד
+          מתחילה באדם שיושב מולי.
+        </p>
+        <p>
+          זה בעצם אותו דבר שאני מנסה לעשות דרך "נקודת מבט" — לעצור רגע,
+          להסתכל מחדש, ולראות אם יש עוד דרך להסתכל על מה שקורה.
+        </p>
+
+        <div class="closing">
+          <p class="line-emphasis">
+            לא חייבים לדעת עכשיו לאן הדרך מובילה.<br />
+            אפשר להתחיל בלדבר,<br />
+            להבין מה קורה,<br />
+            ולראות את הצעד הבא.
+          </p>
+        </div>
+
+        <div class="ps">
+          <a class="cta" href={talkHref} rel="noopener" target="_blank" data-ph="liluy_talk">לדבר איתי</a>
+          <p class="talk-note">וואטסאפ או טלפון — איך שנוח לך.</p>
+          <p class="talk-phone">
+            או בטלפון: <a href={SITE.phoneHref} data-ph="phone_call">{SITE.phone}</a>
+          </p>
+          <p class="talk-alt">
+            פונה בשם מישהו קרוב אליך?
+            <a href={onBehalfHref} rel="noopener" target="_blank" data-ph="liluy_on_behalf">אפשר לכתוב גם ככה</a>,
+            ונתחיל משם.
+          </p>
+          <p class="boundary-note">
+            הליווי הוא שיחה אישית ומעשית — לא טיפול פסיכולוגי או פסיכיאטרי,
+            ולא תחליף לו. במצב שדורש מענה מקצועי, הכתובת הנכונה היא גורם
+            מוסמך, ואפשר גם לכתוב לי כדי לחשוב יחד מה נכון.
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <JoinGroup />
+
+    <script is:inline>
+      (function () {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if (!('IntersectionObserver' in window)) return;
+
+        var els = document.querySelectorAll(
+          '.letter-body > p, .opening > p, .quiet, .photo, .closing, .ps'
+        );
+        els.forEach(function (el) {
+          el.classList.add('will-reveal');
+        });
+
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                e.target.classList.add('revealed');
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { rootMargin: '0px 0px -8% 0px' }
+        );
+
+        els.forEach(function (el) {
+          io.observe(el);
+        });
+      })();
+    </script>
+  </main>
+</Base>
+
+<style>
+  /* המכתב: אותו "דף" בהיר מעט מהשמנת, גבול דק, צל רך — כמו ב"מי אני". */
+  .letter {
+    background: #fffdf6;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: 0 2px 12px rgba(46, 42, 36, 0.07);
+    padding: 2.1rem 1.3rem 2.5rem;
+    margin-top: 0.5rem;
+  }
+
+  @media (min-width: 40rem) {
+    .letter {
+      padding: 3rem 2.75rem 3.25rem;
+    }
+  }
+
+  .letter-head {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .letter-head .seal {
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .letter-head h1 {
+    font-size: clamp(1.55rem, 6vw, 1.95rem);
+    line-height: 1.35;
+    max-width: 24rem;
+    margin-inline: auto;
+  }
+
+  .letter-body {
+    font-size: 1.13rem;
+    line-height: 2;
+  }
+
+  .letter-body p + p {
+    margin-top: 1.2rem;
+  }
+
+  .opening {
+    margin-bottom: 2.6rem;
+  }
+
+  /* המשפט המרכזי — אותו מנגנון "כותרת-וו" של עמוד רגע: סריפ כחול + קו זהב
+     דק, כאן כהדגשה טיפוגרפית בתוך הזרימה, לא כרכיב UI נפרד. */
+  .hook-line {
+    text-align: center;
+    font-family: var(--font-display);
+    font-weight: 500;
+    color: var(--blue);
+    font-size: 1.32rem;
+    line-height: 1.6;
+    margin: 2.4rem auto !important;
+    max-width: 23rem;
+  }
+
+  .hook-rule {
+    display: block;
+    width: 4rem;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.85;
+    margin: 1.3rem auto 0;
+  }
+
+  /* תמונת אווירה — משבצת בתוך המכתב, לא "באנר גיבור" */
+  .atmo {
+    border-radius: calc(var(--radius) / 1.3);
+    overflow: hidden;
+    margin: 2.3rem 0;
+  }
+
+  .quiet {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--ink);
+    margin: 2.4rem 0 0.8rem;
+  }
+
+  .photo {
+    width: 9.5rem;
+    padding: 0.4rem 0.4rem 0.85rem;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    box-shadow: 0 4px 14px rgba(46, 42, 36, 0.13);
+    transform: rotate(-2deg);
+    margin: 1.7rem auto 1.8rem;
+  }
+
+  .photo img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+
+  .closing {
+    margin-top: 2.8rem;
+    text-align: center;
+  }
+
+  .closing::before {
+    content: '';
+    display: block;
+    width: 3rem;
+    height: 2px;
+    border-radius: 1px;
+    background: var(--gold);
+    margin: 0 auto 1.5rem;
+  }
+
+  .closing .line-emphasis {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--ink);
+    line-height: 1.65;
+  }
+
+  .ps {
+    margin-top: 2.4rem;
+    padding-top: 1.6rem;
+    border-top: 1px solid var(--line);
+    text-align: center;
+  }
+
+  .talk-note {
+    color: var(--secondary);
+    font-size: 0.95rem;
+    margin-top: 0.9rem !important;
+  }
+
+  .talk-phone {
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  .talk-phone a {
+    color: var(--teal);
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .talk-alt {
+    color: var(--muted);
+    font-size: 0.88rem;
+    margin-top: 0.6rem !important;
+  }
+
+  .talk-alt a {
+    color: var(--teal);
+    font-weight: 600;
+  }
+
+  .boundary-note {
+    color: var(--muted);
+    font-size: 0.82rem;
+    line-height: 1.75;
+    margin-top: 1.4rem !important;
+  }
+
+  /* נשימת גילוי עדינה — אותו מנגנון בדיוק כמו בעמוד "מי אני" הקיים */
+  .letter-body :global(.will-reveal) {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 0.6s ease,
+      transform 0.6s ease;
+  }
+
+  .letter-body :global(.will-reveal.revealed) {
+    opacity: 1;
+    transform: none;
+  }
+
+  .letter-body :global(.photo.will-reveal) {
+    transform: rotate(-2deg) translateY(12px);
+  }
+
+  .letter-body :global(.photo.will-reveal.revealed) {
+    transform: rotate(-2deg);
+  }
+</style>

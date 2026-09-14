@@ -1,24 +1,24 @@
 ---
 feeling: fear
 date: 2026-08-21
-title: Siempre del mañana
+title: Siempre habla del mañana
 ---
-El miedo casi no habla,
-del ahora.
-Habla siempre del mañana,
-de lo que **pasaría si**.
+Todavía no pasó nada.
+Pero en la cabeza ya pasó:
+la conversación, la respuesta,
+y lo que vendría **después**.
 
-Y lo enfrentas ahora,
+Y luchas contra eso ahora,
 con toda la fuerza.
-Como si ya estuviera pasando,
-como si ya estuviera **aquí**.
+Como si ya estuviera aquí,
+y ya fuera **tarde**.
 
-Pero son cosas,
-que todavía no pasaron.
-Y quizás no pasen nunca.
-No hay frente a qué **pararse**.
+Pero el miedo casi nunca habla del ahora.
+Siempre habla del **mañana**.
+Y frente al mañana,
+todavía no hay nada.
 
 ---
 
-Agota como la cosa real.
+Cansa como si fuera real.
 Solo que sin la cosa.

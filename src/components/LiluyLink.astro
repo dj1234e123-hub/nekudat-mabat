@@ -1,0 +1,30 @@
+---
+// קישור שקט לעמוד "ליווי אישי" — לא כפתור, לא CTA גורף. מופיע רק בתוכן
+// שנבחר במפורש (src/data/liluy-links.ts) כי החיבור בו אמיתי, לפי אותו
+// עיקרון עדין כמו WriteToMe: שורה אחת, מוחבאת בשקט אחרי שהקורא כבר סיים.
+---
+
+<p class="liluy-link">
+  <a href="/liluy-ishi/" data-ph="liluy_link_content">אפשר גם לקרוא על הליווי האישי שאני מציע ←</a>
+</p>
+
+<style>
+  .liluy-link {
+    text-align: center;
+    margin-top: 1.8rem;
+    font-size: 0.9rem;
+  }
+
+  .liluy-link a {
+    color: var(--muted);
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+    font-weight: 500;
+    display: inline-block;
+    padding-block: 0.5rem;
+  }
+
+  .liluy-link a:hover {
+    color: var(--teal);
+  }
+</style>

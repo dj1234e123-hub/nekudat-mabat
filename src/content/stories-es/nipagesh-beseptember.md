@@ -3,7 +3,7 @@
 # que el hebreo para el emparejamiento automático (gemelo de idioma + hreflang).
 # La portada no lleva texto, así que es la misma imagen que en hebreo.
 title: "Nos vemos el uno de septiembre"
-section: yoman
+section: chaim
 cover: ../../assets/covers/nipagesh-beseptember.png
 coverAlt: "Un viejo escritorio de aula en el gueto, un fajo de diplomas amarillentos atado con una cinta roja, un vaso con lápices, y por la ventana los edificios en ruinas de la ciudad a la luz del atardecer"
 date: 2026-09-07T19:30:00Z

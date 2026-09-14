@@ -3,10 +3,10 @@
 # hebreo para el emparejamiento automático (gemelo de idioma + hreflang).
 # La portada no lleva texto, así que es la misma imagen que en hebreo.
 title: "Al otro lado de la montaña"
-section: yoman
+section: chaim
 cover: ../../assets/covers/betzad-hasheni-shel-hahar.png
 coverAlt: "Un martillo y un cincel sobre fragmentos de roca, detrás un camino de tierra abierto a través de la montaña, y por la brecha en la piedra, una aldea en el valle a la luz del atardecer"
-date: 2026-09-11T07:00:00Z
+date: 2026-09-09T18:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "El médico estaba al otro lado de la montaña, y el camino alrededor era demasiado largo. Después de que murió su esposa, Dashrath Manjhi vendió sus cabras, compró un martillo y un cincel, y subió a la montaña. La aldea se reía de él."
 ---

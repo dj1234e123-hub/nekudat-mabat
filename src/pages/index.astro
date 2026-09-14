@@ -1,7 +1,7 @@
 ---
 // דף הבית — הכניסה לאתר, לא רשימת הסיפורים.
 // שני עולמות התוכן המרכזיים מוצגים כשתי דלתות בקנה מידה שווה: רגע של נקודת
-// מבט (קשת + רגע מקופל) מול שלושת עולמות הסיפורים (קשתות קטנות). שתי
+// מבט (קשת + רגע מקופל) מול ארבעת עולמות הסיפורים (קשתות קטנות). שתי
 // הדלתות חולקות עכשיו שפה חזותית אחת — הקשת — שכבר קיימת בשערי /moments/.
 // עיקרון מנחה: הדף מציג רק תוכן שקיים בפועל.
 import { getCollection } from 'astro:content';
@@ -37,6 +37,7 @@ const GATE_EMOJI: Record<SectionSlug, string> = {
   meshalim: '📖',
   tzadikim: '✨',
   yoman: '📔',
+  chaim: '🌍',
 };
 const worlds = SECTION_SLUGS.map((slug) => {
   const meta = SECTIONS_META[slug];
@@ -209,11 +210,11 @@ const DESCRIPTION =
         )
       }
 
-      <!-- דלת הסיפורים: שלושת עולמות התוכן -->
+      <!-- דלת הסיפורים: ארבעת עולמות התוכן -->
       <div class="door-stories" style="grid-area: stories">
         <div class="stories-header">
           <h2>סיפורים</h2>
-          <p>שלושה עולמות. בחר מאיפה להתחיל.</p>
+          <p>ארבעה עולמות. בחר מאיפה להתחיל.</p>
         </div>
 
         <div class="stories-grid">
