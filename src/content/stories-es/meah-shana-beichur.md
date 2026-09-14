@@ -14,7 +14,7 @@ source: "Basado en amplia cobertura periodística (CNN, Times of Israel, Congres
 
 En la Polonia de 1916, un niño llegó a los trece años.
 
-Su madre murió cuando él tenía diez, y a su padre se lo llevó el ejército ruso. Afuera rugía la guerra. No había familia que lo celebrara, ni hubo bar mitzvá.
+Su madre murió cuando él tenía diez, y a su padre se lo llevó el ejército ruso. Afuera rugía la guerra. No había familia que lo celebrara, ni hubo *bar mitzvá*.
 
 El niño, Yisrael Kristal, creció. Se mudó a Łódź, entró en el negocio de dulces de la familia, se casó, y tuvo dos hijos.
 
@@ -28,13 +28,13 @@ Se casó de nuevo, emigró a Haifa, y volvió a abrir un negocio de dulces. Tuvo
 
 En marzo de 2016, cuando fue declarado el hombre más longevo del mundo, no habló de sí mismo.
 
-"Hubo hombres más sabios que yo, más fuertes que yo, más bellos que yo, que ya no están," dijo al recibir el certificado. "Lo único que nos queda es seguir trabajando lo más que podamos, y reconstruir lo que se perdió."
+"Hubo hombres más sabios que yo, más fuertes que yo, más bellos que yo, que ya no están," dijo al recibir el certificado. "Lo único que nos queda es seguir trabajando lo más que podamos, y *reconstruir lo que se perdió*."
 
 Pero su hija, Shula, contó que una cosa lo había perturbado durante todos esos años: nunca había celebrado su bar mitzvá.
 
 En septiembre de 2016, cerca de su cumpleaños número ciento trece, se reunieron a su alrededor unos cien miembros de su familia.
 
-Cien años exactos después de aquel día que no se celebró, Yisrael subió a leer la Torá.
+Cien años exactos después de aquel día que no se celebró, Yisrael *subió a leer la Torá*.
 
 > "Cien años esperé este momento."
 

@@ -18,13 +18,13 @@ El Netziv contó.
 
 De niño, era de los últimos de la clase. No recordaba, no captaba, no entendía.
 
-Una noche escuchó tras la puerta a su padre decirle a su madre: "Esperé toda mi vida que Naftali Tzvi creciera para ser un erudito de la Torá. Pero parece que no es para él. Que aprenda un oficio — que sea un buen artesano, un judío recto."
+Una noche escuchó tras la puerta a su padre decirle a su madre: "Esperé toda mi vida que Naftali Tzvi creciera para ser un erudito de la Torá. Pero parece que *no es para él*. Que aprenda un oficio — que sea un buen artesano, un judío recto."
 
 El niño entró a la habitación y pidió una oportunidad más.
 
 Y se la dieron.
 
-Años después, sentado a la cabecera de aquella misma fiesta, dijo el Netziv: "Imagínense que me hubiera convertido en zapatero. Un buen zapatero, un judío recto, que fija tiempos para la Torá entre puntada y puntada. Y después de ciento veinte años me preguntarían en el cielo: 'Naftali, ¿dónde está tu Ha'amek Sheela?'"
+Años después, sentado a la cabecera de aquella misma fiesta, dijo el Netziv: "Imagínense que me hubiera convertido en *zapatero*. Un buen zapatero, un judío recto, que fija tiempos para la Torá entre puntada y puntada. Y después de ciento veinte años me preguntarían en el cielo: '*Naftali*, ¿dónde está tu Ha'amek Sheela?'"
 
 > Y no entendería en absoluto de qué me hablan.
 
