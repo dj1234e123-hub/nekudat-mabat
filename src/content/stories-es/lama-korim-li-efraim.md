@@ -3,12 +3,12 @@
 # hebreo para el emparejamiento automático (gemelo de idioma + hreflang).
 # La portada no lleva texto, así que es la misma imagen que en hebreo. La foto dentro del relato
 # es la foto original del Jajam Efraim HaCohen (familia), igual que en hebreo.
-# Fecha: 20:00 hora de Israel (17:00Z) — programado por el propietario; isPublished lo excluye hasta entonces.
+# Publicado junto con el hebreo el mismo día, por decisión del propietario.
 title: "¿Por qué me llamo Efraim?"
 section: yoman
 cover: ../../assets/covers/lama-korim-li-efraim.png
 coverAlt: "Una vieja puerta de madera cerrada en un callejón de Bagdad al anochecer; una luz dorada se filtra por la rendija e ilumina el escalón de piedra; cielo azul profundo y una palmera al fondo"
-date: 2026-09-14T17:00:00Z
+date: 2026-09-14T15:00:00Z
 excerpt: "Un muchacho de catorce años por las calles de Bagdad, que ya se había alejado del camino en el que creció. Un día vio en la calle al Ben Ish Jai, y corrió a casa."
 ---
 
@@ -60,7 +60,7 @@ El 3 de Tishrei es el aniversario de su fallecimiento.
 
 Él es mi bisabuelo.
 
-Su hijo, el Jajam Rafael Cohen, fue mi abuelo. Su hermano, el Jajam Shalom Cohen, fue director de la yeshivá Porat Yosef.
+Su hijo, el Jajam Rafael Cohen, fue mi abuelo. Su hermano, el Jajam Shalom Cohen.
 
 Desde que conozco esta historia, vuelvo a esa puerta.
 
