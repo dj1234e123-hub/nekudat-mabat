@@ -6,7 +6,9 @@ title: "Cien años de retraso"
 section: chaim
 cover: ../../assets/covers/meah-shana-beichur.png
 coverAlt: "Un rollo de la Torá abierto y un talit sobre una mesa de madera antigua, a la luz dorada del atardecer que entra por una ventana con vista a las colinas de Jerusalén, y una Estrella de David bordada al fondo"
-date: 2026-09-14T06:00:00Z
+# Fecha de espera temporal (2026-09-15): fusionado a la rama principal pero retenido
+# detrás de isPublished hasta la aprobación de publicación. Fecha original aprobada: 2026-09-14T06:00:00Z.
+date: 2026-12-31T00:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "En la Polonia de 1916, un niño llegó a los trece años sin padre, sin madre, y sin bar mitzvá. Pasaron cien años — guerra, gueto, Auschwitz — hasta que llegó el momento que se había perdido."
 source: "Basado en amplia cobertura periodística (CNN, Times of Israel, Congreso Judío Mundial) y el Libro Guinness de los Récords, 2016–2017."
