@@ -1,0 +1,33 @@
+---
+# Traducción del original hebreo "הסנדלר שכמעט היה" (2026-09-14). Mismo id de archivo que el
+# hebreo para el emparejamiento automático (gemelo de idioma + hreflang).
+# La portada no lleva texto, así que es la misma imagen que en hebreo.
+title: "El zapatero que casi fue"
+section: tzadikim
+cover: ../../assets/covers/hasandlar-shekimat-haya.png
+coverAlt: "Una antigua balanza de bronce sobre una mesa de madera, en un platillo un zapato viejo y una lezna de zapatero, en el otro un libro grueso y encuadernado, a la luz cálida de una ventana"
+# Fecha de espera temporal (2026-09-15): fusionado a la rama principal pero retenido
+# detrás de isPublished hasta la aprobación de publicación. Fecha original aprobada: 2026-09-14T18:00:00Z.
+date: 2026-12-31T00:00:00Z
+readingTime: "unos 1 minuto"
+excerpt: "En la fiesta por su gran libro, un invitado preguntó: ¿por qué una fiesta por un libro? Y el Netziv de Volozhin contó sobre un niño que casi se convirtió en zapatero."
+source: "Se cuenta sobre el Netziv de Volozhin (el rabino Naftali Tzvi Yehuda Berlin) — una tradición que se le atribuye a él mismo, tal como fue impresa en biografías y hojas de shabat. La versión exacta (zapatero/sastre/carpintero) varía entre fuentes."
+---
+
+En la fiesta que organizó el Netziv de Volozhin para celebrar la impresión de su libro "Ha'amek Sheela", un invitado preguntó: "¿Por qué una fiesta por un libro?"
+
+El Netziv contó.
+
+De niño, era de los últimos de la clase. No recordaba, no captaba, no entendía.
+
+Una noche escuchó tras la puerta a su padre decirle a su madre: "Esperé toda mi vida que Naftali Tzvi creciera para ser un erudito de la Torá. Pero parece que *no es para él*. Que aprenda un oficio — que sea un buen artesano, un judío recto."
+
+El niño entró a la habitación y pidió una oportunidad más.
+
+Y se la dieron.
+
+Años después, sentado a la cabecera de aquella misma fiesta, dijo el Netziv: "Imagínense que me hubiera convertido en *zapatero*. Un buen zapatero, un judío recto, que fija tiempos para la Torá entre puntada y puntada. Y después de ciento veinte años me preguntarían en el cielo: '*Naftali*, ¿dónde está tu Ha'amek Sheela?'"
+
+> Y no entendería en absoluto de qué me hablan.
+
+<p class="signature">Con cariño,<br />Efraim Atia</p>
