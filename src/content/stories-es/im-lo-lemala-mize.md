@@ -16,7 +16,7 @@ En los días de Selijot en Nemirov, cada mañana, antes del amanecer, el rabino 
 
 No estaba en la sinagoga. No estaba en la casa de estudio. En ningún lugar.
 
-Los jasidim lo sabían con certeza: subía al cielo, a pedir misericordia por el pueblo de Israel antes de los Días Terribles.
+Los jasidim lo sabían con certeza: *subía al cielo*, a pedir misericordia por el pueblo de Israel antes de los Días Terribles.
 
 Hasta que llegó al pueblo un misnaged, escuchó la historia, se burló de ella, y decidió comprobarlo por sí mismo.
 
@@ -44,7 +44,7 @@ El rabino llamó a la puerta.
 
 Entró y se acercó él mismo a la estufa.
 
-Con cada leño que echaba al fuego, susurraba otro fragmento de las Selijot.
+Con cada leño que echaba al fuego, *susurraba otro fragmento de las Selijot*.
 
 El misnaged estaba fuera de la ventana y vio todo.
 
@@ -52,7 +52,7 @@ Al día siguiente no volvió a su casa.
 
 Se quedó en Nemirov.
 
-Y desde entonces, cuando otro jasid contaba que el rabino de Nemirov subía cada mañana al cielo, el misnaged no lo negaba.
+Y desde entonces, cuando otro jasid contaba que el rabino de Nemirov subía cada mañana al cielo, el misnaged *no lo negaba*.
 
 Solo añadía en voz baja:
 
