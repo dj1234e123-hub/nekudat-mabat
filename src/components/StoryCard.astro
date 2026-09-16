@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import { SECTIONS_META } from '../data/sections';
 import { SECTIONS_ES } from '../data/site-es';
-import { DEFAULT_COVERS, DEFAULT_COVER_ALT, DEFAULT_COVER_ALT_ES } from '../data/default-covers';
+import { DEFAULT_COVERS } from '../data/default-covers';
 import { formatDate } from '../utils/format-date';
 
 interface Props {
@@ -16,27 +16,93 @@ const { story, lang = 'he' } = Astro.props;
 const es = lang === 'es';
 const { title, section, date, excerpt } = story.data;
 const cover = story.data.cover ?? DEFAULT_COVERS[section];
-const coverAlt = story.data.coverAlt ?? (es ? DEFAULT_COVER_ALT_ES : DEFAULT_COVER_ALT);
 const storyHref = es ? `/es/historias/${story.id}/` : `/stories/${story.id}/`;
 const sectionHref = es ? `/es/secciones/${section}/` : `/sections/${section}/`;
 const sectionLabel = es ? SECTIONS_ES[section].label : SECTIONS_META[section].label;
 ---
 
 <li class="card">
-  <a href={storyHref} class="card-link">
-    <Image src={cover} alt={coverAlt} widths={[480, 800]} sizes="(max-width: 42rem) 100vw, 42rem" class="card-cover" />
-    <h2>{title}</h2>
+  {/* התמונה מקשרת לסיפור אך מוסתרת מהניווט במקלדת — אותו יעד כמו הכותרת,
+      ואין טעם בשתי עצירות טאב לאותו קישור. */}
+  <a href={storyHref} class="card-thumb" tabindex="-1" aria-hidden="true">
+    <Image src={cover} alt="" widths={[176, 352]} sizes="5.5rem" class="card-cover" />
   </a>
-  <p class="card-meta">
-    <a class="label world" href={sectionHref} style={`--accent: ${SECTIONS_META[section].accent}`}>
-      {sectionLabel}
+  <div class="card-text">
+    <p class="card-meta">
+      <a class="label world" href={sectionHref} style={`--accent: ${SECTIONS_META[section].accent}`}>
+        {sectionLabel}
+      </a>
+      <time datetime={date.toISOString().slice(0, 10)}>{formatDate(date, lang)}</time>
+    </p>
+    <a href={storyHref} class="card-link">
+      <h2>{title}</h2>
+      <span class="card-excerpt">{excerpt}</span>
     </a>
-    <time datetime={date.toISOString().slice(0, 10)}>{formatDate(date, lang)}</time>
-  </p>
-  <p class="card-excerpt">{excerpt}</p>
+  </div>
 </li>
 
 <style>
+  /* כרטיס לרשימות (ארכיון, עמודי עולם, נושאים, והספרדית) — שורה קומפקטית
+     (2026-09-16). הכרטיס הקודם — שער ברוחב מלא, כותרת, תווית ותקציר מלא —
+     עוצב כשהיו באתר שלושה סיפורים; עם 31 הוא הפך את הארכיון ל-16,500px
+     בטלפון, כ-20 מסכים, שאי אפשר לסרוק. עכשיו: תמונה ממוזערת בצד, ולצידה
+     שורת פתיחה (עולם · תאריך), כותרת ותקציר קטום לשתי שורות. ~105px לסיפור.
+     דף הבית ועמוד הסיפור עצמו אינם משתמשים ברכיב הזה ולא השתנו. */
+  .card {
+    display: grid;
+    grid-template-columns: 5.5rem 1fr;
+    gap: 0.95rem;
+    align-items: start;
+    padding-block: 0.15rem;
+  }
+
+  .card-thumb {
+    display: block;
+    line-height: 0;
+  }
+
+  .card-cover {
+    width: 5.5rem;
+    height: 5.5rem;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: calc(var(--radius) - 0.2rem);
+    box-shadow: var(--shadow);
+  }
+
+  .card-text {
+    min-width: 0;
+  }
+
+  /* שורת הפתיחה: תווית העולם והתאריך, כטקסט שקט מעל הכותרת — אותו דפוס
+     כמו שורת "הסיפור הבא · מהחיים" בכרטיס ההמשך. בזרימה רגילה, כדי ששורה
+     ארוכה (ספרדית: "Historias de tzadikim · 6 de septiembre de 2026")
+     תישבר ולא תיפול על הכותרת. */
+  .card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 0.6rem;
+    margin: 0 0 0.1rem;
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  .card-meta .label {
+    background: none;
+    border: 0;
+    padding: 0.3rem 0;
+    margin-block: -0.3rem;
+    font-size: 0.8rem;
+    color: var(--secondary);
+  }
+
+  .card-meta .label:hover,
+  .card-meta .label:focus-visible {
+    color: var(--teal);
+    background: none;
+  }
+
   /* התווית נושאת את צבע העולם שלה — אותו צבע שבדלת בעמוד הסיפורים.
      כך הקורא לומד את המפה בלי שאיש מסביר לו. נקודה בלבד, לא מילוי:
      צבעי המותג הם נגיעות עדינות ולא אתר צבעוני. */
@@ -51,41 +117,50 @@ const sectionLabel = es ? SECTIONS_ES[section].label : SECTIONS_META[section].la
     vertical-align: 0.05em;
   }
 
+  .card-meta time {
+    color: var(--muted);
+  }
+
   .card-link {
+    display: block;
     text-decoration: none;
     color: inherit;
   }
 
-  .card-cover {
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    margin-bottom: 0.9rem;
-  }
-
   .card h2 {
-    font-size: 1.5rem;
-    line-height: 1.4;
+    font-size: 1.2rem;
+    line-height: 1.35;
     transition: color 0.15s ease;
   }
 
-  .card-link:hover h2 {
+  .card-link:hover h2,
+  .card-link:focus-visible h2 {
     color: var(--teal);
   }
 
-  .card-meta {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin: 0.4rem 0 0.2rem;
-  }
-
-  .card-meta time {
-    color: var(--muted);
-    font-size: 0.85rem;
-  }
-
+  /* שתי שורות ולא יותר — הכרטיס נשאר בגובה קבוע, והתקציר המלא מחכה בעמוד */
   .card-excerpt {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    margin-top: 0.25rem;
     color: var(--secondary);
-    line-height: 1.75;
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  /* במסך רחב יש מקום לתמונה מעט גדולה יותר */
+  @media (min-width: 34rem) {
+    .card {
+      grid-template-columns: 6.5rem 1fr;
+      gap: 1.15rem;
+    }
+
+    .card-cover {
+      width: 6.5rem;
+      height: 6.5rem;
+    }
   }
 </style>
