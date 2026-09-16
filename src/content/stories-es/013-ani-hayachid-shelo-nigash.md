@@ -1,10 +1,12 @@
 ---
 # תרגום של ארכיון #013 (2026-08-30).
-# **בלי cover בכוונה:** תמונת השער העברית נושאת פתק עם כיתוב עברי ("מקבלים שכר
-# לפי המאמץ..."). עד שתוכן גרסה בספרדית — שער הקטגוריה הזמני.
+# תמונת שער נפרדת נוספה 2026-09-16 — תמונת השער העברית נושאת פתק עם כיתוב
+# עברי ("מקבלים שכר לפי המאמץ..."), ולכן קיבלה תמונה נפרדת בלי כיתוב לספרדית.
 title: "El único que no se acercó"
 section: tzadikim
 archiveId: "013"
+cover: ../../assets/covers/013-es.png
+coverAlt: "Tres caramelos envueltos en papel metálico rojo, dorado y turquesa alineados sobre una mesa de madera antigua, con un sombrero negro y libros encuadernados en cuero al fondo, bajo luz cálida de ventana"
 date: 2026-08-19T09:00:00Z
 readingTime: "un minuto y medio"
 featured: 1
