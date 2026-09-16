@@ -5,7 +5,7 @@ section: yoman
 archiveId: "026"
 cover: ../../assets/covers/026.png
 coverAlt: "Un corazón hecho de decenas de pedacitos rotos de billetes azules y rojos pegados entre sí, parado sobre un piso de madera junto a una puerta abierta por la que entra la luz del amanecer"
-date: 2026-08-23T14:00:00Z
+date: 2026-08-23T09:00:00Z
 readingTime: "un minuto y medio"
 excerpt: "Siete de la mañana. Jani, de cinco años, sentada en el living con una tijerita, y sobre la mesa un billete de 200 y uno de 20. Mi mano casi se levanta para detenerla."
 ---

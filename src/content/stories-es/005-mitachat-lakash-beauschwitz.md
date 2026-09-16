@@ -5,7 +5,7 @@ section: tzadikim
 archiveId: "005"
 cover: ../../assets/covers/005.png
 coverAlt: "Un muchacho acostado en lo profundo de un montón de paja en un establo oscuro se ata los tefilín al brazo; por la puerta abierta del establo se ve la silueta de un hombre de uniforme y gorra de oficial, y detrás, las barracas del campo bajo una luz gris"
-date: 2026-08-23T15:00:00Z
+date: 2026-08-12T09:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Si un nazi hubiera abierto la puerta del establo en ese momento, lo habrían fusilado ahí mismo. El muchacho tenía 16 años, hundido en la paja — y se escondía ahí para ponerse los tefilín."
 ---

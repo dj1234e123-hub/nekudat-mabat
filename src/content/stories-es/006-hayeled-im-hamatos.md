@@ -5,7 +5,7 @@ section: yoman
 archiveId: "006"
 cover: ../../assets/covers/006.png
 coverAlt: "Un maestro de espaldas a la cámara, con la mano en la frente, frente a un aula llena de chicos con las manos levantadas a la luz de la ventana; en el aire, hacia él, vuela un avión de papel"
-date: 2026-08-23T16:00:00Z
+date: 2026-08-13T09:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Ningún maestro aceptaba entrar a esa aula. En la sala de profesores ya la llamaban campo de batalla. Entonces llegó un candidato nuevo a una clase de prueba, y un avión de papel le pegó en la mejilla."
 ---
