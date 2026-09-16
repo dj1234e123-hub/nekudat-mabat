@@ -1,52 +1,20 @@
 ---
-// איור זמני לפינת "מעשה שהיה" — עד שיהיה צילום אמיתי.
-// אותו דפוס בדיוק כמו שערי הרגעים לפני שהגיעו הצילומים (שלב 4.23): מחווה
-// מופשטת בלי דמויות, לא תחליף קבוע. החלפה = ייבוא Image רגיל בעמודים
-// שמשתמשים ברכיב הזה, בלי לשנות את הצורה (קשת/מסגרת) שסביבו.
+// תמונת פינת "מעשה שהיה" — צילום קבוע, משותף לכל סיפורי הפינה (בשונה
+// משערי הרגעים, שם יש תמונה נפרדת לכל קבוצה). נר הבדלה דלוק, כוס קידוש
+// ובשמים באור שקיעה על ירושלים — בלי דמויות, בלי כיתוב.
 //
-// הדימוי: נר הבדלה בודד בשמי דמדומים — אותה משפחה כמו "אור אחד קטן בתוך
-// שדה גדול ושקט" של שערי הרגעים, אבל דימוי משלה (נר, לא חלון/דלת) כדי
-// שהפינה לא תיראה כמו עוד שער מהסדרה הקיימת.
+// אותו דפוס בדיוק כמו GateArt.astro: הקשת/המסגרת והחותם יושבים בעמוד
+// עצמו ואינם משתנים. החלפת תמונה = קובץ חדש ב-src/assets/besht/havdalah.png.
+import { Image } from 'astro:assets';
+import havdalah from '../assets/besht/havdalah.png';
 ---
 
-<svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true">
-  <defs>
-    <linearGradient id="besht-sky" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#0f2220" />
-      <stop offset="45%" stop-color="#173b36" />
-      <stop offset="78%" stop-color="#1f5c57" />
-      <stop offset="100%" stop-color="#4a4a35" />
-    </linearGradient>
-    <radialGradient id="besht-glow" cx="50%" cy="72%" r="30%">
-      <stop offset="0%" stop-color="#ffd68c" stop-opacity="0.95" />
-      <stop offset="45%" stop-color="#ffb45a" stop-opacity="0.4" />
-      <stop offset="100%" stop-color="#ffb45a" stop-opacity="0" />
-    </radialGradient>
-  </defs>
-
-  <rect x="0" y="0" width="400" height="400" fill="url(#besht-sky)" />
-
-  <g fill="#f3e9d3" opacity="0.85">
-    <circle cx="80" cy="70" r="1.6" />
-    <circle cx="280" cy="50" r="1.6" />
-    <circle cx="160" cy="110" r="1.1" />
-    <circle cx="340" cy="120" r="1.1" />
-    <circle cx="230" cy="35" r="1.6" />
-    <circle cx="50" cy="150" r="1.1" />
-  </g>
-
-  <rect x="0" y="260" width="400" height="140" fill="url(#besht-glow)" />
-
-  <!-- נר הבדלה: פתיל וקנה -->
-  <rect x="196" y="230" width="8" height="90" rx="3" fill="#e8cf9e" />
-  <path d="M200 200c9 14 14 22 14 31a14 14 0 1 1-28 0c0-9 5-17 14-31Z" fill="#ffd68c" />
-  <path d="M200 213c5 8 8 13 8 18a8 8 0 1 1-16 0c0-5 3-10 8-18Z" fill="#fff3d6" />
-</svg>
-
-<style>
-  svg {
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-</style>
+{/* הגודל/החיתוך נקבעים מהעמוד שמכיל (.art-frame / .besht-art :global(img)) —
+    אותו דפוס בדיוק כמו GateArt.astro, כי כל עמוד עוטף אותה תמונה במסגרת אחרת. */}
+<Image
+  src={havdalah}
+  alt=""
+  widths={[480, 960]}
+  sizes="(max-width: 30rem) 100vw, 416px"
+  loading="eager"
+/>
