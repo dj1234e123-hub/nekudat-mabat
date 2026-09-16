@@ -7,6 +7,7 @@
 // אותו צבע כמו "סיפורי צדיקים" (הבעל שם טוב הוא תת-סוג שלהם), לא צבע חדש.
 // לא "מוסר השכל", המשך שקט של הכרטיס.
 import { getCollection, render } from 'astro:content';
+import { getImage } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import BeshtArt from '../../components/BeshtArt.astro';
 import ShareRow from '../../components/ShareRow.astro';
@@ -14,6 +15,7 @@ import { articleJsonLd, breadcrumbJsonLd } from '../../lib/structured-data';
 import { isPublished } from '../../lib/published';
 import { formatDate } from '../../utils/format-date';
 import { BESHT_NAME, BESHT_SEGULA } from '../../data/besht';
+import beshtIdentity from '../../assets/besht/og-identity.png';
 
 export async function getStaticPaths() {
   const items = await getCollection('besht', isPublished);
@@ -25,12 +27,21 @@ const { Content } = await render(item);
 const { title, date, excerpt, thought, source } = item.data;
 
 const pageUrl = new URL(`/besht/${item.id}/`, Astro.site).href;
+
+// תמונת שיתוף קבועה, משותפת לכל סיפורי הפינה — לא לכל סיפור תמונה משלו
+// (ראו ההחלטה: מנהג שבועי, לא עומס תמונה כל שבוע). אותו צינור resvg
+// שכבר מייצר את תמונות הרגעים; נוצרה פעם אחת ב-scripts/render-besht-identity.mjs.
+const og = await getImage({ src: beshtIdentity, width: 1080, format: 'png' });
+const ogImage = new URL(og.src, Astro.site).href;
 ---
 
 <Base
   title={`${title} · ${BESHT_NAME}`}
   description={excerpt}
   ogType="article"
+  ogImage={ogImage}
+  ogImageWidth={og.attributes.width}
+  ogImageHeight={og.attributes.height}
   compact={true}
   jsonLd={[
     articleJsonLd(Astro.site!, {

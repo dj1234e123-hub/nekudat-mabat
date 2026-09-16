@@ -3,16 +3,28 @@
 // עם סיפור אחד זו עדיין רשימה קצרה; המבנה מוכן לצמוח בלי שינוי (כמו
 // שכבר קרה עם מבט לשבת).
 import { getCollection } from 'astro:content';
+import { getImage } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import { newestFirst } from '../../lib/sort';
 import { isPublished } from '../../lib/published';
 import { formatDate } from '../../utils/format-date';
 import { BESHT_NAME, BESHT_SEGULA, BESHT_DESCRIPTION } from '../../data/besht';
+import beshtIdentity from '../../assets/besht/og-identity.png';
 
 const items = (await getCollection('besht', isPublished)).sort(newestFirst);
+
+// אותה תמונת זהות קבועה כמו בעמוד הסיפור — ראו ההסבר שם.
+const og = await getImage({ src: beshtIdentity, width: 1080, format: 'png' });
+const ogImage = new URL(og.src, Astro.site).href;
 ---
 
-<Base title={`${BESHT_NAME} · נקודת מבט`} description={BESHT_DESCRIPTION}>
+<Base
+  title={`${BESHT_NAME} · נקודת מבט`}
+  description={BESHT_DESCRIPTION}
+  ogImage={ogImage}
+  ogImageWidth={og.attributes.width}
+  ogImageHeight={og.attributes.height}
+>
   <main>
     <h1 class="page-title">{BESHT_NAME}</h1>
     <p class="intro">{BESHT_SEGULA}</p>

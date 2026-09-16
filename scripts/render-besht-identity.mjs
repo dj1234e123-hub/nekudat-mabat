@@ -46,7 +46,7 @@ const doc = `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${
 
   <text x="${CENTER}" y="815" font-family="Frank Ruhl Libre Bold" font-size="155" fill="${TEAL}" direction="rtl" text-anchor="middle">${rtl('מעשה שהיה')}</text>
 
-  <text x="${CENTER}" y="935" font-family="Frank Ruhl Libre" font-size="65" fill="${INK}" direction="rtl" text-anchor="middle">${rtl('סיפור אחד, ואחריו — שבוע חדש.')}</text>
+  <text x="${CENTER}" y="935" font-family="Frank Ruhl Libre" font-size="65" fill="${INK}" direction="rtl" text-anchor="middle">${rtl('סיפור אחד, ואחריו – שבוע חדש.')}</text>
 
   <line x1="${CENTER - 55}" y1="1035" x2="${CENTER + 55}" y2="1035" stroke="${GOLD}" stroke-width="2.5"/>
 
