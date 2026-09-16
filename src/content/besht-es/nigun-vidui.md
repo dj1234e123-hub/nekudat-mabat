@@ -2,7 +2,7 @@
 title: La melodía que no sonaba a confesión
 parasha: Parashá Haazinu · Shabat Shuvá
 hebrewDate: 8 de Tishrei 5787
-date: 2026-09-19T16:30:00Z
+date: 2026-09-19T17:00:00Z
 excerpt: Un cantor sencillo cantaba la confesión con alegría — porque cada "por el pecado" es un rincón más que se limpia en el palacio del Rey.
 thought: |
   Hay una diferencia entre avergonzarte de lo que hiciste y limpiarlo. La vergüenza
