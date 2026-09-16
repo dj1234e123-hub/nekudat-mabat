@@ -1,10 +1,12 @@
 ---
 # תרגום של ארכיון #009 (2026-08-30).
-# **בלי cover בכוונה:** תמונת השער העברית נושאת ציטוט בעברית ("המקום שבו בוכים
-# בשקט..."). עד שתוכן גרסה בספרדית — שער הקטגוריה הזמני.
+# תמונת שער נפרדת נוספה 2026-09-16 — תמונת השער העברית נושאת ציטוט בעברית
+# ("המקום שבו בוכים בשקט..."), ולכן קיבלה תמונה נפרדת בלי כיתוב לגרסה הספרדית.
 title: "Dónde empezó esta historia"
 section: tzadikim
 archiveId: "009"
+cover: ../../assets/covers/009-es.png
+coverAlt: "Un estudio antiguo con estanterías de libros encuadernados en cuero, una lámpara de aceite encendida sobre una mesa de madera con un libro abierto, y una puerta entreabierta hacia un patio al anochecer con un caballo"
 date: 2026-08-16T09:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Diecisiete años esperó un hijo. El médico considerado el mejor de Europa la miró y le dijo: no esperes hijos. Ella aguantó las lágrimas hasta llegar a casa."
