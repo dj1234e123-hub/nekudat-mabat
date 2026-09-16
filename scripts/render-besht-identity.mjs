@@ -28,18 +28,24 @@ const RLO = '‮';
 const PDF = '‬';
 const rtl = (text) => `${RLO}${escape(text)}${PDF}`;
 
-// נר קטן בקו זהב — הד לחותם השעווה ולאיור הרקע של הפינה בדף עצמו, בלי
-// לצייר סצנה: רק קו ולהבה, אותו רוח כמו נקודת הזהב של תמונות הרגעים.
-function candleSvg(cx, cy) {
+// ספר פתוח + ניצוץ קטן — קווי זהב דקים בלבד, בלי מילוי ובלי הצללה.
+// "מעשה שהיה" הוא בראש ובראשונה סיפור (הספר); הניצוץ מהדהד את הנר
+// שכבר קיים בזהות הפינה (כרטיס דף הבית, עמוד הסיפור, חותם השעווה).
+// שתי קשתות מקוננות, לא שלוש-ארבע כמו בטיוטה המקורית — נשאר קו, לא איור.
+function bookFlameSvg(cx, cy) {
+  const w = 62;
+  const lift = 20;
   return `
-  <line x1="${cx}" y1="${cy + 25}" x2="${cx}" y2="${cy - 15}" stroke="${GOLD}" stroke-width="3" stroke-linecap="round"/>
-  <path d="M${cx} ${cy - 46}c5 8 8 13 8 18a8 8 0 1 1-16 0c0-5 3-10 8-18Z" fill="${GOLD}"/>`;
+  <path d="M${cx - w} ${cy - lift} Q${cx - w / 2} ${cy + 14} ${cx} ${cy} Q${cx + w / 2} ${cy + 14} ${cx + w} ${cy - lift}" fill="none" stroke="${GOLD}" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M${cx - w + 9} ${cy - lift - 7} Q${cx - w / 2 + 5} ${cy + 5} ${cx} ${cy - 6} Q${cx + w / 2 - 5} ${cy + 5} ${cx + w - 9} ${cy - lift - 7}" fill="none" stroke="${GOLD}" stroke-width="1.6" opacity="0.55"/>
+  <line x1="${cx}" y1="${cy}" x2="${cx}" y2="${cy + 10}" stroke="${GOLD}" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M${cx} ${cy - 62}c5 8 8 13 8 18a8 8 0 1 1-16 0c0-5 3-10 8-18Z" fill="${GOLD}"/>`;
 }
 
 const doc = `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}" viewBox="0 0 ${WIDTH} ${HEIGHT}">
   <rect width="${WIDTH}" height="${HEIGHT}" fill="${PAPER}"/>
 
-  ${candleSvg(CENTER, 680)}
+  ${bookFlameSvg(CENTER, 700)}
 
   <text x="${CENTER}" y="800" font-family="Frank Ruhl Libre Bold" font-size="92" fill="${TEAL}" direction="rtl" text-anchor="middle">${rtl('מעשה שהיה')}</text>
 
