@@ -5,7 +5,7 @@
 title: 'El "Aní Maamín" del vagón'
 section: tzadikim
 archiveId: "038"
-date: 2026-08-23T12:00:00Z
+date: 2026-08-26T09:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Una noche negra, un tren a toda marcha, vagones de madera cerrados, y nadie sabe hacia dónde. En un vagón está sentado Reb Azriel David Fastag, jasid de Modzitz, y empieza a entonar una melodía nueva para las palabras Aní Maamín."
 ---

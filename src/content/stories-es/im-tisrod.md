@@ -6,7 +6,7 @@ title: "Si sobrevives"
 section: chaim
 cover: ../../assets/covers/im-tisrod.png
 coverAlt: "Un shofar sobre una vieja tela de arpillera en la cubierta de un barco, junto a una taza de hojalata y una cuchara, y más allá de la baranda, el Carmelo y Haifa al atardecer"
-date: 2026-09-10T17:00:00Z
+date: 2026-09-11T17:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "En Rosh Hashaná de 5705, en un subcampo de Auschwitz, un prisionero le susurró a Chaskel Tydor: teníamos un shofar. Lo tocamos. Un año después, en la cubierta de un barco frente al Carmelo, el bulto se abrió."
 ---

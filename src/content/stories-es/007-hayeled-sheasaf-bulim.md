@@ -5,7 +5,7 @@ section: tzadikim
 archiveId: "007"
 cover: ../../assets/covers/007.png
 coverAlt: "Un sobre viejo con una hilera de estampillas de colores sobre una mesa de madera; al lado, un paquete de cartas atado con hilo, un álbum de estampillas abierto, una lupa y estampillas desparramadas, bajo una luz cálida"
-date: 2026-08-23T17:00:00Z
+date: 2026-08-14T09:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Durante meses, alguien estuvo juntando para ese niño algo que él ni siquiera había pedido. Un día golpearon a la puerta, y su madre casi se queda helada."
 ---

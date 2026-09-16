@@ -5,7 +5,7 @@ section: tzadikim
 archiveId: "014"
 cover: ../../assets/covers/014.png
 coverAlt: "Un hombre de camisa blanca y kipá, de espaldas a la cámara, entra a un callejón de mercado antiguo a la luz del amanecer; puestos de frutas a ambos lados, gente al fondo del callejón, y un piso de piedra dorado"
-date: 2026-08-23T22:00:00Z
+date: 2026-08-20T09:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Cada golpe en la puerta hacía saltar a Iosef de la cama. Le habían robado la mercadería, el negocio se vació, y entonces escuchó a los hijos preguntarle a su madre cuándo papá volvería a sonreír."
 ---

@@ -5,7 +5,7 @@ section: meshalim
 archiveId: "037"
 cover: ../../assets/covers/037.png
 coverAlt: "Ilustración: un hombre anciano de pie sobre un acantilado junto a un gallinero de madera con gallinas detrás de un alambrado, su mano extendida hacia adelante, y frente a él un águila despliega las alas y se eleva hacia el cielo del amanecer sobre un valle neblinoso"
-date: 2026-08-22T11:00:00Z
+date: 2026-08-25T09:00:00Z
 readingTime: "unos 2 minutos"
 featured: 2
 excerpt: "Toda su vida creció en el gallinero escuchando que era raro, torpe, que de él no saldría nada. Hasta que pasó por ahí un viejo naturalista, lo miró bien, y susurró para sí: esto no es un gallo."

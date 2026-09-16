@@ -5,7 +5,7 @@
 title: "El telegrama que te enviaste"
 section: meshalim
 archiveId: "017"
-date: 2026-02-15
+date: 2026-08-21T09:00:00Z
 readingTime: "unos 90 segundos"
 excerpt: "Dos gerentes fueron enviados al mismo lugar y vieron exactamente la misma realidad. Los telegramas que mandaron eran opuestos."
 ---
