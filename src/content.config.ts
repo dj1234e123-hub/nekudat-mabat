@@ -159,6 +159,29 @@ const besht = defineCollection({
       }),
 });
 
+// "מעשה שהיה" בספרדית — "Así sucedió". אותו סכמה בדיוק, אותם שמות קבצים
+// (זיווג אוטומטי). "מבחר ולא מראה": סיפור עברי בלי תרגום פשוט לא מייצר
+// עמוד ספרדי.
+const beshtEs = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/besht-es' }),
+  schema: ({ image }) =>
+    z
+      .object({
+        title: z.string().min(1),
+        parasha: z.string().min(1),
+        hebrewDate: z.string().min(1),
+        date: z.coerce.date(),
+        excerpt: z.string().min(1),
+        thought: z.string().min(1),
+        source: z.string().min(1),
+        cover: image().optional(),
+        coverAlt: z.string().min(1).optional(),
+      })
+      .refine((data) => !data.cover || !!data.coverAlt, {
+        message: 'תמונה חייבת גם טקסט חלופי (coverAlt)',
+      }),
+});
+
 // "מבט לשבת" — טור שבועי: סיפור אמיתי, חיבור לפרשת השבוע, ומבט על האדם.
 // בשונה מסיפורים ומרגעים, כאן מותר (ואפילו נדרש) להסביר ולעצור על הרעיון —
 // זו בדיוק הסיבה שזה אוסף נפרד ולא עוד עולם בתוך הסיפורים.
@@ -187,4 +210,13 @@ const mabatLeshabbat = defineCollection({
       }),
 });
 
-export const collections = { stories, moments, momentsEs, mabatLeshabbat, storiesEs, mabatEs, besht };
+export const collections = {
+  stories,
+  moments,
+  momentsEs,
+  mabatLeshabbat,
+  storiesEs,
+  mabatEs,
+  besht,
+  beshtEs,
+};

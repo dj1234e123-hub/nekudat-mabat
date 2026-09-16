@@ -18,6 +18,10 @@ import { newestFirst } from '../../lib/sort';
 import MabatBody from '../../components/MabatBody.astro';
 import { parseBody } from '../../lib/mabat-format';
 import { isPublished } from '../../lib/published';
+import BeshtArt from '../../components/BeshtArt.astro';
+import { BESHT_TEASE_WINDOW_MS } from '../../data/besht';
+import { BESHT_NAME_ES, BESHT_SEGULA_ES } from '../../data/besht-es';
+import { formatDate } from '../../utils/format-date';
 
 const allStories = (await getCollection('storiesEs', isPublished)).sort(newestFirst);
 
@@ -70,6 +74,25 @@ const mabatPieces = (await getCollection('mabatEs', isPublished)).sort(newestFir
 const latestMabat = mabatPieces[0]
   ? { piece: mabatPieces[0], blocks: parseBody(mabatPieces[0].body ?? '') }
   : null;
+
+// "Así sucedió" — אותו מנגנון ציפייה כמו בעברית, מול אוסף beshtEs.
+// "מבחר ולא מראה": אם עדיין אין תרגום לסיפור הבא, האזור נשאר על האחרון
+// שכן תורגם, בלי ספירה — לא נחשפת ספירה למשהו שאין לו עדיין עמוד ספרדי.
+const beshtAllEs = await getCollection('beshtEs');
+const beshtNow = Date.now();
+const beshtPublishedEs = beshtAllEs.filter((b) => b.data.date.getTime() <= beshtNow).sort(newestFirst);
+const beshtUpcomingEs = beshtAllEs
+  .filter((b) => b.data.date.getTime() > beshtNow)
+  .sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
+const currentBeshtEs = beshtPublishedEs[0] ?? null;
+const nextBeshtDateEs = beshtUpcomingEs[0]?.data.date ?? null;
+const beshtShowTeaserEs =
+  nextBeshtDateEs !== null &&
+  (currentBeshtEs === null || nextBeshtDateEs.getTime() - beshtNow <= BESHT_TEASE_WINDOW_MS);
+const beshtDaysLeftEs = nextBeshtDateEs
+  ? Math.max(1, Math.ceil((nextBeshtDateEs.getTime() - beshtNow) / (24 * 60 * 60 * 1000)))
+  : null;
+const beshtDayLabelEs = beshtDaysLeftEs === 1 ? 'en 1 día' : beshtDaysLeftEs ? `en ${beshtDaysLeftEs} días` : '';
 
 const DESCRIPTION =
   'Un lugar para detenerse, obtener un nuevo punto de vista y llevar algo contigo en tu camino. Historias y momentos breves de Punto de Vista.';
@@ -238,6 +261,51 @@ const DESCRIPTION =
         )
       }
     </section>
+
+    <!-- פינת "Así sucedió" — מתחת לשתי הדלתות, אותו מיקום כמו בעברית. -->
+    {(currentBeshtEs || beshtShowTeaserEs) && (
+    <section class="besht-corner">
+      <div class="besht-art"><BeshtArt /></div>
+      <span class="besht-seal" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6">
+          <path d="M12 3c2 3 3 5 3 7a3 3 0 1 1-6 0c0-2 1-4 3-7Z"></path>
+          <path d="M8 21h8M12 17v4"></path>
+        </svg>
+      </span>
+      <div class="besht-content">
+        <p class="besht-name">{BESHT_NAME_ES}</p>
+        <p class="besht-segula">{BESHT_SEGULA_ES}</p>
+
+        {
+          beshtShowTeaserEs ? (
+            <div class="besht-teaser">
+              <p class="besht-count">{beshtDayLabelEs}</p>
+              <p class="besht-count-sub">La próxima historia se abre al salir el Shabat</p>
+            </div>
+          ) : (
+            currentBeshtEs && (
+              <>
+                <p class="besht-occasion">
+                  {currentBeshtEs.data.parasha} · {currentBeshtEs.data.hebrewDate}
+                </p>
+                <p class="besht-date">{formatDate(currentBeshtEs.data.date, 'es')}</p>
+                <h2 class="besht-title">
+                  <a href={`/es/asi-sucedio/${currentBeshtEs.id}/`}>{currentBeshtEs.data.title}</a>
+                </h2>
+                <p class="besht-excerpt">{currentBeshtEs.data.excerpt}</p>
+                <a class="besht-cta" href={`/es/asi-sucedio/${currentBeshtEs.id}/`} data-ph="besht_read">
+                  Seguir leyendo
+                </a>
+                <div class="besht-thought">
+                  <p>{currentBeshtEs.data.thought}</p>
+                </div>
+              </>
+            )
+          )
+        }
+      </div>
+    </section>
+    )}
 
     <JoinGroup lang="es" />
   </main>
@@ -766,5 +834,153 @@ const DESCRIPTION =
 
   .teaser-more:hover {
     text-decoration: underline;
+  }
+
+  /* ============ פינת "Así sucedió" — זהה לעברית ============ */
+  .besht-corner {
+    --bleed: min(62rem, 100vw - 3rem);
+    width: var(--bleed);
+    margin-inline: calc((100% - var(--bleed)) / 2);
+    position: relative;
+    background: var(--paper);
+    border: 2px solid var(--teal);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-bottom: 2.5rem;
+  }
+
+  .besht-art {
+    height: 12rem;
+  }
+
+  .besht-seal {
+    position: absolute;
+    top: calc(12rem - 26px);
+    right: calc(50% - 26px);
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--teal);
+    border: 3px solid var(--paper);
+    box-shadow: 0 3px 10px rgba(30, 20, 40, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .besht-seal svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .besht-content {
+    padding: 2rem 1.4rem 1.8rem;
+    text-align: center;
+  }
+
+  .besht-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--teal);
+    font-size: 1.15rem;
+    margin: 0;
+  }
+
+  .besht-segula {
+    color: var(--muted);
+    font-size: 0.78rem;
+    max-width: 28ch;
+    margin: 0.4rem auto 1.3rem;
+    line-height: 1.6;
+  }
+
+  .besht-occasion {
+    color: var(--teal);
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin: 0 0 0.2rem;
+  }
+
+  .besht-date {
+    color: var(--muted);
+    font-size: 0.78rem;
+    letter-spacing: 0.03em;
+    margin: 0 0 0.5rem;
+  }
+
+  .besht-title {
+    font-size: 1.35rem;
+    line-height: 1.35;
+    margin: 0 0 0.7rem;
+    text-wrap: balance;
+  }
+
+  .besht-title a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .besht-title a:hover {
+    color: var(--teal);
+  }
+
+  .besht-excerpt {
+    color: var(--secondary);
+    font-size: 0.92rem;
+    max-width: 34ch;
+    margin: 0 auto 1.1rem;
+    line-height: 1.65;
+  }
+
+  .besht-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0.55rem 1.4rem;
+    border-radius: 2rem;
+    background: var(--teal);
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+  }
+
+  .besht-cta:hover {
+    opacity: 0.9;
+  }
+
+  .besht-thought {
+    border-top: 1px solid var(--line);
+    margin-top: 1.6rem;
+    padding-top: 1.3rem;
+  }
+
+  .besht-thought p {
+    color: var(--teal-deep);
+    font-family: var(--font-display);
+    font-size: 0.98rem;
+    line-height: 1.75;
+    max-width: 30rem;
+    margin: 0 auto;
+  }
+
+  .besht-teaser {
+    padding-top: 0.4rem;
+  }
+
+  .besht-count {
+    font-family: var(--font-display);
+    color: var(--teal);
+    font-size: 1.1rem;
+    margin: 0 0 0.3rem;
+  }
+
+  .besht-count-sub {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin: 0;
   }
 </style>

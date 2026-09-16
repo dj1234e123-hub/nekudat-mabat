@@ -1,45 +1,45 @@
 ---
-// עמוד הכניסה ל"מעשה שהיה" — ארכיון סיפורי הבעל שם טוב, מהחדש לישן.
-// עם סיפור אחד זו עדיין רשימה קצרה; המבנה מוכן לצמוח בלי שינוי (כמו
-// שכבר קרה עם מבט לשבת).
+// עמוד הכניסה ל"מעשה שהיה" בספרדית — "Así sucedió". אותו מבנה בדיוק
+// כמו /besht/, בשפה אחרת. "Así sucedió" נבחר לפי הפונקציה של הביטוי
+// העברי (פתיחת סיפור חסידי קלאסית) ולא תרגום מילולי.
 import { getCollection } from 'astro:content';
 import { getImage } from 'astro:assets';
-import Base from '../../layouts/Base.astro';
-import { newestFirst } from '../../lib/sort';
-import { isPublished } from '../../lib/published';
-import { formatDate } from '../../utils/format-date';
-import { BESHT_NAME, BESHT_SEGULA, BESHT_DESCRIPTION } from '../../data/besht';
-import beshtIdentity from '../../assets/besht/og-identity.png';
+import Base from '../../../layouts/Base.astro';
+import { newestFirst } from '../../../lib/sort';
+import { isPublished } from '../../../lib/published';
+import { formatDate } from '../../../utils/format-date';
+import { BESHT_NAME_ES, BESHT_SEGULA_ES, BESHT_DESCRIPTION_ES } from '../../../data/besht-es';
+import beshtIdentityEs from '../../../assets/besht/og-identity-es.png';
 
-const items = (await getCollection('besht', isPublished)).sort(newestFirst);
+const items = (await getCollection('beshtEs', isPublished)).sort(newestFirst);
 
-// אותה תמונת זהות קבועה כמו בעמוד הסיפור — ראו ההסבר שם.
-const og = await getImage({ src: beshtIdentity, width: 1080, format: 'png' });
+const og = await getImage({ src: beshtIdentityEs, width: 1080, format: 'png' });
 const ogImage = new URL(og.src, Astro.site).href;
 ---
 
 <Base
-  title={`${BESHT_NAME} · נקודת מבט`}
-  description={BESHT_DESCRIPTION}
+  lang="es"
+  title={`${BESHT_NAME_ES} · Punto de Vista`}
+  description={BESHT_DESCRIPTION_ES}
   ogImage={ogImage}
   ogImageWidth={og.attributes.width}
   ogImageHeight={og.attributes.height}
-  altLangHref="/es/asi-sucedio/"
+  altLangHref="/besht/"
 >
   <main>
-    <h1 class="page-title">{BESHT_NAME}</h1>
-    <p class="intro">{BESHT_SEGULA}</p>
+    <h1 class="page-title">{BESHT_NAME_ES}</h1>
+    <p class="intro">{BESHT_SEGULA_ES}</p>
 
     <ul class="issues">
       {
         items.map((item) => (
           <li class="issue">
-            <a class="issue-link" href={`/besht/${item.id}/`}>
+            <a class="issue-link" href={`/es/asi-sucedio/${item.id}/`}>
               <p class="issue-occasion">
                 {item.data.parasha} · {item.data.hebrewDate}
               </p>
               <p class="issue-kicker">
-                <time datetime={item.data.date.toISOString().slice(0, 10)}>{formatDate(item.data.date)}</time>
+                <time datetime={item.data.date.toISOString().slice(0, 10)}>{formatDate(item.data.date, 'es')}</time>
               </p>
               <h2>{item.data.title}</h2>
               <p class="issue-excerpt">{item.data.excerpt}</p>

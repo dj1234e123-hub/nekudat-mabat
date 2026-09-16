@@ -1,24 +1,20 @@
 ---
-// עמוד סיפור בודד ב"מעשה שהיה" — פינת סיפורי הבעל שם טוב למוצאי שבת.
-// גוף הסיפור הוא Markdown רגיל (כמו stories, לא כמו מבט לשבת/רגעים) —
-// הסיפורים כאן מספרים מה קרה למישהו אחר, ולכן בפסקאות (כלל שבירת השורות
-// הקיים). הפסקה החזקה מסומנת `>` וזוכה לאותו טיפול-ציטוט הקיים בסיפורים.
-// "המחשבה" (thought) היא שדה נפרד ומוצגת אחרי הסיפור, בירוק־כחול (--teal) —
-// אותו צבע כמו "סיפורי צדיקים" (הבעל שם טוב הוא תת-סוג שלהם), לא צבע חדש.
-// לא "מוסר השכל", המשך שקט של הכרטיס.
+// עמוד סיפור בודד ב"Así sucedió" — הגרסה הספרדית של "מעשה שהיה". אותו
+// מבנה בדיוק כמו /besht/[slug].astro (כולל תיקון הסדר: מסתיים במחשבה,
+// לא במקור), בשפה אחרת. גוף הסיפור ב-Markdown רגיל בפסקאות, כמו בעברית.
 import { getCollection, render } from 'astro:content';
 import { getImage } from 'astro:assets';
-import Base from '../../layouts/Base.astro';
-import BeshtArt from '../../components/BeshtArt.astro';
-import ShareRow from '../../components/ShareRow.astro';
-import { articleJsonLd, breadcrumbJsonLd } from '../../lib/structured-data';
-import { isPublished } from '../../lib/published';
-import { formatDate } from '../../utils/format-date';
-import { BESHT_NAME, BESHT_SEGULA } from '../../data/besht';
-import beshtIdentity from '../../assets/besht/og-identity.png';
+import Base from '../../../layouts/Base.astro';
+import BeshtArt from '../../../components/BeshtArt.astro';
+import ShareRow from '../../../components/ShareRow.astro';
+import { articleJsonLd, breadcrumbJsonLd } from '../../../lib/structured-data';
+import { isPublished } from '../../../lib/published';
+import { formatDate } from '../../../utils/format-date';
+import { BESHT_NAME_ES, BESHT_SEGULA_ES } from '../../../data/besht-es';
+import beshtIdentityEs from '../../../assets/besht/og-identity-es.png';
 
 export async function getStaticPaths() {
-  const items = await getCollection('besht', isPublished);
+  const items = await getCollection('beshtEs', isPublished);
   return items.map((item) => ({ params: { slug: item.id }, props: { item } }));
 }
 
@@ -26,41 +22,34 @@ const { item } = Astro.props;
 const { Content } = await render(item);
 const { title, parasha, hebrewDate, date, excerpt, thought, source } = item.data;
 
-const pageUrl = new URL(`/besht/${item.id}/`, Astro.site).href;
+const pageUrl = new URL(`/es/asi-sucedio/${item.id}/`, Astro.site).href;
 
-// התאום הספרדי — אותו שם קובץ באוסף beshtEs. סיפור בלי תרגום מקבל
-// גלולה לשער השפה (עמוד הכניסה הספרדי) בלי hreflang, כמו הרגעים והסיפורים.
-const beshtEs = await getCollection('beshtEs', isPublished);
-const hasEsTwin = beshtEs.some((b) => b.id === item.id);
-const altLangHref = hasEsTwin ? `/es/asi-sucedio/${item.id}/` : '/es/asi-sucedio/';
-
-// תמונת שיתוף קבועה, משותפת לכל סיפורי הפינה — לא לכל סיפור תמונה משלו
-// (ראו ההחלטה: מנהג שבועי, לא עומס תמונה כל שבוע). אותו צינור resvg
-// שכבר מייצר את תמונות הרגעים; נוצרה פעם אחת ב-scripts/render-besht-identity.mjs.
-const og = await getImage({ src: beshtIdentity, width: 1080, format: 'png' });
+// תמונת שיתוף קבועה ספרדית, אותו צינור resvg — ראו ההסבר בעמוד העברי.
+const og = await getImage({ src: beshtIdentityEs, width: 1080, format: 'png' });
 const ogImage = new URL(og.src, Astro.site).href;
 ---
 
 <Base
-  title={`${title} · ${BESHT_NAME}`}
+  lang="es"
+  title={`${title} · ${BESHT_NAME_ES}`}
   description={excerpt}
   ogType="article"
   ogImage={ogImage}
   ogImageWidth={og.attributes.width}
   ogImageHeight={og.attributes.height}
   compact={true}
-  altLangHref={altLangHref}
-  altLangTwin={hasEsTwin}
+  altLangHref={`/besht/${item.id}/`}
   jsonLd={[
     articleJsonLd(Astro.site!, {
       url: pageUrl,
       headline: title,
       description: excerpt,
       datePublished: date,
+      inLanguage: 'es',
     }),
     breadcrumbJsonLd(Astro.site!, [
-      { name: 'נקודת מבט', path: '/' },
-      { name: BESHT_NAME, path: '/besht/' },
+      { name: 'Punto de Vista', path: '/es/' },
+      { name: BESHT_NAME_ES, path: '/es/asi-sucedio/' },
       { name: title },
     ]),
   ]}
@@ -74,13 +63,13 @@ const ogImage = new URL(og.src, Astro.site).href;
             <path d="M8 21h8M12 17v4"></path>
           </svg>
         </span>
-        <p class="kicker">{BESHT_NAME}</p>
-        <p class="segula">{BESHT_SEGULA}</p>
+        <p class="kicker">{BESHT_NAME_ES}</p>
+        <p class="segula">{BESHT_SEGULA_ES}</p>
         <h1>{title}</h1>
         <p class="occasion">
           {parasha} · {hebrewDate}
         </p>
-        <p class="meta"><time datetime={date.toISOString().slice(0, 10)}>{formatDate(date)}</time></p>
+        <p class="meta"><time datetime={date.toISOString().slice(0, 10)}>{formatDate(date, 'es')}</time></p>
       </header>
 
       <div class="art-frame"><BeshtArt /></div>
@@ -95,10 +84,10 @@ const ogImage = new URL(og.src, Astro.site).href;
       <p class="thought">{thought}</p>
     </article>
 
-    <ShareRow title={`${title} · ${BESHT_NAME}`} url={pageUrl} />
+    <ShareRow title={`${title} · ${BESHT_NAME_ES}`} url={pageUrl} lang="es" />
 
     <nav class="besht-footer">
-      <a href="/besht/">לכל סיפורי {BESHT_NAME}</a>
+      <a href="/es/asi-sucedio/">Todas las historias de {BESHT_NAME_ES}</a>
     </nav>
   </main>
 </Base>
@@ -111,7 +100,7 @@ const ogImage = new URL(og.src, Astro.site).href;
   .besht-head {
     /* Base.astro מיישם display:flex על תג <header> גלובלית ממסך רחב
        (לשורת המותג+ניווט של האתר) — display:block כאן מבטל את זה לכותרת
-       הפנימית הזו במפורש, בלי לגעת ב-Base.astro עצמו. */
+       הפנימית הזו במפורש, בלי לגעת ב-Base.astro עצמו. אותה תקלה כמו בעברית. */
     display: block;
     text-align: center;
     padding-bottom: 1.5rem;
@@ -200,9 +189,15 @@ const ogImage = new URL(og.src, Astro.site).href;
     color: var(--teal-deep);
   }
 
-  /* המחשבה — בירוק־כחול עמוק, אותו גוון כמו הכותרת הראשית של דף הבית
-     ופסקת הציטוט בגוף הסיפור. לא צבע ייחודי לפינה; משקל דומה לשורות
-     הסיכום החשובות האחרות באתר. */
+  .source {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.78rem;
+    max-width: 34ch;
+    margin: 2.2rem auto 0;
+    line-height: 1.6;
+  }
+
   .thought-ornament {
     display: flex;
     justify-content: center;
@@ -227,15 +222,6 @@ const ogImage = new URL(og.src, Astro.site).href;
     text-wrap: balance;
     max-width: 32rem;
     margin: 0 auto 2rem;
-  }
-
-  .source {
-    text-align: center;
-    color: var(--muted);
-    font-size: 0.78rem;
-    max-width: 34ch;
-    margin: 2.2rem auto 0;
-    line-height: 1.6;
   }
 
   .besht-footer {
