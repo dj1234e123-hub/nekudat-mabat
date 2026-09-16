@@ -1,10 +1,12 @@
 ---
 # תרגום של ארכיון #038 (2026-08-30).
-# **בלי cover בכוונה:** תמונת השער העברית נושאת דף עם הכיתוב "אני מאמין" בעברית.
-# עד שתוכן גרסה בספרדית — שער הקטגוריה הזמני.
+# תמונת שער נפרדת נוספה 2026-09-16 — תמונת השער העברית נושאת דף עם הכיתוב
+# "אני מאמין" בעברית, ולכן קיבלה תמונה נפרדת בלי כיתוב לגרסה הספרדית.
 title: 'El "Aní Maamín" del vagón'
 section: tzadikim
 archiveId: "038"
+cover: ../../assets/covers/038-es.png
+coverAlt: "Interior de un vagón de tren de madera de noche, iluminado por un farol de aceite encendido junto a bultos y baúles; un libro antiguo descansa sobre un cofre, y por las rendijas de la pared entra la luz de la luna"
 date: 2026-08-26T09:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Una noche negra, un tren a toda marcha, vagones de madera cerrados, y nadie sabe hacia dónde. En un vagón está sentado Reb Azriel David Fastag, jasid de Modzitz, y empieza a entonar una melodía nueva para las palabras Aní Maamín."
