@@ -42,13 +42,13 @@ function candleSvg(cx, cy, scale = 1) {
 const doc = `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}" viewBox="0 0 ${WIDTH} ${HEIGHT}">
   <rect width="${WIDTH}" height="${HEIGHT}" fill="${PAPER}"/>
 
-  ${candleSvg(CENTER, 660, 1.4)}
+  ${candleSvg(CENTER, 630, 1.6)}
 
-  <text x="${CENTER}" y="830" font-family="Frank Ruhl Libre Bold" font-size="130" fill="${TEAL}" direction="rtl" text-anchor="middle">${rtl('מעשה שהיה')}</text>
+  <text x="${CENTER}" y="815" font-family="Frank Ruhl Libre Bold" font-size="155" fill="${TEAL}" direction="rtl" text-anchor="middle">${rtl('מעשה שהיה')}</text>
 
-  <text x="${CENTER}" y="940" font-family="Frank Ruhl Libre" font-size="56" fill="${INK}" direction="rtl" text-anchor="middle">${rtl('סיפור אחד, ואחריו — שבוע חדש.')}</text>
+  <text x="${CENTER}" y="935" font-family="Frank Ruhl Libre" font-size="65" fill="${INK}" direction="rtl" text-anchor="middle">${rtl('סיפור אחד, ואחריו — שבוע חדש.')}</text>
 
-  <line x1="${CENTER - 50}" y1="1030" x2="${CENTER + 50}" y2="1030" stroke="${GOLD}" stroke-width="2.5"/>
+  <line x1="${CENTER - 55}" y1="1035" x2="${CENTER + 55}" y2="1035" stroke="${GOLD}" stroke-width="2.5"/>
 
   <text x="${CENTER}" y="1224" font-family="Heebo Bold" font-size="30" fill="${TEAL_DEEP}" direction="rtl" text-anchor="middle">${rtl('נקודת מבט · אפרים עטיה')}</text>
   <text x="${CENTER}" y="1264" font-family="Heebo" font-size="24" fill="${MUTED}" text-anchor="middle">${escape('nekudatmabat.blog')}</text>
