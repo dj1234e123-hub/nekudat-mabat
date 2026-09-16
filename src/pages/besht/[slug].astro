@@ -81,10 +81,10 @@ const ogImage = new URL(og.src, Astro.site).href;
         <Content />
       </div>
 
+      <p class="source">{source}</p>
+
       <div class="thought-ornament" aria-hidden="true"><span class="rule"></span></div>
       <p class="thought">{thought}</p>
-
-      <p class="source">{source}</p>
     </article>
 
     <ShareRow title={`${title} · ${BESHT_NAME}`} url={pageUrl} />
@@ -198,7 +198,7 @@ const ogImage = new URL(og.src, Astro.site).href;
   .thought-ornament {
     display: flex;
     justify-content: center;
-    margin: 3rem 0 1.6rem;
+    margin: 1.6rem 0 1.6rem;
   }
 
   .thought-ornament .rule {
@@ -226,7 +226,7 @@ const ogImage = new URL(og.src, Astro.site).href;
     color: var(--muted);
     font-size: 0.78rem;
     max-width: 34ch;
-    margin: 0 auto 1rem;
+    margin: 2.2rem auto 0;
     line-height: 1.6;
   }
 
