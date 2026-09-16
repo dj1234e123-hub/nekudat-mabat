@@ -314,6 +314,9 @@ const DESCRIPTION =
           ) : (
             currentBesht && (
               <>
+                <p class="besht-occasion">
+                  {currentBesht.data.parasha} · {currentBesht.data.hebrewDate}
+                </p>
                 <p class="besht-date">{formatDate(currentBesht.data.date)}</p>
                 <h2 class="besht-title">
                   <a href={`/besht/${currentBesht.id}/`}>{currentBesht.data.title}</a>
@@ -938,6 +941,13 @@ const DESCRIPTION =
     max-width: 28ch;
     margin: 0.4rem auto 1.3rem;
     line-height: 1.6;
+  }
+
+  .besht-occasion {
+    color: var(--teal);
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin: 0 0 0.2rem;
   }
 
   .besht-date {
