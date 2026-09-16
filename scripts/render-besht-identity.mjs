@@ -43,7 +43,7 @@ const doc = `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${
 
   <text x="${CENTER}" y="800" font-family="Frank Ruhl Libre Bold" font-size="92" fill="${TEAL}" direction="rtl" text-anchor="middle">${rtl('מעשה שהיה')}</text>
 
-  <text x="${CENTER}" y="878" font-family="Frank Ruhl Libre" font-size="42" fill="${INK}" direction="rtl" text-anchor="middle">${rtl('מעשה שהיה, כך היה.')}</text>
+  <text x="${CENTER}" y="878" font-family="Frank Ruhl Libre" font-size="42" fill="${INK}" direction="rtl" text-anchor="middle">${rtl('סיפור אחד, ואחריו — שבוע חדש.')}</text>
 
   <line x1="${CENTER - 45}" y1="950" x2="${CENTER + 45}" y2="950" stroke="${GOLD}" stroke-width="2"/>
 
