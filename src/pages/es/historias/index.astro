@@ -60,8 +60,8 @@ const countLabel = (n: number) => (n === 1 ? 'una historia' : `${n} historias`);
                 <Image
                   src={gate.image}
                   alt=""
-                  widths={[480, 960]}
-                  sizes="(max-width: 48rem) 100vw, 380px"
+                  widths={[360, 720]}
+                  sizes="(max-width: 48rem) 50vw, 330px"
                   style={`object-position: ${gate.position}`}
                 />
               </a>
@@ -105,20 +105,31 @@ const countLabel = (n: number) => (n === 1 ? 'una historia' : `${n} historias`);
   .intro {
     text-align: center;
     color: var(--secondary);
-    margin: 0 auto 2.2rem;
+    margin: 0 auto 1.5rem;
     max-width: 26rem;
     line-height: 1.7;
   }
 
+  /* ── כרטיסי העולמות — רשת 2×2 (2026-09-16) ──
+     קודם ארבע רצועות ברוחב מלא, ~370px כל אחת בטלפון: הקורא ראה רצועה
+     וחצי בכל פעם, והעולם הרביעי חיכה 1,500px למטה. "ארבעה עולמות. בחר
+     מאיפה להתחיל" מחייב לראות את הארבעה יחד — עכשיו כולם במסך הראשון.
+     מלבנים ולא קשתות, בכוונה (החלטת 4.27): הקשת שייכת לרגעים. שני עמודי
+     הכניסה חולקים את העיקרון (כל הדלתות במסך אחד), לא את הצורה.
+     כל מה שהיה ברצועה נשאר בכרטיס: צילום, קו הצבע, שם, שורת ההסבר,
+     "למשל: סיפור אמיתי" ומספר הסיפורים. */
   .bands {
     list-style: none;
     padding: 0;
-    margin: 0 0 3.25rem;
+    margin: 0 0 3rem;
     display: grid;
-    gap: 1.4rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
   }
 
   .band {
+    display: flex;
+    flex-direction: column;
     background: var(--paper);
     border: 1px solid var(--line);
     border-top: 3px solid var(--accent);
@@ -127,6 +138,7 @@ const countLabel = (n: number) => (n === 1 ? 'una historia' : `${n} historias`);
     box-shadow: var(--shadow);
   }
 
+  /* התמונה היא הדלת — לחיצה עליה נכנסת לעולם */
   .band-gate {
     display: block;
     line-height: 0;
@@ -136,18 +148,22 @@ const countLabel = (n: number) => (n === 1 ? 'una historia' : `${n} historias`);
     display: block;
     width: 100%;
     height: auto;
-    aspect-ratio: 16 / 7;
+    /* 16:9 בטלפון — כדי ששתי השורות ייכנסו למסך הראשון; 3:2 במסך רחב */
+    aspect-ratio: 16 / 9;
     object-fit: cover;
   }
 
   .band-body {
-    padding: 1rem 1.1rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 0.65rem 0.8rem 0.6rem;
   }
 
   .band-name {
-    font-size: 1.35rem;
+    font-size: 1.15rem;
     margin: 0;
-    line-height: 1.3;
+    line-height: 1.25;
   }
 
   .band-name a {
@@ -162,23 +178,26 @@ const countLabel = (n: number) => (n === 1 ? 'una historia' : `${n} historias`);
 
   .band-line {
     color: var(--secondary);
-    font-size: 0.95rem;
-    line-height: 1.65;
-    margin: 0.35rem 0 0;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    margin: 0.3rem 0 0;
   }
 
+  /* הסיבה להיכנס: שם של סיפור אמיתי, לא עוד תיאור. נדחף לתחתית הכרטיס
+     כדי ששני הכרטיסים שבשורה יישרו קו גם כששורת ההסבר שונה באורכה. */
   .band-sample {
-    margin: 0.9rem 0 0;
-    padding-top: 0.8rem;
+    margin: auto 0 0;
+    padding-top: 0.6rem;
     border-top: 1px solid var(--line);
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    line-height: 1.5;
     color: var(--muted);
   }
 
   .band-sample a {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: 1.05rem;
+    font-size: 0.98rem;
     color: var(--ink);
     text-decoration: none;
   }
@@ -190,18 +209,19 @@ const countLabel = (n: number) => (n === 1 ? 'una historia' : `${n} historias`);
 
   .band-more {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
-    margin: 0.5rem 0 0;
-    font-size: 0.85rem;
+    gap: 0 0.6rem;
+    margin: 0.15rem 0 0;
+    font-size: 0.78rem;
     color: var(--muted);
   }
 
   .band-more a {
     display: inline-flex;
     align-items: center;
-    min-height: 44px;
+    min-height: 36px;
     font-weight: 600;
     color: var(--teal);
     text-decoration: none;
@@ -212,27 +232,36 @@ const countLabel = (n: number) => (n === 1 ? 'una historia' : `${n} historias`);
     text-decoration: underline;
   }
 
-  @media (min-width: 48rem) {
-    .band {
-      display: grid;
-      grid-template-columns: 22rem 1fr;
-      align-items: stretch;
-    }
-
-    .band-gate {
-      height: 100%;
+  /* במסך רחב הכרטיסים רחבים כפליים — הטקסט חוזר לגודלו הרגיל */
+  @media (min-width: 34rem) {
+    .bands {
+      gap: 1.25rem;
     }
 
     .band-gate :global(img) {
-      height: 100%;
-      aspect-ratio: auto;
+      aspect-ratio: 3 / 2;
     }
 
     .band-body {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 1.5rem 1.6rem;
+      padding: 0.9rem 1.1rem 0.8rem;
+    }
+
+    .band-name {
+      font-size: 1.3rem;
+    }
+
+    .band-line {
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .band-sample,
+    .band-more {
+      font-size: 0.85rem;
+    }
+
+    .band-sample a {
+      font-size: 1.05rem;
     }
   }
 
