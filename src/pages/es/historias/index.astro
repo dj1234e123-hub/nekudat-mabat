@@ -11,6 +11,8 @@ import { SECTIONS_ES } from '../../../data/site-es';
 import { SECTION_GATE_IMAGES } from '../../../data/section-gate-images';
 import { newestFirst } from '../../../lib/sort';
 import { isPublished } from '../../../lib/published';
+import { readingLabel } from '../../../lib/reading-time';
+import { storyOpening } from '../../../lib/story-opening';
 
 const stories = (await getCollection('storiesEs', isPublished)).sort(newestFirst);
 
@@ -71,9 +73,14 @@ const countLabel = (n: number) => (n === 1 ? 'una historia' : `${n} historias`);
                 <a href={`/es/secciones/${slug}/`}>{metaEs.label}</a>
               </h2>
               <p class="band-line">{metaEs.line}</p>
-              <p class="band-sample">
-                Por ejemplo: <a href={`/es/historias/${sample.id}/`}>{sample.data.title}</a>
-              </p>
+              {/* הפיתוי: שאלה שהסיפור עונה עליה (hook), ומתחתיה השם וזמן הקריאה.
+                  בלי hook — שתי שורות הפתיחה, כמו בכרטיס "הסיפור הבא". */}
+              <a href={`/es/historias/${sample.id}/`} class="band-sample">
+                <span class="band-hook">{sample.data.hook ?? storyOpening(sample.body)}</span>
+                <span class="band-story">
+                  {sample.data.title} · <span class="nowrap">{readingLabel(sample, "es")}</span> →
+                </span>
+              </a>
               <p class="band-more">
                 <span>{countLabel(count)}</span>
                 <a href={`/es/secciones/${slug}/`}>{metaEs.linkText} →</a>
@@ -176,35 +183,54 @@ const countLabel = (n: number) => (n === 1 ? 'una historia' : `${n} historias`);
     text-decoration: underline;
   }
 
+  /* בטלפון הכרטיס צר, והשאלה היא הטעימה של העולם — שורת ההסבר המופשטת
+     מוצגת רק ממסך רחב (והיא חיה גם בדף הבית ובתיאור המטא של עמוד העולם). */
   .band-line {
+    display: none;
     color: var(--secondary);
     font-size: 0.8rem;
     line-height: 1.5;
     margin: 0.3rem 0 0;
   }
 
-  /* הסיבה להיכנס: שם של סיפור אמיתי, לא עוד תיאור. נדחף לתחתית הכרטיס
-     כדי ששני הכרטיסים שבשורה יישרו קו גם כששורת ההסבר שונה באורכה. */
+  /* הסיבה להיכנס: שאלה שהסיפור עונה עליה, ולא שם. שם מושך רק את מי
+     שכבר יודע מה מאחוריו; שאלה נלבשת על הקורא לפני שהוא יודע מי הגיבור.
+     בפונט הכותרות בכחול — הסימן הקבוע באתר ל"פה מתחילה מחשבה" (כותרת-הוו
+     של רגע). נדחף לתחתית הכרטיס כדי ששני כרטיסים בשורה יישרו קו. */
   .band-sample {
+    display: block;
     margin: auto 0 0;
     padding-top: 0.6rem;
     border-top: 1px solid var(--line);
-    font-size: 0.8rem;
+    text-decoration: none;
+  }
+
+  .band-hook {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.02rem;
+    line-height: 1.35;
+    color: var(--blue);
+    text-wrap: balance;
+  }
+
+  .band-story {
+    display: block;
+    margin-top: 0.35rem;
+    font-size: 0.78rem;
     line-height: 1.5;
     color: var(--muted);
   }
 
-  .band-sample a {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 0.98rem;
-    color: var(--ink);
-    text-decoration: none;
+  .band-sample:hover .band-hook,
+  .band-sample:focus-visible .band-hook {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
   }
 
-  .band-sample a:hover,
-  .band-sample a:focus-visible {
-    text-decoration: underline;
+  .nowrap {
+    white-space: nowrap;
   }
 
   .band-more {
@@ -251,17 +277,18 @@ const countLabel = (n: number) => (n === 1 ? 'una historia' : `${n} historias`);
     }
 
     .band-line {
+      display: block;
       font-size: 0.9rem;
       line-height: 1.6;
     }
 
-    .band-sample,
-    .band-more {
+    .band-more,
+    .band-story {
       font-size: 0.85rem;
     }
 
-    .band-sample a {
-      font-size: 1.05rem;
+    .band-hook {
+      font-size: 1.15rem;
     }
   }
 

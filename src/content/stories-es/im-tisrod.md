@@ -9,6 +9,7 @@ coverAlt: "Un shofar sobre una vieja tela de arpillera en la cubierta de un barc
 date: 2026-09-11T17:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "En Rosh Hashaná de 5705, en un subcampo de Auschwitz, un prisionero le susurró a Chaskel Tydor: teníamos un shofar. Lo tocamos. Un año después, en la cubierta de un barco frente al Carmelo, el bulto se abrió."
+hook: "¿Qué se hace con un shofar que fue tocado en Auschwitz, un año después?"
 ---
 
 Rosh Hashaná de 5706, septiembre de 1945. En la cubierta de un barco rumbo a la Tierra de Israel hay jóvenes sobrevivientes, muchos de ellos de Auschwitz. En el horizonte, el Carmelo.

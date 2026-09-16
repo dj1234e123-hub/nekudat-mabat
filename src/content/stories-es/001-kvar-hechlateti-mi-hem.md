@@ -9,6 +9,7 @@ date: 2026-08-11T09:00:00Z
 readingTime: "unos 2 minutos"
 featured: 3
 excerpt: "Estaba parado junto a la entrada de Rabí Meir Baal Hanés y vi a unos muchachos juntando donaciones sin cartel y sin alcancía. En segundos ya había decidido quiénes eran — y entonces vi a quién le entregaron el dinero."
+hook: "Unos muchachos juntan dinero sin cartel y sin alcancía. ¿Qué pensamos de ellos?"
 ---
 
 Tengo que admitirlo: *hoy me equivoqué.*

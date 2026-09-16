@@ -9,6 +9,7 @@ date: 2026-08-25T09:00:00Z
 readingTime: "unos 2 minutos"
 featured: 2
 excerpt: "Toda su vida creció en el gallinero escuchando que era raro, torpe, que de él no saldría nada. Hasta que pasó por ahí un viejo naturalista, lo miró bien, y susurró para sí: esto no es un gallo."
+hook: "¿Qué pasa cuando toda la vida te dicen quién eres, y no es verdad?"
 ---
 
 Al alba el gallinero ya estaba despierto. Cacareos en el patio, un polvillo suave en el aire.

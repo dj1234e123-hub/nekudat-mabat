@@ -21,6 +21,13 @@ const stories = defineCollection({
         coverAlt: z.string().min(1).optional(),
         date: z.coerce.date(),
         excerpt: z.string().min(1),
+        /**
+         * שאלה שהסיפור עונה עליה, בגוף "אנחנו" (2026-09-16) — הפיתוי בכרטיס
+         * העולם בעמוד הסיפורים. אותו נוסח שכבר עובד בהודעה לקבוצה: שאלה
+         * שהקורא עונה עליה בראש לפני שלחץ, בלי לחשוף את המסקנה. אופציונלי:
+         * סיפור בלי hook נופל לשתי שורות הפתיחה שלו (story-opening.ts).
+         */
+        hook: z.string().min(1).optional(),
         /** מחליף את חישוב זמן הקריאה האוטומטי, למשל "כ־90 שניות" (מתוך כרטיס הסיפור) */
         readingTime: z.string().optional(),
         /**
@@ -93,6 +100,13 @@ const storiesEs = defineCollection({
         coverAlt: z.string().min(1).optional(),
         date: z.coerce.date(),
         excerpt: z.string().min(1),
+        /**
+         * שאלה שהסיפור עונה עליה, בגוף "אנחנו" (2026-09-16) — הפיתוי בכרטיס
+         * העולם בעמוד הסיפורים. אותו נוסח שכבר עובד בהודעה לקבוצה: שאלה
+         * שהקורא עונה עליה בראש לפני שלחץ, בלי לחשוף את המסקנה. אופציונלי:
+         * סיפור בלי hook נופל לשתי שורות הפתיחה שלו (story-opening.ts).
+         */
+        hook: z.string().min(1).optional(),
         readingTime: z.string().optional(),
         featured: z.number().int().positive().optional(),
       })
