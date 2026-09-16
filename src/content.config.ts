@@ -123,6 +123,35 @@ const mabatEs = defineCollection({
       }),
 });
 
+// "מעשה שהיה" — פינת סיפורי הבעל שם טוב, קבועה למוצאי שבת.
+// אוסף שטוח כמו mabatLeshabbat: כל קובץ הוא סיפור אחד, גוף הקובץ הוא
+// הסיפור עצמו בפסקאות (Markdown רגיל — לא פורמט השורות של הרגעים, כי סיפור
+// שמספר מה קרה למישהו אחר לאורך זמן כתוב בפסקאות, לפי הכלל הקיים באתר).
+// date הוא רגע היציאה לאוויר (מוצאי שבת עצמו) — אותו שדה ואותה רשת ביטחון
+// (isPublished) כמו בכל אוסף מתוזמן אחר: תוכן עתידי אינו נבנה כלל.
+// thought — "המחשבה לשבוע" שאחרי הסיפור: לא מוסר השכל, נקודת מבט קצרה
+// שנולדת מהסיפור. שדה נפרד מהגוף, מוצג בעיצוב נבדל (הצבע הייחודי לפינה).
+// source — שורת מקור/רמת אמינות, כמו שכבר נהוג בכרטיסי המחקר לפני כתיבה.
+// cover אופציונלי: בלי תמונה אמיתית עדיין, הפינה מציגה איור-דמדומים משותף
+// (BeshtArt.astro) — אותו דפוס בדיוק כמו שערי הרגעים לפני שהגיעו הצילומים.
+const besht = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/besht' }),
+  schema: ({ image }) =>
+    z
+      .object({
+        title: z.string().min(1),
+        date: z.coerce.date(),
+        excerpt: z.string().min(1),
+        thought: z.string().min(1),
+        source: z.string().min(1),
+        cover: image().optional(),
+        coverAlt: z.string().min(1).optional(),
+      })
+      .refine((data) => !data.cover || !!data.coverAlt, {
+        message: 'תמונה חייבת גם טקסט חלופי (coverAlt)',
+      }),
+});
+
 // "מבט לשבת" — טור שבועי: סיפור אמיתי, חיבור לפרשת השבוע, ומבט על האדם.
 // בשונה מסיפורים ומרגעים, כאן מותר (ואפילו נדרש) להסביר ולעצור על הרעיון —
 // זו בדיוק הסיבה שזה אוסף נפרד ולא עוד עולם בתוך הסיפורים.
@@ -151,4 +180,4 @@ const mabatLeshabbat = defineCollection({
       }),
 });
 
-export const collections = { stories, moments, momentsEs, mabatLeshabbat, storiesEs, mabatEs };
+export const collections = { stories, moments, momentsEs, mabatLeshabbat, storiesEs, mabatEs, besht };

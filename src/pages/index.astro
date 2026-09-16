@@ -19,6 +19,9 @@ import { newestFirst } from '../lib/sort';
 import MabatBody from '../components/MabatBody.astro';
 import { parseBody } from '../lib/mabat-format';
 import { isPublished } from '../lib/published';
+import BeshtArt from '../components/BeshtArt.astro';
+import { BESHT_NAME, BESHT_SEGULA, BESHT_TEASE_WINDOW_MS } from '../data/besht';
+import { formatDate } from '../utils/format-date';
 
 // דף הבית נותן טעם ומוביל הלאה; הארכיון עצמו חי ב-/stories/.
 const allStories = (await getCollection('stories', isPublished)).sort(newestFirst);
@@ -84,6 +87,38 @@ const mabatPieces = (await getCollection('mabatLeshabbat', isPublished)).sort(ne
 const latestMabat = mabatPieces[0]
   ? { piece: mabatPieces[0], blocks: parseBody(mabatPieces[0].body ?? '') }
   : null;
+
+// "מעשה שהיה" — סיפורי הבעל שם טוב למוצאי שבת. נשלף בלי isPublished (בניגוד
+// לכל שאר האתר) כדי שאפשר יהיה לדעת שיש סיפור הבא בתור ולהראות עליו ספירה
+// שקטה — בלי לחשוף ממנו מילה (לא כותרת, לא תקציר; רק שמשהו מתוזמן, ומתי).
+// isPublished נשאר הכלל היחיד שקובע מה נבנה בפועל (עמוד הסיפור עצמו,
+// הארכיון ומפת האתר) — כאן זו רק הצצה לתאריך, לצורך הספירה בלבד.
+const beshtAll = await getCollection('besht');
+const beshtNow = Date.now();
+const beshtPublished = beshtAll.filter((b) => b.data.date.getTime() <= beshtNow).sort(newestFirst);
+const beshtUpcoming = beshtAll
+  .filter((b) => b.data.date.getTime() > beshtNow)
+  .sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
+const currentBesht = beshtPublished[0] ?? null;
+const nextBeshtDate = beshtUpcoming[0]?.data.date ?? null;
+
+// מצב "ציפייה": לפני שיצא הסיפור הראשון אי־פעם, או בימים האחרונים שלפני
+// מוצאי השבת הבא (BESHT_TEASE_WINDOW_MS) — הכרטיס מציג רק ספירה. בכל שאר
+// השבוע, הסיפור האחרון שיצא נשאר מוצג במלואו.
+const beshtShowTeaser =
+  nextBeshtDate !== null &&
+  (currentBesht === null || nextBeshtDate.getTime() - beshtNow <= BESHT_TEASE_WINDOW_MS);
+const beshtDaysLeft = nextBeshtDate
+  ? Math.max(1, Math.ceil((nextBeshtDate.getTime() - beshtNow) / (24 * 60 * 60 * 1000)))
+  : null;
+const beshtDayLabel =
+  beshtDaysLeft === 1
+    ? 'עוד יום'
+    : beshtDaysLeft === 2
+      ? 'עוד יומיים'
+      : beshtDaysLeft
+        ? `עוד ${beshtDaysLeft} ימים`
+        : '';
 
 const DESCRIPTION =
   'מקום לעצור, לקבל נקודת מבט חדשה, ולקחת משהו איתך להמשך הדרך. סיפורים ורגעים קצרים של נקודת מבט.';
@@ -253,6 +288,50 @@ const DESCRIPTION =
         </div>
       </div>
     </section>
+
+    <!-- פינת "מעשה שהיה" — מתחת לשתי הדלתות, לא מחליפה את מקומן.
+         בלי תוכן מתוזמן בכלל (currentBesht ו-beshtShowTeaser שניהם ריקים)
+         האזור לא מוצג — "הדף מציג רק תוכן שקיים בפועל". -->
+    {(currentBesht || beshtShowTeaser) && (
+    <section class="besht-corner">
+      <div class="besht-art"><BeshtArt /></div>
+      <span class="besht-seal" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6">
+          <path d="M12 3c2 3 3 5 3 7a3 3 0 1 1-6 0c0-2 1-4 3-7Z"></path>
+          <path d="M8 21h8M12 17v4"></path>
+        </svg>
+      </span>
+      <div class="besht-content">
+        <p class="besht-name">{BESHT_NAME}</p>
+        <p class="besht-segula">{BESHT_SEGULA}</p>
+
+        {
+          beshtShowTeaser ? (
+            <div class="besht-teaser">
+              <p class="besht-count">{beshtDayLabel}</p>
+              <p class="besht-count-sub">הסיפור הבא נפתח במוצאי שבת</p>
+            </div>
+          ) : (
+            currentBesht && (
+              <>
+                <p class="besht-date">{formatDate(currentBesht.data.date)}</p>
+                <h2 class="besht-title">
+                  <a href={`/besht/${currentBesht.id}/`}>{currentBesht.data.title}</a>
+                </h2>
+                <p class="besht-excerpt">{currentBesht.data.excerpt}</p>
+                <a class="besht-cta" href={`/besht/${currentBesht.id}/`} data-ph="besht_read">
+                  להמשיך לקרוא
+                </a>
+                <div class="besht-thought">
+                  <p>{currentBesht.data.thought}</p>
+                </div>
+              </>
+            )
+          )
+        }
+      </div>
+    </section>
+    )}
 
     <JoinGroup />
   </main>
@@ -800,5 +879,147 @@ const DESCRIPTION =
 
   .teaser-more:hover {
     text-decoration: underline;
+  }
+
+  /* ============ פינת "מעשה שהיה" ============ */
+  .besht-corner {
+    --bleed: min(62rem, 100vw - 3rem);
+    width: var(--bleed);
+    margin-inline: calc((100% - var(--bleed)) / 2);
+    position: relative;
+    background: var(--paper);
+    border: 2px solid var(--dusk);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-bottom: 2.5rem;
+  }
+
+  .besht-art {
+    height: 12rem;
+  }
+
+  .besht-seal {
+    position: absolute;
+    top: calc(12rem - 26px);
+    right: calc(50% - 26px);
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--dusk);
+    border: 3px solid var(--paper);
+    box-shadow: 0 3px 10px rgba(30, 20, 40, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .besht-seal svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .besht-content {
+    padding: 2rem 1.4rem 1.8rem;
+    text-align: center;
+  }
+
+  .besht-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--dusk);
+    font-size: 1.15rem;
+    margin: 0;
+  }
+
+  .besht-segula {
+    color: var(--muted);
+    font-size: 0.78rem;
+    max-width: 28ch;
+    margin: 0.4rem auto 1.3rem;
+    line-height: 1.6;
+  }
+
+  .besht-date {
+    color: var(--muted);
+    font-size: 0.78rem;
+    letter-spacing: 0.03em;
+    margin: 0 0 0.5rem;
+  }
+
+  .besht-title {
+    font-size: 1.35rem;
+    line-height: 1.35;
+    margin: 0 0 0.7rem;
+    text-wrap: balance;
+  }
+
+  .besht-title a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .besht-title a:hover {
+    color: var(--dusk);
+  }
+
+  .besht-excerpt {
+    color: var(--secondary);
+    font-size: 0.92rem;
+    max-width: 34ch;
+    margin: 0 auto 1.1rem;
+    line-height: 1.65;
+  }
+
+  .besht-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0.55rem 1.4rem;
+    border-radius: 2rem;
+    background: var(--dusk);
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+  }
+
+  .besht-cta:hover {
+    opacity: 0.9;
+  }
+
+  .besht-thought {
+    border-top: 1px solid var(--line);
+    margin-top: 1.6rem;
+    padding-top: 1.3rem;
+  }
+
+  .besht-thought p {
+    color: var(--dusk);
+    font-family: var(--font-display);
+    font-size: 0.98rem;
+    line-height: 1.75;
+    max-width: 30rem;
+    margin: 0 auto;
+  }
+
+  /* מצב ציפייה — ספירה שקטה, בלי לחשוף כותרת או תקציר */
+  .besht-teaser {
+    padding-top: 0.4rem;
+  }
+
+  .besht-count {
+    font-family: var(--font-display);
+    color: var(--dusk);
+    font-size: 1.1rem;
+    margin: 0 0 0.3rem;
+  }
+
+  .besht-count-sub {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin: 0;
   }
 </style>

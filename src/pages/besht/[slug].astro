@@ -1,0 +1,220 @@
+---
+// עמוד סיפור בודד ב"מעשה שהיה" — פינת סיפורי הבעל שם טוב למוצאי שבת.
+// גוף הסיפור הוא Markdown רגיל (כמו stories, לא כמו מבט לשבת/רגעים) —
+// הסיפורים כאן מספרים מה קרה למישהו אחר, ולכן בפסקאות (כלל שבירת השורות
+// הקיים). הפסקה החזקה מסומנת `>` וזוכה לאותו טיפול-ציטוט הקיים בסיפורים.
+// "המחשבה" (thought) היא שדה נפרד ומוצגת אחרי הסיפור, בצבע הייחודי לפינה
+// (--dusk) — לא "מוסר השכל", המשך שקט של הכרטיס.
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import BeshtArt from '../../components/BeshtArt.astro';
+import ShareRow from '../../components/ShareRow.astro';
+import { articleJsonLd, breadcrumbJsonLd } from '../../lib/structured-data';
+import { isPublished } from '../../lib/published';
+import { formatDate } from '../../utils/format-date';
+import { BESHT_NAME, BESHT_SEGULA } from '../../data/besht';
+
+export async function getStaticPaths() {
+  const items = await getCollection('besht', isPublished);
+  return items.map((item) => ({ params: { slug: item.id }, props: { item } }));
+}
+
+const { item } = Astro.props;
+const { Content } = await render(item);
+const { title, date, excerpt, thought, source } = item.data;
+
+const pageUrl = new URL(`/besht/${item.id}/`, Astro.site).href;
+---
+
+<Base
+  title={`${title} · ${BESHT_NAME}`}
+  description={excerpt}
+  ogType="article"
+  compact={true}
+  jsonLd={[
+    articleJsonLd(Astro.site!, {
+      url: pageUrl,
+      headline: title,
+      description: excerpt,
+      datePublished: date,
+    }),
+    breadcrumbJsonLd(Astro.site!, [
+      { name: 'נקודת מבט', path: '/' },
+      { name: BESHT_NAME, path: '/besht/' },
+      { name: title },
+    ]),
+  ]}
+>
+  <main>
+    <article class="besht">
+      <header class="besht-head">
+        <span class="seal" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6">
+            <path d="M12 3c2 3 3 5 3 7a3 3 0 1 1-6 0c0-2 1-4 3-7Z"></path>
+            <path d="M8 21h8M12 17v4"></path>
+          </svg>
+        </span>
+        <p class="kicker">{BESHT_NAME}</p>
+        <p class="segula">{BESHT_SEGULA}</p>
+        <h1>{title}</h1>
+        <p class="meta"><time datetime={date.toISOString().slice(0, 10)}>{formatDate(date)}</time></p>
+      </header>
+
+      <div class="art-frame"><BeshtArt /></div>
+
+      <div class="besht-body">
+        <Content />
+      </div>
+
+      <div class="thought-ornament" aria-hidden="true"><span class="rule"></span></div>
+      <p class="thought">{thought}</p>
+
+      <p class="source">{source}</p>
+    </article>
+
+    <ShareRow title={`${title} · ${BESHT_NAME}`} url={pageUrl} />
+
+    <nav class="besht-footer">
+      <a href="/besht/">לכל סיפורי {BESHT_NAME}</a>
+    </nav>
+  </main>
+</Base>
+
+<style>
+  .besht {
+    padding-top: 0.5rem;
+  }
+
+  .besht-head {
+    /* Base.astro מיישם display:flex על תג <header> גלובלית ממסך רחב
+       (לשורת המותג+ניווט של האתר) — display:block כאן מבטל את זה לכותרת
+       הפנימית הזו במפורש, בלי לגעת ב-Base.astro עצמו. */
+    display: block;
+    text-align: center;
+    padding-bottom: 1.5rem;
+  }
+
+  .seal {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--dusk);
+    margin-bottom: 0.9rem;
+  }
+
+  .seal svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .kicker {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--dusk);
+    font-size: 1rem;
+    margin: 0 0 0.4rem;
+  }
+
+  .segula {
+    color: var(--muted);
+    font-size: 0.85rem;
+    max-width: 30ch;
+    margin: 0 auto 1.1rem;
+    line-height: 1.6;
+  }
+
+  .besht-head h1 {
+    font-size: clamp(1.6rem, 6vw, 2.15rem);
+    line-height: 1.35;
+    margin: 0 0 0.5rem;
+    text-wrap: balance;
+  }
+
+  .meta {
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+
+  .art-frame {
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-bottom: 2.25rem;
+  }
+
+  .besht-body {
+    font-size: 1.2rem;
+    line-height: 2.05;
+  }
+
+  .besht-body :global(p + p) {
+    margin-top: 1.35rem;
+  }
+
+  .besht-body :global(blockquote) {
+    font-family: var(--font-display);
+    color: var(--teal-deep);
+    border-inline-start: 3px solid var(--gold);
+    padding-inline-start: 1.1rem;
+    margin: 1.75rem 0;
+    font-size: 1.25rem;
+  }
+
+  .besht-body :global(em) {
+    font-style: normal;
+    font-weight: 600;
+    color: var(--teal-deep);
+  }
+
+  /* המחשבה — האובייקט היחיד בעמוד הזה שצבוע בסגול-הדמדומים. הכוח שלה בא
+     מנדירות, בדיוק כמו האדום העמוק בסיום של "רגע". */
+  .thought-ornament {
+    display: flex;
+    justify-content: center;
+    margin: 3rem 0 1.6rem;
+  }
+
+  .thought-ornament .rule {
+    width: 3.2rem;
+    height: 2px;
+    background: var(--dusk);
+    opacity: 0.6;
+    border-radius: 2px;
+  }
+
+  .thought {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.7;
+    color: var(--dusk);
+    text-align: center;
+    text-wrap: balance;
+    max-width: 32rem;
+    margin: 0 auto 2rem;
+  }
+
+  .source {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.78rem;
+    max-width: 34ch;
+    margin: 0 auto 1rem;
+    line-height: 1.6;
+  }
+
+  .besht-footer {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .besht-footer a {
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--dusk);
+  }
+</style>
