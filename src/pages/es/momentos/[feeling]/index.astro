@@ -40,6 +40,17 @@ const gate = FEELING_GROUPS.find((group) => group.slug === param);
 // ── נתוני עמוד שער ──
 const allMoments = gate ? await getCollection('momentsEs', isPublished) : [];
 const filled = new Set(allMoments.map((moment) => moment.data.feeling));
+// "Un momento de aquí" — כמו בעברית (2026-09-16): כל רגעי הקבוצה שיש להם
+// תרגום, הראשון מוצג בלי JavaScript והסקריפט מגריל אחד בכל טעינה.
+const gateFeelings = new Set(gate ? gate.feelings.map((f) => f.slug) : []);
+const gateMoments = allMoments
+  .filter((m) => gateFeelings.has(m.data.feeling))
+  .sort(newestFirst)
+  .map((m) => ({
+    href: `/es/momentos/${m.data.feeling}/${m.id}/`,
+    feelingLabel: FEELING_LABELS_ES[m.data.feeling],
+    format: parseMoment(m.body ?? '', m.data.title),
+  }));
 const gateOg = gate
   ? await getImage({ src: GATE_IMAGES[gate.slug], width: 1200, format: 'jpeg' })
   : null;
@@ -79,13 +90,41 @@ const altLangHref = `/moments/${param}/`;
     {
       gate ? (
         <div class="gate-hall" style={`--accent: ${gate.accent}; --title: ${gate.titleAccent}`}>
-          <span class="arch">
+          <span class="arch arch-small">
             <GateArt group={gate.slug} />
           </span>
           <h1 class="gate-name">{GROUP_LABELS_ES[gate.slug]}</h1>
           <p class="gate-line">{GROUP_LINES_ES[gate.slug]}</p>
 
-          <FeelingDoors group={gate} filled={filled} lang="es" />
+          {gateMoments.length > 0 && (
+            <div id="gate-moment-mount">
+              <a class="gate-moment" href={gateMoments[0].href} data-ph="gate_moment">
+                <span class="gm-kicker">
+                  <span class="gm-dot" aria-hidden="true" />
+                  Un momento de aquí · {gateMoments[0].feelingLabel}
+                </span>
+                <span class="gm-hook">{gateMoments[0].format.title}</span>
+                <MomentBody format={gateMoments[0].format} firstStanzaOnly={gateMoments[0].format.isNew} />
+                <span class="gm-more">Al momento completo →</span>
+              </a>
+            </div>
+          )}
+          {gateMoments.slice(1).map((m) => (
+            <template data-gate-moment>
+              <a class="gate-moment" href={m.href} data-ph="gate_moment">
+                <span class="gm-kicker">
+                  <span class="gm-dot" aria-hidden="true" />
+                  Un momento de aquí · {m.feelingLabel}
+                </span>
+                <span class="gm-hook">{m.format.title}</span>
+                <MomentBody format={m.format} firstStanzaOnly={m.format.isNew} />
+                <span class="gm-more">Al momento completo →</span>
+              </a>
+            </template>
+          ))}
+
+          <h2 class="doors-label">Todos los estados de esta puerta</h2>
+          <FeelingDoors group={gate} filled={filled} lang="es" layout="grid" />
 
           <nav class="page-footer">
             <a href="/es/momentos/">← Todas las puertas</a>
@@ -123,6 +162,19 @@ const altLangHref = `/moments/${param}/`;
     }
   </main>
 </Base>
+
+<script is:inline>
+  // הרגע שבשער מוגרל מחדש בכל טעינה, מבין כל רגעי הקבוצה. בלי JavaScript
+  // נשאר החדש ביותר (זה שנבנה לתוך העמוד). שלושת המהלכים בפורמט הם תמיד
+  // באותו גובה, ולכן ההחלפה אינה מזיזה את הדלתות שמתחת.
+  const gateOptions = document.querySelectorAll('template[data-gate-moment]');
+  const gateMount = document.getElementById('gate-moment-mount');
+  if (gateMount && gateOptions.length > 0) {
+    // הכרטיס שנבנה לעמוד נספר גם הוא כאפשרות: 0 = להשאיר אותו.
+    const pick = Math.floor(Math.random() * (gateOptions.length + 1));
+    if (pick > 0) gateMount.replaceChildren(gateOptions[pick - 1].content.cloneNode(true));
+  }
+</script>
 
 <style>
   /* ── עמוד שער — אותם ערכים כמו בעברית ── */
@@ -172,6 +224,100 @@ const altLangHref = `/moments/${param}/`;
     color: var(--secondary);
     font-size: 0.98rem;
     margin-bottom: 1.6rem;
+  }
+
+  /* הקשת בעמוד השער קטנה מזו שבעמוד הכניסה (2026-09-16): הקורא הרגע לחץ
+     עליה, ולחזור עליה ברוחב מלא (170px) דחף את התוכן ל-478px. אותה תמונה,
+     אותה מסגרת זהב — בגודל של קשתות דף הבית. */
+  .arch-small {
+    width: 180px;
+    height: 100px;
+    margin: 0.25rem auto 0;
+    border-radius: 90px 90px 6px 6px;
+  }
+
+  .arch-small::after {
+    inset: 6px;
+    border-radius: 84px 84px 3px 3px;
+  }
+
+  .arch-small + .gate-name {
+    font-size: 1.5rem;
+    margin-top: 0.6rem;
+  }
+
+  .arch-small ~ .gate-line {
+    margin-bottom: 0.9rem;
+  }
+
+  /* ── "רגע אחד מכאן" ── אותו כרטיס כמו במדף המצב, עם קו הצבע של הקבוצה. */
+  .gate-moment {
+    --moment-size: 1.1rem;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 0.8rem 1.1rem 0.9rem;
+    text-align: center;
+    margin-bottom: 1.4rem;
+    transition: border-color 0.15s ease;
+  }
+
+  .gate-moment:hover,
+  .gate-moment:focus-visible {
+    border-color: var(--gold);
+    border-top-color: var(--accent);
+  }
+
+  .gm-kicker {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--muted);
+    line-height: 1.4;
+    margin-bottom: 0.35rem;
+  }
+
+  .gm-dot {
+    display: inline-block;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-inline-end: 0.4rem;
+    vertical-align: 0.05em;
+  }
+
+  .gm-hook {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    line-height: 1.3;
+    font-weight: 700;
+    color: var(--blue);
+    margin-bottom: 0.6rem;
+    text-wrap: balance;
+  }
+
+  .gm-more {
+    display: block;
+    margin-top: 0.7rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--teal);
+  }
+
+  .doors-label {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    text-align: center;
+    margin: 0 0 0.7rem;
   }
 
   /* ── מדף מצב — זהות הקבוצה נמשכת עד סוף המסע, כמו בעברית (4.31) ── */

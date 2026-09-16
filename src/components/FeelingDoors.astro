@@ -15,13 +15,16 @@ interface Props {
   /** 'es' — תוויות ושורות בספרדית, וכתובות תחת /es/momentos/. המבנה, הסימנים
       והצבעים זהים לעברית — אותן דלתות, שפה אחרת. */
   lang?: 'he' | 'es';
+  /** 'grid' — רשת של שני טורים (עמוד השער, 2026-09-16): כל דלתות הקבוצה
+      נראות יחד בלי לגלול. 'rows' (ברירת המחדל) — שורות המדף של עמוד הכניסה. */
+  layout?: 'rows' | 'grid';
 }
-const { group, filled, lang = 'he' } = Astro.props;
+const { group, filled, lang = 'he', layout = 'rows' } = Astro.props;
 const es = lang === 'es';
 const hrefBase = es ? '/es/momentos' : '/moments';
 ---
 
-<ul class="doors">
+<ul class:list={["doors", { "doors-grid": layout === "grid" }]}>
   {
     group.feelings.map((feeling) => {
       const inner = (
@@ -123,5 +126,61 @@ const hrefBase = es ? '/es/momentos' : '/moments';
 
   .door.is-empty .door-mark {
     opacity: 0.3;
+  }
+
+  /* ── רשת (עמוד השער) ──
+     שמונה דלתות ב-4 שורות במקום 8, כדי שכולן ייראו יחד. אותו תוכן בדיוק:
+     שם, שורת דלת וסימן — הסימן קטן יותר ויושב בפינת האריח. */
+  .doors-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .doors-grid li + li {
+    border-top: 0;
+  }
+
+  .doors-grid .door {
+    position: relative;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0;
+    min-height: 44px;
+    height: 100%;
+    padding: 0.5rem 0.75rem 0.55rem;
+    border: 1px solid var(--line);
+    border-radius: 0.7rem;
+    background: var(--paper);
+  }
+
+  .doors-grid .door-name {
+    font-size: 1.12rem;
+    line-height: 1.25;
+  }
+
+  .doors-grid .door-line {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    margin-top: 0.1rem;
+    /* מקום לסימן שיושב בפינה */
+    padding-inline-end: 2.4rem;
+  }
+
+  .doors-grid .door-mark {
+    position: absolute;
+    inset-inline-end: 0.45rem;
+    bottom: 0.4rem;
+    width: 40px;
+    height: 20px;
+    margin: 0;
+    opacity: 0.7;
+  }
+
+  a.doors-grid .door:hover,
+  .doors-grid a.door:hover {
+    border-color: var(--gold);
   }
 </style>
