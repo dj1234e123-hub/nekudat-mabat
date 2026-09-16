@@ -28,30 +28,27 @@ const RLO = '‮';
 const PDF = '‬';
 const rtl = (text) => `${RLO}${escape(text)}${PDF}`;
 
-// ספר פתוח + ניצוץ קטן — קווי זהב דקים בלבד, בלי מילוי ובלי הצללה.
-// "מעשה שהיה" הוא בראש ובראשונה סיפור (הספר); הניצוץ מהדהד את הנר
-// שכבר קיים בזהות הפינה (כרטיס דף הבית, עמוד הסיפור, חותם השעווה).
-// שתי קשתות מקוננות, לא שלוש-ארבע כמו בטיוטה המקורית — נשאר קו, לא איור.
-function bookFlameSvg(cx, cy) {
-  const w = 62;
-  const lift = 20;
+// נר קטן בקו זהב — חזרה לגרסה הפשוטה, מוגדל. הד לחותם השעווה ולאיור
+// הרקע של הפינה בדף עצמו, בלי לצייר סצנה: רק קו ולהבה.
+function candleSvg(cx, cy, scale = 1) {
+  const stick = 35 * scale;
+  const tip = 46 * scale;
+  const flame = 16 * scale;
   return `
-  <path d="M${cx - w} ${cy - lift} Q${cx - w / 2} ${cy + 14} ${cx} ${cy} Q${cx + w / 2} ${cy + 14} ${cx + w} ${cy - lift}" fill="none" stroke="${GOLD}" stroke-width="2.5" stroke-linecap="round"/>
-  <path d="M${cx - w + 9} ${cy - lift - 7} Q${cx - w / 2 + 5} ${cy + 5} ${cx} ${cy - 6} Q${cx + w / 2 - 5} ${cy + 5} ${cx + w - 9} ${cy - lift - 7}" fill="none" stroke="${GOLD}" stroke-width="1.6" opacity="0.55"/>
-  <line x1="${cx}" y1="${cy}" x2="${cx}" y2="${cy + 10}" stroke="${GOLD}" stroke-width="2.5" stroke-linecap="round"/>
-  <path d="M${cx} ${cy - 62}c5 8 8 13 8 18a8 8 0 1 1-16 0c0-5 3-10 8-18Z" fill="${GOLD}"/>`;
+  <line x1="${cx}" y1="${cy + stick}" x2="${cx}" y2="${cy - stick * 0.4}" stroke="${GOLD}" stroke-width="${3 * scale}" stroke-linecap="round"/>
+  <path d="M${cx} ${cy - tip}c${5 * scale} ${8 * scale} ${flame * 0.5} ${13 * scale} ${flame * 0.5} ${18 * scale}a${flame * 0.5} ${flame * 0.5} 0 1 1-${flame} 0c0-${5 * scale} ${3 * scale}-${10 * scale} ${flame * 0.5}-${18 * scale}Z" fill="${GOLD}"/>`;
 }
 
 const doc = `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}" viewBox="0 0 ${WIDTH} ${HEIGHT}">
   <rect width="${WIDTH}" height="${HEIGHT}" fill="${PAPER}"/>
 
-  ${bookFlameSvg(CENTER, 700)}
+  ${candleSvg(CENTER, 660, 1.4)}
 
-  <text x="${CENTER}" y="800" font-family="Frank Ruhl Libre Bold" font-size="92" fill="${TEAL}" direction="rtl" text-anchor="middle">${rtl('מעשה שהיה')}</text>
+  <text x="${CENTER}" y="830" font-family="Frank Ruhl Libre Bold" font-size="130" fill="${TEAL}" direction="rtl" text-anchor="middle">${rtl('מעשה שהיה')}</text>
 
-  <text x="${CENTER}" y="878" font-family="Frank Ruhl Libre" font-size="42" fill="${INK}" direction="rtl" text-anchor="middle">${rtl('סיפור אחד, ואחריו — שבוע חדש.')}</text>
+  <text x="${CENTER}" y="940" font-family="Frank Ruhl Libre" font-size="56" fill="${INK}" direction="rtl" text-anchor="middle">${rtl('סיפור אחד, ואחריו — שבוע חדש.')}</text>
 
-  <line x1="${CENTER - 45}" y1="950" x2="${CENTER + 45}" y2="950" stroke="${GOLD}" stroke-width="2"/>
+  <line x1="${CENTER - 50}" y1="1030" x2="${CENTER + 50}" y2="1030" stroke="${GOLD}" stroke-width="2.5"/>
 
   <text x="${CENTER}" y="1224" font-family="Heebo Bold" font-size="30" fill="${TEAL_DEEP}" direction="rtl" text-anchor="middle">${rtl('נקודת מבט · אפרים עטיה')}</text>
   <text x="${CENTER}" y="1264" font-family="Heebo" font-size="24" fill="${MUTED}" text-anchor="middle">${escape('nekudatmabat.blog')}</text>
