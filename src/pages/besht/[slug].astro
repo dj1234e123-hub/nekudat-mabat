@@ -3,8 +3,9 @@
 // גוף הסיפור הוא Markdown רגיל (כמו stories, לא כמו מבט לשבת/רגעים) —
 // הסיפורים כאן מספרים מה קרה למישהו אחר, ולכן בפסקאות (כלל שבירת השורות
 // הקיים). הפסקה החזקה מסומנת `>` וזוכה לאותו טיפול-ציטוט הקיים בסיפורים.
-// "המחשבה" (thought) היא שדה נפרד ומוצגת אחרי הסיפור, בצבע הייחודי לפינה
-// (--dusk) — לא "מוסר השכל", המשך שקט של הכרטיס.
+// "המחשבה" (thought) היא שדה נפרד ומוצגת אחרי הסיפור, בירוק־כחול (--teal) —
+// אותו צבע כמו "סיפורי צדיקים" (הבעל שם טוב הוא תת-סוג שלהם), לא צבע חדש.
+// לא "מוסר השכל", המשך שקט של הכרטיס.
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import BeshtArt from '../../components/BeshtArt.astro';
@@ -101,7 +102,7 @@ const pageUrl = new URL(`/besht/${item.id}/`, Astro.site).href;
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: var(--dusk);
+    background: var(--teal);
     margin-bottom: 0.9rem;
   }
 
@@ -113,7 +114,7 @@ const pageUrl = new URL(`/besht/${item.id}/`, Astro.site).href;
   .kicker {
     font-family: var(--font-display);
     font-weight: 700;
-    color: var(--dusk);
+    color: var(--teal);
     font-size: 1rem;
     margin: 0 0 0.4rem;
   }
@@ -170,8 +171,9 @@ const pageUrl = new URL(`/besht/${item.id}/`, Astro.site).href;
     color: var(--teal-deep);
   }
 
-  /* המחשבה — האובייקט היחיד בעמוד הזה שצבוע בסגול-הדמדומים. הכוח שלה בא
-     מנדירות, בדיוק כמו האדום העמוק בסיום של "רגע". */
+  /* המחשבה — בירוק־כחול עמוק, אותו גוון כמו הכותרת הראשית של דף הבית
+     ופסקת הציטוט בגוף הסיפור. לא צבע ייחודי לפינה; משקל דומה לשורות
+     הסיכום החשובות האחרות באתר. */
   .thought-ornament {
     display: flex;
     justify-content: center;
@@ -181,7 +183,7 @@ const pageUrl = new URL(`/besht/${item.id}/`, Astro.site).href;
   .thought-ornament .rule {
     width: 3.2rem;
     height: 2px;
-    background: var(--dusk);
+    background: var(--teal);
     opacity: 0.6;
     border-radius: 2px;
   }
@@ -191,7 +193,7 @@ const pageUrl = new URL(`/besht/${item.id}/`, Astro.site).href;
     font-size: 1.3rem;
     font-weight: 700;
     line-height: 1.7;
-    color: var(--dusk);
+    color: var(--teal-deep);
     text-align: center;
     text-wrap: balance;
     max-width: 32rem;
@@ -215,6 +217,6 @@ const pageUrl = new URL(`/besht/${item.id}/`, Astro.site).href;
   .besht-footer a {
     text-decoration: none;
     font-weight: 600;
-    color: var(--dusk);
+    color: var(--teal);
   }
 </style>
