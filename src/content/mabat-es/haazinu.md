@@ -2,10 +2,14 @@
 # תרגום גיליון "האזינו" (שבת שובה, 2026-09-18). שבירות השורות נשמרו — הן תוכן, לא עיצוב.
 # התרגום נעשה ללא בדיקת דוברת ספרדית (החלטת ההשקה של 2026-08-30) — לבדיקה כשתתפנה.
 # אותו תאריך ושעה בדיוק כמו התאום העברי (הלקח מ-4.35: תאום שמקדים בשעה מחזיר 404).
+# תמונת ציטוט ספרדית נפרדת (LTR, Frank Ruhl Libre לטיני, כתובת nekudatmabat.blog/es) —
+# הגיליון הספרדי הראשון שמקבל תמונה. ניצבים נשאר בלי, לפי "מבחר ולא מראה".
 title: ¿Qué vio el juez?
 parasha: Haazinu
 hebrewDate: 8 de Tishrei 5787
 date: 2026-09-18T08:00:00Z
+quoteImage: ../../assets/mabat-leshabbat/haazinu-quote-es.png
+quoteImageAlt: "El expediente no cambió. Solo quien lo leyó."
 signoff: |
   Shabat Shalom umevoraj.
   Que este año lean en nuestro expediente
