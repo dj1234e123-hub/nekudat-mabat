@@ -37,7 +37,7 @@ La pena probable: hasta veinte años.
 
 El juez miró el expediente.
 
-Levantó la mirada, y lo miró a él.
+**Levantó la mirada**, y lo miró a él.
 
 Y dijo algo que no sonó como una sentencia:
 
@@ -77,7 +77,7 @@ Si fueran sabios, verían adónde lleva todo esto.
 
 Moshé no les dice el final para dejarlo sellado.
 
-Se lo dice para que todavía se pueda cambiar.
+Se lo dice para que **todavía se pueda cambiar**.
 
 ***
 
@@ -93,7 +93,7 @@ El catorce de mayo de 2021, dieciséis años después de aquel día, Edward Mart
 
 El mismo tribunal. El mismo estrado. El mismo juez.
 
-Pero esta vez no estaba ahí como acusado.
+Pero esta vez **no estaba ahí como acusado**.
 
 Estaba ahí para jurar como abogado.
 
@@ -103,10 +103,10 @@ Cuando terminó la ceremonia, Martell lo abrazó.
 
 Todo lo que estaba escrito en el expediente siguió escrito.
 
-El expediente no cambió. Solo quien lo leyó.
+El expediente no cambió. **Solo quien lo leyó.**
 
 Leemos a una persona por la última página que leímos,
-y olvidamos que la página siguiente todavía está en blanco.
+y olvidamos que **la página siguiente todavía está en blanco**.
 
 "Él siempre es así."
 "De él ya no va a salir nada."
@@ -116,7 +116,7 @@ Y esa misma lectura la hacemos a veces también en nuestro propio expediente.
 Fracasé. No lo logré. Ya lo intenté. Yo soy así.
 
 Y poco a poco un capítulo doloroso de la historia
-se convierte en el título del libro entero.
+se convierte en **el título del libro entero**.
 
 En estos días nosotros estamos frente al juicio.
 

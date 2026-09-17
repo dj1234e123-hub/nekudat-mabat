@@ -52,10 +52,13 @@ if (stanzaLimit !== undefined) {
   }
 
   .mabat-body .line {
-    margin: 0 0 1.15rem;
-    font-size: 1.02rem;
+    margin: 0 0 1.3rem;
+    /* גודל הקריאה. היה 1.02rem — קטן ב-15% מעמוד סיפור (1.2) וב-22% מעמוד
+       רגע (1.3), ולכן "מבט לשבת" היה העמוד הקטן ביותר באתר. הועלה 2026-09-17
+       לבקשת בעל הפרויקט. משתנה, כדי שהטעימה בדף הבית תוכל לשמור על גודלה. */
+    font-size: var(--mabat-size, 1.18rem);
     font-weight: 500;
-    line-height: 1.65;
+    line-height: 1.78;
   }
 
   .mabat-body .line:last-child {
