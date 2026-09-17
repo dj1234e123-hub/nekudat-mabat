@@ -7,7 +7,7 @@
 title: ¿Qué vio el juez?
 parasha: Haazinu
 hebrewDate: 8 de Tishrei 5787
-date: 2026-09-18T08:00:00Z
+date: 2026-09-18T07:00:00Z
 quoteImage: ../../assets/mabat-leshabbat/haazinu-quote-es.png
 quoteImageAlt: "El expediente no cambió. Solo quien lo leyó."
 signoff: |
