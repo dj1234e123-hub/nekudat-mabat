@@ -107,8 +107,7 @@ Todo lo que estaba escrito en el expediente siguió escrito.
 
 El expediente no cambió. **Solo quien lo leyó.**
 
-Y también nosotros leemos a las personas como un expediente:
-por la última página que leímos,
+Leemos a una persona por la última página que leímos,
 y olvidamos que **la página siguiente todavía está en blanco**.
 
 "Él siempre es así."
