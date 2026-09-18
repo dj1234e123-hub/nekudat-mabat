@@ -22,9 +22,16 @@ interface Props {
    * לאחור לקישור נקי בלבד, גם הוא בלי טקסט, מאותה סיבה.
    */
   imageUrl?: string;
+  /**
+   * שיתוף של הקישור בלבד, בלי הטקסט בגוף ההודעה.
+   * ל"מבט לשבת": הטור ארוך, ושליחתו כהודעה הופכת אותו לטקסט שאפשר
+   * להעתיק ולהעביר בלי האתר. הקישור לבדו פותח בוואטסאפ תצוגה מקדימה
+   * (כותרת + תמונת הציטוט), והקריאה נשארת בעמוד.
+   */
+  linkOnly?: boolean;
 }
 
-const { title, url, shareText, label, lang = 'he', imageUrl } = Astro.props;
+const { title, url, shareText, label, lang = 'he', imageUrl, linkOnly } = Astro.props;
 const es = lang === 'es';
 const t = es
   ? { label: '¿Te llegó? Compártelo:', whatsapp: 'Compartir por WhatsApp', copy: 'Copiar enlace', copied: 'Enlace copiado ✓', prompt: 'Copia el enlace:', brand: 'Punto de Vista' }
@@ -32,7 +39,7 @@ const t = es
 const message = shareText ?? `${title} · ${t.brand}`;
 // imageUrl קיים → הקישור עצמו (ה-href, וגם נפילת החזרה של הסקריפט למטה)
 // נשאר נקי מטקסט, כדי שלא תיווצר כפילות מול מה שכבר כתוב בתוך התמונה.
-const whatsappHref = imageUrl
+const whatsappHref = imageUrl || linkOnly
   ? `https://wa.me/?text=${encodeURIComponent(url)}`
   : `https://wa.me/?text=${encodeURIComponent(`${message}\n${url}`)}`;
 ---

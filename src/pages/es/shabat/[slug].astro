@@ -24,9 +24,6 @@ const flat = plainText(blocks).replace(/\s+/g, ' ').trim();
 const summary = flat.length > 200 ? `${flat.slice(0, 197)}…` : flat;
 
 const pageUrl = new URL(`/es/shabat/${piece.id}/`, Astro.site).href;
-// ShareRow כבר מוסיף את הקישור בסוף ההודעה — כאן מעבירים את הטקסט בלבד.
-// (עד 2026-09-18 הקישור נוסף גם כאן, והופיע פעמיים בהודעה.)
-const shareText = plainText(blocks);
 
 // תמונת התצוגה המקדימה לשיתוף: תמונת הציטוט של הגיליון, ולא הלוגו.
 // PNG ולא JPEG — טקסט על רקע אחיד מתכווץ טוב יותר ללא אובדן (החלטה קיימת).
@@ -101,7 +98,7 @@ if (quoteImage) {
       title={`${title} · ${MABAT_ES.name}`}
       url={pageUrl}
       lang="es"
-      shareText={shareText}
+      linkOnly={true}
       label="Envíaselo a alguien:"
     />
 

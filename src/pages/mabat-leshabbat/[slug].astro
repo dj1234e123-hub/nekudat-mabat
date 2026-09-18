@@ -26,9 +26,6 @@ const flat = plainText(blocks).replace(/\s+/g, ' ').trim();
 const summary = flat.length > 200 ? `${flat.slice(0, 197)}…` : flat;
 
 const pageUrl = new URL(`/mabat-leshabbat/${piece.id}/`, Astro.site).href;
-// ShareRow כבר מוסיף את הקישור בסוף ההודעה — כאן מעבירים את הטקסט בלבד.
-// (עד 2026-09-18 הקישור נוסף גם כאן, והופיע פעמיים בהודעה.)
-const shareText = plainText(blocks);
 
 // תמונת התצוגה המקדימה לשיתוף: תמונת הציטוט של הגיליון, ולא הלוגו.
 // PNG ולא JPEG — טקסט על רקע אחיד מתכווץ טוב יותר ללא אובדן (החלטה קיימת).
@@ -103,7 +100,7 @@ const altLangHref = hasEsTwin ? `/es/shabat/${piece.id}/` : '/es/shabat/';
       </div>
     </article>
 
-    <ShareRow title={`${title} · מבט לשבת`} url={pageUrl} shareText={shareText} label="לשלוח את זה למישהו:" />
+    <ShareRow title={`${title} · מבט לשבת`} url={pageUrl} linkOnly={true} label="לשלוח את זה למישהו:" />
 
     <nav class="mabat-footer">
       <a href="/mabat-leshabbat/">לכל הגיליונות של מבט לשבת</a>
