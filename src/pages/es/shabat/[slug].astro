@@ -2,7 +2,7 @@
 // עמוד גיליון "מבט לשבת" בספרדית — אותו עיצוב "החתימה השקטה" כמו העברי:
 // רייל כחול, תווית, גוף עם מפרידים שקטים, חתימת שבת.
 import { getCollection } from 'astro:content';
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import Base from '../../../layouts/Base.astro';
 import ShareRow from '../../../components/ShareRow.astro';
 import MabatBody from '../../../components/MabatBody.astro';
@@ -24,7 +24,22 @@ const flat = plainText(blocks).replace(/\s+/g, ' ').trim();
 const summary = flat.length > 200 ? `${flat.slice(0, 197)}…` : flat;
 
 const pageUrl = new URL(`/es/shabat/${piece.id}/`, Astro.site).href;
-const shareText = `${plainText(blocks)}\n\n${pageUrl}`;
+// ShareRow כבר מוסיף את הקישור בסוף ההודעה — כאן מעבירים את הטקסט בלבד.
+// (עד 2026-09-18 הקישור נוסף גם כאן, והופיע פעמיים בהודעה.)
+const shareText = plainText(blocks);
+
+// תמונת התצוגה המקדימה לשיתוף: תמונת הציטוט של הגיליון, ולא הלוגו.
+// PNG ולא JPEG — טקסט על רקע אחיד מתכווץ טוב יותר ללא אובדן (החלטה קיימת).
+// גיליון בלי תמונת ציטוט נופל ללוגו, ברירת המחדל של Base.
+let ogImage: string | undefined;
+let ogImageWidth: number | undefined;
+let ogImageHeight: number | undefined;
+if (quoteImage) {
+  const og = await getImage({ src: quoteImage, width: 1080, format: 'png' });
+  ogImage = new URL(og.src, Astro.site).href;
+  ogImageWidth = og.attributes.width;
+  ogImageHeight = og.attributes.height;
+}
 ---
 
 <Base
@@ -32,6 +47,9 @@ const shareText = `${plainText(blocks)}\n\n${pageUrl}`;
   title={`${title} · ${MABAT_ES.name}`}
   description={summary}
   ogType="article"
+  ogImage={ogImage}
+  ogImageWidth={ogImageWidth}
+  ogImageHeight={ogImageHeight}
   compact={true}
   altLangHref={`/mabat-leshabbat/${piece.id}/`}
   jsonLd={[
@@ -40,6 +58,7 @@ const shareText = `${plainText(blocks)}\n\n${pageUrl}`;
       headline: title,
       description: summary,
       datePublished: date,
+      image: ogImage,
       inLanguage: 'es',
     }),
     breadcrumbJsonLd(Astro.site!, [

@@ -5,7 +5,7 @@
 // צבע נפרד ולא כותרות פנימיות. הכחול הוא --blue הקיים באתר (אותו צבע של
 // "מהיומן שלי"), לא גוון חדש.
 import { getCollection } from 'astro:content';
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import ShareRow from '../../components/ShareRow.astro';
 import MabatBody from '../../components/MabatBody.astro';
@@ -26,7 +26,22 @@ const flat = plainText(blocks).replace(/\s+/g, ' ').trim();
 const summary = flat.length > 200 ? `${flat.slice(0, 197)}…` : flat;
 
 const pageUrl = new URL(`/mabat-leshabbat/${piece.id}/`, Astro.site).href;
-const shareText = `${plainText(blocks)}\n\n${pageUrl}`;
+// ShareRow כבר מוסיף את הקישור בסוף ההודעה — כאן מעבירים את הטקסט בלבד.
+// (עד 2026-09-18 הקישור נוסף גם כאן, והופיע פעמיים בהודעה.)
+const shareText = plainText(blocks);
+
+// תמונת התצוגה המקדימה לשיתוף: תמונת הציטוט של הגיליון, ולא הלוגו.
+// PNG ולא JPEG — טקסט על רקע אחיד מתכווץ טוב יותר ללא אובדן (החלטה קיימת).
+// גיליון בלי תמונת ציטוט נופל ללוגו, ברירת המחדל של Base.
+let ogImage: string | undefined;
+let ogImageWidth: number | undefined;
+let ogImageHeight: number | undefined;
+if (quoteImage) {
+  const og = await getImage({ src: quoteImage, width: 1080, format: 'png' });
+  ogImage = new URL(og.src, Astro.site).href;
+  ogImageWidth = og.attributes.width;
+  ogImageHeight = og.attributes.height;
+}
 
 // הגיליון התאום בספרדית — אותו שם קובץ באוסף mabatEs.
 const mabatEs = await getCollection('mabatEs', isPublished);
@@ -38,6 +53,9 @@ const altLangHref = hasEsTwin ? `/es/shabat/${piece.id}/` : '/es/shabat/';
   title={`${title} · מבט לשבת`}
   description={summary}
   ogType="article"
+  ogImage={ogImage}
+  ogImageWidth={ogImageWidth}
+  ogImageHeight={ogImageHeight}
   compact={true}
   altLangHref={altLangHref}
   altLangTwin={hasEsTwin}
@@ -47,6 +65,7 @@ const altLangHref = hasEsTwin ? `/es/shabat/${piece.id}/` : '/es/shabat/';
       headline: title,
       description: summary,
       datePublished: date,
+      image: ogImage,
     }),
     breadcrumbJsonLd(Astro.site!, [
       { name: 'נקודת מבט', path: '/' },
