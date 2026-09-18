@@ -2,7 +2,8 @@
 // עמוד הכניסה ל"רגע של נקודת מבט" — חמישה שערים.
 //
 // הקורא לא סורק רשימה: הוא עומד מול חמש קשתות, אחת לכל קבוצת מצבים, ובוחר
-// לאן להיכנס. לחיצה על שער פותחת את קבוצת המצבים שלו וגוללת אליה — המדפים,
+// לאן להיכנס — ולכן חמשת השערים מוצגים יחד, ברשת של שני טורים. לחיצה על שער
+// מובילה לעמוד השער שלו — המדפים,
 // שורות הדלת, הסימנים והעוגנים של שלב 4.18/4.21 נשארים בדיוק כמו שהיו.
 //
 // התמונות שבתוך הקשתות הן ממלאות מקום (src/components/GateArt.astro) עד
@@ -131,13 +132,26 @@ const tellMeHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURICompone
   }
 
   /* ── השערים ── */
+  /* חמשת השערים ברשת של שני טורים (2026-09-16): 2 + 2 + 1, החמישי ממורכז.
+     קודם הם עמדו בטור אחד ברוחב מלא, ~450px לשער בטלפון — הקורא ראה שער
+     אחד בכל פעם, והחמישי חיכה 2,300px למטה. "תיכנס בזה שקורא לך" מחייב
+     לראות את החמישה יחד; עכשיו כולם במסך אחד ב-390px. הקשת שומרת על
+     המסגרת הזהובה ועל היחס הכמעט-עגול של קשתות דף הבית. */
   .gates {
     list-style: none;
     margin: 0 auto;
     padding: 0;
-    max-width: 26rem;
+    max-width: 34rem;
     display: grid;
-    gap: 1.7rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem 1rem;
+  }
+
+  /* שער בודד בשורה האחרונה — ממורכז מתחת לארבעה, באותו רוחב שלהם */
+  .gates > li:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    width: calc(50% - 0.5rem);
+    margin: 0 auto;
   }
 
   .gate {
@@ -151,8 +165,10 @@ const tellMeHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURICompone
   .arch {
     position: relative;
     display: block;
-    height: 170px;
-    border-radius: 130px 130px 6px 6px;
+    aspect-ratio: 4 / 3;
+    /* חצי עיגול למעלה בכל רוחב טור: הרדיוס האופקי חצי הרוחב, והאנכי מותאם
+       ליחס 4:3 כך שהקשת נשארת עגולה ולא נמתחת. */
+    border-radius: 50% 50% 6px 6px / 66% 66% 6px 6px;
     overflow: hidden;
     border: 1px solid var(--line);
     box-shadow: 0 10px 26px rgba(46, 42, 36, 0.14);
@@ -165,9 +181,9 @@ const tellMeHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURICompone
   .arch::after {
     content: '';
     position: absolute;
-    inset: 7px;
+    inset: 6px;
     border: 1px solid rgba(201, 162, 77, 0.55);
-    border-radius: 122px 122px 3px 3px;
+    border-radius: 50% 50% 3px 3px / 66% 66% 3px 3px;
     pointer-events: none;
   }
 
@@ -195,18 +211,42 @@ const tellMeHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURICompone
 
   .gate-name {
     display: block;
-    margin-top: 0.8rem;
+    margin-top: 0.7rem;
     font-family: var(--font-display);
-    font-size: 1.35rem;
+    font-size: 1.15rem;
+    line-height: 1.25;
     font-weight: 700;
     color: var(--title);
+    text-wrap: balance;
   }
 
   .gate-line {
     display: block;
-    margin-top: 0.1rem;
+    margin-top: 0.2rem;
     color: var(--secondary);
-    font-size: 0.92rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    text-wrap: balance;
+  }
+
+  /* במסך רחב הטורים רחבים יותר: קשת מעט נמוכה יותר (3:2) וטקסט בגודלו המקורי */
+  @media (min-width: 34rem) {
+    .arch {
+      aspect-ratio: 3 / 2;
+      border-radius: 50% 50% 6px 6px / 75% 75% 6px 6px;
+    }
+
+    .arch::after {
+      border-radius: 50% 50% 3px 3px / 75% 75% 3px 3px;
+    }
+
+    .gate-name {
+      font-size: 1.3rem;
+    }
+
+    .gate-line {
+      font-size: 0.92rem;
+    }
   }
 
   /* קישור שקט למי שלא מצליח לבחור שער */

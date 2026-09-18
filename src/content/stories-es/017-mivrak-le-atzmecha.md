@@ -1,11 +1,13 @@
 ---
 # תרגום של ארכיון #017 (2026-08-30).
-# **בלי cover בכוונה:** תמונת השער העברית נושאת שלטים ומברקים בעברית
-# ("סגירה", "פתיחה", "אין סיכוי", "יש פה דרך"). עד גרסה בספרדית — שער הקטגוריה.
+# עדכון 2026-09-16: השער הוחלף (בעברית ובספרדית) לתמונה משותפת בלי כיתוב —
+# שני תגי מסע עם אותו נוף, אחד בשחור-לבן ואחד צבעוני. אין עוד צורך בשער נפרד.
 title: "El telegrama que te enviaste"
 section: meshalim
 archiveId: "017"
-date: 2026-02-15
+cover: ../../assets/covers/017.png
+coverAlt: "Dos etiquetas de viaje antiguas sobre un baúl de madera, cada una con una foto del mismo pueblo del desierto y el mismo camino de tierra — una en blanco y negro sombrío, la otra a color e iluminada por el atardecer; alrededor, maletas, botas y un farol encendido"
+date: 2026-08-21T09:00:00Z
 readingTime: "unos 90 segundos"
 excerpt: "Dos gerentes fueron enviados al mismo lugar y vieron exactamente la misma realidad. Los telegramas que mandaron eran opuestos."
 ---

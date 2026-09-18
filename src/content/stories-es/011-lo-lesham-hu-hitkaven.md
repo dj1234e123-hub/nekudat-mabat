@@ -5,7 +5,7 @@ section: yoman
 archiveId: "011"
 cover: ../../assets/covers/011.png
 coverAlt: "Un hombre de abrigo, con una valija, de espaldas a la cámara sobre una pista mojada frente a un avión de pasajeros estacionado, entre nubes pesadas y luz de atardecer; las luces del aeropuerto se reflejan en el asfalto"
-date: 2026-08-23T21:00:00Z
+date: 2026-08-18T09:00:00Z
 readingTime: "unos 90 segundos"
 excerpt: "El avión temblaba, olor a quemado en el aire, y un aterrizaje de emergencia. El profesor especialista en enfermedades raras no llegará a la conferencia que todos esperan. Alquiló un auto y siguió solo, bajo la lluvia."
 ---

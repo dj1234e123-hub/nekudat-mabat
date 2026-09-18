@@ -5,7 +5,7 @@ section: yoman
 archiveId: "008"
 cover: ../../assets/covers/008.png
 coverAlt: "Un joven con mochila, de espaldas a la cámara, en una bifurcación de caminos bajo un cartel de madera con dos flechas: de un lado, un sendero de asfalto agrietado a lo largo de una pared con grafitis hacia edificios grises y un cielo de tormenta; del otro, un sendero de tierra verde hacia el amanecer y una ciudad iluminada"
-date: 2026-08-23T18:00:00Z
+date: 2026-08-15T09:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Cuando le preguntaban a Elad dónde hacía los deberes, siempre respondía que en la biblioteca. Nadie sabía que no le gustaban los libros — simplemente tenía miedo de volver a casa."
 ---

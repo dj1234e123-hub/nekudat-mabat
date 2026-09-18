@@ -5,7 +5,7 @@ section: chaim
 archiveId: "048"
 cover: ../../assets/covers/048.png
 coverAlt: "Foto a ras del suelo: la rueda de un auto pesado descansa sobre una piedra pequeña que lo levanta apenas del asfalto agrietado, a la luz baja del amanecer; en el fondo desenfocado, una barra de pesas apoyada en la tierra"
-date: 2026-08-23T10:00:00Z
+date: 2026-08-28T09:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "El gato hidráulico resbaló, y un auto de una tonelada y media quedó sobre Tony. Su madre salió de la cocina descalza, apoyó las dos manos sobre el metal frío — y lo levantó un milímetro. Una historia real."
 ---

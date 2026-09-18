@@ -5,10 +5,11 @@ section: yoman
 archiveId: "001"
 cover: ../../assets/covers/001.png
 coverAlt: "Un hombre de pie a la sombra de un callejón de piedra mira a tres jóvenes contando dinero en una alcancía de tzedaká transparente a la luz del atardecer; sobre su cabeza, nubes oscuras de pensamiento con figuras sospechosas, un signo de pregunta y una bolsa de dinero"
-date: 2026-08-22T09:00:00Z
+date: 2026-08-11T09:00:00Z
 readingTime: "unos 2 minutos"
 featured: 3
 excerpt: "Estaba parado junto a la entrada de Rabí Meir Baal Hanés y vi a unos muchachos juntando donaciones sin cartel y sin alcancía. En segundos ya había decidido quiénes eran — y entonces vi a quién le entregaron el dinero."
+hook: "Unos muchachos juntan dinero sin cartel y sin alcancía. ¿Qué pensamos de ellos?"
 ---
 
 Tengo que admitirlo: *hoy me equivoqué.*

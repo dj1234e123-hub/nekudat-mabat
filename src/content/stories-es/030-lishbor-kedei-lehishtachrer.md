@@ -5,7 +5,7 @@ section: meshalim
 archiveId: "030"
 cover: ../../assets/covers/030.png
 coverAlt: "Ilustración: un anciano envuelto en un manto, de pie en el salón de un palacio, suelta de su mano un jarrón de porcelana que se hace añicos; los fragmentos caen al piso de piedra, y frente a él, a la luz del sol, el rey de pie en las escalinatas del trono entre guardias"
-date: 2026-08-22T10:00:00Z
+date: 2026-08-24T09:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "En el palacio custodiaban un antiguo jarrón de porcelana, y todo guardia que se equivocaba al limpiarlo no salía vivo de ahí. Hasta que llegó un anciano, levantó el jarrón — y lo rompió. Una parábola sobre lo que nos tiene atrapados en el miedo."
 ---
