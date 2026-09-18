@@ -57,6 +57,8 @@ Salió del tribunal
 con un expediente penal pesado a sus espaldas,
 y el número de teléfono del juez en el bolsillo.
 
+Escuchó sobre sí mismo una frase que todavía no era cierta.
+
 ***
 
 En la parashá de Haazinu, Moshé está de pie en el último día de su vida frente a todo un pueblo.
@@ -81,7 +83,7 @@ Se lo dice para que **todavía se pueda cambiar**.
 
 ***
 
-Tres años después se inscribió en un instituto superior.
+Tres años después de aquel día en la sala, se inscribió en un instituto superior.
 
 Después en la universidad.
 
@@ -89,7 +91,7 @@ Y después en la facultad de derecho.
 
 Durante todos esos años siguieron en contacto. Y cuando su candidatura al colegio de abogados quedó bajo revisión por su pasado, el juez fue uno de los que estuvieron a su lado.
 
-El catorce de mayo de 2021, dieciséis años después de aquel día, Edward Martell entró otra vez en esa misma sala en Detroit.
+El catorce de mayo de 2021, dieciséis años después, Edward Martell entró otra vez en esa misma sala en Detroit.
 
 El mismo tribunal. El mismo estrado. El mismo juez.
 
@@ -105,7 +107,8 @@ Todo lo que estaba escrito en el expediente siguió escrito.
 
 El expediente no cambió. **Solo quien lo leyó.**
 
-Leemos a una persona por la última página que leímos,
+Y también nosotros leemos a las personas como un expediente:
+por la última página que leímos,
 y olvidamos que **la página siguiente todavía está en blanco**.
 
 "Él siempre es así."
@@ -118,7 +121,7 @@ Fracasé. No lo logré. Ya lo intenté. Yo soy así.
 Y poco a poco un capítulo doloroso de la historia
 se convierte en **el título del libro entero**.
 
-En estos días nosotros estamos frente al juicio.
+Y en estos días nosotros estamos frente al juicio.
 
 Y solemos pensar que el juez lee el expediente.
 
