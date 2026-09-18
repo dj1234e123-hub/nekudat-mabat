@@ -17,11 +17,13 @@ export async function getStaticPaths() {
 }
 
 const { piece } = Astro.props;
-const { title, parasha, hebrewDate, date, signoff, signedBy, quoteImage, quoteImageAlt } = piece.data;
+const { title, parasha, hebrewDate, date, signoff, signedBy, quoteImage, quoteImageAlt, description } = piece.data;
 const blocks = parseBody(piece.body ?? '');
 
 const flat = plainText(blocks).replace(/\s+/g, ' ').trim();
-const summary = flat.length > 200 ? `${flat.slice(0, 197)}…` : flat;
+// תיאור שנכתב לגיליון גובר על הנגזר מהפתיחה (ראו הערה בסכמה).
+const derived = flat.length > 200 ? `${flat.slice(0, 197)}…` : flat;
+const summary = description ?? derived;
 
 const pageUrl = new URL(`/es/shabat/${piece.id}/`, Astro.site).href;
 

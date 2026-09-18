@@ -18,6 +18,7 @@
 title: מה ראה השופט?
 parasha: האזינו
 hebrewDate: ח' בתשרי תשפ"ז
+description: "בן עשרים ושבע, תיק פלילי, ועד עשרים שנות מאסר. השופט הסתכל בתיק, הרים את המבט, ואמר משפט אחד. שש-עשרה שנה אחר כך הם נפגשו שוב, באותו אולם."
 date: 2026-09-18T07:00:00Z
 quoteImage: ../../assets/mabat-leshabbat/haazinu-quote.png
 quoteImageAlt: "התיק לא השתנה. רק מי שקרא בו."

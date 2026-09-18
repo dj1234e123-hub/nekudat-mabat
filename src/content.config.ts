@@ -127,6 +127,10 @@ const mabatEs = defineCollection({
         parasha: z.string().min(1),
         hebrewDate: z.string().min(1),
         date: z.coerce.date(),
+        // שורת התצוגה המקדימה (וואטסאפ, גוגל). בלעדיה היא נגזרת מפתיחת
+        // הטור — וזו חזרה על מה שהקורא כבר עומד לקרוא. כאן אפשר לכתוב
+        // שורה מסקרנת מתוך הסיפור, בלי לחשוף את סופו.
+        description: z.string().min(1).optional(),
         signoff: z.string().min(1),
         signedBy: z.string().min(1),
         quoteImage: image().optional(),
@@ -155,6 +159,10 @@ const mabatLeshabbat = defineCollection({
         parasha: z.string().min(1),
         hebrewDate: z.string().min(1),
         date: z.coerce.date(),
+        // שורת התצוגה המקדימה (וואטסאפ, גוגל). בלעדיה היא נגזרת מפתיחת
+        // הטור — וזו חזרה על מה שהקורא כבר עומד לקרוא. כאן אפשר לכתוב
+        // שורה מסקרנת מתוך הסיפור, בלי לחשוף את סופו.
+        description: z.string().min(1).optional(),
         signoff: z.string().min(1),
         signedBy: z.string().min(1),
         quoteImage: image().optional(),

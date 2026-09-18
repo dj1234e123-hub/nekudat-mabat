@@ -11,6 +11,7 @@
 title: ¿Qué vio el juez?
 parasha: Haazinu
 hebrewDate: 8 de Tishrei 5787
+description: "Veintisiete años, un expediente penal y hasta veinte años de cárcel. El juez miró el expediente, levantó la mirada y dijo una sola frase. Dieciséis años después volvieron a encontrarse en esa misma sala."
 date: 2026-09-18T07:00:00Z
 quoteImage: ../../assets/mabat-leshabbat/haazinu-quote-es.png
 quoteImageAlt: "El expediente no cambió. Solo quien lo leyó."
