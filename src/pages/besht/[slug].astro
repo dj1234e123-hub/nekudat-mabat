@@ -1,0 +1,217 @@
+---
+// עמוד סיפור בודד ב"מעשה שהיה" — הכתובת שמשתפים במוצאי שבת.
+// זהות הפינה: רייל זהב דק ליד הכותרת (זהב הוא צבע הנר, והוא הצבע היחיד
+// מבין חמשת צבעי המותג שלא מזוהה עם עולם תוכן אחר), ותמונת ההבדלה
+// המשותפת לכל הפינה. הזהב אינו משמש כטקסט אלא בגוון כהה (--gold-deep),
+// כי זהב המותג על שמנת נמדד 2.24 מול תקן 4.5 (אותה מדידה משלב 4.8).
+import { getCollection, render } from 'astro:content';
+import { Image, getImage } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import ShareRow from '../../components/ShareRow.astro';
+import JoinGroup from '../../components/JoinGroup.astro';
+import havdala from '../../assets/besht/havdala.png';
+import { articleJsonLd, breadcrumbJsonLd } from '../../lib/structured-data';
+import { isPublished } from '../../lib/published';
+import { newestFirst } from '../../lib/sort';
+
+export async function getStaticPaths() {
+  const stories = await getCollection('besht', isPublished);
+  return stories.map((story) => ({ params: { slug: story.id }, props: { story } }));
+}
+
+const { story } = Astro.props;
+const { Content } = await render(story);
+const { title, occasion, hebrewDate, date, excerpt, thought, readingTime } = story.data;
+
+const pageUrl = new URL(`/besht/${story.id}/`, Astro.site).href;
+
+// תמונת התצוגה המקדימה בשיתוף — תמונת הזהות של הפינה. אחת לכל הסיפורים,
+// לפי ההחלטה: הפינה מזוהה בתמונה אחת קבועה ולא בשער ייחודי לכל סיפור.
+const og = await getImage({ src: havdala, width: 1200, format: 'jpeg' });
+const ogImage = new URL(og.src, Astro.site).href;
+
+const all = (await getCollection('besht', isPublished)).sort(newestFirst);
+---
+
+<Base
+  title={`${title} · מעשה שהיה`}
+  description={excerpt}
+  ogType="article"
+  ogImage={ogImage}
+  ogImageWidth={og.attributes.width}
+  ogImageHeight={og.attributes.height}
+  compact={true}
+  jsonLd={[
+    articleJsonLd(Astro.site!, {
+      url: pageUrl,
+      headline: title,
+      description: excerpt,
+      datePublished: date,
+      image: ogImage,
+    }),
+    breadcrumbJsonLd(Astro.site!, [
+      { name: 'נקודת מבט', path: '/' },
+      { name: 'מעשה שהיה', path: '/besht/' },
+      { name: title },
+    ]),
+  ]}
+>
+  <main>
+    <article class="besht">
+      <header class="besht-head">
+        <span class="rail" aria-hidden="true"></span>
+        <div class="head-text">
+          <p class="kicker-main">מעשה שהיה</p>
+          <p class="kicker-sub">{occasion} · {hebrewDate}{readingTime && ` · ${readingTime}`}</p>
+          <h1>{title}</h1>
+        </div>
+      </header>
+
+      <Image
+        src={havdala}
+        alt="נר הבדלה קלוע ודולק על מעקה אבן, לצידו גביע כסף וקופסת בשמים, ומאחור נוף ירושלים באור שקיעה"
+        widths={[480, 800, 1200]}
+        sizes="(max-width: 42rem) 100vw, 42rem"
+        class="band"
+      />
+
+      <div class="besht-body">
+        <Content />
+      </div>
+
+      <div class="close-mark" aria-hidden="true"><span></span></div>
+
+      <p class="thought"><span class="thought-label">מחשבה</span>{thought}</p>
+    </article>
+
+    <ShareRow title={`${title} · מעשה שהיה`} url={pageUrl} label="סיפור של מוצאי שבת. שלחו אותו הלאה:" />
+    <JoinGroup />
+
+    <nav class="besht-footer">
+      <a href="/besht/">{all.length > 1 ? `לכל ${all.length} הסיפורים של מעשה שהיה` : 'לפינת מעשה שהיה'}</a>
+    </nav>
+  </main>
+</Base>
+
+<style>
+  .besht {
+    --gold-deep: #8f6f28;
+    padding-top: 0.5rem;
+  }
+
+  .besht-head {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-bottom: 1.6rem;
+  }
+
+  .rail {
+    width: 3px;
+    align-self: stretch;
+    min-height: 5.6rem;
+    background: var(--gold);
+    border-radius: 2px;
+    flex: 0 0 auto;
+  }
+
+  .head-text {
+    flex: 1;
+  }
+
+  .kicker-main {
+    color: var(--gold-deep);
+    font-size: 0.76rem;
+    letter-spacing: 0.14em;
+    font-weight: 700;
+    margin: 0 0 0.35rem;
+  }
+
+  .kicker-sub {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin: 0 0 1rem;
+  }
+
+  .besht-head h1 {
+    font-size: 1.7rem;
+    line-height: 1.42;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .band {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 7;
+    object-fit: cover;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+  }
+
+  .besht-body :global(p) {
+    font-size: 1.2rem;
+    line-height: 1.85;
+    margin-bottom: 1.4rem;
+  }
+
+  /* ציטוט הסיום — אותו טיפול שכבר קיים לפסקה החזקה של סיפור:
+     פונט הכותרות, ירוק־כחול כהה וקו זהב. אחד בלבד לסיפור. */
+  .besht-body :global(blockquote) {
+    margin: 2rem 0 0;
+    padding-inline-start: 1.1rem;
+    border-inline-start: 3px solid var(--gold);
+  }
+
+  .besht-body :global(blockquote p) {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: var(--teal-deep);
+    margin-bottom: 0;
+  }
+
+  .close-mark {
+    display: flex;
+    justify-content: center;
+    margin: 2.3rem 0 1.6rem;
+  }
+
+  .close-mark span {
+    width: 3px;
+    height: 16px;
+    border-radius: 2px;
+    background: var(--gold);
+    opacity: 0.65;
+  }
+
+  .thought {
+    text-align: center;
+    max-width: 30rem;
+    margin: 0 auto;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .thought-label {
+    display: block;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    font-weight: 700;
+    color: var(--gold-deep);
+    margin-bottom: 0.5rem;
+  }
+
+  .besht-footer {
+    text-align: center;
+    margin-top: 2.5rem;
+  }
+
+  .besht-footer a {
+    text-decoration: none;
+    font-weight: 600;
+  }
+</style>

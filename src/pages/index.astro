@@ -85,6 +85,11 @@ const latestMabat = mabatPieces[0]
   ? { piece: mabatPieces[0], blocks: parseBody(mabatPieces[0].body ?? '') }
   : null;
 
+// טעימה מ"מעשה שהיה" — סיפור הבעל שם טוב האחרון של מוצאי שבת.
+// כמו כל אזור בדף הבית: בלי סיפור, האזור כולו לא מוצג.
+const beshtStories = (await getCollection('besht', isPublished)).sort(newestFirst);
+const latestBesht = beshtStories[0] ?? null;
+
 const DESCRIPTION =
   'מקום לעצור, לקבל נקודת מבט חדשה, ולקחת משהו איתך להמשך הדרך. סיפורים ורגעים קצרים של נקודת מבט.';
 ---
@@ -189,6 +194,24 @@ const DESCRIPTION =
               ))
             }
           </div>
+        )
+      }
+
+      {
+        latestBesht && (
+          <section class="besht-teaser" style="grid-area: besht">
+            <span class="teaser-rail besht-rail" aria-hidden="true" />
+            <div class="teaser-body">
+              <p class="teaser-kicker besht-kicker">מעשה שהיה · {latestBesht.data.occasion}</p>
+              <a class="teaser-title" href={`/besht/${latestBesht.id}/`}>
+                {latestBesht.data.title}
+              </a>
+              <p class="besht-excerpt">{latestBesht.data.excerpt}</p>
+              <a class="teaser-more" href={`/besht/${latestBesht.id}/`}>
+                לקרוא את הסיפור
+              </a>
+            </div>
+          </section>
         )
       }
 
@@ -381,7 +404,7 @@ const DESCRIPTION =
     margin-inline: calc((100% - var(--bleed)) / 2);
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-areas: 'moments' 'mabat' 'stories';
+    grid-template-areas: 'moments' 'besht' 'mabat' 'stories';
     gap: 1.75rem;
     align-items: start;
     margin-bottom: 2.5rem;
@@ -391,7 +414,7 @@ const DESCRIPTION =
   @media (min-width: 800px) {
     .dual-section {
       grid-template-columns: 1fr 1fr;
-      grid-template-areas: 'moments stories' 'mabat mabat';
+      grid-template-areas: 'moments stories' 'besht besht' 'mabat mabat';
       gap: 2rem;
     }
   }
@@ -735,6 +758,34 @@ const DESCRIPTION =
 
   .story-link:hover {
     text-decoration: underline;
+  }
+
+  /* ============ טעימת "מעשה שהיה" ============ */
+  .besht-teaser {
+    --gold-deep: #8f6f28;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1.3rem 1.4rem;
+  }
+
+  .besht-rail {
+    background: var(--gold);
+  }
+
+  .besht-kicker {
+    color: var(--gold-deep);
+  }
+
+  .besht-excerpt {
+    color: var(--secondary);
+    font-size: 0.97rem;
+    line-height: 1.75;
+    margin: 0;
   }
 
   /* ============ טעימת "מבט לשבת" ============ */
