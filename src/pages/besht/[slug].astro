@@ -84,7 +84,7 @@ const all = (await getCollection('besht', isPublished)).sort(newestFirst);
       <p class="thought"><span class="thought-label">מחשבה</span>{thought}</p>
     </article>
 
-    <ShareRow title={`${title} · מעשה שהיה`} url={pageUrl} label="סיפור של מוצאי שבת. שלחו אותו הלאה:" />
+    <ShareRow title={`${title} · מעשה שהיה`} url={pageUrl} label={`סיפור של ${occasion}. שלחו אותו הלאה:`} />
     <JoinGroup />
 
     <nav class="besht-footer">
