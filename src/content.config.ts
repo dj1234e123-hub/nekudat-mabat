@@ -115,6 +115,38 @@ const storiesEs = defineCollection({
       }),
 });
 
+// "מעשה שהיה" — סיפור בעל שם טוב לכל מוצאי שבת (פינה קבועה, נפרדת מארכיון
+// הסיפורים הראשי ומהמספור שלו). מבוסס על המנהג לספר סיפורי בעש"ט במוצאי
+// שבת (שיורי המנחה, "בארות המים", הריי"צ מליובאוויטש).
+//
+// למה אוסף נפרד ולא עוד עולם בתוך stories: המועד הוא חלק מהזהות (מוצאי
+// שבת מסוים, ולא תאריך פרסום שרירותי), התמונה משותפת לכל הפינה במקום
+// שער לכל סיפור, ויש "מחשבה" חותמת אחת — שלושה דברים שאין לסיפור רגיל.
+//
+// הגוף הוא פרוזה רגילה (Markdown), לא פורמט השורות של הרגעים: זה סיפור
+// שמספר מה קרה למישהו אחר, לפי כלל שבירת השורות הקיים באתר.
+//
+// thought — שורת ה"מחשבה" שחותמת את הסיפור. בפרונטמאטר ולא בגוף, כי היא
+// אובייקט אחר: הסיפור נעצר על דברי הבעל שם טוב, והמחשבה מגיעה אחריו
+// כהד — בדיוק כמו חתימת השבת ב"מבט לשבת". שורה אחת, לא פסקה.
+const besht = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/besht' }),
+  schema: z.object({
+    title: z.string().min(1),
+    /** המועד שהסיפור נכתב אליו, כפי שהוא מוצג: "מוצאי שבת שובה" */
+    occasion: z.string().min(1),
+    hebrewDate: z.string().min(1),
+    date: z.coerce.date(),
+    /** שורת התצוגה המקדימה (וואטסאפ, גוגל) — מסקרנת, בלי לחשוף את הסוף */
+    excerpt: z.string().min(1),
+    /** המחשבה החותמת — שורה אחת שמוסיפה ולא חוזרת על הסיפור */
+    thought: z.string().min(1),
+    readingTime: z.string().optional(),
+    tags: z.array(z.string()).optional(),
+    source: z.string().optional(),
+  }),
+});
+
 // "מבט לשבת" בספרדית — אותו זיווג לפי שם קובץ.
 // quoteImage — אותו כלל כמו בעברית: תמונת ציטוט אופציונלית (בספרדית, LTR),
 // מוצגת בסוף המאמר. "הספרדית משקפת את העברית העדכנית" — אותו מבנה ואותה היררכיה.
@@ -173,4 +205,4 @@ const mabatLeshabbat = defineCollection({
       }),
 });
 
-export const collections = { stories, moments, momentsEs, mabatLeshabbat, storiesEs, mabatEs };
+export const collections = { stories, moments, momentsEs, mabatLeshabbat, storiesEs, mabatEs, besht };

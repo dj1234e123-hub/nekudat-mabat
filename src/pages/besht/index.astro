@@ -1,0 +1,120 @@
+---
+// עמוד הכניסה ל"מעשה שהיה" — ארכיון הסיפורים, מהחדש לישן.
+// עם סיפור אחד זו עדיין רשימה קצרה; המבנה מוכן לצמוח שבוע-שבוע בלי שינוי.
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import havdala from '../../assets/besht/havdala.png';
+import { newestFirst } from '../../lib/sort';
+import { isPublished } from '../../lib/published';
+
+const stories = (await getCollection('besht', isPublished)).sort(newestFirst);
+---
+
+<Base
+  title="מעשה שהיה · נקודת מבט"
+  description="סיפור של הבעל שם טוב לכל מוצאי שבת — קצר, ובסופו מחשבה אחת."
+>
+  <main>
+    <Image
+      src={havdala}
+      alt="נר הבדלה קלוע ודולק על מעקה אבן, לצידו גביע כסף וקופסת בשמים, ומאחור נוף ירושלים באור שקיעה"
+      widths={[480, 800, 1200]}
+      sizes="(max-width: 42rem) 100vw, 42rem"
+      class="band"
+    />
+
+    <h1 class="page-title">מעשה שהיה</h1>
+    <p class="intro">
+      נהגו לספר סיפור של הבעל שם טוב במוצאי שבת. כאן סיפור אחד בכל שבוע — קצר, ובסופו מחשבה אחת.
+    </p>
+
+    <ul class="items">
+      {
+        stories.map((story) => (
+          <li class="item">
+            <a class="item-link" href={`/besht/${story.id}/`}>
+              <p class="item-kicker">
+                {story.data.occasion} · {story.data.hebrewDate}
+              </p>
+              <h2>{story.data.title}</h2>
+              <p class="item-excerpt">{story.data.excerpt}</p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </main>
+</Base>
+
+<style>
+  .band {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 7;
+    object-fit: cover;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 1.6rem;
+  }
+
+  .page-title {
+    text-align: center;
+    font-size: 1.8rem;
+    padding: 0 0 0.5rem;
+  }
+
+  .intro {
+    text-align: center;
+    color: var(--secondary);
+    max-width: 30rem;
+    margin: 0 auto 2.2rem;
+    line-height: 1.75;
+  }
+
+  .items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.1rem;
+  }
+
+  .item {
+    border-inline-start: 3px solid var(--gold);
+    border-radius: 4px;
+    background: var(--paper);
+    box-shadow: var(--shadow);
+  }
+
+  .item-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    padding: 1.1rem 1.3rem;
+  }
+
+  .item-kicker {
+    color: var(--muted);
+    font-size: 0.82rem;
+    margin: 0 0 0.4rem;
+  }
+
+  .item h2 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+    margin: 0 0 0.5rem;
+    transition: color 0.15s ease;
+  }
+
+  .item-link:hover h2 {
+    color: var(--teal-deep);
+  }
+
+  .item-excerpt {
+    color: var(--secondary);
+    font-size: 0.92rem;
+    line-height: 1.65;
+    margin: 0;
+  }
+</style>
