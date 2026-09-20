@@ -16,7 +16,7 @@ import momentGate from '../../assets/gates/moments.png';
 import { SECTION_GATE_IMAGES } from '../../data/section-gate-images';
 import { newestFirst } from '../../lib/sort';
 import MabatBody from '../../components/MabatBody.astro';
-import { parseBody } from '../../lib/mabat-format';
+import { parseBody, kickerEs } from '../../lib/mabat-format';
 import { isPublished } from '../../lib/published';
 
 const allStories = (await getCollection('storiesEs', isPublished)).sort(newestFirst);
@@ -179,7 +179,7 @@ const DESCRIPTION =
             <span class="teaser-rail" aria-hidden="true" />
             <div class="teaser-body">
               <p class="teaser-kicker">
-                {MABAT_ES.name} · {MABAT_ES.parashaPrefix} {latestMabat.piece.data.parasha}
+                {MABAT_ES.name} · {kickerEs(latestMabat.piece.data.parasha, MABAT_ES.parashaPrefix)}
               </p>
               <a class="teaser-title" href={`/es/shabat/${latestMabat.piece.id}/`}>
                 {latestMabat.piece.data.title}

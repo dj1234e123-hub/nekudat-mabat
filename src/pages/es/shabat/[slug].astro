@@ -7,7 +7,7 @@ import Base from '../../../layouts/Base.astro';
 import ShareRow from '../../../components/ShareRow.astro';
 import MabatBody from '../../../components/MabatBody.astro';
 import { MABAT_ES } from '../../../data/site-es';
-import { parseBody, plainText } from '../../../lib/mabat-format';
+import { parseBody, plainText, kickerEs } from '../../../lib/mabat-format';
 import { articleJsonLd, breadcrumbJsonLd } from '../../../lib/structured-data';
 import { isPublished } from '../../../lib/published';
 
@@ -73,7 +73,7 @@ if (quoteImage) {
         <span class="rail" aria-hidden="true"></span>
         <div class="head-text">
           <p class="kicker-main">{MABAT_ES.name}</p>
-          <p class="kicker-sub">{MABAT_ES.parashaPrefix} {parasha} · {hebrewDate}</p>
+          <p class="kicker-sub">{kickerEs(parasha, MABAT_ES.parashaPrefix)} · {hebrewDate}</p>
           <h1>{title}</h1>
         </div>
       </header>

@@ -56,3 +56,9 @@ const LABELED = /^(פרשת|חג|ערב|יום|שבת|ראש|מוצאי|ליל)\
 export function kicker(parasha: string): string {
   return LABELED.test(parasha) ? parasha : `פרשת ${parasha}`;
 }
+
+// אותו כלל לאזור הספרדי: ערך שכבר פותח במילת תווית מוצג כמו שהוא.
+const LABELED_ES = /^(Parashá|Yom|Rosh|Shabat|Erev|Noche)\s/;
+export function kickerEs(parasha: string, prefix: string): string {
+  return LABELED_ES.test(parasha) ? parasha : `${prefix} ${parasha}`;
+}
