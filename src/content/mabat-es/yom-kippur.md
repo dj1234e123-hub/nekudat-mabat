@@ -3,6 +3,7 @@
 # נוסח נטול מגדר: tú ניטרלי; "exento" (מוטה) הוחלף ב-"libre" (בלתי מוטה).
 # התרגום נעשה ללא בדיקת דוברת ספרדית (החלטת ההשקה של 2026-08-30) — לבדיקה כשתתפנה.
 # תמונת ציטוט ספרדית נפרדת (LTR, כתובת nekudatmabat.blog/es), אותו ציטוט כמו בעברית.
+# נוסף "Siempre lo arruino" במקביל לעברית (פועל — נטול מגדר).
 # שדה parasha נושא תווית מועד ("Yom Kipur") ומוצג בלי הקידומת "Parashá" (kickerEs).
 title: ¿Qué voto todavía te ata?
 parasha: Yom Kipur
@@ -64,6 +65,8 @@ Lo dijo —
 Pero hay otras palabras.
 
 "Yo soy así."
+
+"Siempre lo arruino."
 
 "Yo ya no voy a cambiar."
 
