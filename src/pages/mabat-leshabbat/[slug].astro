@@ -9,7 +9,7 @@ import { Image, getImage } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import ShareRow from '../../components/ShareRow.astro';
 import MabatBody from '../../components/MabatBody.astro';
-import { parseBody, plainText } from '../../lib/mabat-format';
+import { parseBody, plainText, kicker } from '../../lib/mabat-format';
 import { articleJsonLd, breadcrumbJsonLd } from '../../lib/structured-data';
 import { isPublished } from '../../lib/published';
 
@@ -79,7 +79,7 @@ const altLangHref = hasEsTwin ? `/es/shabat/${piece.id}/` : '/es/shabat/';
         <span class="rail" aria-hidden="true"></span>
         <div class="head-text">
           <p class="kicker-main">מבט לשבת</p>
-          <p class="kicker-sub">פרשת {parasha} · {hebrewDate}</p>
+          <p class="kicker-sub">{kicker(parasha)} · {hebrewDate}</p>
           <h1>{title}</h1>
         </div>
       </header>

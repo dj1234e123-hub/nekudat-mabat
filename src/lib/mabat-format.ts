@@ -47,3 +47,12 @@ export function plainText(blocks: Block[]): string {
 }
 
 export { lineHtml };
+
+// תווית הגיליון. `parasha` הוא בדרך כלל שם פרשה בלבד ("האזינו") ומקבל את
+// הקידומת "פרשת" בתצוגה. גיליון של מועד (יום הכיפורים) אינו פרשה — ערך
+// שכבר פותח במילת תווית (חג · ערב · יום · שבת · ראש · מוצאי · ליל · פרשת)
+// מוצג כמו שהוא, בלי הקידומת.
+const LABELED = /^(פרשת|חג|ערב|יום|שבת|ראש|מוצאי|ליל)\s/;
+export function kicker(parasha: string): string {
+  return LABELED.test(parasha) ? parasha : `פרשת ${parasha}`;
+}

@@ -17,7 +17,7 @@ import momentGate from '../assets/gates/moments.png';
 import { SECTION_GATE_IMAGES } from '../data/section-gate-images';
 import { newestFirst } from '../lib/sort';
 import MabatBody from '../components/MabatBody.astro';
-import { parseBody } from '../lib/mabat-format';
+import { parseBody, kicker } from '../lib/mabat-format';
 import { isPublished } from '../lib/published';
 
 // דף הבית נותן טעם ומוביל הלאה; הארכיון עצמו חי ב-/stories/.
@@ -220,7 +220,7 @@ const DESCRIPTION =
           <section class="mabat-teaser" style="grid-area: mabat">
             <span class="teaser-rail" aria-hidden="true" />
             <div class="teaser-body">
-              <p class="teaser-kicker">מבט לשבת · פרשת {latestMabat.piece.data.parasha}</p>
+              <p class="teaser-kicker">מבט לשבת · {kicker(latestMabat.piece.data.parasha)}</p>
               <a class="teaser-title" href={`/mabat-leshabbat/${latestMabat.piece.id}/`}>
                 {latestMabat.piece.data.title}
               </a>

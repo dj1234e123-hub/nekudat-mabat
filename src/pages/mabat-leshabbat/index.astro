@@ -4,7 +4,7 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { newestFirst } from '../../lib/sort';
-import { parseBody, plainText } from '../../lib/mabat-format';
+import { parseBody, plainText, kicker } from '../../lib/mabat-format';
 import { isPublished } from '../../lib/published';
 
 const pieces = (await getCollection('mabatLeshabbat', isPublished)).sort(newestFirst);
@@ -33,7 +33,7 @@ const cards = pieces.map((piece) => {
         cards.map(({ piece, excerpt }) => (
           <li class="issue">
             <a class="issue-link" href={`/mabat-leshabbat/${piece.id}/`}>
-              <p class="issue-kicker">פרשת {piece.data.parasha} · {piece.data.hebrewDate}</p>
+              <p class="issue-kicker">{kicker(piece.data.parasha)} · {piece.data.hebrewDate}</p>
               <h2>{piece.data.title}</h2>
               <p class="issue-excerpt">{excerpt}</p>
             </a>
