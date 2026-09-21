@@ -13,6 +13,7 @@ import havdala from '../../assets/besht/havdala.png';
 import { articleJsonLd, breadcrumbJsonLd } from '../../lib/structured-data';
 import { isPublished } from '../../lib/published';
 import { newestFirst } from '../../lib/sort';
+import JoinPopup from '../../components/JoinPopup.astro';
 
 export async function getStaticPaths() {
   const stories = await getCollection('besht', isPublished);
@@ -90,6 +91,7 @@ const all = (await getCollection('besht', isPublished)).sort(newestFirst);
     <nav class="besht-footer">
       <a href="/besht/">{all.length > 1 ? `לכל ${all.length} הסיפורים של מעשה שהיה` : 'לפינת מעשה שהיה'}</a>
     </nav>
+    <JoinPopup />
   </main>
 </Base>
 

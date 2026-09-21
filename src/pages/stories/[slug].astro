@@ -17,6 +17,7 @@ import { isPublished } from '../../lib/published';
 import { newestFirst } from '../../lib/sort';
 import { nextStories, momentForStory } from '../../lib/related';
 import { readingLabel as readingLabelFor } from '../../lib/reading-time';
+import JoinPopup from '../../components/JoinPopup.astro';
 
 export async function getStaticPaths() {
   const stories = await getCollection('stories', isPublished);
@@ -119,6 +120,7 @@ const altLangHref = hasEsTwin ? `/es/historias/${story.id}/` : '/es/historias/';
       <a href="/stories/">לכל {allStories.length} הסיפורים</a>
       {otherStoryUrls.length > 0 && <button id="random-story" type="button" data-ph="random_story">לסיפור אקראי</button>}
     </nav>
+    <JoinPopup />
   </main>
 </Base>
 

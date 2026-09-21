@@ -1,0 +1,248 @@
+---
+// חלון הזמנה לקבוצה שנפתח אחרי דקת קריאה — החלטת בעל הפרויקט, 2026-09-21.
+//
+// שלוש הגנות שהופכות אותו לנסבל, וכולן חיות ב-localStorage של הקורא בלבד
+// (בלי עוגיות, בלי זהות, כמו זיכרון הקריאה nm_read):
+//   nm_joined      — מי שכבר לחץ "להצטרפות" בכל עמוד שהוא, לא יראה אותו לעולם.
+//   nm_join_popup  — מי שסגר אותו פעם אחת, לא יראה אותו שוב. פעם אחת לדפדפן.
+// בלי שתי אלה, קורא חוזר היה מקבל אותו בכל עמוד — וזה מה שמגרש אנשים.
+//
+// נגישות: אלמנט <dialog> אמיתי עם showModal() — מקבל ממנו בחינם מלכודת
+// פוקוס, סגירה ב-Esc, והחזרת הפוקוס למקום שממנו נפתח.
+//
+// מדידה: popup_shown (דרך window.nmTrack — אינו לחיצה) · popup_join · popup_close.
+import { SITE } from '../data/site';
+import { SITE_ES } from '../data/site-es';
+
+interface Props {
+  lang?: 'he' | 'es';
+  /** שניות עד הפתיחה. ברירת המחדל 60 — "אחרי דקה". */
+  delay?: number;
+}
+const { lang = 'he', delay = 60 } = Astro.props;
+const es = lang === 'es';
+const groupUrl = es ? SITE_ES.whatsappGroupUrl : SITE.whatsappGroupUrl;
+
+const t = es
+  ? {
+      title: '¿Quieres más Punto de Vista?',
+      text: 'Cada historia nueva llega primero al grupo.',
+      note: 'Sin conversaciones y sin notificaciones — solo escribo yo.',
+      btn: 'Unirme al grupo',
+      later: 'Ahora no',
+      close: 'Cerrar',
+    }
+  : {
+      title: 'רוצים עוד נקודת מבט?',
+      text: 'סיפור חדש ו״מבט לשבת״ מגיעים קודם כול לקבוצה.',
+      note: 'בלי שיחות ובלי התראות — רק אני שולח.',
+      btn: 'להצטרפות לקבוצה',
+      later: 'לא עכשיו',
+      close: 'סגירה',
+    };
+---
+
+{
+  groupUrl && (
+    <dialog class="pop" aria-labelledby="pop-title" data-delay={delay}>
+      <button class="pop-x" type="button" aria-label={t.close} data-pop-close>
+        <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M6 6l12 12M18 6L6 18" />
+        </svg>
+      </button>
+      <span class="pop-dot" aria-hidden="true" />
+      <p class="pop-title" id="pop-title">{t.title}</p>
+      <p class="pop-text">{t.text}</p>
+      {/* autofocus — אחרת showModal() נותן את הפוקוס ל-X, שהוא הראשון בסדר
+          ה-DOM: טבעת הפוקוס מציירת ריבוע סביב הסגירה ומושכת אליה את העין. */}
+      <a class="pop-btn" href={groupUrl} rel="noopener" target="_blank" data-ph="popup_join" autofocus>
+        {t.btn}
+      </a>
+      <p class="pop-note">{t.note}</p>
+      <button class="pop-later" type="button" data-pop-close>
+        {t.later}
+      </button>
+    </dialog>
+  )
+}
+
+<style>
+  .pop {
+    width: min(21rem, calc(100vw - 2.5rem));
+    padding: 2rem 1.5rem 1.4rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--paper);
+    color: var(--ink);
+    text-align: center;
+    box-shadow: 0 12px 40px rgba(46, 42, 36, 0.22);
+    position: relative;
+    overflow: visible;
+  }
+
+  .pop::backdrop {
+    background: rgba(46, 42, 36, 0.45);
+  }
+
+  /* טבעת פוקוס בשפת האתר במקום המלבן השחור של הדפדפן. focus-visible ולא
+     focus — מי שלחץ בעכבר לא רואה טבעת בכלל. */
+  .pop :focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  .pop[open] {
+    animation: pop-in 0.22s ease-out;
+  }
+
+  @keyframes pop-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pop[open] {
+      animation: none;
+    }
+  }
+
+  /* נקודת זהב — אותה חתימה של שערי הרגעים ושל כרטיסי העולמות:
+     נקודה, לא מילוי. היא מה שאומר "זה נקודת מבט" ולא חלון פרסומת. */
+  .pop-dot {
+    display: block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--gold);
+    margin: 0 auto 0.9rem;
+  }
+
+  .pop-title {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--teal-deep);
+    text-wrap: balance;
+  }
+
+  .pop-text {
+    color: var(--secondary);
+    margin: 0.4rem 0 1.15rem;
+    text-wrap: balance;
+  }
+
+  /* כאן דווקא כפתור מלא ולא מתאר: בחלון אין פעולה מתחרה, וזו הפעולה היחידה. */
+  .pop-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    background: var(--teal);
+    color: var(--paper);
+    border: 1.5px solid var(--teal);
+    font-weight: 700;
+    text-decoration: none;
+    padding: 0.5rem 1.8rem;
+    border-radius: 2rem;
+  }
+
+  .pop-btn:hover {
+    background: var(--teal-deep);
+    border-color: var(--teal-deep);
+  }
+
+  .pop-note {
+    margin-top: 0.7rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--muted);
+    text-wrap: balance;
+  }
+
+  .pop-later {
+    display: block;
+    margin: 0.9rem auto 0;
+    min-height: 44px;
+    padding: 0 0.75rem;
+    background: none;
+    border: 0;
+    font: inherit;
+    font-size: 0.9rem;
+    color: var(--muted);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .pop-later:hover {
+    color: var(--ink);
+  }
+
+  .pop-x {
+    position: absolute;
+    top: 0.35rem;
+    inset-inline-end: 0.35rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: 0;
+    color: var(--muted);
+    cursor: pointer;
+  }
+
+  .pop-x:hover {
+    color: var(--ink);
+  }
+</style>
+
+<script>
+  const pop = document.querySelector<HTMLDialogElement>('.pop');
+  if (pop && typeof pop.showModal === 'function') {
+    const read = (key: string) => {
+      try {
+        return localStorage.getItem(key) === '1';
+      } catch {
+        return false;
+      }
+    };
+    const seal = () => {
+      try {
+        localStorage.setItem('nm_join_popup', '1');
+      } catch {}
+    };
+
+    // מי שכבר הצטרף, או שכבר סגר את החלון פעם אחת — לא רואה אותו.
+    if (!read('nm_joined') && !read('nm_join_popup')) {
+      const delay = Number(pop.dataset.delay ?? 60) * 1000;
+      setTimeout(() => {
+        // נבדק שוב ולא רק בטעינה: בדקה שעברה הקורא יכול היה ללחוץ "להצטרפות"
+        // בכרטיס שבעמוד, או לסגור את החלון בלשונית אחרת שפתוחה במקביל.
+        if (read('nm_joined') || read('nm_join_popup') || pop.open) return;
+        pop.showModal();
+        window.nmTrack?.('popup_shown');
+      }, delay);
+
+      // סגירה בכל דרך (כפתור, Esc, לחיצה על הרקע) נסגרת סופית.
+      pop.addEventListener('close', seal);
+      pop.querySelectorAll('[data-pop-close]').forEach((btn) =>
+        btn.addEventListener('click', () => {
+          window.nmTrack?.('popup_close');
+          pop.close();
+        }),
+      );
+      // <dialog> אינו סוגר בלחיצה על הרקע מעצמו — הלחיצה נוחתת על האלמנט עצמו.
+      pop.addEventListener('click', (event) => {
+        if (event.target === pop) {
+          window.nmTrack?.('popup_close');
+          pop.close();
+        }
+      });
+      // לחיצה על "להצטרפות" סוגרת ומסמנת — הקישור נפתח בלשונית חדשה.
+      pop.querySelector('.pop-btn')?.addEventListener('click', () => pop.close());
+    }
+  }
+</script>

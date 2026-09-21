@@ -258,7 +258,23 @@ const ogImageDims = ogImage
             posthog.capture(el.dataset.ph, undefined, { transport: 'sendBeacon' });
           }
         });
+
+        // אירוע שאינו לחיצה (הצגת חלון ההזמנה) — רכיב קורא ל-nmTrack.
+        window.nmTrack = (name: string) =>
+          posthog.capture(name, undefined, { transport: 'sendBeacon' });
       }
+
+      // מי שכבר לחץ "להצטרפות לקבוצה" — בכל עמוד שהוא — לא יקבל שוב את חלון
+      // ההזמנה. מחוץ לבלוק המדידה בכוונה: הדגל הוא התנהגות של האתר ולא מדידה,
+      // והוא חייב לעבוד גם במצב בעלים וגם בתצוגה מקדימה. localStorage בלבד,
+      // בדפדפן של הקורא, כמו זיכרון הקריאה (nm_read).
+      document.addEventListener('click', (event) => {
+        if ((event.target as Element).closest?.('[data-ph="join_group"]')) {
+          try {
+            localStorage.setItem('nm_joined', '1');
+          } catch {}
+        }
+      });
     </script>
     <footer>
       <span class="dot" aria-hidden="true"></span>

@@ -18,6 +18,7 @@ import { newestFirst } from '../../lib/sort';
 import MabatBody from '../../components/MabatBody.astro';
 import { parseBody, kickerEs } from '../../lib/mabat-format';
 import { isPublished } from '../../lib/published';
+import JoinPopup from '../../components/JoinPopup.astro';
 
 const allStories = (await getCollection('storiesEs', isPublished)).sort(newestFirst);
 
@@ -240,6 +241,7 @@ const DESCRIPTION =
     </section>
 
     <JoinGroup lang="es" />
+    <JoinPopup lang="es" />
   </main>
 </Base>
 

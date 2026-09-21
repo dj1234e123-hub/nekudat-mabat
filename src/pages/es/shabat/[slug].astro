@@ -11,6 +11,7 @@ import { parseBody, plainText, kickerEs } from '../../../lib/mabat-format';
 import { articleJsonLd, breadcrumbJsonLd } from '../../../lib/structured-data';
 import { isPublished } from '../../../lib/published';
 import JoinGroup from '../../../components/JoinGroup.astro';
+import JoinPopup from '../../../components/JoinPopup.astro';
 
 export async function getStaticPaths() {
   const pieces = await getCollection('mabatEs', isPublished);
@@ -109,6 +110,7 @@ if (quoteImage) {
       <a href="/es/shabat/">Todas las ediciones de {MABAT_ES.name}</a>
     </nav>
     <JoinGroup lang="es" />
+    <JoinPopup lang="es" />
   </main>
 </Base>
 
