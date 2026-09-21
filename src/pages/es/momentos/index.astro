@@ -14,6 +14,7 @@ import { GROUP_LABELS_ES, GROUP_LINES_ES } from '../../../data/site-es';
 import GateArt from '../../../components/GateArt.astro';
 import FeelingDoors from '../../../components/FeelingDoors.astro';
 import { isPublished } from '../../../lib/published';
+import JoinGroup from '../../../components/JoinGroup.astro';
 
 const moments = await getCollection('momentsEs', isPublished);
 const filled = new Set(moments.map((moment) => moment.data.feeling));
@@ -74,6 +75,7 @@ const momentUrls = moments.map((moment) => `/es/momentos/${moment.data.feeling}/
     }
 
     <p class="soon">Más estados y más textos — en camino.</p>
+    <JoinGroup lang="es" />
   </main>
 </Base>
 

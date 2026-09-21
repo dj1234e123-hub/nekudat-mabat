@@ -12,6 +12,7 @@ import MabatBody from '../../components/MabatBody.astro';
 import { parseBody, plainText, kicker } from '../../lib/mabat-format';
 import { articleJsonLd, breadcrumbJsonLd } from '../../lib/structured-data';
 import { isPublished } from '../../lib/published';
+import JoinGroup from '../../components/JoinGroup.astro';
 
 export async function getStaticPaths() {
   const pieces = await getCollection('mabatLeshabbat', isPublished);
@@ -107,6 +108,7 @@ const altLangHref = hasEsTwin ? `/es/shabat/${piece.id}/` : '/es/shabat/';
     <nav class="mabat-footer">
       <a href="/mabat-leshabbat/">לכל הגיליונות של מבט לשבת</a>
     </nav>
+    <JoinGroup />
   </main>
 </Base>
 

@@ -5,6 +5,7 @@ import StoryCard from '../../components/StoryCard.astro';
 import { TOPICS, TOPIC_SLUGS, type TopicSlug } from '../../data/topics';
 import { newestFirst } from '../../lib/sort';
 import { isPublished } from '../../lib/published';
+import JoinGroup from '../../components/JoinGroup.astro';
 
 export function getStaticPaths() {
   return TOPIC_SLUGS.map((topic) => ({ params: { topic } }));
@@ -34,6 +35,7 @@ const stories = (
     <nav class="page-footer">
       <a href="/">→ לכל הסיפורים</a>
     </nav>
+    <JoinGroup />
   </main>
 </Base>
 

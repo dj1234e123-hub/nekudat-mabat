@@ -10,6 +10,7 @@ import { MABAT_ES } from '../../../data/site-es';
 import { parseBody, plainText, kickerEs } from '../../../lib/mabat-format';
 import { articleJsonLd, breadcrumbJsonLd } from '../../../lib/structured-data';
 import { isPublished } from '../../../lib/published';
+import JoinGroup from '../../../components/JoinGroup.astro';
 
 export async function getStaticPaths() {
   const pieces = await getCollection('mabatEs', isPublished);
@@ -107,6 +108,7 @@ if (quoteImage) {
     <nav class="mabat-footer">
       <a href="/es/shabat/">Todas las ediciones de {MABAT_ES.name}</a>
     </nav>
+    <JoinGroup lang="es" />
   </main>
 </Base>
 

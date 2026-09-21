@@ -13,16 +13,22 @@ interface Props {
 const { lang = 'he' } = Astro.props;
 const es = lang === 'es';
 const groupUrl = es ? SITE_ES.whatsappGroupUrl : SITE.whatsappGroupUrl;
+// ההבטחה מפוצלת לשתיים בכוונה: `text` אומר מה מקבלים, ו-`note` עונה על
+// ההתנגדות האמיתית של הקהל הזה — "עוד קבוצה שתציף אותי בהודעות". קודם
+// השקט היה שם תואר בתוך המשפט ("הקבוצה השקטה שלנו") ולא הבטחה שנקראת.
+// ה-note יושב מתחת לכפתור, במקום שבו ההיסוס קורה.
 const t = es
   ? {
       title: '¿Quieres más Punto de Vista?',
-      text: 'Cada momento nuevo llega primero a nuestro grupo silencioso de WhatsApp.',
+      text: 'Cada historia nueva llega primero al grupo.',
       btn: 'Unirme al grupo',
+      note: 'Sin conversaciones y sin notificaciones — solo escribo yo.',
     }
   : {
       title: 'רוצים עוד נקודת מבט?',
-      text: 'כל סיפור חדש מגיע קודם לקבוצת הוואטסאפ השקטה שלנו.',
+      text: 'סיפור חדש ו״מבט לשבת״ מגיעים קודם כול לקבוצה.',
       btn: 'להצטרפות לקבוצה',
+      note: 'בלי שיחות ובלי התראות — רק אני שולח.',
     };
 ---
 
@@ -34,6 +40,7 @@ const t = es
       <a class="join-btn" href={groupUrl} rel="noopener" target="_blank" data-ph="join_group">
         {t.btn}
       </a>
+      <p class="join-note">{t.note}</p>
     </aside>
   )
 }
@@ -58,6 +65,8 @@ const t = es
   .join-text {
     color: var(--secondary);
     margin: 0.35rem 0 1rem;
+    /* בלי איזון, המילה האחרונה נופלת לבדה לשורה שנייה ב-390px. */
+    text-wrap: balance;
   }
 
   /* פעולה משנית: מתאר במקום מילוי. הכפתור הראשי בדף הבית הוא "מצא רגע של
@@ -80,5 +89,15 @@ const t = es
   .join-btn:hover {
     background: var(--teal);
     color: var(--paper);
+  }
+
+  /* מענה להתנגדות, ולכן מיד מתחת לכפתור. שקט ומשני — הוא מסיר חשש,
+     לא מבקש דבר. --muted הוא גוון התחתית והתאריכים (7.96 ניגודיות). */
+  .join-note {
+    margin-top: 0.7rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--muted);
+    text-wrap: balance;
   }
 </style>

@@ -16,6 +16,7 @@ import { SITE } from '../../data/site';
 import GateArt from '../../components/GateArt.astro';
 import FeelingDoors from '../../components/FeelingDoors.astro';
 import { isPublished } from '../../lib/published';
+import JoinGroup from '../../components/JoinGroup.astro';
 
 const moments = await getCollection('moments', isPublished);
 // מצב בלי תוכן עדיין מוצג (הוא חלק מהמבנה) אבל אינו קישור — כדי שלא להוביל למדף ריק.
@@ -91,6 +92,7 @@ const tellMeHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURICompone
       לא מצאת כאן את מה שעובר עליך?
       <a href={tellMeHref} rel="noopener" target="_blank" data-ph="tell_me">אפשר לספר לי</a>
     </p>
+    <JoinGroup />
   </main>
 </Base>
 

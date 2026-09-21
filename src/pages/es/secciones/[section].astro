@@ -11,6 +11,7 @@ import { SECTIONS_ES } from '../../../data/site-es';
 import { SECTION_GATE_IMAGES } from '../../../data/section-gate-images';
 import { newestFirst } from '../../../lib/sort';
 import { isPublished } from '../../../lib/published';
+import JoinGroup from '../../../components/JoinGroup.astro';
 
 export async function getStaticPaths() {
   const stories = await getCollection('storiesEs', isPublished);
@@ -53,6 +54,7 @@ const stories = (
       {stories.map((story) => <StoryCard story={story} lang="es" />)}
     </ul>
     <p class="back"><a href="/es/historias/">Todas las historias</a></p>
+    <JoinGroup lang="es" />
   </main>
 </Base>
 

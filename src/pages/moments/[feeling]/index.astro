@@ -28,6 +28,7 @@ import { GATE_IMAGES } from '../../../data/gate-images';
 import { parseMoment } from '../../../lib/moment-format';
 import { newestFirst } from '../../../lib/sort';
 import { isPublished } from '../../../lib/published';
+import JoinGroup from '../../../components/JoinGroup.astro';
 
 export async function getStaticPaths() {
   const moments = await getCollection('moments', isPublished);
@@ -175,6 +176,7 @@ const altLangHref = hasEsTwin ? `/es/momentos/${param}/` : '/es/momentos/';
         </div>
       )
     }
+    <JoinGroup />
   </main>
 </Base>
 

@@ -14,6 +14,7 @@ import { Image, getImage } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import { SITE_ES } from '../../data/site-es';
 import portrait from '../../assets/efraim.jpg';
+import JoinGroup from '../../components/JoinGroup.astro';
 
 // תמונת השיתוף היא הפנים ולא הלוגו — כמו בעברית.
 const portraitOg = await getImage({ src: portrait, width: 640, format: 'jpeg' });
@@ -241,6 +242,7 @@ const DESCRIPTION =
         });
       })();
     </script>
+    <JoinGroup lang="es" />
   </main>
 </Base>
 

@@ -6,6 +6,7 @@ import Base from '../../layouts/Base.astro';
 import { newestFirst } from '../../lib/sort';
 import { parseBody, plainText, kicker } from '../../lib/mabat-format';
 import { isPublished } from '../../lib/published';
+import JoinGroup from '../../components/JoinGroup.astro';
 
 const pieces = (await getCollection('mabatLeshabbat', isPublished)).sort(newestFirst);
 
@@ -41,6 +42,7 @@ const cards = pieces.map((piece) => {
         ))
       }
     </ul>
+    <JoinGroup />
   </main>
 </Base>
 
