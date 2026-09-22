@@ -16,8 +16,7 @@ import { SECTIONS_META, SECTION_SLUGS, type SectionSlug } from '../data/sections
 import momentGate from '../assets/gates/moments.png';
 import { SECTION_GATE_IMAGES } from '../data/section-gate-images';
 import { newestFirst } from '../lib/sort';
-import MabatBody from '../components/MabatBody.astro';
-import { parseBody, kicker } from '../lib/mabat-format';
+import { parseBody, plainText, kicker } from '../lib/mabat-format';
 import { isPublished } from '../lib/published';
 import JoinPopup from '../components/JoinPopup.astro';
 
@@ -79,11 +78,21 @@ const momentPool = moments.map((m) => {
 });
 const featuredMoment = momentPool[0] ?? null;
 
-// טעימה מ"מבט לשבת" — הגיליון האחרון בלבד, ורק שני המהלכים הראשונים שלו.
+// טעימה מ"מבט לשבת" — הגיליון האחרון בלבד.
+// מוצג התקציר של הגיליון ולא הפתיחה שלו: שורות הפתיחה הן הטור עצמו, והקורא
+// שפגש אותן בדף הבית מתחיל אותו מחדש בעמוד הגיליון. התקציר נשען על הסיפור
+// כולו בלי לחשוף את הסוף — בדיוק התפקיד של הטעימה. אותו שדה description
+// שכבר מזין את התצוגה המקדימה בוואטסאפ ובגוגל (שלב 4.59), ואותה נפילה
+// לאחור בדיוק כמו בעמוד הגיליון: גיליון בלי תקציר נגזר מ-200 תווי הפתיחה.
 // הדף מציג רק תוכן שקיים בפועל: בלי גיליון, האזור כולו לא מוצג.
 const mabatPieces = (await getCollection('mabatLeshabbat', isPublished)).sort(newestFirst);
 const latestMabat = mabatPieces[0]
-  ? { piece: mabatPieces[0], blocks: parseBody(mabatPieces[0].body ?? '') }
+  ? (() => {
+      const piece = mabatPieces[0];
+      const flat = plainText(parseBody(piece.body ?? '')).replace(/\s+/g, ' ').trim();
+      const derived = flat.length > 200 ? `${flat.slice(0, 197)}…` : flat;
+      return { piece, summary: piece.data.description ?? derived };
+    })()
   : null;
 
 // טעימה מ"מעשה שהיה" — סיפור הבעל שם טוב האחרון של מוצאי שבת.
@@ -235,7 +244,7 @@ const DESCRIPTION =
               <a class="teaser-title" href={`/mabat-leshabbat/${latestMabat.piece.id}/`}>
                 {latestMabat.piece.data.title}
               </a>
-              <MabatBody blocks={latestMabat.blocks} stanzaLimit={2} />
+              <p class="mabat-summary">{latestMabat.summary}</p>
               <a class="teaser-more" href={`/mabat-leshabbat/${latestMabat.piece.id}/`}>
                 להמשיך לקרוא
               </a>
@@ -853,7 +862,10 @@ const DESCRIPTION =
     color: var(--gold-deep);
   }
 
-  .besht-excerpt {
+  /* שתי הטעימות מדברות עכשיו באותה צורה: תקציר בפרוזה, ולא פתיחה של הטקסט
+     עצמו. לכן אותו טיפול בדיוק לשתיהן. */
+  .besht-excerpt,
+  .mabat-summary {
     color: var(--secondary);
     font-size: 0.97rem;
     line-height: 1.75;
