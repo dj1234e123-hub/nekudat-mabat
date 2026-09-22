@@ -14,7 +14,7 @@ Durante meses, alguien estuvo juntando para ese niño algo que él ni siquiera h
 
 El niño no lo sabía. Sus padres tampoco.
 
-Él simplemente amaba las estampillas. Cada vez que encontraba un sobre viejo, despegaba la estampilla con cuidado. Y la guardaba.
+Simplemente le encantaban las estampillas. Cada vez que encontraba un sobre viejo, despegaba la estampilla con cuidado. Y la guardaba.
 
 Un día golpearon a la puerta.
 
@@ -22,17 +22,21 @@ Su madre abrió, y casi *se queda helada.*
 
 Frente a la puerta estaba el rabino Shaj, de bendita memoria. El líder de la generación.
 
-La mujer empezó a balbucear. "Honorable rabino... ¿quiere pasar? ¿Le sirvo algo?"
+La mujer empezó a balbucear:
 
-El rabino sonrió. "No, gracias. Vine por su hijo."
+—Honorable rabino... ¿quiere pasar? ¿Le sirvo algo?
 
-*El corazón se le cayó al piso.*
+—No, gracias —sonrió el rabino—. Vine por su hijo.
+
+*Se le cayó el alma a los pies.*
 
 ¿Por el hijo? ¿Qué habría pasado?
 
-Ya empezaba a repasar todas las travesuras que un chico puede hacer.
+Ya empezaba a repasar todas las travesuras que puede hacer un niño.
 
-Pero el rabino la tranquilizó. "No se preocupe. No pasó nada."
+Pero el rabino la tranquilizó:
+
+—No se preocupe. No pasó nada.
 
 Y entonces sacó un sobre grueso, *lleno de estampillas.*
 
@@ -42,13 +46,15 @@ La madre miró el sobre. Y no entendía por qué el rabino había venido hasta a
 
 El rabino siguió:
 
-"Cada vez que paso junto a su edificio, veo a su hijo. Busca sobres viejos que alguien tiró, y les despega las estampillas."
+—Cada vez que paso junto a su edificio, veo a su hijo. Busca sobres viejos que alguien tiró, y les despega las estampillas.
 
-La madre sonrió. "Sí. Colecciona estampillas."
+—Sí —sonrió la madre—. Colecciona estampillas.
 
-El rabino asintió. "Yo también me di cuenta."
+—Yo también me di cuenta —asintió el rabino.
 
-Y agregó: "Yo recibo cartas de todo el mundo. Así que empecé a guardarle las estampillas."
+Y agregó:
+
+—Yo recibo cartas de todo el mundo. Así que empecé a guardarle las estampillas.
 
 La madre bajó los ojos hacia el sobre. Y de pronto sintió *un nudo en la garganta.*
 

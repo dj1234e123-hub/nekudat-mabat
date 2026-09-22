@@ -18,33 +18,37 @@ Poco a poco juntó moneda tras moneda. Y cuando por fin lo logró, salió al mer
 
 Pero cuando llegó, ya no quedaba lo que quería.
 
-El vendedor lo miró con una sonrisa, y dijo: "Me queda un jarrón viejo. Llévalo a bajo precio."
+El vendedor lo miró con una sonrisa.
+
+—Me queda un jarrón viejo. Llévatelo barato.
 
 Meir lo llevó con alegría.
 
 En el camino se encontró con su vecino. Miró el jarrón, y se rió.
 
-"¿Quién va a mirar algo así? Dáselo al rey."
+—¿Quién va a mirar algo así? Regálaselo al rey.
 
 Pero Meir no escuchó una burla. Escuchó *una oportunidad.*
 
-"¿Alegrar al rey?", se dijo en el corazón. "Eso es un privilegio."
+«¿Alegrar al rey?», se dijo. «Eso es un privilegio.»
 
 Fue al palacio. Los guardias se rieron.
 
 Pero el rey escuchó que había un judío que venía a entregarle un regalo.
 
-El rey pensó: "Si un hombre pobre me trae un regalo — cuánto corazón hay en eso."
+El rey pensó: «Si un hombre pobre me trae un regalo, cuánto corazón hay en eso.»
 
 Y ordenó entregarle una bolsa llena de monedas de oro.
 
 Meir volvió a casa, no solo con riqueza. Sino con un corazón lleno de alegría.
 
-El vecino, que escuchó lo que había pasado, pensó: "Si un jarrón viejo le valió oro, ¿qué pasará si yo traigo un jarrón espléndido?"
+El vecino, que escuchó lo que había pasado, pensó: «Si un jarrón viejo le valió oro, ¿qué pasará si yo traigo uno espléndido?»
 
 Vendió sus bienes, compró un jarrón carísimo, y llegó ante el rey.
 
-El rey sonrió, y dijo: "Quien trae un regalo tan caro, evidentemente no le falta nada."
+El rey sonrió.
+
+—Quien trae un regalo tan caro, por lo visto no necesita nada.
 
 Y ordenó devolverle el jarrón viejo de Meir.
 
@@ -52,7 +56,7 @@ El vecino se quedó atónito.
 
 Y entonces entendió.
 
-El rey no miraba el jarrón. Miraba *el corazón.*
+El rey no vio el jarrón. Vio *el corazón.*
 
 Meir vino *a dar.* El vecino vino *a recibir.*
 

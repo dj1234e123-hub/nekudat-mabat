@@ -13,9 +13,9 @@ porque te enseñaron
 que la fe debía ser
 **estable**.
 
-Pero en un día de búsqueda,
+Pero en un día de búsqueda
 no la abandonaste.
-Saliste a buscar,
+Saliste a buscar
 la misma **cosa**.
 
 ---

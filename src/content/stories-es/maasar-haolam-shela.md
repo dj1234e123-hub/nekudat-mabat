@@ -13,7 +13,7 @@ readingTime: "unos 2 minutos"
 excerpt: "El hombre que asesinó a su hijo fue condenado a 25 años de cárcel. \"La que recibió cadena perpetua fui yo\", dijo Mary Johnson. Doce años después pidió verlo en la cárcel — y lo que pasó en esa sala no terminó ahí."
 ---
 
-El hombre que asesinó a su hijo fue condenado a 25 años de cárcel. Pero Mary Johnson dijo: "La que recibió cadena perpetua fui yo."
+El hombre que asesinó a su hijo fue condenado a 25 años de cárcel. Pero Mary Johnson dijo: «La que recibió cadena perpetua fui yo.»
 
 A su hijo lo llamaban Laramiun. Tenía 20 años. Una discusión breve en una fiesta, un solo disparo — y no volvió a casa.
 
@@ -25,22 +25,22 @@ Y entonces Mary pidió verlo. Oshea se sorprendió. Al principio se negó, y al 
 
 Se sentaron juntos en una sala de la cárcel y hablaron. Dos horas.
 
-Al terminar el encuentro, Mary le preguntó: "¿Puedo abrazarte?" Oshea se levantó, y Mary se acercó a él. Le rodeó con los brazos, y apoyó la cabeza en su hombro.
+Al terminar el encuentro, Mary le preguntó si podía abrazarlo. Oshea se levantó, y Mary se acercó a él. Le rodeó con los brazos, y apoyó la cabeza en su hombro.
 
 Y entonces las piernas simplemente le fallaron. El hombre que asesinó a su hijo *la sostuvo*, y la sujetó para que no cayera.
 
-Más tarde ella contó: "En ese instante, sentí que algo salía de mí."
+Más tarde ella contó: «En ese instante sentí que algo salía de mí.»
 
 Su cadena perpetua terminó ahí.
 
-Cinco años después Oshea salió de la cárcel, y Mary estaba ahí. Ella lo ayudó a alquilar un departamento — justo al lado, puerta con puerta.
+Cinco años después Oshea salió de la cárcel, y Mary estaba ahí. Lo ayudó a alquilar un departamento — justo al lado, puerta con puerta.
 
-El hombre que asesinó a su hijo *se convirtió en su vecino.* Y Mary lo llamaba: "Mi hijo espiritual."
+El hombre que asesinó a su hijo *se convirtió en su vecino.* Y Mary lo llamaba «mi hijo espiritual».
 
 Empezaron a contar juntos su historia, en cárceles y en comunidades.
 
 En los últimos años Mary enfermó de demencia, y Oshea se quedó a su lado.
 
-> Aquel hombre que ella una vez no pudo olvidar, estuvo ahí cuando ella ya no pudo recordar.
+> Aquel hombre al que ella no pudo olvidar, estuvo ahí cuando ella ya no pudo recordar.
 
 <p class="signature">Con cariño,<br />Efraim Atia</p>

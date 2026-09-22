@@ -16,43 +16,45 @@ Por un instante, esperaba que fuera un cliente. Pero en general, era alguien má
 
 A Iosef le habían robado toda la mercadería. Y de golpe, el negocio quedó vacío.
 
-Y él sintió que algo suyo se caía junto con él.
+Y sintió que algo suyo se caía junto con el negocio.
 
 De noche ya no dormía. Solo se quedaba en la cama, mirando el techo.
 
 Una vez, escuchó a los hijos preguntarle a su madre:
 
-"¿Cuándo papá va a volver a sonreír?"
+—¿Cuándo papá va a volver a sonreír?
 
 Y esa frase lo quebró más que las deudas.
 
 Al final, Iosef viajó a ver a Rabí Jizkiá Juri. Se sentó frente a él. Y se quebró.
 
-"Ya no tengo qué hacer... se me terminó todo."
+—Ya no sé qué hacer... se me terminó todo.
 
 El rabino lo miró en silencio. No intentó calmarlo. Solo preguntó:
 
-"Mañana a la mañana, ¿vas al mercado?"
+—Mañana a la mañana, ¿vas al mercado?
 
-Iosef levantó la cabeza. "¿Al mercado? ¿Con qué exactamente? No tengo mercadería. No tengo dinero. No tengo con qué empezar."
+Iosef levantó la cabeza.
+
+—¿Al mercado? ¿Con qué? No tengo mercadería. No tengo dinero. No tengo con qué empezar.
 
 Rabí Jizkiá asintió.
 
-"¿Sabes cuál es tu problema? Ya perdiste antes de entrar al mercado."
+—¿Sabes cuál es tu problema? Ya perdiste antes de entrar al mercado.
 
 El rabino lo miró.
 
-"Iosef, antes de que cayera el negocio, *caíste tú por dentro.*"
+—Iosef, antes de que cayera el negocio, *caíste tú por dentro.*
 
 Silencio.
 
 Y entonces dijo:
 
-"Todavía te queda una boca, y un buen nombre. Y eso es más de lo que tiene mucha gente."
+—Todavía te queda una boca, y un buen nombre. Y eso es más de lo que tiene mucha gente.
 
 El rabino se le acercó un poco.
 
-"No entres al mercado como un hombre terminado. Entra como un hombre *al que todavía le espera una bendición.*"
+—No entres al mercado como un hombre acabado. Entra como un hombre *al que todavía le espera una bendición.*
 
 Todo el camino a casa, esa frase no soltó a Iosef.
 
@@ -60,27 +62,33 @@ A la mañana siguiente llegó al mercado. Sin dinero. Sin mercadería.
 
 Pero por primera vez en semanas — con la cabeza en alto.
 
-Se acercó a un gran comerciante. "Necesito mercadería a crédito."
+Se acercó a un gran comerciante.
 
-El comerciante lo miró. "No tienes dinero."
+—Necesito mercadería a crédito.
+
+El comerciante lo miró.
+
+—No tienes dinero.
 
 Iosef calló.
 
-"No tienes mercadería."
+—No tienes mercadería.
 
 Él asintió.
 
-"¿Entonces por qué habría de confiar en ti?"
+—¿Entonces por qué tendría que confiar en ti?
 
 Iosef tragó saliva. Y sintió que todo el mercado lo miraba.
 
 Y entonces dijo en voz baja:
 
-"Porque solo me quedó *mi nombre.* Y a ese, no estoy dispuesto a perderlo."
+—Porque solo me quedó *mi nombre.* Y ese no estoy dispuesto a perderlo.
 
 El comerciante lo miró. Largo.
 
-Y después dijo: "No sé por qué... pero siento que se puede confiar en ti."
+Y después dijo:
+
+—No sé por qué... pero siento que se puede confiar en ti.
 
 Ese mismo día llegó al mercado un grupo grande de comerciantes de otra ciudad. Le compraron toda la mercadería. Al contado.
 
@@ -90,6 +98,6 @@ En unas semanas, cerró todas las deudas.
 
 Cuando volvió al rabino a agradecerle, Rabí Jizkiá sonrió.
 
-"Tu sustento no volvió el día que vendiste. Volvió el día que dejaste de *hablarte a ti mismo* como un hombre *roto.*"
+—Tu sustento no volvió el día que vendiste. Volvió el día que dejaste de *hablarte* como un hombre *roto.*
 
 <p class="signature">Con cariño,<br />Efraim Atia</p>

@@ -31,12 +31,12 @@ Y entonces el jazán empieza.
 
 Y lo que dice no es una súplica.
 
-No es "ten piedad de nosotros".
-No es "perdónanos".
+No es «ten piedad de nosotros».
+No es «perdónanos».
 
 Sino **una fórmula legal, seca, en arameo, sobre votos**.
 
-"Kol nidré, ve'esaré, ushvué..."
+«Kol nidré, ve'esaré, ushvué...»
 
 Tres veces.
 
@@ -50,7 +50,7 @@ Entonces, ¿qué es exactamente lo que estamos anulando?
 
 En la Torá, las palabras que salen de la boca de una persona tienen fuerza.
 
-**"No profanará su palabra; hará conforme a todo lo que salió de su boca."**
+**«No profanará su palabra; hará conforme a todo lo que salió de su boca».**
 
 Un voto no es una frase cualquiera.
 
@@ -64,15 +64,15 @@ Lo dijo —
 
 Pero hay otras palabras.
 
-"Yo soy así."
+«Yo soy así».
 
-"Siempre lo arruino."
+«Siempre lo arruino».
 
-"Yo ya no voy a cambiar."
+«Yo ya no voy a cambiar».
 
-"Lo intenté. Esto no es para mí."
+«Lo intenté. Esto no es para mí».
 
-"A mí siempre me termina igual."
+«A mí siempre me termina igual».
 
 Las dijimos alguna vez, al final de un día largo,
 
@@ -95,7 +95,7 @@ Simplemente empezamos a vivir según ella.
 
 Y a veces hasta nos protege.
 
-Porque si yo "soy así" —
+Porque si yo «soy así» —
 
 quedo libre de pelear.
 
@@ -109,13 +109,13 @@ no empieza con una súplica.
 
 Empieza con **una anulación**.
 
-Antes de "perdónanos".
+Antes de «perdónanos».
 
-Antes de "ashamnu".
+Antes de «ashamnu».
 
 Nos ponemos de pie y decimos, sobre todo lo que salió de la boca:
 
-**"La sherirín vela kayamín."**
+**«La sherirín vela kayamín».**
 
 Nulos y sin efecto.
 

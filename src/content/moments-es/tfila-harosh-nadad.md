@@ -12,9 +12,9 @@ Y enseguida llega el juicio:
 si no te concentraste,
 no **cuenta**.
 
-Pero tal vez lo que cuenta,
+Pero tal vez lo que cuenta
 no es cada palabra que se **retuvo**.
-Es que volviste,
+Es que volviste
 una vez más.
 
 ---

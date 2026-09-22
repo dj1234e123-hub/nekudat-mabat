@@ -20,5 +20,5 @@ Solo la primera de verdad **pasó**.
 
 ---
 
-La interpretación nunca fue,
+La interpretación nunca fue
 parte del hecho.

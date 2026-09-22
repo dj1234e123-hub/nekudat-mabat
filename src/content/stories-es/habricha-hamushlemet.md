@@ -42,7 +42,7 @@ Una noche está sentado en casa con su esposa y su hija. En el televisor pasan u
 
 Thomas las mira, y dice:
 
-"Tuve que cambiarme el nombre cuando me mudé aquí. Parece que todavía me buscan."
+—Tuve que cambiarme el nombre cuando me mudé aquí. Parece que todavía me buscan.
 
 Eso es todo. Sin interrogatorio. Sin policías en la puerta. Nadie siquiera le preguntó.
 
@@ -52,6 +52,6 @@ En Cleveland, el expediente sigue abierto. Después de cincuenta y dos años, na
 
 Pero Thomas ya no esperaba que lo encontraran.
 
-*Él se atrapó a sí mismo.*
+*Se atrapó a sí mismo.*
 
 <p class="signature">Con cariño,<br />Efraim Atia</p>

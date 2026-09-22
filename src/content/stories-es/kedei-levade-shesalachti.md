@@ -27,7 +27,13 @@ El joven se queda helado. El hombre que iba sentado a su lado todo el camino.
 
 Corre a la casa donde se hospeda el rabino, y le pide perdón.
 
-Rabí Israel le sonríe. "Te perdoné enseguida. No tengo nada en el corazón." Pero entonces le pregunta: "Dime, ¿para qué viniste a Vilna?"
+Rabí Israel le sonríe.
+
+—Te perdoné enseguida. No tengo nada en el corazón.
+
+Pero entonces le pregunta:
+
+—Dime, ¿para qué viniste a Vilna?
 
 El joven le cuenta. Vino a examinarse de las leyes de la shejitá. Si aprueba, tendrá un sustento.
 
@@ -45,6 +51,6 @@ Le preguntaron: ¿por qué todo esto, por un joven que te ofendió?
 
 Y respondió:
 
-> "Lo perdoné enseguida. Pero temía que quedara en el corazón un resto de rencor, que ni yo mismo *siento.* Así que le hice favores. Para arrancarlo del corazón, hasta el final."
+> —Lo perdoné enseguida. Pero temía que quedara en el corazón un resto de rencor que *ni yo mismo alcanzara a sentir.* Así que busqué hacerle bien. Para arrancarlo del corazón, hasta el final.
 
 <p class="signature">Con cariño,<br />Efraim Atia</p>

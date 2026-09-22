@@ -3,18 +3,18 @@ feeling: longing
 date: 2026-09-08
 title: Un olor, sin aviso
 ---
-Todo era normal,
-hasta que un **olor**,
-te atrapó,
+Todo era normal
+hasta que un **olor**
+te atrapó
 sin aviso.
 
 Y la conclusión inmediata:
-que eso significa,
-que no **avanzaste**,
+que eso significa
+que no **avanzaste**
 lo suficiente.
 
-Pero la nostalgia,
-no revisa,
+Pero la nostalgia
+no revisa
 cuánto tiempo pasó,
 simplemente **llega**.
 

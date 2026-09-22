@@ -9,16 +9,16 @@ No hay nada que contar.
 Y aun así hay un **peso**.
 
 Y eso confunde,
-porque sin motivo,
-suena a que en verdad,
+porque sin motivo
+suena a que en verdad
 no hay **permiso**.
 
-Pero el peso no espera,
+Pero el peso no espera
 a que lo aprueben.
-Ya está sentado ahí,
+Ya está sentado ahí
 desde la **mañana**.
 
 ---
 
-El dolor no necesita permiso,
+El dolor no necesita permiso
 para doler.

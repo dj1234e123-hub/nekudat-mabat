@@ -10,15 +10,15 @@ La vergüenza dice otra cosa:
 
 Y la diferencia lo cambia todo.
 Porque un acto se puede trabajar.
-Y con un "yo",
+Y con un «yo»
 no hay nada que **hacer**.
 
-Pero mucho de lo que por dentro,
-se llama "yo soy así",
-es apenas un acto,
+Pero mucho de lo que por dentro
+se llama «yo soy así»
+es apenas un acto
 que quedó sin **palabras**.
 
 ---
 
-Un acto sin palabras,
+Un acto sin palabras
 se vuelve un nombre.

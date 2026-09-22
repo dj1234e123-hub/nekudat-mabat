@@ -18,7 +18,7 @@ No hubo guerra, no hubo rebelión. Solo un grano de polvo sobre *un antiguo jarr
 
 Ante cada guardia nuevo, el encargado se paraba en la entrada y susurraba la advertencia:
 
-"El que se equivoque al limpiar el jarrón, no sale vivo de aquí."
+—El que se equivoque al limpiar el jarrón, no sale vivo de aquí.
 
 Guardias llegaban, guardias desaparecían. Los hijos esperaban en vano, y sus mujeres quedaban solas.
 
@@ -32,7 +32,7 @@ Su valor verdadero nadie lo conocía. Tampoco su edad. Pero una cosa todos la sa
 
 Un día llegó un anciano delgado. Un rostro con arrugas, ojos con verdad.
 
-"Quiero," dijo en voz baja, "ser el guardián del jarrón."
+—Quiero —dijo en voz baja— ser el guardián del jarrón.
 
 Todos levantaron una ceja. Media sonrisa, media lástima. Sabían que eso era casi una firma de *muerte.*
 
@@ -52,11 +52,11 @@ Un estruendo agudo. Cientos de fragmentos. Oro, polvo, gritos en el pasillo, gua
 
 El rey entra temblando. Los ojos ardiendo. Mira los fragmentos, y al anciano sereno.
 
-"Acabas de firmar tu sentencia de muerte," le dice. "¿Por qué lo hiciste?"
+—Acabas de firmar tu sentencia de muerte —le dice—. ¿Por qué lo hiciste?
 
 El anciano lo mira. No con miedo — sino con *dolor.*
 
-"Querido rey," dijo el anciano, "no rompí *un jarrón.* Rompí *una cárcel.*
+—Querido rey —dijo el anciano—, no rompí *un jarrón.* Rompí *una cárcel.*
 
 Vi cómo un objeto sin vida los convertía a todos ustedes en sus esclavos.
 
@@ -64,7 +64,7 @@ Durante años murió gente por un objeto, por el honor, por la imagen.
 
 Yo soy viejo. Sin familia, sin hijos pequeños que me esperen en casa.
 
-Si de todos modos alguien tiene que morir — que sea uno que ya vivió una vida entera, y no otro joven que se sacrifica por un jarrón."
+Si de todos modos alguien tiene que morir — que sea uno que ya vivió una vida entera, y no otro joven que se sacrifica por un jarrón.
 
 La sala en silencio.
 

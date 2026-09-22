@@ -5,7 +5,7 @@ title: La cuenta de horas
 ---
 Dormiste ocho horas.
 Saliste de vacaciones.
-Y volviste exactamente,
+Y volviste exactamente
 con la misma **sensación**.
 
 Y eso confunde,
@@ -13,12 +13,12 @@ porque según la cuenta,
 hubo horas suficientes.
 Entonces quizás el problema eres **tú**.
 
-Pero lo que vacía,
+Pero lo que vacía
 no es el esfuerzo.
-Es un esfuerzo que no tiene adentro,
+Es un esfuerzo que no tiene adentro
 nada que te **toque**.
 
 ---
 
-Una hora de algo querido,
+Una hora de algo querido
 devuelve más que dos días vacíos.

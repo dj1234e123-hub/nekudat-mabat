@@ -8,14 +8,14 @@ Las tiendas abren.
 Alguien se queja,
 del **tráfico**.
 
-Y te quedas en medio,
-sin entender,
-cómo todo sigue,
+Y te quedas en medio
+sin entender
+cómo todo sigue
 como si **nada**.
 
 Pero no son indiferentes.
 En ti el mundo se detuvo.
-Y el de ellos simplemente,
+Y el de ellos simplemente
 no lo **supo**.
 
 ---

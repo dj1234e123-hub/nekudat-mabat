@@ -13,7 +13,7 @@ signoff: |
 signedBy: Efraim Atia
 ---
 
-Él está sentado en la primera fila del estudio de televisión.
+Está sentado en la primera fila del estudio de televisión.
 
 Luces fuertes, cámaras, y su esposa a su lado.
 
@@ -21,7 +21,7 @@ No sabe exactamente por qué lo invitaron.
 
 Frente a él, la presentadora abre un cuaderno viejo.
 
-"Una lista de nombres", dice. "Del año 1939."
+«Una lista de nombres», dice. «Del año 1939».
 
 Empieza a contar sobre un joven de Inglaterra que viajó a Praga, cuando las fronteras de Europa se iban cerrando.
 
@@ -43,7 +43,7 @@ El cuaderno quedó guardado, en el desván.
 
 Pasaron cincuenta años.
 
-Él está sentado, escuchando.
+Sigue sentado, escuchando.
 
 La historia le resulta muy familiar.
 
@@ -65,7 +65,7 @@ está sentado ahora a su alrededor.
 
 En la parashá de Nitzavim, todos están de pie.
 
-"Ustedes están hoy de pie, todos ustedes."
+«Ustedes están hoy de pie, todos ustedes».
 
 Sus jefes, sus tribus, sus ancianos y sus oficiales.
 
@@ -81,7 +81,7 @@ Sobre los que tienen nombre y sobre aquellos cuyo nombre no quedará en los libr
 
 Todos están ahí, dentro del mismo pacto.
 
-"Y con el que no está hoy aquí con nosotros."
+«Y con el que no está hoy aquí con nosotros».
 
 No solo quien está aquí ahora.
 
@@ -93,7 +93,7 @@ Quien aún será parte de la historia.
 
 En el estudio de Londres, la presentadora levanta la vista del cuaderno y se dirige al público:
 
-"Todo el que esté aquí y le deba la vida a Nicholas Winton — por favor, póngase de pie."
+«Todo el que esté aquí y le deba la vida a Nicholas Winton — por favor, póngase de pie».
 
 Por un momento se hace silencio.
 
@@ -105,7 +105,7 @@ A su lado.
 
 A su alrededor.
 
-Él se da vuelta, los mira, y se seca una lágrima con una timidez silenciosa.
+Se da vuelta, los mira, y se seca una lágrima con una timidez silenciosa.
 
 Los niños que alguna vez fueron nombres en una lista están ahora de pie a su alrededor, convertidos en adultos.
 
@@ -113,7 +113,7 @@ Con familias, hijos y nietos.
 
 Generaciones enteras nacidas de aquellos trenes que salieron una vez de Praga.
 
-Él los envió al camino, y desde entonces no supo qué fue de ellos.
+Los envió al camino, y desde entonces no supo qué fue de ellos.
 
 Hasta este momento en que se levantaron.
 

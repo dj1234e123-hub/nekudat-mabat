@@ -28,11 +28,11 @@ Esperaba escuchar una buena noticia. Algo. Una pequeña esperanza.
 
 Pero el médico la miró y dijo:
 
-*"No esperes hijos."*
+*«No esperes hijos».*
 
-Ella no preguntó nada.
+No preguntó nada.
 
-Todo el camino de vuelta, esa frase no la soltó. *"No esperes hijos."*
+Todo el camino de vuelta, esa frase no la soltó. *«No esperes hijos».*
 
 Y se contuvo. Y cuando llegó a casa, ya no le quedaban fuerzas.
 
@@ -48,25 +48,29 @@ Y lloró. Lloró los diecisiete años enteros.
 
 En ese momento pasó por ahí su padre. Escuchó el llanto. Y se acercó.
 
-"Hija mía, ¿por qué lloras?"
+—Hija mía, ¿por qué lloras?
 
-Ella levantó los ojos hacia él. "Papá, ¿acaso no lo sabes?"
+Levantó los ojos hacia él.
 
-Él calló. Y después preguntó: "¿Pero por qué aquí?"
+—Papá, ¿acaso no lo sabes?
 
-Ella bajó los ojos. Y dijo:
+El padre calló. Y después preguntó:
 
-*"No quería interrumpir tu estudio."*
+—¿Pero por qué aquí?
 
-Rabí Shlomo Eliashiv, el autor del "Leshem", la miró. Unos instantes.
+Bajó los ojos. Y dijo:
+
+*«No quería interrumpir tu estudio».*
+
+Rabí Shlomo Eliashiv, el autor del «Leshem», la miró unos instantes.
 
 Y entonces dijo:
 
-*"Quien honra así la Torá — tendrá un hijo. Un hijo que iluminará los ojos de Israel."*
+*«Quien honra así la Torá — tendrá un hijo. Un hijo que iluminará los ojos de Israel».*
 
 Un año después nació un niño. Lo llamaron: Iosef Shalom.
 
-Con los años, el gran rabino Iosef Shalom Eliashiv, de bendita memoria.
+Con los años: Rabí Iosef Shalom Eliashiv, de bendita memoria.
 
 Y solo ella sabía *dónde había empezado esta historia.*
 

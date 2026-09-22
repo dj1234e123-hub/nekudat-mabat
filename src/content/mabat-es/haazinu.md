@@ -24,7 +24,7 @@ signoff: |
 signedBy: Efraim Atia
 ---
 
-Él estaba de pie frente al juez, y se declaró culpable.
+Estaba de pie frente al juez, y se declaró culpable.
 
 Veintisiete años.
 Dejó la secundaria.
@@ -42,17 +42,17 @@ El juez miró el expediente.
 
 Y dijo algo que no sonó como una sentencia:
 
-"No tienes que vender drogas. Hay grandeza en ti. Te propongo un desafío: sé director de una de las quinientas empresas más grandes de Estados Unidos."
+«No tienes que vender drogas. Hay grandeza en ti. Te propongo un desafío: sé director de una de las quinientas empresas más grandes de Estados Unidos».
 
 Silencio.
 
 Y entonces dictó la sentencia.
 
-Tres años de libertad condicional.
+Tres años a prueba. Sin cárcel.
 
 Y agregó:
 
-"Mi puerta está siempre abierta para ti. Aquí tienes mi número personal. Quiero saber qué es de tu vida."
+«Mi puerta está siempre abierta para ti. Aquí tienes mi número personal. Quiero saber qué es de tu vida».
 
 Salió del tribunal
 con un expediente penal pesado a sus espaldas,
@@ -74,7 +74,7 @@ Suena como una sentencia.
 
 Pero en el medio hay una frase que explica por qué se los dice:
 
-"Si fueran sabios, comprenderían esto; entenderían su final."
+«Si fueran sabios, comprenderían esto; entenderían su final».
 
 Si fueran sabios, verían adónde lleva todo esto.
 
@@ -108,8 +108,8 @@ Todo lo que estaba escrito en el expediente siguió escrito.
 
 El expediente no cambió. **Solo quien lo leyó.**
 
-"Él siempre es así."
-"De él ya no va a salir nada."
+«Él siempre es así».
+«De él ya no va a salir nada».
 
 Leemos a una persona por la última página que leímos,
 y olvidamos que **la página siguiente todavía está en blanco**.

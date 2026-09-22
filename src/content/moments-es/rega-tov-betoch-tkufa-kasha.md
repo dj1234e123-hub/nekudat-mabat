@@ -5,17 +5,17 @@ title: Risa en el medio
 ---
 Una época difícil,
 y en el medio — risa.
-De verdad,
+De verdad
 sin **querer**.
 
 Y enseguida llega un pensamiento:
 quizás no es tan grave.
-Quizás no lo tomé,
+Quizás no lo tomé
 en **serio**.
 
-Pero la tristeza no desapareció,
+Pero la tristeza no desapareció
 cuando reíste.
-Solo aceptó compartir,
+Solo aceptó compartir
 el **cuarto**.
 
 ---

@@ -30,7 +30,7 @@ Ese muchacho era el rabino Sinai Adler, de bendita memoria. Había crecido en un
 
 Y cuando vio que un judío del campo tenía tefilín, le pidió:
 
-"Déjame ponérmelos a mí también."
+—Déjame ponérmelos a mí también.
 
 Sabía que si lo atrapaban, podía ser su final. Pero había algo que le daba más miedo perder que su propia vida.
 
@@ -48,7 +48,7 @@ Olor penetrante a estiércol de caballos. Paja que pincha el cuerpo. Y un chico 
 
 Y susurrando:
 
-*"Shemá Israel."*
+*«Shemá Israel».*
 
 Cuando suena el despertador a la mañana, me viene a la cabeza un chico de 16 años, bajo la paja en Auschwitz.
 

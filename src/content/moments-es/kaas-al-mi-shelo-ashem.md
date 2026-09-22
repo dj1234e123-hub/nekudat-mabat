@@ -3,12 +3,12 @@ feeling: anger
 date: 2026-08-22
 title: El lugar seguro
 ---
-Salió,
+Salió
 con quien estaba cerca.
-Con el niño que habló,
+Con el niño que habló
 en el momento **equivocado**.
 
-Y después,
+Y después
 queda solo eso.
 Justo con ellos.
 Justo los **cercanos**.

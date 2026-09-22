@@ -4,18 +4,18 @@ date: 2026-09-08
 title: Antes de alegrarte
 ---
 Llegó una buena noticia,
-y en vez de alegrarte,
-la mente ya **busca**,
+y en vez de alegrarte
+la mente ya **busca**
 qué pasará después.
 
-Porque si no revisas,
+Porque si no revisas
 de dónde va a venir,
-te va a agarrar,
+te va a agarrar
 sin **aviso**.
 
-Pero buscar el problema,
+Pero buscar el problema
 no protege de nada,
-solo **roba**,
+solo **roba**
 el momento antes de vivirlo.
 
 ---

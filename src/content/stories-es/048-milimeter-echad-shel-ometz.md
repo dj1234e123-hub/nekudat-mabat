@@ -12,7 +12,7 @@ excerpt: "El gato hidráulico resbaló, y un auto de una tonelada y media quedó
 
 Un temblor corto en el aire, el metal gimiendo, el gato hidráulico resbalando sobre el asfalto, y el silencio cerrándose sobre el patio.
 
-A Ángela se le cayó el vaso en la pileta. El vaso golpeó, el agua siguió corriendo, pero algo en su corazón se congeló.
+A Ángela se le cayó el vaso que estaba lavando. El vaso golpeó, el agua siguió corriendo, pero algo en su corazón se congeló.
 
 Salió disparada. Los pies descalzos, la puerta abierta detrás de ella, el corazón corriendo adelante.
 
@@ -20,15 +20,15 @@ La calle era una calle común — un barrio simple en un pueblo tranquilo de Est
 
 El auto viejo de Tony estaba torcido en la entrada. Al acercarse vio el gato tirado a un costado, y un par de piernas asomando bajo el hierro.
 
-"*¡Tony!*"
+—*¡Tony!*
 
 El nombre salió a media voz.
 
 No hay respuesta. No hay movimiento. Solo un silencio pesado, y un auto de una tonelada y media acostado sobre su hijo.
 
-"¡Corre a llamar a los vecinos!", le gritó a un chico de la calle. Él desapareció, y el patio volvió a callar.
+—¡Corre a llamar a los vecinos! —le gritó a un chico de la calle. El chico desapareció, y el patio volvió a callar.
 
-Ella ya no esperó.
+No esperó más.
 
 Se paró junto al auto, las dos manos sobre el metal frío.
 
@@ -48,24 +48,24 @@ Y entonces sucedió.
 
 El metal se despegó del asfalto. Casi invisible, pero sentido en todo el cuerpo — como cuando el corazón logra, por un instante, estar por encima del miedo a romperse.
 
-Ella sostuvo. Un momento más. Una respiración más. Sin pensar en ninguna otra cosa.
+Sostuvo. Un momento más. Una respiración más. Sin pensar en ninguna otra cosa.
 
 Dos vecinos entraron corriendo al patio. Uno volvió a colocar el gato, el otro sacó a Tony de abajo.
 
-"¡Suelta, Ángela, suelta!", gritó alguien — y recién entonces se dio cuenta de que todavía estaba sosteniendo.
+—¡Suelta, Ángela, suelta! —gritó alguien. Y recién entonces se dio cuenta de que todavía estaba sosteniendo.
 
 Cuando el auto quedó sobre el gato, las manos le temblaban. Se sentó en el suelo y vio a la ambulancia llevarse a su hijo y todo el aire.
 
-A la noche, después de que los médicos dijeron que estaba vivo, le preguntaron: *"¿Cómo lo hiciste?"*
+A la noche, después de que los médicos dijeron que estaba vivo, le preguntaron: *¿cómo lo hiciste?*
 
-Ella miró sus manos enrojecidas, y dijo en voz baja:
+Miró sus manos enrojecidas, y dijo en voz baja:
 
-"No lo sé. Solo *recé,* y no estaba dispuesta a que *se quedara abajo del auto.*"
+—No lo sé. Solo *recé,* y no estaba dispuesta a dejarlo *debajo del auto.*
 
 La ciencia lo llamará *descarga de adrenalina.* Los psicólogos lo llamarán *fuerza de emergencia.* Y hay quien verá en eso *una fuerza que Dios abre en la persona* en el momento de la verdad.
 
-¿Y ella? Ella no levantó un auto.
+¿Y ella? No levantó un auto.
 
-Ella levantó *un miedo,* y lo convirtió en verdad.
+Levantó *un miedo,* y lo convirtió en verdad.
 
 <p class="signature">Con cariño,<br />Efraim Atia</p>

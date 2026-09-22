@@ -8,7 +8,7 @@ Difícil de verdad.
 Y alrededor recuerdan:
 también hay cosas **buenas**.
 
-Y decir gracias ahora,
+Y decir gracias ahora
 se siente como una traición.
 Como si todo estuviera bien.
 Y todo **no** lo está.

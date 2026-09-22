@@ -9,16 +9,16 @@ ni por qué,
 ni qué es lo **correcto**.
 
 Y se siente como un fracaso,
-porque todos alrededor,
-parecen tener,
+porque todos alrededor
+parecen tener
 una **respuesta**.
 
-Pero a veces la confusión,
-es lo que pasa,
-cuando las respuestas viejas,
+Pero a veces la confusión
+es lo que pasa
+cuando las respuestas viejas
 ya te quedan **chicas**.
 
 ---
 
-No se puede vestir,
+No se puede vestir
 ropa que quedó chica.

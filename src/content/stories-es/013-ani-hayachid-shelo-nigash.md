@@ -22,7 +22,7 @@ Toda nuestra clase viajó a rendir examen con él.
 
 El maestro entró con nosotros. Vio la tensión en nuestras caras, y le pidió al rabino Steinman en voz baja:
 
-"Si es posible, preguntas fáciles."
+—Si se puede, preguntas fáciles.
 
 El rabino asintió. Y las preguntas de verdad eran fáciles.
 
@@ -50,7 +50,7 @@ Silencio.
 
 Y entonces siguió adelante.
 
-Terminó el examen. El rabino le dio a cada chico una palmadita en la mejilla y un caramelo, del bol que tenía al lado.
+Terminó el examen. El rabino le dio a cada chico una palmadita en la mejilla y un caramelo, del tazón que tenía al lado.
 
 Todos se acercaron.
 
@@ -60,14 +60,16 @@ Y de pronto lo escuché llamarme.
 
 Me acerqué. Y el rabino Steinman me miró. Con una sonrisa.
 
-"Entre nosotros," dijo, "no se recibe el premio según el resultado. Se recibe el premio según *el esfuerzo.*"
+—Entre nosotros —dijo—, el premio no se da por el resultado. Se da por *el esfuerzo.*
 
-Señaló a los chicos. "Todos se esforzaron una vez."
+Señaló a los chicos.
+
+—Todos se esforzaron una vez.
 
 Y entonces me miró a mí.
 
-"Tú te esforzaste tres veces."
+—Tú te esforzaste tres veces.
 
-Metió la mano en el bol, y me dio *tres caramelos.*
+Metió la mano en el tazón, y me dio *tres caramelos.*
 
 <p class="signature">Con cariño,<br />Efraim Atia</p>

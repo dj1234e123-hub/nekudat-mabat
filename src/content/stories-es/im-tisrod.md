@@ -28,7 +28,7 @@ Al anochecer, cuando vuelven, uno de ellos le susurra: teníamos un shofar.
 
 Enero de 1945. Los rusos se acercan, y el campo es evacuado. Mañana sacan a todos los prisioneros a una marcha en la nieve. De noche se le acerca un prisionero, y le tiende un bulto.
 
-"No voy a sobrevivir a la marcha," le dice. "Si tú sobrevives, toma el shofar. *Cuéntales que tocamos el shofar en Auschwitz.*"
+—No voy a sobrevivir a la marcha —le dice—. Si tú sobrevives, toma el shofar. *Cuéntales que tocamos el shofar en Auschwitz.*
 
 Veinticuatro horas de marcha en la nieve. Después otro campo, Buchenwald. El bulto se queda en su pequeña bolsa, entre la taza y la cuchara. Día y noche.
 

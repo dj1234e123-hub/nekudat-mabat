@@ -5,15 +5,15 @@ title: Un sentimiento grande
 ---
 Te levantaste de mañana,
 e hiciste lo que había que hacer.
-Y no sentiste,
+Y no sentiste
 **nada**.
 
-La fe suena,
+La fe suena
 como un sentimiento grande.
 Y eso no estaba.
 Entonces quizás ella **tampoco**.
 
-Pero sin elevación,
+Pero sin elevación
 sin certeza, sin plenitud.
 Y aun así,
 te **levantaste**.

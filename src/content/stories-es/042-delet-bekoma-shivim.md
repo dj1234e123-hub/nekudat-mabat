@@ -40,7 +40,7 @@ Creía en el rey más de lo que creía en su propio cálculo.
 
 En cada piso sentía que las fuerzas se terminaban. Pero se decía:
 
-"*Si el rey lo pidió, hay un camino.* Aunque yo todavía no lo vea."
+«*Si el rey lo pidió, hay un camino.* Aunque yo todavía no lo vea».
 
 Siguió. Un paso más. Y otro paso.
 
@@ -48,16 +48,16 @@ Hasta que de pronto vio una puerta pequeña. Una puerta que nadie veía desde ab
 
 Y sobre ella estaba escrito:
 
-"*Para el que no se rindió. Ascensor al piso 150.*"
+«*Para el que no se rindió. Ascensor al piso 150.*»
 
 Entró. Y en un instante llegó a la cima.
 
 El rey sonrió y dijo:
 
-"Todos ustedes tenían razón. Ningún hombre puede subir ciento cincuenta pisos en una hora.
+—Todos ustedes tenían razón. Ningún hombre puede subir ciento cincuenta pisos en una hora.
 
 Pero yo no les pedí hacer lo imposible.
 
-Les pedí llegar hasta el lugar donde el camino *se abre solo.*"
+Les pedí llegar hasta el lugar donde el camino *se abre solo.*
 
 <p class="signature">Con cariño,<br />Efraim Atia</p>

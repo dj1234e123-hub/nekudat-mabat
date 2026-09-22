@@ -10,15 +10,15 @@ Cuando esté un poco más **tranquilo**.
 
 Y ese momento correcto,
 casi nunca llega.
-Y cada postergación parece,
+Y cada postergación parece
 falta de **seriedad**.
 
 Pero no es una fecha.
-Es un nombre amable,
-para la sensación de seguridad,
+Es un nombre amable
+para la sensación de seguridad
 que se espera antes de **moverse**.
 
 ---
 
-Casi todo comienzo ocurrió,
+Casi todo comienzo ocurrió
 en mitad de semana.

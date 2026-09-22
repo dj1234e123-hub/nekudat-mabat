@@ -3,19 +3,19 @@ feeling: pride
 date: 2026-09-08
 title: Amor con otra dirección
 ---
-Es fácil decir,
+Es fácil decir
 cuánto **orgullo** te da él.
 Y más difícil,
 decirlo sobre ti.
 
-Porque el orgullo por otra persona,
+Porque el orgullo por otra persona
 es **amor**.
-Y el orgullo propio,
+Y el orgullo propio
 es arrogancia.
 
-Pero es exactamente el mismo sentimiento,
-solo que esta vez,
-la **dirección**,
+Pero es exactamente el mismo sentimiento
+solo que esta vez
+la **dirección**
 es otra.
 
 ---

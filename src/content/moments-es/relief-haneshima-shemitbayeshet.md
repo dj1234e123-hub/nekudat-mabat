@@ -8,13 +8,13 @@ Y en lugar de solo tristeza,
 llegó una **respiración**.
 
 Y enseguida llega la vergüenza:
-cómo se puede,
-sentir **alivio**,
+cómo se puede
+sentir **alivio**
 por algo tan pesado.
 
-Pero está permitido,
+Pero está permitido
 que también haya alivio,
-eso no **borra**,
+eso no **borra**
 cuánto dolió.
 
 ---

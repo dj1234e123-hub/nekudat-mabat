@@ -5,17 +5,17 @@ title: Los hombros cansados
 ---
 El peligro pasó,
 oficialmente.
-Pero todavía,
+Pero todavía
 cuesta **respirar**.
 
 Porque si te relajas,
 justo ahora,
-va a **volver**,
+va a **volver**
 sin aviso.
 
-Pero los hombros,
+Pero los hombros
 no te están **cuidando**,
-solo,
+solo
 están cansados.
 
 ---

@@ -10,15 +10,15 @@ Y otra **lista**.
 
 Y parece confusión.
 Como si no hubiera respuesta,
-y por eso no se pudiera,
+y por eso no se pudiera
 **mover**.
 
 Pero algo en ti ya sabe.
 Y sigues pensándolo,
-porque decirlo en voz alta,
+porque decirlo en voz alta
 ya **compromete**.
 
 ---
 
-Se puede comprobar,
+Se puede comprobar
 por lo que ya haces.

@@ -26,9 +26,9 @@ Uno se acercaba a los que rezaban. El otro pasaba entre las familias.
 
 ¿Y yo? Ya estaba seguro.
 
-*"Una estafa."*
+*«Una estafa».*
 
-Cada vez que alguien sacaba dinero, me decía: "Qué lástima." "No dones."
+Cada vez que alguien sacaba dinero, yo pensaba: qué lástima. No des.
 
 Hasta sentí un poco de desprecio por ellos.
 
@@ -36,7 +36,7 @@ Después los vi apartarse a un costado. Juntarse. Contar el dinero.
 
 Y eso solo me confirmó todo.
 
-*"Ahí está."* *"Yo lo sabía."*
+*Ahí está. Yo lo sabía.*
 
 A un costado estaba sentada una mujer mayor. Con una sola bolsa en la mano, y una mirada cansada. Apenas la había notado.
 
@@ -44,13 +44,13 @@ Pero entonces vi que los muchachos se acercaban justamente a ella.
 
 Le extendieron el dinero. Uno de ellos sonrió y dijo:
 
-"Señora, esto es para Shabat. Para los chicos."
+—Señora, esto es para Shabat. Para los chicos.
 
 La mujer tomó el dinero. Le temblaban las manos.
 
 Y entonces dijo:
 
-*"No sabía de dónde les iba a traer."*
+*«No sabía de dónde les iba a traer».*
 
 Se le quebró la voz. Y los ojos se le llenaron de lágrimas.
 
@@ -67,6 +67,6 @@ Los muchachos siguieron su camino.
 
 La mujer se quedó ahí con sus lágrimas.
 
-¿Y yo? Yo me quedé ahí *con la vergüenza.*
+¿Y yo? Me quedé ahí *con la vergüenza.*
 
 <p class="signature">Con cariño,<br />Efraim Atia</p>

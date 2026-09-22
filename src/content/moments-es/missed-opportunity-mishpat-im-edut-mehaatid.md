@@ -3,22 +3,22 @@ feeling: missed-opportunity
 date: 2026-09-08
 title: Testigos de hoy
 ---
-Hoy está claro,
+Hoy está claro
 qué había que hacer.
-Pero **entonces**,
+Pero **entonces**
 no estaba claro.
 
-Y enseguida,
-se **juzga** el entonces,
-con testigos,
+Y enseguida
+se **juzga** el entonces
+con testigos
 de hoy.
 
-Pero entonces,
+Pero entonces
 con lo que había,
-hiciste,
+hiciste
 lo que se **podía**.
 
 ---
 
-La sabiduría en retrospectiva,
-no estaba disponible de antemano.
+La sabiduría de después
+no estaba ahí antes.

@@ -1,6 +1,6 @@
 ---
 # תרגום של ארכיון #020 (2026-08-30). התמונה נקייה מכיתוב — אותה תמונה כמו בעברית.
-title: "El puente que asusta a la cabeza"
+title: "El puente que la cabeza no se anima a cruzar"
 section: meshalim
 archiveId: "020"
 cover: ../../assets/covers/020.png
@@ -12,7 +12,7 @@ excerpt: "Frente a un puente colgante desvencijado, la cabeza ya alcanzó a estr
 
 Un joven guerrero estaba parado frente a un puente colgante. Viejo. Desvencijado.
 
-Tendido sobre un abismo de *"quizás"*.
+Tendido sobre un abismo de *«quizás»*.
 
 Miró hacia abajo. El viento silbaba, las sogas crujían — y en la cabeza ya empezaban los guiones.
 
@@ -22,27 +22,27 @@ Cien miedos en un minuto. Las piernas temblaron, y después se congelaron.
 
 El anciano de la aldea pasaba por el camino, se detuvo a su lado, y miró exactamente hacia el mismo lugar.
 
-"¿Qué ves?", preguntó.
+—¿Qué ves? —preguntó.
 
-"Un abismo", dijo el guerrero. "Veo una caída".
+—Un abismo —dijo el guerrero—. Veo una caída.
 
 El anciano asintió despacio, como quien ya escuchó esa respuesta muchas veces.
 
-"Tu problema no es el puente", dijo. "Tampoco el abismo. Tu problema es que intentas cruzarlo *con la cabeza* — todo de una vez".
+—Tu problema no es el puente —dijo—. Tampoco el abismo. Tu problema es que intentas cruzarlo *con la cabeza*: todo de una vez.
 
 El guerrero calló.
 
-"¿Y las piernas?"
+—¿Y las piernas?
 
 El guerrero miró sus propios pies.
 
-"Las piernas saben una sola cosa", dijo lentamente. "*Un paso*".
+—Las piernas saben una sola cosa —dijo despacio—. *Un paso.*
 
-"Entonces deja que ellas guíen".
+—Entonces deja que ellas guíen.
 
-"¿Y si el puente se sacude?"
+—¿Y si el puente se sacude?
 
-"Cuando se sacuda — te sacudirás con él. Pero ahora mismo está firme".
+—Cuando se sacuda, te sacudirás con él. Pero ahora mismo está firme.
 
 > *No luches contra un viento que todavía no sopló.*
 
@@ -54,7 +54,7 @@ No miró al otro lado. Ni al abismo. Solo al lugar donde aterrizaba el pie.
 
 Un paso. Y otro paso.
 
-Y cada vez que el pensamiento se escapaba hacia "qué va a pasar si", él lo devolvía al pie sobre la soga.
+Y cada vez que el pensamiento se escapaba hacia «qué va a pasar si», lo devolvía al pie sobre la soga.
 
 Cuando llegó al otro lado se dio vuelta y miró hacia atrás.
 
@@ -72,6 +72,6 @@ Un pie. Y otro pie.
 
 > *Las piernas cruzan puentes que a la cabeza le dan miedo.*
 
-Que merezcamos recordar que en el momento del miedo no hace falta todo el camino — hace falta solo *el próximo paso*.
+Que sepamos recordar que en el momento del miedo no hace falta todo el camino — hace falta solo *el próximo paso*.
 
 <p class="signature">Con cariño,<br />Efraim Atia 👁️</p>

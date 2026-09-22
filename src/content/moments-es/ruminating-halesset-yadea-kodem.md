@@ -19,5 +19,5 @@ Solo: aquí se **queda**.
 
 ---
 
-Un pensamiento también se puede encontrar en los hombros,
+Un pensamiento también se puede encontrar en los hombros
 no solo en la cabeza.

@@ -8,8 +8,8 @@ Te levantaste, viajaste, volviste.
 Nada especial.
 Un día sin **titulares**.
 
-Y al final del día,
-cuando se hace el resumen,
+Y a fin de cuentas
+cuando se hace el resumen
 queda anotado como:
 no pasó **nada**.
 

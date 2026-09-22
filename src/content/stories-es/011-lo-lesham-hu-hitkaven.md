@@ -7,14 +7,14 @@ cover: ../../assets/covers/011.png
 coverAlt: "Un hombre de abrigo, con una valija, de espaldas a la cámara sobre una pista mojada frente a un avión de pasajeros estacionado, entre nubes pesadas y luz de atardecer; las luces del aeropuerto se reflejan en el asfalto"
 date: 2026-08-18T09:00:00Z
 readingTime: "unos 90 segundos"
-excerpt: "El avión temblaba, olor a quemado en el aire, y un aterrizaje de emergencia. El profesor especialista en enfermedades raras no llegará a la conferencia que todos esperan. Alquiló un auto y siguió solo, bajo la lluvia."
+excerpt: "El avión temblaba, olor a quemado en el aire, y un aterrizaje de emergencia. El profesor especialista en enfermedades raras no va a llegar a la conferencia que todos esperan. Alquila un auto y sigue solo, bajo la lluvia."
 ---
 
 El avión temblaba.
 
 Olor a quemado en el aire.
 
-"Aterrizaje de emergencia."
+*Aterrizaje de emergencia.*
 
 Un profesor especialista en enfermedades raras, de Pakistán. En camino a una conferencia que todos esperan.
 
@@ -42,11 +42,13 @@ Un momento.
 
 Abre una mujer.
 
-"¿Puedo dormir aquí esta noche?"
+—¿Puedo dormir aquí esta noche?
 
-Ella acepta. "Hay una cama junto a la de mi hijo."
+La mujer acepta.
 
-Él entra. Mira al niño.
+—Hay una cama junto a la de mi hijo.
+
+Entra. Mira al niño.
 
 Un momento.
 
@@ -54,28 +56,30 @@ Algo no está bien. Demasiado silencio.
 
 Se acerca. Lo revisa.
 
-"¿Qué tiene?"
+—¿Qué tiene?
 
 La mujer calla.
 
-"Está muy enfermo." "Aquí no hay quien ayude."
+—Está muy enfermo. Aquí no hay quien lo ayude.
 
 Otro momento.
 
-"Me dijeron que hay un profesor..." "En Pakistán."
+—Me dijeron que hay un profesor... en Pakistán.
 
-Ella sonríe con cansancio. "Pero no tengo cómo llegar hasta él."
+Sonríe con cansancio.
 
-Silencio.
-
-"Así que solo rezo..." "para que quizás un día él llegue hasta mí."
+—Pero no tengo cómo llegar hasta él.
 
 Silencio.
 
-Él la mira. Otro momento. Como comprobando que esto realmente está pasando.
+—Así que solo rezo... para que quizás un día él llegue hasta mí.
+
+Silencio.
+
+La mira. Otro momento. Como comprobando que esto está pasando de verdad.
 
 Y dice:
 
-"Parece *que ya llegó.*"
+—Parece *que ya llegó.*
 
 <p class="signature">Con cariño,<br />Efraim Atia</p>

@@ -5,17 +5,17 @@ title: Desde el mismo lugar
 ---
 La mañana no empezó.
 Continuó.
-Desde el mismo **lugar**,
+Desde el mismo **lugar**
 donde terminó ayer.
 
-Y te dices que es cansancio,
+Y te dices que es cansancio
 que va a pasar.
 Pero no pasa,
 hace **meses**.
 
-Porque lo que se vació,
+Porque lo que se vació
 no es el cuerpo.
-Es el lugar de donde vienen,
+Es el lugar de donde vienen
 las ganas y la paciencia y **el interés**.
 
 ---

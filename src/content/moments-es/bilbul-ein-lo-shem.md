@@ -9,11 +9,11 @@ No es miedo.
 Solo algo pesado, **sin palabra**.
 
 Y agota el doble,
-porque sin nombre,
+porque sin nombre
 no se puede explicar.
 Y tampoco se puede **descansar**.
 
-Pero el peso no espera,
+Pero el peso no espera
 a que lo nombren.
 Está aquí,
 también sin **palabra**.

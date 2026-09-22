@@ -29,7 +29,7 @@ Pasaron los años.
 
 Un día alguien llamó a la puerta de su casa. El rabino Meir abrió. Frente a él había un hombre bien vestido.
 
-"Vine a pedir perdón," dijo.
+—Vine a pedir perdón —dijo.
 
 El rabino Meir lo miró. El hombre había sido uno de los niños de su clase. El hijo de aquel padre que causó su despido.
 

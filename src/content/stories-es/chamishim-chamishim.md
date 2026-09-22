@@ -27,7 +27,7 @@ Según el protocolo, Petrov debe levantar el teléfono e informar a sus superior
 
 Pero algo no le cuadraba. Quien inicia una guerra nuclear, pensó, no envía cinco misiles. Envía cientos. Y el radar de tierra no veía nada.
 
-Contó después: "Pensé que las probabilidades eran *cincuenta-cincuenta.* Pero no quería ser el que iniciara la Tercera Guerra Mundial."
+Contó después: «Pensé que las probabilidades eran *cincuenta-cincuenta*. Pero no quería ser el que empezara la Tercera Guerra Mundial.»
 
 Levanta el teléfono, e informa: falla del sistema.
 
@@ -41,7 +41,7 @@ A la mañana siguiente el mundo se levantó como siempre.
 
 Petrov no recibió una medalla. Recibió una reprimenda: no había llenado correctamente el registro esa noche. Un año después se retiró del ejército.
 
-Se fue a vivir a un pequeño apartamento cerca de Moscú. Cuidó a su esposa enferma. Cultivó papas en el jardín, para tener qué comer.
+Se fue a vivir a un departamento pequeño cerca de Moscú. Cuidó a su esposa enferma. Cultivó papas en el jardín, para tener qué comer.
 
 Pasaron quince años hasta que su historia empezó a salir a la luz.
 
@@ -50,6 +50,6 @@ El 19 de mayo de 2017, Stanislav Petrov murió.
 El mundo se enteró solo cuatro meses después, cuando un conocido de Alemania llamó para felicitarlo por su cumpleaños. Su hijo atendió el teléfono.
 
 > Aquella noche esperó veintitrés minutos, y el mundo no lo supo.<br />
-> Después de su muerte pasaron cuatro meses, hasta que el mundo por fin se dio cuenta.
+> Después de su muerte pasaron cuatro meses, hasta que el mundo siquiera se enteró.
 
 <p class="signature">Con cariño,<br />Efraim Atia</p>

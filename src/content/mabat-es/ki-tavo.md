@@ -15,7 +15,7 @@ signoff: |
 signedBy: Efraim Atia
 ---
 
-Él podía
+Podía
 simplemente seguir.
 
 Nadie lo detuvo.

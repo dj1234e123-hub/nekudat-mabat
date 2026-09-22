@@ -9,13 +9,13 @@ Y lo haces,
 **bien**.
 
 Y eso es justo lo que oculta.
-Porque desde afuera todo sigue,
+Porque desde afuera todo sigue
 como siempre.
 Entonces no hay verdadero **permiso**.
 
-Pero un sistema que sigue,
+Pero un sistema que sigue
 no sigue de la nada.
-Toma,
+Toma
 de lo que te **queda**.
 
 ---

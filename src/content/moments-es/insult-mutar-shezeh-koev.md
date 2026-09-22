@@ -5,7 +5,7 @@ title: Está permitido que duela
 ---
 Un día después.
 No pasó nada más desde entonces.
-Y entre una cosa y otra,
+Y entre una cosa y otra
 **vuelve** a subir.
 
 Y la explicación llega enseguida:
@@ -13,7 +13,7 @@ Y la explicación llega enseguida:
 Es una tontería.
 Ya debería haber **pasado**.
 
-Y mientras tanto,
+Y mientras tanto
 **duele**.
 Junto al café.
 En medio de la clase. De camino a casa.

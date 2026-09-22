@@ -5,20 +5,20 @@ title: Un control pequeño
 ---
 Pasó otra vez.
 Y después otra vez.
-Y cada vez,
+Y cada vez
 el mismo **final**.
 
-"No tengo control" —
+«No tengo control» —
 es lo que queda.
 Ni enojo, ni excusa.
 Solo una **frase**.
 
-Y es verdad: en ese momento,
+Y es verdad: en ese momento
 no había control.
-Pero antes hubo momentos,
+Pero antes hubo momentos
 donde era **pequeño**.
 
 ---
 
-Un control pequeño,
+Un control pequeño
 sigue siendo control.

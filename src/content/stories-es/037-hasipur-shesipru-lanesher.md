@@ -16,7 +16,7 @@ Al alba el gallinero ya estaba despierto. Cacareos en el patio, un polvillo suav
 
 En medio del patio daba vueltas uno distinto. Más grande que ellos, más pesado, con ojos profundos y plumas que no se parecían a las de nadie en el gallinero.
 
-Toda su vida escuchó las mismas palabras: "eres raro", "no eres como todos", "eres torpe", "de ti no va a salir nada".
+Toda su vida escuchó las mismas palabras: que era raro, que no era como todos, que era torpe, que de él no iba a salir nada.
 
 Cuando era chico todavía intentaba preguntar, pero muy rápido aprendió a callar.
 
@@ -26,13 +26,13 @@ Un día pasó por ahí un hombre viejo. Un naturalista de ojos agudos, y un cora
 
 Se detuvo junto al alambrado, miró bien al ave distinta, y susurró para sí:
 
-"Esto no es un gallo. Es *un águila* que olvidó quién es."
+—Esto no es un gallo. Es *un águila* que olvidó quién es.
 
 El viejo le pidió al granjero que sacara al ave al patio. La levantaron y la sentaron sobre el cerco.
 
-"Mira al cielo," le dijo con dulzura. "Tú no fuiste creado para escarbar la tierra. Tienes alas que esperan abrirse."
+—Mira al cielo —le dijo con dulzura—. Tú no naciste para escarbar la tierra. Tienes alas que están esperando abrirse.
 
-Pero en su corazón él escuchaba otras voces: "no hagas papelones", "te vas a caer", "quién te crees que eres".
+Pero por dentro escuchaba otras voces: no hagas el ridículo, te vas a caer, quién te crees que eres.
 
 Bajó la mirada, plegó las alas, y saltó de vuelta al gallinero.
 
@@ -42,7 +42,7 @@ A los pocos días lo llevó a la cima de una montaña, lejos del pueblo y del ga
 
 Lo sostuvo en las manos, giró su rostro hacia el sol naciente, y le dijo despacio:
 
-"*Águila eres.* No todos los que te dijeron gallo sabían quién eres de verdad. No dejes que sus voces ahoguen tu voz."
+—*Eres un águila.* No todos los que te dijeron gallo sabían quién eres de verdad. No dejes que sus voces tapen la tuya.
 
 Esta vez no había gallos alrededor, no había ojos burlones. Solo él, el sol, y el viento en la cara.
 
@@ -54,7 +54,7 @@ El viento tomó el ala, la levantó apenas, y el mundo debajo de pronto se vio m
 
 El viejo calló. No empujó, no tironeó. Solo lo sostuvo y susurró:
 
-"Tú puedes. Yo lo sé."
+—Tú puedes. Yo lo sé.
 
 Y entonces, en un instante que no se puede medir en tiempo, extendió las alas hasta el final, tomó una respiración profunda, y se soltó.
 
@@ -62,7 +62,7 @@ Un momento más de caída — y el cuerpo entero recordó lo que siempre estuvo 
 
 Las alas empezaron a trabajar. Despacio, y después fuerte. Y la tierra se fue alejando.
 
-Subió hacia arriba, un círculo y otro círculo, hasta que el gallinero se volvió un punto lejano, y la burla de los años se quedó abajo.
+Subió, un círculo y otro círculo, hasta que el gallinero se volvió un punto lejano, y la burla de los años se quedó abajo.
 
 Ahí, en la altura, entendió por fin qué pequeña había sido la historia que le contaron sobre sí mismo.
 

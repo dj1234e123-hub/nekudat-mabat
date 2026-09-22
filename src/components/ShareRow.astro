@@ -34,7 +34,7 @@ interface Props {
 const { title, url, shareText, label, lang = 'he', imageUrl, linkOnly } = Astro.props;
 const es = lang === 'es';
 const t = es
-  ? { label: '¿Te llegó? Compártelo:', whatsapp: 'Compartir por WhatsApp', copy: 'Copiar enlace', copied: 'Enlace copiado ✓', prompt: 'Copia el enlace:', brand: 'Punto de Vista' }
+  ? { label: 'Si te llegó, compártelo:', whatsapp: 'Compartir por WhatsApp', copy: 'Copiar enlace', copied: 'Enlace copiado ✓', prompt: 'Copia el enlace:', brand: 'Punto de Vista' }
   : { label: 'אהבתם? שתפו:', whatsapp: 'שיתוף בוואטסאפ', copy: 'העתקת קישור', copied: 'הקישור הועתק ✓', prompt: 'העתיקו את הקישור:', brand: 'נקודת מבט' };
 const message = shareText ?? `${title} · ${t.brand}`;
 // imageUrl קיים → הקישור עצמו (ה-href, וגם נפילת החזרה של הסקריפט למטה)

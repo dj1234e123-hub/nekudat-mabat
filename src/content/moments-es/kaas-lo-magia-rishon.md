@@ -20,5 +20,5 @@ Algo mucho más **expuesto**.
 
 ---
 
-El enojo casi nunca,
+El enojo casi nunca
 llega primero.

@@ -1,6 +1,6 @@
 ---
 # תרגום של ארכיון #006 (2026-08-30). התמונה נקייה מכיתוב — אותה תמונה כמו בעברית.
-title: "El chico del avioncito"
+title: "El chico del avión de papel"
 section: yoman
 archiveId: "006"
 cover: ../../assets/covers/006.png
@@ -12,13 +12,15 @@ excerpt: "Ningún maestro aceptaba entrar a esa aula. En la sala de profesores y
 
 Ningún maestro aceptaba entrar a esa aula.
 
-Un aula de educación especial. En la sala de profesores ya la llamaban: *"campo de batalla."*
+Un aula de educación especial. En la sala de profesores ya la llamaban *«el campo de batalla».*
 
 Ningún maestro que entraba ahí aguantaba. El último simplemente se levantó a mitad de año y no volvió.
 
 Entonces llegó un candidato nuevo.
 
-El director le dijo: "Entra a una clase de prueba."
+El director le dijo:
+
+—Entra a dar una clase de prueba.
 
 Entró al aula. Antes de que empezara a hablar —
 
@@ -36,7 +38,7 @@ Por un momento, ya estaba por llamarle la atención al chico.
 
 Pero se le acercó y le preguntó en voz baja:
 
-"¿Quizás la silla no te resulta cómoda? Vamos a cambiarla."
+—¿Será que la silla no te resulta cómoda? Vamos a cambiarla.
 
 El chico se calló. Por un momento.
 
@@ -58,7 +60,7 @@ Pero *tragó saliva.* *Apenas.*
 
 Entonces se agachó, levantó el avión del piso, sonrió, y dijo:
 
-"Por lo menos acá hay alguien que sabe apuntar bien."
+—Por lo menos aquí hay alguien que sabe apuntar bien.
 
 *El silencio* que cayó ahí fue más fuerte que toda la risa de un momento antes.
 
@@ -68,10 +70,10 @@ El maestro estaba seguro de que había fracasado. Las manos todavía le temblaba
 
 Y entonces el director sonrió.
 
-*"Estás contratado."*
+*—El puesto es tuyo.*
 
 Cuando salió, les dio las gracias a todos los alumnos. Pero un gracias especial — al chico que le había tirado el avión.
 
-Desde entonces, ya no mira igual a los aviones de papel.
+Desde entonces, nunca más volvió a mirar igual un avión de papel.
 
 <p class="signature">Con cariño,<br />Efraim Atia</p>

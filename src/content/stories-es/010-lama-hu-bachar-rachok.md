@@ -1,6 +1,6 @@
 ---
 # תרגום של ארכיון #010 (2026-08-30). התמונה נקייה מכיתוב — אותה תמונה כמו בעברית.
-title: "Por qué él elegía lejos"
+title: "Por qué estacionaba lejos"
 section: yoman
 archiveId: "010"
 cover: ../../assets/covers/010.png
@@ -16,17 +16,17 @@ Cada mañana el vecino pasa a buscarme.
 
 7:30. Todo vacío. Miles de lugares.
 
-Y él siempre estaciona lejos.
+Y siempre estaciona lejos.
 
 Un día le pregunté: ¿por qué no cerca? Hay lugar. Muchísimo.
 
-Él sonrió.
+Sonrió.
 
-"*Porque nosotros tenemos tiempo.*"
+—*Porque nosotros tenemos tiempo.*
 
 Silencio.
 
-"Y el que llegue tarde... lo va a necesitar más."
+—Y el que llegue tarde... lo va a necesitar más.
 
 Bajé del auto. El viento helado cortaba la cara.
 
@@ -38,6 +38,6 @@ Pero seguí caminando. Un paso más. Y otro.
 
 El estacionamiento era el mismo. Pero algo en mí se calmó.
 
-Quedé un poco más lejos de la puerta — y algo mío *se quedó ahí.*
+Terminé un poco más lejos de la puerta — y algo mío *se quedó ahí.*
 
 <p class="signature">Con cariño,<br />Efraim Atia</p>
