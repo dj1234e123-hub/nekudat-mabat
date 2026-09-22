@@ -5,6 +5,7 @@ import { SECTIONS_META } from '../data/sections';
 import { SECTIONS_ES } from '../data/site-es';
 import { DEFAULT_COVERS } from '../data/default-covers';
 import { formatDate } from '../utils/format-date';
+import { esStoryPath, esSectionPath } from '../data/es-slugs';
 
 interface Props {
   story: CollectionEntry<'stories'> | CollectionEntry<'storiesEs'>;
@@ -16,8 +17,8 @@ const { story, lang = 'he' } = Astro.props;
 const es = lang === 'es';
 const { title, section, date, excerpt } = story.data;
 const cover = story.data.cover ?? DEFAULT_COVERS[section];
-const storyHref = es ? `/es/historias/${story.id}/` : `/stories/${story.id}/`;
-const sectionHref = es ? `/es/secciones/${section}/` : `/sections/${section}/`;
+const storyHref = es ? esStoryPath(story.id) : `/stories/${story.id}/`;
+const sectionHref = es ? esSectionPath(section) : `/sections/${section}/`;
 const sectionLabel = es ? SECTIONS_ES[section].label : SECTIONS_META[section].label;
 ---
 

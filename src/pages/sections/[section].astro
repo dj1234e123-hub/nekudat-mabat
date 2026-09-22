@@ -8,6 +8,7 @@ import { SECTION_GATE_IMAGES } from '../../data/section-gate-images';
 import { newestFirst } from '../../lib/sort';
 import { isPublished } from '../../lib/published';
 import JoinGroup from '../../components/JoinGroup.astro';
+import { esSectionPath } from '../../data/es-slugs';
 
 export function getStaticPaths() {
   return SECTION_SLUGS.map((section) => ({ params: { section } }));
@@ -25,7 +26,7 @@ const stories = (
 // עמוד העולם התאום בספרדית — קיים רק כשיש בעולם סיפורים מתורגמים.
 const storiesEs = await getCollection('storiesEs', isPublished);
 const hasEsTwin = storiesEs.some((s) => s.data.section === section);
-const altLangHref = hasEsTwin ? `/es/secciones/${section}/` : '/es/historias/';
+const altLangHref = hasEsTwin ? esSectionPath(section) : '/es/historias/';
 ---
 
 <Base

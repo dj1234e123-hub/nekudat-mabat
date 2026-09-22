@@ -19,6 +19,7 @@ import MabatBody from '../../components/MabatBody.astro';
 import { parseBody, kickerEs } from '../../lib/mabat-format';
 import { isPublished } from '../../lib/published';
 import JoinPopup from '../../components/JoinPopup.astro';
+import { esStoryPath, esSectionPath } from '../../data/es-slugs';
 
 const allStories = (await getCollection('storiesEs', isPublished)).sort(newestFirst);
 
@@ -78,7 +79,7 @@ const DESCRIPTION =
 
 <Base
   lang="es"
-  title="Punto de Vista — un lugar para detenerse y ver diferente"
+  title="Punto de Vista — un lugar para detenerse y ver distinto"
   description={DESCRIPTION}
   homeHeader={true}
   altLangHref="/"
@@ -206,7 +207,7 @@ const DESCRIPTION =
             <div class="stories-grid">
               {worlds.map(({ slug, meta, metaEs, story, emoji, image }) => (
                 <div class="world-card" style={`--accent: ${meta.accent}`}>
-                  <a href={`/es/secciones/${slug}/`} class="world-arch-link" aria-label={metaEs.linkText}>
+                  <a href={esSectionPath(slug)} class="world-arch-link" aria-label={metaEs.linkText}>
                     <span class="world-arch">
                       {image ? (
                         <Image
@@ -226,9 +227,9 @@ const DESCRIPTION =
                   <div class="world-text">
                     <h3 class="world-name">{metaEs.label}</h3>
                     <p class="story-example">
-                      Por ejemplo: <a href={`/es/historias/${story.id}/`}>{story.data.title}</a>
+                      Por ejemplo: <a href={esStoryPath(story.id)}>{story.data.title}</a>
                     </p>
-                    <a href={`/es/secciones/${slug}/`} class="story-link">
+                    <a href={esSectionPath(slug)} class="story-link">
                       {metaEs.linkText} →
                     </a>
                   </div>
@@ -362,7 +363,7 @@ const DESCRIPTION =
     margin-inline: calc((100% - var(--bleed)) / 2);
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-areas: 'moments' 'mabat' 'stories';
+    grid-template-areas: 'stories' 'mabat' 'moments';
     gap: 1.75rem;
     align-items: start;
     margin-bottom: 2.5rem;
@@ -371,7 +372,7 @@ const DESCRIPTION =
   @media (min-width: 800px) {
     .dual-section {
       grid-template-columns: 1fr 1fr;
-      grid-template-areas: 'moments stories' 'mabat mabat';
+      grid-template-areas: 'stories moments' 'mabat mabat';
       gap: 2rem;
     }
   }

@@ -14,6 +14,7 @@ import { DEFAULT_COVERS, DEFAULT_COVER_ALT_ES } from '../../../data/default-cove
 import { formatDate } from '../../../utils/format-date';
 import { articleJsonLd, breadcrumbJsonLd } from '../../../lib/structured-data';
 import { isPublished } from '../../../lib/published';
+import { ES_STORY_SLUGS, esStoryPath, esSectionPath, assertEsSlugs } from '../../../data/es-slugs';
 import { newestFirst } from '../../../lib/sort';
 import { nextStories, momentForStory } from '../../../lib/related';
 import { readingLabel as readingLabelFor } from '../../../lib/reading-time';
@@ -21,8 +22,11 @@ import JoinPopup from '../../../components/JoinPopup.astro';
 
 export async function getStaticPaths() {
   const stories = await getCollection('storiesEs', isPublished);
+  // הכתובת הציבורית היא הסלאג הספרדי, לא שם הקובץ. שם הקובץ נשאר העוגן
+  // שמזווג בין העברית לספרדית (ראו src/data/es-slugs.ts).
+  assertEsSlugs(stories.map((s) => s.id));
   return stories.map((story) => ({
-    params: { slug: story.id },
+    params: { slug: ES_STORY_SLUGS[story.id] },
     props: { story },
   }));
 }
@@ -35,7 +39,7 @@ const readingLabel = readingLabelFor(story, 'es');
 const cover = story.data.cover ?? DEFAULT_COVERS[section];
 const coverAlt = story.data.coverAlt ?? DEFAULT_COVER_ALT_ES;
 
-const pageUrl = new URL(`/es/historias/${story.id}/`, Astro.site).href;
+const pageUrl = new URL(esStoryPath(story.id), Astro.site).href;
 
 let ogImage: string | undefined;
 let ogImageWidth: number | undefined;
@@ -48,7 +52,7 @@ if (cover.format !== 'svg') {
 }
 
 const allStories = (await getCollection('storiesEs', isPublished)).sort(newestFirst);
-const otherStoryUrls = allStories.filter((s) => s.id !== story.id).map((s) => `/es/historias/${s.id}/`);
+const otherStoryUrls = allStories.filter((s) => s.id !== story.id).map((s) => esStoryPath(s.id));
 // "ההמשך" (NextUp) בספרדית: הקרבה התוכנית נמדדת דרך התאום העברי (התגיות
 // חיות שם), והמועמדים והרגע — רק מה שקיים בספרדית ("מבחר ולא מראה").
 const hebrewStories = await getCollection('stories', isPublished);
@@ -78,7 +82,7 @@ const relatedMoment = momentForStory(story, await getCollection('momentsEs', isP
     breadcrumbJsonLd(Astro.site!, [
       { name: 'Punto de Vista', path: '/es/' },
       { name: 'Historias', path: '/es/historias/' },
-      { name: SECTIONS_ES[section].label, path: `/es/secciones/${section}/` },
+      { name: SECTIONS_ES[section].label, path: esSectionPath(section) },
       { name: title },
     ]),
   ]}
@@ -86,7 +90,7 @@ const relatedMoment = momentForStory(story, await getCollection('momentsEs', isP
   <main>
     <article>
       <header class="story-header">
-        <a class="label" href={`/es/secciones/${section}/`}>{SECTIONS_ES[section].label}</a>
+        <a class="label" href={esSectionPath(section)}>{SECTIONS_ES[section].label}</a>
         <h1>{title}</h1>
         <p class="story-meta">
           <time datetime={date.toISOString().slice(0, 10)}>{formatDate(date, 'es')}</time>
