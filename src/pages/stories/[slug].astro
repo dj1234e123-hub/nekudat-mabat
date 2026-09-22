@@ -18,6 +18,7 @@ import { newestFirst } from '../../lib/sort';
 import { nextStories, momentForStory } from '../../lib/related';
 import { readingLabel as readingLabelFor } from '../../lib/reading-time';
 import JoinPopup from '../../components/JoinPopup.astro';
+import { esStoryPath } from '../../data/es-slugs';
 
 export async function getStaticPaths() {
   const stories = await getCollection('stories', isPublished);
@@ -62,7 +63,7 @@ const relatedMoment = momentForStory(story, await getCollection('moments', isPub
 // הגלולה מובילה לשער הסיפורים הספרדי, בלי hreflang (זה לא אותו עמוד).
 const storiesEs = await getCollection('storiesEs', isPublished);
 const hasEsTwin = storiesEs.some((s) => s.id === story.id);
-const altLangHref = hasEsTwin ? `/es/historias/${story.id}/` : '/es/historias/';
+const altLangHref = hasEsTwin ? esStoryPath(story.id) : '/es/historias/';
 ---
 
 <Base

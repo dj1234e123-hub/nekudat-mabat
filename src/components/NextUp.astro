@@ -30,6 +30,7 @@ import { parseMoment } from '../lib/moment-format';
 import { readingLabel } from '../lib/reading-time';
 import { storyOpening } from '../lib/story-opening';
 import type { NextStory } from '../lib/related';
+import { esStoryPath } from '../data/es-slugs';
 
 interface Props {
   current: string;
@@ -73,7 +74,7 @@ const momentCard = moment
             return (
               <li class="next-story" data-story={story.id} hidden={i > 0}>
                 <a
-                  href={es ? `/es/historias/${story.id}/` : `/stories/${story.id}/`}
+                  href={es ? esStoryPath(story.id) : `/stories/${story.id}/`}
                   class="next-link"
                   data-ph="next_story"
                   style={`--accent: ${meta.accent}`}

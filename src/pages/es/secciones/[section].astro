@@ -11,15 +11,21 @@ import { SECTIONS_ES } from '../../../data/site-es';
 import { SECTION_GATE_IMAGES } from '../../../data/section-gate-images';
 import { newestFirst } from '../../../lib/sort';
 import { isPublished } from '../../../lib/published';
+import { ES_SECTION_SLUGS } from '../../../data/es-slugs';
 import JoinGroup from '../../../components/JoinGroup.astro';
 
 export async function getStaticPaths() {
   const stories = await getCollection('storiesEs', isPublished);
   const sections = [...new Set(stories.map((s) => s.data.section))];
-  return sections.map((section) => ({ params: { section } }));
+  // הכתובת הציבורית היא הסלאג הספרדי; העולם עצמו נמסר כ-prop
+  // (ראו src/data/es-slugs.ts).
+  return sections.map((section) => ({
+    params: { section: ES_SECTION_SLUGS[section] ?? section },
+    props: { section },
+  }));
 }
 
-const section = Astro.params.section as SectionSlug;
+const { section } = Astro.props as { section: SectionSlug };
 const { label, line } = SECTIONS_ES[section];
 const gateImage = SECTION_GATE_IMAGES[section] ?? null;
 

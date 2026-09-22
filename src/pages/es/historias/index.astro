@@ -13,6 +13,7 @@ import { newestFirst } from '../../../lib/sort';
 import { isPublished } from '../../../lib/published';
 import { readingLabel } from '../../../lib/reading-time';
 import { storyOpening } from '../../../lib/story-opening';
+import { esStoryPath, esSectionPath } from '../../../data/es-slugs';
 
 const stories = (await getCollection('storiesEs', isPublished)).sort(newestFirst);
 
@@ -58,7 +59,7 @@ const countLabel = (n: number) => (n === 1 ? 'una historia' : `${n} historias`);
         worlds.map(({ slug, meta, metaEs, sample, count, gate }) => (
           <li class="band" style={`--accent: ${meta.accent}`}>
             {gate && (
-              <a href={`/es/secciones/${slug}/`} class="band-gate" aria-label={metaEs.linkText}>
+              <a href={esSectionPath(slug)} class="band-gate" aria-label={metaEs.linkText}>
                 <Image
                   src={gate.image}
                   alt=""
@@ -70,12 +71,12 @@ const countLabel = (n: number) => (n === 1 ? 'una historia' : `${n} historias`);
             )}
             <div class="band-body">
               <h2 class="band-name">
-                <a href={`/es/secciones/${slug}/`}>{metaEs.label}</a>
+                <a href={esSectionPath(slug)}>{metaEs.label}</a>
               </h2>
               <p class="band-line">{metaEs.line}</p>
               {/* הפיתוי: שאלה שהסיפור עונה עליה (hook), ומתחתיה השם וזמן הקריאה.
                   בלי hook — שתי שורות הפתיחה, כמו בכרטיס "הסיפור הבא". */}
-              <a href={`/es/historias/${sample.id}/`} class="band-sample">
+              <a href={esStoryPath(sample.id)} class="band-sample">
                 <span class="band-hook">{sample.data.hook ?? storyOpening(sample.body)}</span>
                 <span class="band-story">
                   {sample.data.title} · <span class="nowrap">{readingLabel(sample, "es")}</span> →
@@ -83,7 +84,7 @@ const countLabel = (n: number) => (n === 1 ? 'una historia' : `${n} historias`);
               </a>
               <p class="band-more">
                 <span>{countLabel(count)}</span>
-                <a href={`/es/secciones/${slug}/`}>{metaEs.linkText} →</a>
+                <a href={esSectionPath(slug)}>{metaEs.linkText} →</a>
               </p>
             </div>
           </li>

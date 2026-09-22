@@ -7,7 +7,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check:moments": "node scripts/check-moments.mjs"
+    "check:moments": "node scripts/check-moments.mjs",
+    "sync:es-redirects": "node scripts/sync-es-redirects.mjs",
+    "check:es-redirects": "node scripts/sync-es-redirects.mjs --check"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
