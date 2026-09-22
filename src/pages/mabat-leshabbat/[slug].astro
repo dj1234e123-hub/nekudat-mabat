@@ -12,6 +12,7 @@ import MabatBody from '../../components/MabatBody.astro';
 import { parseBody, plainText, kicker } from '../../lib/mabat-format';
 import { articleJsonLd, breadcrumbJsonLd } from '../../lib/structured-data';
 import { isPublished } from '../../lib/published';
+import { quoteText, assertQuoteInBody, WIDTH as QW, HEIGHT as QH } from '../../lib/quote-card';
 import JoinGroup from '../../components/JoinGroup.astro';
 import JoinPopup from '../../components/JoinPopup.astro';
 
@@ -21,7 +22,7 @@ export async function getStaticPaths() {
 }
 
 const { piece } = Astro.props;
-const { title, parasha, hebrewDate, date, signoff, signedBy, quoteImage, quoteImageAlt, description } = piece.data;
+const { title, parasha, hebrewDate, date, signoff, signedBy, quote, quoteImage, quoteImageAlt, description } = piece.data;
 const blocks = parseBody(piece.body ?? '');
 
 const flat = plainText(blocks).replace(/\s+/g, ' ').trim();
@@ -37,7 +38,16 @@ const pageUrl = new URL(`/mabat-leshabbat/${piece.id}/`, Astro.site).href;
 let ogImage: string | undefined;
 let ogImageWidth: number | undefined;
 let ogImageHeight: number | undefined;
-if (quoteImage) {
+// ציטוט בפרונטמאטר → התמונה נבנית מעצמה ב-quote.png לצד העמוד.
+let quoteSrc: string | undefined;
+if (quote?.length) {
+  // כלל 1.5 של הסקיל, נאכף בבנייה: התמונה והטור אומרים את אותן המילים.
+  assertQuoteInBody(quote, piece.body ?? '', `/mabat-leshabbat/${piece.id}/`);
+  quoteSrc = `/mabat-leshabbat/${piece.id}/quote.png`;
+  ogImage = new URL(quoteSrc, Astro.site).href;
+  ogImageWidth = QW;
+  ogImageHeight = QH;
+} else if (quoteImage) {
   const og = await getImage({ src: quoteImage, width: 1080, format: 'png' });
   ogImage = new URL(og.src, Astro.site).href;
   ogImageWidth = og.attributes.width;
@@ -89,7 +99,15 @@ const altLangHref = hasEsTwin ? `/es/shabat/${piece.id}/` : '/es/shabat/';
       <MabatBody blocks={blocks} />
 
       {
-        quoteImage && (
+        quoteSrc && (
+          <div class="quote-image">
+            <img src={quoteSrc} alt={quoteText(quote!)} width={QW} height={QH} loading="lazy" />
+          </div>
+        )
+      }
+
+      {
+        !quoteSrc && quoteImage && (
           <div class="quote-image">
             <Image src={quoteImage} alt={quoteImageAlt!} widths={[320, 480, 640]} sizes="(max-width: 30rem) 70vw, 320px" />
           </div>

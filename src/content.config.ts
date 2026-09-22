@@ -165,11 +165,26 @@ const mabatEs = defineCollection({
         description: z.string().min(1).optional(),
         signoff: z.string().min(1),
         signedBy: z.string().min(1),
+        /**
+         * הציטוט לתמונה, שורה לכל איבר — שבירת השורה היא החלטת עיצוב
+         * (.claude/skills/mabat-quote-image). התמונה נבנית מכאן בזמן הבנייה
+         * ל-quote.png לצד העמוד; `**מילה**` נצבעת בזהב. השורה האחרונה היא
+         * הנחיתה ומוצגת גדולה ומודגשת.
+         *
+         * חייב להופיע בגוף הטור מילה במילה — הבנייה נכשלת אחרת (כלל 1.5).
+         * הטקסט החלופי נגזר מהציטוט עצמו, ולכן אין שדה שצריך לתחזק לצדו.
+         */
+        quote: z.array(z.string().min(1)).min(1).max(5).optional(),
         quoteImage: image().optional(),
         quoteImageAlt: z.string().min(1).optional(),
       })
       .refine((data) => !data.quoteImage || !!data.quoteImageAlt, {
         message: 'תמונת ציטוט חייבת גם טקסט חלופי (quoteImageAlt)',
+      })
+      // שני מקורות לאותה תמונה זה עמימות. גיליון עובר מ-quoteImage ל-quote
+      // קובץ-קובץ, כמו הגירת הפורמט של הרגעים — ואין רגע שבו האתר שבור.
+      .refine((data) => !(data.quote && data.quoteImage), {
+        message: 'גיליון לא יכול לשאת גם quote (נוצר בבנייה) וגם quoteImage (קובץ מוכן)',
       }),
 });
 
@@ -197,11 +212,26 @@ const mabatLeshabbat = defineCollection({
         description: z.string().min(1).optional(),
         signoff: z.string().min(1),
         signedBy: z.string().min(1),
+        /**
+         * הציטוט לתמונה, שורה לכל איבר — שבירת השורה היא החלטת עיצוב
+         * (.claude/skills/mabat-quote-image). התמונה נבנית מכאן בזמן הבנייה
+         * ל-quote.png לצד העמוד; `**מילה**` נצבעת בזהב. השורה האחרונה היא
+         * הנחיתה ומוצגת גדולה ומודגשת.
+         *
+         * חייב להופיע בגוף הטור מילה במילה — הבנייה נכשלת אחרת (כלל 1.5).
+         * הטקסט החלופי נגזר מהציטוט עצמו, ולכן אין שדה שצריך לתחזק לצדו.
+         */
+        quote: z.array(z.string().min(1)).min(1).max(5).optional(),
         quoteImage: image().optional(),
         quoteImageAlt: z.string().min(1).optional(),
       })
       .refine((data) => !data.quoteImage || !!data.quoteImageAlt, {
         message: 'תמונת ציטוט חייבת גם טקסט חלופי (quoteImageAlt)',
+      })
+      // שני מקורות לאותה תמונה זה עמימות. גיליון עובר מ-quoteImage ל-quote
+      // קובץ-קובץ, כמו הגירת הפורמט של הרגעים — ואין רגע שבו האתר שבור.
+      .refine((data) => !(data.quote && data.quoteImage), {
+        message: 'גיליון לא יכול לשאת גם quote (נוצר בבנייה) וגם quoteImage (קובץ מוכן)',
       }),
 });
 

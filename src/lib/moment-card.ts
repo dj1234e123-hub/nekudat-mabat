@@ -14,14 +14,20 @@
 // יוצאת ממנו הפוכה מילה-מילה. resvg מעצב דרך rustybuzz, עם bidi מלא.
 // למה בזמן בנייה ולא כקבצים מוכנים בריפו: כשהטקסט משתנה התמונה מתעדכנת מעצמה.
 //
-// הפונטים כאן אינם קובצי האתר: תת-הקבוצה העברית ב-public/fonts אינה מכילה
-// סימני פיסוק כלל, ולכן נבנו קבצים ייעודיים שממזגים עברית + לטינית, בגרסה
-// סטטית (הגרסה המשתנה מכשילה את מנתחי הפונטים).
-import fs from 'node:fs';
-import path from 'node:path';
-import opentype from 'opentype.js';
+// הפונטים, מדידת הרוחב ותווי הכיווניות חיים ב-og-fonts.ts — משותפים
+// לכרטיס הרגע ולתמונת הציטוט של "מבט לשבת".
 import { Resvg } from '@resvg/resvg-js';
 import { parseMoment, plain, type MomentFormat } from './moment-format';
+import {
+  FONT_FILES,
+  REGULAR,
+  BOLD,
+  measure,
+  escape,
+  RLO,
+  PDF,
+  LRO,
+} from './og-fonts';
 
 export const WIDTH = 1080;
 export const HEIGHT = 1350;
@@ -51,42 +57,6 @@ const GOLD = '#c9a24d';
 const TEAL_DEEP = '#17453f';
 const BLUE = '#003b5c';
 const BRICK = '#b0463b';
-
-const REGULAR = 'Frank Ruhl Libre';
-const BOLD = 'Frank Ruhl Libre Bold';
-
-// מבוסס על תיקיית הפרויקט ולא על import.meta.url: הקוד הזה רץ אחרי האריזה,
-// מתוך dist/, ושם הנתיב היחסי כבר לא מצביע על קובצי המקור.
-const fontPath = (name: string) => path.resolve(process.cwd(), 'src/assets/og-fonts', `${name}.ttf`);
-const FONT_FILES = ['frank', 'frank-bold', 'heebo', 'heebo-bold'].map(fontPath);
-
-/** נטען פעם אחת לכל הבנייה — 66 תמונות מאותם קבצים. */
-function load(name: string) {
-  const buffer = fs.readFileSync(fontPath(name));
-  return opentype.parse(
-    buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength)
-  );
-}
-const FONTS: Record<string, opentype.Font> = {
-  [REGULAR]: load('frank'),
-  [BOLD]: load('frank-bold'),
-};
-
-/**
- * רוחב הטקסט בפיקסלים בגודל נתון, לפי טבלת הרוחבים של הפונט עצמו.
- * מסכם תו-תו במקום getAdvanceWidth: הפונקציה ההיא מפעילה את מנוע העיצוב של
- * opentype.js, שקורס על טקסט עברי. כאן דרוש רק רוחב — לשבירת שורות בלבד;
- * את העיצוב האמיתי עושה resvg.
- */
-function measure(text: string, size: number, family = REGULAR): number {
-  const font = FONTS[family];
-  const scale = size / font.unitsPerEm;
-  let width = 0;
-  for (const char of text) {
-    width += (font.charToGlyph(char).advanceWidth ?? 0) * scale;
-  }
-  return width;
-}
 
 /** שבירת טקסט לשורות שנכנסות לרוחב, מילה שלמה בכל פעם */
 function wrap(text: string, size: number, family = REGULAR): string[] {
@@ -129,22 +99,6 @@ function wrap(text: string, size: number, family = REGULAR): string[] {
 
   return lines.filter(Boolean);
 }
-
-const escape = (s: string) =>
-  s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-
-/**
- * RLO (U+202E) … PDF (U+202C): תווי כיווניות בלתי-נראים, לא סימני פיסוק.
- * בלעדיהם resvg ממקם תווים ניטרליים (פיסוק, גרשיים) בקצה ה*לא* נכון של
- * שורה עברית ממורכזת — ולפעמים אף הופך שניים כאלה זה ביחס לזה — במיוחד
- * כשיש יותר מאשכול ניטרלי אחד בשורה (למשל גרש פותח וגרש+נקודה סוגרים).
- * נבדק ואומת ישירות בפיקסלים של ה-PNG שנוצר, לא רק בקוד. RLO כופה סדר
- * תצוגה נכון (override) על פני כל אלגוריתם ניחוש; PDF סוגר את התחום.
- * עוטף את כל השורה — כולל דרך tspan של הדגשה — כי resvg מעצב את כל
- * אלמנט הטקסט כיחידה אחת. לא נוגע בתו אחד מהטקסט הנראה.
- */
-const RLO = '‮';
-const PDF = '‬';
 
 /**
  * שורה אחת → תוכן של <text>, עם ההדגשות כ-tspan בגופן הכבד.
@@ -276,10 +230,6 @@ function ornamentSvg(y: number): string {
     `<rect x="${CENTER - d / 2}" y="${y - d / 2}" width="${d}" height="${d}" fill="${GOLD}" transform="rotate(45 ${CENTER} ${y})"/>`,
   ].join('\n  ');
 }
-
-/** LRO (U+202D): כפיית LTR — למספר טלפון בתוך שורה עברית שנכפתה RTL,
-    שבלעדיה הספרות היו מתהפכות. PDF סוגר, כמו אצל RLO. */
-const LRO = '‭';
 
 /** שורת ההזמנה בתחתית הכרטיס העברי. מספר טלפון בתוכה נעטף LTR מעצמו.
     מילת הקוד "מבט" — בחירת בעל הפרויקט (2026-08-26): נטולת מגדר ("מצטרף"
