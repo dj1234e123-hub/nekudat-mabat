@@ -2,13 +2,12 @@
 # Traducción del original hebreo "חמישים-חמישים" (2026-09-11). Mismo id de archivo que el
 # hebreo para el emparejamiento automático (gemelo de idioma + hreflang).
 # Misma portada que la versión hebrea (sin texto en la imagen).
-# Fecha de espera temporal (2026-09-15): fusionado a la rama principal pero retenido
-# detrás de isPublished hasta la aprobación de publicación. Fecha original aprobada: 2026-09-11T14:00:00Z.
+# Publicado 2026-09-23; fecha = hora real de publicación (misma que la versión hebrea).
 title: "Cincuenta-cincuenta"
 section: chaim
 cover: ../../assets/covers/chamishim-chamishim.png
 coverAlt: "Vista a través de la ventana de un búnker de noche: cinco estelas de luz roja cruzan el cielo, y abajo una vieja pantalla de radar verde, un teléfono rojo, una taza de hojalata y un lapicero sobre un escritorio lleno de papeles"
-date: 2026-12-31T00:00:00Z
+date: 2026-09-23T16:22:00Z
 readingTime: "unos 2 minutos"
 excerpt: "La noche en que la pantalla mostró cinco misiles rumbo a la Unión Soviética, el teniente coronel Stanislav Petrov tuvo unos minutos para decidir si creerle al sistema. Contó después: pensé que las probabilidades eran cincuenta-cincuenta."
 ---
