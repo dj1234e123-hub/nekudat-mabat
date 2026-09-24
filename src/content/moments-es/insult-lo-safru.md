@@ -20,5 +20,5 @@ Simplemente no te **contaron**.
 
 ---
 
-No fueron las palabras.
-Dolió que no te contaran.
+La frase fue pequeña.
+La indiferencia, no.

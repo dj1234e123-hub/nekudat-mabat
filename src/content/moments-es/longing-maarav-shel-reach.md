@@ -20,5 +20,5 @@ simplemente **llega**.
 
 ---
 
-No es un paso atrás.
+No es un examen.
 Es solo una visita.

@@ -9,9 +9,9 @@ Y quizás de verdad,
 lo decían por tu **bien**.
 
 Y te quedaste a solas con esto.
-Y entonces se siente un fracaso,
-también en esto.
-Ni siquiera eso: ser **fuerte**.
+Y entonces se siente un fracaso:
+ni siquiera aguantar
+te **salió**.
 
 Pero «sé fuerte»,
 muchas veces dice

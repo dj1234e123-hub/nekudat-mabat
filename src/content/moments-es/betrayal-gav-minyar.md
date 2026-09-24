@@ -9,9 +9,9 @@ hasta que resultó
 que estaba vacío.
 
 Y enseguida el pensamiento
-que una espalda de **papel**
-es lo que le toca
-a quien no vale más.
+de que si el respaldo era de papel,
+quizás no valías
+**más** que eso.
 
 Pero que hayan **desaparecido**
 dice algo
