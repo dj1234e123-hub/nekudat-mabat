@@ -8,7 +8,7 @@
 title: ¿Cuándo está permitido alegrarse?
 parasha: Shabat de Sucot
 hebrewDate: 15 de Tishrei 5787
-description: "Sucot, en un campo de trabajo soviético. Un preso judío, tres años en prisión cerrada por guardar Shabat, y una mitzvá que nunca pudo cumplir allí. Al fondo del campo hay un montón de paja. Junto a la cerca eléctrica."
+description: "Sucot, en un campo de trabajo soviético. Un preso judío, tres años en prisión cerrada por guardar Shabat, y una mitzvá que nunca pudo cumplir allí."
 date: 2026-09-25T07:00:00Z
 quoteImage: ../../assets/mabat-leshabbat/sukkot-quote-es.png
 quoteImageAlt: "No hace falta salir del campo para ver las estrellas. Basta con apartar un poco de paja sobre la cabeza."
