@@ -1,5 +1,5 @@
 ---
-// עמוד גיליון "מבט לשבת" בספרדית — אותו עיצוב "החתימה השקטה" כמו העברי:
+// עמוד גיליון "מבט לשבת" בספרדית – אותו עיצוב "החתימה השקטה" כמו העברי:
 // רייל כחול, תווית, גוף עם מפרידים שקטים, חתימת שבת.
 import { getCollection } from 'astro:content';
 import { Image, getImage } from 'astro:assets';
@@ -30,7 +30,7 @@ const summary = description ?? derived;
 const pageUrl = new URL(`/es/shabat/${piece.id}/`, Astro.site).href;
 
 // תמונת התצוגה המקדימה לשיתוף: תמונת הציטוט של הגיליון, ולא הלוגו.
-// PNG ולא JPEG — טקסט על רקע אחיד מתכווץ טוב יותר ללא אובדן (החלטה קיימת).
+// PNG ולא JPEG – טקסט על רקע אחיד מתכווץ טוב יותר ללא אובדן (החלטה קיימת).
 // גיליון בלי תמונת ציטוט נופל ללוגו, ברירת המחדל של Base.
 let ogImage: string | undefined;
 let ogImageWidth: number | undefined;

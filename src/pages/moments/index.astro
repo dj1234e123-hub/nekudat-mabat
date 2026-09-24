@@ -1,13 +1,13 @@
 ---
-// עמוד הכניסה ל"רגע של נקודת מבט" — חמישה שערים.
+// עמוד הכניסה ל"רגע של נקודת מבט" – חמישה שערים.
 //
 // הקורא לא סורק רשימה: הוא עומד מול חמש קשתות, אחת לכל קבוצת מצבים, ובוחר
-// לאן להיכנס — ולכן חמשת השערים מוצגים יחד, ברשת של שני טורים. לחיצה על שער
-// מובילה לעמוד השער שלו — המדפים,
+// לאן להיכנס – ולכן חמשת השערים מוצגים יחד, ברשת של שני טורים. לחיצה על שער
+// מובילה לעמוד השער שלו – המדפים,
 // שורות הדלת, הסימנים והעוגנים של שלב 4.18/4.21 נשארים בדיוק כמו שהיו.
 //
 // התמונות שבתוך הקשתות הן ממלאות מקום (src/components/GateArt.astro) עד
-// שבעל הפרויקט ייצור ויעלה תמונות משלו — קובץ אחד לכל שער. הקשת, מסגרת
+// שבעל הפרויקט ייצור ויעלה תמונות משלו – קובץ אחד לכל שער. הקשת, מסגרת
 // הזהב, השם והשורה קבועים ואינם תלויים בתמונה.
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
@@ -19,14 +19,14 @@ import { isPublished } from '../../lib/published';
 import JoinGroup from '../../components/JoinGroup.astro';
 
 const moments = await getCollection('moments', isPublished);
-// מצב בלי תוכן עדיין מוצג (הוא חלק מהמבנה) אבל אינו קישור — כדי שלא להוביל למדף ריק.
+// מצב בלי תוכן עדיין מוצג (הוא חלק מהמבנה) אבל אינו קישור – כדי שלא להוביל למדף ריק.
 const filled = new Set(moments.map((moment) => moment.data.feeling));
-// דלת למי שלא מצליח לקרוא לזה בשם — רגע אקראי במקום בחירה מתוך רשימה.
+// דלת למי שלא מצליח לקרוא לזה בשם – רגע אקראי במקום בחירה מתוך רשימה.
 const momentUrls = moments.map((moment) => `/moments/${moment.data.feeling}/${moment.id}/`);
 
-// דלת למי שדווקא יודע מה עובר עליו — ואין לזה מדף. פנייה פרטית לאפרים,
+// דלת למי שדווקא יודע מה עובר עליו – ואין לזה מדף. פנייה פרטית לאפרים,
 // באותה שפה של שורת התגובה שבסוף הסיפורים: קישור שקט, לא כפתור.
-// זה גם ערוץ האמת היחיד לדעת אילו מצבים חסרים. הרגעים עצמם נשארים נקיים —
+// זה גם ערוץ האמת היחיד לדעת אילו מצבים חסרים. הרגעים עצמם נשארים נקיים –
 // הדלת הזו חיה בעמוד הכניסה בלבד (החלטת בעל הפרויקט 2026-08-24).
 const tellMeMessage = 'שלום אפרים, חיפשתי בפינת הרגעים משהו שעובר עליי, ולא מצאתי:\n';
 const tellMeHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(tellMeMessage)}`;
@@ -70,7 +70,7 @@ const tellMeHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURICompone
       /* קבוצה מתקפלת: עם 22 מצבים, רשימה פתוחה אחת הופכת לעמוד ארוך שצריך
          לגלול בו כדי לסרוק. <details> נבחר כי הוא עובד גם בלי JavaScript,
          נגיש למקלדת ולקורא מסך, וניתן לפתיחה מכל מקום בלי שנצטרך לנהל מצב.
-         כשהשערים למעלה הם הדלת הראשית, כל הקבוצות מתחילות סגורות — שער
+         כשהשערים למעלה הם הדלת הראשית, כל הקבוצות מתחילות סגורות – שער
          שנלחץ פותח את שלו. */
       FEELING_GROUPS.map((group) => (
         <details
@@ -87,7 +87,7 @@ const tellMeHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURICompone
       ))
     }
 
-    <p class="soon">מצבים נוספים ותכנים נוספים — בדרך.</p>
+    <p class="soon">מצבים נוספים ותכנים נוספים – בדרך.</p>
     <p class="tell-me">
       לא מצאת כאן את מה שעובר עליך?
       <a href={tellMeHref} rel="noopener" target="_blank" data-ph="tell_me">אפשר לספר לי</a>
@@ -102,7 +102,7 @@ const tellMeHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURICompone
   });
 
   // עוגן ישן (למשל /moments/#upward, מהתקופה שלפני עמודי השער) עדיין פותח
-  // את הקבוצה שלו במפת "כל המצבים" וגולל אליה — כתובות ששותפו לא נשברות.
+  // את הקבוצה שלו במפת "כל המצבים" וגולל אליה – כתובות ששותפו לא נשברות.
   // בלי JavaScript הדפדפן עדיין גולל לכותרת הקבוצה; היא רק נשארת סגורה עד הקשה.
   const target = location.hash && document.getElementById(location.hash.slice(1));
   if (target && target.tagName === 'DETAILS') {
@@ -135,7 +135,7 @@ const tellMeHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURICompone
 
   /* ── השערים ── */
   /* חמשת השערים ברשת של שני טורים (2026-09-16): 2 + 2 + 1, החמישי ממורכז.
-     קודם הם עמדו בטור אחד ברוחב מלא, ~450px לשער בטלפון — הקורא ראה שער
+     קודם הם עמדו בטור אחד ברוחב מלא, ~450px לשער בטלפון – הקורא ראה שער
      אחד בכל פעם, והחמישי חיכה 2,300px למטה. "תיכנס בזה שקורא לך" מחייב
      לראות את החמישה יחד; עכשיו כולם במסך אחד ב-390px. הקשת שומרת על
      המסגרת הזהובה ועל היחס הכמעט-עגול של קשתות דף הבית. */
@@ -149,7 +149,7 @@ const tellMeHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURICompone
     gap: 1.5rem 1rem;
   }
 
-  /* שער בודד בשורה האחרונה — ממורכז מתחת לארבעה, באותו רוחב שלהם */
+  /* שער בודד בשורה האחרונה – ממורכז מתחת לארבעה, באותו רוחב שלהם */
   .gates > li:last-child:nth-child(odd) {
     grid-column: 1 / -1;
     width: calc(50% - 0.5rem);
@@ -179,7 +179,7 @@ const tellMeHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURICompone
       box-shadow 0.25s ease;
   }
 
-  /* מסגרת זהב פנימית דקה — חתימת השער, נשארת מעל כל תמונה */
+  /* מסגרת זהב פנימית דקה – חתימת השער, נשארת מעל כל תמונה */
   .arch::after {
     content: '';
     position: absolute;
@@ -292,7 +292,7 @@ const tellMeHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURICompone
   }
 
   /* כותרת הקבוצה נושאת את צבע הזהות (--title). ברוב הקבוצות הוא זהה
-     ל---accent; בקבוצת הזהב הוא דיו — זהב נמדד 2.24:1 כטקסט (התקן 4.5). */
+     ל---accent; בקבוצת הזהב הוא דיו – זהב נמדד 2.24:1 כטקסט (התקן 4.5). */
   .group-label {
     display: flex;
     align-items: center;
@@ -307,7 +307,7 @@ const tellMeHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURICompone
     list-style: none;
   }
 
-  /* נקודת הצבע של הקבוצה — אותו דפוס של עולמות הסיפורים: נקודה, לא מילוי */
+  /* נקודת הצבע של הקבוצה – אותו דפוס של עולמות הסיפורים: נקודה, לא מילוי */
   .group-dot {
     width: 0.45rem;
     height: 0.45rem;
@@ -345,7 +345,7 @@ const tellMeHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURICompone
     margin-top: 2.5rem;
   }
 
-  /* דלת למי שלא מצא את המצב שלו — קישור שקט באותה שפה של שורת התגובה
+  /* דלת למי שלא מצא את המצב שלו – קישור שקט באותה שפה של שורת התגובה
      שבסוף הסיפורים. פעולה שלישית בעמוד הייתה רועשת מדי ככפתור. */
   .tell-me {
     text-align: center;

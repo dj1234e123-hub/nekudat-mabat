@@ -1,5 +1,5 @@
 ---
-# תרגום של ארכיון #048 (2026-08-30). התמונה נקייה מכיתוב — אותה תמונה כמו בעברית.
+# תרגום של ארכיון #048 (2026-08-30). התמונה נקייה מכיתוב – אותה תמונה כמו בעברית.
 title: "Un milímetro de coraje"
 section: chaim
 archiveId: "048"
@@ -7,7 +7,7 @@ cover: ../../assets/covers/048.png
 coverAlt: "Foto a ras del suelo: la rueda de un auto pesado descansa sobre una piedra pequeña que lo levanta apenas del asfalto agrietado, a la luz baja del amanecer; en el fondo desenfocado, una barra de pesas apoyada en la tierra"
 date: 2026-08-28T09:00:00Z
 readingTime: "unos 2 minutos"
-excerpt: "El gato hidráulico resbaló, y un auto de una tonelada y media quedó sobre Tony. Su madre salió de la cocina descalza, apoyó las dos manos sobre el metal frío — y lo levantó un milímetro. Una historia real."
+excerpt: "El gato hidráulico resbaló, y un auto de una tonelada y media quedó sobre Tony. Su madre salió de la cocina descalza, apoyó las dos manos sobre el metal frío – y lo levantó un milímetro. Una historia real."
 ---
 
 Un temblor corto en el aire, el metal gimiendo, el gato hidráulico resbalando sobre el asfalto, y el silencio cerrándose sobre el patio.
@@ -16,7 +16,7 @@ A Ángela se le cayó el vaso que estaba lavando. El vaso golpeó, el agua sigui
 
 Salió disparada. Los pies descalzos, la puerta abierta detrás de ella, el corazón corriendo adelante.
 
-La calle era una calle común — un barrio simple en un pueblo tranquilo de Estados Unidos — pero en ese silencio ahora faltaba un sonido.
+La calle era una calle común – un barrio simple en un pueblo tranquilo de Estados Unidos – pero en ese silencio ahora faltaba un sonido.
 
 El auto viejo de Tony estaba torcido en la entrada. Al acercarse vio el gato tirado a un costado, y un par de piernas asomando bajo el hierro.
 
@@ -34,7 +34,7 @@ Se paró junto al auto, las dos manos sobre el metal frío.
 
 El cerebro gritaba: es *demasiado pesado.* No es *lógico.* No eres *tú.*
 
-Y otra voz por dentro susurraba: si no eres tú — entonces quién.
+Y otra voz por dentro susurraba: si no eres tú – entonces quién.
 
 Desde lo más profundo subió la frase: *esto no es un auto. Es tu hijo el que está ahí.*
 
@@ -46,7 +46,7 @@ Y entonces sucedió.
 
 *Un milímetro.*
 
-El metal se despegó del asfalto. Casi invisible, pero sentido en todo el cuerpo — como cuando el corazón logra, por un instante, estar por encima del miedo a romperse.
+El metal se despegó del asfalto. Casi invisible, pero sentido en todo el cuerpo – como cuando el corazón logra, por un instante, estar por encima del miedo a romperse.
 
 Sostuvo. Un momento más. Una respiración más. Sin pensar en ninguna otra cosa.
 

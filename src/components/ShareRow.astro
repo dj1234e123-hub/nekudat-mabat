@@ -1,13 +1,13 @@
 ---
 // שורת שיתוף: וואטסאפ + העתקת קישור.
-// הטקסט על הכפתורים נגזר משפת העמוד — כפתור בעברית בתוך עמוד ספרדי
+// הטקסט על הכפתורים נגזר משפת העמוד – כפתור בעברית בתוך עמוד ספרדי
 // שובר את החוויה בדיוק במקום שבו מבקשים מהקורא לפעול.
 interface Props {
   title: string;
   url: string;
-  /** טקסט השיתוף בוואטסאפ. ברירת מחדל — הכותרת (סיפורים).
+  /** טקסט השיתוף בוואטסאפ. ברירת מחדל – הכותרת (סיפורים).
       ברגעים מעבירים כאן את הטקסט עצמו, כי הוא קצר ומיועד להישלח כמו שהוא.
-      מתעלמים ממנו כש-imageUrl קיים — שם ההודעה נשארת ריקה מטקסט בכוונה. */
+      מתעלמים ממנו כש-imageUrl קיים – שם ההודעה נשארת ריקה מטקסט בכוונה. */
   shareText?: string;
   /** התווית שלפני הכפתורים */
   label?: string;
@@ -15,10 +15,10 @@ interface Props {
   lang?: 'he' | 'es';
   /**
    * תמונת שיתוף מוכנה (כמו og.png של רגע). כשהיא קיימת, כפתור וואטסאפ
-   * מנסה לשתף את התמונה עצמה כקובץ — בלי טקסט ובלי קישור בהודעה, בדיוק
-   * כמו ששולחים תמונה מהגלריה — כדי שהמלל (שכבר חי בתוך התמונה עצמה)
+   * מנסה לשתף את התמונה עצמה כקובץ – בלי טקסט ובלי קישור בהודעה, בדיוק
+   * כמו ששולחים תמונה מהגלריה – כדי שהמלל (שכבר חי בתוך התמונה עצמה)
    * לא ישוכפל גם כהודעת טקסט נפרדת.
-   * בלי תמיכה ב-Web Share API עם קבצים (בעיקר שולחן עבודה) — נפילה
+   * בלי תמיכה ב-Web Share API עם קבצים (בעיקר שולחן עבודה) – נפילה
    * לאחור לקישור נקי בלבד, גם הוא בלי טקסט, מאותה סיבה.
    */
   imageUrl?: string;
@@ -79,14 +79,14 @@ const whatsappHref = imageUrl || linkOnly
       }
     });
 
-    // שיתוף התמונה עצמה כקובץ — רק כשהועברה imageUrl (data-image-url קיים
+    // שיתוף התמונה עצמה כקובץ – רק כשהועברה imageUrl (data-image-url קיים
     // רק אז; Astro משמיט attribute שערכו undefined). בלי Web Share API עם
     // תמיכה בקבצים, הכפתור פשוט מנווט כרגיל לקישור הנקי שכבר מוגדר לו.
     const whatsappBtn = share.querySelector<HTMLAnchorElement>('.whatsapp');
     const imageUrl = whatsappBtn?.dataset.imageUrl;
     if (whatsappBtn && imageUrl) {
       whatsappBtn.addEventListener('click', async (event) => {
-        if (!navigator.share) return; // אין Web Share כלל — ניווט רגיל לקישור הנקי
+        if (!navigator.share) return; // אין Web Share כלל – ניווט רגיל לקישור הנקי
         event.preventDefault();
         try {
           const response = await fetch(imageUrl);
@@ -97,7 +97,7 @@ const whatsappHref = imageUrl || linkOnly
             return;
           }
         } catch (err) {
-          // הקורא ביטל את חלון השיתוף בעצמו — לא נפילת חזרה, לא לעשות כלום.
+          // הקורא ביטל את חלון השיתוף בעצמו – לא נפילת חזרה, לא לעשות כלום.
           if (err instanceof Error && err.name === 'AbortError') return;
         }
         window.open(whatsappBtn.href, '_blank', 'noopener');

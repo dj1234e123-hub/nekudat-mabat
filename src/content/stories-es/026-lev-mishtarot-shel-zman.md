@@ -1,5 +1,5 @@
 ---
-# תרגום של ארכיון #026 (2026-08-30). התמונה נקייה מכיתוב — אותה תמונה כמו בעברית.
+# תרגום של ארכיון #026 (2026-08-30). התמונה נקייה מכיתוב – אותה תמונה כמו בעברית.
 title: "No rompió dinero"
 section: yoman
 archiveId: "026"
@@ -14,7 +14,7 @@ Siete de la mañana.
 
 Salgo del cuarto medio dormido, y escucho un ruidito desde la sala.
 
-Entro — y me quedo clavado en el lugar.
+Entro – y me quedo clavado en el lugar.
 
 Jani, mi hija, de cinco años, sentada en pijama, el pelo un poco revuelto, los ojos brillantes, y en la mano una tijerita.
 

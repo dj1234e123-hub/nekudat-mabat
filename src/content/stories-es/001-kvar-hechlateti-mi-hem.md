@@ -1,5 +1,5 @@
 ---
-# תרגום של ארכיון #001 (2026-08-30). התמונה נקייה מכיתוב — אותה תמונה כמו בעברית.
+# תרגום של ארכיון #001 (2026-08-30). התמונה נקייה מכיתוב – אותה תמונה כמו בעברית.
 title: "Ya había decidido quiénes eran"
 section: yoman
 archiveId: "001"
@@ -8,7 +8,7 @@ coverAlt: "Un hombre de pie a la sombra de un callejón de piedra mira a tres j�
 date: 2026-08-11T09:00:00Z
 readingTime: "unos 2 minutos"
 featured: 3
-excerpt: "Estaba parado junto a la entrada de Rabí Meir Baal Hanés y vi a unos muchachos juntando donaciones sin cartel y sin alcancía. En segundos ya había decidido quiénes eran — y entonces vi a quién le entregaron el dinero."
+excerpt: "Estaba parado junto a la entrada de Rabí Meir Baal Hanés y vi a unos muchachos juntando donaciones sin cartel y sin alcancía. En segundos ya había decidido quiénes eran – y entonces vi a quién le entregaron el dinero."
 hook: "Unos muchachos juntan dinero sin cartel y sin alcancía. ¿Qué pensamos de ellos?"
 ---
 

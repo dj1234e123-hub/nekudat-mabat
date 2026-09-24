@@ -1,4 +1,4 @@
-// תמונת השיתוף של רגע בספרדית — אותו צינור כמו העברי, במצב LTR:
+// תמונת השיתוף של רגע בספרדית – אותו צינור כמו העברי, במצב LTR:
 // /es/momentos/<מצב>/<רגע>/og.png
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';

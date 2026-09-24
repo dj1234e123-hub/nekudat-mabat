@@ -6,7 +6,7 @@ title: Esta distancia es real
 Alrededor hay gente.
 Hablan, sonríen,
 responden.
-Y por dentro — **silencio**.
+Y por dentro – **silencio**.
 
 Y eso confunde,
 porque no falta nada.

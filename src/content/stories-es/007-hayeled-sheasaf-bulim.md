@@ -1,5 +1,5 @@
 ---
-# תרגום של ארכיון #007 (2026-08-30). התמונה נקייה מכיתוב — אותה תמונה כמו בעברית.
+# תרגום של ארכיון #007 (2026-08-30). התמונה נקייה מכיתוב – אותה תמונה כמו בעברית.
 title: "El niño que juntaba estampillas"
 section: tzadikim
 archiveId: "007"
@@ -60,7 +60,7 @@ La madre bajó los ojos hacia el sobre. Y de pronto sintió *un nudo en la garga
 
 Cada una de esas estampillas era un momento en el que el rabino se había detenido a pensar en él.
 
-Un hombre a cuya puerta golpeaba todo el pueblo de Israel — encontró tiempo para golpear a la puerta de *un solo niño.* Guardarle estampillas. Y tomarse el trabajo de traérselas hasta la casa.
+Un hombre a cuya puerta golpeaba todo el pueblo de Israel – encontró tiempo para golpear a la puerta de *un solo niño.* Guardarle estampillas. Y tomarse el trabajo de traérselas hasta la casa.
 
 Sobre la mesa quedó un sobre lleno de estampillas.
 

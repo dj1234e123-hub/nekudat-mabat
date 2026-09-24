@@ -4,7 +4,7 @@ export const SITE = {
   slogan: 'שמים את הנקודה במרכז',
   ownerName: 'אפרים עטיה',
   whatsappGroupUrl: 'https://chat.whatsapp.com/EdI3EWz6WiQ6HlXCwJsdjh',
-  /** פנייה אישית לאפרים — הצעד הבא בעמוד האודות (ולא הקבוצה) */
+  /** פנייה אישית לאפרים – הצעד הבא בעמוד האודות (ולא הקבוצה) */
   whatsappDirectUrl: 'https://wa.me/message/YI67DYLYA5I4G1',
   /** אותו מספר בפורמט בינלאומי. נדרש לקישור שנפתח עם טקסט מוכן (שם הסיפור):
       הקישור הקצר שלמעלה (wa.me/message/...) אינו תומך בפרמטר טקסט. */

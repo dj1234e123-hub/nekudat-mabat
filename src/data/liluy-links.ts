@@ -1,4 +1,4 @@
-// קישורים שקטים מתוכן קיים לעמוד "ליווי אישי" — רשימה מצומצמת ובכוונה
+// קישורים שקטים מתוכן קיים לעמוד "ליווי אישי" – רשימה מצומצמת ובכוונה
 // (שלב 3, חלק 14): רק תוכן שהחיבור בו אמיתי, לא כל סיפור/רגע. הוספה = שורה
 // כאן; שום עמוד תוכן אחר לא נוגע.
 export const LILUY_STORY_IDS: string[] = [
@@ -7,7 +7,7 @@ export const LILUY_STORY_IDS: string[] = [
   'habricha-hamushlemet', // זהות, אחריות, הזדמנות שנייה
 ];
 
-// מדפי מצבים (לא שערי קבוצה) — feeling slug מתוך src/data/feelings.ts.
+// מדפי מצבים (לא שערי קבוצה) – feeling slug מתוך src/data/feelings.ts.
 export const LILUY_FEELING_SLUGS: string[] = [
   'standstill', // תקיעות
   'losing-control', // חוסר שליטה

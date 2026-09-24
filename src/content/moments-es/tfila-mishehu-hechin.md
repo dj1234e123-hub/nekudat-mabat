@@ -10,7 +10,7 @@ de que **nacieras**.
 
 Y en el medio, un pensamiento:
 estas palabras son hermosas,
-correctas — y no tuyas.
+correctas – y no tuyas.
 ¿Rezo, o **lectura**?
 
 Pero justo para el día

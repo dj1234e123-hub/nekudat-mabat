@@ -51,15 +51,15 @@ if (cover.format !== 'svg') {
 }
 
 const allStories = (await getCollection('stories', isPublished)).sort(newestFirst);
-// רשימת כתובות ל"סיפור אקראי" — בלי הסיפור הנוכחי.
+// רשימת כתובות ל"סיפור אקראי" – בלי הסיפור הנוכחי.
 const otherStoryUrls = allStories.filter((s) => s.id !== story.id).map((s) => `/stories/${s.id}/`);
-// "ההמשך" (NextUp): הסיפור הבא לפי קרבה תוכנית — שלושת המועמדים הקרובים
-// ביותר, מוגרלים בכל טעינה מבין אלה שטרם נקראו — ורגע של נקודת מבט שמתאים
+// "ההמשך" (NextUp): הסיפור הבא לפי קרבה תוכנית – שלושת המועמדים הקרובים
+// ביותר, מוגרלים בכל טעינה מבין אלה שטרם נקראו – ורגע של נקודת מבט שמתאים
 // לסיפור. נבחרים בזמן הבנייה מהתוכן עצמו (src/lib/related.ts).
 const nextCandidates = nextStories(story, allStories, SECTIONS);
 const relatedMoment = momentForStory(story, await getCollection('moments', isPublished));
 
-// הסיפור התאום בספרדית — אותו שם קובץ באוסף storiesEs. סיפור שטרם תורגם:
+// הסיפור התאום בספרדית – אותו שם קובץ באוסף storiesEs. סיפור שטרם תורגם:
 // הגלולה מובילה לשער הסיפורים הספרדי, בלי hreflang (זה לא אותו עמוד).
 const storiesEs = await getCollection('storiesEs', isPublished);
 const hasEsTwin = storiesEs.some((s) => s.id === story.id);
@@ -129,7 +129,7 @@ const altLangHref = hasEsTwin ? esStoryPath(story.id) : '/es/historias/';
   otherStoryUrls.length > 0 && (
     <script is:inline define:vars={{ otherStoryUrls }}>
       document.getElementById('random-story').addEventListener('click', () => {
-        // אקראי מתוך מה שטרם נקרא (זיכרון הקריאה של NextUp); כשהכול נקרא — מכולם.
+        // אקראי מתוך מה שטרם נקרא (זיכרון הקריאה של NextUp); כשהכול נקרא – מכולם.
         let read = [];
         try {
           read = JSON.parse(localStorage.getItem('nm_read') ?? '[]');
@@ -183,7 +183,7 @@ const altLangHref = hasEsTwin ? esStoryPath(story.id) : '/es/historias/';
     font-size: 1.25rem;
   }
 
-  /* הדגשות (*כך*) — משקל במקום נטייה, שנראית רע בעברית */
+  /* הדגשות (*כך*) – משקל במקום נטייה, שנראית רע בעברית */
   .story-body :global(em) {
     font-style: normal;
     font-weight: 600;
@@ -198,11 +198,11 @@ const altLangHref = hasEsTwin ? esStoryPath(story.id) : '/es/historias/';
   }
 
   /* תצלום בתוך גוף הסיפור (ראשון: "למה קוראים לי אפרים?", 2026-09-14).
-     מגיע מיד אחרי השורה שאומרת את השם — הפנים הם תשובה, לא הקדמה, ולכן
+     מגיע מיד אחרי השורה שאומרת את השם – הפנים הם תשובה, לא הקדמה, ולכן
      אינם בשער. "תצלום מודפס": מסגרת לבנה דקה וצל רך, כמו בעמוד מי אני.
      חיתוך 4:5 סביב הפנים כדי שיהיו גדולים וברורים גם בטלפון; נקודת המיקוד
      היא של הצילום (הפנים בתצלום המקורי יושבים ב-41% מהרוחב).
-     ה-Markdown של Astro עוטף את התמונה ב-<p> — לכן האיפוס שלו כאן. */
+     ה-Markdown של Astro עוטף את התמונה ב-<p> – לכן האיפוס שלו כאן. */
   .story-body :global(.inline-photo) {
     width: min(100%, 22rem);
     margin: 2.25rem auto;

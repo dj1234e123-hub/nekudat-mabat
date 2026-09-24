@@ -17,7 +17,7 @@ No sabía que entre las monedas había caído también *su anillo de compromiso.
 
 El hombre se llamaba Billy. Llevaba años viviendo en la calle, y ahora tenía en la mano un anillo que valía miles de dólares.
 
-Lo llevó a un joyero. Le ofrecieron *cuatro mil dólares* — una suma que podía sacarlo de la calle.
+Lo llevó a un joyero. Le ofrecieron *cuatro mil dólares* – una suma que podía sacarlo de la calle.
 
 No lo vendió.
 

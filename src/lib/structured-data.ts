@@ -1,16 +1,16 @@
-// נתונים מובנים (JSON-LD) — התיאור שגוגל קורא כדי להבין מה יש בעמוד.
+// נתונים מובנים (JSON-LD) – התיאור שגוגל קורא כדי להבין מה יש בעמוד.
 // המבנה כאן מכוון למינימום ההכרחי: מי כתב, מה זה, ומתי. בלי שדות שאין להם כיסוי אמיתי.
 import { getImage } from 'astro:assets';
 import logo from '../assets/logo.jpg';
 import { SITE } from '../data/site';
 
-/** מזהים קבועים — כתובת עם # מאפשרת לעמודים שונים להצביע על אותה ישות. */
+/** מזהים קבועים – כתובת עם # מאפשרת לעמודים שונים להצביע על אותה ישות. */
 const PERSON_ID = '/about/#person';
 const SITE_ID = '/#website';
 
 const abs = (path: string, site: URL) => new URL(path, site).href;
 
-/** אפרים עטיה — אותה ישות בכל עמודי האתר. */
+/** אפרים עטיה – אותה ישות בכל עמודי האתר. */
 export function person(site: URL) {
   return {
     '@type': 'Person',
@@ -21,8 +21,8 @@ export function person(site: URL) {
   };
 }
 
-/** דף הבית — האתר עצמו והאדם שמאחוריו.
-    image הוא הלוגו האמיתי (לא תמונת "עין" זמנית) — סימן נוסף לגוגל
+/** דף הבית – האתר עצמו והאדם שמאחוריו.
+    image הוא הלוגו האמיתי (לא תמונת "עין" זמנית) – סימן נוסף לגוגל
     על זהות המותג, מעבר ל-favicon. */
 export async function websiteJsonLd(site: URL, description: string) {
   const logoImage = await getImage({ src: logo, width: 640, format: 'jpeg' });
@@ -41,7 +41,7 @@ export async function websiteJsonLd(site: URL, description: string) {
   };
 }
 
-/** עמוד סיפור או רגע — פריט כתוב אחד. */
+/** עמוד סיפור או רגע – פריט כתוב אחד. */
 export function articleJsonLd(
   site: URL,
   { url, headline, description, datePublished, image, inLanguage = 'he-IL' }: {
@@ -50,7 +50,7 @@ export function articleJsonLd(
     description: string;
     datePublished: Date;
     image?: string;
-    /** רגע ספרדי מצהיר es — אותו מחבר, שפה אחרת. */
+    /** רגע ספרדי מצהיר es – אותו מחבר, שפה אחרת. */
     inLanguage?: string;
   },
 ) {
@@ -70,7 +70,7 @@ export function articleJsonLd(
   };
 }
 
-/** נתיב פירורי לחם (Breadcrumb) — ההיררכיה שגוגל יכול להציג בתוצאת החיפוש
+/** נתיב פירורי לחם (Breadcrumb) – ההיררכיה שגוגל יכול להציג בתוצאת החיפוש
     במקום כתובת גולמית. הפריט האחרון (העמוד הנוכחי) נשאר בלי path, לפי
     המוסכמה של גוגל לפריט הסופי ברשימה. */
 export function breadcrumbJsonLd(site: URL, items: { name: string; path?: string }[]) {
@@ -86,7 +86,7 @@ export function breadcrumbJsonLd(site: URL, items: { name: string; path?: string
   };
 }
 
-/** עמוד האודות — עמוד שכולו על אדם אחד. */
+/** עמוד האודות – עמוד שכולו על אדם אחד. */
 export function profileJsonLd(site: URL, description: string, image?: string) {
   return {
     '@context': 'https://schema.org',

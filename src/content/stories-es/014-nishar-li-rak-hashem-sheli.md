@@ -1,5 +1,5 @@
 ---
-# תרגום של ארכיון #014 (2026-08-30). התמונה נקייה מכיתוב — אותה תמונה כמו בעברית.
+# תרגום של ארכיון #014 (2026-08-30). התמונה נקייה מכיתוב – אותה תמונה כמו בעברית.
 title: "Solo me quedó mi nombre"
 section: tzadikim
 archiveId: "014"
@@ -60,7 +60,7 @@ Todo el camino a casa, esa frase no soltó a Iosef.
 
 A la mañana siguiente llegó al mercado. Sin dinero. Sin mercadería.
 
-Pero por primera vez en semanas — con la cabeza en alto.
+Pero por primera vez en semanas – con la cabeza en alto.
 
 Se acercó a un gran comerciante.
 

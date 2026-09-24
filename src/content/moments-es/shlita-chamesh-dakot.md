@@ -8,7 +8,7 @@ Y después otra vez.
 Y cada vez
 el mismo **final**.
 
-«No tengo control» —
+«No tengo control» –
 es lo que queda.
 Ni enojo, ni excusa.
 Solo una **frase**.

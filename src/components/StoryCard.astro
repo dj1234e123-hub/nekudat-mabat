@@ -9,7 +9,7 @@ import { esStoryPath, esSectionPath } from '../data/es-slugs';
 
 interface Props {
   story: CollectionEntry<'stories'> | CollectionEntry<'storiesEs'>;
-  /** 'es' — תוויות, תאריך וכתובות של האזור הספרדי. הצבעים והמבנה זהים. */
+  /** 'es' – תוויות, תאריך וכתובות של האזור הספרדי. הצבעים והמבנה זהים. */
   lang?: 'he' | 'es';
 }
 
@@ -23,7 +23,7 @@ const sectionLabel = es ? SECTIONS_ES[section].label : SECTIONS_META[section].la
 ---
 
 <li class="card">
-  {/* התמונה מקשרת לסיפור אך מוסתרת מהניווט במקלדת — אותו יעד כמו הכותרת,
+  {/* התמונה מקשרת לסיפור אך מוסתרת מהניווט במקלדת – אותו יעד כמו הכותרת,
       ואין טעם בשתי עצירות טאב לאותו קישור. */}
   <a href={storyHref} class="card-thumb" tabindex="-1" aria-hidden="true">
     <Image src={cover} alt="" widths={[176, 352]} sizes="5.5rem" class="card-cover" />
@@ -43,8 +43,8 @@ const sectionLabel = es ? SECTIONS_ES[section].label : SECTIONS_META[section].la
 </li>
 
 <style>
-  /* כרטיס לרשימות (ארכיון, עמודי עולם, נושאים, והספרדית) — שורה קומפקטית
-     (2026-09-16). הכרטיס הקודם — שער ברוחב מלא, כותרת, תווית ותקציר מלא —
+  /* כרטיס לרשימות (ארכיון, עמודי עולם, נושאים, והספרדית) – שורה קומפקטית
+     (2026-09-16). הכרטיס הקודם – שער ברוחב מלא, כותרת, תווית ותקציר מלא –
      עוצב כשהיו באתר שלושה סיפורים; עם 31 הוא הפך את הארכיון ל-16,500px
      בטלפון, כ-20 מסכים, שאי אפשר לסרוק. עכשיו: תמונה ממוזערת בצד, ולצידה
      שורת פתיחה (עולם · תאריך), כותרת ותקציר קטום לשתי שורות. ~105px לסיפור.
@@ -75,7 +75,7 @@ const sectionLabel = es ? SECTIONS_ES[section].label : SECTIONS_META[section].la
     min-width: 0;
   }
 
-  /* שורת הפתיחה: תווית העולם והתאריך, כטקסט שקט מעל הכותרת — אותו דפוס
+  /* שורת הפתיחה: תווית העולם והתאריך, כטקסט שקט מעל הכותרת – אותו דפוס
      כמו שורת "הסיפור הבא · מהחיים" בכרטיס ההמשך. בזרימה רגילה, כדי ששורה
      ארוכה (ספרדית: "Historias de tzadikim · 6 de septiembre de 2026")
      תישבר ולא תיפול על הכותרת. */
@@ -104,7 +104,7 @@ const sectionLabel = es ? SECTIONS_ES[section].label : SECTIONS_META[section].la
     background: none;
   }
 
-  /* התווית נושאת את צבע העולם שלה — אותו צבע שבדלת בעמוד הסיפורים.
+  /* התווית נושאת את צבע העולם שלה – אותו צבע שבדלת בעמוד הסיפורים.
      כך הקורא לומד את המפה בלי שאיש מסביר לו. נקודה בלבד, לא מילוי:
      צבעי המותג הם נגיעות עדינות ולא אתר צבעוני. */
   .world::before {
@@ -139,7 +139,7 @@ const sectionLabel = es ? SECTIONS_ES[section].label : SECTIONS_META[section].la
     color: var(--teal);
   }
 
-  /* שתי שורות ולא יותר — הכרטיס נשאר בגובה קבוע, והתקציר המלא מחכה בעמוד */
+  /* שתי שורות ולא יותר – הכרטיס נשאר בגובה קבוע, והתקציר המלא מחכה בעמוד */
   .card-excerpt {
     display: -webkit-box;
     -webkit-box-orient: vertical;

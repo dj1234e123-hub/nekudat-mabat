@@ -9,7 +9,7 @@ coverAlt: "Un rollo de la Torá abierto y un talit sobre una mesa de madera anti
 # Fecha de publicación = fecha real de salida al sitio en vivo (2026-09-16).
 date: 2026-09-16T17:00:00Z
 readingTime: "unos 2 minutos"
-excerpt: "En la Polonia de 1916, un niño llegó a los trece años sin padre, sin madre, y sin bar mitzvá. Pasaron cien años — guerra, gueto, Auschwitz — hasta que llegó el momento que se había perdido."
+excerpt: "En la Polonia de 1916, un niño llegó a los trece años sin padre, sin madre, y sin bar mitzvá. Pasaron cien años – guerra, gueto, Auschwitz – hasta que llegó el momento que se había perdido."
 source: "Basado en amplia cobertura periodística (CNN, Times of Israel, Congreso Judío Mundial) y el Libro Guinness de los Récords, 2016–2017."
 ---
 

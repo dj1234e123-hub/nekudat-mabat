@@ -1,5 +1,5 @@
 ---
-# תרגום של ארכיון #006 (2026-08-30). התמונה נקייה מכיתוב — אותה תמונה כמו בעברית.
+# תרגום של ארכיון #006 (2026-08-30). התמונה נקייה מכיתוב – אותה תמונה כמו בעברית.
 title: "El chico del avión de papel"
 section: yoman
 archiveId: "006"
@@ -22,7 +22,7 @@ El director le dijo:
 
 —Entra a dar una clase de prueba.
 
-Entró al aula. Antes de que empezara a hablar —
+Entró al aula. Antes de que empezara a hablar –
 
 Crrrrrec.
 
@@ -44,7 +44,7 @@ El chico se calló. Por un momento.
 
 Y el maestro volvió a enseñar.
 
-Pero de pronto — algo le pegó en la mejilla.
+Pero de pronto – algo le pegó en la mejilla.
 
 *Un avión de papel.*
 
@@ -72,7 +72,7 @@ Y entonces el director sonrió.
 
 *—El puesto es tuyo.*
 
-Cuando salió, les dio las gracias a todos los alumnos. Pero un gracias especial — al chico que le había tirado el avión.
+Cuando salió, les dio las gracias a todos los alumnos. Pero un gracias especial – al chico que le había tirado el avión.
 
 Desde entonces, nunca más volvió a mirar igual un avión de papel.
 

@@ -15,7 +15,7 @@ Y todo **no** lo está.
 
 Y quizás no es una cosa o la otra.
 Dolor por lo que falta,
-y gracias por lo que hay —
+y gracias por lo que hay –
 en el mismo **corazón**.
 
 ---

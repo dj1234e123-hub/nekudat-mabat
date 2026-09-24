@@ -1,13 +1,13 @@
 ---
 // הנתיב הזה משרת שני סוגי עמודים שחיים תחת /moments/:
 //
-// 1. עמוד שער (/moments/hurting/) — ה"בפנים" של שער מעמוד הכניסה: אותה
+// 1. עמוד שער (/moments/hurting/) – ה"בפנים" של שער מעמוד הכניסה: אותה
 //    קשת עם התמונה למעלה, שם השער ושורת השער, ומתחתיהם דלתות המצבים של
 //    הקבוצה. תמונת השער היא גם תמונת השיתוף של העמוד.
-// 2. מדף של מצב אחד (/moments/loneliness/) — כל הרגעים ששייכים אליו.
+// 2. מדף של מצב אחד (/moments/loneliness/) – כל הרגעים ששייכים אליו.
 //    המדף הוא מסנן: הקורא סורק ובוחר איזה מהרגעים הוא שלו (docs/MOMENT-FORMAT.md).
 //
-// שניהם באותו קובץ כי הם חולקים את אותה רמת כתובת — של קבוצות ושל מצבים
+// שניהם באותו קובץ כי הם חולקים את אותה רמת כתובת – של קבוצות ושל מצבים
 // אין חפיפת שמות (הוולידציה של הסכמה שומרת שמצב חדש לא יתנגש).
 import { getCollection } from 'astro:content';
 import { getImage } from 'astro:assets';
@@ -32,11 +32,11 @@ import JoinGroup from '../../../components/JoinGroup.astro';
 
 export async function getStaticPaths() {
   const moments = await getCollection('moments', isPublished);
-  // מדפי מצבים — נבנים רק כשיש בהם תוכן, כדי שלא ייווצרו עמודים ריקים.
+  // מדפי מצבים – נבנים רק כשיש בהם תוכן, כדי שלא ייווצרו עמודים ריקים.
   const feelingPaths = FEELING_SLUGS.filter((feeling) =>
     moments.some((moment) => moment.data.feeling === feeling)
   ).map((feeling) => ({ params: { feeling } }));
-  // עמודי שער — אחד לכל קבוצה.
+  // עמודי שער – אחד לכל קבוצה.
   const gatePaths = FEELING_GROUPS.map((group) => ({ params: { feeling: group.slug } }));
   return [...feelingPaths, ...gatePaths];
 }
@@ -50,7 +50,7 @@ const filled = new Set(allMoments.map((moment) => moment.data.feeling));
 // "רגע אחד מכאן" (2026-09-16): הלחיצה על השער מקבלת תוכן ממש ולא עוד תפריט.
 // כל רגעי הקבוצה נבנים ככרטיסים בפורמט המדף (כותרת-וו + מהלך המציאות);
 // הראשון (החדש ביותר) מוצג בלי JavaScript, והסקריפט בתחתית מגריל אחד
-// מהם בכל טעינה — אותו דפוס כמו דלת הרגעים בדף הבית.
+// מהם בכל טעינה – אותו דפוס כמו דלת הרגעים בדף הבית.
 const gateFeelings = new Set(gate ? gate.feelings.map((f) => f.slug) : []);
 const gateMoments = allMoments
   .filter((m) => gateFeelings.has(m.data.feeling))
@@ -76,7 +76,7 @@ const moments = gate
     ).sort(newestFirst);
 // בפורמט החדש המדף מציג **כותרת + מהלך המציאות בלבד**. עם כותרת-וו אמיתית
 // תפקיד המדף משתנה מ"לקרוא כאן" ל"איזה מהשלושה הוא שלי", ומהלך המציאות הוא
-// בדיוק המסנן הזה. הסיום אינו מוצג — לא שורפים אותו לפני שהקורא הגיע אליו.
+// בדיוק המסנן הזה. הסיום אינו מוצג – לא שורפים אותו לפני שהקורא הגיע אליו.
 // רגע שטרם הוגר ממשיך להיות מוצג במלואו, בדיוק כפי שהיה.
 const cards = moments.map((moment) => ({
   moment,
@@ -84,10 +84,10 @@ const cards = moments.map((moment) => ({
 }));
 
 const title = gate ? `${gate.label} · רגע של נקודת מבט` : `${label} · רגע של נקודת מבט`;
-const description = gate ? gate.line : `רגע של נקודת מבט — ${label}`;
+const description = gate ? gate.line : `רגע של נקודת מבט – ${label}`;
 
-// העמוד התאום בספרדית — אותה רמת כתובת, תחת /es/momentos/. שער קיים תמיד;
-// מדף קיים רק כשיש בו תוכן מתורגם — בלי תאום, הגלולה מובילה לשער השפה.
+// העמוד התאום בספרדית – אותה רמת כתובת, תחת /es/momentos/. שער קיים תמיד;
+// מדף קיים רק כשיש בו תוכן מתורגם – בלי תאום, הגלולה מובילה לשער השפה.
 const momentsEs = await getCollection('momentsEs', isPublished);
 const hasEsTwin = gate ? true : momentsEs.some((m) => m.data.feeling === feeling);
 const altLangHref = hasEsTwin ? `/es/momentos/${param}/` : '/es/momentos/';
@@ -200,7 +200,7 @@ const altLangHref = hasEsTwin ? `/es/momentos/${param}/` : '/es/momentos/';
     margin: 0 auto;
   }
 
-  /* אותה קשת של עמוד הכניסה — השער נשאר שער גם בפנים */
+  /* אותה קשת של עמוד הכניסה – השער נשאר שער גם בפנים */
   .arch {
     position: relative;
     display: block;
@@ -246,7 +246,7 @@ const altLangHref = hasEsTwin ? `/es/momentos/${param}/` : '/es/momentos/';
 
   /* הקשת בעמוד השער קטנה מזו שבעמוד הכניסה (2026-09-16): הקורא הרגע לחץ
      עליה, ולחזור עליה ברוחב מלא (170px) דחף את התוכן ל-478px. אותה תמונה,
-     אותה מסגרת זהב — בגודל של קשתות דף הבית. */
+     אותה מסגרת זהב – בגודל של קשתות דף הבית. */
   .arch-small {
     width: 180px;
     height: 100px;
@@ -339,7 +339,7 @@ const altLangHref = hasEsTwin ? `/es/momentos/${param}/` : '/es/momentos/';
   }
 
   /* ── מדף מצב ── */
-  /* התווית והכותרת בצבע הזהות של הקבוצה — כך "כשכואב" ממשיך להיראות
+  /* התווית והכותרת בצבע הזהות של הקבוצה – כך "כשכואב" ממשיך להיראות
      כמו "כשכואב" גם אחרי שעוזבים את השער, ולא רק בשלב הראשון של המסע. */
   .group-label {
     text-align: center;

@@ -1,5 +1,5 @@
 ---
-// עמוד של רגע בודד — הכתובת שמשתפים.
+// עמוד של רגע בודד – הכתובת שמשתפים.
 // המבנה נגזר מ-docs/MOMENT-FORMAT.md: כותרת → המציאות → המסקנה → הסיבוב →
 // קישוט → סיום. העמוד שקט מסביב: בלי תמונה, בלי תאריך, בלי זמן קריאה.
 import { getCollection } from 'astro:content';
@@ -28,12 +28,12 @@ const group = groupOf(feeling);
 
 const format = parseMoment(moment.body ?? '', moment.data.title);
 
-// הטקסט כמלל נקי — לתיאור העמוד ולשיתוף בוואטסאפ (הרגע נשלח כמו שהוא).
+// הטקסט כמלל נקי – לתיאור העמוד ולשיתוף בוואטסאפ (הרגע נשלח כמו שהוא).
 const plainText = momentPlainText(format);
 const flat = plainText.replace(/\s+/g, ' ').trim();
 const summary = flat.length > 200 ? `${flat.slice(0, 197)}…` : flat;
 
-// כותרת-הוו כשהיא נכתבה, ואחרת גזירה מהמשפט הראשון (moment-title.ts) —
+// כותרת-הוו כשהיא נכתבה, ואחרת גזירה מהמשפט הראשון (moment-title.ts) –
 // כדי שרגע שטרם הוגר לפורמט החדש ימשיך לשאת כותרת ייחודית לגוגל.
 const title = format.title ?? momentTitle(moment.body!);
 
@@ -41,13 +41,13 @@ const pageUrl = new URL(`/moments/${feeling}/${moment.id}/`, Astro.site).href;
 // תמונת שיתוף ממותגת, נוצרת בזמן הבנייה מהטקסט עצמו (ראו og.png.ts באותה תיקייה).
 // חשוב בעיקר לשיתוף בסטטוס, שבו הקישור נעלם והתמונה היא כל מה שנשאר.
 const ogImage = new URL(`/moments/${feeling}/${moment.id}/og.png`, Astro.site).href;
-// כרטיס השיתוף הגבוה (card.png.ts) — הוא מה שכפתור הוואטסאפ שולח. og.png נשאר
+// כרטיס השיתוף הגבוה (card.png.ts) – הוא מה שכפתור הוואטסאפ שולח. og.png נשאר
 // לתצוגה המקדימה של הקישור, שם תמונה גבוהה נחתכת.
 const shareImage = new URL(`/moments/${feeling}/${moment.id}/card.png`, Astro.site).href;
-// "נקודה לדרך" — אופציונלית. שבירת השורה שנכתבה בקובץ נשמרת גם כאן.
+// "נקודה לדרך" – אופציונלית. שבירת השורה שנכתבה בקובץ נשמרת גם כאן.
 const handleLines = moment.data.handle?.split('\n').map((l) => l.trim()).filter(Boolean) ?? [];
 
-// הרגע התאום בספרדית — אותו שם קובץ באוסף momentsEs. רגע שטרם תורגם:
+// הרגע התאום בספרדית – אותו שם קובץ באוסף momentsEs. רגע שטרם תורגם:
 // הגלולה מובילה לשער השפה, בלי hreflang (זה לא אותו עמוד).
 const momentsEs = await getCollection('momentsEs', isPublished);
 const hasEsTwin = momentsEs.some((m) => m.id === moment.id);
@@ -85,7 +85,7 @@ const altLangHref = hasEsTwin ? `/es/momentos/${feeling}/${moment.id}/` : '/es/m
     <article class="moment">
       {
         format.title ? (
-          /* הכותרת היא הדבר הראשון שהקורא רואה, ושום דבר לא בא לפניה —
+          /* הכותרת היא הדבר הראשון שהקורא רואה, ושום דבר לא בא לפניה –
              תווית מצב בראש העמוד מפרשת את הקורא לפני שהוא זיהה את עצמו. */
           <header class="moment-head">
             <h1 class="hook">{format.title}</h1>
@@ -93,7 +93,7 @@ const altLangHref = hasEsTwin ? `/es/momentos/${feeling}/${moment.id}/` : '/es/m
           </header>
         ) : (
           /* רגע שטרם הוגר: העיצוב הישן הוא בלי כותרת גלויה, ולכן ה-h1 נשאר
-             מוסתר חזותית — נוכח לקורא מסך ולגוגל, בלי לשנות דבר במסך. */
+             מוסתר חזותית – נוכח לקורא מסך ולגוגל, בלי לשנות דבר במסך. */
           <h1 class="visually-hidden">{title}</h1>
         )
       }

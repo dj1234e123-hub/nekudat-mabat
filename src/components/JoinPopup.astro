@@ -1,22 +1,22 @@
 ---
-// חלון הזמנה לקבוצה שנפתח אחרי דקת קריאה — החלטת בעל הפרויקט, 2026-09-21.
+// חלון הזמנה לקבוצה שנפתח אחרי דקת קריאה – החלטת בעל הפרויקט, 2026-09-21.
 //
 // שלוש הגנות שהופכות אותו לנסבל, וכולן חיות ב-localStorage של הקורא בלבד
 // (בלי עוגיות, בלי זהות, כמו זיכרון הקריאה nm_read):
-//   nm_joined      — מי שכבר לחץ "להצטרפות" בכל עמוד שהוא, לא יראה אותו לעולם.
-//   nm_join_popup  — מי שסגר אותו פעם אחת, לא יראה אותו שוב. פעם אחת לדפדפן.
-// בלי שתי אלה, קורא חוזר היה מקבל אותו בכל עמוד — וזה מה שמגרש אנשים.
+//   nm_joined      – מי שכבר לחץ "להצטרפות" בכל עמוד שהוא, לא יראה אותו לעולם.
+//   nm_join_popup  – מי שסגר אותו פעם אחת, לא יראה אותו שוב. פעם אחת לדפדפן.
+// בלי שתי אלה, קורא חוזר היה מקבל אותו בכל עמוד – וזה מה שמגרש אנשים.
 //
-// נגישות: אלמנט <dialog> אמיתי עם showModal() — מקבל ממנו בחינם מלכודת
+// נגישות: אלמנט <dialog> אמיתי עם showModal() – מקבל ממנו בחינם מלכודת
 // פוקוס, סגירה ב-Esc, והחזרת הפוקוס למקום שממנו נפתח.
 //
-// מדידה: popup_shown (דרך window.nmTrack — אינו לחיצה) · popup_join · popup_close.
+// מדידה: popup_shown (דרך window.nmTrack – אינו לחיצה) · popup_join · popup_close.
 import { SITE } from '../data/site';
 import { SITE_ES } from '../data/site-es';
 
 interface Props {
   lang?: 'he' | 'es';
-  /** שניות עד הפתיחה. ברירת המחדל 60 — "אחרי דקה". */
+  /** שניות עד הפתיחה. ברירת המחדל 60 – "אחרי דקה". */
   delay?: number;
 }
 const { lang = 'he', delay = 60 } = Astro.props;
@@ -27,7 +27,7 @@ const t = es
   ? {
       title: '¿Quieres más Punto de Vista?',
       text: 'Cada historia nueva y la «Mirada de Shabat» llegan primero al grupo.',
-      note: 'Sin conversaciones ni notificaciones — el único que escribe soy yo.',
+      note: 'Sin conversaciones ni notificaciones – el único que escribe soy yo.',
       btn: 'Unirme al grupo',
       later: 'Ahora no',
       close: 'Cerrar',
@@ -35,7 +35,7 @@ const t = es
   : {
       title: 'רוצים עוד נקודת מבט?',
       text: 'סיפור חדש ו״מבט לשבת״ מגיעים קודם כול לקבוצה.',
-      note: 'בלי שיחות ובלי התראות — רק אני שולח.',
+      note: 'בלי שיחות ובלי התראות – רק אני שולח.',
       btn: 'להצטרפות לקבוצה',
       later: 'לא עכשיו',
       close: 'סגירה',
@@ -53,7 +53,7 @@ const t = es
       <span class="pop-dot" aria-hidden="true" />
       <p class="pop-title" id="pop-title">{t.title}</p>
       <p class="pop-text">{t.text}</p>
-      {/* autofocus — אחרת showModal() נותן את הפוקוס ל-X, שהוא הראשון בסדר
+      {/* autofocus – אחרת showModal() נותן את הפוקוס ל-X, שהוא הראשון בסדר
           ה-DOM: טבעת הפוקוס מציירת ריבוע סביב הסגירה ומושכת אליה את העין. */}
       <a class="pop-btn" href={groupUrl} rel="noopener" target="_blank" data-ph="popup_join" autofocus>
         {t.btn}
@@ -85,7 +85,7 @@ const t = es
   }
 
   /* טבעת פוקוס בשפת האתר במקום המלבן השחור של הדפדפן. focus-visible ולא
-     focus — מי שלחץ בעכבר לא רואה טבעת בכלל. */
+     focus – מי שלחץ בעכבר לא רואה טבעת בכלל. */
   .pop :focus-visible {
     outline: 2px solid var(--gold);
     outline-offset: 3px;
@@ -108,7 +108,7 @@ const t = es
     }
   }
 
-  /* נקודת זהב — אותה חתימה של שערי הרגעים ושל כרטיסי העולמות:
+  /* נקודת זהב – אותה חתימה של שערי הרגעים ושל כרטיסי העולמות:
      נקודה, לא מילוי. היא מה שאומר "זה נקודת מבט" ולא חלון פרסומת. */
   .pop-dot {
     display: block;
@@ -215,7 +215,7 @@ const t = es
       } catch {}
     };
 
-    // מי שכבר הצטרף, או שכבר סגר את החלון פעם אחת — לא רואה אותו.
+    // מי שכבר הצטרף, או שכבר סגר את החלון פעם אחת – לא רואה אותו.
     if (!read('nm_joined') && !read('nm_join_popup')) {
       const delay = Number(pop.dataset.delay ?? 60) * 1000;
       setTimeout(() => {
@@ -234,14 +234,14 @@ const t = es
           pop.close();
         }),
       );
-      // <dialog> אינו סוגר בלחיצה על הרקע מעצמו — הלחיצה נוחתת על האלמנט עצמו.
+      // <dialog> אינו סוגר בלחיצה על הרקע מעצמו – הלחיצה נוחתת על האלמנט עצמו.
       pop.addEventListener('click', (event) => {
         if (event.target === pop) {
           window.nmTrack?.('popup_close');
           pop.close();
         }
       });
-      // לחיצה על "להצטרפות" סוגרת ומסמנת — הקישור נפתח בלשונית חדשה.
+      // לחיצה על "להצטרפות" סוגרת ומסמנת – הקישור נפתח בלשונית חדשה.
       pop.querySelector('.pop-btn')?.addEventListener('click', () => pop.close());
     }
   }

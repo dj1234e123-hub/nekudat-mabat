@@ -1,5 +1,5 @@
 ---
-# תרגום של ארכיון #037 (2026-08-30). התמונה נקייה מכיתוב — אותה תמונה כמו בעברית.
+# תרגום של ארכיון #037 (2026-08-30). התמונה נקייה מכיתוב – אותה תמונה כמו בעברית.
 title: "La historia que le contaron al águila"
 section: meshalim
 archiveId: "037"
@@ -20,7 +20,7 @@ Toda su vida escuchó las mismas palabras: que era raro, que no era como todos, 
 
 Cuando era chico todavía intentaba preguntar, pero muy rápido aprendió a callar.
 
-Se encontró un rincón detrás del gallinero — un lugar donde nadie mira, y nadie hace preguntas.
+Se encontró un rincón detrás del gallinero – un lugar donde nadie mira, y nadie hace preguntas.
 
 Un día pasó por ahí un hombre viejo. Un naturalista de ojos agudos, y un corazón acostumbrado a reconocer a quien no está en su lugar.
 
@@ -58,7 +58,7 @@ El viejo calló. No empujó, no tironeó. Solo lo sostuvo y susurró:
 
 Y entonces, en un instante que no se puede medir en tiempo, extendió las alas hasta el final, tomó una respiración profunda, y se soltó.
 
-Un momento más de caída — y el cuerpo entero recordó lo que siempre estuvo en él.
+Un momento más de caída – y el cuerpo entero recordó lo que siempre estuvo en él.
 
 Las alas empezaron a trabajar. Despacio, y después fuerte. Y la tierra se fue alejando.
 

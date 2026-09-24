@@ -15,7 +15,7 @@ la conclusión: te saliste del **camino**.
 
 Y quizás el plan
 era solo una **suposición**.
-Y lo que pasó en su lugar —
+Y lo que pasó en su lugar –
 ese es el camino.
 
 ---

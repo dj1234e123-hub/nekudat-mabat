@@ -1,6 +1,6 @@
 ---
 # תרגום של ארכיון #009 (2026-08-30).
-# תמונת שער נפרדת נוספה 2026-09-16 — תמונת השער העברית נושאת ציטוט בעברית
+# תמונת שער נפרדת נוספה 2026-09-16 – תמונת השער העברית נושאת ציטוט בעברית
 # ("המקום שבו בוכים בשקט..."), ולכן קיבלה תמונה נפרדת בלי כיתוב לגרסה הספרדית.
 title: "Dónde empezó esta historia"
 section: tzadikim
@@ -66,7 +66,7 @@ Rabí Shlomo Eliashiv, el autor del «Leshem», la miró unos instantes.
 
 Y entonces dijo:
 
-*«Quien honra así la Torá — tendrá un hijo. Un hijo que iluminará los ojos de Israel».*
+*«Quien honra así la Torá – tendrá un hijo. Un hijo que iluminará los ojos de Israel».*
 
 Un año después nació un niño. Lo llamaron: Iosef Shalom.
 

@@ -8,7 +8,7 @@ cover: ../../assets/covers/kedei-levade-shesalachti.png
 coverAlt: "Compartimento de un tren antiguo a la luz del atardecer: un libro abierto sobre la mesa de madera, un sombrero junto al asiento, un puro humeante en el cenicero, y por la ventana las torres de Vilna"
 date: 2026-09-06T17:30:00Z
 readingTime: "unos 2 minutos"
-excerpt: "Un joven le gritó todo el camino al anciano que iba sentado a su lado en el tren. En Vilna descubrió quién era. Pero la historia no terminó con el pedido de perdón — recién empezó ahí."
+excerpt: "Un joven le gritó todo el camino al anciano que iba sentado a su lado en el tren. En Vilna descubrió quién era. Pero la historia no terminó con el pedido de perdón – recién empezó ahí."
 ---
 
 Un tren viaja a Vilna. En el vagón de fumadores va sentado un hombre mayor, vestido con sencillez, con un libro abierto en las manos. A su lado se sienta un joven.

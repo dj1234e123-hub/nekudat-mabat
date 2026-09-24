@@ -1,14 +1,14 @@
 ---
 # תרגום גיליון יום הכיפורים (2026-09-20). אותו תאריך ושעה בדיוק כמו התאום העברי.
 # נוסח נטול מגדר: tú ניטרלי; "exento" (מוטה) הוחלף ב-"libre" (בלתי מוטה).
-# התרגום נעשה ללא בדיקת דוברת ספרדית (החלטת ההשקה של 2026-08-30) — לבדיקה כשתתפנה.
+# התרגום נעשה ללא בדיקת דוברת ספרדית (החלטת ההשקה של 2026-08-30) – לבדיקה כשתתפנה.
 # תמונת ציטוט ספרדית נפרדת (LTR, כתובת nekudatmabat.blog/es), אותו ציטוט כמו בעברית.
-# נוסף "Siempre lo arruino" במקביל לעברית (פועל — נטול מגדר).
+# נוסף "Siempre lo arruino" במקביל לעברית (פועל – נטול מגדר).
 # שדה parasha נושא תווית מועד ("Yom Kipur") ומוצג בלי הקידומת "Parashá" (kickerEs).
 title: ¿Qué voto todavía te ata?
 parasha: Yom Kipur
 hebrewDate: 10 de Tishrei 5787
-description: "No hicimos un voto. No juramos. Solo lo dijimos — y desde entonces vivimos según eso. La noche más sagrada del año no empieza con 'perdónanos'. Empieza con una anulación."
+description: "No hicimos un voto. No juramos. Solo lo dijimos – y desde entonces vivimos según eso. La noche más sagrada del año no empieza con 'perdónanos'. Empieza con una anulación."
 date: 2026-09-20T08:20:00Z
 quoteImage: ../../assets/mabat-leshabbat/yom-kippur-quote-es.png
 quoteImageAlt: "Al principio era una frase. Después se volvió una explicación. Y al final se volvió identidad."
@@ -56,7 +56,7 @@ Un voto no es una frase cualquiera.
 
 Es un compromiso que una persona asume con palabras.
 
-Lo dijo —
+Lo dijo –
 
 **y la frase lo ata**.
 
@@ -95,7 +95,7 @@ Simplemente empezamos a vivir según ella.
 
 Y a veces hasta nos protege.
 
-Porque si yo «soy así» —
+Porque si yo «soy así» –
 
 quedo libre de pelear.
 
