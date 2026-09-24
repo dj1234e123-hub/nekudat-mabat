@@ -11,21 +11,23 @@ hebrewDate: 15 de Tishrei 5787
 description: "Sucot, en un campo de trabajo soviético. Un preso judío, tres años en prisión cerrada por guardar Shabat, y una mitzvá que nunca pudo cumplir allí. Al fondo del campo hay un montón de paja. Junto a la cerca eléctrica."
 date: 2026-09-25T07:00:00Z
 quoteImage: ../../assets/mabat-leshabbat/sukkot-quote-es.png
-quoteImageAlt: "No hace falta salir del campo para ver las estrellas. Hace falta apartar un poco de paja sobre la cabeza."
+quoteImageAlt: "No hace falta salir del campo para ver las estrellas. Basta con apartar un poco de paja sobre la cabeza."
 signoff: |
   Shabat shalom y jag saméaj.
-  Ojalá sepamos alegrarnos este año
-  también antes de que todo se arregle,
-  y encontrar en cualquier lugar
-  una pequeña abertura hacia las estrellas.
+  Ojalá este año
+  no solo lleguemos a destino,
+  sino que sepamos alegrarnos también en el camino.
 signedBy: Efraim Atia
 ---
 
 Sucot, en un campo de trabajo de la Unión Soviética.
 
-Al fondo del campo vio un montón de paja.
+Al fondo del campo, un preso judío vio un montón de paja.
 
-Un preso judío.
+Lo miró otra vez.
+
+Paja.
+
 Guardaba Shabat dentro del campo.
 Por eso ya había pasado tres años en prisión cerrada.
 
@@ -38,7 +40,7 @@ Y había una mitzvá que nunca había logrado cumplir allí:
 La paja sirve para el techo de una sucá.
 
 Y si cavaba dentro del montón
-hasta ver estrellas encima —
+hasta poder levantar la cabeza y ver estrellas —
 
 Pero el montón estaba junto a la cerca eléctrica.
 
@@ -56,7 +58,8 @@ En la lectura de la festividad, la Torá explica por qué nos sentamos en la suc
 
 «Para que sepan sus generaciones que en cabañas hice habitar a los hijos de Israel cuando los saqué de la tierra de Egipto».
 
-No cuando llegaron.
+No cuando terminó el viaje.
+No cuando ya estaban en su tierra.
 
 **Mientras salían.**
 
@@ -79,7 +82,7 @@ corrió.
 
 Se metió en la paja.
 
-Apartó la paja sobre su cabeza hasta ver las estrellas.
+Cavó sobre su cabeza hasta ver las estrellas.
 
 Susurró la bendición: «leishev basuká».
 
@@ -89,7 +92,7 @@ Unos pocos instantes.
 
 La cerca no se movió. El campo no cambió.
 
-Pero su corazón, escribió después, **se llenó de alegría**.
+Y aun así, su corazón, escribió después, **se llenó de alegría**.
 
 Poco tiempo después lo liberaron
 y lo expulsaron de la cárcel directo a la Tierra de Israel.
@@ -98,18 +101,18 @@ Yosef Mendelevich. Prisionero de Sion.
 Once años en prisión
 **por intentar salir.**
 
-Y nosotros esperamos.
+¿Y nosotros?
 
-Que se arregle. Que termine. Que salgamos de esto.
+Nosotros también esperamos.
 
-«Cuando me alcance para vivir».
-«Cuando la casa se calme».
-«Cuando pase esta etapa».
+Que alcance el dinero.
+Que la casa se calme.
+Que pase esta etapa.
 
 Y entonces nos alegraremos.
 
 No hace falta salir del campo para ver las estrellas.
 
-**Hace falta apartar un poco de paja sobre la cabeza.**
+**Basta con apartar un poco de paja sobre la cabeza.**
 
 **¿Qué seguimos esperando que termine antes de permitirnos la alegría?**
