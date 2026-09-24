@@ -224,8 +224,10 @@ function check(m) {
     else add('PASS', 'נקודה לדרך · לשון', 'מותרת ולא מצווה');
     // הידית נגזרת מהסיבוב ולא ממציאה עצה חדשה: היא אמורה להיאחז במילה
     // מהמהלך השלישי או מהסיום. WARNING ולא FAIL — הקשר יכול להיות במשמעות.
-    const source = new Set(words([...(m.moves[2] || []), ...m.closing].join(' ')).map(bare).filter((w) => w.length > 2 && !STOP.has(w)));
-    const shared = words(ht).map(bare).filter((w) => source.has(w));
+    // אותיות שימוש ("הלילה"/"לילה", "לטוב"/"טוב") לא מבטלות אחיזה — אותה השוואה של כלל 2.
+    const keep = (f) => f.length > 2 && !STOP.has(f);
+    const source = new Set(words([...(m.moves[2] || []), ...m.closing].join(' ')).flatMap((w) => [...forms(w)]).filter(keep));
+    const shared = words(ht).filter((w) => [...forms(w)].some((f) => keep(f) && source.has(f))).map(bare);
     if (shared.length) add('PASS', 'נקודה לדרך · נאחזת בסיבוב', shared.join(', '));
     else add('WARNING', 'נקודה לדרך · נאחזת בסיבוב', 'אין מילה משותפת עם הסיבוב או הסיום');
   }

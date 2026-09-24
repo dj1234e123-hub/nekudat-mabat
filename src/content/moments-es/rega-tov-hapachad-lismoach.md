@@ -8,9 +8,9 @@ Y enseguida sube un pensamiento
 que mejor no ilusionarse
 **demasiado**.
 
-Como si la alegría a la vista
-invitara algo.
-Y quien ya cayó después de ella,
+Como si alegrarse ahora
+hiciera más dura la caída.
+Y quien ya cayó alguna vez
 aprende a **cuidarse**.
 
 Pero esa cautela

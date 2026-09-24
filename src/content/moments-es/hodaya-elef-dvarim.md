@@ -20,5 +20,5 @@ Mil cosas **funcionaron**.
 
 ---
 
-Un día sin titulares:
-mil cosas que funcionaron.
+No es que no pasó nada.
+Es que no lo vimos.
