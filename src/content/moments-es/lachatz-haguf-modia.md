@@ -3,8 +3,8 @@ feeling: pressure
 date: 2026-08-21
 title: El cuerpo avisa
 ---
-Los hombros suben.
-La mandíbula se cierra.
+El estómago se encoge.
+Las manos no descansan.
 La respiración se acorta sola
 sin que lo **pidieras**.
 

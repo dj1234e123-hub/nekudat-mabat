@@ -20,5 +20,5 @@ junto a algo **querido**.
 
 ---
 
-El miedo siempre está junto a algo.
-La pregunta es junto a qué.
+El miedo es grande porque es querido.
+No porque algo ande mal.

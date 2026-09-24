@@ -20,5 +20,5 @@ de lo que **evitaste**.
 
 ---
 
-Hay una renuncia,
-cuya verdad ya se conoce.
+El miedo más convincente
+suena a prioridades.
