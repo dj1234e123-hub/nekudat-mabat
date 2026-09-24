@@ -59,6 +59,21 @@ const forms = (w) => {
   return set;
 };
 
+/** שדה frontmatter שיכול להיות שורה אחת או בלוק (|- / |) של כמה שורות. */
+function blockField(fm, key) {
+  const lines = fm.split('\n');
+  const i = lines.findIndex((l) => l.startsWith(`${key}:`));
+  if (i === -1) return null;
+  const inline = lines[i].slice(key.length + 1).trim();
+  if (!/^[|>][-+]?$/.test(inline)) return inline ? [inline.replace(/^["']|["']$/g, '')] : null;
+  const out = [];
+  for (const l of lines.slice(i + 1)) {
+    if (!/^\s+\S/.test(l)) break;
+    out.push(l.trim());
+  }
+  return out.length ? out : null;
+}
+
 function parse(file) {
   const raw = fs.readFileSync(file, 'utf8').replace(/\r\n/g, '\n');
   const m = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
@@ -86,6 +101,7 @@ function parse(file) {
     id: path.basename(file, '.md'),
     feeling: field('feeling'),
     title: field('title') || null,
+    handle: blockField(fm, 'handle'),
     moves: toBlocks(head),
     closing: toBlocks(tail).flat(),
     hasMark: mark !== -1,
@@ -188,6 +204,31 @@ function check(m) {
   if (/\*\*/.test(m.closing.join(' ')))
     add('WARNING', 'בלי הדגשה בסיום', 'הסיום כבר מודגש וצבוע — הדגשה בתוכו אינה נראית');
   else add('PASS', 'בלי הדגשה בסיום', 'נקי');
+
+  // 13 · נקודה לדרך — אופציונלית. כשהיא קיימת היא נבדקת (docs/MOMENT-FORMAT.md).
+  // הכרטיס הגבוה מפנה לה שתי שורות בדיוק: שלוש שורות שוברות את הפריסה → FAIL.
+  // האורך נבדק בתווים ולא רק במילים, כי מה שנשבר בכרטיס הוא הרוחב.
+  if (m.handle) {
+    const hl = m.handle;
+    const ht = hl.join(' ');
+    if (hl.length > 2) add('FAIL', 'נקודה לדרך · שורות', `${hl.length} שורות (עד 2 — הכרטיס מפנה בדיוק שתיים)`);
+    else add('PASS', 'נקודה לדרך · שורות', `${hl.length}`);
+    const long = hl.filter((l) => l.length > 34);
+    if (long.length) add('WARNING', 'נקודה לדרך · רוחב', `שורה של ${Math.max(...long.map((l) => l.length))} תווים (עד ~34, אחרת נשברת לבד)`);
+    const hw = words(ht).length;
+    if (hw > 12) add('WARNING', 'נקודה לדרך · אורך', `${hw} מילים (עד ~12)`);
+    else add('PASS', 'נקודה לדרך · אורך', `${hw} מילים`);
+    // לשון מותרת ולא מצווה, ולשני המינים — אותם כללים של הרגע עצמו.
+    const command = ht.match(/(^|\s)(צריך|צריכה|כדאי|חייב|חייבת|תעשה|תנסה|אתה)(\s|$|[.,!?])/);
+    if (command) add('FAIL', 'נקודה לדרך · לשון', `"${command[2]}" — ציווי או פנייה ממוגדרת`);
+    else add('PASS', 'נקודה לדרך · לשון', 'מותרת ולא מצווה');
+    // הידית נגזרת מהסיבוב ולא ממציאה עצה חדשה: היא אמורה להיאחז במילה
+    // מהמהלך השלישי או מהסיום. WARNING ולא FAIL — הקשר יכול להיות במשמעות.
+    const source = new Set(words([...(m.moves[2] || []), ...m.closing].join(' ')).map(bare).filter((w) => w.length > 2 && !STOP.has(w)));
+    const shared = words(ht).map(bare).filter((w) => source.has(w));
+    if (shared.length) add('PASS', 'נקודה לדרך · נאחזת בסיבוב', shared.join(', '));
+    else add('WARNING', 'נקודה לדרך · נאחזת בסיבוב', 'אין מילה משותפת עם הסיבוב או הסיום');
+  }
 
   return r;
 }

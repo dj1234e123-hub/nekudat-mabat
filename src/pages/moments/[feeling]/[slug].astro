@@ -41,6 +41,11 @@ const pageUrl = new URL(`/moments/${feeling}/${moment.id}/`, Astro.site).href;
 // תמונת שיתוף ממותגת, נוצרת בזמן הבנייה מהטקסט עצמו (ראו og.png.ts באותה תיקייה).
 // חשוב בעיקר לשיתוף בסטטוס, שבו הקישור נעלם והתמונה היא כל מה שנשאר.
 const ogImage = new URL(`/moments/${feeling}/${moment.id}/og.png`, Astro.site).href;
+// כרטיס השיתוף הגבוה (card.png.ts) — הוא מה שכפתור הוואטסאפ שולח. og.png נשאר
+// לתצוגה המקדימה של הקישור, שם תמונה גבוהה נחתכת.
+const shareImage = new URL(`/moments/${feeling}/${moment.id}/card.png`, Astro.site).href;
+// "נקודה לדרך" — אופציונלית. שבירת השורה שנכתבה בקובץ נשמרת גם כאן.
+const handleLines = moment.data.handle?.split('\n').map((l) => l.trim()).filter(Boolean) ?? [];
 
 // הרגע התאום בספרדית — אותו שם קובץ באוסף momentsEs. רגע שטרם תורגם:
 // הגלולה מובילה לשער השפה, בלי hreflang (זה לא אותו עמוד).
@@ -95,10 +100,22 @@ const altLangHref = hasEsTwin ? `/es/momentos/${feeling}/${moment.id}/` : '/es/m
 
       <MomentBody format={format} />
 
+      {
+        handleLines.length > 0 && (
+          /* אותה שפה של הכרטיס: קו זהב דק, הנקודה, ושורה שקטה בדיו.
+             הסיום האדום נשאר השיא; זה קול שני, שלוקחים איתך. */
+          <aside class="handle" aria-label="נקודה לדרך">
+            <span class="handle-dot" aria-hidden="true" />
+            <span class="handle-label">נקודה לדרך</span>
+            <p class="handle-text" set:html={handleLines.map((l) => l.replace(/&/g, '&amp;').replace(/</g, '&lt;')).join('<br />')} />
+          </aside>
+        )
+      }
+
       {!format.isNew && <span class="end-dot" aria-hidden="true" />}
     </article>
 
-    <ShareRow title={label} url={pageUrl} label="לשלוח את זה למישהו:" imageUrl={ogImage} />
+    <ShareRow title={label} url={pageUrl} label="לשלוח את זה למישהו:" imageUrl={shareImage} />
 
     <nav class="moment-footer">
       {/* התווית חיה כאן ולא בראש העמוד: כאן היא ניווט והקשר, וזה מה שהיא באמת. */}
@@ -138,6 +155,41 @@ const altLangHref = hasEsTwin ? `/es/momentos/${feeling}/${moment.id}/` : '/es/m
     background: var(--gold);
     opacity: 0.8;
     margin: 1.1rem auto 0;
+  }
+
+  .handle {
+    margin: 2.6rem auto 0;
+    padding-top: 2rem;
+    border-top: 1px solid color-mix(in srgb, var(--gold) 55%, transparent);
+    max-width: 22rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .handle-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  .handle-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--gold-deep, #8f6f28);
+  }
+
+  .handle-text {
+    margin: 0.2rem 0 0;
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    line-height: 1.5;
+    color: var(--ink);
+    text-wrap: balance;
   }
 
   .end-dot {

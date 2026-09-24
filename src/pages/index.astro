@@ -73,7 +73,8 @@ const momentPool = moments.map((m) => {
     href: new URL(path, Astro.site).href,
     format: parseMoment(m.body ?? '', m.data.title),
     accent: groupOf(feeling)?.accent ?? 'var(--gold)',
-    ogImage: new URL(`${path}og.png`, Astro.site).href,
+    // כרטיס השיתוף הגבוה — אותו קובץ שכפתור הוואטסאפ בעמוד הרגע שולח.
+    ogImage: new URL(`${path}card.png`, Astro.site).href,
   };
 });
 const featuredMoment = momentPool[0] ?? null;
