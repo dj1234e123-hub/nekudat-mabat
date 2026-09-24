@@ -1,6 +1,6 @@
 ---
-# תרגום גיליון "ניצבים" (2026-09-03). שבירות השורות נשמרו — הן תוכן, לא עיצוב.
-# התרגום נעשה ללא בדיקת דוברת ספרדית (החלטת ההשקה של 2026-08-30) — לבדיקה כשתתפנה.
+# תרגום גיליון "ניצבים" (2026-09-03). שבירות השורות נשמרו – הן תוכן, לא עיצוב.
+# התרגום נעשה ללא בדיקת דוברת ספרדית (החלטת ההשקה של 2026-08-30) – לבדיקה כשתתפנה.
 title: ¿Quién ya está de pie aquí gracias a ti?
 parasha: Nitzavim-Vayelej
 hebrewDate: 22 de Elul 5786
@@ -93,7 +93,7 @@ Quien aún será parte de la historia.
 
 En el estudio de Londres, la presentadora levanta la vista del cuaderno y se dirige al público:
 
-«Todo el que esté aquí y le deba la vida a Nicholas Winton — por favor, póngase de pie».
+«Todo el que esté aquí y le deba la vida a Nicholas Winton – por favor, póngase de pie».
 
 Por un momento se hace silencio.
 

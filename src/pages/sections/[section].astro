@@ -16,14 +16,14 @@ export function getStaticPaths() {
 
 const section = Astro.params.section as SectionSlug;
 const { label, line } = SECTIONS_META[section];
-// אותה תמונת שער שמופיעה בדלת של דף הבית — הקורא שנכנס דרכה מגיע לאותו מראה.
+// אותה תמונת שער שמופיעה בדלת של דף הבית – הקורא שנכנס דרכה מגיע לאותו מראה.
 const gateImage = SECTION_GATE_IMAGES[section] ?? null;
 
 const stories = (
   await getCollection('stories', (s) => s.data.section === section && isPublished(s))
 ).sort(newestFirst);
 
-// עמוד העולם התאום בספרדית — קיים רק כשיש בעולם סיפורים מתורגמים.
+// עמוד העולם התאום בספרדית – קיים רק כשיש בעולם סיפורים מתורגמים.
 const storiesEs = await getCollection('storiesEs', isPublished);
 const hasEsTwin = storiesEs.some((s) => s.data.section === section);
 const altLangHref = hasEsTwin ? esSectionPath(section) : '/es/historias/';
@@ -59,7 +59,7 @@ const altLangHref = hasEsTwin ? esSectionPath(section) : '/es/historias/';
           ))}
         </ul>
       ) : (
-        <p class="empty">עוד אין כאן סיפורים — הם בדרך.</p>
+        <p class="empty">עוד אין כאן סיפורים – הם בדרך.</p>
       )
     }
     <p class="back"><a href="/stories/">לכל הסיפורים</a></p>
@@ -68,7 +68,7 @@ const altLangHref = hasEsTwin ? esSectionPath(section) : '/es/historias/';
 </Base>
 
 <style>
-  /* תמונת השער של העולם — אותו צילום ואותו חיתוך כמו בדלת של דף הבית */
+  /* תמונת השער של העולם – אותו צילום ואותו חיתוך כמו בדלת של דף הבית */
   .section-gate {
     display: block;
     width: 100%;

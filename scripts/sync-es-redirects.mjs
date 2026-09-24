@@ -1,9 +1,9 @@
 // מסנכרן את ההפניות מהכתובות הספרדיות הישנות (שם הקובץ העברי המשועתק)
-// אל החדשות (ספרדית) ב-vercel.json — מתוך src/data/es-slugs.ts, שהוא
+// אל החדשות (ספרדית) ב-vercel.json – מתוך src/data/es-slugs.ts, שהוא
 // מקור האמת היחיד.
 //
-//   node scripts/sync-es-redirects.mjs         — כותב
-//   node scripts/sync-es-redirects.mjs --check — רק בודק, יוצא 1 אם לא מסונכרן
+//   node scripts/sync-es-redirects.mjs         – כותב
+//   node scripts/sync-es-redirects.mjs --check – רק בודק, יוצא 1 אם לא מסונכרן
 //
 // vercel.json נקרא ע"י Vercel **לפני** הבנייה, ולכן ההפניות חייבות להיות
 // מחויבות לריפו ואי אפשר לייצר אותן בזמן build.
@@ -41,7 +41,7 @@ const after = JSON.stringify(next, null, 2) + '\n';
 
 if (process.argv.includes('--check')) {
   if (before !== after) {
-    console.error('vercel.json אינו מסונכרן עם es-slugs.ts — הריצו: npm run sync:es-redirects');
+    console.error('vercel.json אינו מסונכרן עם es-slugs.ts – הריצו: npm run sync:es-redirects');
     process.exit(1);
   }
   console.log(`✓ ${generated.length} הפניות ספרדיות מסונכרנות`);

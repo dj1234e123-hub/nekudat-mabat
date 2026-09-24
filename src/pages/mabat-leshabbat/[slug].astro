@@ -1,7 +1,7 @@
 ---
-// עמוד מאמר בודד ב"מבט לשבת" — הכתובת שמשתפים.
+// עמוד מאמר בודד ב"מבט לשבת" – הכתובת שמשתפים.
 // עיצוב "החתימה השקטה" (אושר על סקיצה): נשאר על נייר האתר הרגיל, זהות
-// הפינה היא רייל כחול דק ליד הכותרת, תווית קטנה, ומפרידים שקטים — לא בלוק
+// הפינה היא רייל כחול דק ליד הכותרת, תווית קטנה, ומפרידים שקטים – לא בלוק
 // צבע נפרד ולא כותרות פנימיות. הכחול הוא --blue הקיים באתר (אותו צבע של
 // "מהיומן שלי"), לא גוון חדש.
 import { getCollection } from 'astro:content';
@@ -32,7 +32,7 @@ const summary = description ?? derived;
 const pageUrl = new URL(`/mabat-leshabbat/${piece.id}/`, Astro.site).href;
 
 // תמונת התצוגה המקדימה לשיתוף: תמונת הציטוט של הגיליון, ולא הלוגו.
-// PNG ולא JPEG — טקסט על רקע אחיד מתכווץ טוב יותר ללא אובדן (החלטה קיימת).
+// PNG ולא JPEG – טקסט על רקע אחיד מתכווץ טוב יותר ללא אובדן (החלטה קיימת).
 // גיליון בלי תמונת ציטוט נופל ללוגו, ברירת המחדל של Base.
 let ogImage: string | undefined;
 let ogImageWidth: number | undefined;
@@ -44,7 +44,7 @@ if (quoteImage) {
   ogImageHeight = og.attributes.height;
 }
 
-// הגיליון התאום בספרדית — אותו שם קובץ באוסף mabatEs.
+// הגיליון התאום בספרדית – אותו שם קובץ באוסף mabatEs.
 const mabatEs = await getCollection('mabatEs', isPublished);
 const hasEsTwin = mabatEs.some((p) => p.id === piece.id);
 const altLangHref = hasEsTwin ? `/es/shabat/${piece.id}/` : '/es/shabat/';

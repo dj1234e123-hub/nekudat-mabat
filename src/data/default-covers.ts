@@ -1,5 +1,5 @@
-// שערים זמניים לפי קטגוריה — לסיפורים שעדיין אין להם תמונת שער ייעודית.
-// PNG (מומר מקובצי ה-SVG שלצידם) כדי שתצוגה מקדימה בוואטסאפ תעבוד — וואטסאפ לא מציג SVG.
+// שערים זמניים לפי קטגוריה – לסיפורים שעדיין אין להם תמונת שער ייעודית.
+// PNG (מומר מקובצי ה-SVG שלצידם) כדי שתצוגה מקדימה בוואטסאפ תעבוד – וואטסאפ לא מציג SVG.
 import type { ImageMetadata } from 'astro';
 import empowerment from '../assets/covers/default-empowerment.png';
 import shabbat from '../assets/covers/default-shabbat.png';
@@ -10,7 +10,7 @@ export const DEFAULT_COVERS: Record<SectionSlug, ImageMetadata> = {
   meshalim: empowerment,
   tzadikim: baalShemTov,
   yoman: empowerment,
-  // אין עדיין תמונת שער זמנית ייעודית לעולם החדש (מהחיים) — נופל לאחור
+  // אין עדיין תמונת שער זמנית ייעודית לעולם החדש (מהחיים) – נופל לאחור
   // לאותה תמונה כללית כמו יומן, עד שתיווצר אחת משלו.
   chaim: empowerment,
   shabbat,

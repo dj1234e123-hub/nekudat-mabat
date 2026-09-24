@@ -1,11 +1,11 @@
 ---
 // כמו בעברית, הנתיב הזה משרת שני סוגי עמודים תחת /es/momentos/:
 //
-// 1. עמוד שער (/es/momentos/hurting/) — הקשת עם התמונה, שם השער ושורת
+// 1. עמוד שער (/es/momentos/hurting/) – הקשת עם התמונה, שם השער ושורת
 //    השער בספרדית, ומתחתיהם דלתות המצבים של הקבוצה. תמונת השער היא גם
 //    תמונת השיתוף של העמוד.
-// 2. מדף של מצב אחד (/es/momentos/loneliness/ — אותם slugs כמו בעברית,
-//    כך שהזיווג בין העמודים התאומים הוא לפי שם) — כותרת-וו + מהלך
+// 2. מדף של מצב אחד (/es/momentos/loneliness/ – אותם slugs כמו בעברית,
+//    כך שהזיווג בין העמודים התאומים הוא לפי שם) – כותרת-וו + מהלך
 //    המציאות בלבד, הסיום לא נשרף מראש.
 import { getCollection } from 'astro:content';
 import { getImage } from 'astro:assets';
@@ -27,10 +27,10 @@ import JoinGroup from '../../../../components/JoinGroup.astro';
 
 export async function getStaticPaths() {
   const moments = await getCollection('momentsEs', isPublished);
-  // מדפי מצבים — רק מצבים שיש בהם תוכן מתורגם ("מבחר ולא מראה").
+  // מדפי מצבים – רק מצבים שיש בהם תוכן מתורגם ("מבחר ולא מראה").
   const feelings = [...new Set(moments.map((m) => m.data.feeling))];
   const feelingPaths = feelings.map((feeling) => ({ params: { feeling } }));
-  // עמודי שער — אחד לכל קבוצה.
+  // עמודי שער – אחד לכל קבוצה.
   const gatePaths = FEELING_GROUPS.map((group) => ({ params: { feeling: group.slug } }));
   return [...feelingPaths, ...gatePaths];
 }
@@ -41,7 +41,7 @@ const gate = FEELING_GROUPS.find((group) => group.slug === param);
 // ── נתוני עמוד שער ──
 const allMoments = gate ? await getCollection('momentsEs', isPublished) : [];
 const filled = new Set(allMoments.map((moment) => moment.data.feeling));
-// "Un momento de aquí" — כמו בעברית (2026-09-16): כל רגעי הקבוצה שיש להם
+// "Un momento de aquí" – כמו בעברית (2026-09-16): כל רגעי הקבוצה שיש להם
 // תרגום, הראשון מוצג בלי JavaScript והסקריפט מגריל אחד בכל טעינה.
 const gateFeelings = new Set(gate ? gate.feelings.map((f) => f.slug) : []);
 const gateMoments = allMoments
@@ -74,7 +74,7 @@ const title = gate
   ? `${GROUP_LABELS_ES[gate.slug]} · Un momento de Punto de Vista`
   : `${label} · Un momento de Punto de Vista`;
 const description = gate ? GROUP_LINES_ES[gate.slug] : `Textos breves sobre ${label.toLowerCase()}.`;
-// העמוד התאום בעברית — אותה רמת כתובת בדיוק, רק בלי /es (הזיווג לפי שם קובץ).
+// העמוד התאום בעברית – אותה רמת כתובת בדיוק, רק בלי /es (הזיווג לפי שם קובץ).
 const altLangHref = `/moments/${param}/`;
 ---
 
@@ -179,7 +179,7 @@ const altLangHref = `/moments/${param}/`;
 </script>
 
 <style>
-  /* ── עמוד שער — אותם ערכים כמו בעברית ── */
+  /* ── עמוד שער – אותם ערכים כמו בעברית ── */
   .gate-hall {
     max-width: 26rem;
     margin: 0 auto;
@@ -230,7 +230,7 @@ const altLangHref = `/moments/${param}/`;
 
   /* הקשת בעמוד השער קטנה מזו שבעמוד הכניסה (2026-09-16): הקורא הרגע לחץ
      עליה, ולחזור עליה ברוחב מלא (170px) דחף את התוכן ל-478px. אותה תמונה,
-     אותה מסגרת זהב — בגודל של קשתות דף הבית. */
+     אותה מסגרת זהב – בגודל של קשתות דף הבית. */
   .arch-small {
     width: 180px;
     height: 100px;
@@ -322,7 +322,7 @@ const altLangHref = `/moments/${param}/`;
     margin: 0 0 0.7rem;
   }
 
-  /* ── מדף מצב — זהות הקבוצה נמשכת עד סוף המסע, כמו בעברית (4.31) ── */
+  /* ── מדף מצב – זהות הקבוצה נמשכת עד סוף המסע, כמו בעברית (4.31) ── */
   .group-label {
     text-align: center;
     color: var(--title, var(--muted));

@@ -10,7 +10,7 @@ justo ese se **saltea**.
 
 Porque pedirlo en voz alta
 es arriesgarlo.
-Y si la respuesta es no —
+Y si la respuesta es no –
 no hay adónde **volver**.
 
 Pero los pedidos de alrededor

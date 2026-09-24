@@ -1,5 +1,5 @@
 ---
-# תרגום של ארכיון #010 (2026-08-30). התמונה נקייה מכיתוב — אותה תמונה כמו בעברית.
+# תרגום של ארכיון #010 (2026-08-30). התמונה נקייה מכיתוב – אותה תמונה כמו בעברית.
 title: "Por qué estacionaba lejos"
 section: yoman
 archiveId: "010"
@@ -38,6 +38,6 @@ Pero seguí caminando. Un paso más. Y otro.
 
 El estacionamiento era el mismo. Pero algo en mí se calmó.
 
-Terminé un poco más lejos de la puerta — y algo mío *se quedó ahí.*
+Terminé un poco más lejos de la puerta – y algo mío *se quedó ahí.*
 
 <p class="signature">Con cariño,<br />Efraim Atia</p>

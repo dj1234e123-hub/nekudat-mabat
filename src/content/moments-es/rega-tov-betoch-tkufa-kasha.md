@@ -4,7 +4,7 @@ date: 2026-08-22
 title: Risa en el medio
 ---
 Una época difícil,
-y en el medio — risa.
+y en el medio – risa.
 De verdad
 sin **querer**.
 

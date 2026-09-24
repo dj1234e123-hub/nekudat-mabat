@@ -1,5 +1,5 @@
 ---
-// עמוד סיפור בספרדית — אותו מבנה כמו העברי: תווית עולם, כותרת, שער, גוף,
+// עמוד סיפור בספרדית – אותו מבנה כמו העברי: תווית עולם, כותרת, שער, גוף,
 // שיתוף, קבוצה (אם יש קישור), ותחתית עם סיפור אקראי.
 // בלי WriteToMe: ההזמנה לשיחה פרטית היא בעברית בלבד (החלטה מתועדת).
 import { getCollection, render } from 'astro:content';
@@ -54,7 +54,7 @@ if (cover.format !== 'svg') {
 const allStories = (await getCollection('storiesEs', isPublished)).sort(newestFirst);
 const otherStoryUrls = allStories.filter((s) => s.id !== story.id).map((s) => esStoryPath(s.id));
 // "ההמשך" (NextUp) בספרדית: הקרבה התוכנית נמדדת דרך התאום העברי (התגיות
-// חיות שם), והמועמדים והרגע — רק מה שקיים בספרדית ("מבחר ולא מראה").
+// חיות שם), והמועמדים והרגע – רק מה שקיים בספרדית ("מבחר ולא מראה").
 const hebrewStories = await getCollection('stories', isPublished);
 const nextCandidates = nextStories(story, allStories, SECTIONS_ES_LABELS, hebrewStories);
 const relatedMoment = momentForStory(story, await getCollection('momentsEs', isPublished), hebrewStories);
@@ -176,7 +176,7 @@ const relatedMoment = momentForStory(story, await getCollection('momentsEs', isP
   }
 
   /* בעברית ההדגשה היא משקל במקום נטייה; בספרדית נטייה טבעית, אבל נשמרת
-     אותה שפה חזותית של האתר — משקל וצבע, כדי ששני האזורים ייראו זהים. */
+     אותה שפה חזותית של האתר – משקל וצבע, כדי ששני האזורים ייראו זהים. */
   .story-body :global(em) {
     font-style: normal;
     font-weight: 600;
@@ -189,12 +189,12 @@ const relatedMoment = momentForStory(story, await getCollection('momentsEs', isP
     margin-top: 2.5rem;
   }
 
-  /* Foto dentro del relato — mismo estilo que la página hebrea (2026-09-14).
-     מגיע מיד אחרי השורה שאומרת את השם — הפנים הם תשובה, לא הקדמה, ולכן
+  /* Foto dentro del relato – mismo estilo que la página hebrea (2026-09-14).
+     מגיע מיד אחרי השורה שאומרת את השם – הפנים הם תשובה, לא הקדמה, ולכן
      אינם בשער. "תצלום מודפס": מסגרת לבנה דקה וצל רך, כמו בעמוד מי אני.
      חיתוך 4:5 סביב הפנים כדי שיהיו גדולים וברורים גם בטלפון; נקודת המיקוד
      היא של הצילום (הפנים בתצלום המקורי יושבים ב-41% מהרוחב).
-     ה-Markdown של Astro עוטף את התמונה ב-<p> — לכן האיפוס שלו כאן. */
+     ה-Markdown של Astro עוטף את התמונה ב-<p> – לכן האיפוס שלו כאן. */
   .story-body :global(.inline-photo) {
     width: min(100%, 22rem);
     margin: 2.25rem auto;

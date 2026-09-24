@@ -2,7 +2,7 @@
 // הזמנה שקטה להצטרפות לקבוצת הוואטסאפ של נקודת מבט.
 //
 // הפרדה מלאה בין הקבוצות: עמוד עברי מזמין לקבוצה העברית בלבד, עמוד ספרדי
-// לקבוצה הספרדית בלבד. כל עוד אין קישור לקבוצה הספרדית (site-es.ts) —
+// לקבוצה הספרדית בלבד. כל עוד אין קישור לקבוצה הספרדית (site-es.ts) –
 // הכרטיס פשוט אינו מוצג בעמודים הספרדיים, כדי לא להזמין לדלת שאינה קיימת.
 import { SITE } from '../data/site';
 import { SITE_ES } from '../data/site-es';
@@ -14,7 +14,7 @@ const { lang = 'he' } = Astro.props;
 const es = lang === 'es';
 const groupUrl = es ? SITE_ES.whatsappGroupUrl : SITE.whatsappGroupUrl;
 // ההבטחה מפוצלת לשתיים בכוונה: `text` אומר מה מקבלים, ו-`note` עונה על
-// ההתנגדות האמיתית של הקהל הזה — "עוד קבוצה שתציף אותי בהודעות". קודם
+// ההתנגדות האמיתית של הקהל הזה – "עוד קבוצה שתציף אותי בהודעות". קודם
 // השקט היה שם תואר בתוך המשפט ("הקבוצה השקטה שלנו") ולא הבטחה שנקראת.
 // ה-note יושב מתחת לכפתור, במקום שבו ההיסוס קורה.
 const t = es
@@ -22,13 +22,13 @@ const t = es
       title: '¿Quieres más Punto de Vista?',
       text: 'Cada historia nueva y la «Mirada de Shabat» llegan primero al grupo.',
       btn: 'Unirme al grupo',
-      note: 'Sin conversaciones ni notificaciones — el único que escribe soy yo.',
+      note: 'Sin conversaciones ni notificaciones – el único que escribe soy yo.',
     }
   : {
       title: 'רוצים עוד נקודת מבט?',
       text: 'סיפור חדש ו״מבט לשבת״ מגיעים קודם כול לקבוצה.',
       btn: 'להצטרפות לקבוצה',
-      note: 'בלי שיחות ובלי התראות — רק אני שולח.',
+      note: 'בלי שיחות ובלי התראות – רק אני שולח.',
     };
 ---
 
@@ -70,7 +70,7 @@ const t = es
   }
 
   /* פעולה משנית: מתאר במקום מילוי. הכפתור הראשי בדף הבית הוא "מצא רגע של
-     נקודת מבט" — שני כפתורים מלאים באותו עמוד מבטלים זה את זה. */
+     נקודת מבט" – שני כפתורים מלאים באותו עמוד מבטלים זה את זה. */
   .join-btn {
     display: inline-flex;
     align-items: center;
@@ -91,7 +91,7 @@ const t = es
     color: var(--paper);
   }
 
-  /* מענה להתנגדות, ולכן מיד מתחת לכפתור. שקט ומשני — הוא מסיר חשש,
+  /* מענה להתנגדות, ולכן מיד מתחת לכפתור. שקט ומשני – הוא מסיר חשש,
      לא מבקש דבר. --muted הוא גוון התחתית והתאריכים (7.96 ניגודיות). */
   .join-note {
     margin-top: 0.7rem;

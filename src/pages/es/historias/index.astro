@@ -1,5 +1,5 @@
 ---
-// עמוד הסיפורים בספרדית — אותו מבנה כמו /stories/ העברי (שלב 4.27):
+// עמוד הסיפורים בספרדית – אותו מבנה כמו /stories/ העברי (שלב 4.27):
 // רצועה לכל עולם עם סיפור אמיתי בתוכה, ואחריה הארכיון המלא מהחדש לישן.
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
@@ -21,7 +21,7 @@ const featured = stories
   .filter((s) => s.data.featured !== undefined)
   .sort((a, b) => a.data.featured! - b.data.featured!);
 
-// עולם בלי סיפורים מתורגמים אינו מוצג — "מבחר ולא מראה".
+// עולם בלי סיפורים מתורגמים אינו מוצג – "מבחר ולא מראה".
 const worlds = SECTION_SLUGS.map((slug) => {
   const meta = SECTIONS_META[slug];
   if ('hidden' in meta && meta.hidden) return null;
@@ -75,7 +75,7 @@ const countLabel = (n: number) => (n === 1 ? 'una historia' : `${n} historias`);
               </h2>
               <p class="band-line">{metaEs.line}</p>
               {/* הפיתוי: שאלה שהסיפור עונה עליה (hook), ומתחתיה השם וזמן הקריאה.
-                  בלי hook — שתי שורות הפתיחה, כמו בכרטיס "הסיפור הבא". */}
+                  בלי hook – שתי שורות הפתיחה, כמו בכרטיס "הסיפור הבא". */}
               <a href={esStoryPath(sample.id)} class="band-sample">
                 <span class="band-hook">{sample.data.hook ?? storyOpening(sample.body)}</span>
                 <span class="band-story">
@@ -118,10 +118,10 @@ const countLabel = (n: number) => (n === 1 ? 'una historia' : `${n} historias`);
     line-height: 1.7;
   }
 
-  /* ── כרטיסי העולמות — רשת 2×2 (2026-09-16) ──
+  /* ── כרטיסי העולמות – רשת 2×2 (2026-09-16) ──
      קודם ארבע רצועות ברוחב מלא, ~370px כל אחת בטלפון: הקורא ראה רצועה
      וחצי בכל פעם, והעולם הרביעי חיכה 1,500px למטה. "ארבעה עולמות. בחר
-     מאיפה להתחיל" מחייב לראות את הארבעה יחד — עכשיו כולם במסך הראשון.
+     מאיפה להתחיל" מחייב לראות את הארבעה יחד – עכשיו כולם במסך הראשון.
      מלבנים ולא קשתות, בכוונה (החלטת 4.27): הקשת שייכת לרגעים. שני עמודי
      הכניסה חולקים את העיקרון (כל הדלתות במסך אחד), לא את הצורה.
      כל מה שהיה ברצועה נשאר בכרטיס: צילום, קו הצבע, שם, שורת ההסבר,
@@ -146,7 +146,7 @@ const countLabel = (n: number) => (n === 1 ? 'una historia' : `${n} historias`);
     box-shadow: var(--shadow);
   }
 
-  /* התמונה היא הדלת — לחיצה עליה נכנסת לעולם */
+  /* התמונה היא הדלת – לחיצה עליה נכנסת לעולם */
   .band-gate {
     display: block;
     line-height: 0;
@@ -156,7 +156,7 @@ const countLabel = (n: number) => (n === 1 ? 'una historia' : `${n} historias`);
     display: block;
     width: 100%;
     height: auto;
-    /* 16:9 בטלפון — כדי ששתי השורות ייכנסו למסך הראשון; 3:2 במסך רחב */
+    /* 16:9 בטלפון – כדי ששתי השורות ייכנסו למסך הראשון; 3:2 במסך רחב */
     aspect-ratio: 16 / 9;
     object-fit: cover;
   }
@@ -184,7 +184,7 @@ const countLabel = (n: number) => (n === 1 ? 'una historia' : `${n} historias`);
     text-decoration: underline;
   }
 
-  /* בטלפון הכרטיס צר, והשאלה היא הטעימה של העולם — שורת ההסבר המופשטת
+  /* בטלפון הכרטיס צר, והשאלה היא הטעימה של העולם – שורת ההסבר המופשטת
      מוצגת רק ממסך רחב (והיא חיה גם בדף הבית ובתיאור המטא של עמוד העולם). */
   .band-line {
     display: none;
@@ -196,7 +196,7 @@ const countLabel = (n: number) => (n === 1 ? 'una historia' : `${n} historias`);
 
   /* הסיבה להיכנס: שאלה שהסיפור עונה עליה, ולא שם. שם מושך רק את מי
      שכבר יודע מה מאחוריו; שאלה נלבשת על הקורא לפני שהוא יודע מי הגיבור.
-     בפונט הכותרות בכחול — הסימן הקבוע באתר ל"פה מתחילה מחשבה" (כותרת-הוו
+     בפונט הכותרות בכחול – הסימן הקבוע באתר ל"פה מתחילה מחשבה" (כותרת-הוו
      של רגע). נדחף לתחתית הכרטיס כדי ששני כרטיסים בשורה יישרו קו. */
   .band-sample {
     display: block;
@@ -259,7 +259,7 @@ const countLabel = (n: number) => (n === 1 ? 'una historia' : `${n} historias`);
     text-decoration: underline;
   }
 
-  /* במסך רחב הכרטיסים רחבים כפליים — הטקסט חוזר לגודלו הרגיל */
+  /* במסך רחב הכרטיסים רחבים כפליים – הטקסט חוזר לגודלו הרגיל */
   @media (min-width: 34rem) {
     .bands {
       gap: 1.25rem;

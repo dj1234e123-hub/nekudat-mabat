@@ -4,16 +4,16 @@
 title: "El pañuelo dorado"
 section: yoman
 cover: ../../assets/covers/tzaif-zahov-es.png
-coverAlt: "Andén de una estación de tren rodeado de cientos de pañuelos de seda dorados atados a postes de luz y columnas, con un cartel decorado que dice «Estación de amor — aquí se empieza de nuevo» sobre un muro de piedra, con luz dorada de atardecer"
+coverAlt: "Andén de una estación de tren rodeado de cientos de pañuelos de seda dorados atados a postes de luz y columnas, con un cartel decorado que dice «Estación de amor – aquí se empieza de nuevo» sobre un muro de piedra, con luz dorada de atardecer"
 date: 2026-08-31T10:00:00Z
-excerpt: "Desde la cárcel le escribió a su madre una sola condición: si quiere que vuelva, que cuelgue en la estación un pañuelo dorado — o no vuelve jamás. Ahora el tren se acerca, y él no sabe qué lo espera al otro lado de la ventana."
+excerpt: "Desde la cárcel le escribió a su madre una sola condición: si quiere que vuelva, que cuelgue en la estación un pañuelo dorado – o no vuelve jamás. Ahora el tren se acerca, y él no sabe qué lo espera al otro lado de la ventana."
 ---
 
 Iba sentado en el tren. El traqueteo de las ruedas sobre las vías, un silbido agudo que cortaba el silencio. Los pasajeros a mi alrededor, absortos en un diario, en el teléfono, o en sí mismos.
 
 Pero algo llamó mi atención. Roni, el chico sentado a mi lado, estaba muy callado. Sus manos temblaban sin parar.
 
-Después de unos minutos, Roni notó mi mirada. Una sonrisa vacilante, casi de disculpa. —Seguro te preguntas por qué estoy así —dijo.
+Después de unos minutos, Roni notó mi mirada. Una sonrisa vacilante, casi de disculpa. –Seguro te preguntas por qué estoy así –dijo.
 
 Asentí en silencio. Se echó hacia atrás, respiró hondo, y calló un momento más antes de hablar.
 
@@ -39,11 +39,11 @@ Algo dorado se movía con el viento. Y otro más. Y otro más. Toda la estación
 
 Un solo grito enorme: *¡Vuelve!*
 
-Y en el medio estaba una madre. Sus ojos brillaban de lágrimas, sus brazos abiertos hacia su hijo. Y en su cuello — un pañuelo dorado.
+Y en el medio estaba una madre. Sus ojos brillaban de lágrimas, sus brazos abiertos hacia su hijo. Y en su cuello – un pañuelo dorado.
 
 Esa imagen no me abandonó. No los pañuelos. No la estación. Sino la idea de que Roni viajó todo el camino sin saber si alguien lo esperaba.
 
-Porque cuántas veces también nosotros viajamos así — sentados en el tren, las semanas van pasando, y el corazón pegado a la ventana. Esperando una señal. Algo que diga: todavía me esperan.
+Porque cuántas veces también nosotros viajamos así – sentados en el tren, las semanas van pasando, y el corazón pegado a la ventana. Esperando una señal. Algo que diga: todavía me esperan.
 
 Después de todo lo que pasamos este año, es fácil creer que ya es tarde. Que no hay vuelta atrás.
 

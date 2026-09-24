@@ -14,7 +14,7 @@ eso no es rezar.
 Así **no** se reza.
 
 Pero una frase que brota sola
-sin preparación y sin libro —
+sin preparación y sin libro –
 ¿de dónde **brotó**?
 
 ---

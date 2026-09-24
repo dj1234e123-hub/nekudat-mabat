@@ -1,22 +1,22 @@
 ---
-// עמוד מי אני בספרדית — אותו מכתב אישי כמו בעברית (שלב 4.22): דף מכתב,
+// עמוד מי אני בספרדית – אותו מכתב אישי כמו בעברית (שלב 4.22): דף מכתב,
 // חותם זהב, חשיפה הדרגתית (השם והתמונה מגיעים רק ב"מי עומד מאחורי"),
 // נשימת קריאה בגלילה, חתימה בסוף.
 //
 // שתי התאמות מחויבות מהחלטות מתועדות:
-//   1. **אין הזמנה לשיחה אישית** — בעל הפרויקט אינו מאמן בספרדית, והזמנה
-//      שאי אפשר לקיים מייצרת רושם של מי שלא עונה. במקום הנ.ב. עם הכפתור —
+//   1. **אין הזמנה לשיחה אישית** – בעל הפרויקט אינו מאמן בספרדית, והזמנה
+//      שאי אפשר לקיים מייצרת רושם של מי שלא עונה. במקום הנ.ב. עם הכפתור –
 //      פסקת ההסבר על האזור הספרדי, והפעולה היא הרגעים.
-//   2. **אין כרטיס קבוצת וואטסאפ** — הקבוצה עברית.
+//   2. **אין כרטיס קבוצת וואטסאפ** – הקבוצה עברית.
 // החתימה נשארת "אפרים" בעברית: פונט החתימה מכיל אותיות עבריות בלבד,
-// וחתימה היא סימן של יד — האיש כותב בעברית, וזה בדיוק מה שהמכתב מספר.
+// וחתימה היא סימן של יד – האיש כותב בעברית, וזה בדיוק מה שהמכתב מספר.
 import { Image, getImage } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import { SITE_ES } from '../../data/site-es';
 import portrait from '../../assets/efraim.jpg';
 import JoinGroup from '../../components/JoinGroup.astro';
 
-// תמונת השיתוף היא הפנים ולא הלוגו — כמו בעברית.
+// תמונת השיתוף היא הפנים ולא הלוגו – כמו בעברית.
 const portraitOg = await getImage({ src: portrait, width: 640, format: 'jpeg' });
 const ogImage = new URL(portraitOg.src, Astro.site).href;
 
@@ -26,7 +26,7 @@ const DESCRIPTION =
 
 <Base
   lang="es"
-  title="Quién soy — Efraim Atia · Punto de Vista"
+  title="Quién soy – Efraim Atia · Punto de Vista"
   description={DESCRIPTION}
   ogImage={ogImage}
   ogImageWidth={portraitOg.attributes.width}
@@ -126,7 +126,7 @@ const DESCRIPTION =
 
         <h3 class="quiet">¿Y quién está detrás de todo esto?</h3>
 
-        {/* התצלום מצורף למכתב בדיוק ברגע שהשאלה נשאלת — כמו בעברית. */}
+        {/* התצלום מצורף למכתב בדיוק ברגע שהשאלה נשאלת – כמו בעברית. */}
         <figure class="photo">
           <Image
             src={portrait}
@@ -195,13 +195,13 @@ const DESCRIPTION =
           <p class="signature" lang="he" dir="rtl">אפרים</p>
         </div>
 
-        {/* הנ.ב. — במקום הזמנה לשיחה (שאין בספרדית): ההסבר על האזור,
+        {/* הנ.ב. – במקום הזמנה לשיחה (שאין בספרדית): ההסבר על האזור,
             והפעולה היא הרגעים. */}
         <div class="ps">
           <p class="ps-note">
             Escribo en hebreo, y ahí nace este sitio. Lo que lees aquí es una selección traducida.
             Mi trabajo de acompañamiento es en hebreo, así que aquí no vas a encontrar una
-            invitación a conversar — vas a encontrar algo para llevarte.
+            invitación a conversar – vas a encontrar algo para llevarte.
           </p>
           <div class="ps-action">
             <a class="cta" href="/es/momentos/">Un momento de Punto de Vista</a>
@@ -211,7 +211,7 @@ const DESCRIPTION =
     </article>
 
     <script is:inline>
-      // נשימת קריאה — כמו בעמוד העברי: רץ רק עם JavaScript ורק כשהקורא
+      // נשימת קריאה – כמו בעמוד העברי: רץ רק עם JavaScript ורק כשהקורא
       // לא ביקש פחות תנועה.
       (function () {
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -247,8 +247,8 @@ const DESCRIPTION =
 </Base>
 
 <style is:global>
-  /* פונט החתימה — אותו קובץ עברי כמו בעמוד העברי (6KB). החתימה נשארת
-     "אפרים" גם כאן — חתימה היא סימן של יד, לא טקסט לקריאה. */
+  /* פונט החתימה – אותו קובץ עברי כמו בעמוד העברי (6KB). החתימה נשארת
+     "אפרים" גם כאן – חתימה היא סימן של יד, לא טקסט לקריאה. */
   @font-face {
     font-family: 'Playpen Sans Hebrew';
     font-style: normal;
@@ -260,7 +260,7 @@ const DESCRIPTION =
 </style>
 
 <style>
-  /* הדף: מכתב שמונח על רקע האתר — זהה לעברית. */
+  /* הדף: מכתב שמונח על רקע האתר – זהה לעברית. */
   .letter {
     background: #fffdf6;
     border: 1px solid var(--line);
@@ -330,7 +330,7 @@ const DESCRIPTION =
     margin: 2.5rem 0 0.85rem;
   }
 
-  /* התצלום המודפס — מסגרת לבנה, הטיה קלה. בעמוד LTR ההטיה מוחלפת לצד
+  /* התצלום המודפס – מסגרת לבנה, הטיה קלה. בעמוד LTR ההטיה מוחלפת לצד
      השני, כדי שהתצלום "יונח" באותו כיוון ביחס לזרימת הקריאה. */
   .photo {
     width: 10rem;
@@ -375,7 +375,7 @@ const DESCRIPTION =
     margin-top: 1.25rem;
   }
 
-  /* החתימה — עברית גם כאן, מיושרת לתחילת השורה של העמוד (שמאל ב-LTR). */
+  /* החתימה – עברית גם כאן, מיושרת לתחילת השורה של העמוד (שמאל ב-LTR). */
   .signature {
     font-family: 'Playpen Sans Hebrew', var(--font-display);
     font-size: 2rem;
@@ -385,7 +385,7 @@ const DESCRIPTION =
     text-align: start;
   }
 
-  /* הנ.ב. — פסקת האזור הספרדי + הפעולה אל הרגעים */
+  /* הנ.ב. – פסקת האזור הספרדי + הפעולה אל הרגעים */
   .ps {
     margin-top: 3rem;
     padding-top: 1.75rem;
@@ -403,7 +403,7 @@ const DESCRIPTION =
     margin-top: 1.75rem;
   }
 
-  /* נשימת קריאה — זהה לעברית */
+  /* נשימת קריאה – זהה לעברית */
   .about-body :global(.will-reveal) {
     opacity: 0;
     transform: translateY(12px);

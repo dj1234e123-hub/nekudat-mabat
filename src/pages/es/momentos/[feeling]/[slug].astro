@@ -1,7 +1,7 @@
 ---
-// עמוד של רגע בודד בספרדית — הכתובת שמשתפים.
+// עמוד של רגע בודד בספרדית – הכתובת שמשתפים.
 // כמו בעברית: הטקסט, ומסביבו אוויר. בלי תמונה ובלי תאריך. התווית יורדת
-// לתחתית (ניווט, לא פרשנות), בצבע הזהות של הקבוצה — עד סוף המסע (4.31).
+// לתחתית (ניווט, לא פרשנות), בצבע הזהות של הקבוצה – עד סוף המסע (4.31).
 import { getCollection } from 'astro:content';
 import Base from '../../../../layouts/Base.astro';
 import ShareRow from '../../../../components/ShareRow.astro';
@@ -29,7 +29,7 @@ const group = groupOf(feeling);
 
 const format = parseMoment(moment.body ?? '', moment.data.title);
 
-// הטקסט כמלל נקי — לתיאור העמוד ולשיתוף בוואטסאפ (הרגע נשלח כמו שהוא).
+// הטקסט כמלל נקי – לתיאור העמוד ולשיתוף בוואטסאפ (הרגע נשלח כמו שהוא).
 const plainText = momentPlainText(format);
 const flat = plainText.replace(/\s+/g, ' ').trim();
 const summary = flat.length > 200 ? `${flat.slice(0, 197)}…` : flat;
@@ -39,10 +39,10 @@ const title = format.title ?? momentTitle(moment.body!);
 
 const pageUrl = new URL(`/es/momentos/${feeling}/${moment.id}/`, Astro.site).href;
 
-// תמונת השיתוף של הרגע — נבנית לצד העמוד (og.png.ts), בספרדית בלבד.
+// תמונת השיתוף של הרגע – נבנית לצד העמוד (og.png.ts), בספרדית בלבד.
 const ogImage = new URL(`/es/momentos/${feeling}/${moment.id}/og.png`, Astro.site).href;
 
-// העמוד התאום בעברית — אותו רגע, אותו שם קובץ.
+// העמוד התאום בעברית – אותו רגע, אותו שם קובץ.
 const altLangHref = `/moments/${feeling}/${moment.id}/`;
 ---
 
@@ -94,7 +94,7 @@ const altLangHref = `/moments/${feeling}/${moment.id}/`;
       {!format.isNew && <span class="end-dot" aria-hidden="true" />}
     </article>
 
-    {/* כמו בעברית: וואטסאפ משתף את התמונה עצמה כקובץ; בלי תמיכה — קישור נקי. */}
+    {/* כמו בעברית: וואטסאפ משתף את התמונה עצמה כקובץ; בלי תמיכה – קישור נקי. */}
     <ShareRow
       title={title}
       url={pageUrl}

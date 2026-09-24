@@ -1,6 +1,6 @@
 ---
 # תרגום של ארכיון #013 (2026-08-30).
-# תמונת שער נפרדת נוספה 2026-09-16 — תמונת השער העברית נושאת פתק עם כיתוב
+# תמונת שער נפרדת נוספה 2026-09-16 – תמונת השער העברית נושאת פתק עם כיתוב
 # עברי ("מקבלים שכר לפי המאמץ..."), ולכן קיבלה תמונה נפרדת בלי כיתוב לספרדית.
 title: "El único que no se acercó"
 section: tzadikim
@@ -10,7 +10,7 @@ coverAlt: "Tres caramelos envueltos en papel metálico rojo, dorado y turquesa a
 date: 2026-08-19T09:00:00Z
 readingTime: "un minuto y medio"
 featured: 1
-excerpt: "Toda la clase viajó a rendir examen con el rabino Steinman, y las preguntas eran fáciles. A mí me preguntó tres veces, y las tres veces no supe. Al final del examen todos se acercaron a recibir un caramelo — y yo me quedé sentado."
+excerpt: "Toda la clase viajó a rendir examen con el rabino Steinman, y las preguntas eran fáciles. A mí me preguntó tres veces, y las tres veces no supe. Al final del examen todos se acercaron a recibir un caramelo – y yo me quedé sentado."
 hook: "¿Qué le queda a un niño cuando toda la clase pasó a recibir un caramelo, y él no?"
 ---
 

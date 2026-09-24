@@ -1,6 +1,6 @@
 const formatters = {
   he: new Intl.DateTimeFormat('he-IL', { dateStyle: 'long' }),
-  // תאריך בעמוד ספרדי — באותו סגנון, בשפת הקורא.
+  // תאריך בעמוד ספרדי – באותו סגנון, בשפת הקורא.
   es: new Intl.DateTimeFormat('es-ES', { dateStyle: 'long' }),
 } as const;
 
