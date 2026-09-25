@@ -76,6 +76,19 @@ export const ES_SECTION_SLUGS: Record<string, string> = {
   chaim: 'de-la-vida',
 };
 
+/** שם הקובץ באוסף beshtEs ← הסלאג הציבורי בספרדית ("מעשה שהיה" / Así sucedió).
+    אותו כלל כמו הסיפורים: ASCII, מהכותרת הספרדית; sucá ← suca. */
+export const ES_BESHT_SLUGS: Record<string, string> = {
+  'hakova-shehaya-lesuka': 'el-sombrero-que-fue-suca',
+};
+
+/** הכתובת הציבורית של סיפור "מעשה שהיה" ספרדי. סיפור בלי סלאג מכשיל את הבנייה. */
+export function esBeshtPath(id: string): string {
+  const slug = ES_BESHT_SLUGS[id];
+  if (!slug) throw new Error(`[es-slugs] סיפור "מעשה שהיה" ספרדי בלי סלאג: ${id} – הוסיפו שורה ב-ES_BESHT_SLUGS`);
+  return `/es/asi-sucedio/${slug}/`;
+}
+
 /** הכתובת הציבורית של סיפור ספרדי. */
 export function esStoryPath(id: string): string {
   return `/es/historias/${ES_STORY_SLUGS[id] ?? id}/`;
