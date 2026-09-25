@@ -9,9 +9,9 @@ Por eso casi nunca
 se la **mira**.
 
 Porque qué habría que mirar.
-Dice de ti
-exactamente lo que
-no querías **saber**.
+Está claro lo que dice:
+que hay en ti algo
+**mezquino**.
 
 Pero no aparece,
 frente a cualquiera que logró.

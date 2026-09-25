@@ -14,11 +14,11 @@ es **señal** de que debió
 ser diferente.
 
 Pero la mente no vuelve
-para **corregir**.
-Vuelve porque algo
-ahí quedó abierto.
+para corregir.
+Vuelve
+para **despedirse**.
 
 ---
 
-No se busca una corrección.
-Se busca una despedida.
+Hay momentos que terminan rápido
+y despedirse de ellos lleva años.

@@ -15,10 +15,10 @@ Y cada silencio suma una **razón**.
 
 Pero esa película
 la escribió el miedo.
-Y nunca fue puesta a prueba,
-frente a una persona **real**.
+Y los actores mismos
+nunca vieron el **guion**.
 
 ---
 
-El guion se escribió en la cabeza.
-Nunca se probó afuera.
+El miedo tiene buena imaginación.
+No tiene experiencia.

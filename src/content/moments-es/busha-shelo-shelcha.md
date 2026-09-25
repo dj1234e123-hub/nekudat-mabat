@@ -5,7 +5,7 @@ title: No con tu voz
 ---
 Alguien dijo una frase sobre ti.
 A una edad
-en la que aún no sabías,
+en la que aún no sabías
 comprobar si era **cierta**.
 
 Y desde entonces se quedó contigo

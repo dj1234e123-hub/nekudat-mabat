@@ -5,20 +5,20 @@ title: La misma lista
 ---
 Te sentaste a hacer un balance.
 Y abriste una página nueva.
-Solo que la lista
-ya te resulta **conocida**.
+Y ya desde el primer renglón
+todo te resulta **conocido**.
 
 Las mismas cosas, exactas.
 La misma decisión del año pasado,
-y se siente como una **prueba**
-de que nada se movió.
+y de ahí es fácil **concluir**
+que nada se movió.
 
-Pero quedarte en el mismo lugar,
-después de un año entero
-no es un fracaso.
-Sigue siendo quedarte **de pie**.
+Pero una lista así
+se vuelve a escribir
+solo cuando alguien
+todavía no **se rindió**.
 
 ---
 
-Todavía no te moviste lo suficiente.
-Eso no dice que no te movieras en absoluto.
+Una decisión no vuelve sola.
+Alguien vuelve a ella.

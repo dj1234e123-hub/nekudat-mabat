@@ -20,5 +20,5 @@ está **guardado**.
 
 ---
 
-Guardar cuesta más
-que lo guardado.
+A veces el secreto ya es pequeño.
+Lo que creció es guardarlo.

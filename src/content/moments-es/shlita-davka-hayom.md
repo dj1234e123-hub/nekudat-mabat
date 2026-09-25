@@ -6,19 +6,19 @@ title: Justo hoy
 De todos los días
 pasó justo **hoy**.
 El día en que más querías,
-ser distinto.
+ser de otra manera.
 
 Y enseguida
 llega la frase:
 si pasó incluso hoy,
 seguramente nada **cambió**.
 
-Pero lo que pasó hoy
-no prueba que el año no se movió.
-**Prueba**
-que sigues siendo humano, incluso hoy.
+Pero una caída hoy
+no borra un año entero.
+Solo recuerda que hoy también
+sigues siendo una **persona**.
 
 ---
 
 El día más puro del año
-no vino a probar la perfección.
+no se hizo para la perfección.
