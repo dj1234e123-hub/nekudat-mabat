@@ -13,11 +13,11 @@ sentir **alivio**
 por algo tan pesado.
 
 Pero está permitido
-que también haya alivio,
-eso no **borra**
+que también haya alivio.
+Eso no **borra**
 cuánto dolió.
 
 ---
 
-El alivio no es indiferencia.
-Es señal de que sobreviviste.
+Se puede llorar
+y respirar entre lágrimas.

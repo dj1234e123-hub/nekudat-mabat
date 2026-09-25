@@ -6,7 +6,7 @@ title: La quinta vez
 La dificultad no es empezar.
 Es empezar
 por quinta vez.
-Después de que ya **fue**.
+Cuando ya sabes cómo **termina**.
 
 Porque en la primera hay entusiasmo.
 Y en la quinta ya hay historia.
@@ -20,5 +20,5 @@ dónde exactamente se **rompe**.
 
 ---
 
-En la quinta vez sabes cosas
-que es imposible saber en la primera.
+La primera vez empieza de cero.
+La quinta empieza desde cuatro.

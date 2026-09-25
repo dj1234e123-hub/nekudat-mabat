@@ -20,5 +20,5 @@ hasta que vuelvas a tener
 
 ---
 
-No hace falta estar de acuerdo.
-Basta con no tirarlo.
+No hace falta creerle.
+Basta con dejar que la sostenga.

@@ -13,9 +13,9 @@ por dentro
 como si una alegría **visible**,
 hiriera.
 
-Pero él no necesita,
-oscuridad por ti
-necesita
+Pero él no necesita
+oscuridad por ti.
+Necesita
 a alguien a su **lado**.
 
 ---

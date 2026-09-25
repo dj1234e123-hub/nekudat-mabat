@@ -20,5 +20,5 @@ un lado de la **hoja**.
 
 ---
 
-Con esa medición,
-cualquier persona parece un fracaso.
+Tu hoja está escrita
+de los dos lados.

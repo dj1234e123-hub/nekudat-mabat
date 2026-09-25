@@ -20,5 +20,5 @@ el **cuarto**.
 
 ---
 
-La tristeza se corrió a un lado.
-No se fue.
+La risa no le quitó nada.
+Te dio aire.

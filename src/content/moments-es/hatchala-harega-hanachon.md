@@ -13,10 +13,10 @@ casi nunca llega.
 Y cada postergación parece
 falta de **seriedad**.
 
-Pero no es una fecha.
-Es un nombre amable
-para la sensación de seguridad
-que se espera antes de **moverse**.
+Pero un momento correcto
+no se encuentra en el calendario.
+Se vuelve correcto
+cuando empiezas **en él**.
 
 ---
 

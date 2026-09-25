@@ -13,12 +13,12 @@ de dónde va a venir,
 te va a agarrar
 sin **aviso**.
 
-Pero buscar el problema
-no protege de nada,
-solo **roba**
-el momento antes de vivirlo.
+Pero un impuesto así
+se paga dos veces:
+una ahora
+y otra si **pasa**.
 
 ---
 
-Lo malo todavía no llegó.
-Lo bueno ya está aquí.
+Y si no pasa,
+pagaste por nada.

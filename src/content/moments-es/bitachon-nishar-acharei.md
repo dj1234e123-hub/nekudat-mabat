@@ -11,11 +11,11 @@ antes de **hacer**.
 Y no llega.
 Entonces no haces.
 Y entonces hay otra prueba
-de que no está **ahí**.
+de que no hay **seguridad**.
 
 Pero los que se ven seguros
 simplemente aprendieron a hacer.
-También cuando las manos,
+También cuando las manos
 **tiemblan**.
 
 ---

@@ -3,7 +3,7 @@ feeling: hope
 date: 2026-09-08
 title: La esperanza que no pidió permiso
 ---
-Dijiste que este año
+Decidiste que este año
 no ibas a **pedir**.
 Porque duele demasiado,
 esperar de nuevo.
@@ -20,5 +20,5 @@ en que tiene permiso para salir.
 
 ---
 
-No pidió permiso.
-Simplemente estaba ahí.
+La esperanza que abandonaste
+no siempre te abandona a ti.

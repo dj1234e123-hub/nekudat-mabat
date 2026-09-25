@@ -16,9 +16,10 @@ así no se **empieza**.
 Pero esto no es pesimismo.
 Quien ya tuvo esperanza y se rompió
 sabe cuánto cuesta.
-Es la cautela, de quien ya **pagó**.
+Es la cautela
+de quien ya **pagó**.
 
 ---
 
-Quien más se rompió
-más cuidado tiene al esperar.
+Hay puertas que se cierran rápido
+porque recuerdan.

@@ -4,13 +4,13 @@ date: 2026-09-08
 title: Una frase sobre ti
 ---
 Hiciste algo grande.
-No lo **contaste**
-por miedo a que pensaran
-que era arrogancia.
+Y no se lo **contaste** a nadie.
+Por miedo a que sonara
+a presumir.
 
 Porque quien cuenta
 una frase sobre sí
-suena,
+suena
 **arrogante**.
 
 Pero contar

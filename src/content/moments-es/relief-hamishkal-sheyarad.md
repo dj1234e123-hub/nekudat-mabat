@@ -13,12 +13,12 @@ que si es tan fácil,
 seguramente
 no te **importaba**.
 
-Pero se puede estar
-sin ese peso,
-y aun así
-**triste**.
+Pero lo liviano
+solo se siente
+donde hubo
+**peso**.
 
 ---
 
-Algo se siente liviano
-solo después de haber sido pesado.
+El alivio es la prueba
+de cuánto importaba.

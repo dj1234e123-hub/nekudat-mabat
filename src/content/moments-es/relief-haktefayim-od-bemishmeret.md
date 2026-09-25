@@ -8,14 +8,14 @@ oficialmente.
 Pero todavía
 cuesta **respirar**.
 
-Porque si te relajas,
+Y si te relajas,
 justo ahora,
 va a **volver**
 sin aviso.
 
 Pero los hombros
-no te están **cuidando**,
-solo
+no te están **cuidando**.
+Solo
 están cansados.
 
 ---

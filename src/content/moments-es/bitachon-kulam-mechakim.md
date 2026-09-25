@@ -20,5 +20,5 @@ y exactamente el mismo **silencio**.
 
 ---
 
-A los demás les crees fácil.
-A ti, no.
+En los demás crees fácil.
+En ti, no.

@@ -20,5 +20,5 @@ con las **cicatrices**.
 
 ---
 
-No en otro lugar.
-Ni en otra versión de ti.
+Un nuevo comienzo
+no exige una persona nueva.
