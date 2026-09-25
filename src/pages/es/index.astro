@@ -62,6 +62,7 @@ const momentPool = moments.map((m) => {
     url: path,
     href: new URL(path, Astro.site).href,
     format: parseMoment(m.body ?? '', m.data.title),
+    handle: m.data.handle ?? null,
     accent: groupOf(feeling)?.accent ?? 'var(--gold)',
     // כרטיס השיתוף הגבוה – כמו בעברית.
     ogImage: new URL(`${path}card.png`, Astro.site).href,
@@ -148,7 +149,7 @@ const DESCRIPTION =
                     שהמסגרת האדומה ירדה, הוא מה שמסמן "כאן מתחיל רגע". */}
                 <span class="hook-rule" aria-hidden="true" />
                 <div id="moment-body-mount">
-                  <MomentBody format={featuredMoment.format} collapsed moreLabel="Seguir leyendo" />
+                  <MomentBody format={featuredMoment.format} handle={featuredMoment.handle} handleLabel="Para el camino" collapsed moreLabel="Seguir leyendo" />
                 </div>
               </article>
 
@@ -191,7 +192,7 @@ const DESCRIPTION =
                 data-href={m.href}
                 data-image={m.ogImage}
               >
-                <MomentBody format={m.format} collapsed moreLabel="Seguir leyendo" />
+                <MomentBody format={m.format} handle={m.handle} handleLabel="Para el camino" collapsed moreLabel="Seguir leyendo" />
               </template>
             ))}
           </div>

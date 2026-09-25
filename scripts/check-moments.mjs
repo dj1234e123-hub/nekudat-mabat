@@ -15,6 +15,7 @@
 // הרצה:  npm run check:moments
 import fs from 'node:fs';
 import path from 'node:path';
+import opentype from 'opentype.js';
 
 const DIR = 'src/content/moments';
 
@@ -205,7 +206,7 @@ function check(m) {
     add('WARNING', 'בלי הדגשה בסיום', 'הסיום כבר מודגש וצבוע – הדגשה בתוכו אינה נראית');
   else add('PASS', 'בלי הדגשה בסיום', 'נקי');
 
-  // 13 · נקודה לדרך — אופציונלית. כשהיא קיימת היא נבדקת (docs/MOMENT-FORMAT.md).
+  // 13 · נקודה לדרך — חובה מאז שכל 109 קיבלו אותה (2026-09-25), כמו title.
   // הכרטיס הגבוה מפנה לה שתי שורות בדיוק: שלוש שורות שוברות את הפריסה → FAIL.
   // האורך נבדק בתווים ולא רק במילים, כי מה שנשבר בכרטיס הוא הרוחב.
   if (m.handle) {
@@ -230,7 +231,7 @@ function check(m) {
     const shared = words(ht).filter((w) => [...forms(w)].some((f) => keep(f) && source.has(f))).map(bare);
     if (shared.length) add('PASS', 'נקודה לדרך · נאחזת בסיבוב', shared.join(', '));
     else add('WARNING', 'נקודה לדרך · נאחזת בסיבוב', 'אין מילה משותפת עם הסיבוב או הסיום');
-  }
+  } else add('FAIL', 'נקודה לדרך', 'חסרה – כל רגע נחתם בשורה לדרך');
 
   return r;
 }
@@ -327,6 +328,39 @@ for (const m of pending) for (const n of survey(m).needs) tally[n] = (tally[n] |
 console.log('── סיכום העבודה שמחכה ──');
 for (const [k, v] of Object.entries(tally).sort((a, b) => b[1] - a[1]))
   console.log(`  ${String(v).padStart(3)} רגעים צריכים: ${k}`);
+
+/* ─── "Para el camino" בספרדית ─────────────────────────────────────────
+   בדיקה מכנית בסיסית בלבד – שורות, רוחב בכרטיס ולשון. הניסוח עצמו נבדק
+   בקריאה (docs/SPANISH-EDITORIAL-GUIDELINES.md). הרוחב נמדד בפונט הכרטיס,
+   בגודל השורה בכרטיס (50), מול רוחב הטקסט המותר (844) – כמו moment-card.ts. */
+const ES_DIR = 'src/content/moments-es';
+const CARD_FONT = (() => {
+  const b = fs.readFileSync('src/assets/og-fonts/frank.ttf');
+  return opentype.parse(b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength));
+})();
+const cardWidth = (t) => {
+  let w = 0;
+  for (const c of t) w += (CARD_FONT.charToGlyph(c).advanceWidth ?? 0) * (50 / CARD_FONT.unitsPerEm);
+  return w;
+};
+const ES_COMMAND = /\b(debes|deberías|tienes que|hay que|necesitas|intenta|haz|no dejes)\b/i;
+const esFiles = fs.readdirSync(ES_DIR).filter((f) => f.endsWith('.md'));
+const esProblems = [];
+for (const f of esFiles) {
+  const text = fs.readFileSync(path.join(ES_DIR, f), 'utf8');
+  const fm = text.split(/^---\s*$/m)[1] ?? '';
+  const hl = blockField(fm, 'handle');
+  const id = path.basename(f, '.md');
+  if (!hl) { esProblems.push(['FAIL', id, 'חסרה']); continue; }
+  if (hl.length > 2) esProblems.push(['FAIL', id, `${hl.length} שורות (עד 2)`]);
+  for (const l of hl) if (cardWidth(l) > 844) esProblems.push(['FAIL', id, `"${l}" רחבה מהכרטיס (${Math.round(cardWidth(l))}/844)`]);
+  const cmd = hl.join(' ').match(ES_COMMAND);
+  if (cmd) esProblems.push(['FAIL', id, `"${cmd[1]}" – ציווי`]);
+}
+console.log(`\n── Para el camino · ${esFiles.length} רגעים בספרדית ──`);
+if (esProblems.length) for (const [lvl, id, d] of esProblems) console.log(`  ${ICON[lvl]} ${id}: ${d}`);
+else console.log('  ✓ לכולם שורה לדרך, עד שתי שורות, נכנסת לכרטיס, בלי ציווי');
+fails += esProblems.filter(([lvl]) => lvl === 'FAIL').length;
 
 console.log(`\n══ ${fails} FAIL · ${warns} WARNING · ${pending.length} טרם הוגרו ══\n`);
 process.exit(fails ? 1 : 0);

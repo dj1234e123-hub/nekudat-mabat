@@ -72,6 +72,7 @@ const momentPool = moments.map((m) => {
     url: path,
     href: new URL(path, Astro.site).href,
     format: parseMoment(m.body ?? '', m.data.title),
+    handle: m.data.handle ?? null,
     accent: groupOf(feeling)?.accent ?? 'var(--gold)',
     // כרטיס השיתוף הגבוה – אותו קובץ שכפתור הוואטסאפ בעמוד הרגע שולח.
     ogImage: new URL(`${path}card.png`, Astro.site).href,
@@ -168,7 +169,7 @@ const DESCRIPTION =
                     שהקורא כבר פוגש בעמוד הרגע עצמו. */}
                 <span class="hook-rule" aria-hidden="true" />
                 <div id="moment-body-mount">
-                  <MomentBody format={featuredMoment.format} collapsed />
+                  <MomentBody format={featuredMoment.format} handle={featuredMoment.handle} collapsed />
                 </div>
               </article>
 
@@ -210,7 +211,7 @@ const DESCRIPTION =
                   data-href={m.href}
                   data-image={m.ogImage}
                 >
-                  <MomentBody format={m.format} collapsed />
+                  <MomentBody format={m.format} handle={m.handle} collapsed />
                 </template>
               ))
             }

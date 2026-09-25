@@ -20,6 +20,13 @@ interface Props {
   collapsed?: boolean;
   /** הטקסט על כפתור הקיפול – בעמוד ספרדי הוא בספרדית. */
   moreLabel?: string;
+  /**
+   * "נקודה לדרך" – מוצגת אחרי הסיום, ורק היכן שהסיום מוצג (לא במדף, שם
+   * השורה הייתה חושפת את הסוף). שבירת השורה שנכתבה בקובץ נשמרת.
+   */
+  handle?: string | null;
+  /** התווית מעל השורה – "Para el camino" בספרדית. */
+  handleLabel?: string;
 }
 
 const {
@@ -27,6 +34,8 @@ const {
   firstStanzaOnly = false,
   collapsed = false,
   moreLabel = 'להמשיך לקרוא',
+  handle = null,
+  handleLabel = 'נקודה לדרך',
 } = Astro.props;
 const stanzas = firstStanzaOnly ? format.stanzas.slice(0, 1) : format.stanzas;
 const showClosing = !firstStanzaOnly && Boolean(format.closing);
@@ -34,6 +43,10 @@ const showClosing = !firstStanzaOnly && Boolean(format.closing);
 const isCollapsed = collapsed && format.isNew && !firstStanzaOnly && stanzas.length > 1;
 const visibleStanzas = isCollapsed ? stanzas.slice(0, 1) : stanzas;
 const restStanzas = isCollapsed ? stanzas.slice(1) : [];
+const handleLines = showClosing
+  ? (handle?.split('\n').map((l) => l.trim()).filter(Boolean) ?? [])
+  : [];
+const handleHtml = handleLines.map((l) => l.replace(/&/g, '&amp;').replace(/</g, '&lt;')).join('<br />');
 ---
 
 <div class:list={['moment-body', format.isNew ? 'is-new' : 'is-flow']}>
@@ -61,6 +74,13 @@ const restStanzas = isCollapsed ? stanzas.slice(1) : [];
                 <span class="rule" />
               </div>
               <p class="closing" set:html={format.closing!.map(lineHtml).join('<br />')} />
+              {handleLines.length > 0 && (
+                <aside class="handle" aria-label={handleLabel}>
+                  <span class="handle-dot" aria-hidden="true" />
+                  <span class="handle-label">{handleLabel}</span>
+                  <p class="handle-text" set:html={handleHtml} />
+                </aside>
+              )}
             </>
           )
         }
@@ -77,6 +97,15 @@ const restStanzas = isCollapsed ? stanzas.slice(1) : [];
             <span class="rule" />
           </div>
           <p class="closing" set:html={format.closing!.map(lineHtml).join('<br />')} />
+          {/* אותה שפה של הכרטיס: קו זהב דק, הנקודה, ושורה שקטה בדיו.
+              הסיום האדום נשאר השיא; זה קול שני, שלוקחים איתך. */}
+          {handleLines.length > 0 && (
+            <aside class="handle" aria-label={handleLabel}>
+              <span class="handle-dot" aria-hidden="true" />
+              <span class="handle-label">{handleLabel}</span>
+              <p class="handle-text" set:html={handleHtml} />
+            </aside>
+          )}
         </>
       )
     )
@@ -84,6 +113,44 @@ const restStanzas = isCollapsed ? stanzas.slice(1) : [];
 </div>
 
 <style>
+  /* "נקודה לדרך". המידות ב-em, כדי שהשורה תשמור על היחס לגוף הרגע גם בדף
+     הבית, שם הגוף קטן יותר (--moment-size). בעמוד הרגע (1.3rem) זה בדיוק
+     2.6rem / 2rem / 1.35rem – הערכים שהיו בעמוד לפני שהשורה עברה לרכיב. */
+  .handle {
+    margin: 2em auto 0;
+    padding-top: 1.54em;
+    border-top: 1px solid color-mix(in srgb, var(--gold) 55%, transparent);
+    max-width: 22rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .handle-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  .handle-label {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--gold-deep, #8f6f28);
+  }
+
+  .handle-text {
+    margin: 0.2rem 0 0;
+    font-size: 1.04em;
+    line-height: 1.5;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+
   .moment-body {
     font-family: var(--font-display);
     font-size: var(--moment-size, 1.3rem);
