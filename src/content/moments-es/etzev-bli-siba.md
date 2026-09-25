@@ -2,6 +2,9 @@
 feeling: sadness
 date: 2026-08-21
 title: Nada que contar
+handle: |-
+  El peso de la mañana
+  se puede sentir también sin razón.
 ---
 Todo está bien en el papel.
 No hay tragedia.

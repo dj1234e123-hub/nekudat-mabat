@@ -2,6 +2,9 @@
 feeling: providence
 date: 2026-08-24
 title: Hasta la mañana
+handle: |-
+  La preocupación de esta noche,
+  dejársela a quien queda despierto.
 ---
 La noche ya está aquí,
 y nada se cerró.

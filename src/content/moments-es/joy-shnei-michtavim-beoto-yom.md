@@ -2,6 +2,9 @@
 feeling: joy
 date: 2026-09-08
 title: El mismo día
+handle: |-
+  Junto a quien hoy la pasa mal,
+  basta con quedarse.
 ---
 Recibiste una buena **noticia**
 el mismo día

@@ -2,6 +2,9 @@
 feeling: fear
 date: 2026-08-21
 title: No tengo tiempo
+handle: |-
+  De lo que vienes evitando,
+  elegir una y volver a mirarla.
 ---
 «No tengo tiempo».
 «No es para mí».

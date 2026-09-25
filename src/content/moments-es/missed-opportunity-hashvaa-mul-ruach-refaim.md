@@ -2,6 +2,9 @@
 feeling: missed-opportunity
 date: 2026-09-08
 title: El camino que no tomaste
+handle: |-
+  En vez de imaginar lo de allá,
+  notar lo que hay aquí.
 ---
 Hay un camino
 que no tomaste.

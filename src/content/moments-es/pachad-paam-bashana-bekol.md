@@ -2,6 +2,9 @@
 feeling: fear
 date: 2026-09-08
 title: Una vez al año, en voz alta
+handle: |-
+  La frase que se dijo en voz alta
+  no hace falta cerrarla rápido.
 ---
 Todo el año lo logras
 no pensar en eso.

@@ -2,6 +2,9 @@
 feeling: relief
 date: 2026-09-08
 title: Los hombros cansados
+handle: |-
+  Varias veces hoy,
+  bajar los hombros a propósito.
 ---
 El peligro pasó,
 oficialmente.

@@ -2,6 +2,9 @@
 feeling: gratitude
 date: 2026-08-24
 title: En el mismo corazón
+handle: |-
+  También en un día difícil,
+  encontrar un gracias pequeño.
 ---
 Una época difícil.
 Difícil de verdad.

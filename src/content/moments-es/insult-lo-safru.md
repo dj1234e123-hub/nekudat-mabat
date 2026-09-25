@@ -2,6 +2,9 @@
 feeling: insult
 date: 2026-09-08
 title: No contaron
+handle: |-
+  Hoy, contar a alguien
+  a quien nadie cuenta.
 ---
 No dijo nada terrible.
 No gritó.

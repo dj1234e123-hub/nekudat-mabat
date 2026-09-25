@@ -2,6 +2,9 @@
 feeling: ruminating
 date: 2026-09-08
 title: Expediente abierto
+handle: |-
+  La conversación que terminó:
+  preguntar qué te dejó por dentro.
 ---
 La conversación terminó en la mañana.
 Hace horas.

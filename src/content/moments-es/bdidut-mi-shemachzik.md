@@ -2,6 +2,9 @@
 feeling: loneliness
 date: 2026-08-21
 title: Desde afuera se ve lleno
+handle: |-
+  Si hoy preguntan «¿cómo estás?»,
+  responder un poco más que «bien».
 ---
 Todos acuden a ti.
 Para escuchar, ayudar,

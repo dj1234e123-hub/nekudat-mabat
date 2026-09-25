@@ -2,6 +2,9 @@
 feeling: secret
 date: 2026-09-08
 title: En voz alta, a solas
+handle: |-
+  Lo que cuesta decir
+  también se puede decir en un susurro.
 ---
 Todos dicen el vidui, juntos
 en voz alta

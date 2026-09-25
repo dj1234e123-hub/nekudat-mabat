@@ -2,6 +2,9 @@
 feeling: envy
 date: 2026-08-22
 title: Con un extraño es fácil
+handle: |-
+  Después del «felicidades» rápido,
+  está permitido doler en silencio.
 ---
 En el grupo de la familia
 una buena noticia.

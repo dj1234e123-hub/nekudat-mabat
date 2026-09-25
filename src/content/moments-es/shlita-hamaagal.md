@@ -2,6 +2,9 @@
 feeling: losing-control
 date: 2026-08-22
 title: La promesa grande
+handle: |-
+  Después de la próxima vergüenza,
+  prometer algo pequeño, no grande.
 ---
 Después de que termina
 llega una ola

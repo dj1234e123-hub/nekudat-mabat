@@ -2,6 +2,9 @@
 feeling: good-moment
 date: 2026-08-22
 title: No ilusionarse demasiado
+handle: |-
+  Cuando aparezca la cautela,
+  darle a lo bueno un momento más.
 ---
 Hay un momento bueno.
 Y enseguida sube un pensamiento

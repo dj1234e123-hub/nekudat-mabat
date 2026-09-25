@@ -2,6 +2,9 @@
 feeling: hope
 date: 2026-08-21
 title: Cosas grises
+handle: |-
+  La cosa gris de hoy,
+  hacerla como apuesta a que sigue.
 ---
 Pedir un turno.
 Responder un mensaje.

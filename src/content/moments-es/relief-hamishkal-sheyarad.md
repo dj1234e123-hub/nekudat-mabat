@@ -2,6 +2,9 @@
 feeling: relief
 date: 2026-09-08
 title: El peso que se fue
+handle: |-
+  Después de la palabra difícil,
+  dejar que lo liviano se quede.
 ---
 Dijiste la palabra
 que había que decir.

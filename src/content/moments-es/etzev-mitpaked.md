@@ -2,6 +2,9 @@
 feeling: sadness
 date: 2026-08-21
 title: Por fuera funciona
+handle: |-
+  Al final del día,
+  guardar para ti lo poco que queda.
 ---
 Te levantaste. Saliste.
 Hiciste lo que había que hacer.

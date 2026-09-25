@@ -2,6 +2,9 @@
 feeling: guilt
 date: 2026-08-22
 title: Una deuda pagada
+handle: |-
+  Sobre esa deuda
+  hoy se puede escribir «pagada».
 ---
 Pediste perdón.
 Reparaste lo que se podía.

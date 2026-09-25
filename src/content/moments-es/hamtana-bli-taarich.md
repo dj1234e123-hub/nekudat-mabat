@@ -2,6 +2,9 @@
 feeling: waiting
 date: 2026-08-22
 title: Sin fondo
+handle: |-
+  Sin fecha para el final,
+  se puede cerrar un solo día.
 ---
 La espera con final conocido
 tiene un límite.

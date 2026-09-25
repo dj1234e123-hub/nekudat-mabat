@@ -2,6 +2,9 @@
 feeling: insult
 date: 2026-09-08
 title: Está permitido que duela
+handle: |-
+  Cuando vuelva a doler hoy,
+  soltar una vez la explicación.
 ---
 Un día después.
 No pasó nada más desde entonces.

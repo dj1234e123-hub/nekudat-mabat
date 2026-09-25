@@ -2,6 +2,9 @@
 feeling: fear
 date: 2026-08-21
 title: Junto a algo querido
+handle: |-
+  Cuando hoy salte el miedo,
+  preguntar junto a qué está parado.
 ---
 El miedo casi nunca está solo.
 Está parado junto a algo querido.

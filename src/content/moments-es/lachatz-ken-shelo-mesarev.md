@@ -2,6 +2,9 @@
 feeling: pressure
 date: 2026-08-21
 title: Lo que prometes
+handle: |-
+  A un pedido de hoy,
+  responder «lo veo» antes que «sí».
 ---
 Dijiste que sí.
 Y después otro sí.

@@ -2,6 +2,9 @@
 feeling: shame
 date: 2026-08-22
 title: Su única condición
+handle: |-
+  Pensar hoy en una persona
+  a quien se lo podrías contar.
 ---
 Hay algo
 que no le has contado a nadie.

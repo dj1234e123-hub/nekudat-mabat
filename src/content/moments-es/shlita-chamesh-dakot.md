@@ -2,6 +2,9 @@
 feeling: losing-control
 date: 2026-08-22
 title: Un control pequeño
+handle: |-
+  Antes de ese momento hoy,
+  buscar el control pequeño.
 ---
 Pasó otra vez.
 Y después otra vez.

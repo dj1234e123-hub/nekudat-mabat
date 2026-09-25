@@ -2,6 +2,9 @@
 feeling: confusion
 date: 2026-08-21
 title: Las respuestas viejas
+handle: |-
+  ¿Qué ya te queda chico?
+  Preguntarlo, sin buscar reemplazo.
 ---
 No sabes.
 Ni hacia dónde,

@@ -2,6 +2,9 @@
 feeling: failure
 date: 2026-08-22
 title: La versión editada
+handle: |-
+  Frente a la foto ordenada de otro,
+  recordar el año que no se contó.
 ---
 Comparas lo de adentro
 con lo que se ve en otros.

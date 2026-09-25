@@ -2,6 +2,9 @@
 feeling: secret
 date: 2026-08-22
 title: El cansancio de guardar
+handle: |-
+  Cuando aparezca el cansancio hoy,
+  preguntar cuánto de él es guardar.
 ---
 Recordar qué contaste a quién.
 Revisar cada frase,

@@ -2,6 +2,9 @@
 feeling: pride
 date: 2026-09-08
 title: Una frase sobre ti
+handle: |-
+  Contar hoy una cosa que hiciste,
+  sin agregar ni achicar.
 ---
 Hiciste algo grande.
 Y no se lo **contaste** a nadie.

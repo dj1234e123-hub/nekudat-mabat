@@ -2,6 +2,9 @@
 feeling: exhaustion
 date: 2026-08-22
 title: Un sistema que sigue
+handle: |-
+  Un momento hoy
+  del que nadie dependa.
 ---
 Hay gente que depende de ti.
 Entonces sigues.

@@ -2,6 +2,9 @@
 feeling: loss
 date: 2026-09-08
 title: La misma manzana, la misma miel
+handle: |-
+  Junto a la silla vacía,
+  también está permitido decir «falta».
 ---
 El plato en la mesa
 el mismo plato

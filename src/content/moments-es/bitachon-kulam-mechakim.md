@@ -2,6 +2,9 @@
 feeling: confidence
 date: 2026-08-21
 title: Cuestión de tiempo
+handle: |-
+  La confianza que tienes en otros
+  hoy puedes prestártela también a ti.
 ---
 Te elogiaron delante de todos.
 Asentiste, sonreíste.

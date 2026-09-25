@@ -2,6 +2,9 @@
 feeling: pressure
 date: 2026-08-21
 title: El cuerpo avisa
+handle: |-
+  Cuando hoy salga «estoy bien»,
+  revisar si el cuerpo coincide.
 ---
 El estómago se encoge.
 Las manos no descansan.

@@ -2,6 +2,9 @@
 feeling: longing
 date: 2026-09-08
 title: Un olor, sin aviso
+handle: |-
+  Cuando hoy un olor traiga a alguien,
+  dejar que la visita dure un poco.
 ---
 Todo era normal
 hasta que un **olor**

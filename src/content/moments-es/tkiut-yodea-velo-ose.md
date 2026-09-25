@@ -2,6 +2,9 @@
 feeling: standstill
 date: 2026-08-22
 title: No es pereza
+handle: |-
+  Cuando vuelva a pasar hoy,
+  preguntar de qué te protege.
 ---
 Sabes exactamente
 qué hay que hacer.

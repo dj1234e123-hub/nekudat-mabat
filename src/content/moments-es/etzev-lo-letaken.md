@@ -2,6 +2,9 @@
 feeling: sadness
 date: 2026-08-21
 title: Sin arreglar nada
+handle: |-
+  Cuando hoy intenten arreglarte,
+  pedir solo que se sienten contigo.
 ---
 Te ofrecen soluciones.
 Te recuerdan lo bueno.

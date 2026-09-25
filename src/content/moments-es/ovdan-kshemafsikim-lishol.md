@@ -2,6 +2,9 @@
 feeling: loss
 date: 2026-08-21
 title: Cuando dejan de preguntar
+handle: |-
+  Aunque ya no pregunten,
+  se puede decir el nombre en voz alta.
 ---
 En algún punto,
 dejan de preguntar.

@@ -2,6 +2,9 @@
 feeling: pain
 date: 2026-08-22
 title: No me muestres
+handle: |-
+  También esto
+  se le puede mostrar a alguien cercano.
 ---
 Te dijeron
 que hay que ser fuerte.

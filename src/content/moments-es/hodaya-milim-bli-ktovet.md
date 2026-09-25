@@ -2,6 +2,9 @@
 feeling: gratitude
 date: 2026-08-24
 title: Palabras sin destinatario
+handle: |-
+  Cuando hoy algo sale bien,
+  decir «gracias» en lugar de «suerte».
 ---
 Cuando algo sale bien
 hay palabras rápidas:

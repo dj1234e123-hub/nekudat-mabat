@@ -2,6 +2,9 @@
 feeling: loneliness
 date: 2026-08-21
 title: Esta distancia es real
+handle: |-
+  La pregunta que nadie hizo
+  hoy te la puedes hacer tú.
 ---
 Alrededor hay gente.
 Hablan, sonríen,

@@ -2,6 +2,9 @@
 feeling: loss
 date: 2026-08-21
 title: El mundo no supo
+handle: |-
+  Contarle hoy a alguien
+  que tu mundo se detuvo.
 ---
 La gente viaja al trabajo.
 Las tiendas abren.

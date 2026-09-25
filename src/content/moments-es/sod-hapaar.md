@@ -2,6 +2,9 @@
 feeling: secret
 date: 2026-08-22
 title: Un cuarto cerrado
+handle: |-
+  Un elogio hoy:
+  dejar que llegue hasta el final.
 ---
 La gente te aprecia.
 Lo dicen en voz alta.

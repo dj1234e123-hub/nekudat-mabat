@@ -2,6 +2,9 @@
 feeling: anger
 date: 2026-08-22
 title: No lo elegiste
+handle: |-
+  Al primer enojo
+  no sumarle un segundo.
 ---
 Hay un enojo
 que no tiene permiso.

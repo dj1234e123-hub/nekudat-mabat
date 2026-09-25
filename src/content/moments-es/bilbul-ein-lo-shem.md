@@ -2,6 +2,9 @@
 feeling: confusion
 date: 2026-08-21
 title: Sin palabra
+handle: |-
+  En vez de buscarle palabra,
+  respirar un momento con el peso.
 ---
 No es tristeza.
 No es enojo.

@@ -2,6 +2,9 @@
 feeling: missed-opportunity
 date: 2026-09-08
 title: Testigos de hoy
+handle: |-
+  Juzgar una decisión vieja
+  solo con lo que se sabía entonces.
 ---
 Hoy está claro
 qué había que hacer.

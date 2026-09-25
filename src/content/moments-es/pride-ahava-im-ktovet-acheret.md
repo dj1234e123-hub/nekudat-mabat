@@ -2,6 +2,9 @@
 feeling: pride
 date: 2026-09-08
 title: Amor con otra dirección
+handle: |-
+  Lo que dices fácil de otros,
+  decirlo hoy también de ti.
 ---
 Es fácil decir
 cuánto **orgullo** te da él.

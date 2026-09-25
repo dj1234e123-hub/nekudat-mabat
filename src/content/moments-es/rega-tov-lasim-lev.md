@@ -2,6 +2,9 @@
 feeling: good-moment
 date: 2026-08-22
 title: Dos segundos
+handle: |-
+  Una vez hoy,
+  prestar atención antes de seguir.
 ---
 Ahora está bien.
 Y ya buscas

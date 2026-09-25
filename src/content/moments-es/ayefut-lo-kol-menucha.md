@@ -2,6 +2,9 @@
 feeling: exhaustion
 date: 2026-08-22
 title: La cuenta de horas
+handle: |-
+  Esta semana, buscar una hora
+  de algo querido.
 ---
 Dormiste ocho horas.
 Saliste de vacaciones.

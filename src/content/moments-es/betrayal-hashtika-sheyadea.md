@@ -2,6 +2,9 @@
 feeling: betrayal
 date: 2026-09-08
 title: El silencio que sabía
+handle: |-
+  La confianza sigue siendo tuya:
+  para quien la merezca.
 ---
 Descubriste
 que él sabía

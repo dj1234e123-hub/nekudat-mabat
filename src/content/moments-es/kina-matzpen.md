@@ -2,6 +2,9 @@
 feeling: envy
 date: 2026-08-22
 title: Lo que no te permitiste
+handle: |-
+  Frente a quien hoy despierta envidia,
+  preguntar qué no te permitiste.
 ---
 De la envidia hay más vergüenza
 que de cualquier otra emoción.

@@ -2,6 +2,9 @@
 feeling: faith
 date: 2026-08-21
 title: Un sentimiento grande
+handle: |-
+  En un día seco, hacer.
+  El sentimiento puede llegar después.
 ---
 Te levantaste de mañana.
 Rezaste. Saliste al día.

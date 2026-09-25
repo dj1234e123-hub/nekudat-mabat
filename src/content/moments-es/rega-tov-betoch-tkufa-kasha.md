@@ -2,6 +2,9 @@
 feeling: good-moment
 date: 2026-08-22
 title: Risa en el medio
+handle: |-
+  Si hoy algo te da risa,
+  se puede reír sin disculparse.
 ---
 Una época difícil,
 y en el medio – risa.

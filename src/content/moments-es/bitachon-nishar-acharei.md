@@ -2,6 +2,9 @@
 feeling: confidence
 date: 2026-08-21
 title: Después, no antes
+handle: |-
+  Hacer hoy una cosa
+  sin esperar a la seguridad.
 ---
 Imaginas la seguridad
 como una calma interior total.

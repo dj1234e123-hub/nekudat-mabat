@@ -2,6 +2,9 @@
 feeling: exhaustion
 date: 2026-08-22
 title: Desde el mismo lugar
+handle: |-
+  Hoy, notar lo que entra,
+  no solo lo que sale.
 ---
 La mañana no empezó.
 Continuó.

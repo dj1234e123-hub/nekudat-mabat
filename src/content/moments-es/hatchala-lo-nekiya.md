@@ -2,6 +2,9 @@
 feeling: new-beginning
 date: 2026-08-21
 title: En la entrada
+handle: |-
+  Un paso hoy,
+  con todo lo que hay.
 ---
 Un nuevo comienzo
 no siempre se siente como luz.

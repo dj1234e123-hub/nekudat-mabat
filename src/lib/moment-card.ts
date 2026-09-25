@@ -422,6 +422,7 @@ const STORY_PLAIN: Layout = { ...STORY_BASE, bottom: 1600 };
 
 const HANDLE_SIZE = 50;
 const HANDLE_LABEL = 'נקודה לדרך';
+const HANDLE_LABEL_ES = 'Para el camino';
 
 /** שורת ה"נקודה לדרך" נשברת היכן שנכתבה (\n). שורה אחת ארוכה נשברת לבד. */
 function handleLines(handle: string): string[] {
@@ -429,11 +430,20 @@ function handleLines(handle: string): string[] {
   return written.flatMap((l) => wrap(l, HANDLE_SIZE, REGULAR));
 }
 
-export function renderMomentStory(body: string, siteHost: string, title: string, handle?: string | null): Buffer {
+export function renderMomentStory(
+  body: string,
+  siteHost: string,
+  title: string,
+  handle?: string | null,
+  lang: 'he' | 'es' = 'he'
+): Buffer {
   const format = parseMoment(body, title);
   const L = handle ? STORY_WITH_HANDLE : STORY_PLAIN;
   const { items, height } = fit(format, L);
-  const t = (x: string) => `${RLO}${escape(x)}${PDF}`;
+  const rtl = lang !== 'es';
+  const direction = rtl ? 'rtl' : 'ltr';
+  // עברית נעטפת RLO (ראו שלב 4.19); בלטינית העטיפה הייתה הופכת את הטקסט.
+  const t = (x: string) => (rtl ? `${RLO}${escape(x)}${PDF}` : escape(x));
 
   let cursor = Math.max(L.top, L.top + (L.bottom - L.top - height) / 2);
   const svg: string[] = [];
@@ -441,7 +451,7 @@ export function renderMomentStory(body: string, siteHost: string, title: string,
     if (item.kind === 'line') {
       if (item.text) {
         svg.push(
-          `<text x="${CENTER}" y="${(cursor + item.baseline).toFixed(1)}" font-family="${item.family}" font-size="${item.size}" fill="${item.fill}" direction="rtl" text-anchor="middle">${inline(item.text, true)}</text>`
+          `<text x="${CENTER}" y="${(cursor + item.baseline).toFixed(1)}" font-family="${item.family}" font-size="${item.size}" fill="${item.fill}" direction="${direction}" text-anchor="middle">${inline(item.text, rtl)}</text>`
         );
       }
     } else if (item.kind === 'ornament') {
@@ -458,25 +468,32 @@ export function renderMomentStory(body: string, siteHost: string, title: string,
     handleSvg.push(
       `<line x1="${CENTER - 300}" y1="1412" x2="${CENTER + 300}" y2="1412" stroke="${GOLD}" stroke-width="1.6" opacity="0.55"/>`,
       `<circle cx="${CENTER}" cy="1472" r="8" fill="${GOLD}"/>`,
-      `<text x="${CENTER}" y="1526" font-family="Heebo Bold" font-size="29" fill="#8f6f28" direction="rtl" text-anchor="middle" letter-spacing="3">${t(HANDLE_LABEL)}</text>`,
+      `<text x="${CENTER}" y="1526" font-family="Heebo Bold" font-size="29" fill="#8f6f28" direction="${direction}" text-anchor="middle" letter-spacing="3">${t(rtl ? HANDLE_LABEL : HANDLE_LABEL_ES)}</text>`,
       ...lines.map(
         (line, i) =>
-          `<text x="${CENTER}" y="${first + i * 64}" font-family="${REGULAR}" font-size="${HANDLE_SIZE}" fill="${INK}" direction="rtl" text-anchor="middle">${t(line)}</text>`
+          `<text x="${CENTER}" y="${first + i * 64}" font-family="${REGULAR}" font-size="${HANDLE_SIZE}" fill="${INK}" direction="${direction}" text-anchor="middle">${t(line)}</text>`
       )
     );
   }
 
   const [invite] = HE_GROUP_LINE.split(' – ');
   const phone = HE_GROUP_LINE.match(/\d[\d-]*\d/)?.[0] ?? '';
+  // בספרדית אין מספר טלפון (ההזמנה לשיחה בעברית בלבד), ולכן הכתובת היא
+  // השורה הבולטת בכחול, באותו מקום ובאותו משקל.
+  const footer = rtl
+    ? `<text x="${CENTER}" y="1756" font-family="Heebo" font-size="30" fill="${MUTED}" direction="rtl" text-anchor="middle">${t(invite)}</text>
+  <text x="${CENTER}" y="1816" font-family="Heebo Bold" font-size="46" fill="${BLUE}" text-anchor="middle" letter-spacing="3">${LRO}${phone}${PDF}</text>
+  <text x="${CENTER}" y="1868" font-family="Heebo" font-size="25" fill="${MUTED}" direction="rtl" text-anchor="middle">${RLO}נקודת מבט · אפרים עטיה · ${PDF}${LRO}${escape(siteHost)}${PDF}</text>`
+    : `<text x="${CENTER}" y="1756" font-family="Heebo" font-size="30" fill="${MUTED}" text-anchor="middle">¿Quieres más momentos así?</text>
+  <text x="${CENTER}" y="1816" font-family="Heebo Bold" font-size="46" fill="${BLUE}" text-anchor="middle">${escape(siteHost)}/es</text>
+  <text x="${CENTER}" y="1868" font-family="Heebo" font-size="25" fill="${MUTED}" text-anchor="middle">Punto de Vista · Efraim Atia</text>`;
 
   const doc = `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${STORY_HEIGHT}" viewBox="0 0 ${WIDTH} ${STORY_HEIGHT}">
   <rect width="${WIDTH}" height="${STORY_HEIGHT}" fill="${PAPER}"/>
   <circle cx="${CENTER}" cy="118" r="9" fill="${GOLD}"/>
   ${svg.join('\n  ')}
   ${handleSvg.join('\n  ')}
-  <text x="${CENTER}" y="1756" font-family="Heebo" font-size="30" fill="${MUTED}" direction="rtl" text-anchor="middle">${t(invite)}</text>
-  <text x="${CENTER}" y="1816" font-family="Heebo Bold" font-size="46" fill="${BLUE}" text-anchor="middle" letter-spacing="3">${LRO}${phone}${PDF}</text>
-  <text x="${CENTER}" y="1868" font-family="Heebo" font-size="25" fill="${MUTED}" direction="rtl" text-anchor="middle">${RLO}נקודת מבט · אפרים עטיה · ${PDF}${LRO}${escape(siteHost)}${PDF}</text>
+  ${footer}
 </svg>`;
 
   return new Resvg(doc, {

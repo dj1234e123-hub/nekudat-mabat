@@ -2,6 +2,9 @@
 feeling: pain
 date: 2026-08-22
 title: Pasó la fecha
+handle: |-
+  Está permitido que hoy
+  todavía no esté bien.
 ---
 Ya no preguntan.
 Suponen que lo cerraste.

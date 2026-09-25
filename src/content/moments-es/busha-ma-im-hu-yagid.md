@@ -2,6 +2,9 @@
 feeling: shame
 date: 2026-09-08
 title: ¿Y si de verdad lo dice?
+handle: |-
+  Basta una frase:
+  «Vi que te dolió».
 ---
 Es fácil decidir,
 pedir **perdón**.

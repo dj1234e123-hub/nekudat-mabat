@@ -2,6 +2,9 @@
 feeling: shame
 date: 2026-08-22
 title: No con tu voz
+handle: |-
+  Decir la frase en voz alta
+  y escuchar si suena con tu voz.
 ---
 Alguien dijo una frase sobre ti.
 A una edad

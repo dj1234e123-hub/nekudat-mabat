@@ -2,6 +2,9 @@
 feeling: hope
 date: 2026-09-08
 title: La esperanza que no pidió permiso
+handle: |-
+  Un pedido que abandonaste
+  se puede volver a pedir, en voz baja.
 ---
 Decidiste que este año
 no ibas a **pedir**.

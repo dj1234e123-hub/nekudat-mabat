@@ -2,6 +2,9 @@
 feeling: gratitude
 date: 2026-08-24
 title: Mil cosas
+handle: |-
+  A la noche, antes de anotar «nada»,
+  contar tres de las mil.
 ---
 Un día común.
 Te levantaste, viajaste, volviste.

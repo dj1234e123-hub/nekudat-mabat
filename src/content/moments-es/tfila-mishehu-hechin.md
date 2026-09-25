@@ -2,6 +2,9 @@
 feeling: prayer
 date: 2026-08-24
 title: Alguien ya preparó
+handle: |-
+  En un día sin palabras,
+  pedirle una al sidur.
 ---
 Abriste un sidur,
 y dijiste palabras,

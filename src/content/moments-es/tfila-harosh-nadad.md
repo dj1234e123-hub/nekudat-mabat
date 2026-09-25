@@ -2,6 +2,9 @@
 feeling: prayer
 date: 2026-09-08
 title: La boca reza, la mente vaga
+handle: |-
+  Cuando la mente vaga en la oración,
+  volver sin regañarse.
 ---
 Horas de **oración**.
 La boca reza.

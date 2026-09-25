@@ -2,6 +2,9 @@
 feeling: joy
 date: 2026-09-08
 title: Un éxito pequeño
+handle: |-
+  ¿Qué fue pequeño hoy
+  y vale la pena contar?
 ---
 No es una boda
 no es un bebé

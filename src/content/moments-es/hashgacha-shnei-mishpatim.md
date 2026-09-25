@@ -2,6 +2,9 @@
 feeling: providence
 date: 2026-08-24
 title: Dos frases
+handle: |-
+  Cuando aparece «me olvidaron»,
+  volver a lo que de verdad pasó.
 ---
 Hiciste todo bien.
 Te esforzaste, tuviste cuidado, esperaste.

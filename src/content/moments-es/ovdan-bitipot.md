@@ -2,6 +2,9 @@
 feeling: loss
 date: 2026-08-21
 title: La taza en su lugar
+handle: |-
+  En el lugar pequeño de hoy,
+  detenerse un momento.
 ---
 La taza sigue ahí
 en su lugar.

@@ -2,6 +2,9 @@
 feeling: insult
 date: 2026-09-08
 title: Solo en la mesa
+handle: |-
+  Uno puede levantarse de la mesa.
+  La frase puede quedarse ahí.
 ---
 Lo dijo,
 y ya ni se **acuerda**.

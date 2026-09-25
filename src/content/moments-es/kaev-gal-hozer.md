@@ -2,6 +2,9 @@
 feeling: pain
 date: 2026-08-21
 title: Una ola que vuelve
+handle: |-
+  Cuando llegue una ola hoy,
+  se puede preguntar qué muestra.
 ---
 Pasan días,
 y el dolor está callado.

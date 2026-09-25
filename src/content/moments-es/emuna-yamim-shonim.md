@@ -2,6 +2,9 @@
 feeling: faith
 date: 2026-08-21
 title: Días que buscan
+handle: |-
+  En un día de búsqueda,
+  seguir hablando sin oír respuesta.
 ---
 Ayer era simple.
 Rezabas, y había a quién.

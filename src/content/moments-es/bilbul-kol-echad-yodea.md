@@ -2,6 +2,9 @@
 feeling: confusion
 date: 2026-08-21
 title: La voz que no habló
+handle: |-
+  Antes de consultar a otro,
+  recordar qué pensaste al principio.
 ---
 Cada uno a tu alrededor
 sabe exactamente qué te conviene.

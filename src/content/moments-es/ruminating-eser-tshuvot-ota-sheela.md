@@ -2,6 +2,9 @@
 feeling: ruminating
 date: 2026-09-08
 title: Diez respuestas, la misma pregunta
+handle: |-
+  La décima vez, no responder.
+  Solo preguntar qué duele.
 ---
 El mismo pensamiento
 ya van diez veces hoy.

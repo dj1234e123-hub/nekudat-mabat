@@ -2,6 +2,9 @@
 feeling: envy
 date: 2026-08-22
 title: Otro camino
+handle: |-
+  Lo que alguien recibió hoy
+  también es prueba de que existe.
 ---
 Alguien recibió
 lo que querías.

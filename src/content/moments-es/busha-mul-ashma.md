@@ -2,6 +2,9 @@
 feeling: shame
 date: 2026-08-22
 title: Un acto o un nombre
+handle: |-
+  Cuando aparece «yo soy así»,
+  buscar el acto que hay debajo.
 ---
 La culpa dice:
 hice algo malo.

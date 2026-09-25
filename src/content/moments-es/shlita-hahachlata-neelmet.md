@@ -2,6 +2,9 @@
 feeling: losing-control
 date: 2026-08-22
 title: La misma persona
+handle: |-
+  La decisión de la mañana:
+  dejarla anotada para la noche.
 ---
 De mañana
 la decisión está clarísima.

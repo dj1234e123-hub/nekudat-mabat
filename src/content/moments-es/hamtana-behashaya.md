@@ -2,6 +2,9 @@
 feeling: waiting
 date: 2026-08-22
 title: Sala de espera
+handle: |-
+  Una cosa que esperaba la respuesta
+  se puede hacer ya, ahora.
 ---
 Esperas una respuesta.
 Una pareja, un resultado

@@ -2,6 +2,9 @@
 feeling: joy
 date: 2026-09-08
 title: Antes de alegrarte
+handle: |-
+  Si la preocupación pide adelanto,
+  hoy se puede no pagar.
 ---
 Llegó una buena noticia,
 y en vez de alegrarte

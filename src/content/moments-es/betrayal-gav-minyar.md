@@ -2,6 +2,9 @@
 feeling: betrayal
 date: 2026-09-08
 title: Espalda de papel
+handle: |-
+  Lo que eso dice de ellos
+  se puede dejar con ellos.
 ---
 Creíste que tenías
 un **respaldo**

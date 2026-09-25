@@ -2,6 +2,9 @@
 feeling: waiting
 date: 2026-08-22
 title: ¿Hay novedades?
+handle: |-
+  Para el próximo «¿y?»,
+  preparar antes una respuesta corta.
 ---
 «¿Y? ¿Hay novedades?»
 Preguntan con cariño.

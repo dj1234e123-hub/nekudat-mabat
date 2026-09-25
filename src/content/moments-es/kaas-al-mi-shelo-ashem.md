@@ -2,6 +2,9 @@
 feeling: anger
 date: 2026-08-22
 title: El lugar seguro
+handle: |-
+  A quien lo recibió
+  se le puede contar qué se acumuló.
 ---
 Salió
 con quien estaba cerca.

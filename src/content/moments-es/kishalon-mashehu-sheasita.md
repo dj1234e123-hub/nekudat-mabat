@@ -2,6 +2,9 @@
 feeling: failure
 date: 2026-08-22
 title: La cabeza mezcla
+handle: |-
+  Cuando la cabeza dice «no valgo»,
+  devolverla a «no funcionó».
 ---
 Algo no salió.
 Y duele,

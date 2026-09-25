@@ -2,6 +2,9 @@
 feeling: pride
 date: 2026-09-08
 title: Sin ceremonia
+handle: |-
+  Lo que hiciste a solas
+  se puede festejar sin público.
 ---
 Hiciste algo difícil,
 completamente solo

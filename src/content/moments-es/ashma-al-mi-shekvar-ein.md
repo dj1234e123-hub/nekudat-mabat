@@ -2,6 +2,9 @@
 feeling: guilt
 date: 2026-08-22
 title: Tendría que haber
+handle: |-
+  Al amor que no tiene adónde ir
+  se le puede dar hoy un rincón.
 ---
 «Tendría que haber llamado».
 «Tendría que haber notado».

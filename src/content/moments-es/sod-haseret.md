@@ -2,6 +2,9 @@
 feeling: secret
 date: 2026-08-22
 title: La escribió el miedo
+handle: |-
+  Ese guion
+  se le puede mostrar a un actor.
 ---
 En tu cabeza ya está lista
 una película entera.

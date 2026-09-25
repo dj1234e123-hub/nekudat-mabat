@@ -2,6 +2,9 @@
 feeling: standstill
 date: 2026-08-22
 title: En voz alta
+handle: |-
+  Escribir hoy la decisión,
+  aunque todavía no se diga.
 ---
 Sigues pensándolo.
 Otro día.

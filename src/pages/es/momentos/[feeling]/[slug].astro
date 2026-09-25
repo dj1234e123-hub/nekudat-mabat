@@ -41,6 +41,10 @@ const pageUrl = new URL(`/es/momentos/${feeling}/${moment.id}/`, Astro.site).hre
 
 // תמונת השיתוף של הרגע – נבנית לצד העמוד (og.png.ts), בספרדית בלבד.
 const ogImage = new URL(`/es/momentos/${feeling}/${moment.id}/og.png`, Astro.site).href;
+// כרטיס השיתוף הגבוה (card.png.ts) – הוא מה שכפתור הוואטסאפ שולח, כמו בעברית.
+const shareImage = new URL(`/es/momentos/${feeling}/${moment.id}/card.png`, Astro.site).href;
+// "Para el camino" – אופציונלי, אותה שבירת שורה כמו בקובץ.
+const handleLines = moment.data.handle?.split('\n').map((l) => l.trim()).filter(Boolean) ?? [];
 
 // העמוד התאום בעברית – אותו רגע, אותו שם קובץ.
 const altLangHref = `/moments/${feeling}/${moment.id}/`;
@@ -91,6 +95,16 @@ const altLangHref = `/moments/${feeling}/${moment.id}/`;
 
       <MomentBody format={format} />
 
+      {
+        handleLines.length > 0 && (
+          <aside class="handle" aria-label="Para el camino">
+            <span class="handle-dot" aria-hidden="true" />
+            <span class="handle-label">Para el camino</span>
+            <p class="handle-text" set:html={handleLines.map((l) => l.replace(/&/g, '&amp;').replace(/</g, '&lt;')).join('<br />')} />
+          </aside>
+        )
+      }
+
       {!format.isNew && <span class="end-dot" aria-hidden="true" />}
     </article>
 
@@ -101,7 +115,7 @@ const altLangHref = `/moments/${feeling}/${moment.id}/`;
       lang="es"
       label="Envíaselo a alguien:"
       shareText={plainText}
-      imageUrl={ogImage}
+      imageUrl={shareImage}
     />
 
     <nav class="moment-footer">
@@ -141,6 +155,41 @@ const altLangHref = `/moments/${feeling}/${moment.id}/`;
     background: var(--gold);
     opacity: 0.8;
     margin: 1.1rem auto 0;
+  }
+
+  .handle {
+    margin: 2.6rem auto 0;
+    padding-top: 2rem;
+    border-top: 1px solid color-mix(in srgb, var(--gold) 55%, transparent);
+    max-width: 22rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .handle-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  .handle-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--gold-deep, #8f6f28);
+  }
+
+  .handle-text {
+    margin: 0.2rem 0 0;
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    line-height: 1.5;
+    color: var(--ink);
+    text-wrap: balance;
   }
 
   .end-dot {

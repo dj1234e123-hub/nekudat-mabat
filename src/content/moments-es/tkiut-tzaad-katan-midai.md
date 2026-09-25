@@ -2,6 +2,9 @@
 feeling: standstill
 date: 2026-08-22
 title: Pequeño hasta lo ridículo
+handle: |-
+  Diez minutos hoy
+  para una sola cosa del camino.
 ---
 La cabeza ve
 toda la tarea.

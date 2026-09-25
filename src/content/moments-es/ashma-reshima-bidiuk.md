@@ -2,6 +2,9 @@
 feeling: guilt
 date: 2026-09-08
 title: La misma lista
+handle: |-
+  Escribir hoy arriba de la lista:
+  todavía no me rendí.
 ---
 Te sentaste a hacer un balance.
 Y abriste una página nueva.

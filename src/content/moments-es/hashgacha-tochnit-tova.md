@@ -2,6 +2,9 @@
 feeling: providence
 date: 2026-08-24
 title: Un buen plan
+handle: |-
+  Si algo no sale según el plan,
+  mirar el camino, no solo el mapa.
 ---
 Tenías un plan.
 Ordenado, lógico, bueno.

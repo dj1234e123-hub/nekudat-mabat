@@ -2,6 +2,9 @@
 feeling: longing
 date: 2026-09-08
 title: Calor de ausencia
+handle: |-
+  Pensar hoy en quien falta
+  y dejar que el calor se quede.
 ---
 Pensaste en alguien
 que ya no está.

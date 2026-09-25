@@ -2,6 +2,9 @@
 feeling: prayer
 date: 2026-08-24
 title: Entre una cosa y otra
+handle: |-
+  En medio del día, un momento
+  con el Señor del mundo.
 ---
 En medio del día
 entre una cosa y otra,
