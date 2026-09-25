@@ -13,8 +13,8 @@ cambias de **tema**.
 
 Porque si lo supieran,
 se **acabaría**.
-Te mirarían distinto
-simplemente se alejarían.
+Te mirarían distinto.
+O simplemente se alejarían.
 
 Pero de eso vive la vergüenza.
 Esa es su única condición para existir:

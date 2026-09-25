@@ -478,15 +478,15 @@ export function renderMomentStory(
 
   const [invite] = HE_GROUP_LINE.split(' – ');
   const phone = HE_GROUP_LINE.match(/\d[\d-]*\d/)?.[0] ?? '';
-  // בספרדית אין מספר טלפון (ההזמנה לשיחה בעברית בלבד), ולכן הכתובת היא
-  // השורה הבולטת בכחול, באותו מקום ובאותו משקל.
+  // בספרדית אותה תחתית כמו בעברית, בהוראת בעל הפרויקט (2026-09-25), עד
+  // החלטה אחרת: מילת קוד, אותו מספר – בפורמט בינלאומי, כי הקהל בחו"ל.
   const footer = rtl
     ? `<text x="${CENTER}" y="1756" font-family="Heebo" font-size="30" fill="${MUTED}" direction="rtl" text-anchor="middle">${t(invite)}</text>
   <text x="${CENTER}" y="1816" font-family="Heebo Bold" font-size="46" fill="${BLUE}" text-anchor="middle" letter-spacing="3">${LRO}${phone}${PDF}</text>
   <text x="${CENTER}" y="1868" font-family="Heebo" font-size="25" fill="${MUTED}" direction="rtl" text-anchor="middle">${RLO}נקודת מבט · אפרים עטיה · ${PDF}${LRO}${escape(siteHost)}${PDF}</text>`
-    : `<text x="${CENTER}" y="1756" font-family="Heebo" font-size="30" fill="${MUTED}" text-anchor="middle">¿Quieres más momentos así?</text>
-  <text x="${CENTER}" y="1816" font-family="Heebo Bold" font-size="46" fill="${BLUE}" text-anchor="middle">${escape(siteHost)}/es</text>
-  <text x="${CENTER}" y="1868" font-family="Heebo" font-size="25" fill="${MUTED}" text-anchor="middle">Punto de Vista · Efraim Atia</text>`;
+    : `<text x="${CENTER}" y="1756" font-family="Heebo" font-size="30" fill="${MUTED}" text-anchor="middle">¿Quieres más momentos así? Envíame «Vista»</text>
+  <text x="${CENTER}" y="1816" font-family="Heebo Bold" font-size="46" fill="${BLUE}" text-anchor="middle" letter-spacing="3">+972 ${phone.replace(/^0/, '')}</text>
+  <text x="${CENTER}" y="1868" font-family="Heebo" font-size="25" fill="${MUTED}" text-anchor="middle">Punto de Vista · Efraim Atia · ${escape(siteHost)}/es</text>`;
 
   const doc = `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${STORY_HEIGHT}" viewBox="0 0 ${WIDTH} ${STORY_HEIGHT}">
   <rect width="${WIDTH}" height="${STORY_HEIGHT}" fill="${PAPER}"/>
