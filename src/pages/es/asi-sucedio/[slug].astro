@@ -1,56 +1,44 @@
 ---
-// עמוד סיפור בודד ב"מעשה שהיה" – הכתובת שמשתפים במוצאי שבת.
-// זהות הפינה: רייל זהב דק ליד הכותרת (זהב הוא צבע הנר, והוא הצבע היחיד
-// מבין חמשת צבעי המותג שלא מזוהה עם עולם תוכן אחר), ותמונת ההבדלה
-// המשותפת לכל הפינה. הזהב אינו משמש כטקסט אלא בגוון כהה (--gold-deep),
-// כי זהב המותג על שמנת נמדד 2.24 מול תקן 4.5 (אותה מדידה משלב 4.8).
+// עמוד סיפור "Así sucedió" (מעשה שהיה) בספרדית – אותו עיצוב כמו העברי:
+// רייל זהב, תמונת ההבדלה המשותפת, גוף פרוזה, ציטוט חותם, "Pensamiento".
 import { getCollection, render } from 'astro:content';
 import { Image, getImage } from 'astro:assets';
-import Base from '../../layouts/Base.astro';
-import ShareRow from '../../components/ShareRow.astro';
-import JoinGroup from '../../components/JoinGroup.astro';
-import havdala from '../../assets/besht/havdala.png';
-import { articleJsonLd, breadcrumbJsonLd } from '../../lib/structured-data';
-import { isPublished } from '../../lib/published';
-import { newestFirst } from '../../lib/sort';
-import { esBeshtPath } from '../../data/es-slugs';
-import JoinPopup from '../../components/JoinPopup.astro';
+import Base from '../../../layouts/Base.astro';
+import ShareRow from '../../../components/ShareRow.astro';
+import JoinGroup from '../../../components/JoinGroup.astro';
+import JoinPopup from '../../../components/JoinPopup.astro';
+import havdala from '../../../assets/besht/havdala.png';
+import { BESHT_ES } from '../../../data/site-es';
+import { ES_BESHT_SLUGS, esBeshtPath } from '../../../data/es-slugs';
+import { articleJsonLd, breadcrumbJsonLd } from '../../../lib/structured-data';
+import { isPublished } from '../../../lib/published';
+import { newestFirst } from '../../../lib/sort';
 
 export async function getStaticPaths() {
-  const stories = await getCollection('besht', isPublished);
-  return stories.map((story) => ({ params: { slug: story.id }, props: { story } }));
+  const stories = await getCollection('beshtEs', isPublished);
+  return stories.map((story) => ({ params: { slug: ES_BESHT_SLUGS[story.id] ?? esBeshtPath(story.id) }, props: { story } }));
 }
 
 const { story } = Astro.props;
 const { Content } = await render(story);
 const { title, occasion, hebrewDate, date, excerpt, thought, readingTime } = story.data;
 
-const pageUrl = new URL(`/besht/${story.id}/`, Astro.site).href;
-
-// תמונת התצוגה המקדימה בשיתוף – תמונת הזהות של הפינה. אחת לכל הסיפורים,
-// לפי ההחלטה: הפינה מזוהה בתמונה אחת קבועה ולא בשער ייחודי לכל סיפור.
+const pageUrl = new URL(esBeshtPath(story.id), Astro.site).href;
 const og = await getImage({ src: havdala, width: 1200, format: 'jpeg' });
 const ogImage = new URL(og.src, Astro.site).href;
-
-const all = (await getCollection('besht', isPublished)).sort(newestFirst);
-
-// התאום הספרדי – אותו שם קובץ באוסף beshtEs. בלי תאום: גלולה לשער הפינה
-// הספרדית, בלי hreflang (אותו כלל של הרגעים והסיפורים).
-const beshtEs = await getCollection('beshtEs', isPublished);
-const hasEsTwin = beshtEs.some((s) => s.id === story.id);
-const altLangHref = hasEsTwin ? esBeshtPath(story.id) : '/es/asi-sucedio/';
+const all = (await getCollection('beshtEs', isPublished)).sort(newestFirst);
 ---
 
 <Base
-  title={`${title} · מעשה שהיה`}
+  lang="es"
+  title={`${title} · ${BESHT_ES.name}`}
   description={excerpt}
   ogType="article"
   ogImage={ogImage}
   ogImageWidth={og.attributes.width}
   ogImageHeight={og.attributes.height}
   compact={true}
-  altLangHref={altLangHref}
-  altLangTwin={hasEsTwin}
+  altLangHref={`/besht/${story.id}/`}
   jsonLd={[
     articleJsonLd(Astro.site!, {
       url: pageUrl,
@@ -58,10 +46,11 @@ const altLangHref = hasEsTwin ? esBeshtPath(story.id) : '/es/asi-sucedio/';
       description: excerpt,
       datePublished: date,
       image: ogImage,
+      inLanguage: 'es',
     }),
     breadcrumbJsonLd(Astro.site!, [
-      { name: 'נקודת מבט', path: '/' },
-      { name: 'מעשה שהיה', path: '/besht/' },
+      { name: 'Punto de Vista', path: '/es/' },
+      { name: BESHT_ES.name, path: '/es/asi-sucedio/' },
       { name: title },
     ]),
   ]}
@@ -71,7 +60,7 @@ const altLangHref = hasEsTwin ? esBeshtPath(story.id) : '/es/asi-sucedio/';
       <header class="besht-head">
         <span class="rail" aria-hidden="true"></span>
         <div class="head-text">
-          <p class="kicker-main">מעשה שהיה</p>
+          <p class="kicker-main">{BESHT_ES.name}</p>
           <p class="kicker-sub">{occasion} · {hebrewDate}{readingTime && ` · ${readingTime}`}</p>
           <h1>{title}</h1>
         </div>
@@ -79,7 +68,7 @@ const altLangHref = hasEsTwin ? esBeshtPath(story.id) : '/es/asi-sucedio/';
 
       <Image
         src={havdala}
-        alt="נר הבדלה קלוע ודולק על מעקה אבן, לצידו גביע כסף וקופסת בשמים, ומאחור נוף ירושלים באור שקיעה"
+        alt="Una vela trenzada de Havdalá encendida sobre un muro de piedra, junto a una copa de plata y una cajita de especias, con Jerusalén al atardecer de fondo"
         widths={[480, 800, 1200]}
         sizes="(max-width: 42rem) 100vw, 42rem"
         class="band"
@@ -91,16 +80,16 @@ const altLangHref = hasEsTwin ? esBeshtPath(story.id) : '/es/asi-sucedio/';
 
       <div class="close-mark" aria-hidden="true"><span></span></div>
 
-      <p class="thought"><span class="thought-label">מחשבה</span>{thought}</p>
+      <p class="thought"><span class="thought-label">Pensamiento</span>{thought}</p>
     </article>
 
-    <ShareRow title={`${title} · מעשה שהיה`} url={pageUrl} label={`סיפור של ${occasion}. שלחו אותו הלאה:`} />
-    <JoinGroup />
+    <ShareRow title={`${title} · ${BESHT_ES.name}`} url={pageUrl} lang="es" label={`Una historia para ${occasion}. Compártela:`} />
+    <JoinGroup lang="es" />
 
     <nav class="besht-footer">
-      <a href="/besht/">{all.length > 1 ? `לכל ${all.length} הסיפורים של מעשה שהיה` : 'לפינת מעשה שהיה'}</a>
+      <a href="/es/asi-sucedio/">{all.length > 1 ? `Todas las historias de ${BESHT_ES.name}` : `Ir a ${BESHT_ES.name}`}</a>
     </nav>
-    <JoinPopup />
+    <JoinPopup lang="es" />
   </main>
 </Base>
 
@@ -167,8 +156,6 @@ const altLangHref = hasEsTwin ? esBeshtPath(story.id) : '/es/asi-sucedio/';
     margin-bottom: 1.4rem;
   }
 
-  /* ציטוט הסיום – אותו טיפול שכבר קיים לפסקה החזקה של סיפור:
-     פונט הכותרות, ירוק־כחול כהה וקו זהב. אחד בלבד לסיפור. */
   .besht-body :global(blockquote) {
     margin: 2rem 0 0;
     padding-inline-start: 1.1rem;

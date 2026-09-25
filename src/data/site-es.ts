@@ -46,6 +46,12 @@ export const SECTIONS_ES: Record<string, { label: string; line: string; linkText
 };
 
 /** "מבט לשבת" בספרדית – שם הפינה ומחרוזות הקבע שלה. */
+/** "מעשה שהיה" בספרדית – שם הפינה ושורת ההסבר. */
+export const BESHT_ES = {
+  name: 'Así sucedió',
+  intro: 'Es costumbre contar una historia del Baal Shem Tov al terminar Shabat. Aquí, una por semana: corta, y con un pensamiento al final.',
+} as const;
+
 export const MABAT_ES = {
   name: 'Mirada de Shabat',
   parashaPrefix: 'Parashá',

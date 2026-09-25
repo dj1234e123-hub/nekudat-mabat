@@ -1,41 +1,41 @@
 ---
-// עמוד הכניסה ל"מעשה שהיה" – ארכיון הסיפורים, מהחדש לישן.
-// עם סיפור אחד זו עדיין רשימה קצרה; המבנה מוכן לצמוח שבוע-שבוע בלי שינוי.
+// עמוד הכניסה ל-"Así sucedió" (מעשה שהיה) בספרדית – ארכיון, מהחדש לישן.
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
-import Base from '../../layouts/Base.astro';
-import havdala from '../../assets/besht/havdala.png';
-import { newestFirst } from '../../lib/sort';
-import { isPublished } from '../../lib/published';
-import JoinGroup from '../../components/JoinGroup.astro';
+import Base from '../../../layouts/Base.astro';
+import JoinGroup from '../../../components/JoinGroup.astro';
+import havdala from '../../../assets/besht/havdala.png';
+import { BESHT_ES } from '../../../data/site-es';
+import { esBeshtPath } from '../../../data/es-slugs';
+import { newestFirst } from '../../../lib/sort';
+import { isPublished } from '../../../lib/published';
 
-const stories = (await getCollection('besht', isPublished)).sort(newestFirst);
+const stories = (await getCollection('beshtEs', isPublished)).sort(newestFirst);
 ---
 
 <Base
-  title="מעשה שהיה · נקודת מבט"
-  description="סיפור של הבעל שם טוב לכל מוצאי שבת – קצר, ובסופו מחשבה אחת."
-  altLangHref="/es/asi-sucedio/"
+  lang="es"
+  title={`${BESHT_ES.name} · Punto de Vista`}
+  description="Una historia del Baal Shem Tov para cada Motzaei Shabat: corta, y con un pensamiento al final."
+  altLangHref="/besht/"
 >
   <main>
     <Image
       src={havdala}
-      alt="נר הבדלה קלוע ודולק על מעקה אבן, לצידו גביע כסף וקופסת בשמים, ומאחור נוף ירושלים באור שקיעה"
+      alt="Una vela trenzada de Havdalá encendida sobre un muro de piedra, junto a una copa de plata y una cajita de especias, con Jerusalén al atardecer de fondo"
       widths={[480, 800, 1200]}
       sizes="(max-width: 42rem) 100vw, 42rem"
       class="band"
     />
 
-    <h1 class="page-title">מעשה שהיה</h1>
-    <p class="intro">
-      נהגו לספר סיפור של הבעל שם טוב במוצאי שבת. כאן סיפור אחד בכל שבוע – קצר, ובסופו מחשבה אחת.
-    </p>
+    <h1 class="page-title">{BESHT_ES.name}</h1>
+    <p class="intro">{BESHT_ES.intro}</p>
 
     <ul class="items">
       {
         stories.map((story) => (
           <li class="item">
-            <a class="item-link" href={`/besht/${story.id}/`}>
+            <a class="item-link" href={esBeshtPath(story.id)}>
               <p class="item-kicker">
                 {story.data.occasion} · {story.data.hebrewDate}
               </p>
@@ -46,7 +46,7 @@ const stories = (await getCollection('besht', isPublished)).sort(newestFirst);
         ))
       }
     </ul>
-    <JoinGroup />
+    <JoinGroup lang="es" />
   </main>
 </Base>
 
