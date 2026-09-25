@@ -156,6 +156,24 @@ const besht = defineCollection({
   }),
 });
 
+// "מעשה שהיה" בספרדית ("Así sucedió") – אותו זיווג לפי שם קובץ כמו שאר
+// האוספים הספרדיים, ואותה סכמה כמו העברי. "מבחר ולא מראה": סיפור בלי
+// תרגום פשוט אינו קיים בספרדית. הכתובת הציבורית נגזרת ממפת ES_BESHT_SLUGS.
+const beshtEs = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/besht-es' }),
+  schema: z.object({
+    title: z.string().min(1),
+    occasion: z.string().min(1),
+    hebrewDate: z.string().min(1),
+    date: z.coerce.date(),
+    excerpt: z.string().min(1),
+    thought: z.string().min(1),
+    readingTime: z.string().optional(),
+    tags: z.array(z.string()).optional(),
+    source: z.string().optional(),
+  }),
+});
+
 // "מבט לשבת" בספרדית – אותו זיווג לפי שם קובץ.
 // quoteImage – אותו כלל כמו בעברית: תמונת ציטוט אופציונלית (בספרדית, LTR),
 // מוצגת בסוף המאמר. "הספרדית משקפת את העברית העדכנית" – אותו מבנה ואותה היררכיה.
@@ -214,4 +232,4 @@ const mabatLeshabbat = defineCollection({
       }),
 });
 
-export const collections = { stories, moments, momentsEs, mabatLeshabbat, storiesEs, mabatEs, besht };
+export const collections = { stories, moments, momentsEs, mabatLeshabbat, storiesEs, mabatEs, besht, beshtEs };

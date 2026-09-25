@@ -16,6 +16,8 @@ import momentGate from '../../assets/gates/moments.png';
 import { SECTION_GATE_IMAGES } from '../../data/section-gate-images';
 import { newestFirst } from '../../lib/sort';
 import { parseBody, plainText, kickerEs } from '../../lib/mabat-format';
+import { esBeshtPath } from '../../data/es-slugs';
+import { BESHT_ES } from '../../data/site-es';
 import { isPublished } from '../../lib/published';
 import JoinPopup from '../../components/JoinPopup.astro';
 import { esStoryPath, esSectionPath } from '../../data/es-slugs';
@@ -80,6 +82,10 @@ const latestMabat = mabatPieces[0]
       return { piece, summary: piece.data.description ?? derived };
     })()
   : null;
+
+// טעימה מ-"Así sucedió" (מעשה שהיה) – הסיפור האחרון. בלי סיפור – האזור לא מוצג.
+const beshtStories = (await getCollection('beshtEs', isPublished)).sort(newestFirst);
+const latestBesht = beshtStories[0] ?? null;
 
 const DESCRIPTION =
   'Un lugar para detenerse, obtener un nuevo punto de vista y llevar algo contigo en tu camino. Historias y momentos breves de Punto de Vista.';
@@ -189,6 +195,24 @@ const DESCRIPTION =
               </template>
             ))}
           </div>
+        )
+      }
+
+      {
+        latestBesht && (
+          <section class="besht-teaser" style="grid-area: besht">
+            <span class="teaser-rail besht-rail" aria-hidden="true" />
+            <div class="teaser-body">
+              <p class="teaser-kicker besht-kicker">{BESHT_ES.name} · {latestBesht.data.occasion}</p>
+              <a class="teaser-title" href={esBeshtPath(latestBesht.id)}>
+                {latestBesht.data.title}
+              </a>
+              <p class="mabat-summary">{latestBesht.data.excerpt}</p>
+              <a class="teaser-more" href={esBeshtPath(latestBesht.id)}>
+                Leer la historia
+              </a>
+            </div>
+          </section>
         )
       }
 
@@ -380,7 +404,7 @@ const DESCRIPTION =
     margin-inline: calc((100% - var(--bleed)) / 2);
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-areas: 'stories' 'mabat' 'moments';
+    grid-template-areas: 'stories' 'besht' 'mabat' 'moments';
     /* הרווח גדל (1.75 ← 3.25rem): מאז שהמסגרות ירדו, האוויר הוא שמפריד –
        והוא גם מה שמחזיק את נקודת הזהב שיושבת בתוכו. */
     gap: 3.25rem;
@@ -391,7 +415,7 @@ const DESCRIPTION =
   @media (min-width: 800px) {
     .dual-section {
       grid-template-columns: 1fr 1fr;
-      grid-template-areas: 'stories moments' 'mabat mabat';
+      grid-template-areas: 'stories moments' 'besht besht' 'mabat mabat';
       gap: 2rem;
     }
   }
@@ -414,11 +438,13 @@ const DESCRIPTION =
 
   @media (max-width: 49.99rem) {
     .mabat-teaser,
+    .besht-teaser,
     .door-moments {
       position: relative;
     }
 
     .mabat-teaser::before,
+    .besht-teaser::before,
     .door-moments::before {
       content: '';
       position: absolute;
@@ -789,13 +815,22 @@ const DESCRIPTION =
   /* הקופסה ירדה, הקו האנכי נשאר: הקו הוא הסימן שאומר משהו, והמסגרת סביבו
      רק חזרה עליו. ההגבלה יושבת על הטעימה עצמה ולא על גופה, כדי שהיא
      תישאר עמודה ממורכזת בעמוד ולא תיצמד לצד אחד במסך רחב. */
-  .mabat-teaser {
+  .mabat-teaser,
+  .besht-teaser {
     display: flex;
     gap: 1rem;
     align-items: flex-start;
     width: 100%;
     max-width: 34rem;
     margin-inline: auto;
+  }
+
+  .besht-rail {
+    background: var(--gold) !important;
+  }
+
+  .besht-kicker {
+    color: #8f6f28 !important;
   }
 
   .teaser-rail {
