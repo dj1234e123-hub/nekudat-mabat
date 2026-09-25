@@ -20,5 +20,5 @@ palabras **para ti**.
 
 ---
 
-Hay palabras que te esperaron.
-Años.
+Detrás de cada palabra del sidur
+hay generaciones que rezaron.

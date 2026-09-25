@@ -8,10 +8,10 @@ Te esforzaste, tuviste cuidado, esperaste.
 Y aun así,
 se **rompió**.
 
-Y entonces llega una segunda frase:
-es un castigo.
-O peor que eso:
+Y enseguida, una segunda frase:
 te **olvidaron**.
+Allá arriba
+ya no ven.
 
 Pero hay aquí dos frases.
 Lo que pasó,

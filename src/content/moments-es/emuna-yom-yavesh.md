@@ -3,20 +3,20 @@ feeling: faith
 date: 2026-08-21
 title: Un sentimiento grande
 ---
-Te levantaste de mañana,
-e hiciste lo que había que hacer.
-Y no sentiste
-**nada**.
+Te levantaste de mañana.
+Rezaste. Saliste al día.
+Y el corazón
+no se **movió**.
 
 La fe suena
 como un sentimiento grande.
 Y eso no estaba.
 Entonces quizás ella **tampoco**.
 
-Pero sin elevación
-sin certeza, sin plenitud.
-Y aun así,
-te **levantaste**.
+Pero en un día así,
+sin ninguna elevación,
+las manos hicieron
+lo que el corazón **sabía**.
 
 ---
 

@@ -13,11 +13,12 @@ el comentario de adentro:
 eso no es rezar.
 Así **no** se reza.
 
-Pero una frase que brota sola
-sin preparación y sin libro –
-¿de dónde **brotó**?
+Pero una frase así,
+sin preparación y sin sidur,
+no viene de la boca.
+Viene del **corazón**.
 
 ---
 
-Lo que brota solo
-viene del lugar más profundo.
+Tres palabras en medio del día
+también son oración.

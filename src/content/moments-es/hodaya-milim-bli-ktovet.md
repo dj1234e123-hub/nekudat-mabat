@@ -13,7 +13,8 @@ la suerte no exige nada.
 Se toma,
 y se sigue **adelante**.
 
-¿Y gracias? Gracias es distinto.
+¿Y gracias?
+Gracias es distinto.
 No se puede decir
 sin **alguien**.
 

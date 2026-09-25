@@ -20,5 +20,5 @@ en el mismo **corazón**.
 
 ---
 
-Se puede doler y agradecer.
-Sin elegir.
+Un corazón roto
+todavía sabe dar gracias.

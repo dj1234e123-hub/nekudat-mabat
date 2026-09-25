@@ -12,12 +12,12 @@ Y enseguida llega el juicio:
 si no te concentraste,
 no **cuenta**.
 
-Pero tal vez lo que cuenta
-no es cada palabra que se **retuvo**.
-Es que volviste
-una vez más.
+Pero cada vez que la mente volvió
+de la lista al sidur
+fue un momento
+de **intención**.
 
 ---
 
-No fallaste.
-Volviste otra vez, y eso basta.
+La mente se fue mil veces.
+Mil veces volviste.
