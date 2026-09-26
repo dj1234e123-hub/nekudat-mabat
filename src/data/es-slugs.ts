@@ -51,6 +51,7 @@ export const ES_STORY_SLUGS: Record<string, string> = {
   'betzad-hasheni-shel-hahar': 'al-otro-lado-de-la-montana',
   'chamishim-chamishim': 'cincuenta-cincuenta',
   'habricha-hamushlemet': 'la-fuga-perfecta',
+  'haohel-shel-haganan': 'la-carpa-del-jardinero',
   'hasandlar-shekimat-haya': 'el-zapatero-que-casi-fue',
   'hatabaat-bakos': 'el-anillo-en-el-vaso-de-carton',
   'im-lo-lemala-mize': 'si-no-mas-arriba',
