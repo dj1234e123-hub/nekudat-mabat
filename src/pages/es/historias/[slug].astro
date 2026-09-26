@@ -1,5 +1,5 @@
 ---
-// עמוד סיפור בספרדית — אותו מבנה כמו העברי: תווית עולם, כותרת, שער, גוף,
+// עמוד סיפור בספרדית – אותו מבנה כמו העברי: תווית עולם, כותרת, שער, גוף,
 // שיתוף, קבוצה (אם יש קישור), ותחתית עם סיפור אקראי.
 // בלי WriteToMe: ההזמנה לשיחה פרטית היא בעברית בלבד (החלטה מתועדת).
 import { getCollection, render } from 'astro:content';
@@ -14,14 +14,19 @@ import { DEFAULT_COVERS, DEFAULT_COVER_ALT_ES } from '../../../data/default-cove
 import { formatDate } from '../../../utils/format-date';
 import { articleJsonLd, breadcrumbJsonLd } from '../../../lib/structured-data';
 import { isPublished } from '../../../lib/published';
+import { ES_STORY_SLUGS, esStoryPath, esSectionPath, assertEsSlugs } from '../../../data/es-slugs';
 import { newestFirst } from '../../../lib/sort';
 import { nextStories, momentForStory } from '../../../lib/related';
 import { readingLabel as readingLabelFor } from '../../../lib/reading-time';
+import JoinPopup from '../../../components/JoinPopup.astro';
 
 export async function getStaticPaths() {
   const stories = await getCollection('storiesEs', isPublished);
+  // הכתובת הציבורית היא הסלאג הספרדי, לא שם הקובץ. שם הקובץ נשאר העוגן
+  // שמזווג בין העברית לספרדית (ראו src/data/es-slugs.ts).
+  assertEsSlugs(stories.map((s) => s.id));
   return stories.map((story) => ({
-    params: { slug: story.id },
+    params: { slug: ES_STORY_SLUGS[story.id] },
     props: { story },
   }));
 }
@@ -34,7 +39,7 @@ const readingLabel = readingLabelFor(story, 'es');
 const cover = story.data.cover ?? DEFAULT_COVERS[section];
 const coverAlt = story.data.coverAlt ?? DEFAULT_COVER_ALT_ES;
 
-const pageUrl = new URL(`/es/historias/${story.id}/`, Astro.site).href;
+const pageUrl = new URL(esStoryPath(story.id), Astro.site).href;
 
 let ogImage: string | undefined;
 let ogImageWidth: number | undefined;
@@ -47,9 +52,9 @@ if (cover.format !== 'svg') {
 }
 
 const allStories = (await getCollection('storiesEs', isPublished)).sort(newestFirst);
-const otherStoryUrls = allStories.filter((s) => s.id !== story.id).map((s) => `/es/historias/${s.id}/`);
+const otherStoryUrls = allStories.filter((s) => s.id !== story.id).map((s) => esStoryPath(s.id));
 // "ההמשך" (NextUp) בספרדית: הקרבה התוכנית נמדדת דרך התאום העברי (התגיות
-// חיות שם), והמועמדים והרגע — רק מה שקיים בספרדית ("מבחר ולא מראה").
+// חיות שם), והמועמדים והרגע – רק מה שקיים בספרדית ("מבחר ולא מראה").
 const hebrewStories = await getCollection('stories', isPublished);
 const nextCandidates = nextStories(story, allStories, SECTIONS_ES_LABELS, hebrewStories);
 const relatedMoment = momentForStory(story, await getCollection('momentsEs', isPublished), hebrewStories);
@@ -77,7 +82,7 @@ const relatedMoment = momentForStory(story, await getCollection('momentsEs', isP
     breadcrumbJsonLd(Astro.site!, [
       { name: 'Punto de Vista', path: '/es/' },
       { name: 'Historias', path: '/es/historias/' },
-      { name: SECTIONS_ES[section].label, path: `/es/secciones/${section}/` },
+      { name: SECTIONS_ES[section].label, path: esSectionPath(section) },
       { name: title },
     ]),
   ]}
@@ -85,7 +90,7 @@ const relatedMoment = momentForStory(story, await getCollection('momentsEs', isP
   <main>
     <article>
       <header class="story-header">
-        <a class="label" href={`/es/secciones/${section}/`}>{SECTIONS_ES[section].label}</a>
+        <a class="label" href={esSectionPath(section)}>{SECTIONS_ES[section].label}</a>
         <h1>{title}</h1>
         <p class="story-meta">
           <time datetime={date.toISOString().slice(0, 10)}>{formatDate(date, 'es')}</time>
@@ -108,6 +113,7 @@ const relatedMoment = momentForStory(story, await getCollection('momentsEs', isP
       <a href="/es/historias/">Ver las {allStories.length} historias</a>
       {otherStoryUrls.length > 0 && <button id="random-story" type="button" data-ph="random_story">Una historia al azar</button>}
     </nav>
+    <JoinPopup lang="es" />
   </main>
 </Base>
 
@@ -170,7 +176,7 @@ const relatedMoment = momentForStory(story, await getCollection('momentsEs', isP
   }
 
   /* בעברית ההדגשה היא משקל במקום נטייה; בספרדית נטייה טבעית, אבל נשמרת
-     אותה שפה חזותית של האתר — משקל וצבע, כדי ששני האזורים ייראו זהים. */
+     אותה שפה חזותית של האתר – משקל וצבע, כדי ששני האזורים ייראו זהים. */
   .story-body :global(em) {
     font-style: normal;
     font-weight: 600;
@@ -183,12 +189,12 @@ const relatedMoment = momentForStory(story, await getCollection('momentsEs', isP
     margin-top: 2.5rem;
   }
 
-  /* Foto dentro del relato — mismo estilo que la página hebrea (2026-09-14).
-     מגיע מיד אחרי השורה שאומרת את השם — הפנים הם תשובה, לא הקדמה, ולכן
+  /* Foto dentro del relato – mismo estilo que la página hebrea (2026-09-14).
+     מגיע מיד אחרי השורה שאומרת את השם – הפנים הם תשובה, לא הקדמה, ולכן
      אינם בשער. "תצלום מודפס": מסגרת לבנה דקה וצל רך, כמו בעמוד מי אני.
      חיתוך 4:5 סביב הפנים כדי שיהיו גדולים וברורים גם בטלפון; נקודת המיקוד
      היא של הצילום (הפנים בתצלום המקורי יושבים ב-41% מהרוחב).
-     ה-Markdown של Astro עוטף את התמונה ב-<p> — לכן האיפוס שלו כאן. */
+     ה-Markdown של Astro עוטף את התמונה ב-<p> – לכן האיפוס שלו כאן. */
   .story-body :global(.inline-photo) {
     width: min(100%, 22rem);
     margin: 2.25rem auto;

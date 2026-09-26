@@ -2,20 +2,23 @@
 feeling: betrayal
 date: 2026-09-08
 title: Espalda de papel
+handle: |-
+  Lo que eso dice de ellos
+  se puede dejar con ellos.
 ---
-Creíste que tenías,
-un **respaldo**,
-hasta que resultó,
+Creíste que tenías
+un **respaldo**
+hasta que resultó
 que estaba vacío.
 
-Y enseguida el pensamiento,
-que una espalda de **papel**,
-es lo que le toca,
-a quien no vale más.
+Y enseguida el pensamiento
+de que si el respaldo era de papel,
+quizás no valías
+**más** que eso.
 
-Pero que hayan **desaparecido**,
-dice algo,
-sobre ellos,
+Pero que hayan **desaparecido**
+dice algo
+sobre ellos
 no sobre ti.
 
 ---

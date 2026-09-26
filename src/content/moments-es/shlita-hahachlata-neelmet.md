@@ -2,21 +2,24 @@
 feeling: losing-control
 date: 2026-08-22
 title: La misma persona
+handle: |-
+  La decisión de la mañana:
+  dejarla anotada para la noche.
 ---
-De mañana,
+De mañana
 la decisión está clarísima.
-De noche,
+De noche
 ya no está en el **cuarto**.
 
-Y eso confunde,
-porque son la misma persona.
-Y no se entiende,
-cómo uno siempre **pierde**.
+Y la pregunta vuelve:
+si son la misma persona,
+¿cómo es que una
+siempre **pierde**?
 
-Pero quizás,
-no es fuerza de voluntad.
-La decisión de la mañana,
-simplemente no **llegó** a la noche.
+Pero la decisión de la mañana
+se quedó en la mañana.
+A la noche, simplemente,
+no **llegó**.
 
 ---
 

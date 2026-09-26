@@ -2,21 +2,24 @@
 feeling: faith
 date: 2026-09-08
 title: Después de la cumbre
+handle: |-
+  Una cosa que viste desde arriba
+  se puede bajar hoy contigo.
 ---
-Un día entero,
+Un día entero
 en las **alturas**.
-Y ahora, después,
+Y ahora, después
 algo se derrumba.
 
-No porque hayas perdido,
-lo que ganaste.
-Sino porque no se puede,
-vivir cada día a esa **altura**.
+Y enseguida el pensamiento:
+si terminó tan rápido,
+quizás no fue
+**real**.
 
-Y eso no es señal,
-de que ayer no fue real.
-Es señal de que era una **cumbre**,
-no un estado permanente.
+Pero en la cumbre no se vive.
+Se sube a ella
+y se baja
+con lo que se **vio** desde allí.
 
 ---
 

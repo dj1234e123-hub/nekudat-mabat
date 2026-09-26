@@ -2,20 +2,22 @@
 feeling: joy
 date: 2026-09-08
 title: Un éxito pequeño
+handle: |-
+  ¿Qué fue pequeño hoy
+  y vale la pena contar?
 ---
-No es una boda,
-no es un bebé,
+No es una boda
+no es un bebé
 no es un gran **éxito**.
 Es solo un buen día.
 
 Y cuando intentas contarlo,
-sientes,
+sientes
 que es demasiado **pequeño**.
 
-Pero la alegría,
-no necesita tamaño,
-para,
-**contar**.
+Pero la alegría
+no necesita tamaño
+para **contar**.
 
 ---
 

@@ -38,9 +38,11 @@ Las cartas siguieron llegando, mes tras mes. Le contaban sobre James, y él resp
 
 Y entonces, un día, los padres de James le hicieron una pregunta.
 
-No "¿por qué lo hiciste?" Ni "¿cómo pudiste?"
+No «¿por qué lo hiciste?». Ni «¿cómo pudiste?».
 
-Le preguntaron: "¿Qué quieres hacer con tu vida?"
+Le preguntaron:
+
+—¿Qué quieres hacer con tu vida?
 
 Jacob volvió a estudiar. Terminó los estudios que había dejado, entró a la universidad, y estudió Criminología hasta graduarse.
 
@@ -48,8 +50,8 @@ Solo después de mucho tiempo se encontraron cara a cara. Frente a él se sentar
 
 Jacob empezó a hablar con jóvenes sobre la violencia. Sobre un solo puñetazo. Y sobre lo que se puede hacer con la vida a partir de ahí.
 
-Años después, él y los padres de James empezaron a presentarse juntos. Los padres que habían perdido un hijo, y el hombre que había causado su muerte.
+Años después, él y los padres de James empezaron a dar charlas juntos. Los padres que habían perdido un hijo, y el hombre que había causado su muerte.
 
-> Durante años, todos le preguntaron: "¿Qué hiciste?" Pero las personas que tenían el mayor derecho a hacerle esa pregunta, eligieron preguntar: "¿Qué quieres hacer con tu vida?"
+> Durante años, todos le preguntaron qué había hecho. Pero las personas que tenían más derecho que nadie a hacerle esa pregunta eligieron preguntarle otra: qué quería hacer con su vida.
 
 <p class="signature">Con cariño,<br />Efraim Atia</p>

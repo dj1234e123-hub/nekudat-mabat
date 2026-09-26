@@ -1,7 +1,7 @@
 ---
-// דף הבית בספרדית — אותו דף בית כמו העברי (שלב 4.30), בשפה אחרת:
+// דף הבית בספרדית – אותו דף בית כמו העברי (שלב 4.30), בשפה אחרת:
 // פתיחה, דלת הרגעים (קשת, רגע מוגרל מקופל, שיתוף, כפתור ראשי), טעימת
-// "מבט לשבת", ודלת הסיפורים עם שלושת העולמות — כל המבנה, אותם ערכים.
+// "מבט לשבת", ודלת הסיפורים עם שלושת העולמות – כל המבנה, אותם ערכים.
 // הדף מציג רק תוכן שקיים בפועל: עולם בלי סיפורים מתורגמים אינו מוצג.
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
@@ -15,9 +15,12 @@ import { SECTIONS_ES, MABAT_ES } from '../../data/site-es';
 import momentGate from '../../assets/gates/moments.png';
 import { SECTION_GATE_IMAGES } from '../../data/section-gate-images';
 import { newestFirst } from '../../lib/sort';
-import MabatBody from '../../components/MabatBody.astro';
-import { parseBody } from '../../lib/mabat-format';
+import { parseBody, plainText, kickerEs } from '../../lib/mabat-format';
+import { esBeshtPath } from '../../data/es-slugs';
+import { BESHT_ES } from '../../data/site-es';
 import { isPublished } from '../../lib/published';
+import JoinPopup from '../../components/JoinPopup.astro';
+import { esStoryPath, esSectionPath } from '../../data/es-slugs';
 
 const allStories = (await getCollection('storiesEs', isPublished)).sort(newestFirst);
 
@@ -59,17 +62,31 @@ const momentPool = moments.map((m) => {
     url: path,
     href: new URL(path, Astro.site).href,
     format: parseMoment(m.body ?? '', m.data.title),
+    handle: m.data.handle ?? null,
     accent: groupOf(feeling)?.accent ?? 'var(--gold)',
-    ogImage: new URL(`${path}og.png`, Astro.site).href,
+    // כרטיס השיתוף הגבוה – כמו בעברית.
+    ogImage: new URL(`${path}card.png`, Astro.site).href,
   };
 });
 const featuredMoment = momentPool[0] ?? null;
 
-// טעימה מ"מבט לשבת" — הגיליון האחרון בלבד, שני מהלכים ראשונים.
+// טעימה מ"מבט לשבת" – הגיליון האחרון בלבד, ומוצג התקציר שלו ולא הפתיחה:
+// שורות הפתיחה הן הטור עצמו, והקורא שפגש אותן בדף הבית מתחיל אותו מחדש
+// בעמוד הגיליון. אותה נפילה לאחור כמו בעמוד הגיליון – 200 תווי פתיחה
+// כשאין תקציר.
 const mabatPieces = (await getCollection('mabatEs', isPublished)).sort(newestFirst);
 const latestMabat = mabatPieces[0]
-  ? { piece: mabatPieces[0], blocks: parseBody(mabatPieces[0].body ?? '') }
+  ? (() => {
+      const piece = mabatPieces[0];
+      const flat = plainText(parseBody(piece.body ?? '')).replace(/\s+/g, ' ').trim();
+      const derived = flat.length > 200 ? `${flat.slice(0, 197)}…` : flat;
+      return { piece, summary: piece.data.description ?? derived };
+    })()
   : null;
+
+// טעימה מ-"Así sucedió" (מעשה שהיה) – הסיפור האחרון. בלי סיפור – האזור לא מוצג.
+const beshtStories = (await getCollection('beshtEs', isPublished)).sort(newestFirst);
+const latestBesht = beshtStories[0] ?? null;
 
 const DESCRIPTION =
   'Un lugar para detenerse, obtener un nuevo punto de vista y llevar algo contigo en tu camino. Historias y momentos breves de Punto de Vista.';
@@ -77,7 +94,7 @@ const DESCRIPTION =
 
 <Base
   lang="es"
-  title="Punto de Vista — un lugar para detenerse y ver diferente"
+  title="Punto de Vista – un lugar para detenerse y ver distinto"
   description={DESCRIPTION}
   homeHeader={true}
   altLangHref="/"
@@ -85,18 +102,22 @@ const DESCRIPTION =
 >
   <main>
     <section class="hero">
-      <h1>Ver diferente. Vivir diferente.</h1>
-      <p class="triad">Historias. Momentos. Perspectivas.</p>
+      <h1>Ver distinto. Vivir distinto.</h1>
+      <p class="triad">Historias. Momentos. Miradas.</p>
       <p class="promise">
         Un lugar para detenerse, obtener un nuevo punto de vista y llevar algo contigo en tu
         camino.
       </p>
       {/* המבנה שאושר על סקיצה (2026-08-26): שורת הזמנה לשפה השנייה מתחת
-          למשפט ההבטחה — המראה של שורת "Punto de Vista — en español" בעברית. */}
+          למשפט ההבטחה – המראה של שורת "Punto de Vista – en español" בעברית. */}
       <p class="lang-invite">
-        <a href="/" lang="he" dir="rtl">נקודת מבט — בעברית</a>
+        <a href="/" lang="he" dir="rtl">נקודת מבט – בעברית</a>
       </p>
     </section>
+
+    {/* מפריד אזורים – נקודת זהב, כמו בתחתית כל עמוד באתר. מחליף את
+        המסגרות שירדו: אוויר וסימן אחד, במקום קיר. */}
+    <span class="sep" aria-hidden="true"></span>
 
     <section class="dual-section">
       <!-- דלת הרגעים -->
@@ -124,11 +145,23 @@ const DESCRIPTION =
                     {featuredMoment.format.title}
                   </a>
                 </h3>
+                {/* קו הזהב שמתחת לכותרת-הוו בעמוד הרגע (.hook-rule) – מאז
+                    שהמסגרת האדומה ירדה, הוא מה שמסמן "כאן מתחיל רגע". */}
+                <span class="hook-rule" aria-hidden="true" />
                 <div id="moment-body-mount">
-                  <MomentBody format={featuredMoment.format} collapsed moreLabel="Seguir leyendo" />
+                  <MomentBody format={featuredMoment.format} handle={featuredMoment.handle} handleLabel="Para el camino" collapsed moreLabel="Seguir leyendo" />
                 </div>
               </article>
 
+              <div class="moment-footer">
+                <a href="/es/momentos/" class="door-cta" data-ph="find_moment">
+                  Encuentra tu momento
+                </a>
+                <p class="door-cta-sub">Más momentos, según lo que estás pasando</p>
+              </div>
+
+              {/* השיתוף יורד מתחת לפעולה הראשית: קודם הוא ישב מעליה, וביקש
+                  ממבקר ראשון לשתף רגע שהסיום שלו עדיין מקופל. */}
               <div
                 id="moment-share"
                 class="moment-share"
@@ -136,7 +169,7 @@ const DESCRIPTION =
                 data-image={featuredMoment.ogImage}
               >
                 <a
-                  class="share-pill whatsapp"
+                  class="share-link whatsapp"
                   href={`https://wa.me/?text=${encodeURIComponent(featuredMoment.href)}`}
                   rel="noopener"
                   target="_blank"
@@ -144,16 +177,9 @@ const DESCRIPTION =
                 >
                   Compartir por WhatsApp
                 </a>
-                <button type="button" class="share-pill copy" data-ph="share_copy">
+                <button type="button" class="share-link copy" data-ph="share_copy">
                   Copiar enlace
                 </button>
-              </div>
-
-              <div class="moment-footer">
-                <a href="/es/momentos/" class="door-cta" data-ph="find_moment">
-                  Encuentra tu momento
-                </a>
-                <p class="door-cta-sub">Más momentos, según lo que estás pasando</p>
               </div>
             </div>
 
@@ -166,10 +192,28 @@ const DESCRIPTION =
                 data-href={m.href}
                 data-image={m.ogImage}
               >
-                <MomentBody format={m.format} collapsed moreLabel="Seguir leyendo" />
+                <MomentBody format={m.format} handle={m.handle} handleLabel="Para el camino" collapsed moreLabel="Seguir leyendo" />
               </template>
             ))}
           </div>
+        )
+      }
+
+      {
+        latestBesht && (
+          <section class="besht-teaser" style="grid-area: besht">
+            <span class="teaser-rail besht-rail" aria-hidden="true" />
+            <div class="teaser-body">
+              <p class="teaser-kicker besht-kicker">{BESHT_ES.name} · {latestBesht.data.occasion}</p>
+              <a class="teaser-title" href={esBeshtPath(latestBesht.id)}>
+                {latestBesht.data.title}
+              </a>
+              <p class="mabat-summary">{latestBesht.data.excerpt}</p>
+              <a class="teaser-more" href={esBeshtPath(latestBesht.id)}>
+                Leer la historia
+              </a>
+            </div>
+          </section>
         )
       }
 
@@ -179,12 +223,12 @@ const DESCRIPTION =
             <span class="teaser-rail" aria-hidden="true" />
             <div class="teaser-body">
               <p class="teaser-kicker">
-                {MABAT_ES.name} · {MABAT_ES.parashaPrefix} {latestMabat.piece.data.parasha}
+                {MABAT_ES.name} · {kickerEs(latestMabat.piece.data.parasha, MABAT_ES.parashaPrefix)}
               </p>
               <a class="teaser-title" href={`/es/shabat/${latestMabat.piece.id}/`}>
                 {latestMabat.piece.data.title}
               </a>
-              <MabatBody blocks={latestMabat.blocks} stanzaLimit={2} />
+              <p class="mabat-summary">{latestMabat.summary}</p>
               <a class="teaser-more" href={`/es/shabat/${latestMabat.piece.id}/`}>
                 Seguir leyendo
               </a>
@@ -205,7 +249,7 @@ const DESCRIPTION =
             <div class="stories-grid">
               {worlds.map(({ slug, meta, metaEs, story, emoji, image }) => (
                 <div class="world-card" style={`--accent: ${meta.accent}`}>
-                  <a href={`/es/secciones/${slug}/`} class="world-arch-link" aria-label={metaEs.linkText}>
+                  <a href={esSectionPath(slug)} class="world-arch-link" aria-label={metaEs.linkText}>
                     <span class="world-arch">
                       {image ? (
                         <Image
@@ -225,9 +269,9 @@ const DESCRIPTION =
                   <div class="world-text">
                     <h3 class="world-name">{metaEs.label}</h3>
                     <p class="story-example">
-                      Por ejemplo: <a href={`/es/historias/${story.id}/`}>{story.data.title}</a>
+                      Por ejemplo: <a href={esStoryPath(story.id)}>{story.data.title}</a>
                     </p>
-                    <a href={`/es/secciones/${slug}/`} class="story-link">
+                    <a href={esSectionPath(slug)} class="story-link">
                       {metaEs.linkText} →
                     </a>
                   </div>
@@ -240,6 +284,7 @@ const DESCRIPTION =
     </section>
 
     <JoinGroup lang="es" />
+    <JoinPopup lang="es" />
   </main>
 </Base>
 
@@ -265,7 +310,7 @@ const DESCRIPTION =
     }
   }
 
-  // שיתוף — אותה שיטה כמו בדף הבית העברי: תמונה ממותגת קודם דרך
+  // שיתוף – אותה שיטה כמו בדף הבית העברי: תמונה ממותגת קודם דרך
   // Web Share API, קישור נקי כנפילת חזרה. הכתובות נקראות מ-dataset
   // בזמן הלחיצה, כי הרגע מוגרל ומוחלף בצד הלקוח.
   const shareEl = document.getElementById('moment-share');
@@ -304,7 +349,7 @@ const DESCRIPTION =
 </script>
 
 <style>
-  /* אזור הפתיחה — אותם ערכים כמו בדף הבית העברי */
+  /* אזור הפתיחה – אותם ערכים כמו בדף הבית העברי */
   .hero {
     text-align: center;
     padding-top: 0.5rem;
@@ -353,15 +398,17 @@ const DESCRIPTION =
     border-color: var(--teal);
   }
 
-  /* ============ שתי הדלתות — אותם ערכים כמו בדף הבית העברי ============ */
+  /* ============ שתי הדלתות – אותם ערכים כמו בדף הבית העברי ============ */
   .dual-section {
     --bleed: min(62rem, 100vw - 3rem);
     width: var(--bleed);
     margin-inline: calc((100% - var(--bleed)) / 2);
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-areas: 'moments' 'mabat' 'stories';
-    gap: 1.75rem;
+    grid-template-areas: 'stories' 'besht' 'mabat' 'moments';
+    /* הרווח גדל (1.75 ← 3.25rem): מאז שהמסגרות ירדו, האוויר הוא שמפריד –
+       והוא גם מה שמחזיק את נקודת הזהב שיושבת בתוכו. */
+    gap: 3.25rem;
     align-items: start;
     margin-bottom: 2.5rem;
   }
@@ -369,23 +416,59 @@ const DESCRIPTION =
   @media (min-width: 800px) {
     .dual-section {
       grid-template-columns: 1fr 1fr;
-      grid-template-areas: 'moments stories' 'mabat mabat';
+      grid-template-areas: 'stories moments' 'besht besht' 'mabat mabat';
       gap: 2rem;
     }
   }
 
+  /* נקודת הזהב המפרידה. מיקום מוחלט ולא זרימה, כי הטעימה היא שורת flex
+     ודלת הרגעים עמודת flex – פסאודו-אלמנט בזרימה היה נעשה פריט בפריסה
+     שלהן. בסדר הספרדי (סיפורים ← שבת ← רגעים) הדלת הראשונה היא הסיפורים,
+     ולכן הנקודה יושבת על שתי האחרות. מאפיינים פיזיים (left / ‎-50%) ולא
+     לוגיים – הם נכונים בשני כיווני הקריאה. */
+  .sep {
+    display: block;
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.85;
+    /* .hero כבר תורם 2.25rem מלמעלה */
+    margin: 0.75rem auto 2.75rem;
+  }
+
+  @media (max-width: 49.99rem) {
+    .mabat-teaser,
+    .besht-teaser,
+    .door-moments {
+      position: relative;
+    }
+
+    .mabat-teaser::before,
+    .besht-teaser::before,
+    .door-moments::before {
+      content: '';
+      position: absolute;
+      top: -1.85rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0.4rem;
+      height: 0.4rem;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0.85;
+    }
+  }
+
+  /* הדלת יושבת ישירות על הנייר. המסגרת האדומה ירדה (החלטת בעל הפרויקט,
+     2026-09-22): הזהות האדומה עברה לכפתור הפעולה, וסימן "כאן מתחיל רגע"
+     הוא קו הזהב שמתחת לכותרת. נקודת צבע הקבוצה לא השתנתה. */
   .door-moments {
-    background: var(--paper);
-    border: 2px solid var(--brick);
-    border-radius: var(--radius);
-    overflow: hidden;
     display: flex;
     flex-direction: column;
-    box-shadow: var(--shadow);
   }
 
   .door-header {
-    padding: 1.3rem 1.2rem 0;
     text-align: center;
   }
 
@@ -466,7 +549,6 @@ const DESCRIPTION =
 
   .door-content {
     --moment-size: 1rem;
-    padding: 0 1.2rem 1.3rem;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -481,8 +563,18 @@ const DESCRIPTION =
     font-size: 1.25rem;
     line-height: 1.3;
     color: var(--blue);
-    margin: 0 0 1.2rem;
+    margin: 0;
     text-wrap: balance;
+  }
+
+  /* אותם ערכים בדיוק כמו .hook-rule בעמוד הרגע, בקנה מידה מוקטן */
+  .hook-rule {
+    display: block;
+    width: 4rem;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.8;
+    margin: 0.95rem auto 1.5rem;
   }
 
   .moment-title a {
@@ -490,62 +582,58 @@ const DESCRIPTION =
     text-decoration: none;
   }
 
+  /* השיתוף בדף הבית הוא פעולה שלישית במעלה – אחרי הקריאה ואחרי הכניסה
+     לפינה – ולכן שני קישורים שקטים ולא שתי גלולות. בעמוד הרגע עצמו
+     (ShareRow.astro) הוא נשאר כפי שהוא. */
   .moment-share {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.6rem;
-    margin-top: 0.2rem;
+    gap: 0 1.4rem;
+    margin-top: 1.25rem;
   }
 
-  .share-pill {
+  .share-link {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     min-height: 44px;
-    padding: 0.4rem 1.1rem;
-    border-radius: 2rem;
+    padding: 0;
+    border: 0;
+    background: none;
     font-family: inherit;
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-size: 0.86rem;
+    font-weight: 500;
+    color: var(--muted);
     text-decoration: none;
-    border: 1px solid var(--teal);
-    background: transparent;
-    color: var(--teal);
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
     cursor: pointer;
-    transition: background 0.15s ease, color 0.15s ease;
+    transition: color 0.15s ease, border-color 0.15s ease;
   }
 
-  .share-pill.whatsapp {
-    background: var(--teal);
-    color: #fff;
-  }
-
-  .share-pill.whatsapp:hover {
-    background: var(--teal-deep);
-  }
-
-  .share-pill.copy:hover {
-    background: var(--surface);
+  .share-link:hover {
+    color: var(--teal);
+    border-color: var(--teal);
   }
 
   .moment-footer {
-    margin-top: 1.1rem;
-    padding-top: 1.1rem;
-    border-top: 1px solid var(--line);
+    margin-top: 1.6rem;
     text-align: center;
   }
 
+  /* הכפתור המלא היחיד בעמוד. בלי המסגרת סביבו הוא גם מה שנושא את האדום
+     העמוק, ולכן הוא גלולה עומדת בפני עצמה ולא פס שמשלים רוחב של קופסה. */
   .door-cta {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    min-height: 44px;
-    padding: 0.7rem;
+    min-width: 14rem;
+    min-height: 48px;
+    padding: 0.7rem 1.9rem;
     background: var(--brick);
     color: #fff;
-    border-radius: calc(var(--radius) / 1.5);
+    border-radius: 2rem;
     font-size: 0.95rem;
     font-weight: 600;
     text-decoration: none;
@@ -563,6 +651,22 @@ const DESCRIPTION =
   }
 
   /* דלת הסיפורים */
+  /* "Seguir leyendo" – בדף הבית בלבד. :global מוגבל לעמוד הזה, כי
+     MomentBody משרת גם את המדפים וגם את דף הבית העברי. */
+  .door-moments :global(.reveal > summary) {
+    min-height: 40px;
+    padding: 0.35rem 0;
+    border: 0;
+    border-bottom: 1px solid var(--gold);
+    border-radius: 0;
+    font-size: 0.92rem;
+  }
+
+  .door-moments :global(.reveal > summary:hover) {
+    background: none;
+    color: var(--teal-deep);
+  }
+
   .door-stories {
     display: flex;
     flex-direction: column;
@@ -588,18 +692,23 @@ const DESCRIPTION =
   .stories-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.1rem;
+    gap: 0;
   }
 
+  /* שורת עולם: קשת קטנה + טקסט לצידה, מופרדת בקו שיער – תבנית "כל
+     המצבים" שכבר עובדת ב-/es/momentos/. קודם היה כאן כרטיס ממוסגר ברוחב
+     מלא, ובו הטקסט תפס פחות משליש מהרוחב במסך רחב. */
   .world-card {
     display: flex;
     align-items: center;
     gap: 1rem;
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 0.85rem 1rem;
-    box-shadow: var(--shadow);
+    padding: 1.05rem 0.1rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .world-card:first-child {
+    border-top: 0;
+    padding-top: 0.2rem;
   }
 
   .world-arch-link {
@@ -704,15 +813,25 @@ const DESCRIPTION =
   }
 
   /* ============ טעימת "מבט לשבת" ============ */
-  .mabat-teaser {
+  /* הקופסה ירדה, הקו האנכי נשאר: הקו הוא הסימן שאומר משהו, והמסגרת סביבו
+     רק חזרה עליו. ההגבלה יושבת על הטעימה עצמה ולא על גופה, כדי שהיא
+     תישאר עמודה ממורכזת בעמוד ולא תיצמד לצד אחד במסך רחב. */
+  .mabat-teaser,
+  .besht-teaser {
     display: flex;
     gap: 1rem;
     align-items: flex-start;
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding: 1.3rem 1.4rem;
+    width: 100%;
+    max-width: 34rem;
+    margin-inline: auto;
+  }
+
+  .besht-rail {
+    background: var(--gold) !important;
+  }
+
+  .besht-kicker {
+    color: #8f6f28 !important;
   }
 
   .teaser-rail {
@@ -726,7 +845,16 @@ const DESCRIPTION =
 
   .teaser-body {
     flex: 1;
-    text-align: center;
+    min-width: 0;
+    text-align: start;
+  }
+
+  /* התקציר של הגיליון – פרוזה, ולכן אותו טיפול שקט של תקציר ולא של טור. */
+  .mabat-summary {
+    color: var(--secondary);
+    font-size: 0.97rem;
+    line-height: 1.75;
+    margin: 0;
   }
 
   .teaser-kicker {

@@ -1,10 +1,10 @@
-// יצירת תמונת השיתוף של "רגע" — נוצרת בזמן הבנייה, מהטקסט עצמו.
+// יצירת תמונת השיתוף של "רגע" – נוצרת בזמן הבנייה, מהטקסט עצמו.
 //
 // התמונה נושאת את אותם ארבעת השלבים של הרגע (docs/MOMENT-FORMAT.md):
 // כותרת → המציאות → המסקנה → הסיבוב → קישוט → סיום מובלט.
 //
 // מה נשאר מההחלטות הקודמות: רקע שמנת, נקודת זהב אחת למעלה, בתחתית קו זהב קצר,
-// החתימה וכתובת האתר. בלי סמל העין, בלי דמויות, בלי צילומים — ובלי שם המצב,
+// החתימה וכתובת האתר. בלי סמל העין, בלי דמויות, בלי צילומים – ובלי שם המצב,
 // שהיה מתייג את מי שמשתף.
 //
 // 1080x1350 (יחס 4:5): התמונה נועדה בראש ובראשונה לסטטוס וואטסאפ, ושם
@@ -29,7 +29,7 @@ const CENTER = WIDTH / 2;
 const MARGIN = 118;
 const MAX_TEXT_WIDTH = WIDTH - MARGIN * 2;
 
-/** התחום שבו הטקסט חי — בין נקודת הזהב לקו התחתון */
+/** התחום שבו הטקסט חי – בין נקודת הזהב לקו התחתון */
 const TEXT_TOP = 160;
 const TEXT_BOTTOM = 1110;
 
@@ -60,7 +60,7 @@ const BOLD = 'Frank Ruhl Libre Bold';
 const fontPath = (name: string) => path.resolve(process.cwd(), 'src/assets/og-fonts', `${name}.ttf`);
 const FONT_FILES = ['frank', 'frank-bold', 'heebo', 'heebo-bold'].map(fontPath);
 
-/** נטען פעם אחת לכל הבנייה — 66 תמונות מאותם קבצים. */
+/** נטען פעם אחת לכל הבנייה – 66 תמונות מאותם קבצים. */
 function load(name: string) {
   const buffer = fs.readFileSync(fontPath(name));
   return opentype.parse(
@@ -75,7 +75,7 @@ const FONTS: Record<string, opentype.Font> = {
 /**
  * רוחב הטקסט בפיקסלים בגודל נתון, לפי טבלת הרוחבים של הפונט עצמו.
  * מסכם תו-תו במקום getAdvanceWidth: הפונקציה ההיא מפעילה את מנוע העיצוב של
- * opentype.js, שקורס על טקסט עברי. כאן דרוש רק רוחב — לשבירת שורות בלבד;
+ * opentype.js, שקורס על טקסט עברי. כאן דרוש רק רוחב – לשבירת שורות בלבד;
  * את העיצוב האמיתי עושה resvg.
  */
 function measure(text: string, size: number, family = REGULAR): number {
@@ -136,11 +136,11 @@ const escape = (s: string) =>
 /**
  * RLO (U+202E) … PDF (U+202C): תווי כיווניות בלתי-נראים, לא סימני פיסוק.
  * בלעדיהם resvg ממקם תווים ניטרליים (פיסוק, גרשיים) בקצה ה*לא* נכון של
- * שורה עברית ממורכזת — ולפעמים אף הופך שניים כאלה זה ביחס לזה — במיוחד
+ * שורה עברית ממורכזת – ולפעמים אף הופך שניים כאלה זה ביחס לזה – במיוחד
  * כשיש יותר מאשכול ניטרלי אחד בשורה (למשל גרש פותח וגרש+נקודה סוגרים).
  * נבדק ואומת ישירות בפיקסלים של ה-PNG שנוצר, לא רק בקוד. RLO כופה סדר
  * תצוגה נכון (override) על פני כל אלגוריתם ניחוש; PDF סוגר את התחום.
- * עוטף את כל השורה — כולל דרך tspan של הדגשה — כי resvg מעצב את כל
+ * עוטף את כל השורה – כולל דרך tspan של הדגשה – כי resvg מעצב את כל
  * אלמנט הטקסט כיחידה אחת. לא נוגע בתו אחד מהטקסט הנראה.
  */
 const RLO = '‮';
@@ -149,10 +149,10 @@ const PDF = '‬';
 /**
  * שורה אחת → תוכן של <text>, עם ההדגשות כ-tspan בגופן הכבד.
  * resvg מעצב את כל אלמנט הטקסט כיחידה אחת, ולכן ה-bidi נשמר גם כשיש בתוכו
- * כמה גופנים — וזה מה שמאפשר להדגיש מילה בתוך שורה עברית.
+ * כמה גופנים – וזה מה שמאפשר להדגיש מילה בתוך שורה עברית.
  *
  * עטיפת ה-RLO היא תיקון לשורה עברית בלבד: בשורה לטינית (ספרדית) היא הייתה
- * הופכת את הטקסט כולו, ושם הכיווניות ממילא חד-משמעית — לכן rtl=false מדלג.
+ * הופכת את הטקסט כולו, ושם הכיווניות ממילא חד-משמעית – לכן rtl=false מדלג.
  */
 function inline(line: string, rtl: boolean): string {
   const body = line
@@ -176,7 +176,7 @@ type Item =
 /** פריט עם הגובה שהוא תופס בפריסה */
 type Placed = { item: Item; h: number };
 
-/** מפרט הפורמט החדש, ביחסים לגודל הבסיס — כדי שהכול יתכווץ יחד */
+/** מפרט הפורמט החדש, ביחסים לגודל הבסיס – כדי שהכול יתכווץ יחד */
 const TITLE_RATIO = 1.66;
 const CLOSING_RATIO = 1.38;
 const LINE_RATIO = 1.52;
@@ -202,17 +202,52 @@ const MIN_SIZE = 26;
  * פריסה אנכית של הרגע כולו. מחזירה את הפריטים ואת הגובה הכולל, כדי שאפשר
  * יהיה למרכז את הגוש ולבדוק אם הוא נכנס.
  */
-function compose(format: MomentFormat, size: number) {
+/**
+ * המידות של פריסה אחת. הכרטיס הרגיל (4:5) והכרטיס הגבוה (9:16) חולקים את
+ * אותה פריסה אנכית, רק ביחסים ובגבולות אחרים – כך שהקצב של הרגע זהה בשניהם.
+ */
+type Layout = {
+  top: number;
+  bottom: number;
+  maxSize: number;
+  minSize: number;
+  titleRatio: number;
+  closingRatio: number;
+  lineRatio: number;
+  stanzaGap: number;
+  titleGap: number;
+  ornamentGap: number;
+  /** הקו הזהוב מתחת לכותרת. בכרטיס הגבוה הוא יורד: שם יש קישוט אחד בלבד בגוף. */
+  titleRule: boolean;
+};
+
+/** הכרטיס הרגיל – og.png. הערכים כאן הם בדיוק הקבועים הקודמים, כדי שאף
+    כרטיס קיים לא ישתנה בבייט אחד. */
+const CARD: Layout = {
+  top: TEXT_TOP,
+  bottom: TEXT_BOTTOM,
+  maxSize: NEW_MAX_SIZE,
+  minSize: MIN_SIZE,
+  titleRatio: TITLE_RATIO,
+  closingRatio: CLOSING_RATIO,
+  lineRatio: LINE_RATIO,
+  stanzaGap: STANZA_GAP_RATIO,
+  titleGap: TITLE_GAP_RATIO,
+  ornamentGap: ORNAMENT_GAP_RATIO,
+  titleRule: true,
+};
+
+function compose(format: MomentFormat, size: number, L: Layout = CARD) {
   const items: Placed[] = [];
   const push = (item: Item, h: number) => items.push({ item, h });
   /** רווח בלבד, בלי טקסט */
   const gap = (h: number) => push({ kind: 'line', text: '', size: 0, family: REGULAR, fill: INK, baseline: 0 }, h);
 
   const flow = !format.isNew;
-  const lineHeight = (flow ? FLOW_LINE_RATIO : LINE_RATIO) * size;
+  const lineHeight = (flow ? FLOW_LINE_RATIO : L.lineRatio) * size;
 
   if (format.title) {
-    const titleSize = size * TITLE_RATIO;
+    const titleSize = size * L.titleRatio;
     const titleHeight = titleSize * 1.34;
     for (const line of wrap(format.title, titleSize, BOLD)) {
       push(
@@ -220,12 +255,14 @@ function compose(format: MomentFormat, size: number) {
         titleHeight
       );
     }
-    push({ kind: 'title-rule' }, size * TITLE_RULE_GAP * 2);
-    gap(size * (TITLE_GAP_RATIO - 1));
+    // בלי הקו נשאר המרווח שלו – הכותרת נושמת באותה מידה, רק בלי הקישוט.
+    if (L.titleRule) push({ kind: 'title-rule' }, size * TITLE_RULE_GAP * 2);
+    else gap(size * TITLE_RULE_GAP * 2);
+    gap(size * (L.titleGap - 1));
   }
 
   format.stanzas.forEach((stanza, index) => {
-    // בפורמט החדש השורה נשמרת כפי שנכתבה — היא הפיסוק האמיתי של הרגע.
+    // בפורמט החדש השורה נשמרת כפי שנכתבה – היא הפיסוק האמיתי של הרגע.
     // wrap כאן הוא רשת ביטחון לשורה חריגה באורכה בלבד.
     const lines = flow ? wrap(stanza.join(' '), size) : stanza.flatMap((l) => wrap(l, size));
     // ה-baseline של התצוגה הישנה נשמר בדיוק כפי שהיה (size ולא יחס מגובה
@@ -235,13 +272,13 @@ function compose(format: MomentFormat, size: number) {
       push({ kind: 'line', text: line, size, family: REGULAR, fill: INK, baseline }, lineHeight);
     }
     if (index < format.stanzas.length - 1) {
-      gap(size * (flow ? FLOW_GAP_RATIO : STANZA_GAP_RATIO));
+      gap(size * (flow ? FLOW_GAP_RATIO : L.stanzaGap));
     }
   });
 
   if (format.closing) {
-    push({ kind: 'ornament' }, size * ORNAMENT_GAP_RATIO * 2);
-    const closingSize = size * CLOSING_RATIO;
+    push({ kind: 'ornament' }, size * L.ornamentGap * 2);
+    const closingSize = size * L.closingRatio;
     const closingHeight = closingSize * 1.4;
     for (const line of format.closing.flatMap((l) => wrap(l, closingSize, BOLD))) {
       push(
@@ -255,15 +292,15 @@ function compose(format: MomentFormat, size: number) {
   return { items, height };
 }
 
-/** קטן מהגודל הקבוע רק אם רגע חריג באורכו לא נכנס — רשת ביטחון, לא ברירת מחדל. */
-function fit(format: MomentFormat) {
-  const available = TEXT_BOTTOM - TEXT_TOP;
-  const start = format.isNew ? NEW_MAX_SIZE : BASE_SIZE;
-  for (let size = start; size >= MIN_SIZE; size -= 1) {
-    const candidate = compose(format, size);
+/** קטן מהגודל הקבוע רק אם רגע חריג באורכו לא נכנס – רשת ביטחון, לא ברירת מחדל. */
+function fit(format: MomentFormat, L: Layout = CARD) {
+  const available = L.bottom - L.top;
+  const start = format.isNew ? L.maxSize : BASE_SIZE;
+  for (let size = start; size >= L.minSize; size -= 1) {
+    const candidate = compose(format, size, L);
     if (candidate.height <= available) return candidate;
   }
-  return compose(format, MIN_SIZE);
+  return compose(format, L.minSize, L);
 }
 
 function ornamentSvg(y: number): string {
@@ -277,14 +314,14 @@ function ornamentSvg(y: number): string {
   ].join('\n  ');
 }
 
-/** LRO (U+202D): כפיית LTR — למספר טלפון בתוך שורה עברית שנכפתה RTL,
+/** LRO (U+202D): כפיית LTR – למספר טלפון בתוך שורה עברית שנכפתה RTL,
     שבלעדיה הספרות היו מתהפכות. PDF סוגר, כמו אצל RLO. */
 const LRO = '‭';
 
 /** שורת ההזמנה בתחתית הכרטיס העברי. מספר טלפון בתוכה נעטף LTR מעצמו.
-    מילת הקוד "מבט" — בחירת בעל הפרויקט (2026-08-26): נטולת מגדר ("מצטרף"
+    מילת הקוד "מבט" – בחירת בעל הפרויקט (2026-08-26): נטולת מגדר ("מצטרף"
     נפסל כלשון זכר), מילת המותג עצמה, ומחסום שליחה נמוך. */
-const HE_GROUP_LINE = "רוצים עוד רגעים כאלה? שלחו לי 'מבט' — 053-484-9068";
+const HE_GROUP_LINE = "רוצים עוד רגעים כאלה? שלחו לי 'מבט' – 053-484-9068";
 
 function groupLineSvg(text: string): string {
   const withPhone = escape(text).replace(/\d[\d-]*\d/g, (m) => `${LRO}${m}${PDF}`);
@@ -302,7 +339,7 @@ export function renderMomentCard(
   const { items, height } = fit(format);
   const rtl = lang !== 'es';
   const direction = rtl ? 'rtl' : 'ltr';
-  // אותה שפה עיצובית, חתימה בשפת הקורא. הכתובת בספרדית מצביעה על שער האזור —
+  // אותה שפה עיצובית, חתימה בשפת הקורא. הכתובת בספרדית מצביעה על שער האזור –
   // מי שיקליד את הדומיין לבדו ינחת בעברית.
   const signature = rtl ? `${RLO}נקודת מבט · אפרים עטיה${PDF}` : 'Punto de Vista · Efraim Atia';
   const urlText = rtl ? siteHost : `${siteHost}/es`;
@@ -339,6 +376,124 @@ export function renderMomentCard(
   <text x="${CENTER}" y="${rtl ? HE_SIGN_Y : SIGN_Y}" font-family="Heebo Bold" font-size="30" fill="${TEAL_DEEP}" direction="${direction}" text-anchor="middle">${signature}</text>
   ${rtl ? groupLineSvg(groupLine) : ''}
   <text x="${CENTER}" y="${rtl ? HE_URL_Y : URL_Y}" font-family="Heebo" font-size="24" fill="${MUTED}" text-anchor="middle">${escape(urlText)}</text>
+</svg>`;
+
+  return new Resvg(doc, {
+    fitTo: { mode: 'width', value: WIDTH },
+    font: { fontFiles: FONT_FILES, loadSystemFonts: false },
+  })
+    .render()
+    .asPng();
+}
+
+// ---------------------------------------------------------------------------
+// הכרטיס הגבוה – card.png, 1080x1920 (9:16).
+//
+// זו התמונה שמשתפים: מהכפתור בעמוד, מדף הבית, ובייצוא היומי לקבוצה.
+// og.png (4:5) נשאר לתצוגה המקדימה של קישור, שם תמונה גבוהה נחתכת.
+//
+// למה גבוה: ב-4:5 גוף הרגע יוצא כ-11px על מסך טלפון. ב-9:16 אותו רגע נכנס
+// בכ-41px מתוך 1080 – כ-15px בטלפון, כמו טקסט רגיל בוואטסאפ.
+//
+// העיצוב (אושר 2026-09-24): דף שמנת אחד, בלי בלוק צבע. צבע רק בשני מקומות –
+// הכותרת בכחול והסיום באדום, השיא היחיד. "נקודה לדרך" נפרדת בקו זהב דק
+// ובאוויר, בדיו ובמשקל רגיל: קול שני, שקט. הנקודה הזהובה פותחת את הכרטיס
+// ומסמנת את "נקודה לדרך" – הקשר לשם המותג. הטלפון מודגש בכחול, בלי זהב.
+// ---------------------------------------------------------------------------
+
+export const STORY_HEIGHT = 1920;
+
+const STORY_BASE: Omit<Layout, 'bottom'> = {
+  top: 190,
+  maxSize: 50,
+  minSize: 30,
+  titleRatio: 1.42,
+  closingRatio: 1.26,
+  lineRatio: 1.42,
+  stanzaGap: 0.8,
+  titleGap: 0.55,
+  ornamentGap: 1.1,
+  titleRule: false,
+};
+
+/** עם "נקודה לדרך" הרגע מסתיים גבוה יותר, כדי לפנות לה את השליש התחתון */
+const STORY_WITH_HANDLE: Layout = { ...STORY_BASE, bottom: 1350 };
+const STORY_PLAIN: Layout = { ...STORY_BASE, bottom: 1600 };
+
+const HANDLE_SIZE = 50;
+const HANDLE_LABEL = 'נקודה לדרך';
+const HANDLE_LABEL_ES = 'Para el camino';
+
+/** שורת ה"נקודה לדרך" נשברת היכן שנכתבה (\n). שורה אחת ארוכה נשברת לבד. */
+function handleLines(handle: string): string[] {
+  const written = handle.split('\n').map((l) => l.trim()).filter(Boolean);
+  return written.flatMap((l) => wrap(l, HANDLE_SIZE, REGULAR));
+}
+
+export function renderMomentStory(
+  body: string,
+  siteHost: string,
+  title: string,
+  handle?: string | null,
+  lang: 'he' | 'es' = 'he'
+): Buffer {
+  const format = parseMoment(body, title);
+  const L = handle ? STORY_WITH_HANDLE : STORY_PLAIN;
+  const { items, height } = fit(format, L);
+  const rtl = lang !== 'es';
+  const direction = rtl ? 'rtl' : 'ltr';
+  // עברית נעטפת RLO (ראו שלב 4.19); בלטינית העטיפה הייתה הופכת את הטקסט.
+  const t = (x: string) => (rtl ? `${RLO}${escape(x)}${PDF}` : escape(x));
+
+  let cursor = Math.max(L.top, L.top + (L.bottom - L.top - height) / 2);
+  const svg: string[] = [];
+  for (const { item, h } of items) {
+    if (item.kind === 'line') {
+      if (item.text) {
+        svg.push(
+          `<text x="${CENTER}" y="${(cursor + item.baseline).toFixed(1)}" font-family="${item.family}" font-size="${item.size}" fill="${item.fill}" direction="${direction}" text-anchor="middle">${inline(item.text, rtl)}</text>`
+        );
+      }
+    } else if (item.kind === 'ornament') {
+      svg.push(ornamentSvg(Number((cursor + h / 2).toFixed(1))));
+    }
+    cursor += h;
+  }
+
+  const handleSvg: string[] = [];
+  if (handle) {
+    const lines = handleLines(handle);
+    // שתי שורות הן היעד (ראו check:moments). שורה אחת יושבת באמצע אותו תחום.
+    const first = lines.length === 1 ? 1632 : 1600;
+    handleSvg.push(
+      `<line x1="${CENTER - 300}" y1="1412" x2="${CENTER + 300}" y2="1412" stroke="${GOLD}" stroke-width="1.6" opacity="0.55"/>`,
+      `<circle cx="${CENTER}" cy="1472" r="8" fill="${GOLD}"/>`,
+      `<text x="${CENTER}" y="1526" font-family="Heebo Bold" font-size="29" fill="#8f6f28" direction="${direction}" text-anchor="middle" letter-spacing="3">${t(rtl ? HANDLE_LABEL : HANDLE_LABEL_ES)}</text>`,
+      ...lines.map(
+        (line, i) =>
+          `<text x="${CENTER}" y="${first + i * 64}" font-family="${REGULAR}" font-size="${HANDLE_SIZE}" fill="${INK}" direction="${direction}" text-anchor="middle">${t(line)}</text>`
+      )
+    );
+  }
+
+  const [invite] = HE_GROUP_LINE.split(' – ');
+  const phone = HE_GROUP_LINE.match(/\d[\d-]*\d/)?.[0] ?? '';
+  // בספרדית אותה תחתית כמו בעברית, בהוראת בעל הפרויקט (2026-09-25), עד
+  // החלטה אחרת: מילת קוד, אותו מספר – בפורמט בינלאומי, כי הקהל בחו"ל.
+  const footer = rtl
+    ? `<text x="${CENTER}" y="1756" font-family="Heebo" font-size="30" fill="${MUTED}" direction="rtl" text-anchor="middle">${t(invite)}</text>
+  <text x="${CENTER}" y="1816" font-family="Heebo Bold" font-size="46" fill="${BLUE}" text-anchor="middle" letter-spacing="3">${LRO}${phone}${PDF}</text>
+  <text x="${CENTER}" y="1868" font-family="Heebo" font-size="25" fill="${MUTED}" direction="rtl" text-anchor="middle">${RLO}נקודת מבט · אפרים עטיה · ${PDF}${LRO}${escape(siteHost)}${PDF}</text>`
+    : `<text x="${CENTER}" y="1756" font-family="Heebo" font-size="30" fill="${MUTED}" text-anchor="middle">¿Quieres más momentos así? Envíame «Vista»</text>
+  <text x="${CENTER}" y="1816" font-family="Heebo Bold" font-size="46" fill="${BLUE}" text-anchor="middle" letter-spacing="3">+972 ${phone.replace(/^0/, '')}</text>
+  <text x="${CENTER}" y="1868" font-family="Heebo" font-size="25" fill="${MUTED}" text-anchor="middle">Punto de Vista · Efraim Atia · ${escape(siteHost)}/es</text>`;
+
+  const doc = `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${STORY_HEIGHT}" viewBox="0 0 ${WIDTH} ${STORY_HEIGHT}">
+  <rect width="${WIDTH}" height="${STORY_HEIGHT}" fill="${PAPER}"/>
+  <circle cx="${CENTER}" cy="118" r="9" fill="${GOLD}"/>
+  ${svg.join('\n  ')}
+  ${handleSvg.join('\n  ')}
+  ${footer}
 </svg>`;
 
   return new Resvg(doc, {

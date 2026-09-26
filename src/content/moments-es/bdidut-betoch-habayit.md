@@ -2,10 +2,13 @@
 feeling: loneliness
 date: 2026-08-21
 title: No hay de qué quejarse
+handle: |-
+  ¿Qué todavía no llegó?
+  Se puede preguntar sin quejarse.
 ---
 En una mesa llena,
 todos hablan.
-Y en medio de todo eso,
+Y en medio de todo eso
 una nostalgia sin **nombre**.
 
 Y llega el reproche:
@@ -15,7 +18,7 @@ No hay de qué **quejarse**.
 
 Pero la nostalgia no se queja.
 No dice que algo está mal.
-Dice que algo,
+Dice que algo
 **todavía** no llegó.
 
 ---

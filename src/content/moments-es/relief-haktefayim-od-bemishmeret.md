@@ -2,20 +2,23 @@
 feeling: relief
 date: 2026-09-08
 title: Los hombros cansados
+handle: |-
+  Varias veces hoy,
+  bajar los hombros a propósito.
 ---
 El peligro pasó,
 oficialmente.
-Pero todavía,
+Pero todavía
 cuesta **respirar**.
 
-Porque si te relajas,
+Y si te relajas,
 justo ahora,
-va a **volver**,
+va a **volver**
 sin aviso.
 
-Pero los hombros,
-no te están **cuidando**,
-solo,
+Pero los hombros
+no te están **cuidando**.
+Solo
 están cansados.
 
 ---

@@ -2,10 +2,13 @@
 feeling: sadness
 date: 2026-08-21
 title: Por fuera funciona
+handle: |-
+  Al final del día,
+  guardar para ti lo poco que queda.
 ---
 Te levantaste. Saliste.
 Hiciste lo que había que hacer.
-Hasta te reíste,
+Hasta te reíste
 una vez o **dos**.
 
 Y por fuera todo funciona.
@@ -13,12 +16,12 @@ Y entonces no hay nada que decir.
 Y si no hay nada que decir,
 será que estás **bien**.
 
-Pero solo por dentro se sabe,
+Pero solo por dentro se sabe
 cuánto costó.
-Y qué poco queda,
+Y qué poco queda
 al final del **día**.
 
 ---
 
-La distancia entre el afuera y el adentro,
+La distancia entre el afuera y el adentro
 es un lugar de soledad.

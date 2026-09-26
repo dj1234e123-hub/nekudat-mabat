@@ -1,8 +1,8 @@
 ---
-// דף הבית — הכניסה לאתר, לא רשימת הסיפורים.
+// דף הבית – הכניסה לאתר, לא רשימת הסיפורים.
 // שני עולמות התוכן המרכזיים מוצגים כשתי דלתות בקנה מידה שווה: רגע של נקודת
 // מבט (קשת + רגע מקופל) מול ארבעת עולמות הסיפורים (קשתות קטנות). שתי
-// הדלתות חולקות עכשיו שפה חזותית אחת — הקשת — שכבר קיימת בשערי /moments/.
+// הדלתות חולקות עכשיו שפה חזותית אחת – הקשת – שכבר קיימת בשערי /moments/.
 // עיקרון מנחה: הדף מציג רק תוכן שקיים בפועל.
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
@@ -16,22 +16,22 @@ import { SECTIONS_META, SECTION_SLUGS, type SectionSlug } from '../data/sections
 import momentGate from '../assets/gates/moments.png';
 import { SECTION_GATE_IMAGES } from '../data/section-gate-images';
 import { newestFirst } from '../lib/sort';
-import MabatBody from '../components/MabatBody.astro';
-import { parseBody } from '../lib/mabat-format';
+import { parseBody, plainText, kicker } from '../lib/mabat-format';
 import { isPublished } from '../lib/published';
+import JoinPopup from '../components/JoinPopup.astro';
 
 // דף הבית נותן טעם ומוביל הלאה; הארכיון עצמו חי ב-/stories/.
 const allStories = (await getCollection('stories', isPublished)).sort(newestFirst);
 
-// שלושה סיפורים נבחרים, אחד מכל עולם — הרושם הראשון הוא החלטה, לא תוצאה
-// של סדר פרסום. השדה featured קובע גם חברות וגם מיקום; בלי סימון — נפילה
+// שלושה סיפורים נבחרים, אחד מכל עולם – הרושם הראשון הוא החלטה, לא תוצאה
+// של סדר פרסום. השדה featured קובע גם חברות וגם מיקום; בלי סימון – נפילה
 // לאחור לחדש ביותר בכל עולם, כדי שהדלת לעולם לא תתרוקן.
 const picked = allStories
   .filter((s) => s.data.featured !== undefined)
   .sort((a, b) => a.data.featured! - b.data.featured!);
 const featuredStories = picked.length >= 3 ? picked.slice(0, 3) : allStories.slice(0, 3);
 
-// דלת הסיפורים: כרטיס לכל עולם תוכן שיש בו סיפורים, עם סיפור-דוגמה אמיתי —
+// דלת הסיפורים: כרטיס לכל עולם תוכן שיש בו סיפורים, עם סיפור-דוגמה אמיתי –
 // הנבחר של אותו עולם, או החדש ביותר בו.
 const GATE_EMOJI: Record<SectionSlug, string> = {
   meshalim: '📖',
@@ -57,12 +57,12 @@ const worlds = SECTION_SLUGS.map((slug) => {
 }).filter((w) => w !== null);
 
 // הרגע שמוצג בדלת הרגעים: מוגרל מחדש בכל טעינה, בצד הקורא (הסקריפט בתחתית
-// הקובץ) — כדי שמי שחוזר לאתר לא יראה שוב ושוב את אותו רגע קבוע. כל רגע
+// הקובץ) – כדי שמי שחוזר לאתר לא יראה שוב ושוב את אותו רגע קבוע. כל רגע
 // בבריכה נושא גם accent (צבע הזהות של קבוצת הרגש שלו, לנקודה שליד הכותרת)
-// וגם href/ogImage מלאים — כדי ששיתוף מדף הבית יעבוד בדיוק כמו בעמוד הרגע
+// וגם href/ogImage מלאים – כדי ששיתוף מדף הבית יעבוד בדיוק כמו בעמוד הרגע
 // עצמו: תמונה ממותגת קודם (Web Share API), קישור נקי כנפילת חזרה.
 //
-// בלי JavaScript — ולקוראי מסך/מנועי חיפוש שלא מריצים סקריפט — נשאר הרגע
+// בלי JavaScript – ולקוראי מסך/מנועי חיפוש שלא מריצים סקריפט – נשאר הרגע
 // החדש ביותר: שובר השוויון על פני תאריך זהה הוא שם הקובץ (src/lib/sort.ts).
 const moments = (await getCollection('moments', isPublished)).sort(newestFirst);
 const momentPool = moments.map((m) => {
@@ -72,25 +72,42 @@ const momentPool = moments.map((m) => {
     url: path,
     href: new URL(path, Astro.site).href,
     format: parseMoment(m.body ?? '', m.data.title),
+    handle: m.data.handle ?? null,
     accent: groupOf(feeling)?.accent ?? 'var(--gold)',
-    ogImage: new URL(`${path}og.png`, Astro.site).href,
+    // כרטיס השיתוף הגבוה – אותו קובץ שכפתור הוואטסאפ בעמוד הרגע שולח.
+    ogImage: new URL(`${path}card.png`, Astro.site).href,
   };
 });
 const featuredMoment = momentPool[0] ?? null;
 
-// טעימה מ"מבט לשבת" — הגיליון האחרון בלבד, ורק שני המהלכים הראשונים שלו.
+// טעימה מ"מבט לשבת" – הגיליון האחרון בלבד.
+// מוצג התקציר של הגיליון ולא הפתיחה שלו: שורות הפתיחה הן הטור עצמו, והקורא
+// שפגש אותן בדף הבית מתחיל אותו מחדש בעמוד הגיליון. התקציר נשען על הסיפור
+// כולו בלי לחשוף את הסוף – בדיוק התפקיד של הטעימה. אותו שדה description
+// שכבר מזין את התצוגה המקדימה בוואטסאפ ובגוגל (שלב 4.59), ואותה נפילה
+// לאחור בדיוק כמו בעמוד הגיליון: גיליון בלי תקציר נגזר מ-200 תווי הפתיחה.
 // הדף מציג רק תוכן שקיים בפועל: בלי גיליון, האזור כולו לא מוצג.
 const mabatPieces = (await getCollection('mabatLeshabbat', isPublished)).sort(newestFirst);
 const latestMabat = mabatPieces[0]
-  ? { piece: mabatPieces[0], blocks: parseBody(mabatPieces[0].body ?? '') }
+  ? (() => {
+      const piece = mabatPieces[0];
+      const flat = plainText(parseBody(piece.body ?? '')).replace(/\s+/g, ' ').trim();
+      const derived = flat.length > 200 ? `${flat.slice(0, 197)}…` : flat;
+      return { piece, summary: piece.data.description ?? derived };
+    })()
   : null;
+
+// טעימה מ"מעשה שהיה" – סיפור הבעל שם טוב האחרון של מוצאי שבת.
+// כמו כל אזור בדף הבית: בלי סיפור, האזור כולו לא מוצג.
+const beshtStories = (await getCollection('besht', isPublished)).sort(newestFirst);
+const latestBesht = beshtStories[0] ?? null;
 
 const DESCRIPTION =
   'מקום לעצור, לקבל נקודת מבט חדשה, ולקחת משהו איתך להמשך הדרך. סיפורים ורגעים קצרים של נקודת מבט.';
 ---
 
 <Base
-  title="נקודת מבט — מקום לעצור, ולראות אחרת"
+  title="נקודת מבט – מקום לעצור, ולראות אחרת"
   description={DESCRIPTION}
   homeHeader={true}
   jsonLd={await websiteJsonLd(Astro.site!, DESCRIPTION)}
@@ -105,16 +122,20 @@ const DESCRIPTION =
         מקום לעצור, לקבל נקודת מבט חדשה, ולקחת משהו איתך להמשך הדרך.
       </p>
       {/* המבנה שאושר על סקיצה (2026-08-26): שורת הזמנה לאזור הספרדי מתחת
-          למשפט ההבטחה. בעמודים הפנימיים — גלולת פינה (Base.astro). */}
+          למשפט ההבטחה. בעמודים הפנימיים – גלולת פינה (Base.astro). */}
       <p class="lang-invite">
-        <a href="/es/" lang="es" dir="ltr">Punto de Vista — en español</a>
+        <a href="/es/" lang="es" dir="ltr">Punto de Vista – en español</a>
       </p>
     </section>
 
-    <!-- שתי דלתות בקנה מידה שווה: רגעים מול סיפורים, ובין לבין — טעימה
+    {/* מפריד אזורים – נקודת זהב. הדפוס כבר קיים בתחתית כל עמוד באתר, והוא
+        מה שמחליף את המסגרות שירדו: אוויר וסימן אחד, במקום קיר. */}
+    <span class="sep" aria-hidden="true"></span>
+
+    <!-- שתי דלתות בקנה מידה שווה: רגעים מול סיפורים, ובין לבין – טעימה
          מ"מבط لشبت" (לא דלת שלישית באותו משקל). במסך צר שלושתם מתקפלים
          לעמודה אחת בסדר הזה בדיוק; במסך רחב, ששתי הדלתות יושבות זו לצד זו
-         בשורה אחת, הטעימה יורדת לרצועה מלאה מתחתיהן — "בין" לא קיים
+         בשורה אחת, הטעימה יורדת לרצועה מלאה מתחתיהן – "בין" לא קיים
          גיאומטרית כששני האיברים כבר צמודים אופקית. -->
     <section class="dual-section">
       <!-- דלת הרגעים -->
@@ -143,11 +164,22 @@ const DESCRIPTION =
                     {featuredMoment.format.title}
                   </a>
                 </h3>
+                {/* קו הזהב שמתחת לכותרת-הוו בעמוד הרגע (.hook-rule). מאז שהמסגרת
+                    האדומה ירדה, הוא מה שמסמן "כאן מתחיל רגע" – ובאותה צורה בדיוק
+                    שהקורא כבר פוגש בעמוד הרגע עצמו. */}
+                <span class="hook-rule" aria-hidden="true" />
                 <div id="moment-body-mount">
-                  <MomentBody format={featuredMoment.format} collapsed />
+                  <MomentBody format={featuredMoment.format} handle={featuredMoment.handle} collapsed />
                 </div>
               </article>
 
+              <div class="moment-footer">
+                <a href="/moments/" class="door-cta" data-ph="find_moment">מצא רגע שלך</a>
+                <p class="door-cta-sub">עוד רגעים, לפי מה שעובר עליך</p>
+              </div>
+
+              {/* השיתוף יורד מתחת לפעולה הראשית: קודם הוא ישב מעליה, וביקש
+                  ממבקר ראשון לשתף רגע שהסיום שלו עדיין מקופל. */}
               <div
                 id="moment-share"
                 class="moment-share"
@@ -155,7 +187,7 @@ const DESCRIPTION =
                 data-image={featuredMoment.ogImage}
               >
                 <a
-                  class="share-pill whatsapp"
+                  class="share-link whatsapp"
                   href={`https://wa.me/?text=${encodeURIComponent(featuredMoment.href)}`}
                   rel="noopener"
                   target="_blank"
@@ -163,12 +195,7 @@ const DESCRIPTION =
                 >
                   שיתוף בוואטסאפ
                 </a>
-                <button type="button" class="share-pill copy" data-ph="share_copy">העתקת קישור</button>
-              </div>
-
-              <div class="moment-footer">
-                <a href="/moments/" class="door-cta" data-ph="find_moment">מצא רגע שלך</a>
-                <p class="door-cta-sub">עוד רגעים, לפי מה שעובר עליך</p>
+                <button type="button" class="share-link copy" data-ph="share_copy">העתקת קישור</button>
               </div>
             </div>
 
@@ -184,7 +211,7 @@ const DESCRIPTION =
                   data-href={m.href}
                   data-image={m.ogImage}
                 >
-                  <MomentBody format={m.format} collapsed />
+                  <MomentBody format={m.format} handle={m.handle} collapsed />
                 </template>
               ))
             }
@@ -193,15 +220,33 @@ const DESCRIPTION =
       }
 
       {
+        latestBesht && (
+          <section class="besht-teaser" style="grid-area: besht">
+            <span class="teaser-rail besht-rail" aria-hidden="true" />
+            <div class="teaser-body">
+              <p class="teaser-kicker besht-kicker">מעשה שהיה · {latestBesht.data.occasion}</p>
+              <a class="teaser-title" href={`/besht/${latestBesht.id}/`}>
+                {latestBesht.data.title}
+              </a>
+              <p class="besht-excerpt">{latestBesht.data.excerpt}</p>
+              <a class="teaser-more" href={`/besht/${latestBesht.id}/`}>
+                לקרוא את הסיפור
+              </a>
+            </div>
+          </section>
+        )
+      }
+
+      {
         latestMabat && (
           <section class="mabat-teaser" style="grid-area: mabat">
             <span class="teaser-rail" aria-hidden="true" />
             <div class="teaser-body">
-              <p class="teaser-kicker">מבט לשבת · פרשת {latestMabat.piece.data.parasha}</p>
+              <p class="teaser-kicker">מבט לשבת · {kicker(latestMabat.piece.data.parasha)}</p>
               <a class="teaser-title" href={`/mabat-leshabbat/${latestMabat.piece.id}/`}>
                 {latestMabat.piece.data.title}
               </a>
-              <MabatBody blocks={latestMabat.blocks} stanzaLimit={2} />
+              <p class="mabat-summary">{latestMabat.summary}</p>
               <a class="teaser-more" href={`/mabat-leshabbat/${latestMabat.piece.id}/`}>
                 להמשיך לקרוא
               </a>
@@ -255,6 +300,7 @@ const DESCRIPTION =
     </section>
 
     <JoinGroup />
+    <JoinPopup />
   </main>
 </Base>
 
@@ -280,7 +326,7 @@ const DESCRIPTION =
     }
   }
 
-  // שיתוף מדף הבית — אותה שיטה בדיוק כמו בעמוד הרגע (ShareRow.astro): תמונה
+  // שיתוף מדף הבית – אותה שיטה בדיוק כמו בעמוד הרגע (ShareRow.astro): תמונה
   // ממותגת קודם דרך Web Share API, קישור נקי כנפילת חזרה. הרגע כאן מוגרל
   // ומוחלף בצד הלקוח, ולכן הכתובות נקראות תמיד מ-dataset בזמן הלחיצה,
   // ולא נקבעות פעם אחת מראש.
@@ -335,7 +381,7 @@ const DESCRIPTION =
     color: var(--teal-deep);
   }
 
-  /* משפט אופי, לא שורת ניווט — "תובנות" עדיין אין לה אזור, ולכן היא לא קישור. */
+  /* משפט אופי, לא שורת ניווט – "תובנות" עדיין אין לה אזור, ולכן היא לא קישור. */
   .triad {
     font-family: var(--font-display);
     font-size: 1.05rem;
@@ -351,7 +397,7 @@ const DESCRIPTION =
     line-height: 1.75;
   }
 
-  /* שורת ההזמנה לאזור הספרדי — קישור שקט, לא כפתור: דלת למי שמחפש אותה,
+  /* שורת ההזמנה לאזור הספרדי – קישור שקט, לא כפתור: דלת למי שמחפש אותה,
      בלי להתחרות בפעולה הראשית. */
   .lang-invite {
     margin-top: 0.85rem;
@@ -381,35 +427,73 @@ const DESCRIPTION =
     margin-inline: calc((100% - var(--bleed)) / 2);
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-areas: 'moments' 'mabat' 'stories';
-    gap: 1.75rem;
+    grid-template-areas: 'moments' 'besht' 'mabat' 'stories';
+    /* הרווח גדל (1.75 ← 3.25rem): מה שהפריד בין האזורים היה מסגרת, ומאז
+       שהיא ירדה האוויר הוא שעושה את העבודה – והוא גם מה שמחזיק את נקודת
+       הזהב שיושבת בתוכו. */
+    gap: 3.25rem;
     align-items: start;
     margin-bottom: 2.5rem;
+  }
+
+  /* נקודת הזהב המפרידה. מיקום מוחלט ולא זרימה, כי שתי הטעימות הן שורות
+     flex ו-.door-stories עמודת flex – פסאודו-אלמנט בזרימה היה נעשה פריט
+     בפריסה שלהן. במסך רחב שתי הדלתות כבר יושבות זו לצד זו, ואז אין "בין". */
+  .sep {
+    display: block;
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.85;
+    /* .hero כבר תורם 2.25rem מלמעלה */
+    margin: 0.75rem auto 2.75rem;
+  }
+
+  @media (max-width: 49.99rem) {
+    .besht-teaser,
+    .mabat-teaser,
+    .door-stories {
+      position: relative;
+    }
+
+    .besht-teaser::before,
+    .mabat-teaser::before,
+    .door-stories::before {
+      content: '';
+      position: absolute;
+      top: -1.85rem;
+      inset-inline-start: 50%;
+      transform: translateX(50%);
+      width: 0.4rem;
+      height: 0.4rem;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0.85;
+    }
   }
 
   /* במסך רחב הדלתות יושבות זו לצד זו, והטעימה יורדת לרצועה מלאה מתחתיהן. */
   @media (min-width: 800px) {
     .dual-section {
       grid-template-columns: 1fr 1fr;
-      grid-template-areas: 'moments stories' 'mabat mabat';
+      grid-template-areas: 'moments stories' 'besht besht' 'mabat mabat';
       gap: 2rem;
     }
   }
 
   /* דלת הרגעים. המסגרת האדומה העמוקה היא זהות הדלת; התוכן שבפנים נשאר שקט
-     כמו הצד השני — בלי שורת כותרת ממולאת, ובלי תמונת שער בגודל מלא. */
+     כמו הצד השני – בלי שורת כותרת ממולאת, ובלי תמונת שער בגודל מלא. */
+  /* הדלת יושבת ישירות על הנייר. עד 2026-09-22 הייתה כאן מסגרת אדומה עמוקה
+     (החלטת 4.30) – היא ירדה בהחלטת בעל הפרויקט: הזהות האדומה עברה לכפתור
+     הפעולה, וסימן ה"כאן מתחיל רגע" הוא קו הזהב שמתחת לכותרת, אותו קו בדיוק
+     שבעמוד הרגע. נקודת צבע הקבוצה שליד הכותרת לא השתנתה. */
   .door-moments {
-    background: var(--paper);
-    border: 2px solid var(--brick);
-    border-radius: var(--radius);
-    overflow: hidden;
     display: flex;
     flex-direction: column;
-    box-shadow: var(--shadow);
   }
 
   .door-header {
-    padding: 1.3rem 1.2rem 0;
     text-align: center;
   }
 
@@ -425,7 +509,7 @@ const DESCRIPTION =
     color: var(--ink);
   }
 
-  /* נקודת הזהות של קבוצת הרגש שהוגרלה — אותו דפוס בדיוק של עולמות הסיפורים
+  /* נקודת הזהות של קבוצת הרגש שהוגרלה – אותו דפוס בדיוק של עולמות הסיפורים
      ושל שערי הרגעים: נקודה, לא מילוי. מתעדכנת בצד הלקוח עם הרגע. */
   .door-dot {
     width: 0.5rem;
@@ -440,7 +524,7 @@ const DESCRIPTION =
     margin: 0 0 1.1rem;
   }
 
-  /* קשת הרגעים — הד לשערי /moments/, בגודל מוקטן: כאן היא הזמנה, לא הבחירה
+  /* קשת הרגעים – הד לשערי /moments/, בגודל מוקטן: כאן היא הזמנה, לא הבחירה
      עצמה. התמונה היא דלת: לחיצה עליה נכנסת פנימה. */
   .moment-arch-link {
     display: block;
@@ -460,7 +544,7 @@ const DESCRIPTION =
     transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
 
-  /* מסגרת זהב פנימית דקה — אותה חתימה כמו בשערי הרגעים */
+  /* מסגרת זהב פנימית דקה – אותה חתימה כמו בשערי הרגעים */
   .moment-arch::after {
     content: '';
     position: absolute;
@@ -492,9 +576,8 @@ const DESCRIPTION =
   }
 
   .door-content {
-    /* הרגע בדלת קטן מזה שבעמוד שלו — כאן הוא אורח */
+    /* הרגע בדלת קטן מזה שבעמוד שלו – כאן הוא אורח */
     --moment-size: 1rem;
-    padding: 0 1.2rem 1.3rem;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -509,8 +592,18 @@ const DESCRIPTION =
     font-size: 1.25rem;
     line-height: 1.3;
     color: var(--blue);
-    margin: 0 0 1.2rem;
+    margin: 0;
     text-wrap: balance;
+  }
+
+  /* אותם ערכים בדיוק כמו .hook-rule בעמוד הרגע, בקנה מידה מוקטן */
+  .hook-rule {
+    display: block;
+    width: 4rem;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.8;
+    margin: 0.95rem auto 1.5rem;
   }
 
   .moment-title a {
@@ -518,64 +611,58 @@ const DESCRIPTION =
     text-decoration: none;
   }
 
-  /* שיתוף — אותה שיטה בדיוק כמו בעמוד הרגע (ShareRow.astro): וואטסאפ מלא,
-     העתקת קישור מתאר. */
+  /* השיתוף בדף הבית הוא פעולה שלישית במעלה – אחרי הקריאה ואחרי הכניסה
+     לפינה – ולכן שני קישורים שקטים ולא שתי גלולות. בעמוד הרגע עצמו
+     (ShareRow.astro) הוא נשאר כפי שהוא: שם הקורא כבר סיים לקרוא. */
   .moment-share {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.6rem;
-    margin-top: 0.2rem;
+    gap: 0 1.4rem;
+    margin-top: 1.25rem;
   }
 
-  .share-pill {
+  .share-link {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     min-height: 44px;
-    padding: 0.4rem 1.1rem;
-    border-radius: 2rem;
+    padding: 0;
+    border: 0;
+    background: none;
     font-family: inherit;
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-size: 0.86rem;
+    font-weight: 500;
+    color: var(--muted);
     text-decoration: none;
-    border: 1px solid var(--teal);
-    background: transparent;
-    color: var(--teal);
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
     cursor: pointer;
-    transition: background 0.15s ease, color 0.15s ease;
+    transition: color 0.15s ease, border-color 0.15s ease;
   }
 
-  .share-pill.whatsapp {
-    background: var(--teal);
-    color: #fff;
-  }
-
-  .share-pill.whatsapp:hover {
-    background: var(--teal-deep);
-  }
-
-  .share-pill.copy:hover {
-    background: var(--surface);
+  .share-link:hover {
+    color: var(--teal);
+    border-color: var(--teal);
   }
 
   .moment-footer {
-    margin-top: 1.1rem;
-    padding-top: 1.1rem;
-    border-top: 1px solid var(--line);
+    margin-top: 1.6rem;
     text-align: center;
   }
 
+  /* הכפתור המלא היחיד בעמוד. בלי המסגרת סביבו הוא גם מה שנושא את האדום
+     העמוק, ולכן הוא גלולה עומדת בפני עצמה ולא פס שמשלים רוחב של קופסה. */
   .door-cta {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    min-height: 44px;
-    padding: 0.7rem;
+    min-width: 14rem;
+    min-height: 48px;
+    padding: 0.7rem 1.9rem;
     background: var(--brick);
     color: #fff;
-    border-radius: calc(var(--radius) / 1.5);
+    border-radius: 2rem;
     font-size: 0.95rem;
     font-weight: 600;
     text-decoration: none;
@@ -591,6 +678,24 @@ const DESCRIPTION =
     margin: 0.55rem 0 0;
     font-size: 0.8rem;
     color: var(--muted);
+  }
+
+  /* "להמשיך לקרוא" – בדף הבית בלבד. הגלולה המתארת שימשה כאן לשלושה
+     תפקידים שונים (קיפול, שיתוף, הצטרפות); בדלת הרגעים היא הופכת לקישור
+     שקט, כדי שהכפתור המלא יישאר הפעולה היחידה שנראית כפעולה.
+     :global מוגבל לעמוד הזה – MomentBody משרת גם את המדפים ואת /es/. */
+  .door-moments :global(.reveal > summary) {
+    min-height: 40px;
+    padding: 0.35rem 0;
+    border: 0;
+    border-bottom: 1px solid var(--gold);
+    border-radius: 0;
+    font-size: 0.92rem;
+  }
+
+  .door-moments :global(.reveal > summary:hover) {
+    background: none;
+    color: var(--teal-deep);
   }
 
   /* דלת הסיפורים */
@@ -619,20 +724,24 @@ const DESCRIPTION =
   .stories-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.1rem;
+    gap: 0;
   }
 
-  /* כרטיס עולם: קשת קטנה + טקסט לצידה — אותה שפה חזותית של הקשת הגדולה
-     בדלת הרגעים ושל שערי /moments/, בצבע הזהות של העולם. */
+  /* שורת עולם: קשת קטנה + טקסט לצידה, מופרדת בקו שיער – תבנית "כל המצבים"
+     שכבר עובדת ב-/moments/. עד 2026-09-22 היה כאן כרטיס ממוסגר ברוחב מלא,
+     ובו הטקסט תפס 173px מתוך 480 במסך רחב: הקופסה הייתה גדולה מתוכנה.
+     לשורה אין גודל קבוע למלא, ולכן הבעיה נעלמת מעצמה. */
   .world-card {
     display: flex;
     align-items: center;
     gap: 1rem;
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 0.85rem 1rem;
-    box-shadow: var(--shadow);
+    padding: 1.05rem 0.1rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .world-card:first-child {
+    border-top: 0;
+    padding-top: 0.2rem;
   }
 
   .world-arch-link {
@@ -706,7 +815,7 @@ const DESCRIPTION =
     margin: 0;
   }
 
-  /* סיפור-דוגמה אמיתי מהעולם — טעימה, לא רשימה */
+  /* סיפור-דוגמה אמיתי מהעולם – טעימה, לא רשימה */
   .story-example {
     font-size: 0.9rem;
     color: var(--ink);
@@ -737,16 +846,39 @@ const DESCRIPTION =
     text-decoration: underline;
   }
 
+  /* ============ טעימת "מעשה שהיה" ============ */
+  /* הקופסה ירדה, הקו נשאר: הקו האנכי הוא הסימן שאומר משהו, והמסגרת סביבו
+     רק חזרה עליו. */
+  .besht-teaser {
+    --gold-deep: #8f6f28;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .besht-rail {
+    background: var(--gold);
+  }
+
+  .besht-kicker {
+    color: var(--gold-deep);
+  }
+
+  /* שתי הטעימות מדברות עכשיו באותה צורה: תקציר בפרוזה, ולא פתיחה של הטקסט
+     עצמו. לכן אותו טיפול בדיוק לשתיהן. */
+  .besht-excerpt,
+  .mabat-summary {
+    color: var(--secondary);
+    font-size: 0.97rem;
+    line-height: 1.75;
+    margin: 0;
+  }
+
   /* ============ טעימת "מבט לשבת" ============ */
   .mabat-teaser {
     display: flex;
     gap: 1rem;
     align-items: flex-start;
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding: 1.3rem 1.4rem;
   }
 
   .teaser-rail {
@@ -758,9 +890,25 @@ const DESCRIPTION =
     flex: 0 0 auto;
   }
 
+  /* מידת שורה קריאה. במסך רחב הטעימה הייתה פרושה על כל רוחב הרצועה,
+     והתקציר נמדד 926px וממורכז – כ-110 תווים בשורה, כפול מהטווח הנוח.
+     ההגבלה יושבת על הטעימה עצמה ולא על גופה, כדי שהיא תישאר עמודה
+     ממורכזת בעמוד: הגבלה על הגוף בלבד הצמידה את שתיהן לחצי הימני.
+     שורות "מבט לשבת" נשארות ממורכזות, כי כך הן מעוצבות בעמוד שלהן. */
+  .besht-teaser,
+  .mabat-teaser {
+    /* 34rem ולא 40: ב-40rem התקציר נמדד 621px, כ-79 תווים בשורה – עדיין
+       מעל הטווח הנוח. width:100% נחוץ כדי ששתיהן יגיעו לאותו רוחב: בלעדיו
+       "מבט לשבת" מתכווץ לתוכנו (363px) ושני הקווים האנכיים לא מתיישרים. */
+    width: 100%;
+    max-width: 34rem;
+    margin-inline: auto;
+  }
+
   .teaser-body {
     flex: 1;
-    text-align: center;
+    min-width: 0;
+    text-align: start;
   }
 
   .teaser-kicker {

@@ -2,20 +2,23 @@
 feeling: betrayal
 date: 2026-09-08
 title: Revisar todo, dos veces
+handle: |-
+  Hoy, en una cosa pequeña,
+  confiar sin revisar dos veces.
 ---
 Alguien te engañó,
 y desde entonces,
-revisas todo,
+revisas todo
 dos **veces**.
 
-Porque si tu juicio,
-se equivocó una vez,
-ya no se puede,
+Porque si tu juicio
+se equivocó una vez
+ya no se puede
 **confiar** en él de nuevo.
 
-Pero la revisión,
-no **devuelve**,
-lo que él,
+Pero la revisión
+no **devuelve**
+lo que él
 se llevó.
 
 ---

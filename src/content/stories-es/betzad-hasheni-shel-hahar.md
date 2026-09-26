@@ -15,7 +15,7 @@ Entre la aldea y el pueblo hay una montaña.
 
 En el pueblo hay médico. En la aldea no. Quien necesita atención rodea la montaña: cincuenta y cinco kilómetros.
 
-La esposa de Dashrath Manjhi se hirió en la montaña. El médico estaba al otro lado, y el camino era demasiado largo. No llegaron a tiempo. Ella murió.
+La esposa de Dashrath Manjhi se hirió en la montaña. El médico estaba al otro lado, y el camino era demasiado largo. No llegaron a tiempo. Murió.
 
 Dashrath era un jornalero pobre. Después de su muerte vendió sus cabras, compró un martillo, un cincel y una barra de hierro, y empezó a subir a la montaña.
 
@@ -25,7 +25,7 @@ Pero cada mañana él subía, y se plantaba frente a la roca.
 
 Un golpe. Y otro golpe.
 
-Después bajaba a trabajar, para tener qué comer. Y al final del día volvía a la montaña.
+Después bajaba a trabajar, para tener qué comer. Y a fin de cuentas volvía a la montaña.
 
 Pasaron cinco años, y el camino todavía no estaba. Diez años. Dashrath siguió. Con calor, con lluvia, a oscuras.
 
@@ -35,7 +35,7 @@ Veintidós años.
 
 Y entonces hubo un camino dentro de la montaña. Ciento diez metros de largo, nueve metros de ancho, tallados en la roca. La distancia al pueblo se acortó de cincuenta y cinco kilómetros a quince.
 
-Los niños van por él a la escuela. Lo usan los habitantes de sesenta aldeas. Y quien necesita un médico, llega a tiempo.
+Los niños lo cruzan para ir a la escuela. Lo usan los habitantes de sesenta aldeas. Y quien necesita un médico, llega a tiempo.
 
 > Entre la aldea y el pueblo hay una montaña.<br />
 > Hoy la atraviesa un camino.

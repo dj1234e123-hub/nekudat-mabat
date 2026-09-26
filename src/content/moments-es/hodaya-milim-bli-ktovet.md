@@ -2,8 +2,11 @@
 feeling: gratitude
 date: 2026-08-24
 title: Palabras sin destinatario
+handle: |-
+  Cuando hoy algo sale bien,
+  decir «gracias» en lugar de «suerte».
 ---
-Cuando algo sale bien,
+Cuando algo sale bien
 hay palabras rápidas:
 suerte. Casualidad. Se dio así.
 Palabras sin **destinatario**.
@@ -13,11 +16,12 @@ la suerte no exige nada.
 Se toma,
 y se sigue **adelante**.
 
-¿Y gracias? Gracias es distinto.
-No se puede decir,
+¿Y gracias?
+Gracias es distinto.
+No se puede decir
 sin **alguien**.
 
 ---
 
-La suerte es a solas.
-Gracias son dos.
+La suerte es cosa de uno.
+El gracias es cosa de dos.

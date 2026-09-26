@@ -2,23 +2,26 @@
 feeling: shame
 date: 2026-09-08
 title: ¿Y si de verdad lo dice?
+handle: |-
+  Basta una frase:
+  «Vi que te dolió».
 ---
 Es fácil decidir,
 pedir **perdón**.
-Más difícil,
-es pensar qué pasará después.
+Más difícil
+es imaginar la respuesta.
 
-Porque si preguntas,
-por fin él podrá decir,
+Porque cuando lo pides
+por fin él podrá decir
 cuánto le **dolió** de verdad.
-Y eso es más difícil de escuchar.
+Y no hay fuerzas para escucharlo.
 
-Pero su silencio,
-no significa que no le **doliera**.
-Solo significa,
-que eligió callar.
+Pero su silencio
+no achicó el dolor.
+Solo lo dejó
+con él, **a solas**.
 
 ---
 
-Preguntar no abre una herida.
-Es admitir que ya estaba ahí.
+La herida ya está abierta.
+Pedir perdón solo dice: la vi.

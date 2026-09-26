@@ -1,5 +1,5 @@
 ---
-// עמוד גיליון "מבט לשבת" בספרדית — אותו עיצוב "החתימה השקטה" כמו העברי:
+// עמוד גיליון "מבט לשבת" בספרדית – אותו עיצוב "החתימה השקטה" כמו העברי:
 // רייל כחול, תווית, גוף עם מפרידים שקטים, חתימת שבת.
 import { getCollection } from 'astro:content';
 import { Image, getImage } from 'astro:assets';
@@ -7,9 +7,11 @@ import Base from '../../../layouts/Base.astro';
 import ShareRow from '../../../components/ShareRow.astro';
 import MabatBody from '../../../components/MabatBody.astro';
 import { MABAT_ES } from '../../../data/site-es';
-import { parseBody, plainText } from '../../../lib/mabat-format';
+import { parseBody, plainText, kickerEs } from '../../../lib/mabat-format';
 import { articleJsonLd, breadcrumbJsonLd } from '../../../lib/structured-data';
 import { isPublished } from '../../../lib/published';
+import JoinGroup from '../../../components/JoinGroup.astro';
+import JoinPopup from '../../../components/JoinPopup.astro';
 
 export async function getStaticPaths() {
   const pieces = await getCollection('mabatEs', isPublished);
@@ -28,7 +30,7 @@ const summary = description ?? derived;
 const pageUrl = new URL(`/es/shabat/${piece.id}/`, Astro.site).href;
 
 // תמונת התצוגה המקדימה לשיתוף: תמונת הציטוט של הגיליון, ולא הלוגו.
-// PNG ולא JPEG — טקסט על רקע אחיד מתכווץ טוב יותר ללא אובדן (החלטה קיימת).
+// PNG ולא JPEG – טקסט על רקע אחיד מתכווץ טוב יותר ללא אובדן (החלטה קיימת).
 // גיליון בלי תמונת ציטוט נופל ללוגו, ברירת המחדל של Base.
 let ogImage: string | undefined;
 let ogImageWidth: number | undefined;
@@ -73,7 +75,7 @@ if (quoteImage) {
         <span class="rail" aria-hidden="true"></span>
         <div class="head-text">
           <p class="kicker-main">{MABAT_ES.name}</p>
-          <p class="kicker-sub">{MABAT_ES.parashaPrefix} {parasha} · {hebrewDate}</p>
+          <p class="kicker-sub">{kickerEs(parasha, MABAT_ES.parashaPrefix)} · {hebrewDate}</p>
           <h1>{title}</h1>
         </div>
       </header>
@@ -107,6 +109,8 @@ if (quoteImage) {
     <nav class="mabat-footer">
       <a href="/es/shabat/">Todas las ediciones de {MABAT_ES.name}</a>
     </nav>
+    <JoinGroup lang="es" />
+    <JoinPopup lang="es" />
   </main>
 </Base>
 

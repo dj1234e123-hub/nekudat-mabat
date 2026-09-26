@@ -1,6 +1,6 @@
 ---
 # תרגום של ארכיון #013 (2026-08-30).
-# תמונת שער נפרדת נוספה 2026-09-16 — תמונת השער העברית נושאת פתק עם כיתוב
+# תמונת שער נפרדת נוספה 2026-09-16 – תמונת השער העברית נושאת פתק עם כיתוב
 # עברי ("מקבלים שכר לפי המאמץ..."), ולכן קיבלה תמונה נפרדת בלי כיתוב לספרדית.
 title: "El único que no se acercó"
 section: tzadikim
@@ -10,7 +10,7 @@ coverAlt: "Tres caramelos envueltos en papel metálico rojo, dorado y turquesa a
 date: 2026-08-19T09:00:00Z
 readingTime: "un minuto y medio"
 featured: 1
-excerpt: "Toda la clase viajó a rendir examen con el rabino Steinman, y las preguntas eran fáciles. A mí me preguntó tres veces, y las tres veces no supe. Al final del examen todos se acercaron a recibir un caramelo — y yo me quedé sentado."
+excerpt: "Toda la clase viajó a rendir examen con el rabino Steinman, y las preguntas eran fáciles. A mí me preguntó tres veces, y las tres veces no supe. Al final del examen todos se acercaron a recibir un caramelo – y yo me quedé sentado."
 hook: "¿Qué le queda a un niño cuando toda la clase pasó a recibir un caramelo, y él no?"
 ---
 
@@ -22,7 +22,7 @@ Toda nuestra clase viajó a rendir examen con él.
 
 El maestro entró con nosotros. Vio la tensión en nuestras caras, y le pidió al rabino Steinman en voz baja:
 
-"Si es posible, preguntas fáciles."
+—Si se puede, preguntas fáciles.
 
 El rabino asintió. Y las preguntas de verdad eran fáciles.
 
@@ -50,7 +50,7 @@ Silencio.
 
 Y entonces siguió adelante.
 
-Terminó el examen. El rabino le dio a cada chico una palmadita en la mejilla y un caramelo, del bol que tenía al lado.
+Terminó el examen. El rabino le dio a cada chico una palmadita en la mejilla y un caramelo, del tazón que tenía al lado.
 
 Todos se acercaron.
 
@@ -60,14 +60,16 @@ Y de pronto lo escuché llamarme.
 
 Me acerqué. Y el rabino Steinman me miró. Con una sonrisa.
 
-"Entre nosotros," dijo, "no se recibe el premio según el resultado. Se recibe el premio según *el esfuerzo.*"
+—Entre nosotros —dijo—, el premio no se da por el resultado. Se da por *el esfuerzo.*
 
-Señaló a los chicos. "Todos se esforzaron una vez."
+Señaló a los chicos.
+
+—Todos se esforzaron una vez.
 
 Y entonces me miró a mí.
 
-"Tú te esforzaste tres veces."
+—Tú te esforzaste tres veces.
 
-Metió la mano en el bol, y me dio *tres caramelos.*
+Metió la mano en el tazón, y me dio *tres caramelos.*
 
 <p class="signature">Con cariño,<br />Efraim Atia</p>

@@ -9,7 +9,7 @@ coverAlt: "Un rollo de la Torá abierto y un talit sobre una mesa de madera anti
 # Fecha de publicación = fecha real de salida al sitio en vivo (2026-09-16).
 date: 2026-09-16T17:00:00Z
 readingTime: "unos 2 minutos"
-excerpt: "En la Polonia de 1916, un niño llegó a los trece años sin padre, sin madre, y sin bar mitzvá. Pasaron cien años — guerra, gueto, Auschwitz — hasta que llegó el momento que se había perdido."
+excerpt: "En la Polonia de 1916, un niño llegó a los trece años sin padre, sin madre, y sin bar mitzvá. Pasaron cien años – guerra, gueto, Auschwitz – hasta que llegó el momento que se había perdido."
 source: "Basado en amplia cobertura periodística (CNN, Times of Israel, Congreso Judío Mundial) y el Libro Guinness de los Récords, 2016–2017."
 ---
 
@@ -29,14 +29,14 @@ Se casó de nuevo, emigró a Haifa, y volvió a abrir un negocio de dulces. Tuvo
 
 En marzo de 2016, cuando fue declarado el hombre más longevo del mundo, no habló de sí mismo.
 
-"Hubo hombres más sabios que yo, más fuertes que yo, más bellos que yo, que ya no están," dijo al recibir el certificado. "Lo único que nos queda es seguir trabajando lo más que podamos, y *reconstruir lo que se perdió*."
+—Hubo hombres más sabios que yo, más fuertes que yo, más bellos que yo, que ya no están —dijo al recibir el certificado—. Lo único que nos queda es seguir trabajando todo lo que podamos, y *reconstruir lo que se perdió.*
 
 Pero su hija, Shula, contó que una cosa lo había perturbado durante todos esos años: nunca había celebrado su bar mitzvá.
 
 En septiembre de 2016, cerca de su cumpleaños número ciento trece, se reunieron a su alrededor unos cien miembros de su familia.
 
-Cien años exactos después de aquel día que no se celebró, Yisrael *subió a leer la Torá*.
+Cien años exactos después de aquel día que no se celebró, Israel *subió a leer la Torá*.
 
-> "Cien años esperé este momento."
+> «Cien años esperé este momento».
 
 <p class="signature">Con cariño,<br />Efraim Atia</p>

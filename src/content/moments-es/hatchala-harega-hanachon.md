@@ -2,6 +2,9 @@
 feeling: new-beginning
 date: 2026-08-21
 title: El momento correcto
+handle: |-
+  El momento común de hoy
+  se puede volver el correcto.
 ---
 El lunes.
 El primero del mes.
@@ -10,15 +13,15 @@ Cuando esté un poco más **tranquilo**.
 
 Y ese momento correcto,
 casi nunca llega.
-Y cada postergación parece,
+Y cada postergación parece
 falta de **seriedad**.
 
-Pero no es una fecha.
-Es un nombre amable,
-para la sensación de seguridad,
-que se espera antes de **moverse**.
+Pero un momento correcto
+no se encuentra en el calendario.
+Se vuelve correcto
+cuando empiezas **en él**.
 
 ---
 
-Casi todo comienzo ocurrió,
+Casi todo comienzo ocurrió
 en mitad de semana.

@@ -2,14 +2,17 @@
 feeling: secret
 date: 2026-08-22
 title: Un cuarto cerrado
+handle: |-
+  Un elogio hoy:
+  dejar que llegue hasta el final.
 ---
 La gente te aprecia.
 Lo dicen en voz alta.
-Y te llega,
+Y te llega
 a través de una **pantalla**.
 
-Porque una parte tuya sabe,
-que conocen una versión,
+Porque una parte tuya sabe
+que conocen una versión
 sin esa única cosa.
 Y cada elogio se frena **ahí**.
 
@@ -20,5 +23,5 @@ cuya puerta quedó,
 
 ---
 
-Un cuarto cerrado mucho tiempo,
+Un cuarto cerrado mucho tiempo
 empieza a sentirse como la casa.

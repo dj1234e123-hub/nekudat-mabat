@@ -2,23 +2,26 @@
 feeling: failure
 date: 2026-08-22
 title: La cabeza mezcla
+handle: |-
+  Cuando la cabeza dice «no valgo»,
+  devolverla a «no funcionó».
 ---
 Algo no salió.
 Y duele,
-pero no es,
+pero no es
 lo difícil de **verdad**.
 
-Lo difícil llega un momento después,
-cuando la cabeza empieza a contar,
+Lo difícil llega un momento después
+cuando la cabeza empieza a contar
 que ya no es algo que hiciste.
 Es algo que te **volviste**.
 
-Pero hay una diferencia,
-entre "probé y no funcionó",
-y "no valgo".
+Pero hay una diferencia
+entre «probé y no funcionó»,
+y «no valgo».
 La cabeza **mezcla** rápido.
 
 ---
 
-"No funcionó" y "no valgo",
+«No funcionó» y «no valgo»
 son dos frases distintas.

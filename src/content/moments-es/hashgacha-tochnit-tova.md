@@ -2,20 +2,23 @@
 feeling: providence
 date: 2026-08-24
 title: Un buen plan
+handle: |-
+  Si algo no sale según el plan,
+  mirar el camino, no solo el mapa.
 ---
 Tenías un plan.
 Ordenado, lógico, bueno.
-Y la vida se fue,
+Y la vida se fue
 a otro **lado**.
 
-Y cuando comparas,
+Y cuando comparas
 entre lo planeado,
-y lo que hay,
+y lo que hay
 la conclusión: te saliste del **camino**.
 
-Y quizás el plan,
+Y quizás el plan
 era solo una **suposición**.
-Y lo que pasó en su lugar —
+Y lo que pasó en su lugar –
 ese es el camino.
 
 ---

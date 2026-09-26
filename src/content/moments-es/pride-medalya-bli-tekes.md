@@ -2,20 +2,23 @@
 feeling: pride
 date: 2026-09-08
 title: Sin ceremonia
+handle: |-
+  Lo que hiciste a solas
+  se puede festejar sin público.
 ---
 Hiciste algo difícil,
-completamente solo,
+completamente solo
 sin testigos,
 y sin **ceremonia**.
 
-Y es fácil pensar,
-que si nadie lo vio,
+Y es fácil pensar
+que si nadie lo vio
 es como si no
 **hubiera** pasado.
 
-Pero pasó,
+Pero pasó
 en tu cuerpo,
-y el cuerpo,
+y el cuerpo
 **recuerda**.
 
 ---

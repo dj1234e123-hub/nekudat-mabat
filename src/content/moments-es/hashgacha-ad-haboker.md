@@ -2,15 +2,18 @@
 feeling: providence
 date: 2026-08-24
 title: Hasta la mañana
+handle: |-
+  La preocupación de esta noche,
+  dejársela a quien queda despierto.
 ---
 La noche ya está aquí,
 y nada se cerró.
-Las preocupaciones del día,
+Las preocupaciones del día
 vienen a la **cama**.
 
-Y dormirse así,
+Y dormirse así
 se siente como abandonar.
-Porque, ¿quién va a sostener todo,
+Porque ¿quién va a sostener todo
 hasta la **mañana**?
 
 Pero cada noche hasta ahora,

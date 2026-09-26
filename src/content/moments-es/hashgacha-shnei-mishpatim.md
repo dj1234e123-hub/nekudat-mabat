@@ -2,16 +2,19 @@
 feeling: providence
 date: 2026-08-24
 title: Dos frases
+handle: |-
+  Cuando aparece «me olvidaron»,
+  volver a lo que de verdad pasó.
 ---
 Hiciste todo bien.
 Te esforzaste, tuviste cuidado, esperaste.
 Y aun así,
 se **rompió**.
 
-Y entonces llega una segunda frase:
-es un castigo.
-O peor que eso:
+Y enseguida, una segunda frase:
 te **olvidaron**.
+Allá arriba
+ya no ven.
 
 Pero hay aquí dos frases.
 Lo que pasó,
@@ -20,5 +23,5 @@ Solo la primera de verdad **pasó**.
 
 ---
 
-La interpretación nunca fue,
+La interpretación nunca fue
 parte del hecho.

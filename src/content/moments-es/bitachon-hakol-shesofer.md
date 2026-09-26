@@ -2,23 +2,26 @@
 feeling: confidence
 date: 2026-08-21
 title: La voz que cuenta
+handle: |-
+  Esta noche, leer también
+  el otro lado de la misma hoja.
 ---
 Hiciste algo bueno.
-Y saliste de eso,
-con una sensación de,
+Y saliste de eso
+con una sensación de
 no es **suficiente**.
 
-Porque la voz de adentro,
+Porque la voz de adentro
 no cuenta los logros.
-Cuenta solamente,
+Cuenta solamente
 lo que **faltó**.
 
-Pero una medición así,
+Pero una medición así
 no te examina a ti.
-Examina solo,
+Examina solo
 un lado de la **hoja**.
 
 ---
 
-Con esa medición,
-cualquier persona parece un fracaso.
+Tu hoja está escrita
+de los dos lados.

@@ -2,20 +2,23 @@
 feeling: fear
 date: 2026-08-21
 title: Siempre habla del mañana
+handle: |-
+  Frente a un mañana que habla fuerte,
+  preguntar qué hay aquí ahora.
 ---
 Todavía no pasó nada.
 Pero en la cabeza ya pasó:
 la conversación, la respuesta,
 y lo que vendría **después**.
 
-Y luchas contra eso ahora,
+Y luchas contra eso ahora
 con toda la fuerza.
 Como si ya estuviera aquí,
 y ya fuera **tarde**.
 
 Pero el miedo casi nunca habla del ahora.
 Siempre habla del **mañana**.
-Y frente al mañana,
+Y frente al mañana
 todavía no hay nada.
 
 ---

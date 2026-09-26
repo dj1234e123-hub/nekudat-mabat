@@ -1,12 +1,13 @@
 ---
-// עמוד הכניסה של "מבט לשבת" בספרדית — Mirada de Shabat. אותו מבנה כמו
+// עמוד הכניסה של "מבט לשבת" בספרדית – Mirada de Shabat. אותו מבנה כמו
 // העברי: ארכיון הגיליונות מהחדש לישן.
 import { getCollection } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
 import { MABAT_ES } from '../../../data/site-es';
 import { newestFirst } from '../../../lib/sort';
-import { parseBody, plainText } from '../../../lib/mabat-format';
+import { parseBody, plainText, kickerEs } from '../../../lib/mabat-format';
 import { isPublished } from '../../../lib/published';
+import JoinGroup from '../../../components/JoinGroup.astro';
 
 const pieces = (await getCollection('mabatEs', isPublished)).sort(newestFirst);
 
@@ -29,7 +30,7 @@ const cards = pieces.map((piece) => {
   <main>
     <h1 class="page-title">{MABAT_ES.name}</h1>
     <p class="intro">
-      Una historia real cada semana, y una conexión con la parashá — no solo qué dice, sino qué
+      Una historia real cada semana, y una conexión con la parashá – no solo qué dice, sino qué
       abre.
     </p>
 
@@ -39,7 +40,7 @@ const cards = pieces.map((piece) => {
           <li class="issue">
             <a class="issue-link" href={`/es/shabat/${piece.id}/`}>
               <p class="issue-kicker">
-                {MABAT_ES.parashaPrefix} {piece.data.parasha} · {piece.data.hebrewDate}
+                {kickerEs(piece.data.parasha, MABAT_ES.parashaPrefix)} · {piece.data.hebrewDate}
               </p>
               <h2>{piece.data.title}</h2>
               <p class="issue-excerpt">{excerpt}</p>
@@ -48,6 +49,7 @@ const cards = pieces.map((piece) => {
         ))
       }
     </ul>
+    <JoinGroup lang="es" />
   </main>
 </Base>
 

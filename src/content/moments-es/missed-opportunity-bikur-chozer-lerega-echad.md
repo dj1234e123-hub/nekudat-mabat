@@ -2,23 +2,26 @@
 feeling: missed-opportunity
 date: 2026-09-08
 title: Vuelve al mismo momento
+handle: |-
+  Al momento que vuelve
+  hoy se le puede decir adiós.
 ---
 Hay un momento,
-al que la mente **vuelve**,
+al que la mente **vuelve**
 una y otra vez,
 al mismo lugar.
 
-Y parece,
-que si vuelve,
-es **señal** de que debió,
+Y parece
+que si vuelve
+es **señal** de que debió
 ser diferente.
 
-Pero la mente no vuelve,
-para **corregir**,
-vuelve,
-porque algo ahí quedó abierto.
+Pero la mente no vuelve
+para corregir.
+Vuelve
+para **despedirse**.
 
 ---
 
-No se busca una corrección.
-Se busca una despedida.
+Hay momentos que terminan rápido
+y despedirse de ellos lleva años.

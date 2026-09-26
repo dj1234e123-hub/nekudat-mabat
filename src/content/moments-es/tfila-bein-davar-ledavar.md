@@ -2,22 +2,26 @@
 feeling: prayer
 date: 2026-08-24
 title: Entre una cosa y otra
+handle: |-
+  En medio del día, un momento
+  con el Señor del mundo.
 ---
-En medio del día,
+En medio del día
 entre una cosa y otra,
 me salió una frase:
-"Señor del mundo, **ayuda**".
+«Señor del mundo, **ayuda**».
 
-Y enseguida después,
+Y enseguida después
 el comentario de adentro:
 eso no es rezar.
 Así **no** se reza.
 
-Pero una frase que brota sola,
-sin preparación y sin libro —
-¿de dónde **brotó**?
+Pero una frase así,
+sin preparación y sin sidur,
+no viene de la boca.
+Viene del **corazón**.
 
 ---
 
-Lo que brota solo,
-viene del lugar más profundo.
+Tres palabras en medio del día
+también son oración.

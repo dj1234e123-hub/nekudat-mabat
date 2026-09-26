@@ -2,9 +2,12 @@
 feeling: losing-control
 date: 2026-08-22
 title: La promesa grande
+handle: |-
+  Después de la próxima vergüenza,
+  prometer algo pequeño, no grande.
 ---
-Después de que termina,
-llega una ola,
+Después de que termina
+llega una ola
 de vergüenza.
 Y detrás una promesa **grande**.
 
@@ -13,9 +16,9 @@ porque la vergüenza es muy fuerte.
 Como si después de tanto dolor,
 esto ya fuera a **parar**.
 
-Pero esa promesa,
+Pero esa promesa
 nace de la vergüenza.
-Y cuando ella pasa,
+Y cuando ella pasa
 pasa también la **promesa**.
 
 ---

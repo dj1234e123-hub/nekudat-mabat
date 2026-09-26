@@ -24,14 +24,16 @@ Y se estremeció.
 
 Corrió a casa. Se afeitó el pelo largo, se cambió de ropa y salió.
 
-Su madre le preguntó qué había pasado y adónde iba. Solo alcanzó a decir: "Voy a ver al Rav."
+Su madre le preguntó qué había pasado y adónde iba. Solo alcanzó a decir que iba a ver al Rav.
 
-En la casa del Rav le dijeron: "El Rav no recibe hoy."
+En la casa del Rav le dijeron:
+
+—El Rav no recibe hoy.
 
 El muchacho ya se había dado la vuelta para irse.
 
 Y entonces, desde dentro de la habitación, se oyó una voz:<br />
-*"¿Efraim?"*
+*—¿Efraim?*
 
 El Rav pidió que lo hicieran entrar. El muchacho entró.
 
@@ -58,7 +60,7 @@ Con el tiempo llegó a ser uno de los grandes sabios de Babilonia.
 
 El 3 de Tishrei es el aniversario de su fallecimiento.
 
-Él es mi bisabuelo.
+Es mi bisabuelo.
 
 Su hijo, el Jajam Rafael Cohen, fue mi abuelo. Su hermano, el Jajam Shalom Cohen.
 

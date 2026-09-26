@@ -2,6 +2,9 @@
 feeling: anger
 date: 2026-08-22
 title: Un momento antes
+handle: |-
+  Cuando llegue el enojo,
+  buscar qué hubo un momento antes.
 ---
 Algo se dijo,
 y subió de inmediato el **enojo**.
@@ -20,5 +23,5 @@ Algo mucho más **expuesto**.
 
 ---
 
-El enojo casi nunca,
+El enojo casi nunca
 llega primero.

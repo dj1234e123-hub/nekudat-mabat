@@ -1,5 +1,5 @@
 ---
-# תרגום של ארכיון #005 (2026-08-30). התמונה נקייה מכיתוב — אותה תמונה כמו בעברית.
+# תרגום של ארכיון #005 (2026-08-30). התמונה נקייה מכיתוב – אותה תמונה כמו בעברית.
 title: "Bajo la paja en Auschwitz"
 section: tzadikim
 archiveId: "005"
@@ -7,7 +7,7 @@ cover: ../../assets/covers/005.png
 coverAlt: "Un muchacho acostado en lo profundo de un montón de paja en un establo oscuro se ata los tefilín al brazo; por la puerta abierta del establo se ve la silueta de un hombre de uniforme y gorra de oficial, y detrás, las barracas del campo bajo una luz gris"
 date: 2026-08-12T09:00:00Z
 readingTime: "unos 2 minutos"
-excerpt: "Si un nazi hubiera abierto la puerta del establo en ese momento, lo habrían fusilado ahí mismo. El muchacho tenía 16 años, hundido en la paja — y se escondía ahí para ponerse los tefilín."
+excerpt: "Si un nazi hubiera abierto la puerta del establo en ese momento, lo habrían fusilado ahí mismo. El muchacho tenía 16 años, hundido en la paja – y se escondía ahí para ponerse los tefilín."
 ---
 
 Si un nazi hubiera abierto la puerta del establo en ese momento, lo habrían fusilado ahí mismo.
@@ -30,7 +30,7 @@ Ese muchacho era el rabino Sinai Adler, de bendita memoria. Había crecido en un
 
 Y cuando vio que un judío del campo tenía tefilín, le pidió:
 
-"Déjame ponérmelos a mí también."
+—Déjame ponérmelos a mí también.
 
 Sabía que si lo atrapaban, podía ser su final. Pero había algo que le daba más miedo perder que su propia vida.
 
@@ -48,7 +48,7 @@ Olor penetrante a estiércol de caballos. Paja que pincha el cuerpo. Y un chico 
 
 Y susurrando:
 
-*"Shemá Israel."*
+*«Shemá Israel».*
 
 Cuando suena el despertador a la mañana, me viene a la cabeza un chico de 16 años, bajo la paja en Auschwitz.
 

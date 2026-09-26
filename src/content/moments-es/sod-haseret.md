@@ -2,23 +2,26 @@
 feeling: secret
 date: 2026-08-22
 title: La escribió el miedo
+handle: |-
+  Ese guion
+  se le puede mostrar a un actor.
 ---
-En tu cabeza ya está lista,
+En tu cabeza ya está lista
 una película entera.
 De cómo se vería,
 si lo **contaras**.
 
-Y en ella todos reaccionan,
+Y en ella todos reaccionan
 de la peor manera.
 Por eso callas.
 Y cada silencio suma una **razón**.
 
-Pero esa película,
+Pero esa película
 la escribió el miedo.
-Y nunca fue puesta a prueba,
-frente a una persona **real**.
+Y los actores mismos
+nunca vieron el **guion**.
 
 ---
 
-El guion se escribió en la cabeza.
-Nunca se probó afuera.
+El miedo tiene buena imaginación.
+No tiene experiencia.

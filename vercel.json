@@ -6,6 +6,191 @@
       "source": "/sitemap.xml",
       "destination": "/sitemap-index.xml",
       "permanent": true
+    },
+    {
+      "source": "/es/historias/001-kvar-hechlateti-mi-hem/",
+      "destination": "/es/historias/ya-habia-decidido-quienes-eran/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/005-mitachat-lakash-beauschwitz/",
+      "destination": "/es/historias/bajo-la-paja-en-auschwitz/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/006-hayeled-im-hamatos/",
+      "destination": "/es/historias/el-chico-del-avion-de-papel/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/007-hayeled-sheasaf-bulim/",
+      "destination": "/es/historias/el-nino-que-juntaba-estampillas/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/008-lo-ratziti-lachzor-habaita/",
+      "destination": "/es/historias/no-queria-volver-a-casa/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/009-eifo-hitchil-hasipur-haze/",
+      "destination": "/es/historias/donde-empezo-esta-historia/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/010-lama-hu-bachar-rachok/",
+      "destination": "/es/historias/por-que-estacionaba-lejos/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/011-lo-lesham-hu-hitkaven/",
+      "destination": "/es/historias/no-era-ahi-adonde-iba/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/013-ani-hayachid-shelo-nigash/",
+      "destination": "/es/historias/el-unico-que-no-se-acerco/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/014-nishar-li-rak-hashem-sheli/",
+      "destination": "/es/historias/solo-me-quedo-mi-nombre/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/017-mivrak-le-atzmecha/",
+      "destination": "/es/historias/el-telegrama-que-te-enviaste/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/020-hagesher-shehrosh-mefached/",
+      "destination": "/es/historias/el-puente-que-la-cabeza-no-cruza/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/026-lev-mishtarot-shel-zman/",
+      "destination": "/es/historias/no-rompio-dinero/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/030-lishbor-kedei-lehishtachrer/",
+      "destination": "/es/historias/romper-para-liberarse/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/037-hasipur-shesipru-lanesher/",
+      "destination": "/es/historias/la-historia-que-le-contaron-al-aguila/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/038-ani-maamin-mehakaron/",
+      "destination": "/es/historias/el-ani-maamin-del-vagon/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/042-delet-bekoma-shivim/",
+      "destination": "/es/historias/una-puerta-en-el-piso-setenta/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/048-milimeter-echad-shel-ometz/",
+      "destination": "/es/historias/un-milimetro-de-coraje/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/050-hamelech-roeh-et-halev/",
+      "destination": "/es/historias/el-rey-ve-el-corazon/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/betzad-hasheni-shel-hahar/",
+      "destination": "/es/historias/al-otro-lado-de-la-montana/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/chamishim-chamishim/",
+      "destination": "/es/historias/cincuenta-cincuenta/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/habricha-hamushlemet/",
+      "destination": "/es/historias/la-fuga-perfecta/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/hasandlar-shekimat-haya/",
+      "destination": "/es/historias/el-zapatero-que-casi-fue/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/hatabaat-bakos/",
+      "destination": "/es/historias/el-anillo-en-el-vaso-de-carton/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/im-lo-lemala-mize/",
+      "destination": "/es/historias/si-no-mas-arriba/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/im-tisrod/",
+      "destination": "/es/historias/si-sobrevives/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/kedei-levade-shesalachti/",
+      "destination": "/es/historias/para-estar-seguro-de-que-perdone/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/lama-korim-li-efraim/",
+      "destination": "/es/historias/por-que-me-llamo-efraim/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/ma-ata-rotze-bachayim/",
+      "destination": "/es/historias/que-quieres-hacer-con-tu-vida/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/maasar-haolam-shela/",
+      "destination": "/es/historias/su-cadena-perpetua/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/meah-shana-beichur/",
+      "destination": "/es/historias/un-siglo-de-retraso/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/nipagesh-beseptember/",
+      "destination": "/es/historias/nos-vemos-el-uno-de-septiembre/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/shiur-al-srochim/",
+      "destination": "/es/historias/una-leccion-sobre-cordones/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/tzaif-zahov/",
+      "destination": "/es/historias/el-panuelo-dorado/",
+      "permanent": true
+    },
+    {
+      "source": "/es/secciones/meshalim/",
+      "destination": "/es/secciones/parabolas/",
+      "permanent": true
+    },
+    {
+      "source": "/es/secciones/yoman/",
+      "destination": "/es/secciones/mi-diario/",
+      "permanent": true
+    },
+    {
+      "source": "/es/secciones/chaim/",
+      "destination": "/es/secciones/de-la-vida/",
+      "permanent": true
     }
   ],
   "rewrites": [
@@ -26,9 +211,18 @@
           "key": "Content-Security-Policy",
           "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; form-action 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
         },
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
         {
           "key": "Permissions-Policy",
           "value": "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"

@@ -2,14 +2,17 @@
 feeling: waiting
 date: 2026-08-22
 title: Sin fondo
+handle: |-
+  Sin fecha para el final,
+  se puede cerrar un solo día.
 ---
-La espera con final conocido,
+La espera con final conocido
 tiene un límite.
 Hay una fecha,
 y uno puede apoyarse en **ella**.
 
 Y esta no tiene fecha.
-Por eso agota,
+Por eso agota
 mucho más.
 Incluso por algo **pequeño**.
 
@@ -20,5 +23,5 @@ extender el **tiempo**.
 
 ---
 
-Una esperanza sin fecha,
+Una esperanza sin fecha
 es trabajo de todos los días.

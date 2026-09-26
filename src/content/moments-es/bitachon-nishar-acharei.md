@@ -2,20 +2,23 @@
 feeling: confidence
 date: 2026-08-21
 title: Después, no antes
+handle: |-
+  Hacer hoy una cosa
+  sin esperar a la seguridad.
 ---
-Imaginas la seguridad,
+Imaginas la seguridad
 como una calma interior total.
 Y entonces esperas sentirla,
 antes de **hacer**.
 
 Y no llega.
 Entonces no haces.
-Y entonces hay otra prueba,
-de que no está **ahí**.
+Y entonces hay otra prueba
+de que no hay **seguridad**.
 
-Pero los que se ven seguros,
+Pero los que se ven seguros
 simplemente aprendieron a hacer.
-También cuando las manos,
+También cuando las manos
 **tiemblan**.
 
 ---

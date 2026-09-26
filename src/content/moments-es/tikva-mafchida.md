@@ -2,9 +2,12 @@
 feeling: hope
 date: 2026-08-21
 title: Quien ya pagó
+handle: |-
+  Esperar hoy algo pequeño,
+  en la medida que se pueda pagar.
 ---
 Dijeron que hay un nuevo camino.
-Y algo en ti,
+Y algo en ti
 ya cerró la puerta,
 antes de **escuchar**.
 
@@ -14,11 +17,12 @@ Así no se construye,
 así no se **empieza**.
 
 Pero esto no es pesimismo.
-Quien ya tuvo esperanza y se rompió,
+Quien ya tuvo esperanza y se rompió
 sabe cuánto cuesta.
-Es la cautela, de quien ya **pagó**.
+Es la cautela
+de quien ya **pagó**.
 
 ---
 
-Quien más se rompió,
-más cuidado tiene al esperar.
+Hay puertas que se cierran rápido
+porque recuerdan.

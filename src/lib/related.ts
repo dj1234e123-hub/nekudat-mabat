@@ -1,16 +1,16 @@
-// "ההמשך" — מה מציעים לקורא שסיים סיפור.
+// "ההמשך" – מה מציעים לקורא שסיים סיפור.
 //
 // הרקע (מדידה, 30 הימים שלפני 2026-09-01): 188 מתוך 310 ביקורים נכנסו ישר
 // לעמוד סיפור (קישור מוואטסאפ), ו-60% מהצפיות בסיפור נגמרו ביציאה מהאתר.
-// הקורא מסיים, רואה נקודת זהב — ואין לו לאן ללכת חוץ מ"סיפור אקראי", שהוא
+// הקורא מסיים, רואה נקודת זהב – ואין לו לאן ללכת חוץ מ"סיפור אקראי", שהוא
 // דלת עיוורת. הקובץ הזה בוחר עבורו סיפור הבא ורגע שמתאים לסיפור, בזמן הבנייה.
 //
 // הבחירה נעשית מהתוכן עצמו (תגיות, נושא, עולם), לא מהתנהגות של אנשים:
-// אין שרת ואין מעקב אחרי אדם. מה שכן נזכר — בדפדפן של הקורא בלבד
-// (localStorage) — הוא אילו סיפורים כבר קרא, כדי שלא יוצע לו שוב אותו סיפור.
+// אין שרת ואין מעקב אחרי אדם. מה שכן נזכר – בדפדפן של הקורא בלבד
+// (localStorage) – הוא אילו סיפורים כבר קרא, כדי שלא יוצע לו שוב אותו סיפור.
 //
 // **בספרדית** התגיות והנושא חיים רק בקובץ העברי, ולכן הקרבה נמדדת דרך
-// התאום העברי (אותו שם קובץ), והמועמדים והרגע נלקחים מהאוספים הספרדיים —
+// התאום העברי (אותו שם קובץ), והמועמדים והרגע נלקחים מהאוספים הספרדיים –
 // רק מה שקיים בספרדית ("מבחר ולא מראה").
 import type { CollectionEntry } from 'astro:content';
 import { TAG_TO_FEELING, TOPIC_TO_FEELING } from '../data/story-moment-links';
@@ -21,7 +21,7 @@ type HeStory = CollectionEntry<'stories'>;
 type AnyStory = CollectionEntry<'stories'> | CollectionEntry<'storiesEs'>;
 type AnyMoment = CollectionEntry<'moments'> | CollectionEntry<'momentsEs'>;
 
-/** התגיות והנושא של סיפור — מהקובץ העברי; לסיפור ספרדי, דרך התאום. */
+/** התגיות והנושא של סיפור – מהקובץ העברי; לסיפור ספרדי, דרך התאום. */
 function meta(story: AnyStory, hebrew?: HeStory[]): { tags: string[]; topic?: string } {
   const source: AnyStory | undefined =
     'tags' in story.data ? story : (hebrew?.find((h) => h.id === story.id) ?? story);
@@ -44,7 +44,7 @@ export function feelingForStory(story: AnyStory, hebrew?: HeStory[]): FeelingSlu
 
 export interface NextStory<T extends AnyStory = AnyStory> {
   story: T;
-  /** שורת "למה דווקא הוא" — התגית המשותפת, או העולם השונה. */
+  /** שורת "למה דווקא הוא" – התגית המשותפת, או העולם השונה. */
   reason: string;
 }
 
@@ -53,7 +53,7 @@ export interface NextStory<T extends AnyStory = AnyStory> {
  * הסקריפט בצד הקורא מגריל בכל טעינה אחד מבין אלה שטרם נקראו (localStorage).
  *
  * הניקוד: תגית משותפת ×3 · אותו נושא +2 · אותו מצב ברגעים +2 · עולם אחר +1
- * (מעט גיוון: מי שנכנס דרך משל יגלה שיש גם יומן). תיקו — החדש קודם.
+ * (מעט גיוון: מי שנכנס דרך משל יגלה שיש גם יומן). תיקו – החדש קודם.
  */
 export function nextStories<T extends AnyStory>(
   current: T,
@@ -76,7 +76,7 @@ export function nextStories<T extends AnyStory>(
       const otherWorld = story.data.section !== current.data.section;
       if (otherWorld) score += 1;
       const world = sectionLabels[story.data.section];
-      // בספרדית התגיות עבריות ואינן מוצגות — השורה מדברת על העולם בלבד.
+      // בספרדית התגיות עבריות ואינן מוצגות – השורה מדברת על העולם בלבד.
       const reason = es
         ? shared.length > 0
           ? 'Sobre lo mismo, desde otro ángulo'

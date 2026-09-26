@@ -1,11 +1,12 @@
 ---
-// עמוד הכניסה ל"מבט לשבת" — ארכיון הגיליונות, מהחדש לישן.
+// עמוד הכניסה ל"מבט לשבת" – ארכיון הגיליונות, מהחדש לישן.
 // עם גיליון אחד זה עדיין רשימה קצרה; המבנה מוכן לצמוח בלי שינוי.
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { newestFirst } from '../../lib/sort';
-import { parseBody, plainText } from '../../lib/mabat-format';
+import { parseBody, plainText, kicker } from '../../lib/mabat-format';
 import { isPublished } from '../../lib/published';
+import JoinGroup from '../../components/JoinGroup.astro';
 
 const pieces = (await getCollection('mabatLeshabbat', isPublished)).sort(newestFirst);
 
@@ -26,14 +27,14 @@ const cards = pieces.map((piece) => {
 >
   <main>
     <h1 class="page-title">מבט לשבת</h1>
-    <p class="intro">סיפור אמיתי בכל שבוע, וחיבור לפרשת השבת — לא רק מה היא אומרת, אלא מה היא פותחת.</p>
+    <p class="intro">סיפור אמיתי בכל שבוע, וחיבור לפרשת השבת – לא רק מה היא אומרת, אלא מה היא פותחת.</p>
 
     <ul class="issues">
       {
         cards.map(({ piece, excerpt }) => (
           <li class="issue">
             <a class="issue-link" href={`/mabat-leshabbat/${piece.id}/`}>
-              <p class="issue-kicker">פרשת {piece.data.parasha} · {piece.data.hebrewDate}</p>
+              <p class="issue-kicker">{kicker(piece.data.parasha)} · {piece.data.hebrewDate}</p>
               <h2>{piece.data.title}</h2>
               <p class="issue-excerpt">{excerpt}</p>
             </a>
@@ -41,6 +42,7 @@ const cards = pieces.map((piece) => {
         ))
       }
     </ul>
+    <JoinGroup />
   </main>
 </Base>
 

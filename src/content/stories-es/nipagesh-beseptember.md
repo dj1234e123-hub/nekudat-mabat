@@ -13,11 +13,11 @@ excerpt: "Al final del año escolar en el gueto de Varsovia, el director les des
 
 El gueto de Varsovia. Verano de 1942.
 
-Dentro del gueto funcionaba un gimnasio clandestino. El director de la escuela era el Dr. Natan Eck.
+Dentro del gueto funcionaba una escuela secundaria clandestina. El director de la escuela era el Dr. Natan Eck.
 
 A pesar de la guerra, los niños seguían estudiando. Y al final del año escolar, como cada año, los maestros entregaron los diplomas.
 
-Natan Eck se despidió de los alumnos. Les deseó buenas vacaciones, y dijo: *"Nos volveremos a ver aquí, el uno de septiembre."*
+Natan Eck se despidió de los alumnos. Les deseó buenas vacaciones, y dijo: *«Nos volveremos a ver aquí, el uno de septiembre».*
 
 Pocas semanas después comenzó la gran deportación. Más de un cuarto de millón de judíos fueron enviados desde el gueto de Varsovia a Treblinka.
 
