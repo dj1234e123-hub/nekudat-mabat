@@ -48,6 +48,7 @@ export const ES_STORY_SLUGS: Record<string, string> = {
   '042-delet-bekoma-shivim': 'una-puerta-en-el-piso-setenta',
   '048-milimeter-echad-shel-ometz': 'un-milimetro-de-coraje',
   '050-hamelech-roeh-et-halev': 'el-rey-ve-el-corazon',
+  'ayara-shel-zarim': 'un-pueblo-de-desconocidos',
   'betzad-hasheni-shel-hahar': 'al-otro-lado-de-la-montana',
   'chamishim-chamishim': 'cincuenta-cincuenta',
   'habricha-hamushlemet': 'la-fuga-perfecta',
