@@ -6,7 +6,7 @@ title: "Una parte del Mundo Venidero"
 section: tzadikim
 cover: ../../assets/covers/chelek-baolam-haba.png
 coverAlt: "Un callejón empedrado de noche a la luz de la luna, una bolsa de cuero y un etrog sobre un banco de madera, y una pesada puerta de madera entreabierta de la que sale una luz cálida"
-date: 2026-09-29T16:30:00Z
+date: 2026-09-29T17:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "La víspera de Sucot, Berdichev necesitaba a un judío. No por quién era, sino por lo que llevaba en la bolsa."
 hook: "¿Qué darías por una parte del Mundo Venidero?"

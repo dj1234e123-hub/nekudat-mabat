@@ -6,7 +6,7 @@ title: "Un pueblo de desconocidos"
 section: chaim
 cover: ../../assets/covers/ayara-shel-zarim.png
 coverAlt: "El gimnasio de una escuela de noche, filas de camas plegables con almohadas y maletas, una mesa con una olla y bandejas de comida en primer plano y, por las ventanas, las luces de un aeropuerto y un avión"
-date: 2026-09-28T16:30:00Z
+date: 2026-09-28T17:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Once de septiembre de 2001. Treinta y ocho aviones aterrizan en un pueblo de diez mil habitantes, y no hay hoteles ni plan. Nadie lo había preparado."
 hook: "¿Qué se hace cuando seis mil desconocidos llegan a la puerta?"

@@ -6,7 +6,7 @@ title: "La segunda fila"
 section: tzadikim
 cover: ../../assets/covers/hatur-hasheni.png
 coverAlt: "Un etrog, un lulav, mirtos y sauces sobre un cajón de madera cubierto con una tela a rayas y, al fondo, barracas de un campo, una cerca y una torre de vigilancia al atardecer"
-date: 2026-09-30T16:30:00Z
+date: 2026-09-30T17:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Feldafing, septiembre de 1945. Miles de sobrevivientes hacen fila para la sopa, y el general Eisenhower le pregunta al Rebe de Klausenburg si puede hacer algo por ellos."
 hook: "¿Qué pide alguien que lo perdió todo cuando le ofrecen todo?"

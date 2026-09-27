@@ -6,7 +6,7 @@ title: "La carpa del jardinero"
 section: meshalim
 cover: ../../assets/covers/haohel-shel-haganan.png
 coverAlt: "Una carpa de tela sencilla al fondo de un jardín de noche, un farol encendido junto a una cama angosta y una mesa de madera, una rendija en el techo de tela, un cielo lleno de estrellas y, a lo lejos, un palacio iluminado detrás de los cipreses y un canal de agua"
-date: 2026-09-27T16:30:00Z
+date: 2026-09-27T17:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Cada año, durante siete días, el rey deja el palacio y se muda a una carpa al fondo del jardín. Los ministros están seguros de que es una prueba. Este año lleva consigo a su hijo."
 hook: "¿Por qué un rey dejaría su palacio para vivir siete días en una carpa?"
