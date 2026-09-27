@@ -16,11 +16,11 @@ Cada año, durante siete días, el rey salía del palacio y se mudaba a la carpa
 
 Una carpa al fondo del jardín. Una tela gruesa sobre cuatro palos, una mesa, una cama angosta y una entrada sin puerta.
 
-Los ministros estaban seguros de que era una prueba: que el rey quería ver quién cuidaba el palacio en su ausencia, quién robaba, quién era leal. Año tras año se esforzaron. Nadie falló, y nadie entendió.
+Los ministros estaban seguros de que era una prueba. Año tras año se esforzaron. Nadie falló, y nadie entendió.
 
-Aquel año, el rey llevó consigo a su hijo.
+Aquel año, el rey llevó consigo a su hijo, un príncipe de doce años.
 
-El príncipe tenía doce años, y de noche nunca salía del palacio. Sobre su cama había un techo pintado de azul profundo, con *estrellas de oro*. Los mejores pintores del reino habían trabajado en él un año entero. Cada noche se acostaba debajo y las contaba, hasta que se le cerraban los ojos.
+Hasta entonces nunca había salido del palacio de noche. Sobre su cama había un techo pintado de azul profundo, con estrellas de oro. Los mejores pintores del reino habían trabajado en él un año entero. Cada noche se acostaba debajo y las contaba.
 
 La primera noche en la carpa no durmió. La tela temblaba con el viento, y por la entrada se colaba el frío.
 
@@ -30,18 +30,24 @@ El rey no respondió.
 
 La segunda noche oyó el jardín. No sabía que el jardín tenía voz. Hojas, agua en el canal, un pájaro que no se había dormido.
 
-La tercera noche se acostó boca arriba, y por una rendija en la tela *vio una estrella.*
+La tercera noche se acostó boca arriba. Por una rendija en la tela, vio una estrella.
 
-Después otra. Y después, cuando los ojos se acostumbraron, más de las que se podían contar. Pequeñas, pálidas, temblorosas. No se parecían en nada a las suyas.
+Después, otra.
 
-Desde esa noche no volvió a preguntar por qué estaban aquí.
+Y después, cuando los ojos se acostumbraron, más de las que se podían contar.
+
+Pequeñas, pálidas, temblorosas. No se parecían en nada a las suyas.
+
+Desde esa noche no volvió a preguntar por qué estaban en la carpa.
 
 El séptimo día doblaron la tela y volvieron al palacio.
 
-Esa noche el príncipe se acostó en su cama y levantó la vista. Las estrellas de oro estaban en su lugar, como siempre. Hermosas. Ordenadas. Sabía de memoria cuántas eran.
+Esa noche el príncipe se acostó en su cama y levantó la vista.
 
-Esta vez *no las contó.*
+Las estrellas de oro estaban en su lugar, como siempre. Hermosas. Ordenadas. Sabía de memoria cuántas eran.
 
-> Toda su vida había contado estrellas. En la carpa, las vio.
+Esta vez no las contó.
+
+> Solo en la carpa había visto el cielo.
 
 <p class="signature">Con cariño,<br />Efraim Atia</p>
