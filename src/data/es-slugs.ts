@@ -51,6 +51,7 @@ export const ES_STORY_SLUGS: Record<string, string> = {
   'ayara-shel-zarim': 'un-pueblo-de-desconocidos',
   'betzad-hasheni-shel-hahar': 'al-otro-lado-de-la-montana',
   'chamishim-chamishim': 'cincuenta-cincuenta',
+  'chelek-baolam-haba': 'una-parte-del-mundo-venidero',
   'habricha-hamushlemet': 'la-fuga-perfecta',
   'haohel-shel-haganan': 'la-carpa-del-jardinero',
   'hasandlar-shekimat-haya': 'el-zapatero-que-casi-fue',
