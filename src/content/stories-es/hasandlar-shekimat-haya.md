@@ -8,7 +8,7 @@ cover: ../../assets/covers/hasandlar-shekimat-haya.png
 coverAlt: "Una antigua balanza de bronce sobre una mesa de madera, en un platillo un zapato viejo y una lezna de zapatero, en el otro un libro grueso y encuadernado, a la luz cálida de una ventana"
 # Fecha de publicación = fecha real de salida al sitio en vivo (2026-09-15).
 date: 2026-09-15T17:00:00Z
-readingTime: "unos 1 minuto"
+readingTime: "un minuto"
 excerpt: "En el banquete por su gran libro, un invitado preguntó: ¿por qué un banquete por un libro? Y el Netziv de Volozhin contó sobre un niño que casi se convirtió en zapatero."
 source: "Se cuenta sobre el Netziv de Volozhin (el rabino Naftali Tzvi Yehuda Berlin) – una tradición que se le atribuye a él mismo, tal como fue impresa en biografías y hojas de shabat. La versión exacta (zapatero/sastre/carpintero) varía entre fuentes."
 ---
