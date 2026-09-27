@@ -1,5 +1,5 @@
 {
- "_about": "קידוד של כל רגע. נוצר בבדיקת העומק 2026-09-06 ומתעדכן עם כל רגע חדש. שערים: head/heavy/stuck/someone/self/upward/good/noname. כוכבית = בית שעדיין לא קיים. move לפי פלטת ENGINE.md. motion: 3 תנועה אמיתית, 2 חלקית, 1 מתאר. shape: צורת הרגע (הפרדה/החזקה/שאלה/צעד/עדות/אחר).",
+ "_about": "קידוד של כל רגע. נוצר בבדיקת העומק 2026-09-06 ומתעדכן עם כל רגע חדש. שערים: head/heavy/stuck/someone/self/upward/good/noname. כוכבית = בית שעדיין לא קיים. move לפי פלטת ENGINE.md. motion: 3 תנועה אמיתית, 2 חלקית, 1 מתאר. shape: צורת הרגע (הפרדה/החזקה/שאלה/צעד/עדות/חיסון/אחר).",
  "moves": {
   "SEP": "הפרדה",
   "NAME": "מתן שם",
@@ -2350,6 +2350,51 @@
    "takeaway": "Y",
    "opening": "סצנה/מצב",
    "shape": "החזקה",
+   "clusters": [],
+   "twin": null,
+   "verdict": "חזק",
+   "status": "published"
+  },
+  {
+   "slug": "tkiut-shtut-achat",
+   "title": "שטות אחת",
+   "home": "standstill",
+   "gate": "stuck",
+   "entries": [
+    "heavy"
+   ],
+   "move": "LIGHT",
+   "move2": "BODY",
+   "inner": "\"יאללה, להתחזק\"",
+   "reader": "כבד לו, וכולם (וגם הוא עצמו) דוחפים לצאת מזה",
+   "shift": "הפה זז לבד לפני שהוחלט שזה מצחיק; הכבדות לוקחת הפסקות",
+   "motion": 3,
+   "takeaway": "Y",
+   "opening": "סצנה/מצב",
+   "shape": "אחר",
+   "clusters": [],
+   "twin": null,
+   "verdict": "חזק",
+   "status": "published"
+  },
+  {
+   "slug": "hatchala-gam-hachlata-mitayefet",
+   "title": "גם החלטה מתעייפת",
+   "home": "new-beginning",
+   "gate": "good",
+   "entries": [
+    "self",
+    "stuck"
+   ],
+   "move": "TIME",
+   "move2": "STEP",
+   "inner": "\"ידעתי. זה לא בשבילי\"",
+   "reader": "החליט משהו חדש, לפני המעידה הראשונה",
+   "shift": "הבוקר שזה לא יחזיק אינו הוכחה אלא ההתחלה האמיתית: מעכשיו סוחבים את ההחלטה",
+   "motion": 3,
+   "takeaway": "Y",
+   "opening": "סצנה/מצב",
+   "shape": "חיסון",
    "clusters": [],
    "twin": null,
    "verdict": "חזק",
