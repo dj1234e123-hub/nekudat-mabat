@@ -19,6 +19,7 @@ import { newestFirst } from '../lib/sort';
 import { parseBody, plainText, kicker } from '../lib/mabat-format';
 import { isPublished } from '../lib/published';
 import JoinPopup from '../components/JoinPopup.astro';
+import { SUKKOT, holidayOnHome } from '../data/holidays';
 
 // דף הבית נותן טעם ומוביל הלאה; הארכיון עצמו חי ב-/stories/.
 const allStories = (await getCollection('stories', isPublished)).sort(newestFirst);
@@ -102,6 +103,11 @@ const latestMabat = mabatPieces[0]
 const beshtStories = (await getCollection('besht', isPublished)).sort(newestFirst);
 const latestBesht = beshtStories[0] ?? null;
 
+// דלת עונתית: בימי החג בלבד, מעל כל השאר. נעלמת מעצמה אחרי החלון שנקבע
+// ב-src/data/holidays.ts – בבנייה, וגם בצד הקורא (הסקריפט בתחתית), כדי
+// שלא תישאר תקועה עד הבנייה הבאה.
+const showSukkot = holidayOnHome(SUKKOT);
+
 const DESCRIPTION =
   'מקום לעצור, לקבל נקודת מבט חדשה, ולקחת משהו איתך להמשך הדרך. סיפורים ורגעים קצרים של נקודת מבט.';
 ---
@@ -137,7 +143,25 @@ const DESCRIPTION =
          לעמודה אחת בסדר הזה בדיוק; במסך רחב, ששתי הדלתות יושבות זו לצד זו
          בשורה אחת, הטעימה יורדת לרצועה מלאה מתחתיהן – "בין" לא קיים
          גיאומטרית כששני האיברים כבר צמודים אופקית. -->
-    <section class="dual-section">
+    <section class:list={['dual-section', { 'has-season': showSukkot }]}>
+      {
+        showSukkot && (
+          <section class="season-teaser" style="grid-area: season" data-until={SUKKOT.homeUntil}>
+            <span class="teaser-rail season-rail" aria-hidden="true" />
+            <div class="teaser-body">
+              <p class="teaser-kicker season-kicker">{SUKKOT.kicker}</p>
+              <a class="teaser-title" href={SUKKOT.path}>
+                סיפור לכל ערב של חול המועד
+              </a>
+              <p class="season-text">{SUKKOT.intro}</p>
+              <a class="teaser-more" href={SUKKOT.path} data-ph="season_sukkot">
+                לכל התוכן של סוכות
+              </a>
+            </div>
+          </section>
+        )
+      }
+
       <!-- דלת הרגעים -->
       {
         featuredMoment && (
@@ -305,6 +329,14 @@ const DESCRIPTION =
 </Base>
 
 <script is:inline>
+  // הדלת העונתית יורדת מעצמה כשהחלון נגמר, גם בלי בנייה חדשה.
+  document.querySelectorAll('[data-until]').forEach((el) => {
+    if (Date.now() >= Date.parse(el.dataset.until)) {
+      el.closest('.has-season')?.classList.remove('has-season');
+      el.remove();
+    }
+  });
+
   const momentOptions = document.querySelectorAll('template[data-moment-option]');
   if (momentOptions.length > 1) {
     const choice = momentOptions[Math.floor(Math.random() * momentOptions.length)];
@@ -450,16 +482,22 @@ const DESCRIPTION =
     margin: 0.75rem auto 2.75rem;
   }
 
+  .dual-section.has-season {
+    grid-template-areas: 'season' 'moments' 'besht' 'mabat' 'stories';
+  }
+
   @media (max-width: 49.99rem) {
     .besht-teaser,
     .mabat-teaser,
-    .door-stories {
+    .door-stories,
+    .has-season .door-moments {
       position: relative;
     }
 
     .besht-teaser::before,
     .mabat-teaser::before,
-    .door-stories::before {
+    .door-stories::before,
+    .has-season .door-moments::before {
       content: '';
       position: absolute;
       top: -1.85rem;
@@ -479,6 +517,10 @@ const DESCRIPTION =
       grid-template-columns: 1fr 1fr;
       grid-template-areas: 'moments stories' 'besht besht' 'mabat mabat';
       gap: 2rem;
+    }
+
+    .dual-section.has-season {
+      grid-template-areas: 'season season' 'moments stories' 'besht besht' 'mabat mabat';
     }
   }
 
@@ -856,22 +898,42 @@ const DESCRIPTION =
     align-items: flex-start;
   }
 
-  .besht-rail {
+  /* הקידומת (.besht-teaser) נחוצה: .teaser-rail ו-.teaser-kicker מוגדרים
+     בהמשך הקובץ באותה ספציפיות, וגברו – הקו והתווית יצאו כחולים. */
+  .besht-teaser .besht-rail {
     background: var(--gold);
   }
 
-  .besht-kicker {
+  .besht-teaser .besht-kicker {
     color: var(--gold-deep);
   }
 
   /* שתי הטעימות מדברות עכשיו באותה צורה: תקציר בפרוזה, ולא פתיחה של הטקסט
      עצמו. לכן אותו טיפול בדיוק לשתיהן. */
   .besht-excerpt,
-  .mabat-summary {
+  .mabat-summary,
+  .season-text {
     color: var(--secondary);
     font-size: 0.97rem;
     line-height: 1.75;
     margin: 0;
+  }
+
+  /* ============ הדלת העונתית (חג) ============ */
+  /* אותה צורה של שתי הטעימות – קו, תווית, כותרת, שורה, קישור – בירוק־כחול:
+     הצבע של הסכך, ואינו תפוס בידי אף טעימה אחרת. */
+  .season-teaser {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .season-teaser .season-rail {
+    background: var(--teal);
+  }
+
+  .season-teaser .season-kicker {
+    color: var(--teal);
   }
 
   /* ============ טעימת "מבט לשבת" ============ */
@@ -896,7 +958,8 @@ const DESCRIPTION =
      ממורכזת בעמוד: הגבלה על הגוף בלבד הצמידה את שתיהן לחצי הימני.
      שורות "מבט לשבת" נשארות ממורכזות, כי כך הן מעוצבות בעמוד שלהן. */
   .besht-teaser,
-  .mabat-teaser {
+  .mabat-teaser,
+  .season-teaser {
     /* 34rem ולא 40: ב-40rem התקציר נמדד 621px, כ-79 תווים בשורה – עדיין
        מעל הטווח הנוח. width:100% נחוץ כדי ששתיהן יגיעו לאותו רוחב: בלעדיו
        "מבט לשבת" מתכווץ לתוכנו (363px) ושני הקווים האנכיים לא מתיישרים. */

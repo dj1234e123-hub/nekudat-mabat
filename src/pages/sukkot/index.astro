@@ -1,0 +1,291 @@
+---
+// בית לתוכן של סוכות – כל מה שנכתב לחג, מכל הפינות, בסדר השבוע.
+// הרשימה והתוויות ב-src/data/holidays.ts. עמוד ניווט ולא תוכן, ולכן בלי
+// נתונים מובנים (אותו כלל של עמודי מדף ושער).
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { Image, getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Base from '../../layouts/Base.astro';
+import JoinGroup from '../../components/JoinGroup.astro';
+import { SUKKOT, opensLabel } from '../../data/holidays';
+import { SECTIONS_META } from '../../data/sections';
+import { DEFAULT_COVERS } from '../../data/default-covers';
+import { isPublished } from '../../lib/published';
+import { parseBody, plainText } from '../../lib/mabat-format';
+import havdala from '../../assets/besht/havdala.png';
+import ohelCover from '../../assets/covers/haohel-shel-haganan.png';
+
+const stories = await getCollection('stories', isPublished);
+const mabat = await getCollection('mabatLeshabbat', isPublished);
+const besht = await getCollection('besht', isPublished);
+
+type Row =
+  | {
+      open: true;
+      label: string;
+      corner: string;
+      accent: string;
+      href: string;
+      title: string;
+      text: string;
+      image: ImageMetadata;
+    }
+  | { open: false; label: string; when: string };
+
+const mabatSummary = (piece: CollectionEntry<'mabatLeshabbat'>) => {
+  if (piece.data.description) return piece.data.description;
+  const flat = plainText(parseBody(piece.body ?? '')).replace(/\s+/g, ' ').trim();
+  return flat.length > 200 ? `${flat.slice(0, 197)}…` : flat;
+};
+
+const rows: Row[] = SUKKOT.items.flatMap((item): Row[] => {
+  if (item.kind === 'story') {
+    const s = stories.find((e) => e.id === item.id);
+    if (s) {
+      return [
+        {
+          open: true,
+          label: item.label,
+          corner: SECTIONS_META[s.data.section].label,
+          accent: SECTIONS_META[s.data.section].accent,
+          href: `/stories/${s.id}/`,
+          title: s.data.title,
+          text: s.data.excerpt,
+          image: s.data.cover ?? DEFAULT_COVERS[s.data.section],
+        },
+      ];
+    }
+  } else if (item.kind === 'mabat') {
+    const p = mabat.find((e) => e.id === item.id);
+    if (p) {
+      return [
+        {
+          open: true,
+          label: item.label,
+          corner: 'מבט לשבת',
+          accent: 'var(--blue)',
+          href: `/mabat-leshabbat/${p.id}/`,
+          title: p.data.title,
+          text: mabatSummary(p),
+          image: p.data.quoteImage ?? ohelCover,
+        },
+      ];
+    }
+  } else {
+    const b = besht.find((e) => e.id === item.id);
+    if (b) {
+      return [
+        {
+          open: true,
+          label: item.label,
+          corner: 'מעשה שהיה',
+          accent: 'var(--gold)',
+          href: `/besht/${b.id}/`,
+          title: b.data.title,
+          text: b.data.excerpt,
+          image: havdala,
+        },
+      ];
+    }
+  }
+  // עוד לא פורסם. שורה בלי כותרת, כדי לא לגלות את הסיפור מראש – ורק אם
+  // השעה עוד לפנינו: פריט שהשעה שלו עברה ואינו קיים לא מבטיח כלום.
+  if (new Date(item.opens).getTime() > Date.now()) {
+    return [{ open: false, label: item.label, when: opensLabel(item.opens) }];
+  }
+  return [];
+});
+
+// תמונת השיתוף: שער "האוהל של הגנן" – אוהל תחת שמי כוכבים, בלי דמויות ובלי
+// כיתוב. הקישור לעמוד הזה הוא מה שנשלח לקבוצה, ובלי תמונה הוא יוצא יבש.
+const og = await getImage({ src: ohelCover, width: 1200, format: 'jpeg' });
+---
+
+<Base
+  title={`${SUKKOT.title} · נקודת מבט`}
+  description={SUKKOT.intro}
+  ogImage={new URL(og.src, Astro.site).href}
+  ogImageWidth={og.attributes.width}
+  ogImageHeight={og.attributes.height}
+>
+  <main>
+    <header class="head">
+      <p class="kicker">{SUKKOT.kicker}</p>
+      <h1>{SUKKOT.title}</h1>
+      <p class="intro">{SUKKOT.intro}</p>
+    </header>
+
+    <ol class="days">
+      {
+        rows.map((row) =>
+          row.open ? (
+            <li class="day" style={`--accent: ${row.accent}`}>
+              <a class="day-link" href={row.href}>
+                <span class="thumb">
+                  <Image src={row.image} alt="" widths={[176, 352]} sizes="5.5rem" />
+                </span>
+                <span class="day-text">
+                  <span class="day-label">{row.label}</span>
+                  <span class="day-corner">{row.corner}</span>
+                  <span class="day-title">{row.title}</span>
+                  <span class="day-excerpt">{row.text}</span>
+                </span>
+              </a>
+            </li>
+          ) : (
+            <li class="day pending">
+              <span class="thumb thumb-empty" aria-hidden="true" />
+              <span class="day-text">
+                <span class="day-label">{row.label}</span>
+                <span class="day-when">נפתח {row.when}</span>
+              </span>
+            </li>
+          ),
+        )
+      }
+    </ol>
+
+    <JoinGroup />
+  </main>
+</Base>
+
+<style>
+  .head {
+    text-align: center;
+    margin-bottom: 2.2rem;
+  }
+
+  .kicker {
+    color: var(--teal);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin: 0 0 0.3rem;
+  }
+
+  .head h1 {
+    font-size: 2rem;
+    margin: 0 0 0.6rem;
+    padding: 0;
+  }
+
+  .intro {
+    color: var(--secondary);
+    max-width: 30rem;
+    margin: 0 auto;
+    line-height: 1.75;
+    text-wrap: balance;
+  }
+
+  /* רשימה קצרה היא שורות, לא כרטיסים – מופרדות בקו שיער (החלטת 2026-09-22). */
+  .days {
+    list-style: none;
+    margin: 0 0 2.5rem;
+    padding: 0;
+  }
+
+  .day {
+    border-top: 1px solid var(--line, rgba(0, 0, 0, 0.1));
+  }
+
+  .day:last-child {
+    border-bottom: 1px solid var(--line, rgba(0, 0, 0, 0.1));
+  }
+
+  .day-link,
+  .pending {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1.1rem 0;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .thumb {
+    flex: 0 0 5.5rem;
+    width: 5.5rem;
+    aspect-ratio: 1;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .thumb-empty {
+    box-shadow: none;
+    border: 1px dashed var(--muted);
+    opacity: 0.45;
+  }
+
+  .day-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .day-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--teal);
+  }
+
+  .day-corner {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 0.1rem;
+  }
+
+  /* נקודה ולא מילוי – צבע הפינה או העולם, כמו בכרטיסי הסיפורים. */
+  .day-corner::before {
+    content: '';
+    display: inline-block;
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-inline-end: 0.35rem;
+    vertical-align: middle;
+  }
+
+  .day-title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin: 0.3rem 0 0.25rem;
+    color: var(--ink);
+    transition: color 0.15s ease;
+  }
+
+  .day-link:hover .day-title {
+    color: var(--teal-deep);
+  }
+
+  .day-excerpt {
+    color: var(--secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .pending .day-text {
+    padding-top: 0.2rem;
+  }
+
+  .day-when {
+    color: var(--muted);
+    font-size: 0.92rem;
+    margin-top: 0.35rem;
+  }
+</style>
