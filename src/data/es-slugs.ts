@@ -56,6 +56,7 @@ export const ES_STORY_SLUGS: Record<string, string> = {
   'haohel-shel-haganan': 'la-carpa-del-jardinero',
   'hasandlar-shekimat-haya': 'el-zapatero-que-casi-fue',
   'hatabaat-bakos': 'el-anillo-en-el-vaso-de-carton',
+  'hatur-hasheni': 'la-segunda-fila',
   'im-lo-lemala-mize': 'si-no-mas-arriba',
   'im-tisrod': 'si-sobrevives',
   'kedei-levade-shesalachti': 'para-estar-seguro-de-que-perdone',
