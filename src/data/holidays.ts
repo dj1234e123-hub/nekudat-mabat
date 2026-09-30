@@ -36,7 +36,7 @@ export const SUKKOT = {
     { kind: 'story', id: 'haohel-shel-haganan', label: "יום א' של חול המועד", opens: '2026-09-27T17:30:00Z' },
     { kind: 'story', id: 'ayara-shel-zarim', label: "יום ב' של חול המועד", opens: '2026-09-28T17:30:00Z' },
     { kind: 'story', id: 'chelek-baolam-haba', label: "יום ג' של חול המועד", opens: '2026-09-29T17:30:00Z' },
-    { kind: 'story', id: 'hatur-hasheni', label: "יום ד' של חול המועד", opens: '2026-09-30T17:30:00Z' },
+    { kind: 'story', id: 'hatur-hasheni', label: "יום ד' של חול המועד", opens: '2026-10-01T17:30:00Z' },
     { kind: 'story', id: 'hasuka-shezachta', label: "יום ה' של חול המועד", opens: '2026-10-01T17:30:00Z' },
   ] satisfies HolidayItem[],
 };
