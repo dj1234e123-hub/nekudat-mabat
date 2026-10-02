@@ -84,6 +84,7 @@ export const ES_SECTION_SLUGS: Record<string, string> = {
     אותו כלל כמו הסיפורים: ASCII, מהכותרת הספרדית; sucá ← suca. */
 export const ES_BESHT_SLUGS: Record<string, string> = {
   'hakova-shehaya-lesuka': 'el-sombrero-que-fue-suca',
+  'mima-osim-keter': 'de-que-se-hace-una-corona',
 };
 
 /** הכתובת הציבורית של סיפור "מעשה שהיה" ספרדי. סיפור בלי סלאג מכשיל את הבנייה. */
