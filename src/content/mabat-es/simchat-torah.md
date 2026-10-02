@@ -6,10 +6,10 @@
 # parasha: "Shabat de Simjat Torá" – empieza con "Shabat", así kickerEs no le antepone "Parashá".
 # Sin revisión de hablante nativa (decisión de lanzamiento, 2026-08-30).
 title: ¿Con qué se baila cuando no hay libro?
-parasha: Shabat de Simjat Torá
+parasha: Shabat de Simjat Torá · Vezot Haberajá
 hebrewDate: 22 de Tishrei 5787
 description: "Vilna, meses después de la guerra. Una sinagoga sin rollos de la Torá, un oficial joven del Ejército Rojo, y un niño de cinco años que creció cuatro años como cristiano y no sabía qué es Simjat Torá."
-date: 2026-10-02T07:00:00Z
+date: 2026-10-02T05:50:00Z
 quoteImage: ../../assets/mabat-leshabbat/simchat-torah-quote-es.png
 quoteImageAlt: "No le enseñó ni una palabra. Solo lo levantó."
 signoff: |
