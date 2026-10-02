@@ -5,6 +5,7 @@
 # La frase del cuadro de cita aparece palabra por palabra en el texto (regla del pull-quote).
 # parasha: "Shabat de Simjat Torá" – empieza con "Shabat", así kickerEs no le antepone "Parashá".
 # Sin revisión de hablante nativa (decisión de lanzamiento, 2026-08-30).
+# Versión fusionada (2.10): el tercer movimiento sigue al hebreo fusionado (reencuentro como revelación, «Aquel niño.»).
 title: ¿Con qué se baila cuando no hay libro?
 parasha: Shabat de Simjat Torá · Vezot Haberajá
 hebrewDate: 22 de Tishrei 5787
@@ -99,25 +100,27 @@ El oficial no supo qué fue del niño. El niño no supo quién era el oficial.
 
 Sesenta y cinco años.
 
-Hasta que en abril de 2010 Abraham Foxman, que dirigió durante décadas una de las grandes organizaciones judías de Estados Unidos, entró en una casa pequeña en Michigan.
+Entonces, en abril de 2010, volvieron a encontrarse.
 
-Allí lo esperaba el rabino Leo Goldman. Noventa y un años.
+El rabino Leo Goldman, el oficial de Vilna, ya tenía noventa y un años.
 
-El oficial de Vilna.
+Frente a él estaba Abraham Foxman.
 
-El rabino Goldman falleció en 2012. Abraham Foxman, en mayo de este año.
+Aquel niño.
 
-En cada sinagoga, cada Simjat Torá, hay alguien parado a un costado.
+Y cada Simjat Torá, esta historia vuelve a empezar.
+
+Porque en cada sinagoga hay alguien parado a un costado.
 
 No sabe las palabras.
+No encuentra el ritmo.
 No está seguro de pertenecer.
-Espera que termine.
 
 Un muchacho que ya no estudia.
 Un niño que mira desde la entrada.
-Un padre que vino solo por su hijo.
 
-Y nosotros, ocupados con el libro.
+Y nosotros, tan ocupados con el libro,
+que olvidamos a quien está parado al lado.
 
 El oficial de Vilna no le preguntó al niño qué sabía.
 No le explicó qué es la Torá.
