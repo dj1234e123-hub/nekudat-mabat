@@ -23,10 +23,11 @@ export function storyOpening(body: string | undefined): string {
     if (/^(#|!\[|<|---|\*\*\*)/.test(line)) continue;
     const clean = line
       .replace(/^>\s?/, '')
+      .replace(/<[^>]+>/g, ' ') // שבירת שורה (<br />) או תג אחר בתוך השורה – לא טקסט
       .replace(/\*\*(.+?)\*\*/g, '$1')
       .replace(/\*(.+?)\*/g, '$1')
       .replace(/_(.+?)_/g, '$1');
-    words.push(...clean.split(/\s+/));
+    words.push(...clean.split(/\s+/).filter(Boolean));
     if (words.length >= MAX_WORDS) break;
   }
   if (words.length === 0) return '';
