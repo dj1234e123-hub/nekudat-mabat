@@ -54,4 +54,4 @@ Pero Thomas ya no esperaba que lo encontraran.
 
 *Se atrapó a sí mismo.*
 
-<p class="signature">Creo en ti,<br /><span class="signature-name" lang="he" dir="rtl">אפרים</span></p>
+<p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>

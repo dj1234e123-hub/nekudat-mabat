@@ -47,4 +47,4 @@ No en un libro. No en un cuaderno. Ni siquiera en una clase que recordara.
 
 > *En sus manos.* A través del cordón de un zapato.
 
-<p class="signature">Creo en ti,<br /><span class="signature-name" lang="he" dir="rtl">אפרים</span></p>
+<p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>

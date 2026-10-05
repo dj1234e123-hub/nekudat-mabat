@@ -35,4 +35,4 @@ Años después, sentado a la cabecera de aquel mismo banquete, dijo el Netziv:
 
 > Y no entendería en absoluto de qué me hablan.
 
-<p class="signature">Creo en ti,<br /><span class="signature-name" lang="he" dir="rtl">אפרים</span></p>
+<p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>

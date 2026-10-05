@@ -72,4 +72,4 @@ Y entonces me miró a mí.
 
 Metió la mano en el tazón, y me dio *tres caramelos.*
 
-<p class="signature">Creo en ti,<br /><span class="signature-name" lang="he" dir="rtl">אפרים</span></p>
+<p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>

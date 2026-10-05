@@ -66,4 +66,4 @@ Sobre la mesa quedó un sobre lleno de estampillas.
 
 Y la madre no podía dejar de mirarlo. Incluso después de que el rabino ya se había ido.
 
-<p class="signature">Creo en ti,<br /><span class="signature-name" lang="he" dir="rtl">אפרים</span></p>
+<p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>

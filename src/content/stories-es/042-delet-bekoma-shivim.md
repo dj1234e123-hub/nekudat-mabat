@@ -60,4 +60,4 @@ Pero yo no les pedí hacer lo imposible.
 
 Les pedí llegar hasta el lugar donde el camino *se abre solo.*
 
-<p class="signature">Creo en ti,<br /><span class="signature-name" lang="he" dir="rtl">אפרים</span></p>
+<p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>

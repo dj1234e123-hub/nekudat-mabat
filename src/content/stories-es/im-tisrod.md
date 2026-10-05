@@ -40,4 +40,4 @@ Dentro del bulto, el shofar.
 
 > Se lo lleva a la boca. Y toca.
 
-<p class="signature">Creo en ti,<br /><span class="signature-name" lang="he" dir="rtl">אפרים</span></p>
+<p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>

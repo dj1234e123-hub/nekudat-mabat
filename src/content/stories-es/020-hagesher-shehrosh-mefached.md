@@ -74,4 +74,4 @@ Un pie. Y otro pie.
 
 Que sepamos recordar que en el momento del miedo no hace falta todo el camino – hace falta solo *el próximo paso*.
 
-<p class="signature">Creo en ti,<br /><span class="signature-name" lang="he" dir="rtl">אפרים</span></p>
+<p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>

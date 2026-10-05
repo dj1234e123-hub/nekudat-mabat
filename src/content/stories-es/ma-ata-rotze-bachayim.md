@@ -54,4 +54,4 @@ Años después, él y los padres de James empezaron a dar charlas juntos. Los pa
 
 > Durante años, todos le preguntaron qué había hecho. Pero las personas que tenían más derecho que nadie a hacerle esa pregunta eligieron preguntarle otra: qué quería hacer con su vida.
 
-<p class="signature">Creo en ti,<br /><span class="signature-name" lang="he" dir="rtl">אפרים</span></p>
+<p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>

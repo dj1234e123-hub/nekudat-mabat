@@ -60,4 +60,4 @@ El rey no vio el jarrón. Vio *el corazón.*
 
 Meir vino *a dar.* El vecino vino *a recibir.*
 
-<p class="signature">Creo en ti,<br /><span class="signature-name" lang="he" dir="rtl">אפרים</span></p>
+<p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>

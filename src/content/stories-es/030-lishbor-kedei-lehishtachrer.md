@@ -78,4 +78,4 @@ Dicen que desde entonces se lo veía más caminando por los pasillos. Menos ocup
 
 Para el rey fue un jarrón de porcelana.
 
-<p class="signature">Creo en ti,<br /><span class="signature-name" lang="he" dir="rtl">אפרים</span></p>
+<p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>

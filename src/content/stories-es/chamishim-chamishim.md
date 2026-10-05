@@ -51,4 +51,4 @@ El mundo se enteró solo cuatro meses después, cuando un conocido de Alemania l
 > Aquella noche esperó veintitrés minutos, y el mundo no lo supo.<br />
 > Cuando murió, pasaron cuatro meses antes de que el mundo se diera cuenta.
 
-<p class="signature">Creo en ti,<br /><span class="signature-name" lang="he" dir="rtl">אפרים</span></p>
+<p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>

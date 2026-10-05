@@ -202,6 +202,16 @@ const relatedMoment = momentForStory(story, await getCollection('momentsEs', isP
     margin-top: 2.5rem;
   }
 
+  /* בספרדית החתימה נושאת את התואר, לבקשת הקוראים (2026-10-05): "Rabino
+     Efraim Atia". פונט כתב היד עברי בלבד, ולכן השם כאן בפונט הכותרות. */
+  .story-body :global(.signature-title) {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--blue);
+    font-size: 1.3rem;
+    line-height: 1.5;
+  }
+
   .story-body :global(.signature-name) {
     font-family: 'Playpen Sans Hebrew', var(--font-display);
     color: var(--blue);

@@ -43,4 +43,4 @@ En los últimos años Mary enfermó de demencia, y Oshea se quedó a su lado.
 
 > Aquel hombre al que ella no pudo olvidar, estuvo ahí cuando ella ya no pudo recordar.
 
-<p class="signature">Creo en ti,<br /><span class="signature-name" lang="he" dir="rtl">אפרים</span></p>
+<p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>
