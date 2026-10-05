@@ -43,4 +43,12 @@ En los últimos años Mary enfermó de demencia, y Oshea se quedó a su lado.
 
 > Aquel hombre al que ella no pudo olvidar, estuvo ahí cuando ella ya no pudo recordar.
 
+Durante doce años Mary odió una imagen: un muchacho con un arma, el instante de un disparo. En la sala de la cárcel se encontró con otra cosa: una persona a la que se le puede hacer una pregunta, y que responde.
+
+Una imagen no cambia. Se queda exactamente como el día en que se grabó, y nosotros seguimos cuidándola. A una persona se la puede encontrar.
+
+No siempre es seguro, ni siempre hace falta, encontrarse con quien nos hirió. Pero cuando algo me tiene atrapado durante años, me pregunto:
+
+<div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿A quién conozco solo por la imagen que tengo en la cabeza?</p></div>
+
 <p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>
