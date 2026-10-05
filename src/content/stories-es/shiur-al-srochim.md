@@ -47,4 +47,14 @@ No en un libro. No en un cuaderno. Ni siquiera en una clase que recordara.
 
 > *En sus manos.* A través del cordón de un zapato.
 
+El maestro no sabía qué iba a quedar. Nosotros tampoco lo sabemos.
+
+Los hijos, los alumnos y los amigos recuerdan poco de lo que les dijimos. Recuerdan mucho de lo que nos vieron hacer, una y otra vez, sin darse cuenta.
+
+Aquella pequeña lección duró veinte años porque se volvió algo que se hace cada mañana, sin pensar.
+
+Cuando le enseño algo a alguien, me pregunto:
+
+<div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿Qué enseño sin hablar?</p></div>
+
 <p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>

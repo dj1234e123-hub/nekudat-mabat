@@ -66,4 +66,12 @@ Sobre la mesa quedó un sobre lleno de estampillas.
 
 Y la madre no podía dejar de mirarlo. Incluso después de que el rabino ya se había ido.
 
+El rabino Shaj pasaba junto al mismo edificio una y otra vez. Cuando uno pasa por el mismo lugar todos los días, por lo general deja de ver. Lo que se repite se vuelve paisaje.
+
+Él no dejó de ver. Vio a un niño, y se fijó en *lo que le gustaba.*
+
+Cuando hago mi camino de siempre, me pregunto:
+
+<div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿A quién me encuentro todos los días y todavía no vi de verdad?</p></div>
+
 <p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>
