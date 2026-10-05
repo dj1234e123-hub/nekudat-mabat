@@ -20,7 +20,7 @@ Jani, mi hija, de cinco años, sentada en pijama, el pelo un poco revuelto, los 
 
 Sobre la mesa, un billete azul de 200 y un billete rojo de 20.
 
-Los recorta despacio, pedacito a pedacito, y los pega con plasticola.
+Los recorta despacio, pedacito a pedacito, y los va pegando uno con otro.
 
 La cabeza grita por dentro: *detenla ahora; con ese dinero compras leche, comida, ropa, todo lo que ella necesita.*
 
@@ -32,7 +32,7 @@ Y entonces ella levanta los ojos hacia mí. Sin miedo, sin pedir perdón.
 
 Sostiene con cuidado lo que salió de los billetes, y me lo extiende.
 
-Sobre la mesa hay *un corazón* hecho de pedacitos de billetes, azul y rojo cosidos con plasticola.
+Sobre la mesa hay *un corazón* hecho de pedacitos de billetes, azul y rojo cosidos con pegamento.
 
 —Papá, te hice un regalo.
 
