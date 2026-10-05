@@ -51,4 +51,12 @@ El mundo se enteró solo cuatro meses después, cuando un conocido de Alemania l
 > Aquella noche esperó veintitrés minutos, y el mundo no lo supo.<br />
 > Cuando murió, pasaron cuatro meses antes de que el mundo se diera cuenta.
 
+Petrov recibió una reprimenda por el registro. En el registro no hay una línea para lo que no pasó.
+
+Nosotros también tenemos un registro así. Lo que hicimos queda anotado y se ve. Lo que evitamos se queda sin testigos: la palabra que no se dijo con enojo, la caída que no pasó esta noche. Nadie lo cuenta. Casi nunca, ni siquiera nosotros.
+
+Por eso escribo en mi propio registro también esta línea:
+
+<div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿Qué detuve hoy que nadie vio?</p></div>
+
 <p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>

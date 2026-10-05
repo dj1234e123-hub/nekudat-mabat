@@ -100,4 +100,12 @@ Cuando volvió al rabino a agradecerle, Rabí Jizkiá sonrió.
 
 —Tu sustento no volvió el día que vendiste. Volvió el día que dejaste de *hablarte* como un hombre *roto.*
 
+Cuando todo se cae, la cabeza hace una lista de lo que no hay: no hay mercadería. No hay dinero. No hay con qué empezar. Esa lista es verdadera, y también es lo único que se ve.
+
+Rabí Jizkiá no discutió con ella. Abrió una segunda lista: lo que todavía hay. Una boca, y un buen nombre. Y en el mercado, frente al comerciante, fue justamente la segunda lista la que habló.
+
+Una lista así no hay que inventarla. Solo hay que acordarse de escribirla. El día en que todo me parece que falta, me pregunto:
+
+<div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿Qué me queda todavía, incluso ahora?</p></div>
+
 <p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>

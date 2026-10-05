@@ -53,4 +53,12 @@ Sigue existiendo hoy. Ha reunido más de un millón y medio de dólares, y más 
 > Los últimos nacieron años después de aquella noche.<br />
 > Pero siguen recibiendo de ella.
 
+Todavía no habían aterrizado. Todavía no habían vuelto a casa, a la rutina y a las cuentas.
+
+La gratitud es un sentimiento cálido, y se enfría rápido. Unos días en casa, y los cuatro días en Lewisporte ya se vuelven una linda historia para contar. Quien pidió el micrófono en el aire tomó la gratitud mientras todavía ardía.
+
+Cuando alguien me hace un bien, me pregunto ese mismo día:
+
+<div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿Qué hago con este agradecimiento mientras todavía está caliente?</p></div>
+
 <p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>
