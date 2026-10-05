@@ -51,4 +51,4 @@ source: "מבוסס על סיפורם האמיתי של מרי ג'ונסון ו�
 
 > אותו אדם שפעם היא לא הצליחה לשכוח, היה שם כשהיא כבר לא הצליחה לזכור.
 
-<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים</span></p>
+<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים עטייה</span></p>

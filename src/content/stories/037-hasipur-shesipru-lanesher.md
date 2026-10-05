@@ -72,4 +72,4 @@ source: "משל ידוע המופיע בגרסאות שונות, בעיבוד ו
 
 שם, בגובה, הוא הבין סוף סוף כמה קטן היה הסיפור שסיפרו לו על עצמו.
 
-<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים</span></p>
+<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים עטייה</span></p>

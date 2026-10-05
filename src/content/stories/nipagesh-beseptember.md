@@ -43,4 +43,4 @@ source: "מבוסס על סיפור שפורסם ב\"ידיעות יד ושם\" 
 
 > שתים-עשרה שנה באיחור, תלמיד אחד הגיע.
 
-<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים</span></p>
+<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים עטייה</span></p>

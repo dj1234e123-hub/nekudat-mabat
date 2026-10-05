@@ -71,4 +71,4 @@ source: "עיבוד לסיפור הקלאסי של י\"ל פרץ, \"אם לא ל
 
 > "אם לא למעלה מזה."
 
-<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים</span></p>
+<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים עטייה</span></p>

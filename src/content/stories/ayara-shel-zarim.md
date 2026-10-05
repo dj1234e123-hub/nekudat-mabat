@@ -56,4 +56,4 @@ source: "מבוסס על אירוע מתועד היטב: המוזיאון הלא
 > האחרונים שבהם נולדו שנים אחרי הלילה ההוא.<br />
 > אבל הם עדיין מקבלים ממנו.
 
-<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים</span></p>
+<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים עטייה</span></p>

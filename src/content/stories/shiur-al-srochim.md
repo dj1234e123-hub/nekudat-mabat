@@ -50,4 +50,4 @@ source: "מבוסס על סיפור שפורסם בחב\"ד על הרב מאיר
 
 > *בידיים שלו.* דרך שרוך של נעל.
 
-<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים</span></p>
+<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים עטייה</span></p>

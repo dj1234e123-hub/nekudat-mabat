@@ -86,4 +86,4 @@ source: "סיפור אישי מאת אפרים עטיה."
 
 <div class="story-question"><span class="story-question-label">שאלה לדרך</span><p>מה עוד יכול להיות נכון כאן?</p></div>
 
-<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים</span></p>
+<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים עטייה</span></p>

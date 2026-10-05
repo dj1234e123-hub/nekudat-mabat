@@ -74,4 +74,4 @@ source: "מבוסס על סיפור אמיתי מוכר, בעיבוד, עריכ�
 
 היא הרימה *פחד,* והפכה אותו לאמת.
 
-<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים</span></p>
+<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים עטייה</span></p>

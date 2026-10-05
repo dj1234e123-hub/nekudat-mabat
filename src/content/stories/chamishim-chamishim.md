@@ -62,4 +62,4 @@ source: "מבוסס על אירוע אמיתי ומתועד (26.9.1983), שנח�
 > בלילה ההוא הוא חיכה עשרים ושלוש דקות, והעולם לא ידע.<br />
 > אחרי מותו עברו ארבעה חודשים, עד שהעולם בכלל שם לב.
 
-<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים</span></p>
+<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים עטייה</span></p>

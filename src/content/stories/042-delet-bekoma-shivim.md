@@ -66,4 +66,4 @@ source: "משל ידוע בעיבוד, עריכה וכתיבה מקוריים מ
 
 ביקשתי שתגיעו עד המקום שבו הדרך *נפתחת מעצמה.*"
 
-<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים</span></p>
+<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים עטייה</span></p>

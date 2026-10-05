@@ -49,4 +49,4 @@ source: "מבוסס על תיעוד עיתונאי נרחב (CNN, Times of Israe
 
 > "מאה שנה חיכיתי לרגע הזה."
 
-<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים</span></p>
+<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים עטייה</span></p>

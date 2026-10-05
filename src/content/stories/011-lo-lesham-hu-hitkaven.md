@@ -82,4 +82,4 @@ source: "מבוסס על סיפור שנשמע, בעיבוד ובכתיבה מק
 
 "כנראה *שהוא הגיע.*"
 
-<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים</span></p>
+<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים עטייה</span></p>

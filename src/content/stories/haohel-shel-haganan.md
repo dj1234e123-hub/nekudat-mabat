@@ -53,4 +53,4 @@ source: "משל בעיבוד ובכתיבה מקוריים מאת אפרים ע�
 
 > רק באוהל הוא ראה את השמים.
 
-<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים</span></p>
+<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים עטייה</span></p>

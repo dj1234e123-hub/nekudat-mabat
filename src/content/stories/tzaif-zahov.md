@@ -49,4 +49,4 @@ tags: [אלול, תשובה, סליחה, משפחה, תקווה]
 
 חיפשנו צעיף אחד שיגיד לנו לחזור. ולא ידענו שכל התחנה *מחכה לנו*.
 
-<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים</span></p>
+<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים עטייה</span></p>
