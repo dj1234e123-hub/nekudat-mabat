@@ -72,4 +72,14 @@ Y entonces me miró a mí.
 
 Metió la mano en el tazón, y me dio *tres caramelos.*
 
+Casi siempre nos medimos como en un examen: supe o no supe. Me salió o fracasé.
+
+Un niño que recibe un caramelo solo por la respuesta correcta aprende a dejar de intentar cuando no está seguro. Un niño que recibe tres por tres intentos aprende a intentar *una cuarta vez.*
+
+El rabino Steinman contó algo que nadie más en la clase contó.
+
+Por la noche, antes de cerrar el día, repaso una sola pregunta:
+
+<div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿En qué me esforcé hoy, aunque no me haya salido?</p></div>
+
 <p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>

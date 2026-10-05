@@ -53,4 +53,12 @@ Y respondió:
 
 > —Lo perdoné enseguida. Pero temía que quedara en el corazón un resto de rencor que *ni yo mismo alcanzara a sentir.* Así que busqué hacerle bien. Para arrancarlo del corazón, hasta el final.
 
+¿Cuántas veces dije «perdoné», y lo dije de verdad? Y aun así, cuando su nombre salió en una conversación, algo en mí se encogió.
+
+Estamos acostumbrados a esperar que el corazón cambie, y solo entonces actuar distinto. Rabí Israel hizo al revés: primero el acto, y el corazón va detrás. Como está escrito en el Sefer Hajinuj: *los corazones van detrás de las acciones.*
+
+Cuando siento que me quedó algo contra alguien, no espero a que se pase solo. Me pregunto:
+
+<div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿Qué pequeño favor puedo hacerle hoy?</p></div>
+
 <p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>

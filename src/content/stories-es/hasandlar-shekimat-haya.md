@@ -35,4 +35,12 @@ Años después, sentado a la cabecera de aquel mismo banquete, dijo el Netziv:
 
 > Y no entendería en absoluto de qué me hablan.
 
+Ese zapatero no habría sufrido. Por lo que tuvimos y se perdió, el corazón duele. Por lo que nunca existió, no hay ningún dolor que avise.
+
+Y entre el rabino Naftali Tzvi y el zapatero recto hubo un solo momento pequeño: un niño que entró al cuarto y pidió otra oportunidad.
+
+Por eso, aun cuando me parece que todo está bien, a veces me detengo y me pregunto:
+
+<div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿Qué hay en mí que todavía no tuvo su oportunidad?</p></div>
+
 <p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>
