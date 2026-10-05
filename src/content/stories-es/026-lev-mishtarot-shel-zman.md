@@ -49,8 +49,6 @@ Armó *un corazón.*
 Mi mano ya casi se levantaba. Un segundo más, y le habría enseñado que el dinero no se corta.<br />
 Y ella habría aprendido algo muy distinto: que cuando intentas alegrar a papá, te gritan.
 
-Los chicos recuerdan menos lo que les explicamos, y más cómo reaccionamos en el momento en que nos dieron algo.
-
 Sobre el dinero se le puede enseñar mañana.<br />
 *El corazón* había que recibirlo ahora.
 
