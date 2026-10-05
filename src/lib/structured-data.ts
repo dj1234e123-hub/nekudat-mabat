@@ -10,7 +10,7 @@ const SITE_ID = '/#website';
 
 const abs = (path: string, site: URL) => new URL(path, site).href;
 
-/** אפרים עטיה – אותה ישות בכל עמודי האתר. */
+/** אפרים עטייה – אותה ישות בכל עמודי האתר. */
 export function person(site: URL) {
   return {
     '@type': 'Person',

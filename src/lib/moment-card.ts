@@ -341,7 +341,7 @@ export function renderMomentCard(
   const direction = rtl ? 'rtl' : 'ltr';
   // אותה שפה עיצובית, חתימה בשפת הקורא. הכתובת בספרדית מצביעה על שער האזור –
   // מי שיקליד את הדומיין לבדו ינחת בעברית.
-  const signature = rtl ? `${RLO}נקודת מבט · אפרים עטיה${PDF}` : 'Punto de Vista · Efraim Atia';
+  const signature = rtl ? `${RLO}נקודת מבט · אפרים עטייה${PDF}` : 'Punto de Vista · Efraim Atia';
   const urlText = rtl ? siteHost : `${siteHost}/es`;
 
   // מרכוז אנכי של גוש הטקסט בתוך התחום שלו. Math.max שומר על הקצה העליון:
@@ -483,7 +483,7 @@ export function renderMomentStory(
   const footer = rtl
     ? `<text x="${CENTER}" y="1756" font-family="Heebo" font-size="30" fill="${MUTED}" direction="rtl" text-anchor="middle">${t(invite)}</text>
   <text x="${CENTER}" y="1816" font-family="Heebo Bold" font-size="46" fill="${BLUE}" text-anchor="middle" letter-spacing="3">${LRO}${phone}${PDF}</text>
-  <text x="${CENTER}" y="1868" font-family="Heebo" font-size="25" fill="${MUTED}" direction="rtl" text-anchor="middle">${RLO}נקודת מבט · אפרים עטיה · ${PDF}${LRO}${escape(siteHost)}${PDF}</text>`
+  <text x="${CENTER}" y="1868" font-family="Heebo" font-size="25" fill="${MUTED}" direction="rtl" text-anchor="middle">${RLO}נקודת מבט · אפרים עטייה · ${PDF}${LRO}${escape(siteHost)}${PDF}</text>`
     : `<text x="${CENTER}" y="1756" font-family="Heebo" font-size="30" fill="${MUTED}" text-anchor="middle">¿Quieres más momentos así? Envíame «Vista»</text>
   <text x="${CENTER}" y="1816" font-family="Heebo Bold" font-size="46" fill="${BLUE}" text-anchor="middle" letter-spacing="3">+972 ${phone.replace(/^0/, '')}</text>
   <text x="${CENTER}" y="1868" font-family="Heebo" font-size="25" fill="${MUTED}" text-anchor="middle">Punto de Vista · Efraim Atia · ${escape(siteHost)}/es</text>`;

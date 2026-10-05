@@ -20,7 +20,7 @@ quoteImage: ../../assets/mabat-leshabbat/yom-kippur-quote.png
 quoteImageAlt: "בהתחלה זה היה משפט. אחר כך הוא הפך להסבר. ובסוף הוא הפך לזהות."
 signoff: |
   גמר חתימה טובה.
-signedBy: אפרים עטיה
+signedBy: אפרים עטייה
 ---
 
 השמש עוד לא שקעה, ובית הכנסת כבר מלא.
