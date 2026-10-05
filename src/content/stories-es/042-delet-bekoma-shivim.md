@@ -60,4 +60,12 @@ Pero yo no les pedí hacer lo imposible.
 
 Les pedí llegar hasta el lugar donde el camino *se abre solo.*
 
+Los ministros hicieron su cuenta desde abajo. Y desde abajo no se puede ver una puerta que está en el piso setenta.
+
+La cuenta que hago al principio solo ve los pisos que tengo delante. Lo que espera más adelante en el camino, no lo puede ver.
+
+Por eso, cuando algo me parece imposible, reviso:
+
+<div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿A qué estoy renunciando solo por la cuenta que hice desde abajo?</p></div>
+
 <p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>
