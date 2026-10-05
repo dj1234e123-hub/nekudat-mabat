@@ -53,4 +53,16 @@ Billy guardó el anillo porque creía: quien perdió algo valioso, todavía va a
 
 > Solo que no sabía que en algún lugar de Texas, después de dieciséis años, *alguien todavía recordaba su cara.*
 
+Billy estaba sentado en la calle con cuatro mil dólares en la mano, y pensaba en una mujer que no conocía.
+
+Cuando nos falta, cuesta ver a alguien más que a nosotros mismos. La escasez estrecha la mirada.<br />
+Y justamente por eso es tan grande lo que hizo: vio a la que *estaba buscando.*
+
+Y no solo se pierden anillos.<br />
+También una llamada que no devolvimos, un gracias que no dijimos, una pequeña promesa que olvidamos.
+
+Hoy, cuando tengo un momento de calma, me pregunto:
+
+<div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿Quién está buscando ahora algo que está conmigo?</p></div>
+
 <p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>

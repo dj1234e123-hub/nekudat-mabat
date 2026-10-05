@@ -62,10 +62,17 @@ Miró sus manos enrojecidas, y dijo en voz baja:
 
 —No lo sé. Solo *recé,* y no estaba dispuesta a dejarlo *debajo del auto.*
 
-La ciencia lo llamará *descarga de adrenalina.* Los psicólogos lo llamarán *fuerza de emergencia.* Y hay quien verá en eso *una fuerza que Dios abre en la persona* en el momento de la verdad.
+La ciencia lo llamará adrenalina. Ella lo llamó oración.<br />
+Pero lo que me quedó es el segundo de antes.
 
-¿Y ella? No levantó un auto.
+La cabeza le dijo lo que también nos dice a nosotros frente a algo demasiado grande: *esto no es para ti.*<br />
+No esperó a que se convenciera. *Rezó, y empujó.*
 
-Levantó *un miedo,* y lo convirtió en verdad.
+La sensación de «puedo» casi nunca llega antes de empezar.<br />
+Llega después, con el primer milímetro.
+
+Cuando me oigo decir «esto me queda grande», me pregunto:
+
+<div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿Cuál es mi milímetro aquí?</p></div>
 
 <p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>

@@ -54,4 +54,15 @@ Años después, él y los padres de James empezaron a dar charlas juntos. Los pa
 
 > Durante años, todos le preguntaron qué había hecho. Pero las personas que tenían más derecho que nadie a hacerle esa pregunta eligieron preguntarle otra: qué quería hacer con su vida.
 
+Es fácil emocionarse con los padres de James. Cuesta más darse cuenta de que la pregunta vieja nos la hacemos sobre todo a nosotros mismos.
+
+Después de un error, la cabeza vuelve una y otra vez al mismo momento: ¿cómo pude?, ¿qué hice?<br />
+Se siente como responsabilidad. Pero casi siempre es solo un castigo que no termina.
+
+El arrepentimiento verdadero mira hacia atrás para reparar, *no para quedarse ahí.*
+
+Después de caer, me pregunto:
+
+<div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿Y qué quiero hacer a partir de aquí?</p></div>
+
 <p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>

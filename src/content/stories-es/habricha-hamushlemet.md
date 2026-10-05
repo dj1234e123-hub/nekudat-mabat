@@ -54,4 +54,16 @@ Pero Thomas ya no esperaba que lo encontraran.
 
 *Se atrapó a sí mismo.*
 
+Durante cincuenta y dos años nadie lo encontró. Pero tampoco era libre.<br />
+Se escondía de la policía, y también de la mujer que dormía a su lado, y de la hija a la que alentaba en cada partido.
+
+Un secreto no pesa por lo que esconde.<br />
+Pesa porque se vive con él a solas: uno lo piensa una y otra vez, y no tiene con quién hablarlo.
+
+Y quizá por eso, al final, lo dijo él mismo.
+
+Cuando siento que estoy guardando algo adentro, me pregunto:
+
+<div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿Quién podría cargar esto conmigo?</p></div>
+
 <p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>

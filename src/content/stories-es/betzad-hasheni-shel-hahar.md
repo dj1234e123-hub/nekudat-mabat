@@ -40,4 +40,13 @@ Los niños lo cruzan para ir a la escuela. Lo usan los habitantes de sesenta ald
 > Entre la aldea y el pueblo hay una montaña.<br />
 > Hoy la atraviesa un camino.
 
+Veintidós años, y cada mañana la misma roca. El camino solo lo vio al final.
+
+Cuando uno busca fuerza solo en el avance, es fácil quebrarse a la mitad, porque casi todo el tiempo el avance no se ve.<br />
+Lo que sostiene durante años no es cuánto ya hice. *Es para quién.*
+
+Los días en que no veo ningún cambio, me detengo y me pregunto:
+
+<div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿Para quién estoy haciendo esto?</p></div>
+
 <p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>
