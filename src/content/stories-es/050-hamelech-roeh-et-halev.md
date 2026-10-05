@@ -60,4 +60,14 @@ El rey no vio el jarrón. Vio *el corazón.*
 
 Meir vino *a dar.* El vecino vino *a recibir.*
 
+El vecino no era un tramposo. Simplemente aprendió de la historia de Meir la parte equivocada: lo que pasó al final.
+
+Desde afuera solo se ve el resultado. Lo que había en el corazón de Meir camino al palacio, la alegría y la sensación de que era un privilegio, no se puede ver. Y por eso tampoco se puede copiar.
+
+Nuestros sabios lo dijeron en una sola frase: *no sean como siervos que sirven al amo para recibir una recompensa.*
+
+Cuando estoy por dar algo, me detengo un momento y me pregunto con sinceridad:
+
+<div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿Qué espero de verdad recibir con esto?</p></div>
+
 <p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>

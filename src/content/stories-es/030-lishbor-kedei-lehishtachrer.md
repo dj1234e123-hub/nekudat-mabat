@@ -78,4 +78,12 @@ Dicen que desde entonces se lo veía más caminando por los pasillos. Menos ocup
 
 Para el rey fue un jarrón de porcelana.
 
+Nadie sabía cuánto valía de verdad el jarrón. Lo que lo volvió tan valioso fue todo lo que se pagó por él.
+
+Lo mismo nos pasa a nosotros: cuanto más invertimos en algo, más valioso parece. El honor, la imagen, el «qué dirán». Cada renuncia le agrega otra capa de oro.
+
+No todo jarrón hay que romperlo. Pero de vez en cuando hago la cuenta:
+
+<div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿Qué estoy cuidando a un precio más alto de lo que vale?</p></div>
+
 <p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>

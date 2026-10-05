@@ -66,4 +66,12 @@ Subió, un círculo y otro círculo, hasta que el gallinero se volvió un punto 
 
 Ahí, en la altura, entendió por fin qué pequeña había sido la historia que le contaron sobre sí mismo.
 
+La primera vez, sobre el cerco, saltó de vuelta al gallinero. El viejo no discutió. Esperó, y llevó al águila a la montaña.
+
+Las voces viejas son más fuertes en el lugar donde se dijeron. Frente a los ojos que se burlaban, casi no se puede intentar algo nuevo. En un lugar tranquilo, junto a alguien que cree en ti, de pronto se puede.
+
+Por eso, cuando quiero empezar algo nuevo en mí, primero me pregunto:
+
+<div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿Dónde, y con quién, puedo intentarlo por primera vez?</p></div>
+
 <p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>

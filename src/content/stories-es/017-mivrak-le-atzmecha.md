@@ -34,4 +34,12 @@ Mandó a casa un telegrama:
 
 > El mismo hecho. La misma frase.<br />Solo el telegrama que se enviaron a sí mismos fue distinto.
 
+El telegrama que nos enviamos a nosotros mismos se escribe en un segundo, y no se siente como un telegrama. Se siente como la realidad misma. «No hay qué vender» le sonó a Daniel como un hecho, igual que «nadie usa zapatos».
+
+El hecho no siempre lo puedo cambiar. Lo que escribo después lo escribo yo, aunque no me dé cuenta de que lo estoy escribiendo.
+
+Cuando algo me cae encima, leo el telegrama antes de enviarlo:
+
+<div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿Qué telegrama me estoy enviando ahora?</p></div>
+
 <p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>
