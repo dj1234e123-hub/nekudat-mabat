@@ -76,4 +76,4 @@ source: "מבוסס על סיפור שנשמע, בעיבוד ובכתיבה מק
 
 *"יותר שנים חיכיתי שהוא יהיה אבא שלי, מאשר כעסתי עליו."*
 
-<p class="signature">באהבה,<br />אפרים עטיה</p>
+<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים</span></p>

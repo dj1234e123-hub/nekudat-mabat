@@ -50,4 +50,4 @@ Esta vez no las contó.
 
 > Solo en la carpa había visto el cielo.
 
-<p class="signature">Con cariño,<br />Efraim Atia</p>
+<p class="signature">Creo en ti,<br /><span class="signature-name" lang="he" dir="rtl">אפרים</span></p>

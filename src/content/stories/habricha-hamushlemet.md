@@ -60,4 +60,4 @@ source: "מבוסס על סיפור אמיתי מתועד (CNN, 3.12.2023; מא�
 
 *הוא תפס את עצמו.*
 
-<p class="signature">באהבה,<br />אפרים עטיה</p>
+<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים</span></p>

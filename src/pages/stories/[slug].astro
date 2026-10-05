@@ -142,6 +142,19 @@ const altLangHref = hasEsTwin ? esStoryPath(story.id) : '/es/historias/';
   )
 }
 
+<style is:global>
+  /* פונט החתימה – כתב יד עברי, אותיות בלבד (6KB). אותו קובץ של המכתב
+     בעמוד מי אני; כאן הוא חותם את השם הפרטי בסוף כל סיפור. */
+  @font-face {
+    font-family: 'Playpen Sans Hebrew';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/playpen-hebrew.woff2') format('woff2');
+    unicode-range: U+05D0-05EA;
+  }
+</style>
+
 <style>
   .story-header {
     text-align: center;
@@ -195,6 +208,51 @@ const altLangHref = hasEsTwin ? esStoryPath(story.id) : '/es/historias/';
     font-family: var(--font-display);
     color: var(--teal-deep);
     margin-top: 2.5rem;
+  }
+
+  .story-body :global(.signature-name) {
+    font-family: 'Playpen Sans Hebrew', var(--font-display);
+    color: var(--blue);
+    font-size: 1.7rem;
+    line-height: 1.4;
+  }
+
+  /* "שאלה לדרך" – הכלי שהקורא לוקח מהסיפור (2026-10-05). התובנה עצמה
+     ממשיכה בגוף הסיפור בלי הפרדה; רק השאלה מסומנת, באותו סימן של
+     "נקודה לדרך" ברגעים: קו זהב דק ונקודת זהב במרכזו. */
+  .story-body :global(.story-question) {
+    position: relative;
+    margin: 2.2rem 0 0;
+    padding-top: 1.6rem;
+    border-top: 1px solid color-mix(in srgb, var(--gold) 55%, transparent);
+    text-align: center;
+  }
+  .story-body :global(.story-question::before) {
+    content: '';
+    position: absolute;
+    top: -0.3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+  .story-body :global(.story-question-label) {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: var(--gold-deep, #8f6f28);
+  }
+  .story-body :global(.story-question p) {
+    margin: 0.35rem 0 0;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.35rem;
+    line-height: 1.5;
+    color: var(--blue);
+    text-wrap: balance;
   }
 
   /* תצלום בתוך גוף הסיפור (ראשון: "למה קוראים לי אפרים?", 2026-09-14).

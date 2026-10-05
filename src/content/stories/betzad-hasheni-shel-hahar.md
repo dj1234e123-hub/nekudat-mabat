@@ -46,4 +46,4 @@ source: "מבוסס על סיפורו האמיתי של דשרת' מנג'הי, �
 > בין הכפר לעיירה עומד הר.<br />
 > היום עוברת בו דרך.
 
-<p class="signature">באהבה,<br />אפרים עטיה</p>
+<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים</span></p>

@@ -78,4 +78,4 @@ source: "מבוסס על סיפור שנשמע, בעיבוד ובכתיבה מק
 
 מאז, הוא כבר לא הסתכל אותו דבר על מטוסים מנייר.
 
-<p class="signature">באהבה,<br />אפרים עטיה</p>
+<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים</span></p>

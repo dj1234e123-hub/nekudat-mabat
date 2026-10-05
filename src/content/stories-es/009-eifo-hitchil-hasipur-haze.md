@@ -74,4 +74,4 @@ Con los años: Rabí Iosef Shalom Eliashiv, de bendita memoria.
 
 Y solo ella sabía *dónde había empezado esta historia.*
 
-<p class="signature">Con cariño,<br />Efraim Atia</p>
+<p class="signature">Creo en ti,<br /><span class="signature-name" lang="he" dir="rtl">אפרים</span></p>

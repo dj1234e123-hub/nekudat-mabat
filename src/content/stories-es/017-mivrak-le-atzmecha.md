@@ -34,4 +34,4 @@ Mandó a casa un telegrama:
 
 > El mismo hecho. La misma frase.<br />Solo el telegrama que se enviaron a sí mismos fue distinto.
 
-<p class="signature">Con cariño,<br />Efraim Atia 👁️</p>
+<p class="signature">Creo en ti,<br /><span class="signature-name" lang="he" dir="rtl">אפרים</span></p>

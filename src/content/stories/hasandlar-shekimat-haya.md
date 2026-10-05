@@ -36,4 +36,4 @@ source: "מסופר על הנצי\"ב מוולוז'ין (הרב נפתלי צב�
 
 > ולא הייתי מבין כלל על מה הם מדברים.
 
-<p class="signature">באהבה,<br />אפרים עטיה</p>
+<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים</span></p>

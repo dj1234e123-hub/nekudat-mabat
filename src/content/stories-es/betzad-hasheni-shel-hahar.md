@@ -40,4 +40,4 @@ Los niños lo cruzan para ir a la escuela. Lo usan los habitantes de sesenta ald
 > Entre la aldea y el pueblo hay una montaña.<br />
 > Hoy la atraviesa un camino.
 
-<p class="signature">Con cariño,<br />Efraim Atia</p>
+<p class="signature">Creo en ti,<br /><span class="signature-name" lang="he" dir="rtl">אפרים</span></p>

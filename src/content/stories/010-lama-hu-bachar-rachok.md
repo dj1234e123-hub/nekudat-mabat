@@ -45,4 +45,4 @@ source: "סיפור אישי מאת אפרים עטיה."
 
 התקרבתי קצת פחות לדלת – ומשהו בי *נשאר שם.*
 
-<p class="signature">באהבה,<br />אפרים עטיה</p>
+<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים</span></p>

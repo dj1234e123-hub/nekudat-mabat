@@ -53,4 +53,4 @@ El tren va llegando. Miramos hacia afuera.
 
 Buscábamos un solo pañuelo que nos dijera que volviéramos. Y toda la estación *nos estaba esperando*.
 
-<p class="signature">Con cariño,<br />Efraim Atia</p>
+<p class="signature">Creo en ti,<br /><span class="signature-name" lang="he" dir="rtl">אפרים</span></p>

@@ -73,4 +73,4 @@ source: "מבוסס על סיפור על הרב שטיינמן זצ\"ל, בעי�
 
 הוא הכניס את היד לקערה, ונתן לי *שלוש סוכריות.*
 
-<p class="signature">באהבה,<br />אפרים עטיה</p>
+<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים</span></p>

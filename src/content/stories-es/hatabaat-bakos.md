@@ -53,4 +53,4 @@ Billy guardó el anillo porque creía: quien perdió algo valioso, todavía va a
 
 > Solo que no sabía que en algún lugar de Texas, después de dieciséis años, *alguien todavía recordaba su cara.*
 
-<p class="signature">Con cariño,<br />Efraim Atia</p>
+<p class="signature">Creo en ti,<br /><span class="signature-name" lang="he" dir="rtl">אפרים</span></p>

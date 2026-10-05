@@ -53,4 +53,4 @@ Sigue existiendo hoy. Ha reunido más de un millón y medio de dólares, y más 
 > Los últimos nacieron años después de aquella noche.<br />
 > Pero siguen recibiendo de ella.
 
-<p class="signature">Con cariño,<br />Efraim Atia</p>
+<p class="signature">Creo en ti,<br /><span class="signature-name" lang="he" dir="rtl">אפרים</span></p>

@@ -43,4 +43,4 @@ Y después otro.
 > Durante cinco meses hicieron fila para recibir.<br />
 > Ahora hacen fila para bendecir.
 
-<p class="signature">Con cariño,<br />Efraim Atia</p>
+<p class="signature">Creo en ti,<br /><span class="signature-name" lang="he" dir="rtl">אפרים</span></p>

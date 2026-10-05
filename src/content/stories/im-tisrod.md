@@ -47,4 +47,4 @@ source: "מבוסס על עדות בתו של חסקל טידור, פרופ' י�
 
 > מרים אותו אל הפה. ותוקע.
 
-<p class="signature">באהבה,<br />אפרים עטיה</p>
+<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים</span></p>

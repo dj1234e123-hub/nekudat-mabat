@@ -63,4 +63,4 @@ source: 'מבוסס על סיפור על מרן הרב שך זצ"ל, בעיבו�
 
 והאמא לא הצליחה להפסיק להסתכל עליה. גם אחרי שהרב כבר הלך.
 
-<p class="signature">באהבה,<br />אפרים עטיה</p>
+<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים</span></p>

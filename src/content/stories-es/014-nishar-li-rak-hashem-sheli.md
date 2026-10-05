@@ -100,4 +100,4 @@ Cuando volvió al rabino a agradecerle, Rabí Jizkiá sonrió.
 
 —Tu sustento no volvió el día que vendiste. Volvió el día que dejaste de *hablarte* como un hombre *roto.*
 
-<p class="signature">Con cariño,<br />Efraim Atia</p>
+<p class="signature">Creo en ti,<br /><span class="signature-name" lang="he" dir="rtl">אפרים</span></p>

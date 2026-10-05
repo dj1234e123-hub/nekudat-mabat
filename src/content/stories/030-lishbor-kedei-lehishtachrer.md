@@ -83,4 +83,4 @@ source: "משל בעיבוד ובכתיבה מקוריים מאת אפרים ע�
 
 אצל המלך זה היה כד חרסינה.
 
-<p class="signature">באהבה,<br />אפרים עטיה</p>
+<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים</span></p>

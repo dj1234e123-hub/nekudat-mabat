@@ -66,4 +66,4 @@ Subió, un círculo y otro círculo, hasta que el gallinero se volvió un punto 
 
 Ahí, en la altura, entendió por fin qué pequeña había sido la historia que le contaron sobre sí mismo.
 
-<p class="signature">Con cariño,<br />Efraim Atia</p>
+<p class="signature">Creo en ti,<br /><span class="signature-name" lang="he" dir="rtl">אפרים</span></p>

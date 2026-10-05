@@ -74,4 +74,4 @@ Y entonces dijo:
 
 *—Pasé más años esperando que fuera mi papá que enojado con él.*
 
-<p class="signature">Con cariño,<br />Efraim Atia</p>
+<p class="signature">Creo en ti,<br /><span class="signature-name" lang="he" dir="rtl">אפרים</span></p>

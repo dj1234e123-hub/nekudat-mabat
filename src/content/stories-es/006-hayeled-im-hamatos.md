@@ -76,4 +76,4 @@ Cuando salió, les dio las gracias a todos los alumnos. Pero un gracias especial
 
 Desde entonces, nunca más volvió a mirar igual un avión de papel.
 
-<p class="signature">Con cariño,<br />Efraim Atia</p>
+<p class="signature">Creo en ti,<br /><span class="signature-name" lang="he" dir="rtl">אפרים</span></p>

@@ -39,4 +39,4 @@ Cien años exactos después de aquel día que no se celebró, Israel *subió a l
 
 > «Cien años esperé este momento».
 
-<p class="signature">Con cariño,<br />Efraim Atia</p>
+<p class="signature">Creo en ti,<br /><span class="signature-name" lang="he" dir="rtl">אפרים</span></p>

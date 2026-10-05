@@ -51,4 +51,4 @@ source: 'סיפור שואה ידוע על ניגון "אני מאמין" מחס
 
 *אני מאמין.*
 
-<p class="signature">באהבה,<br />אפרים עטיה</p>
+<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים</span></p>

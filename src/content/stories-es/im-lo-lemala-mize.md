@@ -60,4 +60,4 @@ Solo añadía en voz baja:
 
 > —Si no más arriba.
 
-<p class="signature">Con cariño,<br />Efraim Atia</p>
+<p class="signature">Creo en ti,<br /><span class="signature-name" lang="he" dir="rtl">אפרים</span></p>

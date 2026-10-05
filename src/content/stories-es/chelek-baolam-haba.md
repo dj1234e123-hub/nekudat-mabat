@@ -84,4 +84,4 @@ A la mañana siguiente, cuando toda la ciudad ya ha dicho la bendición sobre el
 
 > Ahora que estabas dispuesto a renunciar a ella, de verdad es tuya.
 
-<p class="signature">Con cariño,<br />Efraim Atia</p>
+<p class="signature">Creo en ti,<br /><span class="signature-name" lang="he" dir="rtl">אפרים</span></p>

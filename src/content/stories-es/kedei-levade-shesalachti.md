@@ -53,4 +53,4 @@ Y respondió:
 
 > —Lo perdoné enseguida. Pero temía que quedara en el corazón un resto de rencor que *ni yo mismo alcanzara a sentir.* Así que busqué hacerle bien. Para arrancarlo del corazón, hasta el final.
 
-<p class="signature">Con cariño,<br />Efraim Atia</p>
+<p class="signature">Creo en ti,<br /><span class="signature-name" lang="he" dir="rtl">אפרים</span></p>

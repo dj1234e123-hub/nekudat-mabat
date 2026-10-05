@@ -70,4 +70,4 @@ A ese muchacho de catorce años que entró en la habitación *sin saber todavía
 
 > Y su nombre pasó a mí.
 
-<p class="signature">Con cariño,<br />Efraim Atia</p>
+<p class="signature">Creo en ti,<br /><span class="signature-name" lang="he" dir="rtl">אפרים</span></p>

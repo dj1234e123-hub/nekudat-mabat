@@ -69,4 +69,16 @@ La mujer se quedó ahí con sus lágrimas.
 
 ¿Y yo? Me quedé ahí *con la vergüenza.*
 
-<p class="signature">Con cariño,<br />Efraim Atia</p>
+Ahí entendí algo que me cuesta admitir:<br />
+estaba tan ocupado sospechando de ellos que a la mujer *ni siquiera la vi.*
+
+Y no fue casualidad.<br />
+Cuando la cabeza decide que ya sabe, deja de mirar y empieza a buscar pruebas.<br />
+¿Contaban dinero? Prueba.<br />
+Y lo que no encaja con la historia que ya me conté, simplemente no lo veo.
+
+Desde entonces, cuando me descubro seguro de alguien, me hago una sola pregunta:
+
+<div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿Qué más podría ser cierto aquí?</p></div>
+
+<p class="signature">Creo en ti,<br /><span class="signature-name" lang="he" dir="rtl">אפרים</span></p>

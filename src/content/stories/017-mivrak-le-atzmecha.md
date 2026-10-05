@@ -34,4 +34,4 @@ source: "משל ידוע, בעיבוד ובכתיבה מקוריים מאת אפ
 
 > אותה עובדה. אותו משפט.<br />רק המברק ששלחו לעצמם היה שונה.
 
-<p class="signature">באהבה,<br />אפרים עטיה 👁️</p>
+<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים</span></p>

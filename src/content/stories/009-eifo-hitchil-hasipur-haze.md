@@ -72,4 +72,4 @@ source: "מבוסס על סיפור על רבי שלמה אלישיב ובתו, 
 
 ורק היא ידעה *איפה התחיל הסיפור הזה.*
 
-<p class="signature">באהבה,<br />אפרים עטיה</p>
+<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים</span></p>
