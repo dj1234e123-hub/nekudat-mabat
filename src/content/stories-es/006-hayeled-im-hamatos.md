@@ -76,4 +76,17 @@ Cuando salió, les dio las gracias a todos los alumnos. Pero un gracias especial
 
 Desde entonces, nunca más volvió a mirar igual un avión de papel.
 
+El momento más importante de esta historia pasó sin palabras: el segundo en que su cuerpo ya iba camino a gritar, y se detuvo.
+
+Entre lo que nos pasa y lo que hacemos hay un espacio pequeño.<br />
+Casi siempre es tan corto que no se siente. Pero existe, y ahí está toda la elección.
+
+Un chico que le tira un avión a un maestro nuevo no está comprobando si sabe apuntar.<br />
+Los chicos a los que muchos adultos ya dejaron comprueban una sola cosa: *¿tú también te vas a ir?*<br />
+Y a esa pregunta no se responde con palabras. Se responde en el momento en que uno no explota.
+
+Así que cuando alguien me saca de quicio, respiro una vez y me pregunto:
+
+<div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿Qué está poniendo a prueba en mí ahora?</p></div>
+
 <p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>

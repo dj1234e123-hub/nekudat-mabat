@@ -46,4 +46,16 @@ No rompió dinero.
 
 Armó *un corazón.*
 
+Mi mano ya casi se levantaba. Un segundo más, y le habría enseñado que el dinero no se corta.<br />
+Y ella habría aprendido algo muy distinto: que cuando intentas alegrar a papá, te gritan.
+
+Los chicos recuerdan menos lo que les explicamos, y más cómo reaccionamos en el momento en que nos dieron algo.
+
+Sobre el dinero se le puede enseñar mañana.<br />
+*El corazón* había que recibirlo ahora.
+
+Así que antes de reaccionar a algo que hicieron mis hijos, trato de preguntarme primero:
+
+<div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿Qué me estaban queriendo dar?</p></div>
+
 <p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>

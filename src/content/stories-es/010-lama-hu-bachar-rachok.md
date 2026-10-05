@@ -40,4 +40,16 @@ El estacionamiento era el mismo. Pero algo en mí se calmó.
 
 Terminé un poco más lejos de la puerta – y algo mío *se quedó ahí.*
 
+A las 7:30 no había nada que ganar. Y aun así, mi cuerpo corría.
+
+Esa presión no venía del reloj.<br />
+Venía de la sensación de que no alcanza: el tiempo, el lugar, las oportunidades. Y quien siente que no alcanza, agarra.
+
+Mi vecino sentía que tenía *suficiente.*<br />
+Por eso tenía algo que dejarle al que llegara después.
+
+Hoy, cuando siento que tengo que agarrar algo ya, me pregunto:
+
+<div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿De verdad estoy apurado, o solo estoy acostumbrado a apurarme?</p></div>
+
 <p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>

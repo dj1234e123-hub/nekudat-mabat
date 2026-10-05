@@ -82,4 +82,16 @@ Y dice:
 
 —Parece *que ya llegó.*
 
+Todo el camino estuvo seguro de que se estaba perdiendo lo importante.
+
+Cuando un plan se rompe, la cabeza pregunta enseguida: *¿por qué me pasa esto a mí?*<br />
+Y esa pregunta casi nunca tiene respuesta en ese momento.
+
+El profesor no sabía que ese pueblo era el destino.<br />
+Solo se fijó en el chico que estaba junto a la cama.
+
+Así que cuando algo se me rompe en el camino, trato de cambiar el «por qué» por otra pregunta:
+
+<div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿Qué se puede hacer justo aquí?</p></div>
+
 <p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>
