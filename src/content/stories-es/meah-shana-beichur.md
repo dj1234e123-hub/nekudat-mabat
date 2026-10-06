@@ -39,4 +39,12 @@ Cien años exactos después de aquel día que no se celebró, Israel *subió a l
 
 > «Cien años esperé este momento».
 
+Lo reconstruyó todo: el negocio, la casa, la familia. Y justamente lo pequeño, lo que no pasó a los trece años, quedó pendiente todos esos años.
+
+Lo que no hicimos a tiempo se vuelve, con los años, vergonzoso de hacer. Parece que el tren ya pasó, y que quien empieza ahora va a quedar en ridículo. A los ciento trece años Israel subió a leer la Torá, y cien familiares estaban a su alrededor.
+
+Rabí Israel Salanter dijo: mientras la vela está encendida, todavía se puede reparar. Cuando estoy frente a algo que postergué durante años, me pregunto:
+
+<div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿Qué estoy postergando solo porque me parece que ya es tarde?</p></div>
+
 <p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>
