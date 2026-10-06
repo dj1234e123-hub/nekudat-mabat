@@ -30,13 +30,9 @@ Y bajaron, convencidos de que habían hecho lo lógico.
 
 Después de cincuenta pisos, también los últimos sintieron que el cuerpo pedía parar. Y el corazón pedía *no caer.*
 
-Bajaron, sin saber que ya habían recorrido la mayor parte del camino interior.
-
 Y en el piso setenta quedó *un solo ministro.*
 
-No el más fuerte. No el más rápido. Pero había en él una cosa que cambió toda la historia:
-
-Creía en el rey más de lo que creía en su propio cálculo.
+No el más fuerte. No el más rápido. Solo uno que creía en el rey más que en su propio cálculo.
 
 En cada piso sentía que las fuerzas se terminaban. Pero se decía:
 
@@ -60,10 +56,11 @@ Pero yo no les pedí hacer lo imposible.
 
 Les pedí llegar hasta el lugar donde el camino *se abre solo.*
 
-Los ministros hicieron su cuenta desde abajo. Y desde abajo no se puede ver una puerta que está en el piso setenta.
+Los ministros hicieron la cuenta desde abajo. Y la cuenta estaba bien.<br />
+Solo que contaba únicamente lo que tenían en las manos: cuánta fuerza, cuánto tiempo, cuántos pisos.<br />
+Lo que el rey les había preparado en el piso setenta, desde abajo no se puede contar.
 
-La cuenta que hago al principio solo ve los pisos que tengo delante. Lo que espera más adelante en el camino, no lo puede ver.
-
+También mi cuenta suele contar solo mis propias fuerzas.<br />
 Por eso, cuando algo me parece imposible, reviso:
 
 <div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿A qué estoy renunciando solo por la cuenta que hice desde abajo?</p></div>
