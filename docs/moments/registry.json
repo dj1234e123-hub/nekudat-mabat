@@ -2399,6 +2399,27 @@
    "twin": null,
    "verdict": "חזק",
    "status": "published"
+  },
+  {
+   "slug": "ovdan-shem-echad",
+   "title": "שם אחד",
+   "home": "loss",
+   "gate": "hurting",
+   "entries": [],
+   "move": "SEP",
+   "move2": "STEP",
+   "inner": "\"איך אפשר להכיל כאב כל כך גדול?\"",
+   "reader": "7 באוקטובר, שלוש שנים: מול מספר הנרצחים הלב נסגר",
+   "shift": "אף אחד מהם לא היה מספר; מספר אי אפשר לזכור, שם אפשר",
+   "motion": 3,
+   "takeaway": "Y",
+   "opening": "תאריך/עובדה",
+   "shape": "הפרדה",
+   "clusters": [],
+   "twin": null,
+   "verdict": "חזק",
+   "status": "published",
+   "season": "7 באוקטובר (נכתב ליום במפורש, בהחלטת בעל הפרויקט)"
   }
  ]
 }
