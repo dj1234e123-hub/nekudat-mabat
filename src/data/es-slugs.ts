@@ -27,6 +27,7 @@
 
 /** שם הקובץ באוסף storiesEs ← הסלאג הציבורי בספרדית. */
 export const ES_STORY_SLUGS: Record<string, string> = {
+  '738-yamim-vechatzi-shaa': '738-dias-y-media-hora',
   '001-kvar-hechlateti-mi-hem': 'ya-habia-decidido-quienes-eran',
   '005-mitachat-lakash-beauschwitz': 'bajo-la-paja-en-auschwitz',
   '006-hayeled-im-hamatos': 'el-chico-del-avion-de-papel',
