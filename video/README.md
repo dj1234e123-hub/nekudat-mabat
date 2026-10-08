@@ -7,3 +7,11 @@
 - `npm install && npm run assets` – גופנים ותמונות מהאתר.
 - `npm run voice` – קריינות לכל סצנה (edge-tts, קול גברי). דורש גישה ל-speech.platform.bing.com.
 - `npm run render` – אורך כל סצנה לפי הקריינות שלה, ורינדור ל-`out/story.mp4`.
+
+## סרטון תדמית (`promo`, 26 שניות)
+
+`src/Promo.tsx`: קיר שערי הסיפורים, שאלת פתיחה, סימן הנקודה, ארבעת העולמות, האתר האמיתי בתוך טלפון, חמשת השערים, לוגו.
+- `npm run assets` – מחייב בנייה עדכנית של האתר (`../dist`): הקיר לוקח רק שערים של סיפורים שפורסמו.
+- `node scripts/screens.cjs` – צילומי האתר לטלפון (האתר הבנוי מוגש ב-4321).
+- `npm run music:promo` – מוזיקה מקורית (numpy), עם פעימה נמוכה בכל מעבר סצנה.
+- `npm run render:promo` → `out/promo.mp4`.
