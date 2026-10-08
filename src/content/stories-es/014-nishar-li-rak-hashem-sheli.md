@@ -7,7 +7,7 @@ cover: ../../assets/covers/014.png
 coverAlt: "Un hombre de camisa blanca y kipá, de espaldas a la cámara, entra a un callejón de mercado antiguo a la luz del amanecer; puestos de frutas a ambos lados, gente al fondo del callejón, y un piso de piedra dorado"
 date: 2026-08-20T09:00:00Z
 readingTime: "unos 2 minutos"
-excerpt: "Cada golpe en la puerta hacía saltar a Iosef de la cama. Le habían robado la mercadería, el negocio se vació, y entonces escuchó a los hijos preguntarle a su madre cuándo papá volvería a sonreír."
+excerpt: "Cada golpe en la puerta hacía saltar a Iosef de la cama. Le habían robado la mercadería, el negocio se vació. Y entonces escuchó a los hijos preguntarle a su madre: «¿Cuándo va a volver a sonreír papá?»"
 ---
 
 Cada golpe en la puerta hacía saltar a Iosef de la cama.
@@ -50,7 +50,7 @@ Silencio.
 
 Y entonces dijo:
 
-—Todavía te queda una boca, y un buen nombre. Y eso es más de lo que tiene mucha gente.
+—Todavía te queda una boca para hablar, y un buen nombre. Y eso es más de lo que tiene mucha gente.
 
 El rabino se le acercó un poco.
 
@@ -102,9 +102,9 @@ Cuando volvió al rabino a agradecerle, Rabí Jizkiá sonrió.
 
 Cuando todo se cae, la cabeza hace una lista de lo que no hay: no hay mercadería. No hay dinero. No hay con qué empezar. Esa lista es verdadera, y también es lo único que se ve.
 
-Rabí Jizkiá no discutió con ella. Abrió una segunda lista: lo que todavía hay. Una boca, y un buen nombre. Y en el mercado, frente al comerciante, fue justamente la segunda lista la que habló.
+Rabí Jizkiá no discutió con ella. Abrió una segunda lista: lo que todavía hay. Una boca para hablar, y un buen nombre. Y en el mercado, frente al comerciante, fue justamente la segunda lista la que habló.
 
-Una lista así no hay que inventarla. Solo hay que acordarse de escribirla. El día en que todo me parece que falta, me pregunto:
+Una lista así no hay que inventarla. Solo hay que acordarse de ella. El día en que todo me parece que falta, me pregunto:
 
 <div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿Qué me queda todavía, incluso ahora?</p></div>
 
