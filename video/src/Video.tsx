@@ -112,9 +112,15 @@ const SceneView: React.FC<{ s: Scene }> = ({ s }) => {
   );
 };
 
+// A quiet pad under the voice; it never competes with the words.
+const BG_VOLUME = 0.35;
+
 export const Video: React.FC = () => (
   <AbsoluteFill style={{ background: C.paper, direction: 'rtl' }}>
     <style>{fonts}</style>
+    <Audio src={staticFile('audio/bg.mp3')} loop
+      volume={(f) => BG_VOLUME * interpolate(f, [0, 30, timeline.total - 45, timeline.total], [0, 1, 1, 0],
+        { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })} />
     {(timeline.scenes as Scene[]).map((s) => (
       <Sequence key={s.id} from={s.from} durationInFrames={s.dur}>
         <SceneView s={s} />
