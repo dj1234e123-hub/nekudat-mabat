@@ -4,7 +4,7 @@ const { chromium } = require('playwright');
 (async () => {
   const b = await chromium.launch();
   const p = await b.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 });
-  for (const [url, name] of [['/', 'site-home'], ['/stories/', 'site-stories']]) {
+  for (const [url, name] of [['/', 'site-home'], ['/stories/', 'site-stories'], ['/es/historias/', 'site-stories-es']]) {
     await p.goto('http://localhost:4321' + url, { waitUntil: 'networkidle' });
     await p.evaluate(async () => { for (let y = 0; y < document.body.scrollHeight; y += 400) { window.scrollTo(0, y); await new Promise((r) => setTimeout(r, 120)); } window.scrollTo(0, 0); });
     await p.waitForTimeout(500);

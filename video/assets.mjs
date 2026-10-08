@@ -28,6 +28,16 @@ await Promise.all(covers.map((f) =>
   sharp(`../src/assets/covers/${f}`).resize(420).jpeg({ quality: 78 }).toFile(`public/wall/${f.replace('.png', '.jpg')}`)));
 fs.writeFileSync('src/wall.json', JSON.stringify(covers.map((f) => `wall/${f.replace('.png', '.jpg')}`)));
 
+// The Spanish wall: the same stories where a Spanish version exists, with the caption-free
+// Spanish cover when the Hebrew one carries Hebrew text.
+const translated = new Set(fs.readdirSync('../src/content/stories-es').map((f) => f.replace(/\.mdx?$/, '')));
+const coversEs = covers.map((f) => f.replace('.png', ''))
+  .filter((b) => [...translated].some((s) => s === b || s.startsWith(`${b}-`)))
+  .map((b) => (fs.existsSync(`../src/assets/covers/${b}-es.png`) ? `${b}-es` : b));
+await Promise.all(coversEs.filter((b) => b.endsWith('-es')).map((b) =>
+  sharp(`../src/assets/covers/${b}.png`).resize(420).jpeg({ quality: 78 }).toFile(`public/wall/${b}.jpg`)));
+fs.writeFileSync('src/wall-es.json', JSON.stringify(coversEs.map((b) => `wall/${b}.jpg`)));
+
 // Gate photos: the four story worlds and the five moment gates.
 const gates = ['stories-red', 'stories-teal', 'stories-blue', 'stories-gold', 'hurting', 'self', 'stuck', 'beginning', 'upward'];
 await Promise.all(gates.map((g) => {
@@ -35,4 +45,4 @@ await Promise.all(gates.map((g) => {
   return sharp(src).resize(700).jpeg({ quality: 82 }).toFile(`public/gate-${g}.jpg`);
 }));
 
-console.log('assets:', Object.keys(files).length, 'files ·', covers.length, 'covers ·', gates.length, 'gates');
+console.log('assets:', Object.keys(files).length, 'files ·', covers.length, 'covers ·', coversEs.length, 'es covers ·', gates.length, 'gates');
