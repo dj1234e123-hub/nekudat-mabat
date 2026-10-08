@@ -10,6 +10,7 @@ const files = {
   'heebo.ttf': '../src/assets/og-fonts/heebo.ttf',
   'heebo-bold.ttf': '../src/assets/og-fonts/heebo-bold.ttf',
   'logo.jpg': '../src/assets/logo.jpg',
+  'playpen-hebrew.woff2': '../public/fonts/playpen-hebrew.woff2',
   'lama-korim-li-efraim.png': '../src/assets/covers/lama-korim-li-efraim.png',
   'chacham-efraim-hacohen.png': '../src/assets/photos/chacham-efraim-hacohen.png',
 };

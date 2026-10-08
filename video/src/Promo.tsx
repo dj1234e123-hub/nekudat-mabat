@@ -14,10 +14,11 @@ const fonts = `
 @font-face{font-family:Frank;src:url(${staticFile('frank.ttf')});font-weight:400}
 @font-face{font-family:Frank;src:url(${staticFile('frank-bold.ttf')});font-weight:700}
 @font-face{font-family:Heebo;src:url(${staticFile('heebo.ttf')});font-weight:400}
-@font-face{font-family:Heebo;src:url(${staticFile('heebo-bold.ttf')});font-weight:700}`;
+@font-face{font-family:Heebo;src:url(${staticFile('heebo-bold.ttf')});font-weight:700}
+@font-face{font-family:Hand;src:url(${staticFile('playpen-hebrew.woff2')})}`;
 
 // Cut points in frames (30fps); the music's low pulses land on the same seconds.
-export const CUTS = [0, 105, 225, 330, 465, 615, 780, 930];
+export const CUTS = [0, 120, 240, 360, 495, 645, 810, 960, 1080];
 export const PROMO_FRAMES = CUTS[CUTS.length - 1];
 
 const ease = (f: number, a: number, b: number, from = 0, to = 1) =>
@@ -76,52 +77,57 @@ const Wall: React.FC<{ dim?: number; speed?: number }> = ({ dim = 0.55, speed = 
   );
 };
 
+// The video is a letter from Efraim to whoever is watching: first person, ending in the invitation.
+
 const S1: React.FC = () => {
   const f = useCurrentFrame();
   return (
     <AbsoluteFill>
-      <div style={{ position: 'absolute', inset: 0, transform: `scale(${ease(f, 0, 96, 1.25, 1.05)})` }}>
-        <Wall dim={ease(f, 20, 70, 0.15, 0.6)} speed={1.4} />
+      <div style={{ position: 'absolute', inset: 0, transform: `scale(${ease(f, 0, 120, 1.25, 1.05)})` }}>
+        <Wall dim={ease(f, 10, 60, 0.15, 0.62)} speed={1.3} />
       </div>
-      <AbsoluteFill style={{ justifyContent: 'center', gap: 30 }}>
-        <Title at={18} size={150}>סיפור אחד</Title>
-        <Title at={40} size={84} color={C.cream}>יכול לשנות לך את <Hl>היום.</Hl></Title>
+      <AbsoluteFill style={{ justifyContent: 'center', gap: 34 }}>
+        <Title at={20} size={78} color={C.cream}>רגע לפני שממשיכים לגלול,</Title>
+        <Title at={46} size={108}>יש לי משהו<br />לספר <Hl>לך.</Hl></Title>
       </AbsoluteFill>
     </AbsoluteFill>
   );
 };
 
-const S2: React.FC = () => (
-  <AbsoluteFill style={{ background: C.red, justifyContent: 'center', gap: 50 }}>
-    <Title at={4} size={100}>לא עוד הרצאה.</Title>
-    <Title at={24} size={100}>לא עוד עצה.</Title>
-    <div style={{ height: 30 }} />
-    <Title at={52} size={84} color={C.cream}>רק סיפור.<br />ואתה מבין לבד.</Title>
-  </AbsoluteFill>
-);
+// A sheet of paper: the letter itself begins.
+const S2: React.FC = () => {
+  const f = useCurrentFrame();
+  return (
+    <AbsoluteFill style={{ background: C.paper, justifyContent: 'center', gap: 40 }}>
+      <div style={{ position: 'absolute', top: 300, left: 490, width: 100, height: 3, background: C.gold, transform: `scaleX(${ease(f, 0, 20)})` }} />
+      <Title at={6} size={130} color={C.blue}>אני אפרים.</Title>
+      <Title at={32} size={76} color={C.ink}>כבר שנים<br />אני אוסף סיפורים.</Title>
+    </AbsoluteFill>
+  );
+};
 
 // The brand mark: a paper circle opens, the gold point lands in its centre.
 const S3: React.FC = () => {
   const f = useCurrentFrame();
-  const r = ease(f, 0, 30, 0, 330);
-  const dot = spring({ frame: f - 26, fps: 30, config: { damping: 12, stiffness: 140 } });
+  const r = ease(f, 0, 30, 0, 300);
+  const dot = spring({ frame: f - 24, fps: 30, config: { damping: 12, stiffness: 140 } });
   return (
-    <AbsoluteFill style={{ background: C.tealDeep, alignItems: 'center', justifyContent: 'center' }}>
-      <div style={{ width: r * 2, height: r * 2, borderRadius: '50%', background: C.paper,
+    <AbsoluteFill style={{ background: C.tealDeep, alignItems: 'center' }}>
+      <div style={{ position: 'absolute', top: 360, width: r * 2, height: r * 2, borderRadius: '50%', background: C.paper,
         display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ width: 34 * dot, height: 34 * dot, borderRadius: '50%', background: C.gold }} />
       </div>
-      <Title at={40} size={74} top={1340}>לא אומרים לך מה לחשוב.</Title>
-      <Title at={58} size={86} color={C.gold} top={1450}>נותנים לך לראות.</Title>
+      <Title at={34} size={72} top={1120}>סיפורים שעצרו אותי<br />באמצע היום,</Title>
+      <Title at={60} size={80} color={C.gold} top={1330}>והשאירו אותי<br />עם מחשבה.</Title>
     </AbsoluteFill>
   );
 };
 
 const worlds = [
-  { img: 'gate-stories-red.jpg', label: 'משלים', color: C.red, x: -230, y: -330, rot: -7 },
-  { img: 'gate-stories-teal.jpg', label: 'סיפורי צדיקים', color: C.teal, x: 230, y: -170, rot: 6 },
-  { img: 'gate-stories-blue.jpg', label: 'מהיומן שלי', color: C.blue, x: -210, y: 170, rot: 5 },
-  { img: 'gate-stories-gold.jpg', label: 'מהחיים', color: C.goldText, x: 220, y: 340, rot: -6 },
+  { img: 'gate-stories-red.jpg', label: 'משלים', color: C.red, x: -230, y: -260, rot: -7 },
+  { img: 'gate-stories-teal.jpg', label: 'סיפורי צדיקים', color: C.teal, x: 230, y: -100, rot: 6 },
+  { img: 'gate-stories-blue.jpg', label: 'מהיומן שלי', color: C.blue, x: -210, y: 240, rot: 5 },
+  { img: 'gate-stories-gold.jpg', label: 'מהחיים', color: C.goldText, x: 220, y: 410, rot: -6 },
 ];
 
 const S4: React.FC = () => {
@@ -129,13 +135,13 @@ const S4: React.FC = () => {
   return (
     <AbsoluteFill>
       <Wall dim={0.82} speed={0.5} />
-      <Title at={2} size={84} top={170}>סיפורים שנשארים איתך.</Title>
-      <Sub at={14} top={290}>אמיתיים, קצרים, וכל אחד נקרא בכמה דקות.</Sub>
+      <Title at={2} size={78} top={150}>על צדיקים,<br />על אנשים שפגשתי,</Title>
+      <Title at={60} size={78} color={C.gold} top={1700}>ולפעמים גם עליי.</Title>
       {worlds.map((w, i) => {
         const p = spring({ frame: f - 14 - i * 9, fps: 30, config: { damping: 15, stiffness: 110 } });
         return (
           <div key={w.label} style={{
-            position: 'absolute', left: 540 - 200 - w.x, top: 1010 - 150 + w.y, width: 400,
+            position: 'absolute', left: 540 - 200 - w.x, top: 960 - 150 + w.y, width: 400,
             transform: `translateY(${(1 - p) * 500}px) rotate(${w.rot * p}deg)`, opacity: p,
           }}>
             <div style={{ background: C.paper, padding: 14, borderRadius: 20, boxShadow: '0 20px 50px rgba(0,0,0,.35)' }}>
@@ -154,19 +160,15 @@ const S4: React.FC = () => {
 const S5: React.FC = () => {
   const f = useCurrentFrame();
   const enter = spring({ frame: f, fps: 30, config: { damping: 18 } });
-  const screenW = 560, screenH = 1140;
+  const screenW = 540, screenH = 1080;
   const shotH = (12492 / 780) * screenW;
   const scroll = interpolate(f, [24, 140], [0, -(shotH * 0.42)], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.inOut(Easing.cubic) });
   return (
     <AbsoluteFill>
       <Wall dim={0.85} speed={0.4} />
-      <Title at={4} size={80} top={130}>
-        <span style={{ color: C.gold }}>38</span> סיפורים.<br />
-        <span style={{ color: C.gold }}>יותר ממאה</span> רגעים.
-      </Title>
-      <Sub at={18} top={1745}>חינם. בלי פרסומות. בלי רעש.</Sub>
+      <Title at={4} size={96} top={140}>כתבתי אותם <Hl>בשבילך.</Hl></Title>
       <div style={{
-        position: 'absolute', left: (1080 - screenW - 36) / 2, top: 520,
+        position: 'absolute', left: (1080 - screenW - 36) / 2, top: 420,
         transform: `translateY(${(1 - enter) * 900}px)`,
         width: screenW + 36, height: screenH + 36, borderRadius: 70, background: '#111', padding: 18,
         boxShadow: '0 40px 90px rgba(0,0,0,.5)',
@@ -176,6 +178,7 @@ const S5: React.FC = () => {
           <div style={{ position: 'absolute', top: 16, left: screenW / 2 - 80, width: 160, height: 38, borderRadius: 20, background: '#111' }} />
         </div>
       </div>
+      <Sub at={30} top={1600} size={50}><Hl>38</Hl> סיפורים, ויותר ממאה<br />רגעים קצרים.</Sub>
     </AbsoluteFill>
   );
 };
@@ -191,20 +194,18 @@ const gates = [
 // The five gates; the eye moves from one to the next, as a reader choosing.
 const S6: React.FC = () => {
   const f = useCurrentFrame();
-  const chosen = Math.min(4, Math.floor(Math.max(0, f - 30) / 16));
+  const chosen = Math.min(4, Math.floor(Math.max(0, f - 40) / 18));
   const pos = [[-260, 0], [0, 0], [260, 0], [-130, 420], [130, 420]];
   return (
     <AbsoluteFill style={{ background: C.paper }}>
-      <Title at={0} size={88} color={C.blue} top={170}>מה עובר עליך עכשיו?</Title>
-      <Sub at={12} top={300} color={C.muted}>לא מחפשים. בוחרים לפי מה שמרגישים.</Sub>
+      <Title at={0} size={74} color={C.ink} top={150}>ובימים שקשה<br />למצוא מילים,</Title>
       {gates.map((g, i) => {
-        const p = spring({ frame: f - 6 - i * 4, fps: 30, config: { damping: 200 } });
-        const on = i === chosen;
-        const lit = f > 30 && on;
+        const p = spring({ frame: f - 10 - i * 4, fps: 30, config: { damping: 200 } });
+        const lit = f > 40 && i === chosen;
         return (
           <div key={g.label} style={{
             position: 'absolute', left: 540 - 115 - pos[i][0], top: 520 + pos[i][1], width: 230,
-            opacity: p * (lit || f <= 30 ? 1 : 0.45), transform: `scale(${lit ? 1.08 : 1})`,
+            opacity: p * (lit || f <= 40 ? 1 : 0.45), transform: `scale(${lit ? 1.08 : 1})`,
             textAlign: 'center',
           }}>
             <div style={{ height: 300, borderRadius: '115px 115px 14px 14px', overflow: 'hidden',
@@ -215,31 +216,50 @@ const S6: React.FC = () => {
           </div>
         );
       })}
-      <Title at={104} size={74} color={C.red} top={1560}>יש רגע שנכתב<br />בדיוק בשבילך.</Title>
+      <Title at={40} size={70} color={C.blue} top={1530}>אפשר פשוט לבחור<br />מה עובר עליך עכשיו.</Title>
     </AbsoluteFill>
   );
 };
 
+// The invitation: what the group is, then how to join.
 const S7: React.FC = () => {
   const f = useCurrentFrame();
-  const logo = spring({ frame: f - 4, fps: 30, config: { damping: 14 } });
+  const pop = spring({ frame: f - 62, fps: 30, config: { damping: 13 } });
   return (
-    <AbsoluteFill>
-      <Wall dim={0.9} speed={0.3} />
-      <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'center', gap: 46 }}>
-        <Img src={staticFile('logo.jpg')} style={{ width: 300, height: 300, borderRadius: '50%', transform: `scale(${logo})` }} />
-        <Title at={16} size={120}>נקודת מבט</Title>
-        <Title at={30} size={58} color={C.cream}>סיפורים שמשאירים אותך<br />עם מחשבה.</Title>
-        <Sub at={48} size={40}>מאת אפרים עטייה</Sub>
-        <div style={{ fontFamily: 'Heebo', fontWeight: 700, fontSize: 56, color: C.gold, direction: 'ltr', opacity: ease(f, 66, 82) }}>
-          nekudatmabat.blog
+    <AbsoluteFill style={{ background: C.paper, alignItems: 'center' }}>
+      <Title at={4} size={76} color={C.ink} top={260}>כל יום אני שולח<br />לקבוצה שלי<br /><Hl color={C.blue}>סיפור חדש.</Hl></Title>
+      <Sub at={30} top={720} color={C.muted} size={52}>קבוצה שקטה. רק אני שולח.</Sub>
+      <div style={{ position: 'absolute', top: 960, left: 90, right: 90, padding: '56px 30px', borderRadius: 40,
+        background: C.tealDeep, textAlign: 'center', transform: `scale(${0.85 + 0.15 * pop})`, opacity: pop }}>
+        <div style={{ fontFamily: 'Frank', fontWeight: 700, fontSize: 70, color: C.paper, lineHeight: 1.25 }}>
+          רוצים להצטרף?<br />שלחו לי <span style={{ color: C.gold }}>"מבט"</span>
         </div>
-      </AbsoluteFill>
+        <div style={{ fontFamily: 'Heebo', fontWeight: 700, fontSize: 76, color: C.paper, direction: 'ltr', marginTop: 26, letterSpacing: 2 }}>
+          053-484-9068
+        </div>
+      </div>
     </AbsoluteFill>
   );
 };
 
-const scenes = [S1, S2, S3, S4, S5, S6, S7];
+// The signature, as at the end of every story on the site.
+const S8: React.FC = () => {
+  const f = useCurrentFrame();
+  const write = ease(f, 26, 62);
+  return (
+    <AbsoluteFill style={{ background: C.paper, alignItems: 'center', justifyContent: 'center', gap: 20 }}>
+      <Title at={4} size={72} color={C.ink}>מאמין בך,</Title>
+      <div style={{ fontFamily: 'Hand', fontSize: 150, color: C.blue, lineHeight: 1.3,
+        clipPath: `inset(0 0 0 ${100 - write * 100}%)` }}>אפרים</div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 22, marginTop: 120, opacity: ease(f, 60, 76) }}>
+        <Img src={staticFile('logo.jpg')} style={{ width: 90, height: 90, borderRadius: '50%' }} />
+        <div style={{ fontFamily: 'Heebo', fontWeight: 700, fontSize: 46, color: C.tealDeep, direction: 'ltr' }}>nekudatmabat.blog</div>
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+const scenes = [S1, S2, S3, S4, S5, S6, S7, S8];
 
 export const Promo: React.FC = () => (
   <AbsoluteFill style={{ background: C.night, direction: 'rtl' }}>
