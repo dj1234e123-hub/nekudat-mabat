@@ -86,7 +86,7 @@ export const ES_SECTION_SLUGS: Record<string, string> = {
 export const ES_BESHT_SLUGS: Record<string, string> = {
   'hakova-shehaya-lesuka': 'el-sombrero-que-fue-suca',
   'mima-osim-keter': 'de-que-se-hace-una-corona',
-  'hakol-bein-haetzim': 'la-voz-entre-los-arboles',
+  'hayeled-shelo-pachad': 'el-nino-que-no-tenia-miedo',
   'ad-shelo-yishaer-matar': 'hasta-que-no-quede-lluvia',
   'hasfina-shechazra': 'el-barco-que-volvio',
   'mi-ba-lasuda-shlishit': 'quien-llego-a-la-tercera-comida',
