@@ -94,14 +94,22 @@ const S1: React.FC = () => {
   );
 };
 
-// A sheet of paper: the letter itself begins.
+// A sheet of paper: the letter begins with the man who writes it, as a printed photo
+// (the same white frame and tilt as on the "who am I" page).
 const S2: React.FC = () => {
   const f = useCurrentFrame();
+  const p = spring({ frame: f, fps: 30, config: { damping: 16 } });
   return (
-    <AbsoluteFill style={{ background: C.paper, justifyContent: 'center', gap: 40 }}>
-      <div style={{ position: 'absolute', top: 300, left: 490, width: 100, height: 3, background: C.gold, transform: `scaleX(${ease(f, 0, 20)})` }} />
-      <Title at={6} size={130} color={C.blue}>אני אפרים.</Title>
-      <Title at={32} size={76} color={C.ink}>כבר שנים<br />אני אוסף סיפורים.</Title>
+    <AbsoluteFill style={{ background: C.paper, alignItems: 'center' }}>
+      <div style={{
+        position: 'absolute', top: 200, width: 560, padding: 20, paddingBottom: 26, background: '#fff',
+        boxShadow: '0 22px 50px rgba(46,42,36,.22)', opacity: p,
+        transform: `rotate(${-2 * p}deg) translateY(${(1 - p) * 60}px) scale(${1.04 - 0.04 * ease(f, 0, 120)})`,
+      }}>
+        <Img src={staticFile('efraim.jpg')} style={{ width: '100%', display: 'block' }} />
+      </div>
+      <Title at={14} size={130} color={C.blue} top={930}>אני אפרים.</Title>
+      <Title at={38} size={76} color={C.ink} top={1130}>כבר שנים<br />אני אוסף סיפורים.</Title>
     </AbsoluteFill>
   );
 };
@@ -248,6 +256,8 @@ const S8: React.FC = () => {
   const write = ease(f, 26, 62);
   return (
     <AbsoluteFill style={{ background: C.paper, alignItems: 'center', justifyContent: 'center', gap: 20 }}>
+      <Img src={staticFile('efraim.jpg')} style={{ width: 260, height: 260, borderRadius: '50%', marginBottom: 40,
+        border: `5px solid ${C.gold}`, opacity: ease(f, 0, 14) }} />
       <Title at={4} size={72} color={C.ink}>מאמין בך,</Title>
       <div style={{ fontFamily: 'Hand', fontSize: 150, color: C.blue, lineHeight: 1.3,
         clipPath: `inset(0 0 0 ${100 - write * 100}%)` }}>אפרים</div>
