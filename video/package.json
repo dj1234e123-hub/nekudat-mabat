@@ -1,0 +1,20 @@
+{
+  "name": "nm-video",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "assets": "node assets.mjs",
+    "voice": "python3 tts.py",
+    "timeline": "node timeline.mjs",
+    "studio": "remotion studio src/index.ts",
+    "render": "node timeline.mjs && remotion render src/index.ts story out/story.mp4 --crf=20"
+  },
+  "dependencies": {
+    "remotion": "4.0.290",
+    "@remotion/cli": "4.0.290",
+    "@remotion/renderer": "4.0.290",
+    "@remotion/bundler": "4.0.290",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  }
+}
