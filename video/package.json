@@ -8,7 +8,7 @@
     "timeline": "node timeline.mjs",
     "studio": "remotion studio src/index.ts",
     "render": "node timeline.mjs && remotion render src/index.ts story out/story.mp4 --crf=20",
-    "music:promo": "python3 scripts/promo-music.py 3.2,5.8,8.6,12.4,17.4,21.8 /tmp/promo.wav && ffmpeg -y -i /tmp/promo.wav -ac 2 -b:a 160k public/audio/promo.mp3",
+    "music:promo": "python3 scripts/promo-music.py 31 3.5,7.5,11,15.5,20.5,26 /tmp/promo.wav && ffmpeg -y -i /tmp/promo.wav -b:a 192k public/audio/promo.mp3",
     "render:promo": "remotion render src/index.ts promo out/promo.mp4 --crf=20"
   },
   "dependencies": {
