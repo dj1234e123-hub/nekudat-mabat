@@ -8,7 +8,7 @@ occasion: "Motzaei Shabat Bereshit"
 hebrewDate: "29 de Tishrei 5787"
 date: 2026-10-10T16:30:00Z
 readingTime: "un minuto"
-excerpt: "Israel, el niño que un día sería el Baal Shem Tov, entró al bosque y oyó una voz. La siguió hasta un judío envuelto en un talit, que le hizo una sola pregunta."
+excerpt: 'Todo el pueblo le tenía miedo al bosque. Un niño, no. Huérfano, sin padre, sin casa, sin nadie. Una voz lo llamó. Fue. Y allí había un hombre. Envuelto en un talit. Que lo vio. Y le preguntó: «¿No tienes miedo?»'
 thought: "Su padre le dijo una sola frase, sin saber si el niño la entendería. El niño la recordó."
 tags: [Bereshit, miedo, orfandad, plegaria, Baal Shem Tov]
 source: "Tradición de la infancia del Baal Shem Tov, recogida en Shivjei HaBesht y en la literatura jasídica. Fiabilidad media: las versiones difieren en la edad del niño y en los detalles del encuentro, por eso no aparecen. La identidad del judío del bosque como justo oculto es de la tradición. Adaptación y escritura originales de Efraim Atia."
