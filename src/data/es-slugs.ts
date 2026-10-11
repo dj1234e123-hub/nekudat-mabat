@@ -66,6 +66,7 @@ export const ES_STORY_SLUGS: Record<string, string> = {
   'maasar-haolam-shela': 'su-cadena-perpetua',
   // ראו הערת "anos" למעלה.
   'meah-shana-beichur': 'un-siglo-de-retraso',
+  'kvar-baavir': 'ya-en-el-aire',
   'nipagesh-beseptember': 'nos-vemos-el-uno-de-septiembre',
   'shiur-al-srochim': 'una-leccion-sobre-cordones',
   'tzaif-zahov': 'el-panuelo-dorado',
