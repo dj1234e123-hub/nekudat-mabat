@@ -27,6 +27,7 @@
 
 /** שם הקובץ באוסף storiesEs ← הסלאג הציבורי בספרדית. */
 export const ES_STORY_SLUGS: Record<string, string> = {
+  '738-yamim-vechatzi-shaa': '738-dias-y-media-hora',
   '001-kvar-hechlateti-mi-hem': 'ya-habia-decidido-quienes-eran',
   '005-mitachat-lakash-beauschwitz': 'bajo-la-paja-en-auschwitz',
   '006-hayeled-im-hamatos': 'el-chico-del-avion-de-papel',
@@ -85,6 +86,10 @@ export const ES_SECTION_SLUGS: Record<string, string> = {
 export const ES_BESHT_SLUGS: Record<string, string> = {
   'hakova-shehaya-lesuka': 'el-sombrero-que-fue-suca',
   'mima-osim-keter': 'de-que-se-hace-una-corona',
+  'hayeled-shelo-pachad': 'el-nino-que-no-tenia-miedo',
+  'ad-shelo-yishaer-matar': 'hasta-que-no-quede-lluvia',
+  'hasfina-shechazra': 'el-barco-que-volvio',
+  'mi-ba-lasuda-shlishit': 'quien-llego-a-la-tercera-comida',
 };
 
 /** הכתובת הציבורית של סיפור "מעשה שהיה" ספרדי. סיפור בלי סלאג מכשיל את הבנייה. */

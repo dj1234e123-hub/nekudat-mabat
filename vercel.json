@@ -8,6 +8,11 @@
       "permanent": true
     },
     {
+      "source": "/es/historias/738-yamim-vechatzi-shaa/",
+      "destination": "/es/historias/738-dias-y-media-hora/",
+      "permanent": true
+    },
+    {
       "source": "/es/historias/001-kvar-hechlateti-mi-hem/",
       "destination": "/es/historias/ya-habia-decidido-quienes-eran/",
       "permanent": true
@@ -103,6 +108,11 @@
       "permanent": true
     },
     {
+      "source": "/es/historias/ayara-shel-zarim/",
+      "destination": "/es/historias/un-pueblo-de-desconocidos/",
+      "permanent": true
+    },
+    {
       "source": "/es/historias/betzad-hasheni-shel-hahar/",
       "destination": "/es/historias/al-otro-lado-de-la-montana/",
       "permanent": true
@@ -113,8 +123,18 @@
       "permanent": true
     },
     {
+      "source": "/es/historias/chelek-baolam-haba/",
+      "destination": "/es/historias/una-parte-del-mundo-venidero/",
+      "permanent": true
+    },
+    {
       "source": "/es/historias/habricha-hamushlemet/",
       "destination": "/es/historias/la-fuga-perfecta/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/haohel-shel-haganan/",
+      "destination": "/es/historias/la-carpa-del-jardinero/",
       "permanent": true
     },
     {
@@ -125,6 +145,11 @@
     {
       "source": "/es/historias/hatabaat-bakos/",
       "destination": "/es/historias/el-anillo-en-el-vaso-de-carton/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/hatur-hasheni/",
+      "destination": "/es/historias/la-segunda-fila/",
       "permanent": true
     },
     {
