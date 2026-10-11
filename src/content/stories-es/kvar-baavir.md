@@ -6,7 +6,7 @@ section: meshalim
 archiveId: "033"
 cover: ../../assets/covers/kvar-baavir.png
 coverAlt: "Un asiento ancho azul profundo en primera clase, junto a la ventanilla de un avión; en la mesa, un plato, un vaso de jugo de naranja y una toalla enrollada; afuera, el ala del avión y el atardecer sobre las nubes"
-date: 2026-10-11T15:50:00Z
+date: 2026-10-11T17:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "En su primer vuelo se sentó en primera clase por error. Cuando le pidieron que pasara atrás, sacó un sobre del bolsillo."
 hook: "¿Qué se puede comprar todavía cuando ya estamos en el aire?"
