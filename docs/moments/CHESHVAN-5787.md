@@ -69,3 +69,15 @@
 ### לבחירה
 
 לכל יום – רגע אחד. כל רגע שכבר שלחת לאחרונה – למחוק, ואביא חלופה.
+
+### נבחר – לפי ההמלצות (2026-10-11)
+
+| יום | רגע | קישור | כרטיס לשליחה | שורת פתיחה לקבוצה |
+|---|---|---|---|---|
+| א׳ 11.10 | הרגע הנכון | [רגע](https://nekudatmabat.blog/moments/new-beginning/hatchala-harega-hanachon/) | [card.png](https://nekudatmabat.blog/moments/new-beginning/hatchala-harega-hanachon/card.png) | השנה, שלושתם יוצאים באותו בוקר: יום ראשון, ראש חודש, ואחרי החגים. 👇 |
+| ב׳ 12.10 | קטן עד גיחוך | [רגע](https://nekudatmabat.blog/moments/standstill/tkiut-tzaad-katan-midai/) | [card.png](https://nekudatmabat.blog/moments/standstill/tkiut-tzaad-katan-midai/card.png) | היום מתחיל זמן חורף. וכל החורף כבר נראה מכאן. 👇 |
+| ג׳ 13.10 | בלי מה לספר | [רגע](https://nekudatmabat.blog/moments/sadness/etzev-bli-siba/) | [card.png](https://nekudatmabat.blog/moments/sadness/etzev-bli-siba/card.png) | החגים נגמרו. לא קרה שום דבר. ובכל זאת. 👇 |
+| ד׳ 14.10 | גם החלטה מתעייפת | [רגע](https://nekudatmabat.blog/moments/new-beginning/hatchala-gam-hachlata-mitayefet/) | [card.png](https://nekudatmabat.blog/moments/new-beginning/hatchala-gam-hachlata-mitayefet/card.png) | הבוקר השלישי של זמן חורף. 👇 |
+| ה׳ 15.10 | רגש גדול | [רגע](https://nekudatmabat.blog/moments/faith/emuna-yom-yavesh/) | [card.png](https://nekudatmabat.blog/moments/faith/emuna-yom-yavesh/card.png) | סוף השבוע הראשון בלי חג באופק. 👇 |
+
+**שינוי אחד בטקסט:** "בלי מה לספר" – "נקודה לדרך" חזרה על הסיום. הוחלפה ב"כשישאלו היום מה נשמע, / מותר להגיד: קצת כבד." (נאחזת ב"אין מה לספר" מהבית הראשון; `check:moments` מתריע שאין מילה משותפת עם הסיבוב – מכוון, האחיזה במשמעות). הספרדית לא נגעה.
