@@ -209,9 +209,14 @@ const DESCRIPTION =
                 {latestBesht.data.title}
               </a>
               <p class="mabat-summary">{latestBesht.data.excerpt}</p>
-              <a class="teaser-more" href={esBeshtPath(latestBesht.id)}>
-                Leer la historia
-              </a>
+              <div class="teaser-links">
+                <a class="teaser-more" href={esBeshtPath(latestBesht.id)}>
+                  Leer la historia
+                </a>
+                <a class="teaser-more" href="/es/asi-sucedio/">
+                  Todas las historias de «{BESHT_ES.name}»
+                </a>
+              </div>
             </div>
           </section>
         )
@@ -278,6 +283,7 @@ const DESCRIPTION =
                 </div>
               ))}
             </div>
+            <a class="stories-all" href="/es/historias/">Todas las historias →</a>
           </div>
         )
       }
@@ -893,6 +899,27 @@ const DESCRIPTION =
   }
 
   .teaser-more:hover {
+    text-decoration: underline;
+  }
+
+  .teaser-links {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 1.5rem;
+  }
+
+  .stories-all {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--teal);
+    text-decoration: none;
+  }
+
+  .stories-all:hover {
     text-decoration: underline;
   }
 </style>

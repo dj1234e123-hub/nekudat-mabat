@@ -253,9 +253,14 @@ const DESCRIPTION =
                 {latestBesht.data.title}
               </a>
               <p class="besht-excerpt">{latestBesht.data.excerpt}</p>
-              <a class="teaser-more" href={`/besht/${latestBesht.id}/`}>
-                לקרוא את הסיפור
-              </a>
+              <div class="teaser-links">
+                <a class="teaser-more" href={`/besht/${latestBesht.id}/`}>
+                  לקרוא את הסיפור
+                </a>
+                <a class="teaser-more" href="/besht/">
+                  כל סיפורי "מעשה שהיה"
+                </a>
+              </div>
             </div>
           </section>
         )
@@ -1011,5 +1016,11 @@ const DESCRIPTION =
 
   .teaser-more:hover {
     text-decoration: underline;
+  }
+
+  .teaser-links {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 1.5rem;
   }
 </style>
