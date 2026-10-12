@@ -67,6 +67,7 @@ export const ES_STORY_SLUGS: Record<string, string> = {
   // ראו הערת "anos" למעלה.
   'meah-shana-beichur': 'un-siglo-de-retraso',
   'kvar-baavir': 'ya-en-el-aire',
+  'mi-yaamod-bamakolet': 'quien-va-a-atender-la-tienda',
   'nipagesh-beseptember': 'nos-vemos-el-uno-de-septiembre',
   'shiur-al-srochim': 'una-leccion-sobre-cordones',
   'tzaif-zahov': 'el-panuelo-dorado',
