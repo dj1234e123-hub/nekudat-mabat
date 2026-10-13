@@ -69,6 +69,7 @@ export const ES_STORY_SLUGS: Record<string, string> = {
   'kvar-baavir': 'ya-en-el-aire',
   'mi-yaamod-bamakolet': 'quien-va-a-atender-la-tienda',
   '32-dolar': '32-dolares-y-17-centavos',
+  '004-chikiti-sheyitparetz': 'esperaba-que-explotara',
   'nipagesh-beseptember': 'nos-vemos-el-uno-de-septiembre',
   'shiur-al-srochim': 'una-leccion-sobre-cordones',
   'tzaif-zahov': 'el-panuelo-dorado',
