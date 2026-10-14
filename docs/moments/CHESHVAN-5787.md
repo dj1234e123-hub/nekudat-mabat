@@ -80,4 +80,6 @@
 | ד׳ 14.10 | גם החלטה מתעייפת | [רגע](https://nekudatmabat.blog/moments/new-beginning/hatchala-gam-hachlata-mitayefet/) | [card.png](https://nekudatmabat.blog/moments/new-beginning/hatchala-gam-hachlata-mitayefet/card.png) | הבוקר השלישי של זמן חורף. 👇 |
 | ה׳ 15.10 | רגש גדול | [רגע](https://nekudatmabat.blog/moments/faith/emuna-yom-yavesh/) | [card.png](https://nekudatmabat.blog/moments/faith/emuna-yom-yavesh/card.png) | סוף השבוע הראשון בלי חג באופק. 👇 |
 
+**שינוי בטקסט (14.10):** "רגש גדול" – הסיום חזר על הבית השלישי ("הידיים עשו"), הוחלף ב"יום בלי רגש, / לא יום בלי אמונה." – עונה על "אז אולי גם היא לא" מהבית השני.
+
 **שינוי אחד בטקסט:** "בלי מה לספר" – "נקודה לדרך" חזרה על הסיום. הוחלפה ב"כשישאלו היום מה נשמע, / מותר להגיד: קצת כבד." (נאחזת ב"אין מה לספר" מהבית הראשון; `check:moments` מתריע שאין מילה משותפת עם הסיבוב – מכוון, האחיזה במשמעות). הספרדית לא נגעה.
