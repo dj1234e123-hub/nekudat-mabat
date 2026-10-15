@@ -241,6 +241,16 @@ const ogImageDims = ogImage
       // רץ רק בדומיין הציבורי: תצוגות מקדימות והגלישות של בעל הפרויקט
       // בכתובת ה-vercel.app לא מזהמות את המדידה. מצב הבעלים חוסם גם כאן.
       if (!isOwner && ['nekudatmabat.blog', 'www.nekudatmabat.blog'].includes(location.hostname)) {
+        // תיוג קישור (?s=wa-he): הודעה בקבוצה מוסיפה אותו לכתובת, וכך אפשר להפריד
+        // בין "ישיר" שהגיע מהקבוצה לבין העברה. נשמר ל-sessionStorage כדי שיישאר
+        // על כל אירוע בביקור, גם אחרי מעבר עמוד. שפה נגזרת מהכתובת.
+        let linkTag = new URLSearchParams(location.search).get('s');
+        try {
+          if (linkTag) sessionStorage.setItem('nm_s', linkTag.slice(0, 40));
+          else linkTag = sessionStorage.getItem('nm_s');
+        } catch {}
+        const siteLang = location.pathname === '/es' || location.pathname.startsWith('/es/') ? 'es' : 'he';
+
         posthog.init('phc_Ao9zMFiwEvJyA7G3LchesR4N7mmJdfggEkrMZF86Z3Lb', {
           api_host: '/ingest',
           ui_host: 'https://us.posthog.com',
@@ -248,6 +258,13 @@ const ogImageDims = ogImage
           // localStorage ולא עוגיות – הזיהוי חדש/חוזר נשאר בדפדפן של הקורא בלבד.
           persistence: 'localStorage',
           disable_session_recording: true,
+          // before_send ולא register: רק כך גם ה-$pageview הראשון נושא את התיוג.
+          before_send: (e) => {
+            if (e) {
+              e.properties = { ...e.properties, site_lang: siteLang, ...(linkTag ? { link_tag: linkTag.slice(0, 40) } : {}) };
+            }
+            return e;
+          },
         });
 
         // אירועים מותאמים: רכיב מסמן data-ph="שם" וההאזנה חיה כאן פעם אחת.
@@ -260,8 +277,37 @@ const ogImageDims = ogImage
         });
 
         // אירוע שאינו לחיצה (הצגת חלון ההזמנה) – רכיב קורא ל-nmTrack.
-        window.nmTrack = (name: string) =>
-          posthog.capture(name, undefined, { transport: 'sendBeacon' });
+        window.nmTrack = (name: string, props?: Record<string, unknown>) =>
+          posthog.capture(name, props, { transport: 'sendBeacon' });
+
+        // מדידת קריאה אמיתית (שלב 4.84). $pageleave לא מגיע מהדפדפן הפנימי של
+        // וואטסאפ ופייסבוק (נמדד: 33–67% מהצפיות), ולכן שני אירועים נשלחים ברגע
+        // שקורים ולא ביציאה: story_end – תחתית הגוף של הטקסט (ה-article) נכנסה
+        // למסך, בלי אזור החתימה וה"סיפור הבא"; nextup_seen – כרטיס ההמשך נראה.
+        // רק בעמודי קריאה: סיפור, גיליון שבת, מעשה שהיה ורגע (לא בית/אודות).
+        const readingPage = /^\/(es\/)?(stories|historias|mabat-leshabbat|shabat|besht|asi-sucedio|moments\/[^/]+\/[^/]+|momentos\/[^/]+\/[^/]+)\//.test(
+          location.pathname,
+        );
+        const article = readingPage ? document.querySelector('article') : null;
+        if (article && 'IntersectionObserver' in window) {
+          const t0 = performance.now();
+          const seen = (el: Element, name: string, extra?: () => Record<string, unknown>) => {
+            const io = new IntersectionObserver((entries) => {
+              if (!entries.some((en) => en.isIntersecting)) return;
+              io.disconnect();
+              window.nmTrack?.(name, extra?.());
+            });
+            io.observe(el);
+          };
+          // סנטינל בתחתית ה-article: תחתית הטקסט עצמו, לא תחתית העמוד.
+          const end = document.createElement('div');
+          end.setAttribute('aria-hidden', 'true');
+          end.style.cssText = 'height:1px;margin-top:-1px;pointer-events:none';
+          article.append(end);
+          seen(end, 'story_end', () => ({ seconds_to_end: Math.round((performance.now() - t0) / 1000) }));
+          const nextUp = document.querySelector('.next-up');
+          if (nextUp) seen(nextUp, 'nextup_seen');
+        }
       }
 
       // מי שכבר לחץ "להצטרפות לקבוצה" – בכל עמוד שהוא – לא יקבל שוב את חלון
