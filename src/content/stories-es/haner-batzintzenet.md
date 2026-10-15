@@ -3,6 +3,8 @@
 title: "La vela en el frasco"
 section: tzadikim
 topic: faith
+cover: ../../assets/covers/haner-batzintzenet.png
+coverAlt: "Mesa de madera rústica en una cabaña del bosque de noche, una Guemará abierta a la luz de una vela en un candelabro, junto a un frasco de vidrio con el resto de una vela, y una ventana escarchada con pinos bajo la luna"
 date: 2026-10-15T17:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "El Saba de Novardok estudiaba solo, en una cabaña en el bosque, a la luz de la última vela que le quedaba. La vela se apagó. Lo que pasó después lo guardó durante años en un frasco."

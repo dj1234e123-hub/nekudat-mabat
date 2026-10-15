@@ -5,6 +5,8 @@
 title: "הנר בצנצנת"
 section: tzadikim
 topic: faith
+cover: ../../assets/covers/haner-batzintzenet.png
+coverAlt: "שולחן עץ גס בבקתה ביער בלילה, גמרא פתוחה לאור נר דולק בפמוט, ולידו צנצנת זכוכית ובה שארית נר, וחלון מכוסה כפור ועצי אורן תחת ירח"
 date: 2026-10-15T17:00:00Z
 readingTime: "כ־2 דקות"
 archiveId: "029"
