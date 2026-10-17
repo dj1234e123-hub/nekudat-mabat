@@ -102,8 +102,8 @@ const DESCRIPTION =
 >
   <main>
     <section class="hero">
-      <h1>Ver distinto. Vivir distinto.</h1>
       <p class="triad">Historias. Momentos. Miradas.</p>
+      <h1>Ver distinto. Vivir distinto.</h1>
       <p class="promise">
         Un lugar para detenerse, obtener un nuevo punto de vista y llevar algo contigo en tu
         camino.
@@ -200,8 +200,15 @@ const DESCRIPTION =
       }
 
       {
-        latestBesht && (
-          <section class="besht-teaser" style="grid-area: besht">
+        (latestBesht || latestMabat) && (
+          <section class="week" style="grid-area: week">
+            <div class="week-header">
+              <h2>Esta semana</h2>
+              <p>Para el Shabat y su salida.</p>
+            </div>
+            <div class="week-rail" tabindex="0" role="region" aria-label="Esta semana">
+              {latestBesht && (
+          <section class="besht-teaser">
             <span class="teaser-rail besht-rail" aria-hidden="true" />
             <div class="teaser-body">
               <p class="teaser-kicker besht-kicker">{BESHT_ES.name} · {latestBesht.data.occasion}</p>
@@ -214,12 +221,9 @@ const DESCRIPTION =
               </a>
             </div>
           </section>
-        )
-      }
-
-      {
-        latestMabat && (
-          <section class="mabat-teaser" style="grid-area: mabat">
+              )}
+              {latestMabat && (
+          <section class="mabat-teaser">
             <span class="teaser-rail" aria-hidden="true" />
             <div class="teaser-body">
               <p class="teaser-kicker">
@@ -232,6 +236,9 @@ const DESCRIPTION =
               <a class="teaser-more" href={`/es/shabat/${latestMabat.piece.id}/`}>
                 Seguir leyendo
               </a>
+            </div>
+          </section>
+              )}
             </div>
           </section>
         )
@@ -268,9 +275,15 @@ const DESCRIPTION =
                   </a>
                   <div class="world-text">
                     <h3 class="world-name">{metaEs.label}</h3>
-                    <p class="story-example">
-                      Por ejemplo: <a href={esStoryPath(story.id)}>{story.data.title}</a>
-                    </p>
+                    {story.data.hook ? (
+                      <p class="story-hook">
+                        <a href={esStoryPath(story.id)}>{story.data.hook}</a>
+                      </p>
+                    ) : (
+                      <p class="story-example">
+                        Por ejemplo: <a href={esStoryPath(story.id)}>{story.data.title}</a>
+                      </p>
+                    )}
                     <a href={esSectionPath(slug)} class="story-link">
                       {metaEs.linkText} →
                     </a>
@@ -351,31 +364,30 @@ const DESCRIPTION =
 <style>
   /* אזור הפתיחה – אותם ערכים כמו בדף הבית העברי */
   .hero {
-    text-align: center;
+    text-align: start;
     padding-top: 0.5rem;
     margin-bottom: 2.25rem;
   }
 
   .hero h1 {
-    font-size: clamp(1.7rem, 8vw, 2.15rem);
-    line-height: 1.3;
-    margin-bottom: 0.6rem;
+    font-size: clamp(2.2rem, 11vw, 3rem);
+    line-height: 1.12;
+    margin-bottom: 0.7rem;
     text-wrap: balance;
     color: var(--teal-deep);
   }
 
   .triad {
-    font-family: var(--font-display);
-    font-size: 1.05rem;
-    color: var(--teal-deep);
-    letter-spacing: 0.02em;
-    margin-bottom: 0.5rem;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    margin-bottom: 0.35rem;
   }
 
   .promise {
     color: var(--secondary);
     max-width: 26rem;
-    margin-inline: auto;
     line-height: 1.75;
   }
 
@@ -405,7 +417,7 @@ const DESCRIPTION =
     margin-inline: calc((100% - var(--bleed)) / 2);
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-areas: 'stories' 'besht' 'mabat' 'moments';
+    grid-template-areas: 'stories' 'week' 'moments';
     /* הרווח גדל (1.75 ← 3.25rem): מאז שהמסגרות ירדו, האוויר הוא שמפריד –
        והוא גם מה שמחזיק את נקודת הזהב שיושבת בתוכו. */
     gap: 3.25rem;
@@ -416,7 +428,7 @@ const DESCRIPTION =
   @media (min-width: 800px) {
     .dual-section {
       grid-template-columns: 1fr 1fr;
-      grid-template-areas: 'stories moments' 'besht besht' 'mabat mabat';
+      grid-template-areas: 'stories moments' 'week week';
       gap: 2rem;
     }
   }
@@ -438,14 +450,12 @@ const DESCRIPTION =
   }
 
   @media (max-width: 49.99rem) {
-    .mabat-teaser,
-    .besht-teaser,
+    .week,
     .door-moments {
       position: relative;
     }
 
-    .mabat-teaser::before,
-    .besht-teaser::before,
+    .week::before,
     .door-moments::before {
       content: '';
       position: absolute;
@@ -673,7 +683,7 @@ const DESCRIPTION =
   }
 
   .stories-header {
-    text-align: center;
+    text-align: start;
     margin-bottom: 1.2rem;
   }
 
@@ -690,29 +700,30 @@ const DESCRIPTION =
   }
 
   .stories-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0;
+    display: flex;
+    gap: 0.9rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    padding-bottom: 0.4rem;
   }
 
-  /* שורת עולם: קשת קטנה + טקסט לצידה, מופרדת בקו שיער – תבנית "כל
-     המצבים" שכבר עובדת ב-/es/momentos/. קודם היה כאן כרטיס ממוסגר ברוחב
-     מלא, ובו הטקסט תפס פחות משליש מהרוחב במסך רחב. */
+  /* כרטיס עולם ברצועה: קשת, שם, ושאלה שהסיפור עונה עליה. */
   .world-card {
+    flex: 0 0 68%;
+    max-width: 16rem;
+    scroll-snap-align: start;
     display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.05rem 0.1rem;
-    border-top: 1px solid var(--line);
+    flex-direction: column;
+    gap: 0.75rem;
   }
 
   .world-card:first-child {
-    border-top: 0;
-    padding-top: 0.2rem;
+    padding-top: 0;
   }
 
   .world-arch-link {
-    flex-shrink: 0;
     display: block;
     line-height: 0;
   }
@@ -720,9 +731,9 @@ const DESCRIPTION =
   .world-arch {
     position: relative;
     display: block;
-    width: 84px;
-    height: 84px;
-    border-radius: 60px 60px 8px 8px;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 50% 50% 10px 10px / 62% 62% 10px 10px;
     overflow: hidden;
     border: 1px solid var(--line);
     transition: transform 0.2s ease;
@@ -733,7 +744,7 @@ const DESCRIPTION =
     position: absolute;
     inset: 5px;
     border: 1px solid rgba(201, 162, 77, 0.55);
-    border-radius: 54px 54px 4px 4px;
+    border-radius: 50% 50% 6px 6px / 60% 60% 6px 6px;
     pointer-events: none;
   }
 
@@ -894,5 +905,66 @@ const DESCRIPTION =
 
   .teaser-more:hover {
     text-decoration: underline;
+  }
+
+  .story-hook {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--secondary);
+    margin: 0;
+  }
+
+  .story-hook a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* ============ השבוע: שתי הטעימות ברצועה אחת ============ */
+  .week {
+    width: 100%;
+  }
+
+  .week-header {
+    margin-bottom: 1rem;
+    text-align: start;
+  }
+
+  .week-header h2 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    margin: 0 0 0.3rem;
+  }
+
+  .week-header p {
+    font-size: 0.85rem;
+    color: var(--secondary);
+    margin: 0;
+  }
+
+  .week-rail {
+    display: flex;
+    gap: 1.6rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    padding-bottom: 0.4rem;
+  }
+
+  .week-rail > section {
+    flex: 0 0 84%;
+    max-width: none;
+    margin-inline: 0;
+    scroll-snap-align: start;
+  }
+
+  @media (min-width: 800px) {
+    .week-rail {
+      overflow: visible;
+    }
+
+    .week-rail > section {
+      flex: 1 1 0;
+    }
   }
 </style>

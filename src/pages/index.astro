@@ -122,8 +122,8 @@ const DESCRIPTION =
 >
   <main>
     <section class="hero">
-      <h1>לראות אחרת. לחיות אחרת.</h1>
       <p class="triad">סיפורים. רגעים. תובנות.</p>
+      <h1>לראות אחרת. לחיות אחרת.</h1>
       <p class="promise">
         מקום לעצור, לקבל נקודת מבט חדשה, ולקחת משהו איתך להמשך הדרך.
       </p>
@@ -244,8 +244,15 @@ const DESCRIPTION =
       }
 
       {
-        latestBesht && (
-          <section class="besht-teaser" style="grid-area: besht">
+        (latestBesht || latestMabat) && (
+          <section class="week" style="grid-area: week">
+            <div class="week-header">
+              <h2>השבוע</h2>
+              <p>מוצאי שבת ושבת, מה שחדש.</p>
+            </div>
+            <div class="week-rail" tabindex="0" role="region" aria-label="השבוע">
+              {latestBesht && (
+          <section class="besht-teaser">
             <span class="teaser-rail besht-rail" aria-hidden="true" />
             <div class="teaser-body">
               <p class="teaser-kicker besht-kicker">מעשה שהיה · {latestBesht.data.occasion}</p>
@@ -258,12 +265,9 @@ const DESCRIPTION =
               </a>
             </div>
           </section>
-        )
-      }
-
-      {
-        latestMabat && (
-          <section class="mabat-teaser" style="grid-area: mabat">
+              )}
+              {latestMabat && (
+          <section class="mabat-teaser">
             <span class="teaser-rail" aria-hidden="true" />
             <div class="teaser-body">
               <p class="teaser-kicker">מבט לשבת · {kicker(latestMabat.piece.data.parasha)}</p>
@@ -274,6 +278,9 @@ const DESCRIPTION =
               <a class="teaser-more" href={`/mabat-leshabbat/${latestMabat.piece.id}/`}>
                 להמשיך לקרוא
               </a>
+            </div>
+          </section>
+              )}
             </div>
           </section>
         )
@@ -309,9 +316,15 @@ const DESCRIPTION =
                 </a>
                 <div class="world-text">
                   <h3 class="world-name">{meta.label}</h3>
-                  <p class="story-example">
-                    למשל: <a href={`/stories/${story.id}/`}>{story.data.title}</a>
-                  </p>
+                  {story.data.hook ? (
+                    <p class="story-hook">
+                      <a href={`/stories/${story.id}/`}>{story.data.hook}</a>
+                    </p>
+                  ) : (
+                    <p class="story-example">
+                      למשל: <a href={`/stories/${story.id}/`}>{story.data.title}</a>
+                    </p>
+                  )}
                   <a href={`/sections/${slug}/`} class="story-link">
                     {linkText} ←
                   </a>
@@ -400,32 +413,31 @@ const DESCRIPTION =
 <style>
   /* אזור הפתיחה */
   .hero {
-    text-align: center;
+    text-align: start;
     padding-top: 0.5rem;
     margin-bottom: 2.25rem;
   }
 
   .hero h1 {
-    font-size: clamp(1.7rem, 8vw, 2.15rem);
-    line-height: 1.3;
-    margin-bottom: 0.6rem;
+    font-size: clamp(2.2rem, 11vw, 3rem);
+    line-height: 1.12;
+    margin-bottom: 0.7rem;
     text-wrap: balance;
     color: var(--teal-deep);
   }
 
   /* משפט אופי, לא שורת ניווט – "תובנות" עדיין אין לה אזור, ולכן היא לא קישור. */
   .triad {
-    font-family: var(--font-display);
-    font-size: 1.05rem;
-    color: var(--teal-deep);
-    letter-spacing: 0.02em;
-    margin-bottom: 0.5rem;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    margin-bottom: 0.35rem;
   }
 
   .promise {
     color: var(--secondary);
     max-width: 26rem;
-    margin-inline: auto;
     line-height: 1.75;
   }
 
@@ -459,7 +471,7 @@ const DESCRIPTION =
     margin-inline: calc((100% - var(--bleed)) / 2);
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-areas: 'moments' 'besht' 'mabat' 'stories';
+    grid-template-areas: 'moments' 'week' 'stories';
     /* הרווח גדל (1.75 ← 3.25rem): מה שהפריד בין האזורים היה מסגרת, ומאז
        שהיא ירדה האוויר הוא שעושה את העבודה – והוא גם מה שמחזיק את נקודת
        הזהב שיושבת בתוכו. */
@@ -483,19 +495,17 @@ const DESCRIPTION =
   }
 
   .dual-section.has-season {
-    grid-template-areas: 'season' 'moments' 'besht' 'mabat' 'stories';
+    grid-template-areas: 'season' 'moments' 'week' 'stories';
   }
 
   @media (max-width: 49.99rem) {
-    .besht-teaser,
-    .mabat-teaser,
+    .week,
     .door-stories,
     .has-season .door-moments {
       position: relative;
     }
 
-    .besht-teaser::before,
-    .mabat-teaser::before,
+    .week::before,
     .door-stories::before,
     .has-season .door-moments::before {
       content: '';
@@ -515,12 +525,12 @@ const DESCRIPTION =
   @media (min-width: 800px) {
     .dual-section {
       grid-template-columns: 1fr 1fr;
-      grid-template-areas: 'moments stories' 'besht besht' 'mabat mabat';
+      grid-template-areas: 'moments stories' 'week week';
       gap: 2rem;
     }
 
     .dual-section.has-season {
-      grid-template-areas: 'season season' 'moments stories' 'besht besht' 'mabat mabat';
+      grid-template-areas: 'season season' 'moments stories' 'week week';
     }
   }
 
@@ -747,7 +757,7 @@ const DESCRIPTION =
   }
 
   .stories-header {
-    text-align: center;
+    text-align: start;
     margin-bottom: 1.2rem;
   }
 
@@ -764,30 +774,31 @@ const DESCRIPTION =
   }
 
   .stories-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0;
+    display: flex;
+    gap: 0.9rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    padding-bottom: 0.4rem;
   }
 
-  /* שורת עולם: קשת קטנה + טקסט לצידה, מופרדת בקו שיער – תבנית "כל המצבים"
-     שכבר עובדת ב-/moments/. עד 2026-09-22 היה כאן כרטיס ממוסגר ברוחב מלא,
-     ובו הטקסט תפס 173px מתוך 480 במסך רחב: הקופסה הייתה גדולה מתוכנה.
-     לשורה אין גודל קבוע למלא, ולכן הבעיה נעלמת מעצמה. */
+  /* כרטיס עולם ברצועה: קשת, שם, ושאלה שהסיפור עונה עליה. החלקה הצידה
+     במקום ארבע שורות אנכיות; הכרטיס הבא מציץ מהקצה. */
   .world-card {
+    flex: 0 0 68%;
+    max-width: 16rem;
+    scroll-snap-align: start;
     display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.05rem 0.1rem;
-    border-top: 1px solid var(--line);
+    flex-direction: column;
+    gap: 0.75rem;
   }
 
   .world-card:first-child {
-    border-top: 0;
-    padding-top: 0.2rem;
+    padding-top: 0;
   }
 
   .world-arch-link {
-    flex-shrink: 0;
     display: block;
     line-height: 0;
   }
@@ -795,9 +806,9 @@ const DESCRIPTION =
   .world-arch {
     position: relative;
     display: block;
-    width: 84px;
-    height: 84px;
-    border-radius: 60px 60px 8px 8px;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 50% 50% 10px 10px / 62% 62% 10px 10px;
     overflow: hidden;
     border: 1px solid var(--line);
     transition: transform 0.2s ease;
@@ -808,7 +819,7 @@ const DESCRIPTION =
     position: absolute;
     inset: 5px;
     border: 1px solid rgba(201, 162, 77, 0.55);
-    border-radius: 54px 54px 4px 4px;
+    border-radius: 50% 50% 6px 6px / 60% 60% 6px 6px;
     pointer-events: none;
   }
 
@@ -1011,5 +1022,66 @@ const DESCRIPTION =
 
   .teaser-more:hover {
     text-decoration: underline;
+  }
+
+  .story-hook {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--secondary);
+    margin: 0;
+  }
+
+  .story-hook a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* ============ השבוע: שתי הטעימות ברצועה אחת ============ */
+  .week {
+    width: 100%;
+  }
+
+  .week-header {
+    margin-bottom: 1rem;
+    text-align: start;
+  }
+
+  .week-header h2 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    margin: 0 0 0.3rem;
+  }
+
+  .week-header p {
+    font-size: 0.85rem;
+    color: var(--secondary);
+    margin: 0;
+  }
+
+  .week-rail {
+    display: flex;
+    gap: 1.6rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    padding-bottom: 0.4rem;
+  }
+
+  .week-rail > section {
+    flex: 0 0 84%;
+    max-width: none;
+    margin-inline: 0;
+    scroll-snap-align: start;
+  }
+
+  @media (min-width: 800px) {
+    .week-rail {
+      overflow: visible;
+    }
+
+    .week-rail > section {
+      flex: 1 1 0;
+    }
   }
 </style>
