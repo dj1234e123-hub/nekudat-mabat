@@ -24,6 +24,8 @@ interface Props {
   ogType?: 'website' | 'article';
   /** כותרת מצומצמת (עמודי סיפור): שורת מותג אחת, בלי סלוגן ותפריט – הקורא מגיע מהר לסיפור */
   compact?: boolean;
+  /** תפריט נפתח (☰) בכותרת המצומצמת – כרגע בעמודי סיפור בלבד. */
+  menu?: boolean;
   /** כותרת דף הבית: ריווח עליון מעט גדול יותר. גודל הלוגו והשם זהה מאז
       2026-09-16 לכל העמודים (קודם דף הבית היה הקטן מבין השניים).
       הסלוגן מופיע גם כאן, באותו מקום ובאותו עיצוב כמו בשאר העמודים –
@@ -56,6 +58,7 @@ const {
   ogImageHeight,
   ogType = 'website',
   compact = false,
+  menu = false,
   homeHeader = false,
   bodyClass,
   noindex = false,
@@ -186,6 +189,35 @@ const ogImageDims = ogImage
             >
               {altLang.label}
             </a>
+          )}
+          {/* עמוד סיפור הוא דלת הכניסה של רוב הקוראים (קישור מוואטסאפ), ובכותרת
+              המצומצמת אין תפריט. popover נפתח ונסגר בלי JavaScript, נסגר
+              בלחיצה מחוץ למגירה וב-Esc. הכפתור בפינה הנגדית לגלולת השפה. */}
+          {menu && (
+            <button
+              class="menu-btn"
+              type="button"
+              popovertarget="site-menu"
+              aria-label={es ? 'Menú' : 'תפריט'}
+              data-ph="menu_open"
+            >
+              <span></span><span></span><span></span>
+            </button>
+          )}
+          {menu && (
+            <nav id="site-menu" class="menu-drawer" popover aria-label={es ? 'Navegación principal' : 'ניווט ראשי'}>
+              <button
+                class="menu-close"
+                type="button"
+                popovertarget="site-menu"
+                popovertargetaction="hide"
+                aria-label={es ? 'Cerrar' : 'סגירה'}
+              >
+                ✕
+              </button>
+              <a class="menu-home" href={homeHref}>{brand.name}</a>
+              {navLinks.map((link) => <a href={link.href}>{link.label}</a>)}
+            </nav>
           )}
         </header>
       ) : (
@@ -618,6 +650,95 @@ const ogImageDims = ogImage
      שנצמדת אליה נוחתת על המותג. inset-inline-end נמדד לפי כיוון הגלולה
      עצמה (dir על הקישור, הפוך משפת העמוד): עברי – פינה ימנית־עליונה,
      ספרדי – שמאלית־עליונה. המותג בכותרת המצומצמת ממורכז, ושתי הפינות פנויות. */
+  /* ---------- תפריט נפתח בעמוד סיפור ----------
+     בפינה הנגדית לגלולת השפה: הגלולה עוגנה לפי הכיוון שלה עצמה (הפוך מהעמוד),
+     והכפתור לפי כיוון העמוד – כך הם לעולם לא באותה פינה. מעוגן ל-body כמוה. */
+  .menu-btn {
+    position: absolute;
+    top: 1.1rem;
+    inset-inline-end: 0.6rem;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+  }
+
+  .menu-btn span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--teal);
+  }
+
+  .menu-btn:focus-visible,
+  .menu-close:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+
+  .menu-drawer {
+    position: fixed;
+    inset-block: 0;
+    inset-inline-start: auto;
+    inset-inline-end: 0;
+    margin: 0;
+    width: min(80vw, 20rem);
+    height: 100%;
+    max-height: none;
+    padding: 1.5rem 1.6rem;
+    border: 0;
+    background: var(--paper);
+    box-shadow: 0 0 30px rgb(0 0 0 / 0.15);
+    text-align: start;
+    font-family: var(--font-body);
+  }
+
+  .menu-drawer:popover-open {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .menu-drawer::backdrop {
+    background: rgb(40 30 20 / 0.35);
+  }
+
+  .menu-close {
+    align-self: flex-end;
+    width: 44px;
+    height: 44px;
+    margin-bottom: 0.75rem;
+    border: 0;
+    background: none;
+    font-size: 1.4rem;
+    color: var(--muted);
+    cursor: pointer;
+  }
+
+  .menu-drawer a {
+    display: flex;
+    align-items: center;
+    min-height: 52px;
+    border-bottom: 1px solid var(--line);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--teal);
+    text-decoration: none;
+  }
+
+  .menu-drawer a.menu-home {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--blue);
+  }
+
   .lang-pill-corner {
     position: absolute;
     top: 1.1rem;
