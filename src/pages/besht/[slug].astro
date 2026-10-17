@@ -91,7 +91,7 @@ const altLangHref = hasEsTwin ? esBeshtPath(story.id) : '/es/asi-sucedio/';
 
       <div class="close-mark" aria-hidden="true"><span></span></div>
 
-      <p class="thought"><span class="thought-label">מחשבה</span>{thought}</p>
+      <p class="thought"><span class="thought-label">מחשבה</span>{thought.split('\n').map((line, i) => (<>{i > 0 && <br />}{line}</>))}</p>
     </article>
 
     <ShareRow title={`${title} · מעשה שהיה`} url={pageUrl} label={`סיפור של ${occasion}. שלחו אותו הלאה:`} />

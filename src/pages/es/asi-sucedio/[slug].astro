@@ -80,7 +80,7 @@ const all = (await getCollection('beshtEs', isPublished)).sort(newestFirst);
 
       <div class="close-mark" aria-hidden="true"><span></span></div>
 
-      <p class="thought"><span class="thought-label">Pensamiento</span>{thought}</p>
+      <p class="thought"><span class="thought-label">Pensamiento</span>{thought.split('\n').map((line, i) => (<>{i > 0 && <br />}{line}</>))}</p>
     </article>
 
     <ShareRow title={`${title} · ${BESHT_ES.name}`} url={pageUrl} lang="es" label={`Una historia para ${occasion}. Compártela:`} />

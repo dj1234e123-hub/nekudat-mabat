@@ -9,7 +9,7 @@ hebrewDate: "6 de Jeshván 5787"
 date: 2026-10-17T16:30:00Z
 readingTime: "un minuto"
 excerpt: "Un año entero sin lluvia, y las oraciones no ayudaron. Entonces un judío sencillo empezó a gritar un versículo que todos conocen como maldición. Y el Baal Shem Tov no lo reprendió."
-thought: "Las palabras eran las mismas. Solo su oído oyó en ellas una promesa."
+thought: "Las palabras eran las mismas.\nSolo su oído oyó en ellas una promesa."
 tags: [Noaj, lluvia, plegaria, sencillez, Baal Shem Tov]
 source: "Recogido en Keter Shem Tov (apéndices), párrafo 347, y en colecciones de relatos jasídicos con el título «Y cerrará los cielos». Fiabilidad media: tradición oral, sin año ni lugar, y las versiones difieren en los detalles. Adaptación y escritura originales de Efraim Atia."
 ---
