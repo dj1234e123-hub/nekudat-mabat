@@ -82,8 +82,8 @@ const navLinks = es
       { href: '/stories/', label: 'סיפורים' },
       { href: '/moments/', label: 'מה עובר עליך' },
       { href: '/mabat-leshabbat/', label: 'מבט לשבת' },
+      { href: '/besht/', label: 'מעשה שהיה' },
       { href: '/about/', label: 'מי אני' },
-      { href: '/liluy-ishi/', label: 'ליווי אישי' },
     ];
 const aboutHref = es ? '/es/sobre-mi/' : '/about/';
 const homeHref = es ? '/es/' : '/';
@@ -502,15 +502,16 @@ const ogImageDims = ogImage
     margin-top: 0.1rem;
   }
 
-  /* חמישה פריטים בשורה אחת ב-390px (נמדד: 296px טקסט + 4 רווחים של 0.75rem
-     = 344px, בתוך 358px פנויים). קודם, עם גופן 0.95rem ורווח 1.25rem, ארבעה
-     נכנסו לשורה, "ליווי אישי" נותר יתום בשנייה, וגלולת השפה נפלה לשלישית –
+  /* חמישה פריטים בשורה אחת ב-390px (נמדד אחרי ש"מעשה שהיה" החליף את "ליווי
+     אישי", 2026-10-17: 312px טקסט + 4 רווחים של 0.65rem = 354px, בתוך 358px
+     פנויים). קודם, עם גופן 0.95rem ורווח 1.25rem, ארבעה
+     נכנסו לשורה, הפריט החמישי נותר יתום בשנייה, וגלולת השפה נפלה לשלישית –
      201px של כותרת לפני התוכן. */
   .site-nav {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 0 0.75rem;
+    gap: 0 0.65rem;
     margin-top: 0.3rem;
     font-size: 0.9rem;
   }
@@ -601,8 +602,8 @@ const ogImageDims = ogImage
      יותר וברווח צר יותר. עדיין מעל 13px, ושטח המגע האנכי נשאר 44px. */
   @media (max-width: 23.5rem) {
     .site-nav {
-      gap: 0 0.55rem;
-      font-size: 0.86rem;
+      gap: 0 0.5rem;
+      font-size: 0.84rem;
     }
 
     /* הסלוגן הספרדי ("Ponemos el punto en el centro") הוא החלק הרחב במותג,

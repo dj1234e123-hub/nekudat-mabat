@@ -17,7 +17,10 @@ export default defineConfig({
       //
       // עולם תוכן שמור שאין בו עדיין סיפורים אינו נכנס למפה: עמוד ריק שמוגש
       // לגוגל הוא הבטחה שלא מתקיימת. הוא ייכנס מעצמו ברגע שיהיה בו תוכן.
-      filter: (page) => !page.includes('/sections/shabbat/'),
+      filter: (page) =>
+        !page.includes('/sections/shabbat/') &&
+        // עמוד הליווי האישי ירד מהתפריט (2026-10-17) ונשאר חי רק לקישורים ישנים.
+        !page.includes('/liluy-ishi/'),
     }),
   ],
 });
