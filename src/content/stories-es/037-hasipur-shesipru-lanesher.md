@@ -22,7 +22,7 @@ Cuando era chico todavía intentaba preguntar, pero muy rápido aprendió a call
 
 Se encontró un rincón detrás del gallinero – un lugar donde nadie mira, y nadie hace preguntas.
 
-Un día pasó por ahí un hombre viejo. Un naturalista de ojos agudos, y un corazón acostumbrado a reconocer a quien no está en su lugar.
+Un día pasó por ahí un hombre viejo. Un naturalista de ojos agudos.
 
 Se detuvo junto al alambrado, miró bien al ave distinta, y susurró para sí:
 
@@ -42,7 +42,7 @@ A los pocos días lo llevó a la cima de una montaña, lejos del pueblo y del ga
 
 Lo sostuvo en las manos, giró su rostro hacia el sol naciente, y le dijo despacio:
 
-—*Eres un águila.* No todos los que te dijeron gallo sabían quién eres de verdad. No dejes que sus voces tapen la tuya.
+—*Eres un águila.*
 
 Esta vez no había gallos alrededor, no había ojos burlones. Solo él, el sol, y el viento en la cara.
 
@@ -56,7 +56,7 @@ El viejo calló. No empujó, no tironeó. Solo lo sostuvo y susurró:
 
 —Tú puedes. Yo lo sé.
 
-Y entonces, en un instante que no se puede medir en tiempo, extendió las alas hasta el final, tomó una respiración profunda, y se soltó.
+Y entonces extendió las alas hasta el final, tomó una respiración profunda, y se soltó.
 
 Un momento más de caída – y el cuerpo entero recordó lo que siempre estuvo en él.
 
@@ -64,13 +64,15 @@ Las alas empezaron a trabajar. Despacio, y después fuerte. Y la tierra se fue a
 
 Subió, un círculo y otro círculo, hasta que el gallinero se volvió un punto lejano, y la burla de los años se quedó abajo.
 
-Ahí, en la altura, entendió por fin qué pequeña había sido la historia que le contaron sobre sí mismo.
+> Ahí, en la altura, entendió por fin qué pequeña había sido la historia que le contaron sobre sí mismo.
 
-La primera vez, sobre el cerco, saltó de vuelta al gallinero. El viejo no discutió. Esperó, y llevó al águila a la montaña.
+Yo también tengo un gallinero. Unas cuantas frases que escuché tantas veces que empecé a creer que eran mi propia voz.
 
-Las voces viejas son más fuertes en el lugar donde se dijeron. Frente a los ojos que se burlaban, casi no se puede intentar algo nuevo. En un lugar tranquilo, junto a alguien que cree en ti, de pronto se puede.
+Y aprendí que no sirve discutir con ellas sobre el cerco. Ahí siempre ganan.
 
-Por eso, cuando quiero empezar algo nuevo en mí, primero me pregunto:
+El primer intento ya no lo hago frente a quien decidió quién soy. Lo hago en silencio, junto a alguien que cree en mí.
+
+Así que antes de cada comienzo me pregunto:
 
 <div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿Dónde, y con quién, puedo intentarlo por primera vez?</p></div>
 
