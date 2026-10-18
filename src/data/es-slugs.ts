@@ -73,6 +73,7 @@ export const ES_STORY_SLUGS: Record<string, string> = {
   'haner-batzintzenet': 'la-vela-en-el-frasco',
   'hadag-shehorid-geshem': 'el-pez-que-trajo-la-lluvia',
   'hapniya-shelo-tichnanti': 'el-desvio-que-no-planee',
+  'shtei-dakot-bachoshech': 'dos-minutos-a-oscuras',
   'nipagesh-beseptember': 'nos-vemos-el-uno-de-septiembre',
   'shiur-al-srochim': 'una-leccion-sobre-cordones',
   'tzaif-zahov': 'el-panuelo-dorado',
