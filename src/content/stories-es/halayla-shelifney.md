@@ -7,7 +7,7 @@ cover: ../../assets/covers/halayla-shelifney.png
 coverAlt: "Una calle mojada y silenciosa antes del amanecer, una mochila apoyada contra una pared de piedra junto a un farol, y un patrullero con luces azules y rojas que se acerca desde el fondo de la calle"
 date: 2026-10-22T18:31:00Z
 readingTime: "unos 2 minutos"
-excerpt: "De madrugada. Un joven camina solo por una calle oscura, hace horas. Un patrullero baja la velocidad a su lado, y el policía se baja del auto."
+excerpt: "En unas horas empieza un trabajo nuevo. Esa noche su auto no arrancó, y hasta la dirección hay más de treinta kilómetros."
 hook: "¿Hasta dónde estaríamos dispuestos a caminar para no perdernos un comienzo?"
 source: "Basado en la historia real de Walter Carr, Alabama, 2018, publicada por la prensa estadounidense (CBS, ABC y otros), en adaptación y redacción originales de Efraim Atia."
 ---
