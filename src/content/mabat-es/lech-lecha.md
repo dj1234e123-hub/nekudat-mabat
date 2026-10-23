@@ -7,7 +7,7 @@
 title: Si me cuesta, ¿me habré equivocado?
 parasha: Lej Lejá
 hebrewDate: 13 de Jeshván 5787
-description: "Lo decidiste y diste el paso. Después llegó la primera semana, y algo empezó a tambalearse. ¿Qué hizo Avram cuando justo en la tierra a la que fue enviado llegó el hambre?"
+description: "Lo decidiste y diste el paso. Después llegó la primera semana, y todo empezó a tambalearse. Y de noche, cuando todo está en silencio, llega un solo pensamiento."
 date: 2026-10-23T08:15:00Z
 quoteImage: ../../assets/mabat-leshabbat/lech-lecha-quote-es.png
 quoteImageAlt: "La dificultad no le dijo que se había equivocado. Le dijo que había llegado."
