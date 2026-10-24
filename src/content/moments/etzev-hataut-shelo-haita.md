@@ -1,6 +1,6 @@
 ---
 feeling: sadness
-date: 2026-10-24
+date: 2026-10-24T19:20:00Z
 title: הטעות שלא הייתה
 handle: |-
   למי שקיווה איתך,

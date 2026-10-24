@@ -75,6 +75,7 @@ export const ES_STORY_SLUGS: Record<string, string> = {
   'hapniya-shelo-tichnanti': 'el-desvio-que-no-planee',
   'shtei-dakot-bachoshech': 'dos-minutos-a-oscuras',
   'halayla-shelifney': 'la-noche-antes-del-primer-dia',
+  'kach-gam-et-hameil': 'llevate-tambien-el-abrigo',
   'nipagesh-beseptember': 'nos-vemos-el-uno-de-septiembre',
   'shiur-al-srochim': 'una-leccion-sobre-cordones',
   'tzaif-zahov': 'el-panuelo-dorado',
