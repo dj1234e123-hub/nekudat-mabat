@@ -1,6 +1,6 @@
 ---
 feeling: pressure
-date: 2026-10-24
+date: 2026-10-24T19:00:00Z
 title: חמש בערב
 handle: |-
   את מה שעבר למחר,
