@@ -11,21 +11,29 @@ readingTime: "un minuto"
 excerpt: "Durante años el Baal Shem Tov soñó con llegar a la Tierra de Israel. Salió de viaje, llegó hasta Constantinopla y subió a un barco en Jol Hamoed de Pésaj. Y en alta mar empezó una tormenta."
 thought: "No llegó a la Tierra de Israel. Muchos de los que lo siguieron, sí."
 tags: [Lej Lejá, Tierra de Israel, viaje, espera, Baal Shem Tov]
-source: "Tradición sobre el intento de aliá del Baal Shem Tov, presente en distintas versiones de la literatura jasídica y en la investigación (el hecho del viaje es aceptado; fue omitido en la primera edición de Shivjei HaBesht, 1815). Fiabilidad media-alta para el viaje y el regreso, menor para los detalles de la tormenta, que por eso se reducen. Adaptación y escritura originales de Efraim Atia."
+source: "Tradición sobre el intento de aliá del Baal Shem Tov, presente en distintas versiones de la literatura jasídica y en la investigación (el hecho del viaje es aceptado; fue omitido en la primera edición de Shivjei HaBesht, 1815). Fiabilidad media-alta para el viaje y el regreso, menor para los detalles de la tormenta, que por eso se reducen. La escena de los escritos y Adel (el mar se calma solo cuando él renuncia a los escritos; «de mí todavía saldrá un hijo que escribirá cosas más bellas») proviene de la tradición de Breslov sobre su viaje; las versiones difieren sobre qué eran los escritos, por eso no se detallan. Adaptación y escritura originales de Efraim Atia."
 ---
 
 El Baal Shem Tov soñó durante años con llegar a la Tierra de Israel.
 
-No solo con el lugar. Con su aire, con sus piedras, con los sitios de los que habla la Torá y que nunca había visto. Ahora se puso en camino y llegó hasta Constantinopla, la actual Estambul, la ciudad desde donde se zarpa hacia la Tierra.
+No solo con el lugar. Con su aire, con sus piedras, con los sitios de los que habla la Torá y que nunca había visto. Ahora se puso en camino con su hija Adel y un discípulo, y llegó hasta Constantinopla, la actual Estambul, la ciudad desde donde se zarpa hacia la Tierra.
 
-Un retraso llegó tras otro. Barcos que no zarpaban, el dinero que se iba, los días que pasaban. En Jol Hamoed de Pésaj, los días intermedios de la fiesta, subió por fin a un barco que zarpaba hacia la Tierra de Israel.
+Un retraso llegó tras otro. Barcos que no zarpaban, el dinero que se iba, los días que pasaban. En Jol Hamoed de Pésaj, los días intermedios de la fiesta, subieron por fin a un barco que zarpaba hacia la Tierra de Israel.
 
 Y en alta mar empezó una tormenta.
 
-Olas como muros, cielo negro. Los pasajeros gritaban, los marineros se aferraban a las cuerdas sin saber para qué. El Baal Shem Tov se paró en medio de la cubierta e intentó todo lo que sabía intentar.
+Olas como muros, cielo negro. Los pasajeros tiraron al mar sus pertenencias para aligerar el barco. El Baal Shem Tov se paró en medio de la cubierta e intentó todo lo que sabía intentar.
 
 No funcionó.
 
-Cuenta la tradición que entonces entendió: desde arriba no lo dejaban continuar. No sabía por qué.
+Cuenta la tradición que entonces entendió: el mar solo se calmaría si renunciaba a lo que más quería. En sus manos tenía los escritos que llevaba consigo. No se movió.
 
-El barco dio la vuelta. En la última noche de la fiesta entró otra vez al puerto de Constantinopla, la misma ciudad de la que había salido.
+Adel lo miró y dijo:
+
+> «Papá, tíralos. De mí todavía saldrá un hijo que escribirá cosas más bellas que estas».
+
+Los tiró. El mar se calmó.
+
+Pero el barco ya no siguió hacia la Tierra. Volvió a Constantinopla, a la ciudad de la que había salido.
+
+No lo intentó otra vez.
