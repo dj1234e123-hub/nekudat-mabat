@@ -10,6 +10,7 @@ import { SITE_ES } from '../data/site-es';
 // מדידה: כמה נכנסו לכל עמוד ומאיפה הגיעו. בלי עוגיות ובלי מעקב אחרי אדם –
 // הבסיס להחלטות תוכן ("איזה סיפור באמת נקרא"), במקום מונה לייקים גלוי.
 import Analytics from '@vercel/analytics/astro';
+import MenuDrawer from '../components/MenuDrawer.astro';
 
 interface Props {
   title: string;
@@ -25,7 +26,6 @@ interface Props {
   /** כותרת מצומצמת (עמודי סיפור): שורת מותג אחת, בלי סלוגן ותפריט – הקורא מגיע מהר לסיפור */
   compact?: boolean;
   /** תפריט נפתח (☰) בכותרת המצומצמת – כרגע בעמודי סיפור בלבד. */
-  menu?: boolean;
   /** כותרת דף הבית: ריווח עליון מעט גדול יותר. גודל הלוגו והשם זהה מאז
       2026-09-16 לכל העמודים (קודם דף הבית היה הקטן מבין השניים).
       הסלוגן מופיע גם כאן, באותו מקום ובאותו עיצוב כמו בשאר העמודים –
@@ -58,7 +58,6 @@ const {
   ogImageHeight,
   ogType = 'website',
   compact = false,
-  menu = false,
   homeHeader = false,
   bodyClass,
   noindex = false,
@@ -190,58 +189,7 @@ const ogImageDims = ogImage
               {altLang.label}
             </a>
           )}
-          {/* עמוד סיפור הוא דלת הכניסה של רוב הקוראים (קישור מוואטסאפ), ובכותרת
-              המצומצמת אין תפריט. popover נפתח ונסגר בלי JavaScript, נסגר
-              בלחיצה מחוץ למגירה וב-Esc. הכפתור בפינה הנגדית לגלולת השפה. */}
-          {menu && (
-            <button
-              class="menu-btn"
-              type="button"
-              popovertarget="site-menu"
-              aria-label={es ? 'Menú' : 'תפריט'}
-              data-ph="menu_open"
-            >
-              <span></span><span></span><span></span>
-            </button>
-          )}
-          {menu && (
-            <nav id="site-menu" class="menu-drawer" popover aria-label={es ? 'Navegación principal' : 'ניווט ראשי'}>
-              <button
-                class="menu-close"
-                type="button"
-                popovertarget="site-menu"
-                popovertargetaction="hide"
-                aria-label={es ? 'Cerrar' : 'סגירה'}
-              >
-                ✕
-              </button>
-              <a class="menu-home" href={homeHref}>{brand.name}</a>
-              {navLinks.map((link) => <a href={link.href}>{link.label}</a>)}
-            </nav>
-          )}
-          {/* דפדפן בלי popover (Samsung Internet ו-Chrome ישנים) הציג את המגירה
-              פתוחה תמיד, וה-✕ לא סגר. שם פותחים וסוגרים בכיתה. */}
-          {menu && (
-            <script is:inline>
-              (function () {
-                if (HTMLElement.prototype.hasOwnProperty('popover')) return;
-                var d = document.getElementById('site-menu');
-                document.addEventListener('click', function (e) {
-                  var b = e.target.closest && e.target.closest('[popovertarget="site-menu"]');
-                  if (b) {
-                    e.preventDefault();
-                    if (b.getAttribute('popovertargetaction') === 'hide') d.classList.remove('is-open');
-                    else d.classList.toggle('is-open');
-                  } else if (d.classList.contains('is-open') && !d.contains(e.target)) {
-                    d.classList.remove('is-open');
-                  }
-                });
-                document.addEventListener('keydown', function (e) {
-                  if (e.key === 'Escape') d.classList.remove('is-open');
-                });
-              })();
-            </script>
-          )}
+          <MenuDrawer es={es} homeHref={homeHref} brandName={brand.name} links={navLinks} current={Astro.url.pathname} />
         </header>
       ) : (
         <header class={homeHeader ? 'header-home' : undefined}>
@@ -270,6 +218,18 @@ const ogImageDims = ogImage
               </a>
             )}
           </nav>
+          {showLangPill && (
+            <a
+              class="lang-pill lang-pill-corner lang-pill-phone"
+              href={altLang.href}
+              lang={altLang.lang}
+              dir={altLang.dir}
+              aria-label={altLang.aria}
+            >
+              {altLang.label}
+            </a>
+          )}
+          <MenuDrawer es={es} homeHref={homeHref} brandName={brand.name} links={navLinks} current={Astro.url.pathname} />
         </header>
       )
     }
@@ -653,6 +613,39 @@ const ogImageDims = ogImage
     }
   }
 
+  /* תפריט ☰ בטלפון בכל העמודים (2026-10-26). השורה של חמשת הפריטים נכנסה
+     ב-390px בלי שום מרווח, וגופן מערכת מוגדל ב-15% (הגדרה נפוצה באנדרואיד)
+     הפיל את "מי אני" לשורה שנייה. עכשיו בטלפון: המותג באמצע, ☰ בפינה אחת
+     וגלולת השפה בשנייה – שורה אחת, כמו בעמודי הסיפור. במסך רחב השורה נשארת. */
+  @media (max-width: 33.99rem) {
+    header:not(.header-compact) .site-nav {
+      display: none;
+    }
+
+    /* שתי הפינות שמורות ל-☰ ולגלולה: בגופן מערכת מוגדל המותג נשבר לשתי
+       שורות במקום לגלוש מתחתיהן. */
+    header,
+    header.header-compact {
+      padding-inline: 4.6rem;
+    }
+
+    /* בספרדית הגלולה ("עברית") צרה, והסלוגן הספרדי רחב – פינות צרות יותר. */
+    html[lang='es'] header {
+      padding-inline: 3.6rem;
+    }
+
+    .header-home .menu-btn {
+      top: 1.75rem;
+    }
+  }
+
+  @media (min-width: 34rem) {
+    header:not(.header-compact) .menu-btn,
+    .lang-pill-phone {
+      display: none;
+    }
+  }
+
   /* טלפונים צרים (360px): חמשת הפריטים נכנסים לשורה אחת רק בגופן מעט קטן
      יותר וברווח צר יותר. עדיין מעל 13px, ושטח המגע האנכי נשאר 44px. */
   @media (max-width: 23.5rem) {
@@ -761,6 +754,10 @@ const ogImageDims = ogImage
     font-weight: 600;
     color: var(--teal);
     text-decoration: none;
+  }
+
+  .menu-drawer a[aria-current='page'] {
+    color: var(--ink);
   }
 
   .menu-drawer a.menu-home {

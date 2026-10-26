@@ -1,0 +1,64 @@
+---
+// תפריט נפתח (☰). בכותרת המצומצמת (סיפור, רגע, מבט לשבת) הוא התפריט היחיד;
+// בכותרת המלאה הוא מחליף את שורת הניווט בטלפון בלבד (2026-10-26) – חמשת
+// הפריטים נכנסו לשורה אחת בלי שום מרווח, וגופן מערכת מוגדל קצת הפיל את
+// "מי אני" לשורה שנייה. העיצוב ב-Base.astro (style is:global).
+interface Props {
+  es: boolean;
+  homeHref: string;
+  brandName: string;
+  links: { href: string; label: string }[];
+  current: string;
+}
+const { es, homeHref, brandName, links, current } = Astro.props;
+// העמוד הנוכחי מסומן במגירה – גם בתוך אזור (סיפור בודד מסמן "סיפורים").
+const isCurrent = (href: string) => current.startsWith(href);
+---
+
+{/* popover נפתח ונסגר בלי JavaScript, נסגר בלחיצה מחוץ למגירה וב-Esc.
+    הכפתור בפינה הנגדית לגלולת השפה. */}
+<button
+  class="menu-btn"
+  type="button"
+  popovertarget="site-menu"
+  aria-label={es ? 'Menú' : 'תפריט'}
+  data-ph="menu_open"
+>
+  <span></span><span></span><span></span>
+</button>
+<nav id="site-menu" class="menu-drawer" popover aria-label={es ? 'Navegación principal' : 'ניווט ראשי'}>
+  <button
+    class="menu-close"
+    type="button"
+    popovertarget="site-menu"
+    popovertargetaction="hide"
+    aria-label={es ? 'Cerrar' : 'סגירה'}
+  >
+    ✕
+  </button>
+  <a class="menu-home" href={homeHref}>{brandName}</a>
+  {links.map((link) => (
+    <a href={link.href} aria-current={isCurrent(link.href) ? 'page' : undefined}>{link.label}</a>
+  ))}
+</nav>
+{/* דפדפן בלי popover (Samsung Internet ו-Chrome ישנים) הציג את המגירה
+    פתוחה תמיד, וה-✕ לא סגר. שם פותחים וסוגרים בכיתה. */}
+<script is:inline>
+  (function () {
+    if (HTMLElement.prototype.hasOwnProperty('popover')) return;
+    var d = document.getElementById('site-menu');
+    document.addEventListener('click', function (e) {
+      var b = e.target.closest && e.target.closest('[popovertarget="site-menu"]');
+      if (b) {
+        e.preventDefault();
+        if (b.getAttribute('popovertargetaction') === 'hide') d.classList.remove('is-open');
+        else d.classList.toggle('is-open');
+      } else if (d.classList.contains('is-open') && !d.contains(e.target)) {
+        d.classList.remove('is-open');
+      }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') d.classList.remove('is-open');
+    });
+  })();
+</script>
