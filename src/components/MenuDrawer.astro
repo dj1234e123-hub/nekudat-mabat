@@ -40,9 +40,40 @@ const isCurrent = (href: string) => current.startsWith(href);
   {links.map((link) => (
     <a href={link.href} aria-current={isCurrent(link.href) ? 'page' : undefined}>{link.label}</a>
   ))}
+  <button class="theme-row" type="button" data-theme-toggle aria-pressed="false" data-ph="theme_toggle">
+    <span class="theme-label">{es ? 'Modo noche' : 'מצב לילה'}</span>
+    <span class="theme-switch" aria-hidden="true"><span></span></span>
+  </button>
 </nav>
 {/* דפדפן בלי popover (Samsung Internet ו-Chrome ישנים) הציג את המגירה
     פתוחה תמיד, וה-✕ לא סגר. שם פותחים וסוגרים בכיתה. */}
+{/* מצב לילה: כל כפתור עם data-theme-toggle (במגירה ובשורת הניווט). ברירת
+    המחדל היא הגדרת הטלפון; לחיצה קובעת בחירה מפורשת ושומרת אותה. */}
+<script is:inline>
+  (function () {
+    var root = document.documentElement;
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    function current() {
+      return root.dataset.theme || (mq.matches ? 'dark' : 'light');
+    }
+    function sync() {
+      var dark = current() === 'dark';
+      document.querySelectorAll('[data-theme-toggle]').forEach(function (b) {
+        b.setAttribute('aria-pressed', dark ? 'true' : 'false');
+      });
+    }
+    document.addEventListener('click', function (e) {
+      var b = e.target.closest && e.target.closest('[data-theme-toggle]');
+      if (!b) return;
+      var next = current() === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = next;
+      try { localStorage.setItem('nm_theme', next); } catch (err) {}
+      sync();
+    });
+    if (mq.addEventListener) mq.addEventListener('change', sync);
+    sync();
+  })();
+</script>
 <script is:inline>
   (function () {
     if (HTMLElement.prototype.hasOwnProperty('popover')) return;
