@@ -452,7 +452,7 @@ const DESCRIPTION =
     color: var(--muted);
     text-decoration: none;
     display: inline-block;
-    padding-block: 0.45rem;
+    padding-block: 0.5rem;
     border-bottom: 1px solid var(--line);
     transition: color 0.15s ease, border-color 0.15s ease;
   }
@@ -470,7 +470,9 @@ const DESCRIPTION =
     width: var(--bleed);
     margin-inline: calc((100% - var(--bleed)) / 2);
     display: grid;
-    grid-template-columns: 1fr;
+    /* minmax(0, …): בגופן מערכת מוגדל מילה ארוכה או הכפתור דחפו את הטור
+       מעבר לרוחב המסך (נמדד ב-/es/ בגופן 130%: 427px ב-390). */
+    grid-template-columns: minmax(0, 1fr);
     grid-template-areas: 'moments' 'week' 'stories';
     /* הרווח גדל (1.75 ← 3.25rem): מה שהפריד בין האזורים היה מסגרת, ומאז
        שהיא ירדה האוויר הוא שעושה את העבודה – והוא גם מה שמחזיק את נקודת
@@ -658,9 +660,13 @@ const DESCRIPTION =
     margin: 0.95rem auto 1.5rem;
   }
 
+  /* שטח מגע 44px בלי לשנות את הפריסה: הריפוד מקוזז בשוליים שליליים. */
   .moment-title a {
     color: inherit;
     text-decoration: none;
+    display: inline-block;
+    padding-block: 0.6rem;
+    margin-block: -0.6rem;
   }
 
   /* השיתוף בדף הבית הוא פעולה שלישית במעלה – אחרי הקריאה ואחרי הכניסה
@@ -709,7 +715,7 @@ const DESCRIPTION =
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 14rem;
+    min-width: min(14rem, 100%);
     min-height: 48px;
     padding: 0.7rem 1.9rem;
     background: var(--brick);
@@ -888,7 +894,8 @@ const DESCRIPTION =
   .story-link {
     display: inline-flex;
     align-items: center;
-    min-height: 32px;
+    min-height: 44px;
+    margin-block: -6px;
     font-size: 0.85rem;
     font-weight: 600;
     color: var(--teal);
@@ -1001,7 +1008,9 @@ const DESCRIPTION =
     color: var(--ink);
     text-decoration: none;
     line-height: 1.4;
-    margin-bottom: 1.1rem;
+    padding-block: 0.5rem;
+    margin-top: -0.5rem;
+    margin-bottom: 0.6rem;
     text-wrap: balance;
   }
 
