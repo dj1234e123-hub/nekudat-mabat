@@ -208,6 +208,11 @@
       "permanent": true
     },
     {
+      "source": "/es/historias/kav-echad/",
+      "destination": "/es/historias/una-sola-linea/",
+      "permanent": true
+    },
+    {
       "source": "/es/historias/004-chikiti-sheyitparetz/",
       "destination": "/es/historias/esperaba-que-explotara/",
       "permanent": true
