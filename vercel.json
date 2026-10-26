@@ -188,6 +188,61 @@
       "permanent": true
     },
     {
+      "source": "/es/historias/kvar-baavir/",
+      "destination": "/es/historias/ya-en-el-aire/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/mi-yaamod-bamakolet/",
+      "destination": "/es/historias/quien-va-a-atender-la-tienda/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/32-dolar/",
+      "destination": "/es/historias/32-dolares-y-17-centavos/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/lo-nishlach/",
+      "destination": "/es/historias/no-enviada-no-firmada/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/004-chikiti-sheyitparetz/",
+      "destination": "/es/historias/esperaba-que-explotara/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/haner-batzintzenet/",
+      "destination": "/es/historias/la-vela-en-el-frasco/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/hadag-shehorid-geshem/",
+      "destination": "/es/historias/el-pez-que-trajo-la-lluvia/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/hapniya-shelo-tichnanti/",
+      "destination": "/es/historias/el-desvio-que-no-planee/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/shtei-dakot-bachoshech/",
+      "destination": "/es/historias/dos-minutos-a-oscuras/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/halayla-shelifney/",
+      "destination": "/es/historias/la-noche-antes-del-primer-dia/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/kach-gam-et-hameil/",
+      "destination": "/es/historias/llevate-tambien-el-abrigo/",
+      "permanent": true
+    },
+    {
       "source": "/es/historias/nipagesh-beseptember/",
       "destination": "/es/historias/nos-vemos-el-uno-de-septiembre/",
       "permanent": true
