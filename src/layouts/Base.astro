@@ -219,6 +219,29 @@ const ogImageDims = ogImage
               {navLinks.map((link) => <a href={link.href}>{link.label}</a>)}
             </nav>
           )}
+          {/* דפדפן בלי popover (Samsung Internet ו-Chrome ישנים) הציג את המגירה
+              פתוחה תמיד, וה-✕ לא סגר. שם פותחים וסוגרים בכיתה. */}
+          {menu && (
+            <script is:inline>
+              (function () {
+                if (HTMLElement.prototype.hasOwnProperty('popover')) return;
+                var d = document.getElementById('site-menu');
+                document.addEventListener('click', function (e) {
+                  var b = e.target.closest && e.target.closest('[popovertarget="site-menu"]');
+                  if (b) {
+                    e.preventDefault();
+                    if (b.getAttribute('popovertargetaction') === 'hide') d.classList.remove('is-open');
+                    else d.classList.toggle('is-open');
+                  } else if (d.classList.contains('is-open') && !d.contains(e.target)) {
+                    d.classList.remove('is-open');
+                  }
+                });
+                document.addEventListener('keydown', function (e) {
+                  if (e.key === 'Escape') d.classList.remove('is-open');
+                });
+              })();
+            </script>
+          )}
         </header>
       ) : (
         <header class={homeHeader ? 'header-home' : undefined}>
@@ -685,7 +708,9 @@ const ogImageDims = ogImage
   }
 
   .menu-drawer {
+    display: none;
     position: fixed;
+    z-index: 100;
     inset-block: 0;
     inset-inline-start: auto;
     inset-inline-end: 0;
@@ -699,6 +724,11 @@ const ogImageDims = ogImage
     box-shadow: 0 0 30px rgb(0 0 0 / 0.15);
     text-align: start;
     font-family: var(--font-body);
+  }
+
+  .menu-drawer.is-open {
+    display: flex;
+    flex-direction: column;
   }
 
   .menu-drawer:popover-open {
