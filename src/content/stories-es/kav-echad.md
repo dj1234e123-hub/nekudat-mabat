@@ -5,7 +5,7 @@ title: "Una sola línea"
 section: chaim
 cover: ../../assets/covers/kav-echad.png
 coverAlt: "Una boleta electoral sobre un estante de madera dentro de una cabina de votación, con dos círculos marcados y una línea fina sobre uno de ellos, una lapicera al lado y luz dorada de atardecer que entra por una abertura en una cortina azul"
-date: 2026-10-27T18:00:00Z
+date: 2026-10-27T17:40:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Una elección entera, meses de campaña, y al final todo quedó colgando de una sola boleta: dos círculos marcados y una línea sobre uno de ellos."
 hook: "¿Cuánto pesa un acto pequeño que nadie vio?"
