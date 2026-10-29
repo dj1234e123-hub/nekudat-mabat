@@ -103,6 +103,7 @@ export const ES_BESHT_SLUGS: Record<string, string> = {
   'hasfina-shechazra': 'el-barco-que-volvio',
   'mi-ba-lasuda-shlishit': 'quien-llego-a-la-tercera-comida',
   'lama-kulam-nikraim-baruch': 'por-que-todos-se-llaman-baruj',
+  'tohav-oto-yoter': 'amalo-mas',
 };
 
 /** הכתובת הציבורית של סיפור "מעשה שהיה" ספרדי. סיפור בלי סלאג מכשיל את הבנייה. */
