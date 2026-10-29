@@ -5,37 +5,42 @@
 # "melavé malká, la comida de despedida de Shabat" (הסבר בחצי משפט), Eliahu
 # ← "Eliahu, el profeta" (לא "Elías": הקהילות הספרדיות הלטינו-אמריקאיות אומרות
 # Eliahu HaNaví). אותו תאריך בדיוק כמו העברי.
+# עודכן 29.10 לפי הליטוש העברי: זוג זקן בלי ילדים, העיירה שופטת, רבי אליעזר רואה את
+# המקל ובוחר לא לבייש, אליהו אומר מה נבדק ("si avergonzarías a un judío"), והמחשבה
+# החדשה. "iluminará los ojos de Israel" לפי לשון שבחי הבעש"ט.
 title: "Quién llegó a la tercera comida"
 occasion: "Motzaei Shabat Vayerá"
 hebrewDate: "20 de Jeshván 5787"
 date: 2026-10-31T17:30:00Z
 readingTime: "un minuto"
-excerpt: "En la casa de Rabí Eliézer nunca cerraban la puerta. Un Shabat por la tarde apareció al final de la calle un hombre con bastón y mochila. Todo el pueblo lo vio. Rabí Eliézer vio otra cosa."
-thought: "No invitó a Eliahu, el profeta. Invitó a un hombre con bastón y mochila."
-tags: [Vayerá, hospitalidad, Eliahu HaNaví, no juzgar, Baal Shem Tov]
+excerpt: "Un Shabat por la tarde apareció en la calle un hombre con bastón y mochila, como si no existiera el Shabat. Todo el pueblo vio lo que llevaba en la mano. Rabí Eliézer vio algo más."
+thought: "Todos vieron el bastón.\nRabí Eliézer vio a un hombre con hambre."
+tags: [Vayerá, hospitalidad, Eliahu HaNaví, no juzgar, no avergonzar, Baal Shem Tov]
 source: "Tradición jasídica sobre el padre del Baal Shem Tov, Rabí Eliézer, recogida en Shivjei HaBesht y en la literatura jasídica. Fiabilidad media: las versiones difieren en los detalles de la prueba y en la identidad del huésped al llegar. Adaptación y escritura originales de Efraim Atia."
 ---
 
-Rabí Eliézer, que un día sería el padre del Baal Shem Tov, vivía en un pueblo pequeño, y en su casa nunca cerraban la puerta.
+Rabí Eliézer, que un día sería el padre del Baal Shem Tov, vivía con su esposa en un pueblo pequeño. Ya eran mayores, *y no tenían hijos*. Pero su casa estaba abierta a todo el que pasaba, y la puerta nunca se cerraba.
 
-Shabat, por la tarde. La calle estaba vacía; todo el pueblo estaba sentado a la mesa.
+Shabat, por la tarde. La calle vacía; todos en sus casas, sentados a la mesa.
 
-Entonces apareció al final de la calle un hombre. Un bastón en la mano, una mochila al hombro, caminando como quien tiene un largo camino por delante.
+Entonces apareció al final de la calle un desconocido. Un bastón en la mano, una mochila al hombro. Caminando en Shabat como se camina un día cualquiera.
 
-Bastón. Mochila. En Shabat, en plena calle. Como si se hubiera olvidado de que era Shabat.
+Quien lo vio desde la ventana lo entendió enseguida: *un judío que profana el Shabat*, así, en plena calle. Uno desvió la mirada. Otro cerró los postigos. Otro dijo en voz alta lo que pensaba de él.
 
-Quien lo vio desvió la mirada.
+Rabí Eliézer también lo vio desde la ventana. Vio el bastón y la mochila, igual que todos.
 
-Rabí Eliézer lo vio desde la ventana, y vio otra cosa: a un hombre cansado que todavía no había comido la tercera comida de Shabat.
+*Y vio algo más*: a un hombre cansado y con hambre, al que el Shabat se le estaba yendo sin comida.
 
-Salió a su encuentro. No preguntó de dónde venía, no lo reprendió, no levantó una ceja.
+Salió a su encuentro.
 
-—Shalom aleijem —dijo—. Tengo un lugar a mi mesa.
+—Shalom aleijem —dijo—. Ven, tengo un lugar a mi mesa.
 
-Lo sentó, le sirvió de todo lo que había en la casa y lo honró como se honra a un rey. Cuando terminó Shabat, se sentaron también a la melavé malká, la comida de despedida de Shabat, y solo después Rabí Eliézer lo acompañó hasta la puerta.
+Lo sentó a la cabecera, le sirvió de todo lo que había en la casa y lo honró como se honra a un huésped importante. En toda la comida no le preguntó de dónde venía ni dijo una palabra sobre el bastón. *Ni siquiera una mirada.*
 
-Allí, en el umbral, el huésped se enderezó. Lo miró y dijo:
+Terminó Shabat. Se sentaron también a la melavé malká, la comida de despedida de Shabat, y solo después Rabí Eliézer lo acompañó hasta la puerta.
 
-—Soy Eliahu, el profeta. Me enviaron a ver qué harías.
+En el umbral, el huésped se detuvo, se enderezó y lo miró.
 
-> «Por lo que hiciste, tendrás un hijo que iluminará al mundo entero».
+—Soy Eliahu, el profeta. Vine en Shabat con bastón y mochila *para ver si avergonzarías a un judío*. No lo avergonzaste.
+
+> «Y por eso tendrás un hijo que iluminará los ojos de Israel».
