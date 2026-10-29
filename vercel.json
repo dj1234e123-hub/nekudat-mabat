@@ -213,6 +213,11 @@
       "permanent": true
     },
     {
+      "source": "/es/historias/kol-boker-tefillin/",
+      "destination": "/es/historias/cada-manana-tefilin/",
+      "permanent": true
+    },
+    {
       "source": "/es/historias/004-chikiti-sheyitparetz/",
       "destination": "/es/historias/esperaba-que-explotara/",
       "permanent": true
