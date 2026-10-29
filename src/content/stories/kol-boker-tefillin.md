@@ -29,20 +29,16 @@ source: "סיפור אישי מאת אפרים עטייה."
 
 שנים. כל בוקר.
 
-<!-- תמונה 1 (המבט): להחליף את ההערה הזו ב:
-<figure class="inline-photo">
-
-![תיאור התמונה](../../assets/photos/chacham-rafael-hacohen.jpg)
-
-<figcaption>חכם רפאל הכהן זצ"ל</figcaption>
-
-</figure>
--->
-
 ובבוקר אחד, הוא לא נשאר בחדר.<br />
 אמא הביאה אותו מהרצוג, בכיסא גלגלים, לברית של הבן שלי, *יצחק.*
 
-<!-- תמונה 2 (סבא מחזיק את יצחק): אותו מבנה, ../../assets/photos/chacham-rafael-yitzchak.jpg -->
+<figure class="inline-photo">
+
+![חכם רפאל הכהן, זקן לבן ארוך וכיפה שחורה, מחזיק בחיקו את הנין שלו ביום הברית ומביט בו בחיוך](../../assets/photos/chacham-rafael-yitzchak.jpg)
+
+<figcaption>חכם רפאל הכהן זצ"ל, עם הנין יצחק, בבוקר הברית</figcaption>
+
+</figure>
 
 והוא חייך.<br />
 כל הברית הוא חייך, לכל מי שניגש אליו.
