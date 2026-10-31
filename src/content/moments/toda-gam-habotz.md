@@ -1,6 +1,6 @@
 ---
 feeling: gratitude
-date: 2026-11-03T04:00:00Z
+date: 2026-10-31T21:44:00Z
 title: גם הבוץ
 handle: |-
   אפשר לבחור היום תלונה אחת,

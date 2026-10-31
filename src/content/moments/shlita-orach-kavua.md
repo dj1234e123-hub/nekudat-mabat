@@ -1,6 +1,6 @@
 ---
 feeling: losing-control
-date: 2026-11-01T04:00:00Z
+date: 2026-10-31T21:40:00Z
 title: אורח קבוע
 handle: |-
   אפשר לכתוב הערב, לפני שהוא בא,
