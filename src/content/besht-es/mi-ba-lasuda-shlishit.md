@@ -11,7 +11,7 @@
 title: "Quién llegó a la tercera comida"
 occasion: "Motzaei Shabat Vayerá"
 hebrewDate: "20 de Jeshván 5787"
-date: 2026-10-31T17:30:00Z
+date: 2026-10-31T17:19:00Z
 readingTime: "un minuto"
 excerpt: "Un Shabat por la tarde apareció en la calle un hombre con bastón y mochila, como si no existiera el Shabat. Todo el pueblo vio lo que llevaba en la mano. Rabí Eliézer vio algo más."
 thought: "Todos vieron el bastón.\nRabí Eliézer vio a un hombre con hambre."
