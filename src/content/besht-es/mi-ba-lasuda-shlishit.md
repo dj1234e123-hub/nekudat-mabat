@@ -13,7 +13,7 @@ occasion: "Motzaei Shabat Vayerá"
 hebrewDate: "20 de Jeshván 5787"
 date: 2026-10-31T17:19:00Z
 readingTime: "un minuto"
-excerpt: "Un Shabat por la tarde apareció en la calle un hombre con bastón y mochila, como si no existiera el Shabat. Todo el pueblo vio lo que llevaba en la mano. Rabí Eliézer vio algo más."
+excerpt: "Un matrimonio mayor, sin hijos, y una casa cuya puerta nunca se cerraba. Un Shabat llegó a la calle un huésped al que nadie quería hacer entrar."
 thought: "Todos vieron el bastón.\nRabí Eliézer vio a un hombre con hambre."
 tags: [Vayerá, hospitalidad, Eliahu HaNaví, no juzgar, no avergonzar, Baal Shem Tov]
 source: "Tradición jasídica sobre el padre del Baal Shem Tov, Rabí Eliézer, recogida en Shivjei HaBesht y en la literatura jasídica. Fiabilidad media: las versiones difieren en los detalles de la prueba y en la identidad del huésped al llegar. Adaptación y escritura originales de Efraim Atia."
