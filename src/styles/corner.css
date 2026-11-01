@@ -657,11 +657,19 @@
 }
 
 .ca-bridge img,
+.ca-bridge img {
+  object-position: 60% 70%;
+}
+
 .ca-bridge .ph {
   width: 3.6rem;
   height: 3.6rem;
   border-radius: 8px;
   object-fit: cover;
+}
+
+.ca-bridge img {
+  object-position: 60% 70%;
 }
 
 .ca-bridge .ph {

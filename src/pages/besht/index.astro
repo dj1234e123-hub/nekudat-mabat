@@ -2,6 +2,7 @@
 // שער "מעשה שהיה" (שלב 4.99) – ראו CornerGate.astro.
 import '../../styles/corner.css';
 import { getCollection } from 'astro:content';
+import { getImage } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import CornerGate from '../../components/CornerGate.astro';
 import JoinGroup from '../../components/JoinGroup.astro';
@@ -14,9 +15,14 @@ import { CORNER_COVERS } from '../../data/corner-covers';
 const stories = (await getCollection('besht', isPublished)).sort(newestFirst);
 const [latest, ...rest] = stories;
 const cover = CORNER_COVERS.besht;
+// תמונת הזהות של הפינה היא גם התמונה שנפתחת כשמשתפים את השער.
+const og = cover ? await getImage({ src: cover.src, width: 1200, format: 'jpeg' }) : undefined;
 ---
 
 <Base
+  ogImage={og && new URL(og.src, Astro.site).href}
+  ogImageWidth={og?.attributes.width}
+  ogImageHeight={og?.attributes.height}
   title="מעשה שהיה · נקודת מבט"
   description="סיפור של הבעל שם טוב לכל מוצאי שבת – קצר, ובסופו מחשבה אחת."
   altLangHref="/es/asi-sucedio/"
@@ -42,7 +48,7 @@ const cover = CORNER_COVERS.besht;
         title: s.data.title,
         group: monthLabel(s.data.hebrewDate, 'he'),
       }))}
-      bridge={{ href: '/mabat-leshabbat/', small: 'וביום שישי', title: 'מבט לשבת: הטור השבועי על הפרשה' }}
+      bridge={{ href: '/mabat-leshabbat/', small: 'וביום שישי', title: 'מבט לשבת: הטור השבועי על הפרשה', image: CORNER_COVERS.mabat?.src }}
     />
     <JoinGroup />
   </main>

@@ -2,6 +2,7 @@
 // שער "מבט לשבת" (שלב 4.99) – ראו CornerGate.astro.
 import '../../styles/corner.css';
 import { getCollection } from 'astro:content';
+import { getImage } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import CornerGate from '../../components/CornerGate.astro';
 import JoinGroup from '../../components/JoinGroup.astro';
@@ -21,9 +22,14 @@ const latestText = (() => {
   return flat.length > 180 ? `${flat.slice(0, 177)}…` : flat;
 })();
 const cover = CORNER_COVERS.mabat;
+// תמונת הזהות של הפינה היא גם התמונה שנפתחת כשמשתפים את השער.
+const og = cover ? await getImage({ src: cover.src, width: 1200, format: 'jpeg' }) : undefined;
 ---
 
 <Base
+  ogImage={og && new URL(og.src, Astro.site).href}
+  ogImageWidth={og?.attributes.width}
+  ogImageHeight={og?.attributes.height}
   title="מבט לשבת · נקודת מבט"
   description="טור שבועי: סיפור אמיתי, פרשת השבוע, ושאלה אחת לשבת."
   altLangHref="/es/shabat/"
