@@ -59,6 +59,7 @@ export const ES_STORY_SLUGS: Record<string, string> = {
   'hatabaat-bakos': 'el-anillo-en-el-vaso-de-carton',
   'hatur-hasheni': 'la-segunda-fila',
   'im-lo-lemala-mize': 'si-no-mas-arriba',
+  'rak-lelayla-echad': 'solo-por-una-noche',
   'im-tisrod': 'si-sobrevives',
   'kedei-levade-shesalachti': 'para-estar-seguro-de-que-perdone',
   'lama-korim-li-efraim': 'por-que-me-llamo-efraim',
