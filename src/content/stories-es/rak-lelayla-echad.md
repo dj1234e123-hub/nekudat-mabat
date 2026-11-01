@@ -4,6 +4,8 @@
 # Retenido detrás de isPublished hasta la aprobación de publicación.
 title: "Solo por una noche"
 section: meshalim
+cover: ../../assets/covers/rak-lelayla-echad.jpg
+coverAlt: "Una casa pequeña de piedra en una noche de lluvia, la puerta entreabierta y un fuego encendido adentro junto a una silla y una taza, una silla de madera vacía afuera en el escalón mojado, y una ventana encendida en la casa del vecino a lo lejos"
 date: 2026-12-31T00:00:00Z
 readingTime: "2 minutos"
 excerpt: "Una noche de lluvia, un desconocido golpeó la puerta y pidió dormir junto al fuego. Solo por una noche. ¿Qué podía pasar por una noche?"
@@ -23,7 +25,7 @@ El desconocido se sentó junto al fuego, no pidió nada y a la mañana se fue.
 
 Una semana después volvió a golpear. El dueño ya conocía la voz, y abrió antes de que terminara de golpear.
 
-Desde entonces el desconocido venía seguido. Tenía su silla junto al fuego y su propia taza. El dueño empezó a *esperarlo,* y las noches en que no venía la casa se sentía vacía.
+Desde entonces empezó a venir seguido. Tenía su silla junto al fuego y su propia taza. El dueño empezó a *esperarlo,* y las noches en que no venía la casa se sentía vacía.
 
 Una noche el desconocido pidió dormir en la cama.
 
@@ -31,9 +33,9 @@ Una noche el desconocido pidió dormir en la cama.
 
 El dueño durmió en el banco.
 
-Después el desconocido empezó a decidir cuándo se comía, cuándo se apagaba la luz y quién entraba. Los amigos que venían de visita encontraban la puerta cerrada, y el dueño dejó de invitarlos. Así hay más tranquilidad, se decía.
+Con el tiempo empezó a decidir cuándo se comía, cuándo se apagaba la luz y quién entraba. Los amigos que venían de visita encontraban la puerta cerrada, y el dueño dejó de invitarlos. Así hay más tranquilidad, se decía.
 
-Años después, una noche de lluvia, el dueño estaba sentado afuera, en el escalón de su propia casa. Desde adentro oía al desconocido acomodar la casa como si fuera suya.
+Años después, una noche de lluvia, el dueño estaba sentado afuera, en el escalón de su propia casa. Desde adentro oía al desconocido acomodar los cuartos como si fueran suyos.
 
 Trató de recordar cuándo había pasado. En qué noche el desconocido se había convertido en *el dueño de la casa.*
 
@@ -51,19 +53,19 @@ El vecino abrió.
 
 Esta vez, el que golpeaba era *él.*
 
-En el Talmud hay una frase que ya describía esto hace casi dos mil años: al principio es un viajero que pasa, después un huésped que se queda, y al final es el dueño de la casa.
+Los sabios del Talmud lo describieron hace casi dos mil años en una sola frase: al principio solo está de paso, después es un huésped, y al final es el dueño de la casa.
 
 Así funciona una adicción. Cualquiera.
 
-No empieza con una decisión. Empieza con «solo esta vez». Y cada vez es de verdad solo esta vez, por eso nunca parece el momento de parar.
+No empieza con una decisión. Empieza con «solo esta vez». Y cada vez, por separado, de verdad parece pequeña, por eso nunca parece el momento de parar.
 
 La mente aprende que es la forma más rápida de sentirse mejor. Por eso vuelve justo en los momentos difíciles: cuando hay presión, cuando hay aburrimiento, cuando no hay nadie cerca.
 
 Y después llega la vergüenza. Se esconde, se aleja de la gente, *y la casa se vacía.* Y en una casa vacía, el desconocido se vuelve todavía más necesario.
 
-Por eso la fuerza de voluntad sola, dentro de una casa cerrada, casi nunca alcanza. No es debilidad. Así funciona.
+Por eso pelear contra esto a pura fuerza de voluntad, detrás de una puerta cerrada, casi nunca alcanza. No es debilidad. Así está hecho.
 
-Lo que sí funciona empieza con una sola cosa: contarlo. A una persona de confianza. Y cuando ya es fuerte, también a un profesional.
+Lo que sí funciona empieza con un paso simple: contarlo. A una persona de confianza. Y cuando ya es fuerte, también a un profesional.
 
 <div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿A qué puerta puedo golpear esta noche?</p></div>
 
