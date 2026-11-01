@@ -1,0 +1,21 @@
+---
+// כרטיס הכותב בסוף גיליון/סיפור: פנים, השם בכתב יד, משפט המותג וקישור
+// ל"מי אני". המשפט הוא אותו משפט של דף הבית – אותו קול בכניסה ובסוף.
+import { Image } from 'astro:assets';
+import efraim from '../assets/efraim.jpg';
+
+interface Props {
+  lang?: 'he' | 'es';
+}
+
+const es = Astro.props.lang === 'es';
+---
+
+<div class="ca-author">
+  <Image src={efraim} alt={es ? 'Rabino Efraim Atia' : 'אפרים עטייה'} width={128} height={128} />
+  <span>
+    <span class:list={['hand', { latin: es }]}>{es ? 'Rabino Efraim Atia' : 'אפרים עטייה'}</span>
+    <span class="tag">{es ? 'Ver distinto. Vivir distinto.' : 'לראות אחרת. לחיות אחרת.'}</span>
+    <a class="who" href={es ? '/es/sobre-mi/' : '/about/'}>{es ? 'Sobre mí →' : 'מי אני ←'}</a>
+  </span>
+</div>

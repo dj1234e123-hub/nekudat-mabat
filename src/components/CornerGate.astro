@@ -1,0 +1,77 @@
+---
+// שער של פינה שבועית (שלב 4.99): תמונת זהות, הקצב, משפט אחד, "של השבוע"
+// גדול, וכל השאר בשורות קצרות מקובצות לפי חודש עברי – הקיבוץ נגזר
+// מ-hebrewDate, כך שהשער לא צריך עדכון גם אחרי שנה של גיליונות.
+// בסוף גשר לפינה השנייה: יום שישי ↔ מוצאי שבת.
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Item {
+  href: string;
+  small: string;
+  title: string;
+  group: string;
+}
+
+interface Props {
+  lang?: 'he' | 'es';
+  kind: 'mabat' | 'besht';
+  name: string;
+  rhythm: string;
+  promise: string;
+  cover?: { src: ImageMetadata; alt: string };
+  featured: { href: string; kicker: string; title: string; text: string; meta: string; cta: string };
+  items: Item[];
+  bridge: { href: string; small: string; title: string; image?: ImageMetadata };
+}
+
+const { lang = 'he', kind, name, rhythm, promise, cover, featured, items, bridge } = Astro.props;
+const arrow = lang === 'es' ? '→' : '←';
+const groups: { label: string; items: Item[] }[] = [];
+for (const it of items) {
+  let g = groups.find((x) => x.label === it.group);
+  if (!g) groups.push((g = { label: it.group, items: [] }));
+  g.items.push(it);
+}
+---
+
+<div class:list={['corner', kind === 'besht' ? 'is-besht' : 'is-mabat']}>
+  {cover && <Image src={cover.src} alt={cover.alt} widths={[480, 800, 1200]} sizes="(max-width: 42rem) 100vw, 42rem" class="ca-cover" />}
+  <p class="ca-kick"><span class="dot" aria-hidden="true"></span><span>{rhythm}</span></p>
+  <h1 class="ca-gate-title">{name}</h1>
+  <p class="ca-promise">{promise}</p>
+
+  <a class="ca-feat" href={featured.href} style={`--btn:${kind === 'besht' ? 'var(--teal-deep)' : 'var(--blue)'}`}>
+    <span class="k">{featured.kicker}</span>
+    <span class="t">{featured.title}</span>
+    <p>{featured.text}</p>
+    <span class="m"><span>{featured.meta}</span><b>{featured.cta}</b></span>
+  </a>
+
+  {
+    groups.map((g) => (
+      <section class="ca-group">
+        <h2>{g.label}</h2>
+        <div class="ca-list">
+          {g.items.map((it) => (
+            <a href={it.href}>
+              <span>
+                <small>{it.small}</small>
+                <b>{it.title}</b>
+              </span>
+              <i aria-hidden="true">{arrow}</i>
+            </a>
+          ))}
+        </div>
+      </section>
+    ))
+  }
+
+  <a class="ca-bridge" href={bridge.href}>
+    {bridge.image ? <Image src={bridge.image} alt="" width={144} height={144} /> : <span class="ph" aria-hidden="true" />}
+    <span>
+      <small>{bridge.small}</small>
+      <b>{bridge.title} {arrow}</b>
+    </span>
+  </a>
+</div>

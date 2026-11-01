@@ -1,0 +1,63 @@
+---
+// "לשלוח הלאה" במבט לשבת: תמונת הציטוט ככלי שיתוף (לסטטוס), ומתחתיה שיתוף
+// הקישור של כל הגיליון. התמונה עברה לכאן מגוף העמוד (שלב 4.99) – המשפט עצמו
+// כבר מופיע בטור, והתמונה קיימת כדי שישלחו אותה.
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import ShareRow from './ShareRow.astro';
+
+interface Props {
+  lang?: 'he' | 'es';
+  image?: ImageMetadata;
+  imageAlt?: string;
+  /** כתובת ה-PNG המוכן (אותה תמונת og) */
+  imageUrl?: string;
+  title: string;
+  url: string;
+}
+
+const { lang = 'he', image, imageAlt, imageUrl, title, url } = Astro.props;
+const es = lang === 'es';
+const t = es
+  ? { lab: 'Envíalo a alguien', line: 'La frase de la edición, como imagen para tu estado', btn: 'Enviar la imagen', all: 'O la edición completa:' }
+  : { lab: 'לשלוח הלאה', line: 'המשפט מהגיליון, כתמונה לסטטוס', btn: 'לשלוח את התמונה', all: 'או את כל הגיליון:' };
+---
+
+<section class="ca-send">
+  <p class="ca-lab">{t.lab}</p>
+  {
+    image && imageUrl && (
+      <div class="ca-qrow">
+        <Image src={image} alt={imageAlt ?? ''} widths={[160, 240]} sizes="74px" />
+        <span>
+          <span class="t">{t.line}</span>
+          <button type="button" class="ca-qbtn" data-img={imageUrl} data-ph="share_quote_image">
+            {t.btn}
+          </button>
+        </span>
+      </div>
+    )
+  }
+  <ShareRow title={title} url={url} lang={lang} linkOnly={true} label={image ? t.all : `${t.lab}:`} />
+</section>
+
+<script>
+  // שליחת התמונה עצמה כקובץ (Web Share API). בלי תמיכה – בעיקר במחשב –
+  // התמונה נפתחת בלשונית חדשה, משם אפשר לשמור אותה.
+  for (const btn of document.querySelectorAll<HTMLButtonElement>('.ca-qbtn')) {
+    btn.addEventListener('click', async () => {
+      const src = btn.dataset.img!;
+      try {
+        const blob = await (await fetch(src)).blob();
+        const file = new File([blob], 'nekudat-mabat.png', { type: blob.type || 'image/png' });
+        if (navigator.canShare?.({ files: [file] })) {
+          await navigator.share({ files: [file] });
+          return;
+        }
+      } catch (e) {
+        if ((e as DOMException)?.name === 'AbortError') return;
+      }
+      window.open(src, '_blank', 'noopener');
+    });
+  }
+</script>

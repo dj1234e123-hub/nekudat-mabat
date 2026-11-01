@@ -1,95 +1,89 @@
 ---
-// גוף של "מבט לשבת" – מהלכי הטקסט והמפרידים השקטים ביניהם.
-// רכיב אחד לשני המקומות שמציגים מאמר (עמוד המאמר, וטעימה בדף הבית),
-// כדי שהקצב ייראה זהה בשניהם.
+// גוף של "מבט לשבת" בתבנית הפינה (שלב 4.99): מיושר להתחלה, באותיות ספר.
+// שבירת השורה בתוך מהלך נשמרת (היא תוכן), אבל שורה ארוכה ממשיכה בטבעיות –
+// בלי מרכוז שמשאיר מילה בודדת בשורה.
+//
+// שני דברים נגזרים מהטקסט עצמו, בלי שדה חדש:
+//  - המשפט החזק: המהלך שזהה לטקסט של תמונת הציטוט (quoteImageAlt). לפי הכלל
+//    "הציטוט בתמונה הוא פול-קווט מילה במילה" הוא תמיד נמצא בטור.
+//  - השאלה החותמת: מהלך אחרון שכולו שורה מודגשת אחת.
 import type { Block } from '../lib/mabat-format';
 import { lineHtml } from '../lib/mabat-format';
+import { normalize } from '../lib/corner';
 
 interface Props {
   blocks: Block[];
-  /** לטעימה בדף הבית: כמה מהלכים (לא כולל מפרידים) להציג לפני עצירה */
-  stanzaLimit?: number;
+  pullQuote?: string;
+  closingLabel: string;
 }
 
-const { blocks, stanzaLimit } = Astro.props;
+const { blocks, pullQuote, closingLabel } = Astro.props;
+type Stanza = { type: 'stanza'; lines: string[] };
 
-let shown = blocks;
-if (stanzaLimit !== undefined) {
-  const cut: Block[] = [];
-  let count = 0;
-  for (const block of blocks) {
-    if (block.type === 'stanza') {
-      if (count >= stanzaLimit) break;
-      count++;
+const pq = pullQuote ? normalize(pullQuote) : '';
+const text = (b: Block) => (b.type === 'stanza' ? normalize(b.lines.join(' ')) : '');
+
+// המשפט החזק יכול להיות מהלך שלם, חלק קטן ממהלך ("אבל היא לא באה עם רשימה. /
+// היא באה עם מספר."), או להתפרש על שניים-שלושה מהלכים רצופים. מחפשים את הרצף
+// הקצר ביותר שמכיל אותו, בתנאי שאין בו הרבה יותר מהמשפט עצמו.
+let pullStart = -1;
+let pullEnd = -1;
+if (pq) {
+  outer: for (let i = 0; i < blocks.length; i++) {
+    for (let n = 1; n <= 3 && i + n <= blocks.length; n++) {
+      const run = blocks.slice(i, i + n);
+      if (run.some((b) => b.type !== 'stanza')) break;
+      const joined = run.map(text).join(' ');
+      if (joined.includes(pq) && joined.length <= pq.length + 25) {
+        pullStart = i;
+        pullEnd = i + n - 1;
+        break outer;
+      }
     }
-    cut.push(block);
   }
-  // מפריד בקצה הטעימה לא מציג כלום אחריו – יורד.
-  while (cut.length && cut[cut.length - 1].type === 'divider') cut.pop();
-  shown = cut;
+}
+
+const isClosing = (b: Block | undefined, i: number) =>
+  !!b && b.type === 'stanza' && b.lines.length === 1 && /^\*\*.+\*\*$/.test(b.lines[0]) && (i < pullStart || i > pullEnd);
+
+let end = blocks.length;
+while (end > 0 && blocks[end - 1].type === 'divider') end--;
+const closing = isClosing(blocks[end - 1], end - 1) ? (blocks[end - 1] as Stanza) : undefined;
+if (closing) end--;
+
+type Item = { kind: 'gap' } | { kind: 'p'; lines: string[] } | { kind: 'pull'; lines: string[] };
+const items: Item[] = [];
+for (let i = 0; i < end; i++) {
+  const b = blocks[i];
+  if (i === pullStart) {
+    const lines = blocks.slice(pullStart, pullEnd + 1).flatMap((x) => (x.type === 'stanza' ? x.lines : []));
+    items.push({ kind: 'pull', lines });
+    i = pullEnd;
+  } else if (b.type === 'divider') items.push({ kind: 'gap' });
+  else items.push({ kind: 'p', lines: b.lines });
 }
 ---
 
-<div class="mabat-body">
+<div class="ca-body">
   {
-    shown.map((block) =>
-      block.type === 'divider' ? (
-        <div class="mark" aria-hidden="true">
-          <span class="mark-line" />
-          <span class="mark-dot" />
-          <span class="mark-line" />
-        </div>
+    items.map((it) =>
+      it.kind === 'gap' ? (
+        <div class="ca-gap" aria-hidden="true"><span /></div>
+      ) : it.kind === 'pull' ? (
+        <blockquote class="ca-pull">
+          <p set:html={it.lines.map(lineHtml).join('<br />').replace(/<\/?strong>/g, '')} />
+        </blockquote>
       ) : (
-        <p class="line" set:html={block.lines.map(lineHtml).join('<br />')} />
+        <p set:html={it.lines.map(lineHtml).join('<br />')} />
       ),
     )
   }
 </div>
-
-<style>
-  .mabat-body {
-    text-align: center;
-  }
-
-  .mabat-body .line {
-    margin: 0 0 1.3rem;
-    /* גודל הקריאה. היה 1.02rem – קטן ב-15% מעמוד סיפור (1.2) וב-22% מעמוד
-       רגע (1.3), ולכן "מבט לשבת" היה העמוד הקטן ביותר באתר. הועלה 2026-09-17
-       לבקשת בעל הפרויקט. משתנה, כדי שהטעימה בדף הבית תוכל לשמור על גודלה. */
-    font-size: var(--mabat-size, 1.18rem);
-    font-weight: 500;
-    line-height: 1.78;
-  }
-
-  .mabat-body .line:last-child {
-    margin-bottom: 0;
-  }
-
-  .mabat-body :global(strong) {
-    color: var(--blue);
-    font-weight: 700;
-  }
-
-  .mabat-body .mark {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.55rem;
-    margin: 2rem 0;
-  }
-
-  .mabat-body .mark-line {
-    width: 26px;
-    height: 1px;
-    background: var(--blue);
-    opacity: 0.5;
-  }
-
-  .mabat-body .mark-dot {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--blue);
-    opacity: 0.85;
-  }
-</style>
+{
+  closing && (
+    <div class="ca-close">
+      <small>{closingLabel}</small>
+      <p set:html={lineHtml(closing.lines[0]).replace(/<\/?strong>/g, '')} />
+    </div>
+  )
+}

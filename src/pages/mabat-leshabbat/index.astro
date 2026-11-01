@@ -1,109 +1,56 @@
 ---
-// עמוד הכניסה ל"מבט לשבת" – ארכיון הגיליונות, מהחדש לישן.
-// עם גיליון אחד זה עדיין רשימה קצרה; המבנה מוכן לצמוח בלי שינוי.
+// שער "מבט לשבת" (שלב 4.99) – ראו CornerGate.astro.
+import '../../styles/corner.css';
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import CornerGate from '../../components/CornerGate.astro';
+import JoinGroup from '../../components/JoinGroup.astro';
+import havdala from '../../assets/besht/havdala.png';
 import { newestFirst } from '../../lib/sort';
 import { parseBody, plainText, kicker } from '../../lib/mabat-format';
 import { isPublished } from '../../lib/published';
-import JoinGroup from '../../components/JoinGroup.astro';
+import { readingLabel } from '../../lib/reading-time';
+import { monthLabel } from '../../lib/corner';
+import { CORNER_COVERS } from '../../data/corner-covers';
 
 const pieces = (await getCollection('mabatLeshabbat', isPublished)).sort(newestFirst);
-
-const cards = pieces.map((piece) => {
-  const blocks = parseBody(piece.body ?? '');
-  const flat = plainText(blocks).replace(/\s+/g, ' ').trim();
-  return {
-    piece,
-    excerpt: flat.length > 140 ? `${flat.slice(0, 137)}…` : flat,
-  };
-});
+const [latest, ...rest] = pieces;
+const latestText = (() => {
+  if (latest.data.description) return latest.data.description;
+  const flat = plainText(parseBody(latest.body ?? '')).replace(/\s+/g, ' ').trim();
+  return flat.length > 180 ? `${flat.slice(0, 177)}…` : flat;
+})();
+const cover = CORNER_COVERS.mabat;
 ---
 
 <Base
   title="מבט לשבת · נקודת מבט"
-  description="טור שבועי: סיפור אמיתי, חיבור לפרשת השבוע, ומבט על מה שקורה בתוכנו."
+  description="טור שבועי: סיפור אמיתי, פרשת השבוע, ושאלה אחת לשבת."
   altLangHref="/es/shabat/"
 >
   <main>
-    <h1 class="page-title">מבט לשבת</h1>
-    <p class="intro">סיפור אמיתי בכל שבוע, וחיבור לפרשת השבת – לא רק מה היא אומרת, אלא מה היא פותחת.</p>
-
-    <ul class="issues">
-      {
-        cards.map(({ piece, excerpt }) => (
-          <li class="issue">
-            <a class="issue-link" href={`/mabat-leshabbat/${piece.id}/`}>
-              <p class="issue-kicker">{kicker(piece.data.parasha)} · {piece.data.hebrewDate}</p>
-              <h2>{piece.data.title}</h2>
-              <p class="issue-excerpt">{excerpt}</p>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+    <CornerGate
+      kind="mabat"
+      name="מבט לשבת"
+      rhythm={`כל יום שישי בבוקר · ${pieces.length} גיליונות`}
+      promise="סיפור אמיתי, פרשת השבוע, ושאלה אחת לשבת."
+      cover={cover && { src: cover.src, alt: cover.alt }}
+      featured={{
+        href: `/mabat-leshabbat/${latest.id}/`,
+        kicker: `הגיליון של השבוע · ${kicker(latest.data.parasha)}`,
+        title: latest.data.title,
+        text: latestText,
+        meta: readingLabel({ body: latest.body, data: {} }),
+        cta: 'לקרוא ←',
+      }}
+      items={rest.map((p) => ({
+        href: `/mabat-leshabbat/${p.id}/`,
+        small: `${kicker(p.data.parasha)} · ${p.data.hebrewDate}`,
+        title: p.data.title,
+        group: monthLabel(p.data.hebrewDate, 'he'),
+      }))}
+      bridge={{ href: '/besht/', small: 'ובמוצאי שבת', title: 'מעשה שהיה: סיפור של הבעל שם טוב', image: havdala }}
+    />
     <JoinGroup />
   </main>
 </Base>
-
-<style>
-  .page-title {
-    text-align: center;
-    font-size: 1.8rem;
-    padding: 0.5rem 0 0.5rem;
-  }
-
-  .intro {
-    text-align: center;
-    color: var(--secondary);
-    max-width: 30rem;
-    margin: 0 auto 2.2rem;
-    line-height: 1.75;
-  }
-
-  .issues {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    gap: 1.1rem;
-  }
-
-  .issue {
-    border-inline-start: 3px solid var(--blue);
-    border-radius: 4px;
-    background: var(--paper);
-    box-shadow: var(--shadow);
-  }
-
-  .issue-link {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-    padding: 1.1rem 1.3rem;
-  }
-
-  .issue-kicker {
-    color: var(--muted);
-    font-size: 0.82rem;
-    margin: 0 0 0.4rem;
-  }
-
-  .issue h2 {
-    font-size: 1.25rem;
-    line-height: 1.4;
-    margin: 0 0 0.5rem;
-    transition: color 0.15s ease;
-  }
-
-  .issue-link:hover h2 {
-    color: var(--blue);
-  }
-
-  .issue-excerpt {
-    color: var(--secondary);
-    font-size: 0.92rem;
-    line-height: 1.65;
-    margin: 0;
-  }
-</style>

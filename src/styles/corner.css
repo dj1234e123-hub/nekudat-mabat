@@ -1,0 +1,700 @@
+/* תבנית אחת לשתי הפינות השבועיות – "מבט לשבת" ו"מעשה שהיה" – בעברית ובספרדית
+   (שלב 4.99, אושר על אב טיפוס). כיוון "ספר", אחרי בדיקה של אתרי קריאה מובילים:
+   כותרת גדולה במשקל בינוני, שורת הקדמה, שורת כותב עם פנים, גוף באותיות ספר,
+   כרטיס כותב בסוף, והמשך אחד מאותה שבת.
+   מה שמשתנה בין הפינות הוא הצבע בלבד: --c (זהות) ו--ck (זהות כטקסט).
+   הזהב כטקסט יורד ל--gold-deep: זהב המותג על שמנת נמדד 2.24 מול תקן 4.5. */
+
+@font-face {
+  font-family: 'Playpen Sans Hebrew';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/playpen-hebrew.woff2') format('woff2');
+}
+
+.corner {
+  --gold-deep: #8f6f28;
+  --c: var(--blue);
+  --ck: var(--blue);
+  padding-top: 0.6rem;
+}
+
+.corner.is-besht {
+  --c: var(--gold);
+  --ck: var(--gold-deep);
+}
+
+/* פס התקדמות דק בראש המסך */
+.ca-prog {
+  position: fixed;
+  inset: 0 0 auto;
+  height: 3px;
+  z-index: 40;
+  pointer-events: none;
+}
+
+.ca-prog span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--c);
+}
+
+/* ===== ראש ===== */
+.ca-kick {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.45rem;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--muted);
+  margin: 0.4rem 0 0.9rem;
+}
+
+.ca-kick .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--c);
+  flex: 0 0 auto;
+}
+
+.ca-kick a,
+.ca-kick b {
+  color: var(--ck);
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.03em;
+}
+
+.ca-sub {
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--muted);
+  margin: -0.55rem 0 0.9rem;
+}
+
+.ca-kick .now {
+  color: var(--ck);
+  font-weight: 600;
+}
+
+.corner h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 2.3rem;
+  line-height: 1.15;
+  margin: 0;
+  text-wrap: balance;
+  color: var(--ink);
+}
+
+.ca-deck {
+  font-size: 1.06rem;
+  line-height: 1.7;
+  color: var(--secondary);
+  margin: 0.9rem 0 0;
+  text-wrap: pretty;
+}
+
+.ca-by {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 1.2rem 0 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.ca-by img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: 0 0 auto;
+}
+
+.ca-by .n {
+  display: block;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.35;
+}
+
+.ca-by .m {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.35;
+}
+
+/* ===== גוף – אותיות ספר, מיושר להתחלה ===== */
+.ca-body p {
+  font-family: var(--font-display);
+  font-size: 1.27rem;
+  line-height: 1.8;
+  margin: 0 0 1.3rem;
+  text-wrap: pretty;
+}
+
+.ca-body > p:first-child::first-line {
+  font-weight: 700;
+  color: var(--ck);
+}
+
+.ca-body strong {
+  color: var(--ck);
+  font-weight: 700;
+}
+
+.ca-body em {
+  font-style: normal;
+  font-weight: 700;
+  color: var(--teal-deep);
+}
+
+.ca-gap {
+  display: flex;
+  justify-content: center;
+  margin: 2.4rem 0;
+}
+
+.ca-gap span {
+  width: 48px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.ca-pull {
+  margin: 2.3rem 0;
+}
+
+.ca-pull::before {
+  content: '';
+  display: block;
+  width: 36px;
+  height: 2px;
+  background: var(--gold);
+  margin-bottom: 0.8rem;
+}
+
+.ca-pull p,
+.ca-body .ca-pull p {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.62rem;
+  line-height: 1.38;
+  color: var(--ck);
+  margin: 0;
+  text-wrap: balance;
+}
+
+/* ציטוט הסיום של "מעשה שהיה" (blockquote ב-Markdown) */
+.ca-body blockquote {
+  margin: 2.1rem 0 0;
+}
+
+.ca-body blockquote p {
+  font-size: 1.45rem;
+  line-height: 1.5;
+  color: var(--teal-deep);
+  margin: 0;
+}
+
+.ca-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  object-position: center 40%;
+  border-radius: 10px;
+  margin: 0 0 1.9rem;
+}
+
+/* השאלה לשבת / המחשבה לשבוע */
+.ca-close {
+  margin: 2.4rem 0 0;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--line);
+}
+
+.ca-close small {
+  display: block;
+  font-size: 0.76rem;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: var(--gold-deep);
+  line-height: 1.4;
+  margin-bottom: 0.35rem;
+}
+
+.ca-close p {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  line-height: 1.42;
+  font-weight: 500;
+  color: var(--ck);
+  margin: 0;
+  text-wrap: balance;
+}
+
+.ca-signoff {
+  margin-top: 2rem;
+}
+
+.ca-signoff p {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  line-height: 1.75;
+  color: var(--secondary);
+  margin: 0;
+}
+
+/* ===== כרטיס כותב ===== */
+.ca-author {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  gap: 0.95rem;
+  align-items: center;
+  margin-top: 2.2rem;
+  padding: 1.15rem 0;
+  border-block: 1px solid var(--line);
+}
+
+.ca-author img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.ca-author .hand {
+  display: block;
+  font-family: 'Playpen Sans Hebrew', var(--font-display);
+  font-size: 1.45rem;
+  line-height: 1.25;
+  color: var(--ck);
+}
+
+.ca-author .hand.latin {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.ca-author .tag {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  line-height: 1.45;
+  color: var(--teal-deep);
+}
+
+.ca-author .who {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-block: -0.5rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--teal);
+  text-decoration: none;
+}
+
+/* ===== לשלוח הלאה ===== */
+.ca-send {
+  margin-top: 1.7rem;
+}
+
+.ca-lab {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin: 0 0 0.8rem;
+}
+
+.ca-qrow {
+  display: grid;
+  grid-template-columns: 4.6rem minmax(0, 1fr);
+  gap: 0.95rem;
+  align-items: center;
+  margin-bottom: 1.1rem;
+}
+
+.ca-qrow img {
+  width: 4.6rem;
+  height: auto;
+  border-radius: 3px;
+  box-shadow: 0 2px 8px rgba(46, 42, 36, 0.14);
+}
+
+.ca-qrow .t {
+  display: block;
+  font-size: 0.98rem;
+  line-height: 1.45;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.ca-qrow button {
+  margin-top: 0.45rem;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--teal-deep);
+  border: 0;
+  border-radius: 999px;
+  padding: 0.55rem 1.15rem;
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.ca-qrow button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.ca-send .share {
+  margin-top: 0;
+  justify-content: flex-start;
+}
+
+/* ===== ההמשך ===== */
+.ca-next {
+  margin-top: 2.6rem;
+}
+
+.ca-pair {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
+.ca-pair .art {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  aspect-ratio: 16 / 9;
+}
+
+.ca-pair .art img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+}
+
+.ca-pair .art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(12, 28, 40, 0.88), rgba(12, 28, 40, 0.12) 65%);
+}
+
+.ca-pair .over {
+  position: relative;
+  z-index: 1;
+  padding: 1rem 1.1rem;
+}
+
+.ca-pair .over .k {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+}
+
+.ca-pair .over .t {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.22;
+  color: #fff;
+}
+
+.ca-pair .art.type {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: var(--blue);
+  padding: 1.2rem;
+}
+
+.ca-pair .art.type::after {
+  display: none;
+}
+
+.ca-pair .art.type .q {
+  font-family: var(--font-display);
+  font-size: 1.32rem;
+  line-height: 1.38;
+  color: #f6eedd;
+  max-width: 16em;
+  text-wrap: balance;
+}
+
+.ca-pair .art.type .q::before {
+  content: '';
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+  margin: 0 auto 0.7rem;
+}
+
+.ca-pair .cb {
+  padding: 0.95rem 1.1rem 1.1rem;
+}
+
+.ca-pair .cb .k {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--pk, var(--blue));
+}
+
+.ca-pair .cb .t {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1.25;
+  margin: 0.15rem 0 0.3rem;
+  color: var(--ink);
+}
+
+.ca-pair .cb p {
+  font-size: 0.97rem;
+  line-height: 1.62;
+  color: var(--secondary);
+  margin: 0;
+}
+
+.ca-pair .go {
+  display: inline-block;
+  margin-top: 0.7rem;
+  font-weight: 700;
+  color: var(--teal-deep);
+}
+
+.ca-more {
+  margin-top: 0.9rem;
+}
+
+.ca-more a,
+.ca-list a {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.6rem;
+  align-items: center;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  color: var(--ink);
+  line-height: 1.4;
+  min-height: 44px;
+}
+
+.ca-more small,
+.ca-list small {
+  display: block;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.ca-list small {
+  color: var(--ck);
+  font-weight: 600;
+}
+
+.ca-more b,
+.ca-list b {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.15rem;
+}
+
+.ca-more i,
+.ca-list i {
+  font-style: normal;
+  color: var(--muted);
+}
+
+.ca-more a:hover b,
+.ca-list a:hover b {
+  color: var(--ck);
+}
+
+/* ===== שער הפינה ===== */
+.ca-cover {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 12px;
+  margin: 0.6rem 0 1.4rem;
+}
+
+.ca-gate-title {
+  font-size: 2.5rem !important;
+  line-height: 1.1 !important;
+}
+
+.ca-promise {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  line-height: 1.55;
+  color: var(--secondary);
+  margin: 0.6rem 0 0;
+  text-wrap: balance;
+}
+
+.ca-feat {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  margin-top: 1.8rem;
+  padding: 1.3rem 0 1.4rem;
+  border-block: 1px solid var(--line);
+}
+
+.ca-feat .k {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--ck);
+}
+
+.ca-feat .t {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.85rem;
+  line-height: 1.18;
+  margin: 0.35rem 0 0.5rem;
+  text-wrap: balance;
+  color: var(--ink);
+}
+
+.ca-feat p {
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: var(--secondary);
+  margin: 0;
+}
+
+.ca-feat .m {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.9rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.ca-feat .m b {
+  color: #fff;
+  background: var(--btn, var(--blue));
+  border-radius: 999px;
+  padding: 0.5rem 1.15rem;
+  font-size: 0.92rem;
+  white-space: nowrap;
+}
+
+.ca-group {
+  margin-top: 2rem;
+}
+
+.ca-group h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin: 0 0 0.2rem;
+}
+
+.ca-group h2::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.ca-bridge {
+  display: grid;
+  grid-template-columns: 3.6rem minmax(0, 1fr);
+  gap: 0.9rem;
+  align-items: center;
+  margin-top: 2.2rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid var(--line);
+  text-decoration: none;
+  color: inherit;
+}
+
+.ca-bridge img,
+.ca-bridge .ph {
+  width: 3.6rem;
+  height: 3.6rem;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.ca-bridge .ph {
+  display: grid;
+  place-items: center;
+  background: var(--blue);
+}
+
+.ca-bridge .ph::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.ca-bridge small {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.ca-bridge b {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.15rem;
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+@media (min-width: 48rem) {
+  .corner h1 {
+    font-size: 2.7rem;
+  }
+}

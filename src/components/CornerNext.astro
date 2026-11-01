@@ -1,0 +1,73 @@
+---
+// "ההמשך" בסוף גיליון/סיפור: כרטיס אחד גדול מאותה שבת, ומתחתיו שורות קטנות
+// (הקודם, עוד על הפרשה, הארכיון). דבר אחד שמזמין להמשיך, לא שלושה שווים.
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Row {
+  href: string;
+  small: string;
+  title: string;
+}
+
+interface Props {
+  lang?: 'he' | 'es';
+  heading: string;
+  pair: {
+    href: string;
+    kicker: string;
+    title: string;
+    text?: string;
+    cta: string;
+    /** תמונה עם הכותרת עליה (מעשה שהיה) */
+    image?: ImageMetadata;
+    /** או משפט על כחול (מבט לשבת) */
+    quote?: string;
+    color: string;
+  };
+  rows: Row[];
+}
+
+const { lang = 'he', heading, pair, rows } = Astro.props;
+const arrow = lang === 'es' ? '→' : '←';
+---
+
+<section class="ca-next">
+  <p class="ca-lab">{heading}</p>
+  <a class="ca-pair" href={pair.href} data-ph="corner_next" style={`--pk:${pair.color}`}>
+    {
+      pair.image ? (
+        <div class="art">
+          <Image src={pair.image} alt="" widths={[480, 800]} sizes="(max-width: 42rem) 100vw, 42rem" />
+          <span class="over">
+            <span class="k">{pair.kicker}</span>
+            <span class="t">{pair.title}</span>
+          </span>
+        </div>
+      ) : (
+        <div class="art type">
+          <span class="q">{pair.quote ?? pair.title}</span>
+        </div>
+      )
+    }
+    <div class="cb">
+      {!pair.image && <span class="k">{pair.kicker}</span>}
+      {!pair.image && <span class="t">{pair.title}</span>}
+      {pair.text && <p>{pair.text}</p>}
+      <span class="go">{pair.cta}</span>
+    </div>
+  </a>
+  <div class="ca-more">
+    {
+      rows.map((r) => (
+        <a href={r.href}>
+          <span>
+            <small>{r.small}</small>
+            <b>{r.title}</b>
+          </span>
+          <i aria-hidden="true">{arrow}</i>
+        </a>
+      ))
+    }
+  </div>
+</section>

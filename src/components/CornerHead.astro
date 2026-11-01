@@ -1,0 +1,63 @@
+---
+// ראש העמוד של גיליון/סיפור בפינה שבועית: תווית, כותרת, שורת הקדמה, ושורת
+// כותב עם פנים. מי שהגיע מקישור מועבר יודע מיד מי מדבר אליו (שלב 4.99).
+import { Image } from 'astro:assets';
+import efraim from '../assets/efraim.jpg';
+
+interface Props {
+  lang?: 'he' | 'es';
+  corner: string;
+  cornerHref: string;
+  label: string;
+  /** "הגיליון של השבוע" – רק לפריט האחרון בפינה, בשבוע שבו עלה */
+  now?: string;
+  title: string;
+  deck?: string;
+  meta: string;
+}
+
+const { lang = 'he', corner, cornerHref, label, now, title, deck, meta } = Astro.props;
+const name = lang === 'es' ? 'Rabino Efraim Atia' : 'אפרים עטייה';
+---
+
+<div class="ca-prog" aria-hidden="true"><span></span></div>
+<div class="ca-head">
+  <p class="ca-kick">
+    <span class="dot" aria-hidden="true"></span>
+    <a href={cornerHref}>{corner}</a>
+    {now && <span class="now">· {now}</span>}
+  </p>
+  <p class="ca-sub">{label}</p>
+  <h1>{title}</h1>
+  {deck && <p class="ca-deck">{deck}</p>}
+  <div class="ca-by">
+    <Image src={efraim} alt="" width={80} height={80} />
+    <span>
+      <span class="n">{name}</span>
+      <span class="m">{meta}</span>
+    </span>
+  </div>
+</div>
+
+<script>
+  // פס התקדמות דק: כמה מהעמוד נקרא. בלי הגבלה על ביצועים – חישוב אחד לכל פריים.
+  const bar = document.querySelector<HTMLElement>('.ca-prog span');
+  const article = document.querySelector<HTMLElement>('.corner');
+  if (bar && article) {
+    let queued = false;
+    const update = () => {
+      queued = false;
+      const r = article.getBoundingClientRect();
+      const total = r.height - innerHeight;
+      const p = total > 0 ? Math.min(1, Math.max(0, -r.top / total)) : 1;
+      bar.style.width = `${(p * 100).toFixed(1)}%`;
+    };
+    addEventListener('scroll', () => {
+      if (!queued) {
+        queued = true;
+        requestAnimationFrame(update);
+      }
+    }, { passive: true });
+    update();
+  }
+</script>

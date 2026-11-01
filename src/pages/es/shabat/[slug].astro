@@ -1,15 +1,25 @@
 ---
-// עמוד גיליון "מבט לשבת" בספרדית – אותו עיצוב "החתימה השקטה" כמו העברי:
-// רייל כחול, תווית, גוף עם מפרידים שקטים, חתימת שבת.
+// "Mirada de Shabat" – la misma plantilla que el hebreo (שלב 4.99): תווית,
+// כותרת, הקדמה ושורת כותב; גוף באותיות ספר; השאלה לשבת; כרטיס כותב; שליחת
+// תמונת הציטוט; והמשך לסיפור של מוצאי אותה שבת.
+import '../../../styles/corner.css';
 import { getCollection } from 'astro:content';
-import { Image, getImage } from 'astro:assets';
+import { getImage } from 'astro:assets';
 import Base from '../../../layouts/Base.astro';
-import ShareRow from '../../../components/ShareRow.astro';
 import MabatBody from '../../../components/MabatBody.astro';
-import { MABAT_ES } from '../../../data/site-es';
+import CornerHead from '../../../components/CornerHead.astro';
+import AuthorCard from '../../../components/AuthorCard.astro';
+import QuoteShare from '../../../components/QuoteShare.astro';
+import CornerNext from '../../../components/CornerNext.astro';
+import havdala from '../../../assets/besht/havdala.png';
+import { MABAT_ES, BESHT_ES } from '../../../data/site-es';
+import { esBeshtPath } from '../../../data/es-slugs';
 import { parseBody, plainText, kickerEs } from '../../../lib/mabat-format';
 import { articleJsonLd, breadcrumbJsonLd } from '../../../lib/structured-data';
 import { isPublished } from '../../../lib/published';
+import { newestFirst } from '../../../lib/sort';
+import { readingLabel } from '../../../lib/reading-time';
+import { storyAfter, isThisWeek } from '../../../lib/corner';
 import JoinGroup from '../../../components/JoinGroup.astro';
 import JoinPopup from '../../../components/JoinPopup.astro';
 
@@ -19,19 +29,13 @@ export async function getStaticPaths() {
 }
 
 const { piece } = Astro.props;
-const { title, parasha, hebrewDate, date, signoff, signedBy, quoteImage, quoteImageAlt, description } = piece.data;
+const { title, parasha, hebrewDate, date, signoff, quoteImage, quoteImageAlt, description } = piece.data;
 const blocks = parseBody(piece.body ?? '');
-
 const flat = plainText(blocks).replace(/\s+/g, ' ').trim();
-// תיאור שנכתב לגיליון גובר על הנגזר מהפתיחה (ראו הערה בסכמה).
 const derived = flat.length > 200 ? `${flat.slice(0, 197)}…` : flat;
 const summary = description ?? derived;
-
 const pageUrl = new URL(`/es/shabat/${piece.id}/`, Astro.site).href;
 
-// תמונת התצוגה המקדימה לשיתוף: תמונת הציטוט של הגיליון, ולא הלוגו.
-// PNG ולא JPEG – טקסט על רקע אחיד מתכווץ טוב יותר ללא אובדן (החלטה קיימת).
-// גיליון בלי תמונת ציטוט נופל ללוגו, ברירת המחדל של Base.
 let ogImage: string | undefined;
 let ogImageWidth: number | undefined;
 let ogImageHeight: number | undefined;
@@ -41,6 +45,20 @@ if (quoteImage) {
   ogImageWidth = og.attributes.width;
   ogImageHeight = og.attributes.height;
 }
+
+const label = (p: string) => kickerEs(p, MABAT_ES.parashaPrefix);
+const issues = (await getCollection('mabatEs', isPublished)).sort(newestFirst);
+const stories = (await getCollection('beshtEs', isPublished)).sort(newestFirst);
+const paired = storyAfter(piece, stories);
+const story = paired ?? stories[0];
+const idx = issues.findIndex((p) => p.id === piece.id);
+const prev = issues[idx + 1];
+const sameParasha = issues.filter((p) => p.id !== piece.id && p.data.parasha === parasha);
+const rows = [
+  ...sameParasha.map((p) => ({ href: `/es/shabat/${p.id}/`, small: `Más sobre ${label(parasha)} · ${p.data.hebrewDate}`, title: p.data.title })),
+  ...(prev ? [{ href: `/es/shabat/${prev.id}/`, small: `La edición anterior · ${label(prev.data.parasha)}`, title: prev.data.title }] : []),
+  { href: '/es/shabat/', small: 'Todas las ediciones', title: `${issues.length} ediciones de ${MABAT_ES.name}` },
+];
 ---
 
 <Base
@@ -54,14 +72,7 @@ if (quoteImage) {
   compact={true}
   altLangHref={`/mabat-leshabbat/${piece.id}/`}
   jsonLd={[
-    articleJsonLd(Astro.site!, {
-      url: pageUrl,
-      headline: title,
-      description: summary,
-      datePublished: date,
-      image: ogImage,
-      inLanguage: 'es',
-    }),
+    articleJsonLd(Astro.site!, { url: pageUrl, headline: title, description: summary, datePublished: date, image: ogImage, inLanguage: 'es' }),
     breadcrumbJsonLd(Astro.site!, [
       { name: 'Punto de Vista', path: '/es/' },
       { name: MABAT_ES.name, path: '/es/shabat/' },
@@ -70,150 +81,49 @@ if (quoteImage) {
   ]}
 >
   <main>
-    <article class="mabat">
-      <header class="mabat-head">
-        <span class="rail" aria-hidden="true"></span>
-        <div class="head-text">
-          <p class="kicker-main">{MABAT_ES.name}</p>
-          <p class="kicker-sub">{kickerEs(parasha, MABAT_ES.parashaPrefix)} · {hebrewDate}</p>
-          <h1>{title}</h1>
-        </div>
-      </header>
+    <article class="corner is-mabat">
+      <CornerHead
+        lang="es"
+        corner={MABAT_ES.name}
+        cornerHref="/es/shabat/"
+        label={`${label(parasha)} · ${hebrewDate}`}
+        now={isThisWeek(piece, issues) ? 'La edición de esta semana' : undefined}
+        title={title}
+        deck={description}
+        meta={readingLabel({ body: piece.body, data: {} }, 'es')}
+      />
 
-      <MabatBody blocks={blocks} />
+      <MabatBody blocks={blocks} pullQuote={quoteImageAlt} closingLabel="La pregunta para Shabat" />
 
-      {
-        quoteImage && (
-          <div class="quote-image">
-            <Image src={quoteImage} alt={quoteImageAlt!} widths={[320, 480, 640]} sizes="(max-width: 30rem) 70vw, 320px" />
-          </div>
-        )
-      }
-
-      <div class="close-mark" aria-hidden="true"><span></span></div>
-
-      <div class="signoff">
+      <div class="ca-signoff">
         <p set:html={signoff.trim().replace(/\n/g, '<br />')} />
-        <p class="sig">{signedBy}</p>
       </div>
+
+      <AuthorCard lang="es" />
     </article>
 
-    <ShareRow
-      title={`${title} · ${MABAT_ES.name}`}
-      url={pageUrl}
-      lang="es"
-      linkOnly={true}
-      label="Envíaselo a alguien:"
-    />
+    <QuoteShare lang="es" image={quoteImage} imageAlt={quoteImageAlt} imageUrl={ogImage} title={`${title} · ${MABAT_ES.name}`} url={pageUrl} />
 
-    <nav class="mabat-footer">
-      <a href="/es/shabat/">Todas las ediciones de {MABAT_ES.name}</a>
-    </nav>
+    {
+      story && (
+        <CornerNext
+          lang="es"
+          heading="El Shabat sigue"
+          pair={{
+            href: esBeshtPath(story.id),
+            kicker: paired ? `Al terminar este Shabat · ${BESHT_ES.name}` : `${BESHT_ES.name} · la historia más reciente`,
+            title: story.data.title,
+            text: story.data.excerpt,
+            cta: 'Leer la historia →',
+            image: havdala,
+            color: 'var(--gold-deep)',
+          }}
+          rows={rows}
+        />
+      )
+    }
+
     <JoinGroup lang="es" />
     <JoinPopup lang="es" />
   </main>
 </Base>
-
-<style>
-  .mabat {
-    padding-top: 0.5rem;
-  }
-
-  .mabat-head {
-    display: flex;
-    gap: 1rem;
-    align-items: flex-start;
-    margin-bottom: 2.2rem;
-  }
-
-  .rail {
-    width: 3px;
-    align-self: stretch;
-    min-height: 5.6rem;
-    background: var(--blue);
-    border-radius: 2px;
-    flex: 0 0 auto;
-  }
-
-  .head-text {
-    flex: 1;
-  }
-
-  .kicker-main {
-    color: var(--blue);
-    font-size: 0.76rem;
-    letter-spacing: 0.14em;
-    font-weight: 700;
-    margin: 0 0 0.35rem;
-  }
-
-  .kicker-sub {
-    color: var(--muted);
-    font-size: 0.85rem;
-    margin: 0 0 1rem;
-  }
-
-  .mabat-head h1 {
-    font-size: 1.7rem;
-    line-height: 1.42;
-    margin: 0;
-    text-wrap: balance;
-  }
-
-  .quote-image {
-    display: flex;
-    justify-content: center;
-    margin: 2.6rem 0 0.4rem;
-  }
-
-  .quote-image :global(img) {
-    width: 100%;
-    max-width: 15rem;
-    height: auto;
-    border-radius: 3px;
-    box-shadow: var(--shadow);
-  }
-
-  .close-mark {
-    display: flex;
-    justify-content: center;
-    margin: 2.3rem 0 1.6rem;
-  }
-
-  .close-mark span {
-    width: 3px;
-    height: 16px;
-    border-radius: 2px;
-    background: var(--blue);
-    opacity: 0.55;
-  }
-
-  .signoff {
-    text-align: center;
-    margin: 0 0 0.5rem;
-  }
-
-  .signoff p {
-    margin: 0 0 0.5rem;
-    font-size: 1.05rem;
-    line-height: 1.7;
-    color: var(--ink);
-    font-weight: 500;
-  }
-
-  .signoff .sig {
-    font-weight: 700;
-    color: var(--blue);
-    margin-bottom: 0;
-  }
-
-  .mabat-footer {
-    text-align: center;
-    margin-top: 2.5rem;
-  }
-
-  .mabat-footer a {
-    text-decoration: none;
-    font-weight: 600;
-  }
-</style>
