@@ -1,12 +1,12 @@
 ---
 # Traducción del original hebreo "רק ללילה אחד" (2026-11-01). Mismo id de archivo que el
 # hebreo para el emparejamiento automático (gemelo de idioma + hreflang).
-# Retenido detrás de isPublished hasta la aprobación de publicación.
+# Publicado 2026-11-01 (fecha = hora real de publicación).
 title: "Solo por una noche"
 section: meshalim
 cover: ../../assets/covers/rak-lelayla-echad.jpg
 coverAlt: "Una casa pequeña de piedra en una noche de lluvia, la puerta entreabierta y un fuego encendido adentro junto a una silla y una taza, una silla de madera vacía afuera en el escalón mojado, y una ventana encendida en la casa del vecino a lo lejos"
-date: 2026-12-31T00:00:00Z
+date: 2026-11-01T17:45:00Z
 readingTime: "2 minutos"
 excerpt: "Una noche de lluvia, un desconocido golpeó la puerta y pidió dormir junto al fuego. Solo por una noche. ¿Qué podía pasar por una noche?"
 hook: "¿Cómo se convierte un huésped en el dueño de la casa sin que nadie lo note?"
