@@ -1,0 +1,281 @@
+{
+  "updatedAt": "2026-11-02",
+  "since": "2026-08-20",
+  "views": {
+    "001-kvar-hechlateti-mi-hem": {
+      "he": 19,
+      "es": 8,
+      "total": 27
+    },
+    "004-chikiti-sheyitparetz": {
+      "he": 57,
+      "es": 26,
+      "total": 83
+    },
+    "005-mitachat-lakash-beauschwitz": {
+      "he": 22,
+      "es": 2,
+      "total": 24
+    },
+    "006-hayeled-im-hamatos": {
+      "he": 49,
+      "es": 35,
+      "total": 84
+    },
+    "007-hayeled-sheasaf-bulim": {
+      "he": 15,
+      "es": 10,
+      "total": 25
+    },
+    "008-lo-ratziti-lachzor-habaita": {
+      "he": 27,
+      "es": 6,
+      "total": 33
+    },
+    "009-eifo-hitchil-hasipur-haze": {
+      "he": 18,
+      "es": 5,
+      "total": 23
+    },
+    "010-lama-hu-bachar-rachok": {
+      "he": 15,
+      "es": 7,
+      "total": 22
+    },
+    "011-lo-lesham-hu-hitkaven": {
+      "he": 23,
+      "es": 7,
+      "total": 30
+    },
+    "013-ani-hayachid-shelo-nigash": {
+      "he": 18,
+      "es": 8,
+      "total": 26
+    },
+    "014-nishar-li-rak-hashem-sheli": {
+      "he": 41,
+      "es": 18,
+      "total": 59
+    },
+    "017-mivrak-le-atzmecha": {
+      "he": 49,
+      "es": 23,
+      "total": 72
+    },
+    "020-hagesher-shehrosh-mefached": {
+      "he": 14,
+      "es": 6,
+      "total": 20
+    },
+    "026-lev-mishtarot-shel-zman": {
+      "he": 98,
+      "es": 20,
+      "total": 118
+    },
+    "030-lishbor-kedei-lehishtachrer": {
+      "he": 12,
+      "es": 2,
+      "total": 14
+    },
+    "037-hasipur-shesipru-lanesher": {
+      "he": 32,
+      "es": 12,
+      "total": 44
+    },
+    "038-ani-maamin-mehakaron": {
+      "he": 21,
+      "es": 3,
+      "total": 24
+    },
+    "042-delet-bekoma-shivim": {
+      "he": 52,
+      "es": 35,
+      "total": 87
+    },
+    "048-milimeter-echad-shel-ometz": {
+      "he": 19,
+      "es": 13,
+      "total": 32
+    },
+    "050-hamelech-roeh-et-halev": {
+      "he": 10,
+      "es": 3,
+      "total": 13
+    },
+    "32-dolar": {
+      "he": 48,
+      "es": 24,
+      "total": 72
+    },
+    "738-yamim-vechatzi-shaa": {
+      "he": 32,
+      "es": 19,
+      "total": 51
+    },
+    "ayara-shel-zarim": {
+      "he": 62,
+      "es": 30,
+      "total": 92
+    },
+    "betzad-hasheni-shel-hahar": {
+      "he": 68,
+      "es": 16,
+      "total": 84
+    },
+    "chamishim-chamishim": {
+      "he": 40,
+      "es": 23,
+      "total": 63
+    },
+    "chelek-baolam-haba": {
+      "he": 31,
+      "es": 22,
+      "total": 53
+    },
+    "habricha-hamushlemet": {
+      "he": 133,
+      "es": 4,
+      "total": 137
+    },
+    "hadag-shehorid-geshem": {
+      "he": 37,
+      "es": 7,
+      "total": 44
+    },
+    "halayla-shelifney": {
+      "he": 48,
+      "es": 20,
+      "total": 68
+    },
+    "haner-batzintzenet": {
+      "he": 37,
+      "es": 18,
+      "total": 55
+    },
+    "haohel-shel-haganan": {
+      "he": 46,
+      "es": 6,
+      "total": 52
+    },
+    "hapniya-shelo-tichnanti": {
+      "he": 48,
+      "es": 21,
+      "total": 69
+    },
+    "hasandlar-shekimat-haya": {
+      "he": 73,
+      "es": 24,
+      "total": 97
+    },
+    "hatabaat-bakos": {
+      "he": 130,
+      "es": 67,
+      "total": 197
+    },
+    "hatur-hasheni": {
+      "he": 63,
+      "es": 11,
+      "total": 74
+    },
+    "im-lo-lemala-mize": {
+      "he": 0,
+      "es": 0,
+      "total": 0
+    },
+    "im-tisrod": {
+      "he": 46,
+      "es": 36,
+      "total": 82
+    },
+    "kach-gam-et-hameil": {
+      "he": 50,
+      "es": 33,
+      "total": 83
+    },
+    "kav-echad": {
+      "he": 30,
+      "es": 26,
+      "total": 56
+    },
+    "kedei-levade-shesalachti": {
+      "he": 84,
+      "es": 63,
+      "total": 147
+    },
+    "kol-boker-tefillin": {
+      "he": 35,
+      "es": 31,
+      "total": 66
+    },
+    "kvar-baavir": {
+      "he": 49,
+      "es": 40,
+      "total": 89
+    },
+    "lama-korim-li-efraim": {
+      "he": 88,
+      "es": 30,
+      "total": 118
+    },
+    "lo-nishlach": {
+      "he": 39,
+      "es": 29,
+      "total": 68
+    },
+    "ma-ata-rotze-bachayim": {
+      "he": 70,
+      "es": 27,
+      "total": 97
+    },
+    "maasar-haolam-shela": {
+      "he": 123,
+      "es": 25,
+      "total": 148
+    },
+    "meah-shana-beichur": {
+      "he": 43,
+      "es": 16,
+      "total": 59
+    },
+    "mi-yaamod-bamakolet": {
+      "he": 41,
+      "es": 25,
+      "total": 66
+    },
+    "nipagesh-beseptember": {
+      "he": 73,
+      "es": 22,
+      "total": 95
+    },
+    "rak-lelayla-echad": {
+      "he": 28,
+      "es": 16,
+      "total": 44
+    },
+    "shaarei-tikva": {
+      "he": 0,
+      "es": 0,
+      "total": 0
+    },
+    "shiur-al-srochim": {
+      "he": 81,
+      "es": 62,
+      "total": 143
+    },
+    "shiva-kilometer-bacheder": {
+      "he": 0,
+      "es": 0,
+      "total": 0
+    },
+    "shtei-dakot-bachoshech": {
+      "he": 33,
+      "es": 35,
+      "total": 68
+    },
+    "tzaif-zahov": {
+      "he": 114,
+      "es": 143,
+      "total": 257
+    }
+  }
+}
