@@ -22,6 +22,8 @@ import type { NextStory } from '../lib/related';
 import { esStoryPath } from '../data/es-slugs';
 import type { Lang } from '../data/story-ui';
 import Views from './Views.astro';
+import { getCollection } from 'astro:content';
+import { isPublished } from '../lib/published';
 
 type Story = CollectionEntry<'stories'> | CollectionEntry<'storiesEs'>;
 interface Props {
@@ -36,9 +38,10 @@ interface Props {
 }
 const { current, world, related, moments, worldLabel, lang = 'he' } = Astro.props;
 const es = lang === 'es';
+const total = (await getCollection(es ? 'storiesEs' : 'stories', isPublished)).length;
 const t = es
-  ? { title: '¿Quieres más?', sub: 'Tres formas de seguir desde aquí', world: `Más de ${worldLabel}`, moment: 'Un momento de Punto de Vista sobre esto', aria: 'Para seguir' }
-  : { title: 'רוצה עוד?', sub: 'שלוש דרכים להמשיך מכאן', world: `עוד מ${worldLabel}`, moment: 'רגע של נקודת מבט על זה', aria: 'ההמשך' };
+  ? { title: '¿Quieres más?', sub: 'Tres formas de seguir desde aquí', world: `Más de ${worldLabel}`, moment: 'Un momento de Punto de Vista sobre esto', aria: 'Para seguir', all: `Ver las ${total} historias`, allHref: '/es/historias/' }
+  : { title: 'רוצה עוד?', sub: 'שלוש דרכים להמשיך מכאן', world: `עוד מ${worldLabel}`, moment: 'רגע של נקודת מבט על זה', aria: 'ההמשך', all: `לכל ${total} הסיפורים`, allHref: '/stories/' };
 
 const href = (id: string) => (es ? esStoryPath(id) : `/stories/${id}/`);
 const card = (story: Story, kicker: string, slot: string) => ({
@@ -121,6 +124,9 @@ const momentCards = moments.map((moment) => {
           </ul>
         )}
       </div>
+      <a class="all" href={t.allHref} data-ph="all_stories">
+        {t.all} <span aria-hidden="true">{es ? '→' : '←'}</span>
+      </a>
     </aside>
   )
 }
@@ -297,6 +303,21 @@ const momentCards = moments.map((moment) => {
   }
   .nowrap {
     white-space: nowrap;
+  }
+  .all {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    margin-top: 1rem;
+    font-weight: 600;
+    color: var(--teal);
+    text-decoration: none;
+  }
+  .all:hover,
+  .all:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
   }
   .opt.mo {
     grid-template-columns: 1fr;
