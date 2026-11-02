@@ -48,6 +48,7 @@ const PAPER = '#f3e9d3';
 const INK = '#2e2a24';
 const MUTED = '#75695a';
 const GOLD = '#c9a24d';
+const GOLD_DEEP = '#80601a';
 const TEAL_DEEP = '#17453f';
 const BLUE = '#003b5c';
 const BRICK = '#b0463b';
@@ -468,7 +469,7 @@ export function renderMomentStory(
     handleSvg.push(
       `<line x1="${CENTER - 300}" y1="1412" x2="${CENTER + 300}" y2="1412" stroke="${GOLD}" stroke-width="1.6" opacity="0.55"/>`,
       `<circle cx="${CENTER}" cy="1472" r="8" fill="${GOLD}"/>`,
-      `<text x="${CENTER}" y="1526" font-family="Heebo Bold" font-size="29" fill="#8f6f28" direction="${direction}" text-anchor="middle" letter-spacing="3">${t(rtl ? HANDLE_LABEL : HANDLE_LABEL_ES)}</text>`,
+      `<text x="${CENTER}" y="1526" font-family="Heebo Bold" font-size="29" fill="${GOLD_DEEP}" direction="${direction}" text-anchor="middle" letter-spacing="3">${t(rtl ? HANDLE_LABEL : HANDLE_LABEL_ES)}</text>`,
       ...lines.map(
         (line, i) =>
           `<text x="${CENTER}" y="${first + i * 64}" font-family="${REGULAR}" font-size="${HANDLE_SIZE}" fill="${INK}" direction="${direction}" text-anchor="middle">${t(line)}</text>`

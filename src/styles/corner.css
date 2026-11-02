@@ -14,7 +14,6 @@
 }
 
 .corner {
-  --gold-deep: #8f6f28;
   --c: var(--blue);
   --ck: var(--blue);
   padding-top: 0.6rem;
@@ -140,20 +139,12 @@
   text-wrap: pretty;
 }
 
-.ca-body > p:first-child::first-line {
-  font-weight: 700;
-  color: var(--ck);
-}
-
-.ca-body strong {
-  color: var(--ck);
-  font-weight: 700;
-}
-
+/* הדגשה אחת בכל האתר: משקל 700 בכחול (קול המחבר), בשתי הפינות. השורה הראשונה בלי טיפול מיוחד. */
+.ca-body strong,
 .ca-body em {
   font-style: normal;
   font-weight: 700;
-  color: var(--teal-deep);
+  color: var(--blue);
 }
 
 .ca-gap {
@@ -200,7 +191,7 @@
 .ca-body blockquote p {
   font-size: 1.45rem;
   line-height: 1.5;
-  color: var(--teal-deep);
+  color: var(--blue);
   margin: 0;
 }
 
@@ -346,7 +337,7 @@
   font: inherit;
   font-size: 0.92rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--white);
   background: var(--teal-deep);
   border: 0;
   border-radius: 999px;
@@ -377,7 +368,7 @@
   border-radius: 14px;
   overflow: hidden;
   border: 1px solid var(--line);
-  background: #fff;
+  background: var(--white);
 }
 
 .ca-pair .art {
@@ -423,7 +414,7 @@
   font-size: 1.5rem;
   font-weight: 500;
   line-height: 1.22;
-  color: #fff;
+  color: var(--white);
 }
 
 .ca-pair .art.type {
@@ -442,7 +433,7 @@
   font-family: var(--font-display);
   font-size: 1.32rem;
   line-height: 1.38;
-  color: #f6eedd;
+  color: var(--surface);
   max-width: 16em;
   text-wrap: balance;
 }
@@ -611,7 +602,7 @@
 }
 
 .ca-feat .m b {
-  color: #fff;
+  color: var(--white);
   background: var(--btn, var(--blue));
   border-radius: 999px;
   padding: 0.5rem 1.15rem;
@@ -650,7 +641,7 @@
   margin-top: 2.2rem;
   padding: 1rem;
   border-radius: 12px;
-  background: #fff;
+  background: var(--white);
   border: 1px solid var(--line);
   text-decoration: none;
   color: inherit;

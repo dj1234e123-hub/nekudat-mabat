@@ -407,6 +407,11 @@ const ogImageDims = ogImage
     --blue: #003b5c;
     --brick: #b0463b;
     --gold: #c9a24d;
+    /* זהב כטקסט: זהב המותג נמדד 2.24 על נייר, ולכן כל טקסט זהב משתמש בגוון הזה (5.5 על נייר, 4.8 על משטח) */
+    --gold-deep: #80601a;
+    /* משטחים בהירים: כרטיס לבן, ונייר מוגבה למכתבים */
+    --white: #fff;
+    --paper-raised: #fffdf6;
 
     /* טיפוגרפיה – החלטה סופית: Frank Ruhl Libre לכותרות, Heebo לטקסט ולממשק */
     --font-display: 'Frank Ruhl Libre', 'David Libre', serif;
@@ -499,7 +504,7 @@ const ogImageDims = ogImage
     height: 52px;
     border-radius: 50%;
     object-fit: cover;
-    background: #fff;
+    background: var(--white);
     box-shadow: var(--shadow);
   }
 
@@ -594,7 +599,13 @@ const ogImageDims = ogImage
     transition: color 0.15s ease, border-color 0.15s ease;
   }
 
-  .lang-pill:hover {
+  /* אותו צבע בכל כותרת: האפור של הגלולה גובר על צבע הניווט */
+  .site-nav a.lang-pill {
+    color: var(--muted);
+  }
+
+  .lang-pill:hover,
+  .site-nav a.lang-pill:hover {
     color: var(--teal);
     border-color: var(--teal);
   }
@@ -808,7 +819,7 @@ const ogImageDims = ogImage
     height: 44px;
     border-radius: 50%;
     object-fit: cover;
-    background: #fff;
+    background: var(--white);
     box-shadow: var(--shadow);
   }
 
@@ -951,7 +962,7 @@ const ogImageDims = ogImage
     justify-content: center;
     min-height: 52px;
     background: var(--brick);
-    color: #fff;
+    color: var(--white);
     font-weight: 700;
     font-size: 1.02rem;
     text-decoration: none;
