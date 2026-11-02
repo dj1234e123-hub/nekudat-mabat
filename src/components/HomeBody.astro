@@ -1,0 +1,308 @@
+---
+// גוף דף הבית, משותף לעברית ולספרדית (2026-11-03). עיקרון: דף הבית הוא לא ארכיון, הוא הפתיחה שמובילה לסיפורים.
+// 2% מהביקורים מתחילים בדף הבית, ו-45% נוחתים ישר על סיפור, ולכן הוא עונה בחמש שניות: מה זה, מה אפשר
+// לקרוא עכשיו, ולאן להמשיך. הסדר: משפט הפתיחה ← סיפור מרכזי ← השבוע (מבט לשבת ומעשה שהיה) ← הכי נקראים
+// ← רגעים ← מי אני ← הצטרפות. הרגע המלא ירד מדף הבית; הרגעים חיים בעמוד שלהם ובשורה אחת כאן.
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import { HERO_PICK } from '../data/stories-hero';
+import { STORY_UI, type Lang } from '../data/story-ui';
+import { viewsOf } from '../lib/story-meta';
+import momentGate from '../assets/gates/moments.png';
+import efraim from '../assets/efraim.jpg';
+import StoryHero from './StoryHero.astro';
+import StoryTile from './StoryTile.astro';
+import WeekCard from './WeekCard.astro';
+
+type Story = CollectionEntry<'stories'> | CollectionEntry<'storiesEs'>;
+interface Props {
+  stories: Story[]; // שפורסמו, מהחדש לישן
+  lang?: Lang;
+  week: Record<string, unknown>[]; // props של WeekCard, בסדר ההצגה
+}
+const { stories, lang = 'he', week } = Astro.props;
+const es = lang === 'es';
+const ui = STORY_UI[lang];
+const hero = stories.find((s) => s.id === HERO_PICK) ?? stories[0];
+const manual = !!HERO_PICK && hero.id === HERO_PICK;
+const top = [...stories]
+  .filter((s) => s.id !== hero.id)
+  .sort((a, b) => viewsOf(b.id) - viewsOf(a.id) || b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 6);
+const t = es
+  ? {
+      eyebrow: 'Historias. Momentos. Miradas.',
+      h1: 'Ver distinto. Vivir distinto.',
+      promise: 'Un lugar para detenerse, obtener un nuevo punto de vista y llevar algo contigo en tu camino.',
+      all: `Todas las ${stories.length} historias`,
+      allBtn: 'Todas las historias',
+      week: 'Esta semana en Punto de Vista',
+      weekNote: 'viernes y fin de Shabat',
+      moments: 'Momentos',
+      momentsTitle: 'Encuentra tu momento',
+      momentsText: 'Tres líneas para leer ahora, según lo que estás sintiendo.',
+      momentsLink: 'Ir a los momentos',
+      momentsHref: '/es/momentos/',
+      allHref: '/es/historias/',
+      aboutHref: '/es/sobre-mi/',
+      name: 'Efraim Atia',
+      bio: 'Escribo historias y momentos breves para detenernos un instante y ver distinto.',
+      about: 'Quién soy',
+      other: { href: '/', lang: 'he', dir: 'rtl', text: 'נקודת מבט – בעברית' },
+    }
+  : {
+      eyebrow: 'סיפורים. רגעים. תובנות.',
+      h1: 'לראות אחרת. לחיות אחרת.',
+      promise: 'מקום לעצור, לקבל נקודת מבט חדשה, ולקחת משהו איתך להמשך הדרך.',
+      all: `לכל ${stories.length} הסיפורים`,
+      allBtn: 'לכל הסיפורים',
+      week: 'השבוע בנקודת מבט',
+      weekNote: 'שישי ומוצ״ש',
+      moments: 'רגעים',
+      momentsTitle: 'מצא רגע שלך',
+      momentsText: 'שלוש שורות לקרוא עכשיו, לפי מה שעובר עליך.',
+      momentsLink: 'לרגעים',
+      momentsHref: '/moments/',
+      allHref: '/stories/',
+      aboutHref: '/about/',
+      name: 'אפרים עטייה',
+      bio: 'מלווה בחורים. כותב סיפורים כדי לעצור רגע, ולראות אחרת.',
+      about: 'מי אני',
+      other: { href: '/es/', lang: 'es', dir: 'ltr', text: 'Punto de Vista – en español' },
+    };
+---
+
+<section class="intro">
+  <p class="eyebrow">{t.eyebrow}</p>
+  <h1>{t.h1}</h1>
+  <p class="promise">{t.promise}</p>
+  {/* שורת ההזמנה לשפה השנייה – המבנה שאושר על סקיצה (2026-08-26) */}
+  <p class="lang-invite"><a href={t.other.href} lang={t.other.lang} dir={t.other.dir}>{t.other.text}</a></p>
+  <p class="all"><a href={t.allHref} data-ph="home_all">{t.all} {es ? '→' : '←'}</a></p>
+</section>
+
+<StoryHero story={hero} {lang} {manual} ph="home_story" />
+
+{
+  week.length > 0 && (
+    <section class="block">
+      <div class="sh"><h2>{t.week}</h2><span>{t.weekNote}</span></div>
+      <div class="week">{week.map((w) => <WeekCard {...(w as any)} />)}</div>
+    </section>
+  )
+}
+
+<section class="block">
+  <div class="sh"><h2>{ui.secTop}</h2><span>{ui.secTopNote}</span></div>
+  <ul class="rail">{top.map((s, i) => <StoryTile story={s} {lang} rank={i + 1} ph="home_top" />)}</ul>
+  <p class="more"><a class="btn" href={t.allHref} data-ph="home_all">{t.allBtn}</a></p>
+</section>
+
+<section class="block">
+  <div class="sh"><h2>{t.moments}</h2></div>
+  <a class="mrow" href={t.momentsHref} data-ph="home_moments">
+    <Image src={momentGate} alt="" widths={[160, 320]} sizes="4.4rem" />
+    <span>
+      <span class="mt">{t.momentsTitle}</span>
+      <span class="ms">{t.momentsText} <u>{t.momentsLink} {es ? '→' : '←'}</u></span>
+    </span>
+  </a>
+</section>
+
+<section class="author">
+  <Image src={efraim} alt="" widths={[120, 240]} sizes="4.6rem" />
+  <div>
+    <p class="n">{t.name}</p>
+    <p class="s">{t.bio} <a href={t.aboutHref} data-ph="home_about">{t.about} {es ? '→' : '←'}</a></p>
+  </div>
+</section>
+
+<style>
+  .intro {
+    text-align: center;
+    padding: 0.5rem 0 1rem;
+  }
+  .eyebrow {
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--teal);
+    margin: 0 0 0.3rem;
+  }
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2.1rem, 8vw, 2.6rem);
+    line-height: 1.12;
+    margin: 0 0 0.6rem;
+    color: var(--teal-deep);
+    text-wrap: balance;
+  }
+  .promise {
+    color: var(--secondary);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 0 auto 0.4rem;
+    max-width: 30rem;
+  }
+  .lang-invite {
+    margin: 0.6rem 0 0;
+    font-size: 0.9rem;
+  }
+  .lang-invite a {
+    color: var(--muted);
+    text-decoration: none;
+    display: inline-block;
+    padding-block: 0.5rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .lang-invite a:hover {
+    color: var(--teal);
+    border-color: var(--teal);
+  }
+  .all {
+    margin: 0.5rem 0 0;
+  }
+  .all a {
+    display: inline-block;
+    padding-block: 0.6rem;
+    color: var(--teal);
+    font-weight: 600;
+    font-size: 0.92rem;
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+  }
+  .block {
+    margin-top: 2.4rem;
+  }
+  .sh {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin: 0 0 0.8rem;
+  }
+  .sh h2 {
+    font-size: 1.45rem;
+    margin: 0;
+  }
+  .sh span {
+    font-size: 0.84rem;
+    color: var(--muted);
+  }
+  .week {
+    display: grid;
+    gap: 0.9rem;
+  }
+  .rail {
+    display: flex;
+    gap: 0.9rem;
+    overflow-x: auto;
+    list-style: none;
+    padding: 0 0 0.6rem;
+    margin: 0;
+    scroll-snap-type: x proximity;
+  }
+  .more {
+    text-align: center;
+    margin: 0.6rem 0 0;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    min-height: 46px;
+    padding: 0 1.8rem;
+    border: 1.5px solid var(--teal);
+    border-radius: 999px;
+    color: var(--teal);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .btn:hover,
+  .btn:focus-visible {
+    background: var(--teal);
+    color: #fff;
+  }
+  .mrow {
+    display: grid;
+    grid-template-columns: 4.4rem 1fr;
+    gap: 0.8rem;
+    align-items: center;
+    border: 1px solid var(--line);
+    border-radius: 0.9rem;
+    padding: 0.7rem;
+    color: inherit;
+    text-decoration: none;
+  }
+  .mrow :global(img) {
+    width: 4.4rem;
+    height: 4.4rem;
+    object-fit: cover;
+    border-radius: 0.65rem;
+  }
+  .mt {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+  .ms {
+    display: block;
+    font-size: 0.86rem;
+    color: var(--secondary);
+    line-height: 1.5;
+  }
+  .ms u {
+    color: var(--teal);
+    font-weight: 600;
+  }
+  .author {
+    display: grid;
+    grid-template-columns: 4.6rem 1fr;
+    gap: 0.9rem;
+    align-items: center;
+    margin-top: 2.4rem;
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--line);
+  }
+  .author :global(img) {
+    width: 4.6rem;
+    height: 4.6rem;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .author .n {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.15rem;
+    margin: 0;
+  }
+  .author .s {
+    font-size: 0.88rem;
+    color: var(--secondary);
+    line-height: 1.5;
+    margin: 0;
+  }
+  .author .s a {
+    color: var(--teal);
+    font-weight: 600;
+  }
+  @media (min-width: 52rem) {
+    .intro {
+      text-align: start;
+    }
+    h1 {
+      font-size: 3.6rem;
+    }
+    .promise {
+      margin-inline: 0;
+      font-size: 1.2rem;
+    }
+    .week {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    .sh h2 {
+      font-size: 1.8rem;
+    }
+  }
+</style>

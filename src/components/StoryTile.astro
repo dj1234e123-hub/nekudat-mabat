@@ -15,8 +15,10 @@ interface Props {
   story: CollectionEntry<'stories'> | CollectionEntry<'storiesEs'>;
   lang?: Lang;
   rank?: number;
+  /** שם אירוע המדידה ללחיצה (data-ph) */
+  ph?: string;
 }
-const { story, lang = 'he', rank } = Astro.props;
+const { story, lang = 'he', rank, ph } = Astro.props;
 const es = lang === 'es';
 const { title, section, date } = story.data;
 const cover = story.data.cover ?? DEFAULT_COVERS[section];
@@ -27,7 +29,7 @@ const views = viewsOf(story.id);
 ---
 
 <li class="tile">
-  <a href={href} data-story-id={story.id}>
+  <a href={href} data-story-id={story.id} data-ph={ph}>
     <span class="im">
       <Image src={cover} alt="" widths={[240, 480]} sizes="11rem" />
       {rank != null && <span class="rk">{rank}</span>}

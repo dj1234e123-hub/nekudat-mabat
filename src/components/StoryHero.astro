@@ -15,8 +15,10 @@ interface Props {
   story: CollectionEntry<'stories'> | CollectionEntry<'storiesEs'>;
   lang?: Lang;
   manual?: boolean;
+  /** שם אירוע המדידה ללחיצה (data-ph) */
+  ph?: string;
 }
-const { story, lang = 'he', manual = false } = Astro.props;
+const { story, lang = 'he', manual = false, ph } = Astro.props;
 const es = lang === 'es';
 const ui = STORY_UI[lang];
 const { title, section, date } = story.data;
@@ -28,7 +30,7 @@ const label = manual ? ui.heroPick : isNew(date) ? ui.heroNew : ui.heroLatest;
 const mins = readingLabel(story, lang).replace(' קריאה', '').replace(' de lectura', '');
 ---
 
-<a class="hero" href={href} data-story-id={story.id}>
+<a class="hero" href={href} data-story-id={story.id} data-ph={ph}>
   <Image src={cover} alt="" widths={[640, 960, 1280]} sizes="(max-width: 52rem) 100vw, 60vw" loading="eager" />
   <span class="tx">
     <span class="lab">
