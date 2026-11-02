@@ -78,6 +78,9 @@ const momentCards = moments.map((moment) => {
     <aside class="next-up end" data-current={current} aria-label={t.aria}>
       <h2>{t.title}</h2>
       <p class="sb">{t.sub}</p>
+      <a class="all" href={t.allHref} data-ph="all_stories">
+        {t.all} <span aria-hidden="true">{es ? '→' : '←'}</span>
+      </a>
       <div class="opts">
         {[worldCards, relatedCards].map((list) =>
           list.length > 0 ? (
@@ -124,9 +127,6 @@ const momentCards = moments.map((moment) => {
           </ul>
         )}
       </div>
-      <a class="all" href={t.allHref} data-ph="all_stories">
-        {t.all} <span aria-hidden="true">{es ? '→' : '←'}</span>
-      </a>
     </aside>
   )
 }
@@ -309,7 +309,7 @@ const momentCards = moments.map((moment) => {
     align-items: center;
     justify-content: center;
     min-height: 44px;
-    margin-top: 1rem;
+    margin: 0 0 0.6rem;
     font-weight: 600;
     color: var(--teal);
     text-decoration: none;
