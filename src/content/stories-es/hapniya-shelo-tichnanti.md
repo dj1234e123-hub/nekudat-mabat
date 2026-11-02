@@ -4,8 +4,8 @@ title: "El desvío que no planeé"
 section: yoman
 archiveId: "027"
 topic: faith
-cover: ../../assets/covers/027.png
-coverAlt: "Una pequeña fuente de piedra entre olivos, agua que cae de un caño a un pilón, y al lado un auto con el capó abierto y un arrancador conectado sobre la grava; al fondo, una carretera que serpentea por el valle con el sol bajo"
+cover: ../../assets/covers/hapniya-shelo-tichnanti.jpg
+coverAlt: "Un arrancador de batería rojo y sus cables sobre la grava junto a una antigua pila de piedra a la que cae agua de un caño, entre olivos; al fondo un coche viejo con el capó abierto y una carretera sinuosa en el valle"
 date: 2026-10-19T17:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Llegaba tarde al trabajo y aun así salí de la carretera hacia una pequeña fuente, solo por unos minutos de calma. En el estacionamiento me esperaba una mujer junto a un auto que no arrancaba."
