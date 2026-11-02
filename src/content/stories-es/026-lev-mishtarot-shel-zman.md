@@ -3,8 +3,8 @@
 title: "No rompió dinero"
 section: yoman
 archiveId: "026"
-cover: ../../assets/covers/026.png
-coverAlt: "Un corazón hecho de decenas de pedacitos de billetes azules y rojos pegados entre sí, parado sobre un piso de madera junto a una puerta abierta por la que entra la luz del amanecer"
+cover: ../../assets/covers/lev-mishtarot-shel-zman.jpg
+coverAlt: "Una mesa de salón de madera a la luz de la mañana: unas tijeras de niño, pegamento y trocitos de papel azules y rojos esparcidos, una silla infantil y un vaso de leche al fondo, con una puerta hacia el pasillo"
 date: 2026-08-23T09:00:00Z
 readingTime: "un minuto y medio"
 excerpt: "Siete de la mañana. Jani, de cinco años, sentada en la sala con una tijerita, y sobre la mesa un billete de 200 y uno de 20. Mi mano casi se levanta para detenerla."
