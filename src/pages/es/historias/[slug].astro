@@ -18,7 +18,7 @@ import { articleJsonLd, breadcrumbJsonLd } from '../../../lib/structured-data';
 import { isPublished } from '../../../lib/published';
 import { ES_STORY_SLUGS, esStoryPath, esSectionPath, assertEsSlugs } from '../../../data/es-slugs';
 import { newestFirst } from '../../../lib/sort';
-import { nextStories, momentForStory } from '../../../lib/related';
+import { nextStories, momentsForStory } from '../../../lib/related';
 import { readingLabel as readingLabelFor } from '../../../lib/reading-time';
 import JoinPopup from '../../../components/JoinPopup.astro';
 
@@ -58,12 +58,12 @@ const otherStoryUrls = allStories.filter((s) => s.id !== story.id).map((s) => es
 // "ההמשך" (NextUp) בספרדית: הקרבה התוכנית נמדדת דרך התאום העברי (התגיות
 // חיות שם), והמועמדים והרגע – רק מה שקיים בספרדית ("מבחר ולא מראה").
 const hebrewStories = await getCollection('stories', isPublished);
-const nextCandidates = nextStories(story, allStories, SECTIONS_ES_LABELS, hebrewStories);
+const nextCandidates = nextStories(story, allStories, SECTIONS_ES_LABELS, hebrewStories, 6);
 const worldCandidates = allStories
   .filter((s) => s.id !== story.id && s.data.section === section)
   .sort((a, b) => viewsOf(b.id) - viewsOf(a.id) || newestFirst(a, b))
-  .slice(0, 3);
-const relatedMoment = momentForStory(story, await getCollection('momentsEs', isPublished), hebrewStories);
+  .slice(0, 6);
+const relatedMoments = momentsForStory(story, await getCollection('momentsEs', isPublished), hebrewStories);
 ---
 
 <Base
@@ -104,7 +104,7 @@ const relatedMoment = momentForStory(story, await getCollection('momentsEs', isP
     </article>
 
     <ShareRow title={title} url={pageUrl} lang="es" />
-    <StoryEnd current={story.id} world={worldCandidates} related={nextCandidates} moment={relatedMoment} worldLabel={SECTIONS_ES[section].label} lang="es" />
+    <StoryEnd current={story.id} world={worldCandidates} related={nextCandidates} moments={relatedMoments} worldLabel={SECTIONS_ES[section].label} lang="es" />
     <JoinGroup lang="es" />
 
     <nav class="story-footer">

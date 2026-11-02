@@ -14,7 +14,7 @@ import { DEFAULT_COVERS, DEFAULT_COVER_ALT } from '../../data/default-covers';
 import { articleJsonLd, breadcrumbJsonLd } from '../../lib/structured-data';
 import { isPublished } from '../../lib/published';
 import { newestFirst } from '../../lib/sort';
-import { nextStories, momentForStory } from '../../lib/related';
+import { nextStories, momentsForStory } from '../../lib/related';
 import { readingLabel as readingLabelFor } from '../../lib/reading-time';
 import JoinPopup from '../../components/JoinPopup.astro';
 import { esStoryPath } from '../../data/es-slugs';
@@ -55,13 +55,13 @@ const otherStoryUrls = allStories.filter((s) => s.id !== story.id).map((s) => `/
 // "ההמשך" (NextUp): הסיפור הבא לפי קרבה תוכנית – שלושת המועמדים הקרובים
 // ביותר, מוגרלים בכל טעינה מבין אלה שטרם נקראו – ורגע של נקודת מבט שמתאים
 // לסיפור. נבחרים בזמן הבנייה מהתוכן עצמו (src/lib/related.ts).
-const nextCandidates = nextStories(story, allStories, SECTIONS);
-// עוד מאותו עולם: הנקראים ביותר, בלי הסיפור עצמו (עד שלושה, הסקריפט בוחר את הראשון שטרם נקרא)
+const nextCandidates = nextStories(story, allStories, SECTIONS, undefined, 6);
+// עוד מאותו עולם: הנקראים ביותר, בלי הסיפור עצמו (עד שישה, הסקריפט מגריל אחד מאלה שטרם נקראו)
 const worldCandidates = allStories
   .filter((s) => s.id !== story.id && s.data.section === section)
   .sort((a, b) => viewsOf(b.id) - viewsOf(a.id) || newestFirst(a, b))
-  .slice(0, 3);
-const relatedMoment = momentForStory(story, await getCollection('moments', isPublished));
+  .slice(0, 6);
+const relatedMoments = momentsForStory(story, await getCollection('moments', isPublished));
 
 // הסיפור התאום בספרדית – אותו שם קובץ באוסף storiesEs. סיפור שטרם תורגם:
 // הגלולה מובילה לשער הסיפורים הספרדי, בלי hreflang (זה לא אותו עמוד).
@@ -107,7 +107,7 @@ const altLangHref = hasEsTwin ? esStoryPath(story.id) : '/es/historias/';
     </article>
 
     <ShareRow title={title} url={pageUrl} />
-    <StoryEnd current={story.id} world={worldCandidates} related={nextCandidates} moment={relatedMoment} worldLabel={SECTIONS[section]} />
+    <StoryEnd current={story.id} world={worldCandidates} related={nextCandidates} moments={relatedMoments} worldLabel={SECTIONS[section]} />
     <WriteToMe title={title} />
     <JoinGroup />
 

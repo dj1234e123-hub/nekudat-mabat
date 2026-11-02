@@ -59,7 +59,8 @@ export function nextStories<T extends AnyStory>(
   current: T,
   all: T[],
   sectionLabels: Record<string, string>,
-  hebrew?: HeStory[]
+  hebrew?: HeStory[],
+  limit = 3
 ): NextStory<T>[] {
   const es = !('tags' in current.data);
   const mine = meta(current, hebrew);
@@ -91,23 +92,24 @@ export function nextStories<T extends AnyStory>(
       return { story, score, reason };
     })
     .sort((a, b) => b.score - a.score || newestFirst(a.story, b.story));
-  return scored.slice(0, 3).map(({ story, reason }) => ({ story, reason }));
+  return scored.slice(0, limit).map(({ story, reason }) => ({ story, reason }));
 }
 
 /**
- * רגע אחד למצב של הסיפור. הבחירה בין שלושת רגעי המדף קבועה לכל סיפור
- * (לפי שם הקובץ), כך ששני סיפורים על אמונה לא יציעו בהכרח את אותו רגע.
+ * עד שלושה רגעים למצב של הסיפור (כל המדף). סדר המועמדים קבוע לכל סיפור (מתחיל מנקודה שנגזרת
+ * משם הקובץ), והדפדפן מגריל ביניהם בכל טעינה – כך הרגע בסוף הסיפור מתחלף מכניסה לכניסה.
  */
-export function momentForStory<M extends AnyMoment>(
+export function momentsForStory<M extends AnyMoment>(
   current: AnyStory,
   moments: M[],
   hebrew?: HeStory[]
-): M | null {
+): M[] {
   const feeling = feelingForStory(current, hebrew);
-  if (!feeling) return null;
+  if (!feeling) return [];
   const shelf = moments.filter((m) => m.data.feeling === feeling).sort(newestFirst);
-  if (shelf.length === 0) return null;
+  if (shelf.length === 0) return [];
   let hash = 0;
   for (const ch of current.id) hash = (hash * 31 + ch.charCodeAt(0)) >>> 0;
-  return shelf[hash % shelf.length];
+  const start = hash % shelf.length;
+  return [...shelf.slice(start), ...shelf.slice(0, start)].slice(0, 3);
 }
