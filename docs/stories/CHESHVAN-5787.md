@@ -84,7 +84,7 @@
 - "שאלה לדרך" = תיבת הזהב בסוף.
 - החתימה "מאמין בך, אפרים עטייה" נוספת אוטומטית בהעלאה.
 
-**תמונות שער:** לכל סיפור צריך תמונה. הפרומפטים כתובים בשפה אחת: צילומי, שקט, אור טבעי, בלי אנשים ובלי כיתוב, ונגיעה אחת מצבעי המותג. אם אין תמונה ביום ההעלאה, הסיפור עולה עם שער ברירת המחדל של העולם, ומחליפים אחר כך.
+**תמונות שער:** לכל סיפור צריך תמונה. הפרומפטים כתובים לפי התבנית ב-`docs/COVER-PROMPT.md` (חפץ אחד של התפנית, צילומי, בלי אנשים ובלי כיתוב, בלי לחשוף את הסוף, עם צבעי המותג בקודי hex). הפרומפטים של הסיפורים שכבר עלו (🚀) נשארו כפי שהיו. אם אין תמונה ביום ההעלאה, הסיפור עולה עם שער ברירת המחדל של העולם (צילום השער שלו), ומחליפים אחר כך.
 
 ---
 
@@ -758,7 +758,14 @@
 - **תקציר:** מאז שסבא שלי נפטר, אני שומע עליו הרבה תארים. אבל כשאני חושב עליו, עולה לי תמונה אחת.
 - **שאלת הכרטיס:** את מי אנחנו תמיד מוצאים באותו מקום?
 - **תגיות:** סבא, זיכרון, געגוע, תורה, התמדה, משפחה
-- **שער:** שולחן עץ ישן ליד חלון, ספר קודש פתוח, משקפי קריאה מקופלים עליו, כיסא ריק מעט מוזז. אור אחר צהריים רך נופל על הדף. גוונים חמים, נגיעה כחולה בחלון. בלי אנשים. (אפשר גם תמונה אמיתית של מקום הלימוד שלו, אם יש.)
+- **שער (פרומפט לג'מיני, לפי `docs/COVER-PROMPT.md`):** אפשר גם תמונה אמיתית של מקום הלימוד שלו, אם יש.
+  ```
+  Photorealistic cinematic photograph, horizontal 3:2. A quiet study corner by a window in an old home, late afternoon. In the foreground, an open worn holy book lying on an old wooden desk, a pair of folded reading glasses resting on the page, the page text only soft unreadable texture, in sharp focus. Behind it, softly blurred, an empty wooden chair pushed back slightly from the desk, a window with a sheer curtain, and a shelf of bound books. Shallow depth of field, tender, quiet, longing mood, natural light only.
+
+  Color palette (brand): the soft late-afternoon window light falling across the page in warm gold (#C9A24D); the page and highlights in soft cream (#F3E9D3); shadows in deep teal-green (#1F5C57) and deep blue (#003B5C); the book cover in muted aged brown leather; one small accent of deep muted red (#B0463B) only on the book's ribbon bookmark, subtle. Muted, warm, slightly desaturated tones.
+
+  No people, no photographs, no Hebrew letters, no signs, no text, no letters, no numbers, no writing anywhere, no logos.
+  ```
 - **הודעה לקבוצה:**
   > יש אנשים שהם כל כך תמיד שם, שאנחנו מפסיקים לראות אותם.
   > כתבתי על סבא שלי.
@@ -907,7 +914,14 @@
 - **תקציר:** בחור מראדין קיבל פטור מהצבא הרוסי, וכל הישיבה רצה לבשר לחפץ חיים. כולם, אחד אחרי השני.
 - **שאלת הכרטיס:** מה עונים למי שבא לספר לנו משהו שכבר שמענו?
 - **תגיות:** שמחה, הקשבה, אהבת ישראל, החפץ חיים, ישיבה, בין אדם לחברו
-- **שער:** דלת עץ ישנה של חדר בבית מדרש, פתוחה למחצה, ועל הקיר לידה מסמר ריק. בפנים, שולחן עם ספרים ונר. אור חם שנשפך למסדרון. בלי אנשים, בלי כיתוב.
+- **שער (פרומפט לג'מיני, לפי `docs/COVER-PROMPT.md`):**
+  ```
+  Photorealistic cinematic photograph, horizontal 3:2. The corridor of an old beit midrash, evening. In the foreground, a single empty iron nail in the plaster wall beside a heavy old wooden door, with a faint paler rectangle around it where something once hung, in sharp focus. Behind it, softly blurred, the door slightly ajar with warm candlelight spilling out in a long golden stripe across the stone floor, and a table with books and a candle glimpsed inside. Shallow depth of field, warm, gently humorous, welcoming mood, natural light only.
+
+  Color palette (brand): the candlelight and the stripe of light on the floor in warm gold (#C9A24D); the plaster wall and highlights in soft cream (#F3E9D3); shadows in deep teal-green (#1F5C57) and deep blue (#003B5C); the door in muted aged wood; one small accent of deep muted red (#B0463B) only on a thin cord hanging from the nail, subtle. Muted, warm, slightly desaturated tones.
+
+  No people, no sign hanging on the nail, no notices on the wall, no signs, no text, no letters, no numbers, no writing anywhere, no logos.
+  ```
 - **הודעה לקבוצה:**
   > מה אנחנו עונים, כשמישהו בא לספר לנו בהתרגשות משהו שכבר ידענו?
   > בישיבה של החפץ חיים, בחורים נכנסו אחד אחרי השני עם אותה בשורה.
@@ -973,7 +987,14 @@
 - **תקציר:** חכמים שלחו שני תלמידים לבקש מאבא חלקיה שיתפלל על גשם. כל הדרך אחריו, הוא עשה דברים מוזרים.
 - **שאלת הכרטיס:** כמה פעמים שפטנו מישהו, לפני שהספקנו לשאול?
 - **תגיות:** דן לכף זכות, ענווה, גשם, תפילה, יושר, חז"ל
-- **שער:** שביל עפר בין שדות לעת ערב, צרור זרדים קשור בחבל מונח בצד, וגלימה מקופלת לידו. שלולית קטנה בשביל, ובקצה בית אבן עם גג שטוח. שמים אפורים עם קרע של אור זהוב. בלי אנשים.
+- **שער (פרומפט לג'מיני, לפי `docs/COVER-PROMPT.md`):** (הבית רחוק ולא מודגש, כדי לא לרמוז שהוא עמד על הגג)
+  ```
+  Photorealistic cinematic photograph, horizontal 3:2. A dirt path between fields at dusk after rain, grey sky with one tear of golden light. In the foreground, a bundle of dry twigs tied with rope and a folded plain cloak lying together at the side of the path, next to a small puddle that reflects the sky, in sharp focus. Behind it, softly blurred, the path winding on toward a distant simple stone house, small and partly hidden, its roof not emphasized, with wet fields on both sides. Shallow depth of field, quiet, patient, slightly puzzling mood, natural light only.
+
+  Color palette (brand): the tear of light in the sky and its reflection in the puddle in warm gold (#C9A24D); the clouds' highlights and the path in soft cream (#F3E9D3); shadows in deep teal-green (#1F5C57) and deep blue (#003B5C); the twigs and cloak in muted earth tones; one small accent of deep muted red (#B0463B) only on a faint thread on the rope, subtle. Muted, warm, slightly desaturated tones.
+
+  No people, no figures on the roof, no animals, no signs, no text, no letters, no numbers, no writing anywhere, no logos.
+  ```
 - **הודעה לקבוצה:**
   > כמה פעמים החלטנו על מישהו משהו, ורק אחר כך שאלנו למה?
   > שני תלמידי חכמים הלכו אחרי אדם אחד, וכל הדרך הוא התנהג מוזר.
@@ -1064,7 +1085,14 @@
 - **תקציר:** מאסטרו בן תשעים וחמש שמע הקלטה מושלמת של היצירה שלו, ואמר שהיא לא חיה. חסר בה כינור אחד, מתוך ארבעים.
 - **שאלת הכרטיס:** איך שומעים שכינור אחד שותק, בתוך תזמורת שלמה?
 - **תגיות:** שליחות, אומץ, ענווה, הימנעות, קול פנימי, כישרון
-- **שער:** כיסא עץ ריק בשורה של כיסאות תזמורת, כינור מונח על הכיסא וקשת לצידו, ודף תווים על כן, עם תיבה אחת מסומנת בעיפרון. אור במה חם מלמעלה, שאר האולם בחושך. בלי אנשים, תווים לא קריאים.
+- **שער (פרומפט לג'מיני, לפי `docs/COVER-PROMPT.md`):**
+  ```
+  Photorealistic cinematic photograph, horizontal 3:2. An empty concert hall seen from the orchestra pit, the stage lit from above while the rest of the hall is in darkness. In the foreground, a violin lying across the seat of an empty wooden orchestra chair, its bow resting beside it, in sharp focus. Behind it, softly blurred, a row of empty chairs and a music stand with sheet music whose notes are only unreadable abstract lines, with a single bar circled in pencil. Shallow depth of field, expectant, still, slightly melancholy mood, natural light only.
+
+  Color palette (brand): the warm stage light from above in warm gold (#C9A24D); the sheet music and highlights in soft cream (#F3E9D3); shadows in deep teal-green (#1F5C57) and deep blue (#003B5C); the violin in warm polished wood; one small accent of deep muted red (#B0463B) only on the pencil circle on the sheet music, subtle. Muted, warm, slightly desaturated tones.
+
+  No people, no readable notes, no musicians, no audience, no signs, no text, no letters, no numbers, no writing anywhere, no logos.
+  ```
 - **הודעה לקבוצה:**
   > כמה פעמים קראנו לשתיקה שלנו ענווה?
   > מאסטרו אחד שמע הקלטה מושלמת של היצירה שלו, ואמר שהיא לא חיה.
@@ -1126,7 +1154,14 @@
 - **תקציר:** סוחר ביקש מסבל להביא לו חבילה קטנה מהרכבת. הסבל חזר אחרי חצי שעה, רטוב מזיעה, עם ארגז ענק על הגב.
 - **שאלת הכרטיס:** כמה ממה שמעייף אותנו, בכלל לא שלנו?
 - **תגיות:** עייפות, ציפיות, עבודת השם, משא, הומור, המגיד מדובנא
-- **שער:** ארגז עץ ענק קשור בחבלים, מונח על רצפת פונדק ישן, ולידו על שולחן עץ – קופסה קטנה עטופה בבד קטיפה כחולה וכוס תה. אור חלון חם, אבק באוויר. בלי אנשים, בלי כיתוב.
+- **שער (פרומפט לג'מיני, לפי `docs/COVER-PROMPT.md`):** (הקופסה הקטנה בפוקוס והארגז הענק מטושטש, כך שהניגוד נראה בלי לספר את הפואנטה)
+  ```
+  Photorealistic cinematic photograph, horizontal 3:2. The floor of an old inn in the afternoon, dust in the window light. In the foreground, a small box wrapped in muted deep-blue velvet on a simple wooden table, beside a glass of tea, in sharp focus. Behind it, softly blurred, a huge wooden crate tied with thick ropes standing on the floor, bigger than the table, blurred in the background. Shallow depth of field, gently humorous, warm mood, natural light only.
+
+  Color palette (brand): the window light and floating dust in warm gold (#C9A24D); the table and highlights in soft cream (#F3E9D3); shadows in deep teal-green (#1F5C57) and deep blue (#003B5C); the velvet in a muted deep blue and the crate in raw wood; one small accent of deep muted red (#B0463B) only on a thin red thread tied around the small box, subtle. Muted, warm, slightly desaturated tones.
+
+  No people, no labels on the crate, no stamps, no signs, no text, no letters, no numbers, no writing anywhere, no logos.
+  ```
 - **הודעה לקבוצה:**
   > למה דברים מסוימים כל כך מעייפים אותנו?
   > המגיד מדובנא סיפר על סבל אחד, ארגז ענק, וסוחר שאפילו לא קם מהכיסא.
@@ -1185,7 +1220,14 @@
 - **תקציר:** אדם עבר ליד שדה וראה שני פועלים עובדים קשה מאוד. רק אחרי עשר דקות הבין מה חסר.
 - **שאלת הכרטיס:** מה אנחנו עושים כל יום בלי טעות, ושכחנו בשביל מה?
 - **תגיות:** משמעות, שגרה, כוונה, הרגל, עשייה, לשמה
-- **שער:** שורה ארוכה של עיגולי אדמה טרייה בשדה חום, את חפירה נעוץ באדמה בסוף השורה, ובצד ערימה של שתילים קטנים בשקי יוטה – שלא נשתלו. אור שקיעה נמוך, צללים ארוכים. בלי אנשים.
+- **שער (פרומפט לג'מיני, לפי `docs/COVER-PROMPT.md`):** (בלי שתילים בכלל: שתילים בשקים היו חושפים מה חסר)
+  ```
+  Photorealistic cinematic photograph, horizontal 3:2. A brown field at sunset, long shadows. In the foreground, one freshly dug round hole with a crisp rim of fresh earth, in sharp focus. Behind it, softly blurred, a long row of identical round holes receding across the field, and a spade standing in the soil at the end of the row. Shallow depth of field, diligent, quiet, slightly absurd mood, natural light only.
+
+  Color palette (brand): the low sunset light and the long shadows inside the holes in warm gold (#C9A24D); the earth highlights and the sky near the horizon in soft cream (#F3E9D3); shadows in deep teal-green (#1F5C57) and deep blue (#003B5C); the field in muted brown earth tones; one small accent of deep muted red (#B0463B) only on a thin red strip on the spade handle, subtle. Muted, warm, slightly desaturated tones.
+
+  No people, no seedlings, no trees, no plants in or near the holes, no sacks, no signs, no text, no letters, no numbers, no writing anywhere, no logos.
+  ```
 - **הודעה לקבוצה:**
   > אפשר לעשות הכול נכון, ובכל זאת לא לעשות כלום?
   > שני פועלים, שדה אחד, ויום עבודה שלם.
@@ -1246,7 +1288,14 @@
 - **תקציר:** חותן ביקש מחתנו מאתיים שקל ליד המאפייה. החתן הוציא שטר בשמחה. ואז, כשהחותן הסתובב ללכת, הוא שמע אותו לוחש משהו.
 - **שאלת הכרטיס:** מה אנחנו שומעים, כשאנחנו שומעים רק חצי משפט?
 - **תגיות:** דן לכף זכות, משפחה, שיפוטיות, תקשורת, הכרת הטוב, עלבון
-- **שער:** שטר של מאתיים שקל על שולחן עץ, ובפינה שלו סימן קטן בעט כחול (כוכבית או לב קטן). לידו שקית נייר של מאפייה ועוגה עטופה. אור חם של צהרי יום שישי. בלי אנשים. השטר עצמו יכול להיות מטושטש בחלקו.
+- **שער (פרומפט לג'מיני, לפי `docs/COVER-PROMPT.md`):** (השטר ריק וללא סכום קריא, רק הכוכבית הקטנה)
+  ```
+  Photorealistic cinematic photograph, horizontal 3:2. A wooden table by a bakery window on a Friday noon. In the foreground, a folded pale-blue paper banknote, completely blank and generic, with a tiny blue-ink asterisk drawn in one corner, lying on the wood, in sharp focus. Behind it, softly blurred, a paper bakery bag and a wrapped cake beside it, and a blurred bakery window with bread shelves. Shallow depth of field, warm, everyday, slightly uneasy mood, natural light only.
+
+  Color palette (brand): the warm Friday-noon window light in warm gold (#C9A24D); the paper bag and highlights in soft cream (#F3E9D3); shadows in deep teal-green (#1F5C57) and deep blue (#003B5C); the banknote in a muted blue-grey; one small accent of deep muted red (#B0463B) only on the string tied around the wrapped cake, subtle. Muted, warm, slightly desaturated tones.
+
+  No people, no denominations, no numbers or markings on the banknote, no store name, no signs, no text, no letters, no numbers, no writing anywhere, no logos.
+  ```
 - **הודעה לקבוצה:**
   > כמה פעמים נעלבנו מחצי משפט ששמענו?
   > מאתיים שקל, יום שישי, מאפייה.
@@ -1314,7 +1363,14 @@
 - **תקציר:** אבא נכנס לרב עובדיה עם ילד בן עשר, ואמר: "אני לא מצליח איתו." הרב ביקש להישאר עם הילד לבד, ושאל אותו שאלה אחת.
 - **שאלת הכרטיס:** מה מחזיק אדם שכל הזמן אומרים לו שהוא לא מצליח?
 - **תגיות:** חינוך, הורות, אמונה באדם, הרב עובדיה יוסף, ילדים, תדמית עצמית
-- **שער:** קיר חדר ילדים פשוט, ועליו תמונה ממוסגרת ישנה (מטושטשת, בלי פנים ברורות – רק צורה של שתי דמויות). מתחת, מיטה מוצעת ותיק בית ספר. אור בוקר מהחלון. בלי אנשים ממשיים בפריים.
+- **שער (פרומפט לג'מיני, לפי `docs/COVER-PROMPT.md`):** (המסגרת הפוכה, רואים את גבה בלבד, כדי שלא יהיו אנשים בפריים)
+  ```
+  Photorealistic cinematic photograph, horizontal 3:2. A simple child's bedroom in the morning. In the foreground, a plain wooden picture frame standing on the windowsill, turned so that only its back is visible, with a cardboard backing and a small metal hanger, in sharp focus. Behind it, softly blurred, a neatly made bed with a school bag on it, and a plain wall with soft morning light. Shallow depth of field, tender, hopeful mood, natural light only.
+
+  Color palette (brand): the soft morning window light in warm gold (#C9A24D); the wall and highlights in soft cream (#F3E9D3); shadows in deep teal-green (#1F5C57) and deep blue (#003B5C); the frame in muted warm wood and the school bag in faded teal; one small accent of deep muted red (#B0463B) only on a small stripe on the school bag, subtle. Muted, warm, slightly desaturated tones.
+
+  No people, no photographs, no faces, no portraits, no signs, no text, no letters, no numbers, no writing anywhere, no logos.
+  ```
 - **הודעה לקבוצה:**
   > מה צריך ילד שכולם כבר החליטו שהוא "בעייתי"?
   > אבא אחד הגיע לרב עובדיה ואמר: "אני לא מצליח איתו."
@@ -1376,7 +1432,14 @@
 - **תקציר:** ילד בן שש בקנדה שמע שבאפריקה ילדים הולכים שעות כדי להביא מים. הוא התחיל לעשות מטלות בבית, כדי לחסוך לבאר.
 - **שאלת הכרטיס:** מה ממשיכים לעשות, כשמגלים שזה עולה פי שלושים ממה שחשבנו?
 - **תגיות:** חסד, נתינה, באר, מים, התמדה, ילדים, אחים
-- **שער:** קופסת פח ישנה של ילד, פתוחה, ובה מטבעות ושטרות קטנים, על אדן חלון. מבעד לחלון, מרחוק ומטושטש, באר עם משאבת יד באדמה אדמדמה. אור שקיעה חם. בלי אנשים.
+- **שער (פרומפט לג'מיני, לפי `docs/COVER-PROMPT.md`):**
+  ```
+  Photorealistic cinematic photograph, horizontal 3:2. A windowsill at sunset. In the foreground, an old open tin box of a child with a few small coins and small folded bills inside, the coins blank and unreadable, in sharp focus. Behind it, softly blurred, through the window, distant and blurred, a hand-pump well standing in red-brown earth under a warm evening sky. Shallow depth of field, humble, hopeful mood, natural light only.
+
+  Color palette (brand): the warm sunset glow on the coins and the window frame in warm gold (#C9A24D); the windowsill and highlights in soft cream (#F3E9D3); shadows in deep teal-green (#1F5C57) and deep blue (#003B5C); the tin in muted worn metal and the earth in muted red-brown; one small accent of deep muted red (#B0463B) only on a thin red line on the tin's lid, subtle. Muted, warm, slightly desaturated tones.
+
+  No people, no readable coin markings, no currency text, no children, no signs, no text, no letters, no numbers, no writing anywhere, no logos.
+  ```
 - **הודעה לקבוצה:**
   > מה קורה כשילד בן שש מחליט שהוא הולך לפתור בעיה של העולם?
   > שבעים דולר, קופסה, וארבעה חודשים של מטלות.
@@ -1437,7 +1500,14 @@
 - **תקציר:** כל בוקר הוא אכל ארוחת בוקר באותו בית קפה, במעיל שהחזיקו סיכות ביטחון. בוקר אחד, מישהו שילם בשבילו בסתר.
 - **שאלת הכרטיס:** כמה אנחנו באמת יודעים על מי שיושב לידנו כל בוקר?
 - **תגיות:** שיפוט, צניעות, נתינה, מראה חיצוני, חסד, צדקה בסתר
-- **שער:** שולחן קטן בבית קפה עירוני, כוס קפה לבנה, מאפין בצלחת, וכובע מצחייה דהוי ליד הצלחת. על משענת הכיסא מעיל פלנל משובץ, וסיכת ביטחון אחת נוצצת בשולי הכיס. אור בוקר. בלי אנשים.
+- **שער (פרומפט לג'מיני, לפי `docs/COVER-PROMPT.md`):**
+  ```
+  Photorealistic cinematic photograph, horizontal 3:2. A small table by the window of an ordinary city café, early morning. In the foreground, a white coffee cup and a muffin on a plate, beside a faded plain baseball-style cap with no logo, in sharp focus. Behind it, softly blurred, the back of a chair with an old plaid flannel coat hanging over it, one safety pin catching the light at the pocket edge, and a softly blurred café window. Shallow depth of field, humble, quiet, warm mood, natural light only.
+
+  Color palette (brand): the soft early-morning window light and the glint of the safety pin in warm gold (#C9A24D); the cup, plate and highlights in soft cream (#F3E9D3); shadows in deep teal-green (#1F5C57) and deep blue (#003B5C); the coat in a muted faded plaid and the cap in washed-out tan; one small accent of deep muted red (#B0463B) only on a thin line in the plaid of the coat, subtle. Muted, warm, slightly desaturated tones.
+
+  No people, no café name, no logo on the cap, no printed cup, no signs, no text, no letters, no numbers, no writing anywhere, no logos.
+  ```
 - **הודעה לקבוצה:**
   > על מי שיושב לידנו כל בוקר, כמה אנחנו באמת יודעים?
   > איש זקן, מעיל עם סיכות ביטחון, ארוחת בוקר קבועה.
