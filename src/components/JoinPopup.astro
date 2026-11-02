@@ -36,7 +36,7 @@ const t = es
   ? {
       title: '¿Quieres más Punto de Vista?',
       text: 'Cada historia nueva y la «Mirada de Shabat» llegan primero al grupo.',
-      note: 'Sin conversaciones ni notificaciones – el único que escribe soy yo.',
+      note: 'Sin conversaciones ni notificaciones – el único que escribe <a href="/es/sobre-mi/" data-ph="about_join">soy yo</a>.',
       btn: 'Unirme al grupo',
       later: 'Ahora no',
       close: 'Cerrar',
@@ -44,7 +44,7 @@ const t = es
   : {
       title: 'רוצים עוד נקודת מבט?',
       text: 'סיפור חדש ו״מבט לשבת״ מגיעים קודם כול לקבוצה.',
-      note: 'בלי שיחות ובלי התראות – רק אני שולח.',
+      note: 'בלי שיחות ובלי התראות – רק <a href="/about/" data-ph="about_join">אני</a> שולח.',
       btn: 'להצטרפות לקבוצה',
       later: 'לא עכשיו',
       close: 'סגירה',
@@ -67,7 +67,7 @@ const t = es
       <a class="pop-btn" href={groupUrl} rel="noopener" target="_blank" data-ph="popup_join" autofocus>
         {t.btn}
       </a>
-      <p class="pop-note">{t.note}</p>
+      <p class="pop-note" set:html={t.note} />
       <button class="pop-later" type="button" data-pop-close>
         {t.later}
       </button>
@@ -168,6 +168,15 @@ const t = es
     line-height: 1.5;
     color: var(--muted);
     text-wrap: balance;
+  }
+
+  .pop-note :global(a) {
+    color: var(--teal);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    padding: 0.8em 0.25em;
+    margin: -0.8em -0.25em;
   }
 
   .pop-later {

@@ -56,4 +56,4 @@ Así que cuando me descubro esperando una señal de alguien, trato de preguntarm
 
 <div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿Y si también él está esperando una señal de mí?</p></div>
 
-<p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>
+<p class="signature">Creo en ti,<br /><a class="signature-title" href="/es/sobre-mi/" data-ph="about_signature">Rabino Efraim Atia</a></p>

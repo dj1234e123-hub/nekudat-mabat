@@ -45,4 +45,4 @@ source: "מבוסס על המכתב של אברהם לינקולן לגנרל ג
 
 <div class="story-question"><span class="story-question-label">שאלה לדרך</span><p>האם יש קשר שאני מסכן, רק מפני שחשוב לי להיות צודק?</p></div>
 
-<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים עטייה</span></p>
+<p class="signature">מאמין בך,<br /><a class="signature-name" href="/about/" data-ph="about_signature">אפרים עטייה</a></p>

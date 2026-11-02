@@ -58,4 +58,4 @@ source: "מבוסס על ניסוי של הוושינגטון פוסט (תחנת
 
 <div class="story-question"><span class="story-question-label">שאלה לדרך</span><p>את מי אני מושך הלאה, כשכל מה שהוא צריך ממני הוא שאעצור?</p></div>
 
-<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים עטייה</span></p>
+<p class="signature">מאמין בך,<br /><a class="signature-name" href="/about/" data-ph="about_signature">אפרים עטייה</a></p>

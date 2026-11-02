@@ -72,4 +72,4 @@ source: 'מבוסס על סיפור על מרן הרב שך זצ"ל, בעיבו�
 
 <div class="story-question"><span class="story-question-label">שאלה לדרך</span><p>את מי אני פוגש כל יום, ועוד לא באמת ראיתי?</p></div>
 
-<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים עטייה</span></p>
+<p class="signature">מאמין בך,<br /><a class="signature-name" href="/about/" data-ph="about_signature">אפרים עטייה</a></p>

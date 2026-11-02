@@ -57,4 +57,4 @@ source: "מבוסס על הבחירות במחוז 94 לבית הנבחרים ש
 
 <div class="story-question"><span class="story-question-label">שאלה לדרך</span><p>איזה מעשה שלי אני מקטין, רק כי עוד לא ראיתי מה הוא עשה?</p></div>
 
-<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים עטייה</span></p>
+<p class="signature">מאמין בך,<br /><a class="signature-name" href="/about/" data-ph="about_signature">אפרים עטייה</a></p>

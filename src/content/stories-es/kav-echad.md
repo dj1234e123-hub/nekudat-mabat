@@ -53,4 +53,4 @@ Pero que yo todavía no vea el resultado no significa que no exista.
 
 <div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿Qué acto mío estoy empequeñeciendo, solo porque todavía no vi lo que hizo?</p></div>
 
-<p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>
+<p class="signature">Creo en ti,<br /><a class="signature-title" href="/es/sobre-mi/" data-ph="about_signature">Rabino Efraim Atia</a></p>

@@ -82,4 +82,4 @@ source: "משל ידוע המופיע בגרסאות שונות, בעיבוד ו
 
 <div class="story-question"><span class="story-question-label">שאלה לדרך</span><p>איפה, ועם מי, אני יכול לנסות בפעם הראשונה?</p></div>
 
-<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים עטייה</span></p>
+<p class="signature">מאמין בך,<br /><a class="signature-name" href="/about/" data-ph="about_signature">אפרים עטייה</a></p>

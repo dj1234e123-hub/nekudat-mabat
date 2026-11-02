@@ -22,13 +22,13 @@ const t = es
       title: '¿Quieres más Punto de Vista?',
       text: 'Cada historia nueva y la «Mirada de Shabat» llegan primero al grupo.',
       btn: 'Unirme al grupo',
-      note: 'Sin conversaciones ni notificaciones – el único que escribe soy yo.',
+      note: 'Sin conversaciones ni notificaciones – el único que escribe <a href="/es/sobre-mi/" data-ph="about_join">soy yo</a>.',
     }
   : {
       title: 'רוצים עוד נקודת מבט?',
       text: 'סיפור חדש ו״מבט לשבת״ מגיעים קודם כול לקבוצה.',
       btn: 'להצטרפות לקבוצה',
-      note: 'בלי שיחות ובלי התראות – רק אני שולח.',
+      note: 'בלי שיחות ובלי התראות – רק <a href="/about/" data-ph="about_join">אני</a> שולח.',
     };
 ---
 
@@ -40,7 +40,7 @@ const t = es
       <a class="join-btn" href={groupUrl} rel="noopener" target="_blank" data-ph="join_group">
         {t.btn}
       </a>
-      <p class="join-note">{t.note}</p>
+      <p class="join-note" set:html={t.note} />
     </aside>
   )
 }
@@ -99,5 +99,15 @@ const t = es
     line-height: 1.5;
     color: var(--muted);
     text-wrap: balance;
+  }
+
+  /* הקישור "אני" – קישור שקט אל מי אני; שטח המגע מורחב בלי להזיז את השורה */
+  .join-note :global(a) {
+    color: var(--teal);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    padding: 0.8em 0.25em;
+    margin: -0.8em -0.25em;
   }
 </style>

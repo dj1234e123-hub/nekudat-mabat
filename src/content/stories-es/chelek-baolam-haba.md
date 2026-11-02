@@ -84,4 +84,4 @@ A la mañana siguiente, cuando toda la ciudad ya ha dicho la bendición sobre el
 
 > Ahora que estabas dispuesto a renunciar a ella, de verdad es tuya.
 
-<p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>
+<p class="signature">Creo en ti,<br /><a class="signature-title" href="/es/sobre-mi/" data-ph="about_signature">Rabino Efraim Atia</a></p>

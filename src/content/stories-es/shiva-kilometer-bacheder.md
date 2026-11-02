@@ -59,4 +59,4 @@ Así que el día en que siento que doy vueltas en el mismo lugar, me pregunto:
 
 <div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿Qué sigo haciendo, aun cuando parece que no hay adónde ir?</p></div>
 
-<p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>
+<p class="signature">Creo en ti,<br /><a class="signature-title" href="/es/sobre-mi/" data-ph="about_signature">Rabino Efraim Atia</a></p>

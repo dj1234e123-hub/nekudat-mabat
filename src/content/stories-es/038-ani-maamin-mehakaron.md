@@ -47,4 +47,4 @@ Desde entonces ese «*Aní Maamín*» se canta en sinagogas, en actos de memoria
 
 *Aní Maamín. Yo creo.*
 
-<p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>
+<p class="signature">Creo en ti,<br /><a class="signature-title" href="/es/sobre-mi/" data-ph="about_signature">Rabino Efraim Atia</a></p>

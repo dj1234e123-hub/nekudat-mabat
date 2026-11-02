@@ -71,4 +71,4 @@ A ese muchacho de catorce años que entró en la habitación *sin saber todavía
 
 > Y su nombre pasó a mí.
 
-<p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>
+<p class="signature">Creo en ti,<br /><a class="signature-title" href="/es/sobre-mi/" data-ph="about_signature">Rabino Efraim Atia</a></p>

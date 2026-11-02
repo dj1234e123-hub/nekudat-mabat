@@ -85,4 +85,4 @@ source: "מסופר על רבי לוי יצחק מברדיצ'ב. סיפור רו
 
 > עכשיו, כשהיית מוכן לוותר עליו – הוא באמת שלך.
 
-<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים עטייה</span></p>
+<p class="signature">מאמין בך,<br /><a class="signature-name" href="/about/" data-ph="about_signature">אפרים עטייה</a></p>

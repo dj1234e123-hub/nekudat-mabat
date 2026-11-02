@@ -62,4 +62,4 @@ Cuando siento que me quedó algo contra alguien, no espero a que se pase solo. M
 
 <div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿Qué pequeño favor puedo hacerle hoy?</p></div>
 
-<p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>
+<p class="signature">Creo en ti,<br /><a class="signature-title" href="/es/sobre-mi/" data-ph="about_signature">Rabino Efraim Atia</a></p>

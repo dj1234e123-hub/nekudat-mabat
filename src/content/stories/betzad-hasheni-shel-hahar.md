@@ -56,4 +56,4 @@ source: "מבוסס על סיפורו האמיתי של דשרת' מנג'הי, �
 
 <div class="story-question"><span class="story-question-label">שאלה לדרך</span><p>בשביל מי אני עושה את זה?</p></div>
 
-<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים עטייה</span></p>
+<p class="signature">מאמין בך,<br /><a class="signature-name" href="/about/" data-ph="about_signature">אפרים עטייה</a></p>

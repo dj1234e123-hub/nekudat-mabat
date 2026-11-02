@@ -79,4 +79,4 @@ source: "משל בעיבוד ובכתיבה מקוריים מאת אפרים ע�
 
 שנזכה לזכור שברגע של פחד לא צריך את כל הדרך – צריך רק *את הצעד הבא*.
 
-<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים עטייה</span></p>
+<p class="signature">מאמין בך,<br /><a class="signature-name" href="/about/" data-ph="about_signature">אפרים עטייה</a></p>

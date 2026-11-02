@@ -60,4 +60,4 @@ Y lo que voy a traer conmigo, lo compro antes. En los días en que no pasa nada.
 
 <div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿Qué momento difícil sé que va a llegar, y qué preparo hoy para él?</p></div>
 
-<p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>
+<p class="signature">Creo en ti,<br /><a class="signature-title" href="/es/sobre-mi/" data-ph="about_signature">Rabino Efraim Atia</a></p>

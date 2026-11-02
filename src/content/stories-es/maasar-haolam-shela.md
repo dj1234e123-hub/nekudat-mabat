@@ -52,4 +52,4 @@ No siempre es seguro, ni siempre hace falta, encontrarse con quien nos hirió. P
 
 <div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿A quién conozco solo por la imagen que tengo en la cabeza?</p></div>
 
-<p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>
+<p class="signature">Creo en ti,<br /><a class="signature-title" href="/es/sobre-mi/" data-ph="about_signature">Rabino Efraim Atia</a></p>

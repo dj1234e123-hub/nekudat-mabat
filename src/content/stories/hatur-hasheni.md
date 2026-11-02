@@ -43,4 +43,4 @@ source: "מתועד בסרט הדוקומנטרי 'אסתיר פני' על הר�
 > חמישה חודשים הם עמדו בתור כדי לקבל.<br />
 > עכשיו הם עומדים בתור כדי לברך.
 
-<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים עטייה</span></p>
+<p class="signature">מאמין בך,<br /><a class="signature-name" href="/about/" data-ph="about_signature">אפרים עטייה</a></p>

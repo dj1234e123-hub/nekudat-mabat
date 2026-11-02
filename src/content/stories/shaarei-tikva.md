@@ -61,4 +61,4 @@ source: "מבוסס על דיווחים מתועדים (The Jerusalem Post, ער
 
 <div class="story-question"><span class="story-question-label">שאלה לדרך</span><p>מה אני שומר היום, בשביל מי שיבוא אחריי?</p></div>
 
-<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים עטייה</span></p>
+<p class="signature">מאמין בך,<br /><a class="signature-name" href="/about/" data-ph="about_signature">אפרים עטייה</a></p>

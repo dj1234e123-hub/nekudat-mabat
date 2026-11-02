@@ -69,4 +69,4 @@ Lo que sí funciona empieza con un paso simple: contarlo. A una persona de confi
 
 <div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿A qué puerta puedo golpear esta noche?</p></div>
 
-<p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>
+<p class="signature">Creo en ti,<br /><a class="signature-title" href="/es/sobre-mi/" data-ph="about_signature">Rabino Efraim Atia</a></p>

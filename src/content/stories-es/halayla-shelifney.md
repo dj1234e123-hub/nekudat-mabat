@@ -52,4 +52,4 @@ Pero a veces la ayuda ya está a mi lado, y yo todavía me estoy defendiendo de 
 
 <div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿Quién se detuvo a mi lado últimamente, y no me di cuenta de que venía a ayudar?</p></div>
 
-<p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>
+<p class="signature">Creo en ti,<br /><a class="signature-title" href="/es/sobre-mi/" data-ph="about_signature">Rabino Efraim Atia</a></p>

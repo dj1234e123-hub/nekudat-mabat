@@ -64,4 +64,4 @@ Por eso, cuando algo me parece imposible, reviso:
 
 <div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿A qué estoy renunciando solo por la cuenta que hice desde abajo?</p></div>
 
-<p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>
+<p class="signature">Creo en ti,<br /><a class="signature-title" href="/es/sobre-mi/" data-ph="about_signature">Rabino Efraim Atia</a></p>

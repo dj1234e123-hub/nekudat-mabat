@@ -57,4 +57,4 @@ source: 'מבוסס על סיפורו של הרב סיני אדלר זצ"ל, ב�
 
 כשהשעון מצלצל בבוקר, עולה לי בראש ילד בן 16, מתחת לקש באושוויץ.
 
-<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים עטייה</span></p>
+<p class="signature">מאמין בך,<br /><a class="signature-name" href="/about/" data-ph="about_signature">אפרים עטייה</a></p>

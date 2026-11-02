@@ -92,4 +92,4 @@ source: "מבוסס על סיפור שנשמע, בעיבוד ובכתיבה מק
 
 <div class="story-question"><span class="story-question-label">שאלה לדרך</span><p>מה הוא באמת בודק אצלי עכשיו?</p></div>
 
-<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים עטייה</span></p>
+<p class="signature">מאמין בך,<br /><a class="signature-name" href="/about/" data-ph="about_signature">אפרים עטייה</a></p>

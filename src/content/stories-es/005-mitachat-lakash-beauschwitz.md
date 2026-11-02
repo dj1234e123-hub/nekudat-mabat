@@ -53,4 +53,4 @@ Y susurrando:
 
 Cuando suena el despertador a la mañana, me viene a la cabeza un chico de 16 años, bajo la paja en Auschwitz.
 
-<p class="signature">Creo en ti,<br /><span class="signature-title">Rabino Efraim Atia</span></p>
+<p class="signature">Creo en ti,<br /><a class="signature-title" href="/es/sobre-mi/" data-ph="about_signature">Rabino Efraim Atia</a></p>

@@ -71,4 +71,4 @@ source: "מבוסס על דיווחים מתועדים על יוסף חיים א
 
 <div class="story-question"><span class="story-question-label">שאלה לדרך</span><p>מה אני מכין, בשביל מי שעוד לא חזר?</p></div>
 
-<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים עטייה</span></p>
+<p class="signature">מאמין בך,<br /><a class="signature-name" href="/about/" data-ph="about_signature">אפרים עטייה</a></p>
