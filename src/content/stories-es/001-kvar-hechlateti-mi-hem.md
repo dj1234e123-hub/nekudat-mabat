@@ -3,8 +3,8 @@
 title: "Ya había decidido quiénes eran"
 section: yoman
 archiveId: "001"
-cover: ../../assets/covers/001.png
-coverAlt: "Un hombre de pie a la sombra de un callejón de piedra mira a tres jóvenes contando dinero en una alcancía de tzedaká transparente a la luz del atardecer; sobre su cabeza, nubes oscuras de pensamiento con figuras sospechosas, un signo de pregunta y una bolsa de dinero"
+cover: ../../assets/covers/kvar-hechlateti-mi-hem.jpg
+coverAlt: "Una bolsa de tela vieja de color turquesa desgastado, con una franja roja y unos billetes doblados asomando, sobre un escalón de piedra cálido frente a un antiguo arco de piedra, con un banco y muros de piedra a la luz de la tarde"
 date: 2026-08-11T09:00:00Z
 readingTime: "unos 2 minutos"
 featured: 3
