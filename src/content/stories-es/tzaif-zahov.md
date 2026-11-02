@@ -42,14 +42,15 @@ Un solo grito enorme: *¡Vuelve!*
 
 Y en el medio estaba una madre. Sus ojos brillaban de lágrimas, sus brazos abiertos hacia su hijo. Y en su cuello – un pañuelo dorado.
 
+> Roni buscaba un solo pañuelo.<br />
+> *Toda la estación* lo estaba esperando.
+
 Esa imagen no me abandonó. Ni los pañuelos, ni la estación.<br />
 Sino el viaje: Roni hizo todo el camino convencido de que quizá nadie lo esperaba.
 
 Cuando sentimos vergüenza por algo, estamos seguros de que los demás nos ven como nos vemos nosotros.<br />
 Entonces no tocamos la puerta. Esperamos una señal.<br />
 Y la mayoría de las veces, cuando lo comprobamos, resulta que nos equivocamos en la misma dirección: *nos esperan más de lo que creíamos.*
-
-Roni buscaba un solo pañuelo. *Toda la estación* lo estaba esperando.
 
 Así que cuando me descubro esperando una señal de alguien, trato de preguntarme:
 

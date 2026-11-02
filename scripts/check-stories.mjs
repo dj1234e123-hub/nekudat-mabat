@@ -24,13 +24,17 @@ function read(dir) {
         const fm = t.match(/^(?:#.*\n)*---\n([\s\S]*?)\n---/)?.[1] ?? '';
         const get = (k) => fm.match(new RegExp(`^${k}:\\s*"?(.*?)"?\\s*$`, 'm'))?.[1] ?? '';
         const tags = (fm.match(/^tags:\s*\[(.*?)\]/m)?.[1] ?? '').split(',').map((x) => x.trim().replace(/^"|"$/g, '')).filter(Boolean);
-        return [f.replace(/\.md$/, ''), { file: path.join(dir, f), hook: get('hook'), cover: get('cover'), coverAlt: get('coverAlt'), date: get('date'), tags }];
+        const quotes = (t.replace(/^(?:#.*\n)*---\n[\s\S]*?\n---/, '').match(/^>.*(?:\n>.*)*/gm) ?? []).length;
+        return [f.replace(/\.md$/, ''), { file: path.join(dir, f), quotes, hook: get('hook'), cover: get('cover'), coverAlt: get('coverAlt'), date: get('date'), tags }];
       })
   );
 }
 
 const he = read('stories');
 const es = read('stories-es');
+// ציטוט אחד בדיוק בכל סיפור (הפסקה החזקה, ב-`>`), לפני התובנה. כמה שורות `>` רצופות = ציטוט אחד.
+// חריגים בהחלטת בעל הפרויקט (2026-11-03): הסיפור נחתם על שורה נטויה ולא בציטוט.
+const NO_QUOTE_OK = ['005-mitachat-lakash-beauschwitz', '008-lo-ratziti-lachzor-habaita', '009-eifo-hitchil-hasipur-haze', '038-ani-maamin-mehakaron'];
 const fails = [];
 const warns = [];
 const now = Date.now();
@@ -49,6 +53,11 @@ for (const [id, s] of Object.entries(he)) {
   if (!held) {
     if (!s.cover) fails.push(`${s.file}: חסרה תמונת שער (cover)`);
     else if (!s.coverAlt) fails.push(`${s.file}: חסר coverAlt לתמונת השער`);
+  }
+  for (const [lang, x] of [['עברית', s], ['ספרדית', es[id]]]) {
+    if (!x) continue;
+    if (x.quotes > 1) fails.push(`${x.file}: ${x.quotes} ציטוטים (${lang}). ציטוט אחד לסיפור, השאר כשורה רגילה עם הדגשה`);
+    if (x.quotes === 0 && !NO_QUOTE_OK.includes(id)) fails.push(`${x.file}: חסר ציטוט (${lang}). לעטוף ב-\`>\` את השורה החזקה של הסיפור, לפני התובנה`);
   }
   if (!es[id]) warns.push(`${s.file}: אין תאום ספרדי (stories-es/${id}.md). זה מותר, אבל חצי מהקוראים בספרדית`);
 }

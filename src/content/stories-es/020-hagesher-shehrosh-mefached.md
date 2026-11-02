@@ -45,7 +45,7 @@ El guerrero miró sus propios pies.
 
 —Cuando se sacuda, te sacudirás con él. Pero ahora mismo está firme.
 
-> *No luches contra un viento que todavía no sopló.*
+*No luches contra un viento que todavía no sopló.*
 
 El guerrero cerró los ojos. Una respiración.
 
