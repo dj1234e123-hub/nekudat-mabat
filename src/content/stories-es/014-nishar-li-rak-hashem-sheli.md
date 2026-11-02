@@ -3,8 +3,8 @@
 title: "Solo me quedó mi nombre"
 section: tzadikim
 archiveId: "014"
-cover: ../../assets/covers/014.png
-coverAlt: "Un hombre de camisa blanca y kipá, de espaldas a la cámara, entra a un callejón de mercado antiguo a la luz del amanecer; puestos de frutas a ambos lados, gente al fondo del callejón, y un piso de piedra dorado"
+cover: ../../assets/covers/nishar-li-rak-hashem-sheli.jpg
+coverAlt: "Una tienda vieja y vacía en un mercado antiguo: estantes de madera desnudos, cajones y un saco de tela sobre el mostrador, y una persiana metálica levantada a medias por la que entra luz dorada de la mañana sobre el suelo de piedra"
 date: 2026-08-20T09:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Cada golpe en la puerta hacía saltar a Iosef de la cama. Le habían robado la mercadería, el negocio se vació. Y entonces escuchó a los hijos preguntarle a su madre: «¿Cuándo va a volver a sonreír papá?»"
