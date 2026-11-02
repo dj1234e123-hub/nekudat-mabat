@@ -1,0 +1,142 @@
+---
+// הסיפור המרכזי בראש עמוד הסיפורים: תמונה גדולה, כותרת, hook וכפתור קריאה. במחשב – תמונה לצד הטקסט.
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import { SECTIONS_META } from '../data/sections';
+import { SECTIONS_ES } from '../data/site-es';
+import { DEFAULT_COVERS } from '../data/default-covers';
+import { esStoryPath } from '../data/es-slugs';
+import { STORY_UI, type Lang } from '../data/story-ui';
+import { hookOf, isNew, viewsOf } from '../lib/story-meta';
+import { readingLabel } from '../lib/reading-time';
+import Views from './Views.astro';
+
+interface Props {
+  story: CollectionEntry<'stories'> | CollectionEntry<'storiesEs'>;
+  lang?: Lang;
+  manual?: boolean;
+}
+const { story, lang = 'he', manual = false } = Astro.props;
+const es = lang === 'es';
+const ui = STORY_UI[lang];
+const { title, section, date } = story.data;
+const cover = story.data.cover ?? DEFAULT_COVERS[section];
+const href = es ? esStoryPath(story.id) : `/stories/${story.id}/`;
+const worldLabel = es ? SECTIONS_ES[section].label : SECTIONS_META[section].label;
+const hook = hookOf(story);
+const label = manual ? ui.heroPick : isNew(date) ? ui.heroNew : ui.heroLatest;
+const mins = readingLabel(story, lang).replace(' קריאה', '').replace(' de lectura', '');
+---
+
+<a class="hero" href={href} data-story-id={story.id}>
+  <Image src={cover} alt="" widths={[640, 960, 1280]} sizes="(max-width: 52rem) 100vw, 60vw" loading="eager" />
+  <span class="tx">
+    <span class="lab">
+      <span class="tag">{label}</span>
+      <span class="w" style={`--accent: ${SECTIONS_META[section].accent}`}>{worldLabel}</span>
+      <Views count={viewsOf(story.id)} {lang} />
+    </span>
+    <span class="ti">{title}</span>
+    <span class:list={['hk', { q: hook.isHook }]}>{hook.text}</span>
+    <span class="go">{ui.heroGo} · {mins}</span>
+  </span>
+</a>
+
+<style>
+  .hero {
+    display: block;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: var(--surface);
+    color: inherit;
+    text-decoration: none;
+  }
+  .hero :global(img) {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 11;
+    object-fit: cover;
+  }
+  .tx {
+    display: block;
+    padding: 0.9rem 1rem 1.1rem;
+  }
+  .lab {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem 0.7rem;
+    align-items: center;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+  .tag {
+    background: var(--gold);
+    color: var(--ink);
+    font-weight: 700;
+    font-size: 0.7rem;
+    border-radius: 0.25rem;
+    padding: 0 0.5rem;
+  }
+  .w::before {
+    content: '';
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-inline-end: 0.3rem;
+  }
+  .ti {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.65rem;
+    line-height: 1.2;
+    margin: 0.4rem 0;
+  }
+  .hk {
+    display: block;
+    color: var(--secondary);
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  .hk.q {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--blue);
+    font-size: 1.08rem;
+  }
+  .go {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 0.8rem;
+    min-height: 44px;
+    padding: 0 1.4rem;
+    background: var(--brick);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 999px;
+  }
+  .hero:hover .ti,
+  .hero:focus-visible .ti {
+    color: var(--teal);
+  }
+  @media (min-width: 52rem) {
+    .hero {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+    }
+    .hero :global(img) {
+      height: 100%;
+      min-height: 19rem;
+      aspect-ratio: auto;
+    }
+    .tx {
+      padding: 2rem 2.2rem;
+      align-self: center;
+    }
+    .ti {
+      font-size: 2.2rem;
+    }
+  }
+</style>

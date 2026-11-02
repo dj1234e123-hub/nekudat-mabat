@@ -72,6 +72,9 @@ const FIRST = 8;
     const activeEl = root.querySelector<HTMLElement>('[data-active]')!;
     const searchBoxes = [...document.querySelectorAll<HTMLInputElement>('[data-story-q]')];
 
+    // חיפוש בלי הבדל אותיות גדולות/קטנות ובלי סימני הטעמה (ספרדית: 'oración' = 'oracion')
+    const norm = (s: string) => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    const hay = new Map(rows.map((r) => [r, norm(r.dataset.search ?? '')]));
     const st = { q: '', world: '', theme: '', sort: 'new', short: false, n: FIRST };
     const track = (name: string, props?: Record<string, unknown>) => (window as any).nmTrack?.(name, props);
     const stories = (n: number) =>
@@ -105,7 +108,7 @@ const FIRST = 8;
       if (st.world && r.dataset.world !== st.world) return false;
       if (st.theme && !(r.dataset.themes ?? '').split(' ').includes(st.theme)) return false;
       if (st.short && Number(r.dataset.mins) > 2) return false;
-      if (st.q && !(r.dataset.search ?? '').includes(st.q)) return false;
+      if (st.q && !hay.get(r)!.includes(norm(st.q))) return false;
       return true;
     };
 

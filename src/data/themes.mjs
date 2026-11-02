@@ -10,17 +10,17 @@
 // של האתר כולו (נשמר מההחלטה על תגיות, 2026-08-23).
 // קובץ .mjs כדי שגם הסקריפט שבודק וגם האתר יקראו אותו.
 
-/** @type {{ slug: string, label: string, tags: string[] }[]} */
+/** @type {{ slug: string, label: string, labelEs: string, tags: string[] }[]} */
 export const THEMES = [
-  { slug: 'hope', label: 'תקווה', tags: ['תקווה'] },
-  { slug: 'forgiveness', label: 'סליחה ותשובה', tags: ['סליחה', 'תשובה'] },
-  { slug: 'kindness', label: 'חסד', tags: ['חסד', 'נתינה', 'מתנה'] },
-  { slug: 'children', label: 'חינוך וילדים', tags: ['חינוך', 'ילדים'] },
-  { slug: 'courage', label: 'אומץ', tags: ['אומץ'] },
-  { slug: 'prayer', label: 'תפילה', tags: ['תפילה'] },
-  { slug: 'family', label: 'משפחה', tags: ['משפחה'] },
-  { slug: 'memory', label: 'שואה וזיכרון', tags: ['שואה'] },
-  { slug: 'habits', label: 'הרגלים ובחירות', tags: ['הרגלים', 'הרגל', 'שגרה', 'בחירה', 'מעשה קטן', 'כעס', 'מחשבה'] },
+  { slug: 'hope', label: 'תקווה', labelEs: 'Esperanza', tags: ['תקווה'] },
+  { slug: 'forgiveness', label: 'סליחה ותשובה', labelEs: 'Perdón y arrepentimiento', tags: ['סליחה', 'תשובה'] },
+  { slug: 'kindness', label: 'חסד', labelEs: 'Bondad', tags: ['חסד', 'נתינה', 'מתנה'] },
+  { slug: 'children', label: 'חינוך וילדים', labelEs: 'Educación e infancia', tags: ['חינוך', 'ילדים'] },
+  { slug: 'courage', label: 'אומץ', labelEs: 'Valentía', tags: ['אומץ'] },
+  { slug: 'prayer', label: 'תפילה', labelEs: 'Oración', tags: ['תפילה'] },
+  { slug: 'family', label: 'משפחה', labelEs: 'Familia', tags: ['משפחה'] },
+  { slug: 'memory', label: 'שואה וזיכרון', labelEs: 'Shoá y memoria', tags: ['שואה'] },
+  { slug: 'habits', label: 'הרגלים ובחירות', labelEs: 'Hábitos y decisiones', tags: ['הרגלים', 'הרגל', 'שגרה', 'בחירה', 'מעשה קטן', 'כעס', 'מחשבה'] },
 ];
 
 // סיפורי חג: אינם צריכים נושא. הם חיים בעמודי החג (/sukkot/ ובעתיד חגים נוספים), והנושאים הם
