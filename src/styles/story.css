@@ -106,12 +106,19 @@
   font-size: 1.7rem;
   line-height: 1.4;
 }
-/* השם בחתימה הוא קישור שקט אל "מי אני": נראה כמו חתימה, ושטח המגע 44px */
+/* השם בחתימה הוא קישור אל "מי אני": קו זהב דק מתחתיו מסמן שאפשר ללחוץ, ושטח המגע 44px */
 .story-body .signature a {
   display: inline-block;
   min-height: 44px;
   color: inherit;
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-color: var(--gold);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.3em;
+}
+.story-body .signature a:hover,
+.story-body .signature a:focus-visible {
+  text-decoration-color: var(--blue);
 }
 
 /* "שאלה לדרך" – הכלי שהקורא לוקח מהסיפור (2026-10-05): קו זהב דק ונקודת זהב במרכזו */
