@@ -1,27 +1,26 @@
 ---
-// עמוד מי אני – מכתב אישי. הטקסט המלא של בעל הפרויקט (אושר 2026-08-24)
-// יושב על "דף" בהיר מעט מרקע האתר, כמו מכתב שמונח על שולחן.
-// שלוש החלטות מבנה שנולדו מהטקסט עצמו:
-//   1. אין שם ואין תמונה בראש העמוד – הטקסט בנוי על חשיפה הדרגתית,
-//      והשם מתגלה רק ב"אז מי עומד מאחורי כל זה?". התמונה מופיעה שם,
-//      כתצלום מודפס שמצורף למכתב.
-//   2. ההזמנה לשיחה היא נ.ב. בתוך המכתב – כמו שמכתב אמיתי נגמר.
-//   3. המכתב נחתם ביד: "אפרים" בפונט כתב-יד עברי (חריגת פונט שאושרה –
-//      קובץ של 6KB, אותיות עבריות בלבד, לשם הפרטי בלבד).
+// עמוד מי אני – גרסה נקייה (שלב 4.105, אושר 2026-11-02).
+// מחליף את המכתב האישי של שלב 4.22. עיקרון: תמונה אמיתית אחת, שם ושורת זהות,
+// ובלוקים קצרים לפי נוסחת חמש השורות (למי, מה משתנה, למה אני, הכשרה, צעד אחד).
+// בלי דף מכתב, חותם, כתב יד או חשיפה הדרגתית. התמונה הנוכחית תוחלף בצילום חדש.
 import { Image, getImage } from 'astro:assets';
+import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import JoinGroup from '../components/JoinGroup.astro';
 import { SITE } from '../data/site';
-import portrait from '../assets/efraim.jpg';
+import portrait from '../assets/efraim-mic.jpg';
 import { profileJsonLd } from '../lib/structured-data';
+import { isPublished } from '../lib/published';
 
-// תמונת השיתוף של העמוד הזה היא הפנים ולא הלוגו: עמוד אודות שמשותף
-// בוואטסאפ נפתח בזכות פרצוף, לא בזכות סמל.
-const portraitOg = await getImage({ src: portrait, width: 640, format: 'jpeg' });
+// תמונת השיתוף של העמוד הזה היא הפנים ולא הלוגו.
+const portraitOg = await getImage({ src: portrait, width: 1080, format: 'jpeg' });
 const ogImage = new URL(portraitOg.src, Astro.site).href;
 
+const stories = await getCollection('stories', isPublished);
+const storyUrls = stories.map((s) => `/stories/${s.id}/`);
+
 const DESCRIPTION =
-  'המכתב האישי של אפרים עטייה: הדרך שעברתי, איך נולדה נקודת מבט, ולמה דווקא סיפורים. מקום שאפשר לעצור בו, ולפעמים למצוא בו משהו מעצמך.';
+  'אפרים עטייה: מלווה בחורים וכותב סיפורים. מי אני, איך אני עובד, ואיך אפשר לכתוב לי.';
 ---
 
 <Base
@@ -34,414 +33,192 @@ const DESCRIPTION =
   altLangHref="/es/sobre-mi/"
 >
   <main>
-    <article class="letter">
-      <div class="letter-head">
-        <span class="seal" aria-hidden="true"></span>
-        <h1>מי אני</h1>
-      </div>
+    <article class="about">
+      <h1 class="visually-hidden">מי אני</h1>
 
-      <div class="about-body">
-        <div class="opening">
-          <p>
-            יש דברים שאדם עובר בחיים,<br />
-            וגם אחרי שהזמן עובר, משהו מהם נשאר איתו.
-          </p>
-          <p>
-            יש דברים שאנשים לא רואים.<br />
-            דברים שאדם לומד לחיות איתם,<br />
-            גם כשהם נשארים בפנים.
-          </p>
-          <p>
-            אני לא כותב את הדברים האלה רק ממה שלמדתי.<br />
-            אני כותב אותם גם מתוך הדרך שלי.
-          </p>
-        </div>
+      <Image
+        class="portrait"
+        src={portrait}
+        alt="אפרים עטייה מדבר במיקרופון"
+        widths={[360, 540, 720]}
+        sizes="(min-width: 40rem) 30rem, 90vw"
+        loading="eager"
+      />
 
-        <p>גם אני לא צמחתי מתוך דרך פשוטה.</p>
-        <p>עברתי בחיים משברים ופגיעות שהשאירו בי חותם עמוק.</p>
-        <p>
-          היו תקופות שבהן ניסיתי להבין את עצמי,<br />
-          להבין את מה שעברתי,<br />
-          ולמצוא דרך להמשיך.
-        </p>
-        <p>
-          לא תמיד היו לי תשובות.<br />
-          ולא תמיד ידעתי איך ממשיכים.
-        </p>
-        <p>אבל לאורך הדרך התחלתי לגלות משהו.</p>
-        <p>לא תמיד אפשר לשנות את מה שקרה לנו.</p>
-        <p>אבל אפשר, עם הזמן, לנסות להבין מחדש איך חיים עם מה שקרה.</p>
-        <p>
-          לא כדי למחוק את הכאב.<br />
-          ולא כדי להעמיד פנים שהכול הסתדר.
-        </p>
-        <p>אלא כדי לשאול אם יש אולי עוד משהו שלא ראינו.</p>
-        <p>לפעמים זה לא משנה את מה שהיה.</p>
-        <p>אבל זה יכול לשנות את מה שקורה מכאן והלאה.</p>
+      <p class="name">{SITE.ownerName}</p>
+      <p class="role">מלווה בחורים. כותב סיפורים.</p>
 
-        <h2 class="turn">וכאן התחילה נקודת מבט</h2>
+      <p class="lead">
+        אני מלווה בחורים שמרגישים תקועים, מבולבלים, או שהדרך שלהם התרחקה ממה שחשבו שיהיו.
+      </p>
 
-        <p>נקודת מבט נולדה ממקום אישי מאוד.</p>
-        <p>לאורך הדרך גיליתי שהכתיבה עוזרת לי לעצור.</p>
+      <section class="block">
+        <h2>מה קורה בשיחות</h2>
         <p>
-          לפעמים, לפני שאני יודע בדיוק מה אני חושב או מרגיש,<br />
-          אני צריך לכתוב.
+          מבינים מה באמת עובר עליך ומה תוקע אותך, ומוצאים צעד קטן אחד קדימה. אני לא מחליט בשבילך
+          מה נכון.
         </p>
-        <p>
-          לקחת מחשבה או סיפור,<br />
-          ולנסות לשים עליו מילים.
-        </p>
-        <p>
-          הכתיבה עוזרת לי לעשות סדר,<br />
-          להסתכל מחדש,<br />
-          ולפעמים לגלות משהו שלא ראיתי קודם.
-        </p>
-        <p>עם הזמן עלה בי הרצון לפתוח את המקום הזה גם לאחרים.</p>
-        <p>לא מקום שמבטיח לשנות לך את החיים.</p>
-        <p>ולא מקום שמישהו יגיד לך בו איך אתה צריך לחיות.</p>
-        <p>
-          אלא מקום שאפשר לעצור בו לרגע,<br />
-          לקרוא סיפור,<br />
-          ולפעמים למצוא בתוכו משהו מעצמך.
-        </p>
+      </section>
 
-        <h3 class="quiet">למה דווקא סיפורים?</h3>
-
-        <p>כי לא תמיד אדם רוצה שיגידו לו מה לעשות.</p>
-        <p>ולא כל דבר אפשר להגיד בקול.</p>
+      <section class="block">
+        <h2>למה אני</h2>
         <p>
-          אבל לפעמים הוא יכול לקרוא סיפור על מישהו אחר,<br />
-          ופתאום לזהות בתוכו משהו מעצמו.
+          עברתי בעצמי תקופות קשות. היו זמנים שהרגשתי תקוע, ולא היה לי עם מי לדבר על זה. לכן אני
+          יודע להקשיב בלי לשפוט.
         </p>
-        <p>לא כי זה בדיוק הסיפור שלו.</p>
-        <p>אלא כי משהו שם מוכר.</p>
-        <p>
-          לפעמים זו מחשבה.<br />
-          לפעמים תחושה.<br />
-          ולפעמים משהו שהוא עדיין לא ידע איך לשים עליו מילים.
-        </p>
-        <p>וזה כל מה שאני מקווה שסיפור יוכל לעשות.</p>
-        <p>לא לפתור הכול.</p>
-        <p>רק לפתוח לרגע משהו בפנים.</p>
+      </section>
 
-        <h3 class="quiet">אז מי עומד מאחורי כל זה?</h3>
+      <section class="block">
+        <h2>ומה זה האתר הזה</h2>
+        <p>סיפורים ורגעים קצרים שאני כותב בעצמי, בשביל מי שצריך לעצור. אפשר פשוט לקרוא.</p>
+      </section>
 
-        {/* התמונה מצורפת למכתב בדיוק ברגע שהשאלה נשאלת – תצלום מודפס:
-            מסגרת לבנה, הטיה קלה. תוחלף בצילום שקט כשיהיה (החלטת בעל הפרויקט). */}
-        <figure class="photo">
-          <Image
-            src={portrait}
-            alt={SITE.ownerName}
-            widths={[160, 320]}
-            sizes="10rem"
-            loading="lazy"
-          />
-        </figure>
+      <section class="block">
+        <h2>הכשרה</h2>
+        <p>NLP ברמת Master, עזרה ראשונה נפשית וקורס 12 צעדים.</p>
+      </section>
 
-        <p>אני אפרים עטייה.</p>
-        <p>עברתי דרך של התמודדות, חיפוש ולמידה.</p>
-        <p>לא הגעתי לכאן כי הכול הסתדר לי.</p>
-        <p>וגם היום אני לא עומד בסוף הדרך ומספר לאחרים איך הם צריכים לחיות.</p>
-        <p>אני עדיין בדרך.</p>
-        <p>אבל בדרך הזאת למדתי שלפעמים אדם לא צריך שמישהו יגיד לו מה נכון בשבילו.</p>
-        <p>לפעמים הוא צריך מקום שבו לא שופטים אותו.</p>
-        <p>
-          מקום שאפשר לעצור בו,<br />
-          לנסות להבין,<br />
-          ולפעמים לראות משהו שהוא כבר ידע בפנים, מזווית אחרת.
-        </p>
-        <p>
-          אני מלווה בחורים בתהליכים אישיים,<br />
-          בעיקר במקומות שבהם הם מרגישים תקועים, מבולבלים או מחפשים דרך לזוז.
-        </p>
-        <p>
-          ההכשרה שלי כוללת NLP ברמת Master,<br />
-          עזרה ראשונה נפשית,<br />
-          ולימוד של תהליכי שינוי והתמודדות.
-        </p>
-        <p>אבל מעבר למה שלמדתי, אני מביא איתי גם את הדרך שעברתי.</p>
-        <p>ואת מה שאני עדיין לומד גם היום.</p>
+      <a class="cta" href={SITE.whatsappDirectUrl} rel="noopener" target="_blank" data-ph="personal_talk"
+        >לכתוב לאפרים</a
+      >
+      <p class="note">אפילו משפט אחד. אני עונה בעצמי.</p>
+      <p class="sign">מאמין בך,</p>
 
-        <h2 class="turn">ואם הגעת לכאן עכשיו</h2>
+      {
+        storyUrls.length > 0 && (
+          <button id="start-story" class="start-story" type="button" data-ph="random_story">
+            לא בטוח? תתחיל מסיפור
+          </button>
+        )
+      }
 
-        <p>אני לא יודע מה עובר עליך.</p>
-        <p>
-          אבל אני מקווה שתמצא כאן מקום שלא ממהר לשפוט אותך,<br />
-          ולא ממהר להסביר לך מי אתה צריך להיות.
-        </p>
-        <p>מקום שאפשר פשוט לעצור בו לרגע.</p>
-        <p>לקרוא.</p>
-        <p>להרגיש.</p>
-        <p>ולפעמים להבין שאתה לא היחיד שמרגיש ככה.</p>
-        <p>
-          האתר הזה נכתב למי שלפעמים נושא בתוכו דברים שקשה להסביר,<br />
-          ולא תמיד יש לו למי לומר אותם.
-        </p>
-        <p>
-          ואם סיפור אחד יצליח לגעת במקום שקשה לך לשים עליו מילים,<br />
-          אולי כבר קרה כאן משהו.
-        </p>
-
-        <div class="closing">
-          <p class="welcome">ברוך הבא לנקודת מבט</p>
-          <p>
-            מקום שאפשר לעצור בו,<br />
-            להסתכל מחדש,<br />
-            ואולי לגלות שיש עוד נקודת מבט.
-          </p>
-          <p class="signature">אפרים</p>
-        </div>
-
-        {/* ההזמנה לשיחה – אחרי החתימה, מעבר לקו מפריד. שורת ה-נ.ב. שקדמה
-            לה הוסרה לבקשת בעל הפרויקט ("פחות מחובר אליי"). */}
-        <div class="ps">
-          <div class="ps-talk">
-            <a class="cta" href={SITE.whatsappDirectUrl} rel="noopener" target="_blank"
-              data-ph="personal_talk">לשיחה אישית</a
-            >
-            <p class="talk-note">אפשר לכתוב גם משפט אחד. אני עונה בעצמי.</p>
-            <p class="talk-phone">
-              או בטלפון: <a href={SITE.phoneHref} data-ph="phone_call">{SITE.phone}</a>
-            </p>
-          </div>
-        </div>
-      </div>
+      <p class="limits">
+        זה ליווי אישי ולא טיפול. כשיש צורך בגורם מקצועי, אגיד לך ואכוון אותך.
+      </p>
     </article>
 
     <JoinGroup />
 
-    <script is:inline>
-      // נשימת קריאה: כל בית מופיע בעדינות כשמגיעים אליו בגלילה.
-      // רץ רק כשיש JavaScript ורק כשהקורא לא ביקש פחות תנועה –
-      // בכל מקרה אחר הטקסט פשוט שם, גלוי, כרגיל.
-      (function () {
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        if (!('IntersectionObserver' in window)) return;
-
-        var els = document.querySelectorAll(
-          '.about-body > p, .opening > p, .turn, .quiet, .photo, .closing, .ps'
-        );
-
-        els.forEach(function (el) {
-          el.classList.add('will-reveal');
+    <script is:inline define:vars={{ storyUrls }}>
+      var btn = document.getElementById('start-story');
+      if (btn) {
+        btn.addEventListener('click', function () {
+          var read = [];
+          try {
+            read = JSON.parse(localStorage.getItem('nm_read') || '[]');
+          } catch (e) {}
+          var unread = storyUrls.filter(function (u) {
+            return read.indexOf(u.split('/')[2]) === -1;
+          });
+          var pool = unread.length > 0 ? unread : storyUrls;
+          location.href = pool[Math.floor(Math.random() * pool.length)];
         });
-
-        var io = new IntersectionObserver(
-          function (entries) {
-            entries.forEach(function (e) {
-              if (e.isIntersecting) {
-                e.target.classList.add('revealed');
-                io.unobserve(e.target);
-              }
-            });
-          },
-          { rootMargin: '0px 0px -8% 0px' }
-        );
-
-        els.forEach(function (el) {
-          io.observe(el);
-        });
-      })();
+      }
     </script>
   </main>
 </Base>
 
-<style is:global>
-  /* פונט החתימה – כתב יד עברי, אותיות בלבד (6KB), מוגש מהאתר כמו שאר
-     הפונטים. משמש פעם אחת באתר: השם הפרטי בסוף המכתב. */
-  @font-face {
-    font-family: 'Playpen Sans Hebrew';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url('/fonts/playpen-hebrew.woff2') format('woff2');
-    unicode-range: U+05D0-05EA;
-  }
-</style>
-
 <style>
-  /* הדף: מכתב שמונח על רקע האתר. בהיר מעט מהשמנת, גבול דק, צל רך. */
-  .letter {
+  .about {
     background: var(--paper-raised);
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    box-shadow: 0 2px 12px rgba(46, 42, 36, 0.07);
-    padding: 2.25rem 1.4rem 2.75rem;
+    padding: 1.4rem 1.4rem 2.2rem;
     margin-top: 0.5rem;
+    max-width: 34rem;
+    margin-inline: auto;
   }
 
-  @media (min-width: 40rem) {
-    .letter {
-      padding: 3.25rem 3rem 3.5rem;
-    }
-  }
-
-  /* ראש המכתב: חותם – נקודת הזהב של האתר – והכותרת. בלי שם ובלי תמונה:
-     הם מגיעים בתוך המכתב, ברגע שהטקסט שואל. */
-  .letter-head {
-    text-align: center;
-    margin-bottom: 2.75rem;
-  }
-
-  .letter-head .seal {
-    display: inline-block;
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 50%;
-    background: var(--gold);
-    margin-bottom: 1rem;
-  }
-
-  .letter-head h1 {
-    font-size: 1.9rem;
-    line-height: 1.3;
-  }
-
-  .about-body {
-    font-size: 1.15rem;
-    line-height: 2;
-  }
-
-  .about-body p + p {
-    margin-top: 1.25rem;
-  }
-
-  /* הפתיחה – שער רגשי: גודל מלא, צבע מלא, רק נשימה גדולה יותר. */
-  .opening {
-    margin-bottom: 3.25rem;
-  }
-
-  .opening p + p {
-    margin-top: 1.7rem;
-  }
-
-
-  /* כותרת מעבר – בין גוף לכותרת. בלי צבע ובלי קו: הריווח עושה את העבודה. */
-  .turn {
-    font-family: var(--font-display);
-    font-size: 1.35rem;
-    font-weight: 600;
-    line-height: 1.5;
-    color: var(--ink);
-    margin: 3.25rem 0 1.6rem;
-  }
-
-  /* כותרת פנימית שקטה */
-  .quiet {
-    font-family: var(--font-display);
-    font-size: 1.15rem;
-    font-weight: 600;
-    line-height: 1.5;
-    color: var(--ink);
-    margin: 2.5rem 0 0.85rem;
-  }
-
-  /* התמונה – תצלום מודפס שמונח על המכתב: מסגרת לבנה, הטיה קלה, צל רך. */
-  .photo {
-    width: 10rem;
-    padding: 0.45rem 0.45rem 0.9rem;
-    background: var(--white);
-    border: 1px solid var(--line);
-    border-radius: 2px;
-    box-shadow: 0 4px 14px rgba(46, 42, 36, 0.13);
-    transform: rotate(-2deg);
-    margin: 2rem auto 1.9rem;
-  }
-
-  .photo img {
+  .portrait {
+    display: block;
     width: 100%;
     height: auto;
     aspect-ratio: 4 / 5;
     object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 1.4rem;
   }
 
-  /* הסיום – קו זהב עדין ויחיד */
-  .closing {
-    margin-top: 3.5rem;
-  }
-
-  .closing::before {
-    content: '';
-    display: block;
-    width: 3rem;
-    height: 2px;
-    border-radius: 1px;
-    background: var(--gold);
-    margin-bottom: 1.6rem;
-  }
-
-  .welcome {
+  .name {
     font-family: var(--font-display);
-    font-size: 1.3rem;
-    font-weight: 600;
+    font-size: 2.2rem;
+    line-height: 1.15;
+    font-weight: 500;
     color: var(--ink);
   }
 
-  .closing p + p {
-    margin-top: 1.25rem;
-  }
-
-  /* חתימה – מכתב נחתם ביד. נפילה לאחור: הפונט הסריפי של האתר. */
-  .signature {
-    font-family: 'Playpen Sans Hebrew', var(--font-display);
-    font-size: 2rem;
-    line-height: 1.3;
-    color: var(--ink);
-    margin-top: 2.5rem;
-  }
-
-  /* נ.ב. – ההזמנה לשיחה, בתוך המכתב */
-  .ps {
-    margin-top: 3rem;
-    padding-top: 1.75rem;
-    border-top: 1px solid var(--line);
-  }
-
-  .ps-talk {
-    text-align: center;
-  }
-
-  .talk-note {
-    color: var(--secondary);
-    font-size: 0.95rem;
-    margin-top: 0.8rem;
-  }
-
-  .talk-phone {
+  .role {
     color: var(--muted);
-    font-size: 0.95rem;
+    margin-top: 0.25rem;
   }
 
-  .talk-phone a {
-    color: var(--teal);
-    text-decoration: none;
+  .lead {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    line-height: 1.45;
+    font-weight: 500;
+    color: var(--ink);
+    margin-top: 1.5rem;
+    text-wrap: balance;
+  }
+
+  .block {
+    margin-top: 1.4rem;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .block h2 {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
     font-weight: 600;
-    display: inline-flex;
+    color: var(--gold-deep);
+    margin-bottom: 0.15rem;
+  }
+
+  .about .cta {
+    display: block;
+    text-align: center;
+    margin-top: 1.6rem;
+  }
+
+  .note {
+    color: var(--secondary);
+    font-size: 0.92rem;
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+
+  .sign {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    text-align: center;
+    margin-top: 1.1rem;
+  }
+
+  .start-story {
+    display: flex;
     align-items: center;
+    justify-content: center;
     min-height: 44px;
+    margin: 0.9rem auto 0;
+    padding: 0 0.5rem;
+    background: none;
+    border: 0;
+    font: inherit;
+    color: var(--teal);
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
   }
 
-  /* נשימת קריאה: כל בית עולה בעדינות כשמגיעים אליו. המחלקות מוצמדות
-     ב-JavaScript בלבד – בלעדיו הכול גלוי כרגיל. */
-  .about-body :global(.will-reveal) {
-    opacity: 0;
-    transform: translateY(12px);
-    transition:
-      opacity 0.6s ease,
-      transform 0.6s ease;
-  }
-
-  .about-body :global(.will-reveal.revealed) {
-    opacity: 1;
-    transform: none;
-  }
-
-  /* לתצלום יש הטיה קבועה – התנועה נוספת אליה ולא מוחקת אותה */
-  .about-body :global(.photo.will-reveal) {
-    transform: rotate(-2deg) translateY(12px);
-  }
-
-  .about-body :global(.photo.will-reveal.revealed) {
-    transform: rotate(-2deg);
+  .limits {
+    margin-top: 1.6rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.92rem;
   }
 </style>
