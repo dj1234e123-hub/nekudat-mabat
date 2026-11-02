@@ -3,8 +3,8 @@
 title: "No era ahí adonde iba"
 section: yoman
 archiveId: "011"
-cover: ../../assets/covers/011.png
-coverAlt: "Un hombre de abrigo, con una valija, de espaldas a la cámara sobre una pista mojada frente a un avión de pasajeros estacionado, entre nubes pesadas y luz de atardecer; las luces del aeropuerto se reflejan en el asfalto"
+cover: ../../assets/covers/lo-lesham-hu-hitkaven.jpg
+coverAlt: "Una casa de piedra en un pueblo bajo la lluvia nocturna: una puerta de madera entreabierta de la que sale luz cálida sobre un escalón de piedra mojado, y sobre él un maletín de cuero y unas llaves con una etiqueta roja"
 date: 2026-08-18T09:00:00Z
 readingTime: "unos 90 segundos"
 excerpt: "El avión temblaba, olor a quemado en el aire, y un aterrizaje de emergencia. El profesor especialista en enfermedades raras no va a llegar a la conferencia que todos esperan. Alquila un auto y sigue solo, bajo la lluvia."
