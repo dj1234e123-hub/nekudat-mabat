@@ -24,12 +24,14 @@ description: מנוע הסיפורים של "נקודת מבט". מופעל כש
 2. לבדוק שוב מול `src/content/stories/` שאין חפיפה שנוצרה מאז.
 3. ליצור `src/content/stories/<slug>.md` לפי המבנה של סיפור קיים (למשל `kedei-levade-shesalachti.md`):
    - frontmatter: `title`, `section` (meshalim / tzadikim / yoman / chaim), `topic` אם מתאים, `cover`+`coverAlt` אם יש תמונה, `date` = **שעת ההעלאה בפועל** (UTC), `readingTime`, `excerpt`, `hook`, `tags`, `source`. מקור בניסוח זהיר לפי רמת האמינות בכרטיס ("מסופר על", "מבוסס על").
+   - **חובה (הבנייה נכשלת בלעדיהם, `check:stories`):** `hook` (שאלה שהסיפור עונה עליה, בגוף "אנחנו", עד כ-12 מילים, בלי לחשוף את הסיום), `tags` עם לפחות תגית אחת ששייכת לנושא (`src/data/themes.mjs`, או תגית חג), `cover` + `coverAlt`. הרשימה המלאה ב-`docs/STORY-CHECKLIST.md`: **לקרוא אותה לפני יצירת הקובץ.**
+   - **ספרדית:** `src/content/stories-es/<אותו-שם>.md`, שורה ב-`src/data/es-slugs.ts`, `hook` בספרדית (חובה אם יש תאום), אותו תאריך ושעה. לפי `docs/SPANISH-EDITORIAL-GUIDELINES.md`.
    - הערת `#` בראש: מאיזה קובץ תוכנית ומספר, ומה שונה מהארכיון אם רלוונטי (`archiveId` לסיפור מהארכיון).
    - גוף: הטקסט מהקובץ **מילה במילה**. `**שאלה לדרך:** X` הופך ל-
      `<div class="story-question"><span class="story-question-label">שאלה לדרך</span><p>X</p></div>`
      ואחריו `<p class="signature">מאמין בך,<br /><span class="signature-name">אפרים עטייה</span></p>`.
      סיפור בלי שאלה לדרך – רק החתימה.
-4. `npm run build` (כולל `check:dashes`). לתקן עד 0 שגיאות.
+4. `npm run build` (כולל `check:dashes` ו-`check:stories`). לתקן עד 0 שגיאות. המספרים, "הכי נקראים", "חדש" והסיפור המרכזי מתעדכנים לבד.
 5. קומיט, ודחיפה לענף העבודה ולענף הראשי `nekudat-mabat` (fast-forward / merge) כדי שיעלה לאתר החי.
 6. לסמן בקובץ התוכנית **🚀 עלה (תאריך)**, לעדכן את `docs/CONTENT.md` ואת סעיף הסטטוס ב-CLAUDE.md.
 7. לתת לבעל הפרויקט את ההודעה לקבוצה מוכנה להעתקה, עם הכתובת `https://nekudatmabat.blog/stories/<slug>/`. לוודא שקישור הקבוצה זהה ל-`src/data/site.ts`.
