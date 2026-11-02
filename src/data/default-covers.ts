@@ -1,20 +1,21 @@
-// שערים זמניים לפי קטגוריה – לסיפורים שעדיין אין להם תמונת שער ייעודית.
-// PNG (מומר מקובצי ה-SVG שלצידם) כדי שתצוגה מקדימה בוואטסאפ תעבוד – וואטסאפ לא מציג SVG.
+// שער זמני לסיפור שעדיין אין לו תמונת שער ייעודית: צילום השער של העולם שלו.
+// אותה תמונה שמוצגת בדף הבית ובראש עמוד העולם (src/data/section-gate-images.ts),
+// כך שסיפור בלי שער נראה כמו שייך לעולמו ולא כמו תקלה. החלפה: הוספת `cover` לסיפור.
+// שבת – עולם שמור, ללא צילום: נשאר השער האיורי הישן (PNG, כדי שוואטסאפ יציג תצוגה מקדימה).
 import type { ImageMetadata } from 'astro';
-import empowerment from '../assets/covers/default-empowerment.png';
 import shabbat from '../assets/covers/default-shabbat.png';
-import baalShemTov from '../assets/covers/default-baal-shem-tov.png';
+import { SECTION_GATE_IMAGES } from './section-gate-images';
 import type { SectionSlug } from './sections';
 
+const gate = (slug: SectionSlug): ImageMetadata => SECTION_GATE_IMAGES[slug]!.image;
+
 export const DEFAULT_COVERS: Record<SectionSlug, ImageMetadata> = {
-  meshalim: empowerment,
-  tzadikim: baalShemTov,
-  yoman: empowerment,
-  // אין עדיין תמונת שער זמנית ייעודית לעולם החדש (מהחיים) – נופל לאחור
-  // לאותה תמונה כללית כמו יומן, עד שתיווצר אחת משלו.
-  chaim: empowerment,
+  meshalim: gate('meshalim'),
+  tzadikim: gate('tzadikim'),
+  yoman: gate('yoman'),
+  chaim: gate('chaim'),
   shabbat,
 };
 
-export const DEFAULT_COVER_ALT = 'איור שער זמני בצבעי נקודת מבט';
-export const DEFAULT_COVER_ALT_ES = 'Ilustración de portada provisional en los colores de Punto de Vista';
+export const DEFAULT_COVER_ALT = 'תמונת שער זמנית של העולם שאליו שייך הסיפור';
+export const DEFAULT_COVER_ALT_ES = 'Portada provisional del mundo al que pertenece la historia';
