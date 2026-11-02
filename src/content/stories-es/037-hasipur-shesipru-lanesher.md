@@ -3,8 +3,8 @@
 title: "La historia que le contaron al águila"
 section: meshalim
 archiveId: "037"
-cover: ../../assets/covers/037.png
-coverAlt: "Ilustración: un hombre anciano de pie sobre un acantilado junto a un gallinero de madera con gallinas detrás de un alambrado, su mano extendida hacia adelante, y frente a él un águila despliega las alas y se eleva hacia el cielo del amanecer sobre un valle neblinoso"
+cover: ../../assets/covers/hasipur-shesipru-lanesher.jpg
+coverAlt: "Una gran pluma oscura de águila con borde dorado sobre la tierra de un gallinero cubierta de paja, entre pequeñas plumas blancas de gallina; al fondo un gallinero de madera, una cerca y montañas con la luz dorada del amanecer"
 date: 2026-08-25T09:00:00Z
 readingTime: "unos 2 minutos"
 featured: 2
