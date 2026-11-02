@@ -1,0 +1,304 @@
+---
+// סוף הסיפור (שלב 5, 2026-11-02): "רוצה עוד?" – שלוש דרכים להמשיך, במקום כרטיס אחד.
+// 263 אנשים סיימו סיפור ב-14 יום, ורק 27 לחצו "הסיפור הבא". הקורא שסיים צריך לראות כמה
+// כיוונים ברורים, כל אחד עם שם, תמונה ושאלה:
+//   א. עוד מאותו עולם – הנקרא ביותר שטרם נקרא.
+//   ב. באותו נושא – הקרוב ביותר לפי תגיות (src/lib/related.ts), מוגרל בכל טעינה מבין שלושה.
+//   ג. רגע של נקודת מבט על זה – הגשר מהסיפורים לפינת הרגעים (אם יש חיבור אמיתי).
+// זיכרון קריאה בדפדפן בלבד (nm_read), כמו קודם. בלי JavaScript – הראשון בכל רשימה.
+// המחלקה next-up נשמרת: Base מודד לפיה nextup_seen. אירועי המדידה: next_story (ב) · next_world (א) ·
+// next_moment (ג) – השניים הראשונים מקבילים לאירוע הישן, כך שההשוואה לפני/אחרי נשמרת.
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import { SECTIONS_META } from '../data/sections';
+import { SECTIONS_ES, FEELING_LABELS_ES, GROUP_LABELS_ES } from '../data/site-es';
+import { DEFAULT_COVERS } from '../data/default-covers';
+import { feelingLabel, groupOf, type FeelingSlug } from '../data/feelings';
+import { parseMoment } from '../lib/moment-format';
+import { readingLabel } from '../lib/reading-time';
+import { hookOf, viewsOf } from '../lib/story-meta';
+import type { NextStory } from '../lib/related';
+import { esStoryPath } from '../data/es-slugs';
+import type { Lang } from '../data/story-ui';
+import Views from './Views.astro';
+
+type Story = CollectionEntry<'stories'> | CollectionEntry<'storiesEs'>;
+interface Props {
+  current: string;
+  /** עוד מאותו עולם, מהנקרא ביותר */
+  world: Story[];
+  /** קרובים לפי תגיות (שלושה) */
+  related: NextStory[];
+  moment: CollectionEntry<'moments'> | CollectionEntry<'momentsEs'> | null;
+  worldLabel: string;
+  lang?: Lang;
+}
+const { current, world, related, moment, worldLabel, lang = 'he' } = Astro.props;
+const es = lang === 'es';
+const t = es
+  ? { title: '¿Quieres más?', sub: 'Tres formas de seguir desde aquí', world: `Más de ${worldLabel}`, moment: 'Un momento de Punto de Vista sobre esto', aria: 'Para seguir' }
+  : { title: 'רוצה עוד?', sub: 'שלוש דרכים להמשיך מכאן', world: `עוד מ${worldLabel}`, moment: 'רגע של נקודת מבט על זה', aria: 'ההמשך' };
+
+const href = (id: string) => (es ? esStoryPath(id) : `/stories/${id}/`);
+const card = (story: Story, kicker: string, slot: string) => ({
+  id: story.id,
+  slot,
+  kicker,
+  href: href(story.id),
+  title: story.data.title,
+  cover: story.data.cover ?? DEFAULT_COVERS[story.data.section],
+  hook: hookOf(story),
+  views: viewsOf(story.id),
+  mins: readingLabel(story, lang),
+  accent: SECTIONS_META[story.data.section].accent,
+});
+const worldCards = world.map((s) => card(s, t.world, 'world'));
+const relatedCards = related.map((r) => card(r.story, r.reason, 'theme'));
+
+const momentCard = moment
+  ? (() => {
+      const feeling = moment.data.feeling as FeelingSlug;
+      const group = groupOf(feeling);
+      return {
+        href: es ? `/es/momentos/${feeling}/${moment.id}/` : `/moments/${feeling}/${moment.id}/`,
+        title: parseMoment(moment.body ?? '', moment.data.title).title ?? moment.data.title,
+        feeling: es ? FEELING_LABELS_ES[feeling] : feelingLabel(feeling),
+        group: group ? (es ? GROUP_LABELS_ES[group.slug] : group.label) : '',
+        accent: group?.accent ?? 'var(--gold)',
+      };
+    })()
+  : null;
+---
+
+{
+  (worldCards.length > 0 || relatedCards.length > 0 || momentCard) && (
+    <aside class="next-up end" data-current={current} aria-label={t.aria}>
+      <h2>{t.title}</h2>
+      <p class="sb">{t.sub}</p>
+      <div class="opts">
+        {[worldCards, relatedCards].map((list) =>
+          list.length > 0 ? (
+            <ul class="slot" data-slot={list[0].slot}>
+              {list.map((c, i) => (
+                <li data-story={c.id} hidden={i > 0}>
+                  <a
+                    class="opt"
+                    href={c.href}
+                    data-ph={c.slot === 'world' ? 'next_world' : 'next_story'}
+                    style={`--accent: ${c.accent}`}
+                  >
+                    <Image src={c.cover} alt="" widths={[160, 480]} sizes="(max-width: 52rem) 4.6rem, 18rem" class="thumb" />
+                    <span class="tx">
+                      <span class="k">{c.kicker}</span>
+                      <span class="t2">{c.title}</span>
+                      <span class:list={['hk', { q: c.hook.isHook }]}>{c.hook.text}</span>
+                      <span class="mt">
+                        <Views count={c.views} {lang} />
+                        <span class="nowrap">{c.mins}</span>
+                      </span>
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ) : null
+        )}
+        {momentCard && (
+          <a class="opt mo" href={momentCard.href} data-ph="next_moment" style={`--accent: ${momentCard.accent}`}>
+            <span class="tx">
+              <span class="k">{t.moment}</span>
+              <span class="t2 blue">{momentCard.title}</span>
+              <span class="mt">
+                {momentCard.group} · {momentCard.feeling}
+              </span>
+            </span>
+          </a>
+        )}
+      </div>
+    </aside>
+  )
+}
+
+<script>
+  // זיכרון קריאה – בדפדפן של הקורא בלבד, בלי עוגיות ובלי זהות: רשימת מזהי הסיפורים שנקראו.
+  // ב: מוגרל אחד מבין אלה שטרם נקראו (כמו בעבר, "שתמיד יהיה מתחלף"). א: הראשון שטרם נקרא.
+  // שני הכיוונים לעולם לא מציעים את אותו סיפור.
+  const KEY = 'nm_read';
+  const root = document.querySelector<HTMLElement>('.next-up');
+  if (root) {
+    let read: string[] = [];
+    try {
+      read = JSON.parse(localStorage.getItem(KEY) ?? '[]');
+    } catch {
+      read = [];
+    }
+    const items = (slot: string) => [...root.querySelectorAll<HTMLElement>(`[data-slot="${slot}"] li`)];
+    const show = (list: HTMLElement[], pick: HTMLElement | undefined) => list.forEach((li) => (li.hidden = li !== pick));
+    const theme = items('theme');
+    let chosen: HTMLElement | undefined;
+    if (theme.length > 1) {
+      const unread = theme.filter((li) => !read.includes(li.dataset.story!));
+      const pool = unread.length > 0 ? unread : theme;
+      chosen = pool[Math.floor(Math.random() * pool.length)];
+      show(theme, chosen);
+    } else {
+      chosen = theme[0];
+    }
+    const world = items('world');
+    if (world.length > 1) {
+      const free = world.filter((li) => li.dataset.story !== chosen?.dataset.story);
+      const unread = free.filter((li) => !read.includes(li.dataset.story!));
+      show(world, (unread.length > 0 ? unread : free)[0]);
+    }
+    const current = root.dataset.current!;
+    if (!read.includes(current)) {
+      read.push(current);
+      try {
+        localStorage.setItem(KEY, JSON.stringify(read.slice(-200)));
+      } catch {
+        /* אחסון חסום – יוצג המועמד הראשון בפעם הבאה */
+      }
+    }
+  }
+</script>
+
+<style>
+  .end {
+    background: var(--surface);
+    margin: 2.5rem -1.25rem 1.5rem;
+    padding: 1.75rem 1.25rem 2.25rem;
+  }
+  h2 {
+    font-size: 1.45rem;
+    margin: 0;
+    text-align: center;
+  }
+  .sb {
+    text-align: center;
+    color: var(--secondary);
+    font-size: 0.9rem;
+    margin: 0.2rem 0 1.1rem;
+  }
+  .opts {
+    display: grid;
+    gap: 0.75rem;
+  }
+  .slot {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .opt {
+    display: grid;
+    grid-template-columns: 4.6rem 1fr;
+    gap: 0.8rem;
+    align-items: center;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 0.9rem;
+    padding: 0.7rem;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s ease, transform 0.2s ease;
+  }
+  .opt:hover,
+  .opt:focus-visible {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+  .opt:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
+  }
+  .opt :global(.thumb) {
+    width: 4.6rem;
+    height: 4.6rem;
+    object-fit: cover;
+    border-radius: 0.65rem;
+  }
+  .tx {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    min-width: 0;
+  }
+  .k {
+    font-size: 0.76rem;
+    color: var(--muted);
+  }
+  .k::before {
+    content: '';
+    display: inline-block;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-inline-end: 0.35rem;
+  }
+  .t2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.1rem;
+    line-height: 1.3;
+    text-wrap: balance;
+  }
+  .t2.blue {
+    color: var(--blue);
+  }
+  .opt:hover .t2 {
+    color: var(--teal);
+  }
+  .hk {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 0.84rem;
+    line-height: 1.45;
+    color: var(--secondary);
+  }
+  .hk.q {
+    color: var(--blue);
+  }
+  .mt {
+    display: flex;
+    gap: 0.7rem;
+    align-items: center;
+    font-size: 0.76rem;
+    color: var(--muted);
+    margin-top: 0.15rem;
+  }
+  .nowrap {
+    white-space: nowrap;
+  }
+  .opt.mo {
+    grid-template-columns: 1fr;
+    border-color: var(--gold);
+  }
+  @media (min-width: 52rem) {
+    .end {
+      margin-inline: -1.25rem;
+      border-radius: 0.9rem;
+    }
+    .opts {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.1rem;
+    }
+    .opt {
+      grid-template-columns: 1fr;
+      align-content: start;
+      padding: 0.8rem;
+    }
+    .opt :global(.thumb) {
+      width: 100%;
+      height: 8rem;
+    }
+    .opt.mo {
+      align-content: center;
+    }
+    .opt.mo .t2 {
+      font-size: 1.35rem;
+    }
+  }
+</style>

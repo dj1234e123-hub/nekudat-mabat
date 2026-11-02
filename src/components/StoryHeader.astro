@@ -1,0 +1,34 @@
+---
+// כותרת עמוד הסיפור: שורת מטא (עולם · זמן קריאה · תאריך · צפיות), כותרת גדולה ושאלת ה-hook.
+// בלי תווית הנושא בראש: היא הייתה מפרשת את הקורא לפני שהתחיל לקרוא (אותו היגיון כמו ברגעים).
+import type { CollectionEntry } from 'astro:content';
+import { SECTIONS_META } from '../data/sections';
+import { SECTIONS_ES } from '../data/site-es';
+import { esSectionPath } from '../data/es-slugs';
+import { formatDate } from '../utils/format-date';
+import { readingLabel } from '../lib/reading-time';
+import { viewsOf } from '../lib/story-meta';
+import type { Lang } from '../data/story-ui';
+import Views from './Views.astro';
+
+interface Props {
+  story: CollectionEntry<'stories'> | CollectionEntry<'storiesEs'>;
+  lang?: Lang;
+}
+const { story, lang = 'he' } = Astro.props;
+const es = lang === 'es';
+const { title, section, date, hook } = story.data;
+const world = es ? SECTIONS_ES[section].label : SECTIONS_META[section].label;
+const href = es ? esSectionPath(section) : `/sections/${section}/`;
+---
+
+<header class="story-header" style={`--accent: ${SECTIONS_META[section].accent}`}>
+  <div class="st-lab">
+    <a href={href}>{world}</a>
+    <span>{readingLabel(story, lang)}</span>
+    <time datetime={date.toISOString().slice(0, 10)}>{formatDate(date, lang)}</time>
+    <Views count={viewsOf(story.id)} {lang} />
+  </div>
+  <h1>{title}</h1>
+  {hook && <p class="st-hook">{hook}</p>}
+</header>

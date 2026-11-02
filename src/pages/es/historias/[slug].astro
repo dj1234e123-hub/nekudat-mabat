@@ -7,11 +7,13 @@ import { Image, getImage } from 'astro:assets';
 import Base from '../../../layouts/Base.astro';
 import ShareRow from '../../../components/ShareRow.astro';
 import JoinGroup from '../../../components/JoinGroup.astro';
-import NextUp from '../../../components/NextUp.astro';
+import StoryEnd from '../../../components/StoryEnd.astro';
+import StoryHeader from '../../../components/StoryHeader.astro';
+import '../../../styles/story.css';
+import { viewsOf } from '../../../lib/story-meta';
 import { SECTIONS_ES } from '../../../data/site-es';
 const SECTIONS_ES_LABELS = Object.fromEntries(Object.entries(SECTIONS_ES).map(([k, v]) => [k, v.label]));
 import { DEFAULT_COVERS, DEFAULT_COVER_ALT_ES } from '../../../data/default-covers';
-import { formatDate } from '../../../utils/format-date';
 import { articleJsonLd, breadcrumbJsonLd } from '../../../lib/structured-data';
 import { isPublished } from '../../../lib/published';
 import { ES_STORY_SLUGS, esStoryPath, esSectionPath, assertEsSlugs } from '../../../data/es-slugs';
@@ -57,6 +59,10 @@ const otherStoryUrls = allStories.filter((s) => s.id !== story.id).map((s) => es
 // חיות שם), והמועמדים והרגע – רק מה שקיים בספרדית ("מבחר ולא מראה").
 const hebrewStories = await getCollection('stories', isPublished);
 const nextCandidates = nextStories(story, allStories, SECTIONS_ES_LABELS, hebrewStories);
+const worldCandidates = allStories
+  .filter((s) => s.id !== story.id && s.data.section === section)
+  .sort((a, b) => viewsOf(b.id) - viewsOf(a.id) || newestFirst(a, b))
+  .slice(0, 3);
 const relatedMoment = momentForStory(story, await getCollection('momentsEs', isPublished), hebrewStories);
 ---
 
@@ -89,15 +95,7 @@ const relatedMoment = momentForStory(story, await getCollection('momentsEs', isP
 >
   <main>
     <article>
-      <header class="story-header">
-        <a class="label" href={esSectionPath(section)}>{SECTIONS_ES[section].label}</a>
-        <h1>{title}</h1>
-        <p class="story-meta">
-          <time datetime={date.toISOString().slice(0, 10)}>{formatDate(date, 'es')}</time>
-          <span aria-hidden="true"> · </span>
-          <span>{readingLabel}</span>
-        </p>
-      </header>
+      <StoryHeader story={story} lang="es" />
       <Image src={cover} alt={coverAlt} widths={[480, 800, 1200]} sizes="(max-width: 42rem) 100vw, 42rem" class="cover" />
       <div class="story-body">
         <Content />
@@ -106,7 +104,7 @@ const relatedMoment = momentForStory(story, await getCollection('momentsEs', isP
     </article>
 
     <ShareRow title={title} url={pageUrl} lang="es" />
-    <NextUp current={story.id} candidates={nextCandidates} moment={relatedMoment} lang="es" />
+    <StoryEnd current={story.id} world={worldCandidates} related={nextCandidates} moment={relatedMoment} worldLabel={SECTIONS_ES[section].label} lang="es" />
     <JoinGroup lang="es" />
 
     <nav class="story-footer">
@@ -144,191 +142,5 @@ const relatedMoment = momentForStory(story, await getCollection('momentsEs', isP
     font-display: swap;
     src: url('/fonts/playpen-hebrew.woff2') format('woff2');
     unicode-range: U+05D0-05EA;
-  }
-</style>
-
-<style>
-  .story-header {
-    text-align: center;
-    padding: 0.5rem 0 1.5rem;
-  }
-
-  .story-header h1 {
-    font-size: clamp(1.8rem, 6.5vw, 2.5rem);
-    line-height: 1.3;
-    margin: 0.85rem 0 0.5rem;
-  }
-
-  .story-meta {
-    color: var(--muted);
-    font-size: 0.9rem;
-  }
-
-  .cover {
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    margin-bottom: 2.25rem;
-  }
-
-  .story-body {
-    font-size: 1.2rem;
-    line-height: 2.05;
-  }
-
-  .story-body :global(p + p) {
-    margin-top: 1.35rem;
-  }
-
-  .story-body :global(blockquote) {
-    font-family: var(--font-display);
-    color: var(--teal-deep);
-    border-inline-start: 3px solid var(--gold);
-    padding-inline-start: 1.1rem;
-    margin: 1.75rem 0;
-    font-size: 1.25rem;
-  }
-
-  /* בעברית ההדגשה היא משקל במקום נטייה; בספרדית נטייה טבעית, אבל נשמרת
-     אותה שפה חזותית של האתר – משקל וצבע, כדי ששני האזורים ייראו זהים. */
-  .story-body :global(em) {
-    font-style: normal;
-    font-weight: 600;
-    color: var(--teal-deep);
-  }
-
-  .story-body :global(.signature) {
-    text-align: center;
-    font-family: var(--font-display);
-    color: var(--teal-deep);
-    margin-top: 2.5rem;
-  }
-
-  /* בספרדית החתימה נושאת את התואר, לבקשת הקוראים (2026-10-05): "Rabino
-     Efraim Atia". פונט כתב היד עברי בלבד, ולכן השם כאן בפונט הכותרות. */
-  .story-body :global(.signature-title) {
-    font-family: var(--font-display);
-    font-weight: 700;
-    color: var(--blue);
-    font-size: 1.3rem;
-    line-height: 1.5;
-  }
-
-  .story-body :global(.signature-name) {
-    font-family: 'Playpen Sans Hebrew', var(--font-display);
-    color: var(--blue);
-    font-size: 1.7rem;
-    line-height: 1.4;
-  }
-
-  /* "שאלה לדרך" – הכלי שהקורא לוקח מהסיפור (2026-10-05). התובנה עצמה
-     ממשיכה בגוף הסיפור בלי הפרדה; רק השאלה מסומנת, באותו סימן של
-     "נקודה לדרך" ברגעים: קו זהב דק ונקודת זהב במרכזו. */
-  .story-body :global(.story-question) {
-    position: relative;
-    margin: 2.2rem 0 0;
-    padding-top: 1.6rem;
-    border-top: 1px solid color-mix(in srgb, var(--gold) 55%, transparent);
-    text-align: center;
-  }
-  .story-body :global(.story-question::before) {
-    content: '';
-    position: absolute;
-    top: -0.3rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0.6rem;
-    height: 0.6rem;
-    border-radius: 50%;
-    background: var(--gold);
-  }
-  .story-body :global(.story-question-label) {
-    font-family: var(--font-body);
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 0.03em;
-    color: var(--gold-deep, #8f6f28);
-  }
-  .story-body :global(.story-question p) {
-    margin: 0.35rem 0 0;
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 1.35rem;
-    line-height: 1.5;
-    color: var(--blue);
-    text-wrap: balance;
-  }
-
-  /* Foto dentro del relato – mismo estilo que la página hebrea (2026-09-14).
-     מגיע מיד אחרי השורה שאומרת את השם – הפנים הם תשובה, לא הקדמה, ולכן
-     אינם בשער. "תצלום מודפס": מסגרת לבנה דקה וצל רך, כמו בעמוד מי אני.
-     חיתוך 4:5 סביב הפנים כדי שיהיו גדולים וברורים גם בטלפון; נקודת המיקוד
-     היא של הצילום (הפנים בתצלום המקורי יושבים ב-41% מהרוחב).
-     ה-Markdown של Astro עוטף את התמונה ב-<p> – לכן האיפוס שלו כאן. */
-  .story-body :global(.inline-photo) {
-    width: min(100%, 22rem);
-    margin: 2.25rem auto;
-    padding: 0.45rem 0.45rem 0.6rem;
-    background: #fff;
-    border-radius: var(--radius);
-    box-shadow: 0 4px 18px rgba(46, 42, 36, 0.14);
-  }
-
-  .story-body :global(.inline-photo p) {
-    margin: 0;
-  }
-
-  .story-body :global(.inline-photo img) {
-    display: block;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-    object-position: 41% 50%;
-    border-radius: calc(var(--radius) - 0.3rem);
-  }
-
-  .story-body :global(.inline-photo figcaption) {
-    font-family: var(--font-body);
-    font-size: 0.9rem;
-    line-height: 1.5;
-    color: var(--secondary);
-    text-align: center;
-    margin-top: 0.55rem;
-  }
-
-  .end-dot {
-    display: block;
-    width: 0.55rem;
-    height: 0.55rem;
-    border-radius: 50%;
-    background: var(--gold);
-    margin: 2.75rem auto 0;
-  }
-
-  .story-footer {
-    margin-top: 2.5rem;
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-  }
-
-  /* שקט ואפור: כרטיס "הסיפור הבא" הוא ההצעה; אלה דלתות למי שרוצה את המפה. */
-  .story-footer a,
-  .story-footer button {
-    font-family: inherit;
-    font-size: 0.92rem;
-    color: var(--muted);
-    background: none;
-    border: none;
-    padding: 0;
-    text-decoration: underline;
-    text-underline-offset: 0.25em;
-    font-weight: 500;
-    cursor: pointer;
-  }
-
-  .story-footer a:hover,
-  .story-footer button:hover {
-    color: var(--teal);
   }
 </style>
