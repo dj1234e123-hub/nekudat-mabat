@@ -14,13 +14,18 @@
 export const THEMES = [
   { slug: 'hope', label: 'תקווה', tags: ['תקווה'] },
   { slug: 'forgiveness', label: 'סליחה ותשובה', tags: ['סליחה', 'תשובה'] },
-  { slug: 'kindness', label: 'חסד', tags: ['חסד'] },
+  { slug: 'kindness', label: 'חסד', tags: ['חסד', 'נתינה', 'מתנה'] },
   { slug: 'children', label: 'חינוך וילדים', tags: ['חינוך', 'ילדים'] },
   { slug: 'courage', label: 'אומץ', tags: ['אומץ'] },
   { slug: 'prayer', label: 'תפילה', tags: ['תפילה'] },
   { slug: 'family', label: 'משפחה', tags: ['משפחה'] },
   { slug: 'memory', label: 'שואה וזיכרון', tags: ['שואה'] },
+  { slug: 'habits', label: 'הרגלים ובחירות', tags: ['הרגלים', 'הרגל', 'שגרה', 'בחירה', 'מעשה קטן', 'כעס', 'מחשבה'] },
 ];
+
+// סיפורי חג: אינם צריכים נושא. הם חיים בעמודי החג (/sukkot/ ובעתיד חגים נוספים), והנושאים הם
+// על מה הסיפור מדבר ולא על מתי הוא נכתב. הבדיקה לא נכשלת על סיפור שיש לו אחת מהתגיות האלה.
+export const HOLIDAY_TAGS = ['סוכות', 'שמחת תורה', 'אחרי החגים'];
 
 /** הנושאים של סיפור לפי התגיות שלו. */
 export function themesOf(tags = []) {
