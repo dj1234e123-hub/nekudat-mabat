@@ -4,7 +4,7 @@ title: "Una puerta en el piso setenta"
 section: meshalim
 archiveId: "042"
 cover: ../../assets/covers/delet-bekoma-shivim.jpg
-coverAlt: "Una escalera de hormigón antigua cuyos peldaños suben y se pierden en la bruma y, en la pared del rellano, una pequeña puerta de madera entreabierta de la que se derrama luz dorada"
+coverAlt: "Una escalera de hormigón antigua con luz crema cálida y, en la pared junto a los peldaños, una pequeña puerta de madera con pomo de latón de la que se derrama una línea de luz dorada; barandilla metálica con un extremo rojo"
 date: 2026-08-27T09:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "El rey construyó un edificio de ciento cincuenta pisos, y les dio a cien ministros una sola hora para llegar a la cima. Hicieron la cuenta y vieron que era imposible. Y la cuenta estaba bien."
