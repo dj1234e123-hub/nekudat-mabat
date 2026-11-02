@@ -13,26 +13,27 @@ hook: "¿Qué hace un padre cuando su hija le cuenta, años después, lo que viv
 source: "Basado en la charla TEDx de Peter y Adenike Harris (2018) y en entrevistas con ellos (LA Parent, Voyage LA, 2020), con adaptación y redacción originales de Efraim Atia."
 ---
 
-Cuando era adolescente, el exmarido de su madre abusó sexualmente de ella.
-Adenike guardó silencio durante años.
+Adenike era adolescente cuando el esposo de su madre abusó sexualmente de ella. Guardó silencio durante años.
+
+Los padres de Adenike se habían divorciado. Ella creció con su madre, y su papá, Peter, vivía lejos.
 
 Su razón: no quería destruir a su familia. Desde afuera, la casa parecía unida. Ella sacaba notas excelentes y ganaba competencias de atletismo.
 
-Su papá, Peter, vivía lejos. Una vez, en un verano en que ella lo visitó, él caminó con ella por la playa y le preguntó una y otra vez cómo estaba.
+Una vez, en un verano en que ella visitó a Peter, él caminó con ella por la playa y le preguntó una y otra vez cómo estaba.
 
 Ella no le contó.
 
 Después él dijo que, si hubiera sabido, no la habría mandado de vuelta a casa.
 
-Ya adulta, les contó a sus padres. El primer impulso de Peter fue vengarse. Lo dijo él mismo, sin rodeos.
+Ya adulta, les contó a sus padres. El primer impulso de Peter fue vengarse del hombre que la había lastimado. Lo dijo él mismo, sin rodeos.
 
 Adenike le pidió otra cosa. No quería que sus padres terminaran en la cárcel por ella. Le pidió que fuera su papá, *y no su vengador.*
 
 Él se detuvo. Y en lugar de liderar, *la siguió.*
 
-Ella declaró ante la policía, y él trabajó junto con la madre de ella frente al sistema de justicia, para llevar al hombre ante un tribunal.
+Ella declaró ante la policía, y Peter trabajó junto con su exesposa, la madre de Adenike, frente al sistema de justicia, para llevar al hombre ante un tribunal.
 
-Más adelante ella le escribió una carta larga, con preguntas sobre la familia y sobre historias que nunca se habían contado.
+Más adelante ella le escribió a su papá una carta larga, con preguntas sobre la familia y sobre historias que nunca se habían contado.
 
 Él no respondió por escrito. Se sentó y grabó, en una sola sesión, dos casetes de noventa minutos. Respondió con total sinceridad, sobre sus decisiones y sus errores, *sin ponerse a la defensiva.*
 
