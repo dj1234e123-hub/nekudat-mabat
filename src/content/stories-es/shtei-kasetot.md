@@ -6,7 +6,7 @@ title: "Dos casetes de noventa minutos"
 section: chaim
 cover: ../../assets/covers/shtei-kasetot.jpg
 coverAlt: "Una grabadora de casetes antigua, unos audífonos, una carta escrita a mano y un casete sobre una mesa de madera vieja, con luz de la mañana que entra por una ventana, y una pared de un verde azulado oscuro al fondo"
-date: 2026-12-31T00:00:00Z
+date: 2026-11-03T16:00:00Z
 readingTime: "2 minutos"
 excerpt: "Adenike le escribió a su papá una carta larga. Él le respondió con dos casetes."
 hook: "¿Qué hace un padre cuando su hija le cuenta, años después, lo que vivió?"
