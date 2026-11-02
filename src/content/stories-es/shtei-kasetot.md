@@ -13,9 +13,9 @@ hook: "¿Qué hace un padre cuando su hija le cuenta, años después, lo que viv
 source: "Basado en la charla TEDx de Peter y Adenike Harris (2018) y en entrevistas con ellos (LA Parent, Voyage LA, 2020), con adaptación y redacción originales de Efraim Atia."
 ---
 
-Adenike era adolescente cuando el esposo de su madre abusó sexualmente de ella. Guardó silencio durante años.
+Adenike era adolescente cuando su padrastro abusó sexualmente de ella. Guardó silencio durante años.
 
-Los padres de Adenike se habían divorciado. Ella creció con su madre, y su papá, Peter, vivía lejos.
+Sus padres se divorciaron. Su madre volvió a casarse, y su papá, Peter, vivía lejos.
 
 Su razón: no quería destruir a su familia. Desde afuera, la casa parecía unida. Ella sacaba notas excelentes y ganaba competencias de atletismo.
 
