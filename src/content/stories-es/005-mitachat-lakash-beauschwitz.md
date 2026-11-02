@@ -3,8 +3,8 @@
 title: "Bajo la paja en Auschwitz"
 section: tzadikim
 archiveId: "005"
-cover: ../../assets/covers/005.png
-coverAlt: "Un muchacho acostado en lo profundo de un montón de paja en un establo oscuro se ata los tefilín al brazo; por la puerta abierta del establo se ve la silueta de un hombre de uniforme y gorra de oficial, y detrás, las barracas del campo bajo una luz gris"
+cover: ../../assets/covers/mitachat-lakash-beauschwitz.jpg
+coverAlt: "Unos tefilín negros con sus correas sobre un montón de paja en un establo oscuro, y un fino haz de luz dorada que entra por una rendija de la pared de madera y cae sobre ellos"
 date: 2026-08-12T09:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Si un nazi hubiera abierto la puerta del establo en ese momento, lo habrían fusilado ahí mismo. El muchacho tenía 16 años, hundido en la paja – y se escondía ahí para ponerse los tefilín."
