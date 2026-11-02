@@ -3,8 +3,8 @@
 title: "No quería volver a casa"
 section: yoman
 archiveId: "008"
-cover: ../../assets/covers/008.png
-coverAlt: "Un joven con mochila, de espaldas a la cámara, en una bifurcación de caminos bajo un cartel de madera con dos flechas: de un lado, un sendero de asfalto agrietado a lo largo de una pared con grafitis hacia edificios grises y un cielo de tormenta; del otro, un sendero de tierra verde hacia el amanecer y una ciudad iluminada"
+cover: ../../assets/covers/lo-ratziti-lachzor-habaita.jpg
+coverAlt: "Una escalera de un edificio viejo al anochecer: una mochila escolar azul desteñida apoyada en el escalón y, al fondo del rellano, una puerta de madera cerrada con una fina línea de luz dorada por debajo"
 date: 2026-08-15T09:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Cuando le preguntaban a Elad dónde hacía la tarea, siempre respondía que en la biblioteca. Nadie sabía que no le gustaban los libros – simplemente tenía miedo de volver a casa."
