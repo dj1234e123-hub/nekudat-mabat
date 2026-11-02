@@ -150,14 +150,30 @@ const momentCard = moment
       const unread = free.filter((li) => !read.includes(li.dataset.story!));
       show(world, (unread.length > 0 ? unread : free)[0]);
     }
+    // סיפור נחשב "נקרא" רק כשהקורא הגיע לסוף הגוף שלו (הנקודה שאחרי הטקסט) – לא כשהעמוד נפתח.
+    // לפני 2026-11-02 הוא נרשם בעת הטעינה, ולכן סיפור שנפתח וננטש סומן כנקרא.
     const current = root.dataset.current!;
-    if (!read.includes(current)) {
+    const markRead = () => {
+      try {
+        read = JSON.parse(localStorage.getItem(KEY) ?? '[]'); // עדכני: לשונית אחרת אולי הוסיפה
+      } catch {}
+      if (read.includes(current)) return;
       read.push(current);
       try {
         localStorage.setItem(KEY, JSON.stringify(read.slice(-200)));
       } catch {
         /* אחסון חסום – יוצג המועמד הראשון בפעם הבאה */
       }
+    };
+    const end = document.querySelector('.end-dot');
+    if (end && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          markRead();
+          io.disconnect();
+        }
+      });
+      io.observe(end);
     }
   }
 </script>

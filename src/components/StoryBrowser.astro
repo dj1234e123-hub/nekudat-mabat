@@ -140,6 +140,8 @@ const FIRST = 8;
       if (st.world) chip(labels.worlds[st.world] ?? st.world, 'world');
       if (st.theme) chip(labels.themes[st.theme] ?? st.theme, 'theme');
       if (st.q) chip(`"${st.q}"`, 'q');
+      // בזמן חיפוש: הסתרת מה שבין תיבת החיפוש לארכיון, כדי שהתוצאות יופיעו מיד מתחת לתיבה
+      document.querySelectorAll<HTMLElement>('[data-hide-on-search]').forEach((el) => (el.hidden = !!st.q));
       shortBtn.setAttribute('aria-pressed', String(st.short));
       sortSel.value = st.sort;
     }

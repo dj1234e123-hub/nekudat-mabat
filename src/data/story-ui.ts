@@ -6,7 +6,7 @@ export const STORY_UI = {
   he: {
     views: 'צפיות',
     isNew: 'חדש',
-    read: '✓ קראת',
+    read: '✓ נקרא',
     stories: (n: number) => (n === 1 ? 'סיפור אחד' : `${n} סיפורים`),
     searchLabel: 'חפש סיפור, שאלה או נושא',
     sortLabel: 'מיון',

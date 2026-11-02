@@ -69,6 +69,8 @@ const worldHref = (slug: string) => (es ? esSectionPath(slug) : `/sections/${slu
 <h1 class="page-title">{ui.pageTitle}</h1>
 <p class="lead">{ui.intro(stories.length)}</p>
 <StorySearch {lang} />
+<!-- בזמן חיפוש כל מה שבין תיבת החיפוש לארכיון מוסתר (StoryBrowser), כדי שהתוצאות יופיעו מיד מתחת לתיבה ולא רחוק למטה -->
+<div data-hide-on-search>
 <StoryHero story={hero} {lang} {manual} />
 
 <div class="sh"><h2>{ui.secTop}</h2><span>{ui.secTopNote}</span></div>
@@ -99,6 +101,8 @@ const worldHref = (slug: string) => (es ? esSectionPath(slug) : `/sections/${slu
 <div class="sh"><h2>{ui.secThemes}</h2></div>
 <div class="grid themes">
   {themeTiles.map((t) => <BigTile image={t.cover!} label={t.label} count={t.count} accent="var(--gold)" href="#archive" filterTheme={t.slug} {lang} />)}
+</div>
+
 </div>
 
 <div class="sh"><h2>{ui.secAll}</h2></div>
