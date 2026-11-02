@@ -12,6 +12,7 @@ coverAlt: "Dos etiquetas de viaje antiguas sobre un baúl de madera, cada una co
 date: 2026-08-21T09:00:00Z
 readingTime: "unos 90 segundos"
 excerpt: "Dos representantes fueron enviados al mismo lugar y vieron exactamente la misma realidad. Los telegramas que mandaron eran opuestos."
+hook: "¿Cómo la misma realidad se vuelve dos historias opuestas?"
 ---
 
 Un fabricante de zapatos envió a dos representantes a un país lejano, para ver si allí se podían vender zapatos.

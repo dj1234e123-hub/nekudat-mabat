@@ -9,6 +9,7 @@ coverAlt: "Un martillo y un cincel sobre fragmentos de roca, detrás un camino d
 date: 2026-09-09T18:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "El médico estaba al otro lado de la montaña, y el camino alrededor era demasiado largo. Después de que murió su esposa, Dashrath Manjhi vendió sus cabras, compró un martillo y un cincel, y subió a la montaña. La aldea se reía de él."
+hook: "¿Cuánto tiempo se puede seguir cuando todo el pueblo se ríe?"
 ---
 
 Entre la aldea y el pueblo hay una montaña.

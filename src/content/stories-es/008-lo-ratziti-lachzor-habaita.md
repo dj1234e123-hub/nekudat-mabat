@@ -8,6 +8,7 @@ coverAlt: "Un joven con mochila, de espaldas a la cámara, en una bifurcación d
 date: 2026-08-15T09:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Cuando le preguntaban a Elad dónde hacía la tarea, siempre respondía que en la biblioteca. Nadie sabía que no le gustaban los libros – simplemente tenía miedo de volver a casa."
+hook: "¿Qué se esconde detrás de una respuesta que nadie revisa?"
 ---
 
 Cuando le preguntaban a Elad dónde hacía la tarea, siempre respondía que en la biblioteca.

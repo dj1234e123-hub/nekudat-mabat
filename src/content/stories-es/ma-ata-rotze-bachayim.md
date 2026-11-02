@@ -10,6 +10,7 @@ coverAlt: "Un guante de boxeo antiguo y desgastado sobre una mesa de madera, jun
 date: 2026-09-08T18:30:00Z
 readingTime: "unos 2 minutos"
 excerpt: "A los 19 años, Jacob dio un solo puñetazo en la calle. El hombre frente a él murió nueve días después. Años más tarde, los padres de la víctima le hicieron una pregunta que él no esperaba."
+hook: "¿Qué se le pregunta a quien nos quitó todo?"
 ---
 
 Jacob tenía 19 años. Andaba con una banda, se metía en peleas, y en realidad no pensaba en el futuro.

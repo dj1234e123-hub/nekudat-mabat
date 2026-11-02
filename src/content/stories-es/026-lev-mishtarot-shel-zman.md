@@ -8,6 +8,7 @@ coverAlt: "Un corazón hecho de decenas de pedacitos de billetes azules y rojos 
 date: 2026-08-23T09:00:00Z
 readingTime: "un minuto y medio"
 excerpt: "Siete de la mañana. Jani, de cinco años, sentada en la sala con una tijerita, y sobre la mesa un billete de 200 y uno de 20. Mi mano casi se levanta para detenerla."
+hook: "¿Qué hacemos en el momento en que ya estamos listos para gritar?"
 ---
 
 Siete de la mañana.

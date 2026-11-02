@@ -10,6 +10,7 @@ coverAlt: "Un estudio antiguo con estanterías de libros encuadernados en cuero,
 date: 2026-08-16T09:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Diecisiete años esperó un hijo. El médico considerado el mejor de Europa la miró y le dijo: no esperes hijos. Ella aguantó las lágrimas hasta llegar a casa."
+hook: "¿Adónde van las lágrimas que se aguantan hasta llegar a casa?"
 ---
 
 No lloró en el consultorio. Tampoco en el camino de vuelta.

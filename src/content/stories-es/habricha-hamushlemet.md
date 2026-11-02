@@ -8,6 +8,7 @@ coverAlt: "La silueta de un hombre de traje oscuro camina por el pasillo de már
 date: 2026-08-30T18:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "A los veinte años salió del banco con 215 mil dólares, y nunca lo atraparon. Cincuenta y dos años vivió bajo otro nombre – hasta una noche frente al televisor, cuando ya no tenía que contarle nada a nadie."
+hook: "¿Cuánto pesa un secreto que nadie conoce?"
 ---
 
 Theodore, de veinte años, sabe una cosa importante: para ese puesto en el banco, y solo para ese puesto, no toman huellas digitales.

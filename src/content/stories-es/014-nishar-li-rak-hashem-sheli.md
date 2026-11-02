@@ -8,6 +8,7 @@ coverAlt: "Un hombre de camisa blanca y kipá, de espaldas a la cámara, entra a
 date: 2026-08-20T09:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Cada golpe en la puerta hacía saltar a Iosef de la cama. Le habían robado la mercadería, el negocio se vació. Y entonces escuchó a los hijos preguntarle a su madre: «¿Cuándo va a volver a sonreír papá?»"
+hook: "¿Cómo se le oculta la tristeza a unos hijos que lo ven todo?"
 ---
 
 Cada golpe en la puerta hacía saltar a Iosef de la cama.

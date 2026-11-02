@@ -9,6 +9,7 @@ coverAlt: "Una mano deja caer monedas en un vaso de cartón sobre una acera, a l
 date: 2026-09-01T16:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Sarah dejó caer sin querer su anillo de compromiso en el vaso de cartón de un hombre que vivía en la calle. Le ofrecieron cuatro mil dólares por él. No lo vendió. Y lo que pasó después llegó hasta Texas."
+hook: "¿Qué hacemos cuando lo que más queremos cae en el vaso de otra persona?"
 ---
 
 Sarah se detuvo junto al hombre que estaba sentado en la esquina de la calle. Sacó unas monedas de la cartera, las dejó en su vaso de cartón, y siguió caminando.

@@ -8,6 +8,7 @@ coverAlt: "Un sobre viejo con una hilera de estampillas de colores sobre una mes
 date: 2026-08-14T09:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Durante meses, alguien estuvo juntando para ese niño algo que él ni siquiera había pedido. Un día golpearon a la puerta, y su madre casi se queda helada."
+hook: "¿Quién junta para nosotros cosas que ni siquiera pedimos?"
 ---
 
 Durante meses, alguien estuvo juntando para ese niño algo que él ni siquiera había pedido.

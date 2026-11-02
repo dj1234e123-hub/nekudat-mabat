@@ -8,6 +8,7 @@ coverAlt: "Un muchacho acostado en lo profundo de un montón de paja en un estab
 date: 2026-08-12T09:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Si un nazi hubiera abierto la puerta del establo en ese momento, lo habrían fusilado ahí mismo. El muchacho tenía 16 años, hundido en la paja – y se escondía ahí para ponerse los tefilín."
+hook: "¿Qué estaríamos dispuestos a arriesgar por una sola cosa que de verdad importa?"
 ---
 
 Si un nazi hubiera abierto la puerta del establo en ese momento, lo habrían fusilado ahí mismo.

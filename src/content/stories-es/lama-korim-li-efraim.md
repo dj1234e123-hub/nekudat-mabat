@@ -10,6 +10,7 @@ cover: ../../assets/covers/lama-korim-li-efraim.png
 coverAlt: "Una vieja puerta de madera cerrada en un callejón de Bagdad al anochecer; una luz dorada se filtra por la rendija e ilumina el escalón de piedra; cielo azul profundo y una palmera al fondo"
 date: 2026-09-14T15:00:00Z
 excerpt: "Un muchacho de catorce años por las calles de Bagdad, que ya se había alejado del camino en el que creció. Un día vio en la calle al Ben Ish Jai, y corrió a casa."
+hook: "¿Qué se puede ver en un joven que ya se alejó?"
 ---
 
 Un muchacho de catorce años por las calles de Bagdad.<br />

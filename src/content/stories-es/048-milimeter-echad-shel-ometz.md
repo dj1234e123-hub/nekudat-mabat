@@ -8,6 +8,7 @@ coverAlt: "Foto a ras del suelo: la rueda de un auto pesado descansa sobre una p
 date: 2026-08-28T09:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "El gato hidráulico resbaló, y un auto de una tonelada y media quedó sobre Tony. Su madre salió de la cocina descalza, apoyó las dos manos sobre el metal frío – y lo levantó un milímetro. Una historia real."
+hook: "¿Qué puede levantar una persona cuando el peso es mayor que ella?"
 ---
 
 Un temblor corto en el aire, el metal gimiendo, el gato hidráulico resbalando sobre el asfalto, y el silencio cerrándose sobre el patio.

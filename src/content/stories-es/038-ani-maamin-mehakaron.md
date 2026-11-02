@@ -10,6 +10,7 @@ coverAlt: "Interior de un vagón de tren de madera de noche, iluminado por un fa
 date: 2026-08-26T09:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Una noche negra, un tren a toda marcha, vagones de madera cerrados, y nadie sabe hacia dónde. En un vagón está sentado Reb Azriel David Fastag, jasid de Modzitz, y empieza a entonar una melodía nueva para las palabras Aní Maamín."
+hook: "¿Qué canción se canta cuando no hay adónde huir?"
 ---
 
 Una noche negra.

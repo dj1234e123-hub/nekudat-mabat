@@ -11,6 +11,7 @@ coverAlt: "Una celda oscura, unas esposas rotas y una cadena partida en el suelo
 date: 2026-09-02T18:01:00Z
 readingTime: "unos 2 minutos"
 excerpt: "El hombre que asesinó a su hijo fue condenado a 25 años de cárcel. \"La que recibió cadena perpetua fui yo\", dijo Mary Johnson. Doce años después pidió verlo en la cárcel – y lo que pasó en esa sala no terminó ahí."
+hook: "¿Cómo se sale de una cárcel sin barrotes?"
 ---
 
 El hombre que asesinó a su hijo fue condenado a 25 años de cárcel. Pero Mary Johnson dijo: «La que recibió cadena perpetua fui yo.»

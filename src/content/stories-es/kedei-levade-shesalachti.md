@@ -9,6 +9,7 @@ coverAlt: "Compartimento de un tren antiguo a la luz del atardecer: un libro abi
 date: 2026-09-06T17:30:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Un joven le gritó todo el camino al anciano que iba sentado a su lado en el tren. En Vilna descubrió quién era. Pero la historia no terminó con el pedido de perdón – recién empezó ahí."
+hook: "¿Cómo se puede saber que de verdad perdonamos?"
 ---
 
 Un tren viaja a Vilna. En el vagón de fumadores va sentado un hombre mayor, vestido con sencillez, con un libro abierto en las manos. A su lado se sienta un joven.

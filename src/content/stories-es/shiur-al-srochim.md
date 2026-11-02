@@ -9,6 +9,7 @@ coverAlt: "Zapatos de niño viejos con los cordones sueltos sobre el piso de un 
 date: 2026-09-05T18:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Les enseñó a los niños cómo atarse los zapatos, y lo despidieron por eso. Veinte años después, alguien llamó a su puerta."
+hook: "¿Qué recuerda de verdad un niño de su maestro?"
 ---
 
 El rabino Meir Avtzon entró un día al aula, y les enseñó a los niños un detalle pequeño: cómo ponerse los zapatos.

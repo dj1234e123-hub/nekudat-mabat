@@ -11,6 +11,7 @@ coverAlt: "Un hacha clavada en un tronco cubierto de nieve, una cuerda enrollada
 date: 2026-12-31T00:00:00Z
 readingTime: "un minuto"
 excerpt: "Cada mañana, antes del amanecer, el Rebe de Nemirov desaparecía. Los jasidim sabían: subía al cielo. Un misnaged escéptico decidió comprobarlo por sí mismo – y se escondió bajo su cama."
+hook: "¿Adónde desaparece el Rebe cada mañana, antes del amanecer?"
 source: "Adaptación del cuento clásico de I. L. Peretz, \"Si no más arriba\" (1900). El \"rabino de Nemirov\" es un personaje literario; parte de la tradición lo identifica retrospectivamente con el rabino Moshe Leib de Sasov, aunque el propio Peretz escribió un relato, no un testimonio histórico."
 ---
 

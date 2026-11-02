@@ -11,7 +11,8 @@
     "sync:es-redirects": "node scripts/sync-es-redirects.mjs",
     "check:es-redirects": "node scripts/sync-es-redirects.mjs --check",
     "prebuild": "node scripts/check-dashes.mjs",
-    "check:dashes": "node scripts/check-dashes.mjs"
+    "check:dashes": "node scripts/check-dashes.mjs",
+    "check:themes": "node scripts/check-themes.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

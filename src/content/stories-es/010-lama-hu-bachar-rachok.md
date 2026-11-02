@@ -8,6 +8,7 @@ coverAlt: "Un hombre camina solo por un estacionamiento enorme y vacío a la luz
 date: 2026-08-17T09:00:00Z
 readingTime: "un minuto"
 excerpt: "Un estacionamiento vacío en Suecia, siete y media de la mañana, y miles de lugares libres. El vecino siempre estaciona lejos. Un día le pregunté por qué."
+hook: "¿Qué sabemos de quien siempre elige el lugar más lejano?"
 ---
 
 Empecé a trabajar en una fábrica en Suecia.

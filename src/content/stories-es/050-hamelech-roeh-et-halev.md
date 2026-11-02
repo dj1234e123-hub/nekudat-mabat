@@ -8,6 +8,7 @@ coverAlt: "Un jarrón de barro viejo y agrietado con dos asas, sobre una mesa de
 date: 2026-08-29T09:00:00Z
 readingTime: "un minuto y medio"
 excerpt: "Meir juntó moneda tras moneda para comprar un jarrón, y en el mercado quedaba solo uno viejo. El vecino se rió y le dijo que se lo regalara al rey – y él se lo tomó en serio."
+hook: "¿Cuánto vale un regalo comprado centavo a centavo?"
 ---
 
 Meir era pobre. Pero en su corazón vivía una esperanza. Pequeña, pero terca.

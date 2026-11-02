@@ -8,6 +8,7 @@ coverAlt: "Un hombre de abrigo, con una valija, de espaldas a la cámara sobre u
 date: 2026-08-18T09:00:00Z
 readingTime: "unos 90 segundos"
 excerpt: "El avión temblaba, olor a quemado en el aire, y un aterrizaje de emergencia. El profesor especialista en enfermedades raras no va a llegar a la conferencia que todos esperan. Alquila un auto y sigue solo, bajo la lluvia."
+hook: "¿Qué hacemos cuando el camino no llega adonde habíamos planeado?"
 ---
 
 El avión temblaba.

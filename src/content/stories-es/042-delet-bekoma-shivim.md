@@ -8,6 +8,7 @@ coverAlt: "Un hombre de traje sube por amplias escaleras de piedra hacia una tor
 date: 2026-08-27T09:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "El rey construyó un edificio de ciento cincuenta pisos, y les dio a cien ministros una sola hora para llegar a la cima. Hicieron la cuenta y vieron que era imposible. Y la cuenta estaba bien."
+hook: "¿Qué se puede hacer cuando la cuenta dice que es imposible?"
 ---
 
 El rey construyó un edificio inmenso. Ciento cincuenta pisos. Y una sola hora para llegar a la cima.

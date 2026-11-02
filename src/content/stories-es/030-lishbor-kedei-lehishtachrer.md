@@ -8,6 +8,7 @@ coverAlt: "Ilustración: un anciano envuelto en un manto, de pie en el salón de
 date: 2026-08-24T09:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "En el palacio custodiaban un antiguo jarrón de porcelana, y todo guardia que se equivocaba al limpiarlo no salía vivo de ahí. Hasta que llegó un anciano, levantó el jarrón – y lo rompió. Una parábola sobre lo que nos tiene atrapados en el miedo."
+hook: "¿Cómo se toca un jarrón al que todos le temen?"
 ---
 
 *Un grito* corto. Silencio.

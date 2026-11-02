@@ -10,6 +10,7 @@ coverAlt: "Vista a través de la ventana de un búnker de noche: cinco estelas d
 date: 2026-09-23T16:22:00Z
 readingTime: "unos 2 minutos"
 excerpt: "La noche en que la pantalla mostró cinco misiles rumbo a la Unión Soviética, el teniente coronel Stanislav Petrov tuvo unos minutos para decidir si creerle al sistema. Contó después: «Pensé que las probabilidades eran cincuenta-cincuenta»."
+hook: "¿Quién decide cuando hay unos minutos y la probabilidad es cincuenta-cincuenta?"
 ---
 
 El 26 de septiembre de 1983, poco después de la medianoche. En un búnker al sur de Moscú, el teniente coronel Stanislav Petrov está sentado frente a las pantallas.

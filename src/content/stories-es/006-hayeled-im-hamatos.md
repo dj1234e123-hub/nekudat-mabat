@@ -8,6 +8,7 @@ coverAlt: "Un maestro de espaldas a la cámara, con la mano en la frente, frente
 date: 2026-08-13T09:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Ningún maestro aceptaba entrar a esa aula. En la sala de profesores ya la llamaban campo de batalla. Entonces llegó un candidato nuevo a una clase de prueba, y un avión de papel le pegó en la mejilla."
+hook: "¿Quién entra a un aula a la que ningún maestro quiere entrar?"
 ---
 
 Ningún maestro aceptaba entrar a esa aula.

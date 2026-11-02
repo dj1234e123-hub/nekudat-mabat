@@ -8,6 +8,7 @@ coverAlt: "Un joven guerrero con mochila, parado al borde de un largo puente col
 date: 2026-08-22T09:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Frente a un puente colgante desvencijado, la cabeza ya alcanzó a estrellarse cien veces. El anciano de la aldea se detiene a su lado y le muestra que el miedo no está en el puente – sino en el intento de cruzarlo todo de una vez."
+hook: "¿Qué pasa cuando la cabeza ya se cayó cien veces?"
 ---
 
 Un joven guerrero estaba parado frente a un puente colgante. Viejo. Desvencijado.

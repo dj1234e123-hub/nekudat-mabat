@@ -7,6 +7,7 @@ cover: ../../assets/covers/tzaif-zahov-es.png
 coverAlt: "Andén de una estación de tren rodeado de cientos de pañuelos de seda dorados atados a postes de luz y columnas, con un cartel decorado que dice «Estación de amor – aquí se empieza de nuevo» sobre un muro de piedra, con luz dorada de atardecer"
 date: 2026-08-31T10:00:00Z
 excerpt: "Desde la cárcel le escribió a su madre una sola condición: si quiere que vuelva, que cuelgue en la estación un pañuelo dorado – o no vuelve jamás. Ahora el tren se acerca, y él no sabe qué lo espera al otro lado de la ventana."
+hook: "¿Qué se ve en la ventana cuando no estamos seguros de que alguien aún nos espera?"
 ---
 
 Iba sentado en el tren. El traqueteo de las ruedas sobre las vías, un silbido agudo que cortaba el silencio. Los pasajeros a mi alrededor, absortos en un diario, en el teléfono, o en sí mismos.

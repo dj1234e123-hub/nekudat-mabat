@@ -9,6 +9,7 @@ coverAlt: "Un viejo escritorio de aula en el gueto, un fajo de diplomas amarille
 date: 2026-09-07T19:30:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Al final del año escolar en el gueto de Varsovia, el director les deseó buenas vacaciones a los alumnos y les dijo: nos vemos el uno de septiembre. Pocas semanas después comenzó la gran deportación."
+hook: "¿Qué pasa con una promesa que nadie alcanzó a cumplir?"
 ---
 
 El gueto de Varsovia. Verano de 1942.
