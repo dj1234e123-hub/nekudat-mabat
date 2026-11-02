@@ -48,17 +48,13 @@ Hoy dan charlas juntos, viajan juntos y se ríen juntos. Quien los ve no imagina
 > Ella le pidió un papá.<br />
 > *Él eligió serlo.*
 
-Si te pasó a ti: lo que ocurrió no fue tu culpa, sin importar cuánto tiempo haya pasado ni si guardaste silencio. Callar no es debilidad. Fue una forma de protegerte.
+Si te pasó a ti: lo que ocurrió no fue tu culpa, y tampoco haber callado. Callar fue una forma de protegerte.
 
-No hay reloj. Puedes contarlo después de un mes o de veinte años, y el ritmo lo marca quien lo vivió, no quien escucha.
+No hay reloj. Puedes elegir cuándo contarlo, y a quién. Conviene alguien que escuche antes de ofrecer soluciones.
 
-Conviene elegir a alguien que escuche antes de ofrecer soluciones. Y si la primera reacción no fue buena, no es una sentencia. Pero no hay obligación de volver a quien sigue lastimándote.
+Y si el error fue de tus padres, repararlo es trabajo de ellos. No tuyo.
 
-Reparar la relación entre padres e hijos es trabajo de los padres: escuchar, responder sin ponerse a la defensiva y asumir su responsabilidad. No es una obligación tuya, y perdonar tampoco lo es.
-
-Para los padres: si un hijo o una hija les cuenta, sentirán el impulso de proteger y de vengarse. Es natural. Pero lo primero que necesita es que le crean, que le digan que hizo bien en contarlo y que no fue su culpa. No interrogar, ni preguntar «¿por qué no dijiste nada?».
-
-Después se puede preguntar qué necesita, y seguirlo. La rabia se puede descargar con un amigo o con un profesional, no con quien les contó. También ustedes pueden pedir ayuda.
+Para los padres: si un hijo o una hija les cuenta, sentirán el impulso de proteger y de vengarse. Es natural. Pero primero necesita que le crean, que le digan que hizo bien en contarlo y que no fue su culpa. No interrogar. Después, preguntar qué necesita y seguirlo.
 
 No hace falta atravesar esto en soledad.
 
