@@ -3,25 +3,25 @@ feeling: pain
 date: 2026-08-21
 title: Una ola que vuelve
 handle: |-
-  Cuando llegue una ola hoy,
-  se puede preguntar qué muestra.
+  Cuando llegue una ola hoy
+  se la puede dejar pasar.
 ---
-Pasan días,
+Pasan días
 y el dolor está callado.
-Y casi se cree
-que se **terminó**.
+Y casi creíste
+que se había **terminado**.
 
-Y entonces una palabra, un olor
+Y entonces una palabra, un olor,
 una canción en la radio.
 Y todo vuelve.
 Como si hubieras **retrocedido**.
 
 Pero la ola no mide
 cuánto avanzaste.
-Solo muestra
-que hay algo más **adentro**.
+Solo te recuerda
+cuánto **importaba**.
 
 ---
 
 No retrocediste.
-Algo en ti sigue vivo.
+Lo que importa vuelve de visita.
