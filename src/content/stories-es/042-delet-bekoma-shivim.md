@@ -3,8 +3,8 @@
 title: "Una puerta en el piso setenta"
 section: meshalim
 archiveId: "042"
-cover: ../../assets/covers/042.png
-coverAlt: "Un hombre de traje sube por amplias escaleras de piedra hacia una torre inmensa con los números de los pisos marcados hasta el 150, a la luz del amanecer entre nubes; a su izquierda, en la pared, una puerta de ascensor dorada, abierta e iluminada"
+cover: ../../assets/covers/delet-bekoma-shivim.jpg
+coverAlt: "Una escalera de hormigón antigua cuyos peldaños suben y se pierden en la bruma y, en la pared del rellano, una pequeña puerta de madera entreabierta de la que se derrama luz dorada"
 date: 2026-08-27T09:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "El rey construyó un edificio de ciento cincuenta pisos, y les dio a cien ministros una sola hora para llegar a la cima. Hicieron la cuenta y vieron que era imposible. Y la cuenta estaba bien."
