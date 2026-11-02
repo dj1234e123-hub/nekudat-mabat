@@ -3,8 +3,8 @@
 title: "Romper para liberarse"
 section: meshalim
 archiveId: "030"
-cover: ../../assets/covers/030.png
-coverAlt: "Ilustración: un anciano envuelto en un manto, de pie en el salón de un palacio, suelta de su mano un jarrón de porcelana que se hace añicos; los fragmentos caen al piso de piedra, y frente a él, a la luz del sol, el rey de pie en las escalinatas del trono entre guardias"
+cover: ../../assets/covers/lishbor-kedei-lehishtachrer.jpg
+coverAlt: "Un antiguo jarrón de porcelana con una fina grieta sobre una mesita dorada en un salón de palacio en penumbra, bajo un haz de luz dorada que entra por una ventana en arco; una pesada cortina verde a un lado"
 date: 2026-08-24T09:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "En el palacio custodiaban un antiguo jarrón de porcelana, y todo guardia que se equivocaba al limpiarlo no salía vivo de ahí. Hasta que llegó un anciano, levantó el jarrón – y lo rompió. Una parábola sobre lo que nos tiene atrapados en el miedo."
