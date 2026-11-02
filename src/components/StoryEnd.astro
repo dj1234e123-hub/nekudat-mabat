@@ -2,10 +2,11 @@
 // סוף הסיפור (שלב 5, 2026-11-02): "רוצה עוד?" – שלוש דרכים להמשיך, במקום כרטיס אחד.
 // 263 אנשים סיימו סיפור ב-14 יום, ורק 27 לחצו "הסיפור הבא". הקורא שסיים צריך לראות כמה
 // כיוונים ברורים, כל אחד עם שם, תמונה ושאלה:
-//   א. עוד מאותו עולם – הנקרא ביותר שטרם נקרא.
-//   ב. באותו נושא – הקרוב ביותר לפי תגיות (src/lib/related.ts), מוגרל בכל טעינה מבין שלושה.
-//   ג. רגע של נקודת מבט על זה – הגשר מהסיפורים לפינת הרגעים (אם יש חיבור אמיתי).
-// זיכרון קריאה בדפדפן בלבד (nm_read), כמו קודם. בלי JavaScript – הראשון בכל רשימה.
+//   א. עוד מאותו עולם – מוגרל בכל טעינה מבין עד שישה מהנקראים ביותר, בעדיפות לאלה שטרם נקראו.
+//   ב. באותו נושא – מוגרל בכל טעינה מבין עד שישה הקרובים ביותר לפי תגיות (src/lib/related.ts), בעדיפות לאלה שטרם נקראו.
+//   ג. רגע של נקודת מבט על זה – מוגרל בכל טעינה מבין שלושת רגעי המדף (אם יש חיבור אמיתי).
+// נבדק 2026-11-03: לפני התיקון הרגע והעולם היו זהים ב-12 מתוך 12 כניסות. הבדיקה: npm run check:rotation.
+// זיכרון קריאה בדפדפן בלבד (nm_read). בלי JavaScript – הראשון בכל רשימה.
 // המחלקה next-up נשמרת: Base מודד לפיה nextup_seen. אירועי המדידה: next_story (ב) · next_world (א) ·
 // next_moment (ג) – השניים הראשונים מקבילים לאירוע הישן, כך שההשוואה לפני/אחרי נשמרת.
 import { Image } from 'astro:assets';
@@ -29,11 +30,11 @@ interface Props {
   world: Story[];
   /** קרובים לפי תגיות (שלושה) */
   related: NextStory[];
-  moment: CollectionEntry<'moments'> | CollectionEntry<'momentsEs'> | null;
+  moments: (CollectionEntry<'moments'> | CollectionEntry<'momentsEs'>)[];
   worldLabel: string;
   lang?: Lang;
 }
-const { current, world, related, moment, worldLabel, lang = 'he' } = Astro.props;
+const { current, world, related, moments, worldLabel, lang = 'he' } = Astro.props;
 const es = lang === 'es';
 const t = es
   ? { title: '¿Quieres más?', sub: 'Tres formas de seguir desde aquí', world: `Más de ${worldLabel}`, moment: 'Un momento de Punto de Vista sobre esto', aria: 'Para seguir' }
@@ -55,23 +56,22 @@ const card = (story: Story, kicker: string, slot: string) => ({
 const worldCards = world.map((s) => card(s, t.world, 'world'));
 const relatedCards = related.map((r) => card(r.story, r.reason, 'theme'));
 
-const momentCard = moment
-  ? (() => {
-      const feeling = moment.data.feeling as FeelingSlug;
-      const group = groupOf(feeling);
-      return {
-        href: es ? `/es/momentos/${feeling}/${moment.id}/` : `/moments/${feeling}/${moment.id}/`,
-        title: parseMoment(moment.body ?? '', moment.data.title).title ?? moment.data.title,
-        feeling: es ? FEELING_LABELS_ES[feeling] : feelingLabel(feeling),
-        group: group ? (es ? GROUP_LABELS_ES[group.slug] : group.label) : '',
-        accent: group?.accent ?? 'var(--gold)',
-      };
-    })()
-  : null;
+const momentCards = moments.map((moment) => {
+  const feeling = moment.data.feeling as FeelingSlug;
+  const group = groupOf(feeling);
+  return {
+    id: moment.id,
+    href: es ? `/es/momentos/${feeling}/${moment.id}/` : `/moments/${feeling}/${moment.id}/`,
+    title: parseMoment(moment.body ?? '', moment.data.title).title ?? moment.data.title,
+    feeling: es ? FEELING_LABELS_ES[feeling] : feelingLabel(feeling),
+    group: group ? (es ? GROUP_LABELS_ES[group.slug] : group.label) : '',
+    accent: group?.accent ?? 'var(--gold)',
+  };
+});
 ---
 
 {
-  (worldCards.length > 0 || relatedCards.length > 0 || momentCard) && (
+  (worldCards.length > 0 || relatedCards.length > 0 || momentCards.length > 0) && (
     <aside class="next-up end" data-current={current} aria-label={t.aria}>
       <h2>{t.title}</h2>
       <p class="sb">{t.sub}</p>
@@ -103,16 +103,22 @@ const momentCard = moment
             </ul>
           ) : null
         )}
-        {momentCard && (
-          <a class="opt mo" href={momentCard.href} data-ph="next_moment" style={`--accent: ${momentCard.accent}`}>
-            <span class="tx">
-              <span class="k">{t.moment}</span>
-              <span class="t2 blue">{momentCard.title}</span>
-              <span class="mt">
-                {momentCard.group} · {momentCard.feeling}
-              </span>
-            </span>
-          </a>
+        {momentCards.length > 0 && (
+          <ul class="slot" data-slot="moment">
+            {momentCards.map((m, i) => (
+              <li data-story={m.id} hidden={i > 0}>
+                <a class="opt mo" href={m.href} data-ph="next_moment" style={`--accent: ${m.accent}`}>
+                  <span class="tx">
+                    <span class="k">{t.moment}</span>
+                    <span class="t2 blue">{m.title}</span>
+                    <span class="mt">
+                      {m.group} · {m.feeling}
+                    </span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
         )}
       </div>
     </aside>
@@ -121,8 +127,8 @@ const momentCard = moment
 
 <script>
   // זיכרון קריאה – בדפדפן של הקורא בלבד, בלי עוגיות ובלי זהות: רשימת מזהי הסיפורים שנקראו.
-  // ב: מוגרל אחד מבין אלה שטרם נקראו (כמו בעבר, "שתמיד יהיה מתחלף"). א: הראשון שטרם נקרא.
-  // שני הכיוונים לעולם לא מציעים את אותו סיפור.
+  // בכל טעינה מוגרל אחד מכל מקום: ב (נושא) ו-א (עולם) מבין אלה שטרם נקראו (ואם כולם נקראו – מכולם),
+  // והרגע מבין שלושת רגעי המדף. א לעולם לא מציע את אותו סיפור כמו ב.
   const KEY = 'nm_read';
   const root = document.querySelector<HTMLElement>('.next-up');
   if (root) {
@@ -134,12 +140,15 @@ const momentCard = moment
     }
     const items = (slot: string) => [...root.querySelectorAll<HTMLElement>(`[data-slot="${slot}"] li`)];
     const show = (list: HTMLElement[], pick: HTMLElement | undefined) => list.forEach((li) => (li.hidden = li !== pick));
+    const rand = <T,>(list: T[]): T | undefined => list[Math.floor(Math.random() * list.length)];
+    const prefer = (list: HTMLElement[]) => {
+      const unread = list.filter((li) => !read.includes(li.dataset.story!));
+      return unread.length > 0 ? unread : list;
+    };
     const theme = items('theme');
     let chosen: HTMLElement | undefined;
     if (theme.length > 1) {
-      const unread = theme.filter((li) => !read.includes(li.dataset.story!));
-      const pool = unread.length > 0 ? unread : theme;
-      chosen = pool[Math.floor(Math.random() * pool.length)];
+      chosen = rand(prefer(theme));
       show(theme, chosen);
     } else {
       chosen = theme[0];
@@ -147,9 +156,10 @@ const momentCard = moment
     const world = items('world');
     if (world.length > 1) {
       const free = world.filter((li) => li.dataset.story !== chosen?.dataset.story);
-      const unread = free.filter((li) => !read.includes(li.dataset.story!));
-      show(world, (unread.length > 0 ? unread : free)[0]);
+      show(world, rand(prefer(free.length > 0 ? free : world)));
     }
+    const moment = items('moment');
+    if (moment.length > 1) show(moment, rand(moment));
     // סיפור נחשב "נקרא" רק כשהקורא הגיע לסוף הגוף שלו (הנקודה שאחרי הטקסט) – לא כשהעמוד נפתח.
     // לפני 2026-11-02 הוא נרשם בעת הטעינה, ולכן סיפור שנפתח וננטש סומן כנקרא.
     const current = root.dataset.current!;
