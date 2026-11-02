@@ -22,8 +22,6 @@ import type { NextStory } from '../lib/related';
 import { esStoryPath } from '../data/es-slugs';
 import type { Lang } from '../data/story-ui';
 import Views from './Views.astro';
-import { getCollection } from 'astro:content';
-import { isPublished } from '../lib/published';
 
 type Story = CollectionEntry<'stories'> | CollectionEntry<'storiesEs'>;
 interface Props {
@@ -38,10 +36,9 @@ interface Props {
 }
 const { current, world, related, moments, worldLabel, lang = 'he' } = Astro.props;
 const es = lang === 'es';
-const total = (await getCollection(es ? 'storiesEs' : 'stories', isPublished)).length;
 const t = es
-  ? { title: '¿Quieres más?', sub: 'Tres formas de seguir desde aquí', world: `Más de ${worldLabel}`, moment: 'Un momento de Punto de Vista sobre esto', aria: 'Para seguir', all: `Ver las ${total} historias`, allHref: '/es/historias/' }
-  : { title: 'רוצה עוד?', sub: 'שלוש דרכים להמשיך מכאן', world: `עוד מ${worldLabel}`, moment: 'רגע של נקודת מבט על זה', aria: 'ההמשך', all: `לכל ${total} הסיפורים`, allHref: '/stories/' };
+  ? { title: '¿Quieres más?', sub: 'Formas de seguir desde aquí', world: `Más de ${worldLabel}`, moment: 'Un momento de Punto de Vista sobre esto', aria: 'Para seguir', all: 'Ver todas las historias', allHref: '/es/historias/' }
+  : { title: 'רוצה עוד?', sub: 'דרכים להמשיך מכאן', world: `עוד מ${worldLabel}`, moment: 'רגע של נקודת מבט על זה', aria: 'ההמשך', all: 'לכל הסיפורים', allHref: '/stories/' };
 
 const href = (id: string) => (es ? esStoryPath(id) : `/stories/${id}/`);
 const card = (story: Story, kicker: string, slot: string) => ({
