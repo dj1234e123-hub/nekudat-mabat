@@ -1,0 +1,158 @@
+---
+// כרטיס אנכי לרצועת גלילה אופקית (חדש / הכי נקראים): תמונה, כותרת, hook, עולם, וצפיות או "חדש".
+// כל הכרטיס הוא קישור אחד. rank – מספר דירוג על התמונה (ב"הכי נקראים").
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import { SECTIONS_META } from '../data/sections';
+import { SECTIONS_ES } from '../data/site-es';
+import { DEFAULT_COVERS } from '../data/default-covers';
+import { esStoryPath } from '../data/es-slugs';
+import { STORY_UI, type Lang } from '../data/story-ui';
+import { hookOf, isNew, relativeDate, viewsOf, showViews } from '../lib/story-meta';
+import Views from './Views.astro';
+
+interface Props {
+  story: CollectionEntry<'stories'> | CollectionEntry<'storiesEs'>;
+  lang?: Lang;
+  rank?: number;
+}
+const { story, lang = 'he', rank } = Astro.props;
+const es = lang === 'es';
+const { title, section, date } = story.data;
+const cover = story.data.cover ?? DEFAULT_COVERS[section];
+const href = es ? esStoryPath(story.id) : `/stories/${story.id}/`;
+const worldLabel = es ? SECTIONS_ES[section].label : SECTIONS_META[section].label;
+const hook = hookOf(story);
+const views = viewsOf(story.id);
+---
+
+<li class="tile">
+  <a href={href} data-story-id={story.id}>
+    <span class="im">
+      <Image src={cover} alt="" widths={[240, 480]} sizes="11rem" />
+      {rank != null && <span class="rk">{rank}</span>}
+    </span>
+    <span class="ti">{title}</span>
+    <span class:list={['hk', { q: hook.isHook }]}>{hook.text}</span>
+    <span class="mt">
+      <span class="w" style={`--accent: ${SECTIONS_META[section].accent}`}>{worldLabel}</span>
+      <span class="r">
+        {
+          rank != null && showViews(views) ? (
+            <Views count={views} {lang} />
+          ) : isNew(date) ? (
+            <span class="nw">{STORY_UI[lang].isNew}</span>
+          ) : (
+            <span class="ago">{relativeDate(date, lang)}</span>
+          )
+        }
+        <span class="rd" data-read-badge hidden>{STORY_UI[lang].read}</span>
+      </span>
+    </span>
+  </a>
+</li>
+
+<style>
+  .tile {
+    flex: 0 0 10.8rem;
+    scroll-snap-align: start;
+    list-style: none;
+  }
+  @media (min-width: 52rem) {
+    .tile {
+      flex-basis: 15.4rem;
+    }
+  }
+  a {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
+  .im {
+    position: relative;
+    display: block;
+    line-height: 0;
+  }
+  .im :global(img) {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 0.75rem;
+    background: var(--line);
+  }
+  .rk {
+    position: absolute;
+    top: 0.5rem;
+    inset-inline-start: 0.5rem;
+    min-width: 1.8rem;
+    height: 1.8rem;
+    display: grid;
+    place-items: center;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1;
+    border-radius: 999px;
+  }
+  .ti {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.08rem;
+    line-height: 1.28;
+    margin: 0.5rem 0 0.2rem;
+  }
+  a:hover .ti,
+  a:focus-visible .ti {
+    color: var(--teal);
+  }
+  .hk {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 0.8rem;
+    line-height: 1.45;
+    color: var(--secondary);
+  }
+  .hk.q {
+    color: var(--blue);
+  }
+  .mt {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.15rem 0.5rem;
+    margin-top: 0.4rem;
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+  .w::before {
+    content: '';
+    display: inline-block;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-inline-end: 0.3rem;
+  }
+  .r {
+    display: inline-flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .nw {
+    background: var(--gold);
+    color: var(--ink);
+    font-size: 0.68rem;
+    font-weight: 700;
+    border-radius: 0.25rem;
+    padding: 0 0.45rem;
+  }
+  .rd {
+    color: var(--teal);
+    font-weight: 600;
+  }
+</style>

@@ -1,0 +1,46 @@
+---
+// מספר צפיות באותיות קטנות, עם עין. מוצג רק מ-VIEWS_MIN ומעלה (src/lib/story-meta.ts);
+// מתחת לזה הרכיב אינו מצייר כלום, כדי שאין "3 צפיות" שמרחיק.
+import { formatViews, showViews } from '../lib/story-meta';
+import { STORY_UI, type Lang } from '../data/story-ui';
+
+interface Props {
+  count: number;
+  lang?: Lang;
+}
+const { count, lang = 'he' } = Astro.props;
+---
+
+{
+  showViews(count) && (
+    <span class="views">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z" />
+        <circle cx="12" cy="12" r="3" />
+      </svg>
+      <b>{formatViews(count)}</b> {STORY_UI[lang].views}
+    </span>
+  )
+}
+
+<style>
+  .views {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.76rem;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .views svg {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.7;
+  }
+  .views b {
+    font-weight: 600;
+    color: var(--secondary);
+  }
+</style>

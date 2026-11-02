@@ -1,0 +1,80 @@
+---
+// תצוגה מקדימה זמנית לרכיבי שלב 3 – לא מקושרת, noindex, והיא נמחקת בשלב 4 כשעמוד הסיפורים האמיתי נבנה.
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import StoryTile from '../../components/StoryTile.astro';
+import BigTile from '../../components/BigTile.astro';
+import StorySearch from '../../components/StorySearch.astro';
+import StoryBrowser from '../../components/StoryBrowser.astro';
+import { SECTIONS_META, SECTION_SLUGS } from '../../data/sections';
+import { SECTION_GATE_IMAGES } from '../../data/section-gate-images';
+import { THEMES, themesOf } from '../../data/themes.mjs';
+import { newestFirst } from '../../lib/sort';
+import { isPublished } from '../../lib/published';
+import { viewsOf } from '../../lib/story-meta';
+
+const stories = (await getCollection('stories', isPublished)).sort(newestFirst);
+const top = [...stories].sort((a, b) => viewsOf(b.id) - viewsOf(a.id)).slice(0, 8);
+const entries = stories.map((story) => ({
+  story,
+  themes: themesOf(story.data.tags ?? []).map((t: { slug: string }) => t.slug),
+  searchExtra: (story.data.tags ?? []).join(' '),
+}));
+const worldCount = (slug: string) => stories.filter((s) => s.data.section === slug).length;
+const themeCount = (slug: string) => entries.filter((e) => e.themes.includes(slug)).length;
+const labels = {
+  worlds: Object.fromEntries(SECTION_SLUGS.map((s) => [s, SECTIONS_META[s].label])),
+  themes: Object.fromEntries(THEMES.map((t: { slug: string; label: string }) => [t.slug, t.label])),
+};
+// תמונת קובייה לנושא: הסיפור הנקרא ביותר בנושא שטרם שימש תמונה לנושא אחר
+const used = new Set<string>();
+const themeTiles = THEMES.map((t: { slug: string; label: string }) => {
+  const inTheme = entries.filter((e) => e.themes.includes(t.slug)).map((e) => e.story).sort((a, b) => viewsOf(b.id) - viewsOf(a.id));
+  const pick = inTheme.find((s) => !used.has(s.id)) ?? inTheme[0];
+  used.add(pick.id);
+  return { ...t, cover: pick.data.cover };
+});
+---
+
+<Base title="תצוגה מקדימה · סיפורים" noindex={true}>
+  <main>
+    <h1 class="page-title">סיפורים</h1>
+    <StorySearch />
+    <h2>הכי נקראים</h2>
+    <ul class="rail">{top.map((s, i) => <StoryTile story={s} rank={i + 1} />)}</ul>
+    <h2>חדש</h2>
+    <ul class="rail">{stories.slice(0, 8).map((s) => <StoryTile story={s} />)}</ul>
+    <h2>ארבעה עולמות</h2>
+    <div class="grid4">
+      {
+        SECTION_SLUGS.filter((s) => SECTION_GATE_IMAGES[s]).map((slug) => (
+          <BigTile
+            image={SECTION_GATE_IMAGES[slug]!.image}
+            position={SECTION_GATE_IMAGES[slug]!.position}
+            label={SECTIONS_META[slug].label}
+            count={worldCount(slug)}
+            line={SECTIONS_META[slug].line}
+            accent={SECTIONS_META[slug].accent}
+            href={`/sections/${slug}/`}
+            filterWorld={slug}
+          />
+        ))
+      }
+    </div>
+    <h2>לפי נושא</h2>
+    <div class="grid4 grid3">
+      {themeTiles.map((t) => t.cover && <BigTile image={t.cover} label={t.label} count={themeCount(t.slug)} accent="var(--gold)" href="#archive" filterTheme={t.slug} />)}
+    </div>
+    <h2>כל הסיפורים</h2>
+    <StoryBrowser entries={entries} labels={labels} />
+  </main>
+</Base>
+
+<style>
+  h2 { font-size: 1.45rem; margin: 2rem 0 0.8rem; }
+  .rail { display: flex; gap: 0.9rem; overflow-x: auto; list-style: none; padding: 0 0 0.6rem; margin: 0; scroll-snap-type: x proximity; }
+  .grid4 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+  /* מספר אי-זוגי של קוביות: האחרונה נמתחת לרוחב מלא בטלפון, ולא נשארת לבדה */
+  .grid4 > :global(:last-child:nth-child(odd)) { grid-column: 1 / -1; aspect-ratio: 2 / 1; }
+  @media (min-width: 52rem) { .grid4 { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.1rem; } .grid4 > :global(:last-child:nth-child(odd)) { grid-column: auto; aspect-ratio: auto; } .grid3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+</style>

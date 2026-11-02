@@ -1,0 +1,298 @@
+---
+// ארכיון הסיפורים: סרגל סינון דביק (מיון, "קצרים", סינון פעיל), ספירה, רשימה ו"עוד".
+// התנהגות לקוחית, עם נפילה יפה: בלי JavaScript כל השורות מוצגות (הסתר מוחל רק על ידי הסקריפט).
+// 300 סיפורים נטענים יחד – בלי בקשת רשת נוספת – והסינון הוא על תכונות data-* בשורות עצמן.
+//
+// מצב הסינון חי גם ב-hash, כדי שאפשר לשתף קבוצה שלמה בהודעה: #world=chaim · #theme=hope.
+// מדידה: stories_filter / stories_sort / stories_more, דרך window.nmTrack (בלי תוכן הקלדה).
+import type { CollectionEntry } from 'astro:content';
+import { STORY_UI, type Lang } from '../data/story-ui';
+import StoryRow from './StoryRow.astro';
+
+interface Props {
+  entries: {
+    story: CollectionEntry<'stories'> | CollectionEntry<'storiesEs'>;
+    themes: string[];
+    searchExtra?: string;
+  }[];
+  lang?: Lang;
+  /** תוויות לצ'יפים של סינון פעיל */
+  labels: { worlds: Record<string, string>; themes: Record<string, string> };
+}
+const { entries, lang = 'he', labels } = Astro.props;
+const ui = STORY_UI[lang];
+const FIRST = 8;
+---
+
+<section
+  class="browser"
+  id="archive"
+  data-story-browser
+  data-first={FIRST}
+  data-labels={JSON.stringify(labels)}
+  data-text={JSON.stringify({
+    one: ui.stories(1),
+    remove: ui.remove,
+    empty: ui.empty,
+  })}
+>
+  <div class="tool" data-needs-js hidden>
+    <select class="sel" data-sort aria-label={ui.sortLabel}>
+      <option value="new">{ui.sortNew}</option>
+      <option value="top">{ui.sortTop}</option>
+    </select>
+    <button type="button" class="chip" data-short aria-pressed="false">{ui.short}</button>
+    <span class="active" data-active></span>
+  </div>
+  <p class="cnt" data-count>{ui.stories(entries.length)}</p>
+  <ul class="list" data-list>
+    {entries.map((e) => <StoryRow story={e.story} {lang} themes={e.themes} searchExtra={e.searchExtra} />)}
+  </ul>
+  <p class="empty" data-empty hidden>{ui.empty}</p>
+  <button type="button" class="more" data-more hidden></button>
+</section>
+
+<script>
+  import type { Lang } from '../data/story-ui';
+
+  const root = document.querySelector<HTMLElement>('[data-story-browser]');
+  if (root) {
+    document.querySelectorAll<HTMLElement>('[data-needs-js]').forEach((el) => (el.hidden = false));
+    const lang = (document.documentElement.lang === 'es' ? 'es' : 'he') as Lang;
+    const FIRST = Number(root.dataset.first);
+    const labels = JSON.parse(root.dataset.labels ?? '{}') as { worlds: Record<string, string>; themes: Record<string, string> };
+    const text = JSON.parse(root.dataset.text ?? '{}') as { remove: string };
+    const rows = [...root.querySelectorAll<HTMLElement>('[data-row]')];
+    const list = root.querySelector<HTMLElement>('[data-list]')!;
+    const countEl = root.querySelector<HTMLElement>('[data-count]')!;
+    const emptyEl = root.querySelector<HTMLElement>('[data-empty]')!;
+    const moreBtn = root.querySelector<HTMLButtonElement>('[data-more]')!;
+    const sortSel = root.querySelector<HTMLSelectElement>('[data-sort]')!;
+    const shortBtn = root.querySelector<HTMLButtonElement>('[data-short]')!;
+    const activeEl = root.querySelector<HTMLElement>('[data-active]')!;
+    const searchBoxes = [...document.querySelectorAll<HTMLInputElement>('[data-story-q]')];
+
+    const st = { q: '', world: '', theme: '', sort: 'new', short: false, n: FIRST };
+    const track = (name: string, props?: Record<string, unknown>) => (window as any).nmTrack?.(name, props);
+    const stories = (n: number) =>
+      lang === 'es' ? (n === 1 ? 'una historia' : `${n} historias`) : n === 1 ? 'סיפור אחד' : `${n} סיפורים`;
+    const moreText = (show: number, left: number) =>
+      lang === 'es' ? `${show} historias más · quedan ${left}` : `עוד ${show} סיפורים · נשארו ${left}`;
+
+    // ── זיכרון קריאה (אותו מפתח כמו NextUp: nm_read, בדפדפן בלבד) ──
+    try {
+      const read: string[] = JSON.parse(localStorage.getItem('nm_read') ?? '[]');
+      document.querySelectorAll<HTMLElement>('[data-story-id]').forEach((a) => {
+        if (read.includes(a.dataset.storyId!)) a.querySelector<HTMLElement>('[data-read-badge]')?.removeAttribute('hidden');
+      });
+    } catch {}
+
+    // ── hash <-> מצב ──
+    const readHash = () => {
+      const p = new URLSearchParams(location.hash.slice(1));
+      st.world = p.get('world') ?? '';
+      st.theme = p.get('theme') ?? '';
+    };
+    const writeHash = () => {
+      const p = new URLSearchParams();
+      if (st.world) p.set('world', st.world);
+      if (st.theme) p.set('theme', st.theme);
+      const h = p.toString();
+      history.replaceState(null, '', h ? `#${h}` : location.pathname + location.search);
+    };
+
+    const matches = (r: HTMLElement) => {
+      if (st.world && r.dataset.world !== st.world) return false;
+      if (st.theme && !(r.dataset.themes ?? '').split(' ').includes(st.theme)) return false;
+      if (st.short && Number(r.dataset.mins) > 2) return false;
+      if (st.q && !(r.dataset.search ?? '').includes(st.q)) return false;
+      return true;
+    };
+
+    const byDate = (a: HTMLElement, b: HTMLElement) =>
+      (b.dataset.date ?? '').localeCompare(a.dataset.date ?? '') || (b.dataset.id ?? '').localeCompare(a.dataset.id ?? '');
+    const byViews = (a: HTMLElement, b: HTMLElement) => Number(b.dataset.views) - Number(a.dataset.views) || byDate(a, b);
+
+    function apply() {
+      const shown = rows.filter(matches).sort(st.sort === 'top' ? byViews : byDate);
+      shown.forEach((r) => list.appendChild(r));
+      rows.forEach((r) => (r.hidden = true));
+      shown.slice(0, st.n).forEach((r) => (r.hidden = false));
+      countEl.textContent = stories(shown.length);
+      emptyEl.hidden = shown.length > 0;
+      const left = shown.length - st.n;
+      moreBtn.hidden = left <= 0;
+      if (left > 0) moreBtn.textContent = moreText(Math.min(FIRST, left), left);
+      // צ'יפים של סינון פעיל, כל אחד מסיר את עצמו
+      activeEl.textContent = '';
+      const chip = (label: string, kind: string) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'chip act';
+        b.dataset.remove = kind;
+        b.setAttribute('aria-label', `${text.remove}: ${label}`);
+        b.textContent = `${label} ✕`;
+        activeEl.appendChild(b);
+      };
+      if (st.world) chip(labels.worlds[st.world] ?? st.world, 'world');
+      if (st.theme) chip(labels.themes[st.theme] ?? st.theme, 'theme');
+      if (st.q) chip(`"${st.q}"`, 'q');
+      shortBtn.setAttribute('aria-pressed', String(st.short));
+      sortSel.value = st.sort;
+    }
+
+    const toArchive = () =>
+      root.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+
+    document.addEventListener('click', (e) => {
+      const t = e.target as Element;
+      const w = t.closest<HTMLElement>('[data-filter-world]');
+      const th = t.closest<HTMLElement>('[data-filter-theme]');
+      const rm = t.closest<HTMLElement>('[data-remove]');
+      if (w) {
+        e.preventDefault();
+        st.world = st.world === w.dataset.filterWorld ? '' : w.dataset.filterWorld!;
+        st.n = FIRST;
+        track('stories_filter', { kind: 'world', value: st.world || 'none' });
+        writeHash();
+        apply();
+        toArchive();
+      } else if (th) {
+        e.preventDefault();
+        st.theme = st.theme === th.dataset.filterTheme ? '' : th.dataset.filterTheme!;
+        st.n = FIRST;
+        track('stories_filter', { kind: 'theme', value: st.theme || 'none' });
+        writeHash();
+        apply();
+        toArchive();
+      } else if (rm) {
+        const k = rm.dataset.remove;
+        if (k === 'world') st.world = '';
+        if (k === 'theme') st.theme = '';
+        if (k === 'q') {
+          st.q = '';
+          searchBoxes.forEach((b) => (b.value = ''));
+        }
+        st.n = FIRST;
+        writeHash();
+        apply();
+      } else if (t.closest('[data-more]')) {
+        st.n += FIRST;
+        track('stories_more');
+        apply();
+      } else if (t.closest('[data-short]')) {
+        st.short = !st.short;
+        st.n = FIRST;
+        apply();
+      }
+    });
+    sortSel.addEventListener('change', () => {
+      st.sort = sortSel.value;
+      st.n = FIRST;
+      track('stories_sort', { value: st.sort });
+      apply();
+    });
+    searchBoxes.forEach((box) =>
+      box.addEventListener('input', () => {
+        st.q = box.value.trim();
+        searchBoxes.forEach((b) => b !== box && (b.value = box.value));
+        st.n = FIRST;
+        apply();
+      })
+    );
+    window.addEventListener('hashchange', () => {
+      readHash();
+      apply();
+    });
+
+    readHash();
+    apply();
+    if (st.world || st.theme) toArchive();
+  }
+</script>
+
+<style>
+  .browser {
+    scroll-margin-top: 0.5rem;
+  }
+  .tool {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0.6rem 0;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+  }
+  .tool[hidden] {
+    display: none;
+  }
+  .sel,
+  .chip {
+    font: inherit;
+    font-size: 0.84rem;
+    min-height: 40px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--ink);
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+  }
+  .sel {
+    background: #fff;
+  }
+  .chip[aria-pressed='true'] {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+  .active {
+    display: contents;
+  }
+  .active :global(.chip.act) {
+    background: var(--surface);
+    border-color: var(--gold);
+  }
+  .cnt {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin: 0.7rem 0 0;
+  }
+  .list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  @media (min-width: 52rem) {
+    .list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 2.5rem;
+    }
+  }
+  .empty {
+    text-align: center;
+    color: var(--muted);
+    padding: 2rem 0;
+  }
+  .more {
+    display: block;
+    margin: 1.25rem auto 0;
+    font: inherit;
+    font-weight: 600;
+    color: var(--teal);
+    background: none;
+    border: 1.5px solid var(--teal);
+    border-radius: 999px;
+    padding: 0.7rem 1.8rem;
+    min-height: 46px;
+    cursor: pointer;
+  }
+  .more[hidden] {
+    display: none;
+  }
+</style>
