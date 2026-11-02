@@ -37,7 +37,7 @@ Por dentro, el cuerpo empujaba a acercarse. A ganar el lugar. A entrar rápido.
 
 Pero seguí caminando. Un paso más. Y otro.
 
-El estacionamiento era el mismo. Pero algo en mí se calmó.
+> El estacionamiento era el mismo. Pero algo en mí se calmó.
 
 Terminé un poco más lejos de la puerta – y algo mío *se quedó ahí.*
 

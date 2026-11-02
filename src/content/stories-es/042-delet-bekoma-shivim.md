@@ -51,11 +51,9 @@ Entró. Y en un instante llegó a la cima.
 
 El rey sonrió y dijo:
 
-—Todos ustedes tenían razón. Ningún hombre puede subir ciento cincuenta pisos en una hora.
-
-Pero yo no les pedí hacer lo imposible.
-
-Les pedí llegar hasta el lugar donde el camino *se abre solo.*
+> —Todos ustedes tenían razón. Ningún hombre puede subir ciento cincuenta pisos en una hora.<br />
+> Pero yo no les pedí hacer lo imposible.<br />
+> Les pedí llegar hasta el lugar donde el camino *se abre solo.*
 
 Los ministros hicieron la cuenta desde abajo. Y la cuenta estaba bien.<br />
 Solo que contaba únicamente lo que tenían en las manos: cuánta fuerza, cuánto tiempo, cuántos pisos.<br />

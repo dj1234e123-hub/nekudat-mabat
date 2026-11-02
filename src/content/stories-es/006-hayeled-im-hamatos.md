@@ -75,7 +75,7 @@ Y entonces el director sonrió.
 
 Cuando salió, les dio las gracias a todos los alumnos. Pero un gracias especial – al chico que le había tirado el avión.
 
-Desde entonces, nunca más volvió a mirar igual un avión de papel.
+> Desde entonces, nunca más volvió a mirar igual un avión de papel.
 
 El momento más importante de esta historia pasó sin palabras: el segundo en que su cuerpo ya iba camino a gritar, y se detuvo.
 

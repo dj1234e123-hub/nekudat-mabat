@@ -51,9 +51,8 @@ Dos meses después falleció. En el certificado de defunción dice: Thomas Rande
 
 En Cleveland, el expediente sigue abierto. Después de cincuenta y dos años, nadie lo encontró.
 
-Pero Thomas ya no esperaba que lo encontraran.
-
-*Se atrapó a sí mismo.*
+> Pero Thomas ya no esperaba que lo encontraran.<br />
+> *Se atrapó a sí mismo.*
 
 Durante cincuenta y dos años nadie lo encontró. Pero tampoco era libre.<br />
 Se escondía de la policía, y también de la mujer que dormía a su lado, y de la hija a la que alentaba en cada partido.

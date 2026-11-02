@@ -99,7 +99,7 @@ En unas semanas, cerró todas las deudas.
 
 Cuando volvió al rabino a agradecerle, Rabí Jizkiá sonrió.
 
-—Tu sustento no volvió el día que vendiste. Volvió el día que dejaste de *hablarte* como un hombre *roto.*
+> —Tu sustento no volvió el día que vendiste. Volvió el día que dejaste de *hablarte* como un hombre *roto.*
 
 Cuando todo se cae, la cabeza hace una lista de lo que no hay: no hay mercadería. No hay dinero. No hay con qué empezar. Esa lista es verdadera, y también es lo único que se ve.
 

@@ -81,7 +81,7 @@ La mira. Otro momento. Como comprobando que esto está pasando de verdad.
 
 Y dice:
 
-—Parece *que ya llegó.*
+> —Parece *que ya llegó.*
 
 Todo el camino estuvo seguro de que se estaba perdiendo lo importante.
 

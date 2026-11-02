@@ -63,7 +63,7 @@ Cada una de esas estampillas era un momento en el que el rabino se había deteni
 
 Un hombre a cuya puerta golpeaba todo el pueblo de Israel – encontró tiempo para golpear a la puerta de *un solo niño.* Guardarle estampillas. Y tomarse el trabajo de traérselas hasta la casa.
 
-Sobre la mesa quedó un sobre lleno de estampillas.
+> Sobre la mesa quedó un sobre lleno de estampillas.
 
 Y la madre no podía dejar de mirarlo. Incluso después de que el rabino ya se había ido.
 

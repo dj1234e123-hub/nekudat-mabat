@@ -43,9 +43,8 @@ Para mí eran 220 shékels. Una línea en la billetera, una cuenta del supermerc
 
 Para ella eran papeles de colores, materia prima para alegrar a papá.
 
-No rompió dinero.
-
-Armó *un corazón.*
+> No rompió dinero.<br />
+> Armó *un corazón.*
 
 Mi mano ya casi se levantaba. Un segundo más, y le habría enseñado que el dinero no se corta.<br />
 Y ella habría aprendido algo muy distinto: que cuando intentas alegrar a papá, te gritan.

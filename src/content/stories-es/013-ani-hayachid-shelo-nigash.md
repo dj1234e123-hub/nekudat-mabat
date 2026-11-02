@@ -70,7 +70,7 @@ Y entonces me miró a mí.
 
 —Tú te esforzaste tres veces.
 
-Metió la mano en el tazón, y me dio *tres caramelos.*
+> Metió la mano en el tazón, y me dio *tres caramelos.*
 
 Casi siempre nos medimos como en un examen: supe o no supe. Me salió o fracasé.
 

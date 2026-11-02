@@ -57,7 +57,7 @@ El vecino se quedó atónito.
 
 Y entonces entendió.
 
-El rey no vio el jarrón. Vio *el corazón.*
+> El rey no vio el jarrón. Vio *el corazón.*
 
 Meir vino *a dar.* El vecino vino *a recibir.*
 

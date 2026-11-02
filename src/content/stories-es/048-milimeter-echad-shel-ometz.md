@@ -61,7 +61,7 @@ A la noche, después de que los médicos dijeron que estaba vivo, le preguntaron
 
 Miró sus manos enrojecidas, y dijo en voz baja:
 
-—No lo sé. Solo *recé,* y no estaba dispuesta a dejarlo *debajo del auto.*
+> —No lo sé. Solo *recé,* y no estaba dispuesta a dejarlo *debajo del auto.*
 
 La ciencia lo llamará adrenalina. Ella lo llamó oración.<br />
 Pero lo que me quedó es el segundo de antes.
