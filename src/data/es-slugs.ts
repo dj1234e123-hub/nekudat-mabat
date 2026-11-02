@@ -60,6 +60,7 @@ export const ES_STORY_SLUGS: Record<string, string> = {
   'hatur-hasheni': 'la-segunda-fila',
   'im-lo-lemala-mize': 'si-no-mas-arriba',
   'rak-lelayla-echad': 'solo-por-una-noche',
+  'shtei-kasetot': 'dos-casetes-de-noventa-minutos',
   'im-tisrod': 'si-sobrevives',
   'kedei-levade-shesalachti': 'para-estar-seguro-de-que-perdone',
   'lama-korim-li-efraim': 'por-que-me-llamo-efraim',
