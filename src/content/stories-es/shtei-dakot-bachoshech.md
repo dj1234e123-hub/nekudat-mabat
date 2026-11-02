@@ -3,8 +3,8 @@
 title: "Dos minutos a oscuras"
 section: meshalim
 archiveId: "040"
-cover: ../../assets/covers/040.png
-coverAlt: "Las vías de un tren fantasma a oscuras, luz roja al fondo del túnel, trapos morados colgando del techo y, en el piso, una kipá negra iluminada por el haz de una linterna"
+cover: ../../assets/covers/shtei-dakot-bachoshech.jpg
+coverAlt: "Una kipá negra sobre el riel gastado de un túnel de tren fantasma, iluminada por el haz dorado de una linterna; al fondo un fantasma de goma sobre un resorte oxidado, trapos morados descoloridos colgando del techo y dos luces rojas tenues"
 date: 2026-10-20T17:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Cuatro amigos entraron al tren fantasma y salieron temblando. Uno de ellos se olvidó la kipá adentro, y le dieron dos minutos y una linterna."
