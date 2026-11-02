@@ -3,8 +3,8 @@
 title: "Por qué estacionaba lejos"
 section: yoman
 archiveId: "010"
-cover: ../../assets/covers/010.png
-coverAlt: "Un hombre camina solo por un estacionamiento enorme y vacío a la luz del amanecer; el asfalto mojado refleja la luz, hileras de lugares vacíos marcados con líneas blancas, y un solo auto estacionado lejos, a un costado"
+cover: ../../assets/covers/lama-hu-bachar-rachok.jpg
+coverAlt: "Un enorme aparcamiento vacío al amanecer, filas de plazas libres sobre asfalto húmedo, una fábrica larga al fondo y un único coche turquesa aparcado lejos"
 date: 2026-08-17T09:00:00Z
 readingTime: "un minuto"
 excerpt: "Un estacionamiento vacío en Suecia, siete y media de la mañana, y miles de lugares libres. El vecino siempre estaciona lejos. Un día le pregunté por qué."
