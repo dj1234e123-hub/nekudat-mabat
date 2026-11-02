@@ -1,27 +1,30 @@
 ---
-// עמוד מי אני בספרדית – אותו מכתב אישי כמו בעברית (שלב 4.22): דף מכתב,
-// חותם זהב, חשיפה הדרגתית (השם והתמונה מגיעים רק ב"מי עומד מאחורי"),
-// נשימת קריאה בגלילה, חתימה בסוף.
+// עמוד מי אני בספרדית – אותו מבנה כמו העברי (שלב 4.105): תמונה אחת, שם ושורת
+// זהות, ארבעה בלוקים קצרים, פעולה אחת, "Creo en ti,", גבולות. בלי מכתב ובלי כתב יד.
 //
-// שתי התאמות מחויבות מהחלטות מתועדות:
-//   1. **אין הזמנה לשיחה אישית** – בעל הפרויקט אינו מאמן בספרדית, והזמנה
-//      שאי אפשר לקיים מייצרת רושם של מי שלא עונה. במקום הנ.ב. עם הכפתור –
-//      פסקת ההסבר על האזור הספרדי, והפעולה היא הרגעים.
-//   2. **אין כרטיס קבוצת וואטסאפ** – הקבוצה עברית.
-// החתימה נשארת "אפרים" בעברית: פונט החתימה מכיל אותיות עבריות בלבד,
-// וחתימה היא סימן של יד – האיש כותב בעברית, וזה בדיוק מה שהמכתב מספר.
+// שתי התאמות מחויבות מהחלטות מתועדות, כמו קודם:
+//   1. אין הזמנה לשיחה אישית – בעל הפרויקט אינו מאמן בספרדית, והזמנה שאי אפשר
+//      לקיים מייצרת רושם של מי שלא עונה. הפעולה היא הרגעים, והעמוד אומר במפורש
+//      שהליווי בעברית.
+//   2. כרטיס ההצטרפות הוא של הקבוצה הספרדית (JoinGroup במצב es).
 import { Image, getImage } from 'astro:assets';
+import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { SITE_ES } from '../../data/site-es';
-import portrait from '../../assets/efraim.jpg';
+import portrait from '../../assets/efraim-mic.jpg';
 import JoinGroup from '../../components/JoinGroup.astro';
+import { isPublished } from '../../lib/published';
+import { esStoryPath } from '../../data/es-slugs';
 
 // תמונת השיתוף היא הפנים ולא הלוגו – כמו בעברית.
-const portraitOg = await getImage({ src: portrait, width: 640, format: 'jpeg' });
+const portraitOg = await getImage({ src: portrait, width: 1080, format: 'jpeg' });
 const ogImage = new URL(portraitOg.src, Astro.site).href;
 
+const stories = await getCollection('storiesEs', isPublished);
+const storyUrls = stories.map((s) => esStoryPath(s.id));
+
 const DESCRIPTION =
-  'La carta personal de Efraim Atia: el camino que recorrí, cómo nació Punto de Vista, y por qué justamente historias.';
+  'Efraim Atia: escribo historias y acompaño a muchachos. Quién soy, cómo trabajo y por dónde empezar.';
 ---
 
 <Base
@@ -34,394 +37,195 @@ const DESCRIPTION =
   altLangHref="/about/"
 >
   <main>
-    <article class="letter">
-      <div class="letter-head">
-        <span class="seal" aria-hidden="true"></span>
-        <h1>Quién soy</h1>
-      </div>
+    <article class="about">
+      <h1 class="visually-hidden">Quién soy</h1>
 
-      <div class="about-body">
-        <div class="opening">
-          <p>
-            Hay cosas que uno atraviesa en la vida,<br />
-            y aun cuando el tiempo pasa, algo de ellas queda.
-          </p>
-          <p>
-            Hay cosas que la gente no ve.<br />
-            Cosas con las que uno aprende a vivir,<br />
-            aun cuando se quedan adentro.
-          </p>
-          <p>
-            No escribo estas cosas solo desde lo que estudié.<br />
-            Las escribo también desde mi propio camino.
-          </p>
-        </div>
+      <Image
+        class="portrait"
+        src={portrait}
+        alt="Efraim Atia hablando por un micrófono"
+        widths={[360, 540, 720]}
+        sizes="(min-width: 40rem) 30rem, 90vw"
+        loading="eager"
+      />
 
-        <p>Yo tampoco crecí desde un camino simple.</p>
-        <p>Pasé en la vida por crisis y heridas que dejaron en mí una marca profunda.</p>
-        <p>
-          Hubo épocas en las que intenté entenderme,<br />
-          entender lo que había pasado,<br />
-          y encontrar una forma de seguir.
-        </p>
-        <p>
-          No siempre tuve respuestas.<br />
-          Y no siempre supe cómo se sigue.
-        </p>
-        <p>Pero a lo largo del camino empecé a descubrir algo.</p>
-        <p>No siempre se puede cambiar lo que nos pasó.</p>
-        <p>Pero se puede, con el tiempo, intentar entender de nuevo cómo se vive con lo que pasó.</p>
-        <p>
-          No para borrar el dolor.<br />
-          Ni para fingir que todo se acomodó.
-        </p>
-        <p>Sino para preguntar si hay quizás algo más que no vimos.</p>
-        <p>A veces eso no cambia lo que fue.</p>
-        <p>Pero puede cambiar lo que pasa de aquí en adelante.</p>
+      <p class="name">{SITE_ES.ownerName}</p>
+      <p class="role">Escribo historias. Acompaño a muchachos.</p>
 
-        <h2 class="turn">Y aquí empezó Punto de Vista</h2>
+      <p class="lead">
+        Acompaño a muchachos que se sienten atascados, confundidos, o cuyo camino se alejó de lo
+        que pensaban que serían.
+      </p>
 
-        <p>Punto de Vista nació de un lugar muy personal.</p>
-        <p>A lo largo del camino descubrí que escribir me ayuda a detenerme.</p>
+      <section class="block">
+        <h2>Qué pasa en las conversaciones</h2>
         <p>
-          A veces, antes de saber exactamente qué pienso o qué siento,<br />
-          necesito escribir.
+          Entendemos qué te pasa de verdad y qué te frena, y encontramos un paso pequeño hacia
+          adelante. No decido por ti qué es lo correcto. Las conversaciones son en hebreo.
         </p>
-        <p>
-          Tomar un pensamiento o una historia,<br />
-          e intentar ponerle palabras.
-        </p>
-        <p>
-          Escribir me ayuda a ordenar,<br />
-          a mirar de nuevo,<br />
-          y a veces a descubrir algo que antes no había visto.
-        </p>
-        <p>Con el tiempo creció en mí el deseo de abrir este lugar también a otros.</p>
-        <p>No un lugar que promete cambiarte la vida.</p>
-        <p>Ni un lugar donde alguien te diga cómo tienes que vivir.</p>
-        <p>
-          Sino un lugar donde se puede parar un momento,<br />
-          leer una historia,<br />
-          y a veces encontrar en ella algo de ti.
-        </p>
+      </section>
 
-        <h3 class="quiet">¿Por qué justamente historias?</h3>
+      <section class="block">
+        <h2>Por qué yo</h2>
+        <p>
+          Pasé yo mismo por épocas difíciles. Hubo momentos en que me sentía atascado y no tenía
+          con quién hablar de eso. Por eso sé escuchar sin juzgar.
+        </p>
+      </section>
 
-        <p>Porque no siempre uno quiere que le digan qué hacer.</p>
-        <p>Y no todo se puede decir en voz alta.</p>
+      <section class="block">
+        <h2>Y qué es este sitio</h2>
         <p>
-          Pero a veces uno puede leer una historia sobre otra persona,<br />
-          y de pronto reconocer en ella algo propio.
+          Historias y momentos breves que escribo yo mismo, para quien necesita detenerse. Se puede
+          simplemente leer.
         </p>
-        <p>No porque sea exactamente su historia.</p>
-        <p>Sino porque algo ahí le resulta conocido.</p>
-        <p>
-          A veces es un pensamiento.<br />
-          A veces una sensación.<br />
-          Y a veces algo a lo que todavía no supo ponerle palabras.
-        </p>
-        <p>Y eso es todo lo que espero que una historia pueda hacer.</p>
-        <p>No resolverlo todo.</p>
-        <p>Solo abrir por un momento algo adentro.</p>
+      </section>
 
-        <h3 class="quiet">¿Y quién está detrás de todo esto?</h3>
+      <section class="block">
+        <h2>Formación</h2>
+        <p>NLP nivel Master, primeros auxilios emocionales y un curso de 12 pasos.</p>
+      </section>
 
-        {/* התצלום מצורף למכתב בדיוק ברגע שהשאלה נשאלת – כמו בעברית. */}
-        <figure class="photo">
-          <Image
-            src={portrait}
-            alt={SITE_ES.ownerName}
-            widths={[160, 320]}
-            sizes="10rem"
-            loading="lazy"
-          />
-        </figure>
+      <a class="cta" href="/es/momentos/">Un momento de Punto de Vista</a>
+      <p class="note">Escribo en hebreo, y ahí nace este sitio. Aquí lees una selección traducida.</p>
+      <p class="sign">Creo en ti,</p>
 
-        <p>Soy Efraim Atia.</p>
-        <p>Recorrí un camino de lucha, de búsqueda y de aprendizaje.</p>
-        <p>No llegué hasta aquí porque todo se me acomodó.</p>
-        <p>Y tampoco hoy estoy al final del camino, contándole a otros cómo tienen que vivir.</p>
-        <p>Todavía estoy en el camino.</p>
-        <p>
-          Pero en este camino aprendí que a veces una persona no necesita que alguien le diga qué
-          es lo correcto para ella.
-        </p>
-        <p>A veces necesita un lugar donde no la juzguen.</p>
-        <p>
-          Un lugar donde se puede parar,<br />
-          intentar entender,<br />
-          y a veces ver algo que ya sabía por dentro, desde otro ángulo.
-        </p>
-        <p>
-          Acompaño a muchachos en procesos personales,<br />
-          sobre todo en los lugares donde se sienten atascados, confundidos, o buscando cómo
-          moverse.
-        </p>
-        <p>
-          Mi formación incluye NLP a nivel Master,<br />
-          primeros auxilios emocionales,<br />
-          y el estudio de procesos de cambio y afrontamiento.
-        </p>
-        <p>Pero más allá de lo que estudié, traigo conmigo también el camino que recorrí.</p>
-        <p>Y lo que sigo aprendiendo todavía hoy.</p>
+      {
+        storyUrls.length > 0 && (
+          <button id="start-story" class="start-story" type="button" data-ph="random_story">
+            ¿No sabes por dónde empezar? Lee una historia
+          </button>
+        )
+      }
 
-        <h2 class="turn">Y si llegaste hasta aquí ahora</h2>
-
-        <p>No sé qué te está pasando.</p>
-        <p>
-          Pero espero que encuentres aquí un lugar que no se apura a juzgarte,<br />
-          ni se apura a explicarte quién tienes que ser.
-        </p>
-        <p>Un lugar donde simplemente se puede parar un momento.</p>
-        <p>Leer.</p>
-        <p>Sentir.</p>
-        <p>Y a veces entender que no te pasa solo a ti.</p>
-        <p>
-          Este sitio fue escrito para quien a veces lleva adentro cosas difíciles de explicar,<br />
-          y no siempre tiene a quién decírselas.
-        </p>
-        <p>
-          Y si una sola historia logra tocar un lugar al que te cuesta ponerle palabras,<br />
-          quizás ya pasó algo aquí.
-        </p>
-
-        <div class="closing">
-          <p class="welcome">Te doy la bienvenida a Punto de Vista</p>
-          <p>
-            Un lugar donde se puede parar,<br />
-            mirar de nuevo,<br />
-            y quizás descubrir que hay otro punto de vista.
-          </p>
-          <p class="signature" lang="he" dir="rtl">אפרים</p>
-        </div>
-
-        {/* הנ.ב. – במקום הזמנה לשיחה (שאין בספרדית): ההסבר על האזור,
-            והפעולה היא הרגעים. */}
-        <div class="ps">
-          <p class="ps-note">
-            Escribo en hebreo, y ahí nace este sitio. Lo que lees aquí es una selección traducida.
-            Mi trabajo de acompañamiento es en hebreo, así que aquí no vas a encontrar una
-            invitación a conversar – vas a encontrar algo para llevarte.
-          </p>
-          <div class="ps-action">
-            <a class="cta" href="/es/momentos/">Un momento de Punto de Vista</a>
-          </div>
-        </div>
-      </div>
+      <p class="limits">
+        Es acompañamiento personal, no terapia. Cuando hace falta un profesional, te lo digo y te
+        oriento.
+      </p>
     </article>
 
-    <script is:inline>
-      // נשימת קריאה – כמו בעמוד העברי: רץ רק עם JavaScript ורק כשהקורא
-      // לא ביקש פחות תנועה.
-      (function () {
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        if (!('IntersectionObserver' in window)) return;
-
-        var els = document.querySelectorAll(
-          '.about-body > p, .opening > p, .turn, .quiet, .photo, .closing, .ps'
-        );
-
-        els.forEach(function (el) {
-          el.classList.add('will-reveal');
-        });
-
-        var io = new IntersectionObserver(
-          function (entries) {
-            entries.forEach(function (e) {
-              if (e.isIntersecting) {
-                e.target.classList.add('revealed');
-                io.unobserve(e.target);
-              }
-            });
-          },
-          { rootMargin: '0px 0px -8% 0px' }
-        );
-
-        els.forEach(function (el) {
-          io.observe(el);
-        });
-      })();
-    </script>
     <JoinGroup lang="es" />
+
+    <script is:inline define:vars={{ storyUrls }}>
+      var btn = document.getElementById('start-story');
+      if (btn) {
+        btn.addEventListener('click', function () {
+          var read = [];
+          try {
+            read = JSON.parse(localStorage.getItem('nm_read') || '[]');
+          } catch (e) {}
+          var unread = storyUrls.filter(function (u) {
+            return read.indexOf(u.split('/')[3]) === -1;
+          });
+          var pool = unread.length > 0 ? unread : storyUrls;
+          location.href = pool[Math.floor(Math.random() * pool.length)];
+        });
+      }
+    </script>
   </main>
 </Base>
 
-<style is:global>
-  /* פונט החתימה – אותו קובץ עברי כמו בעמוד העברי (6KB). החתימה נשארת
-     "אפרים" גם כאן – חתימה היא סימן של יד, לא טקסט לקריאה. */
-  @font-face {
-    font-family: 'Playpen Sans Hebrew';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url('/fonts/playpen-hebrew.woff2') format('woff2');
-    unicode-range: U+05D0-05EA;
-  }
-</style>
-
 <style>
-  /* הדף: מכתב שמונח על רקע האתר – זהה לעברית. */
-  .letter {
+  .about {
     background: var(--paper-raised);
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    box-shadow: 0 2px 12px rgba(46, 42, 36, 0.07);
-    padding: 2.25rem 1.4rem 2.75rem;
+    padding: 1.4rem 1.4rem 2.2rem;
     margin-top: 0.5rem;
+    max-width: 34rem;
+    margin-inline: auto;
   }
 
-  @media (min-width: 40rem) {
-    .letter {
-      padding: 3.25rem 3rem 3.5rem;
-    }
-  }
-
-  .letter-head {
-    text-align: center;
-    margin-bottom: 2.75rem;
-  }
-
-  .letter-head .seal {
-    display: inline-block;
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 50%;
-    background: var(--gold);
-    margin-bottom: 1rem;
-  }
-
-  .letter-head h1 {
-    font-size: 1.9rem;
-    line-height: 1.3;
-  }
-
-  .about-body {
-    font-size: 1.15rem;
-    line-height: 2;
-  }
-
-  .about-body p + p {
-    margin-top: 1.25rem;
-  }
-
-  .opening {
-    margin-bottom: 3.25rem;
-  }
-
-  .opening p + p {
-    margin-top: 1.7rem;
-  }
-
-  .turn {
-    font-family: var(--font-display);
-    font-size: 1.35rem;
-    font-weight: 600;
-    line-height: 1.5;
-    color: var(--ink);
-    margin: 3.25rem 0 1.6rem;
-  }
-
-  .quiet {
-    font-family: var(--font-display);
-    font-size: 1.15rem;
-    font-weight: 600;
-    line-height: 1.5;
-    color: var(--ink);
-    margin: 2.5rem 0 0.85rem;
-  }
-
-  /* התצלום המודפס – מסגרת לבנה, הטיה קלה. בעמוד LTR ההטיה מוחלפת לצד
-     השני, כדי שהתצלום "יונח" באותו כיוון ביחס לזרימת הקריאה. */
-  .photo {
-    width: 10rem;
-    padding: 0.45rem 0.45rem 0.9rem;
-    background: var(--white);
-    border: 1px solid var(--line);
-    border-radius: 2px;
-    box-shadow: 0 4px 14px rgba(46, 42, 36, 0.13);
-    transform: rotate(2deg);
-    margin: 2rem auto 1.9rem;
-  }
-
-  .photo img {
+  .portrait {
+    display: block;
     width: 100%;
     height: auto;
     aspect-ratio: 4 / 5;
     object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 1.4rem;
   }
 
-  .closing {
-    margin-top: 3.5rem;
-  }
-
-  .closing::before {
-    content: '';
-    display: block;
-    width: 3rem;
-    height: 2px;
-    border-radius: 1px;
-    background: var(--gold);
-    margin-bottom: 1.6rem;
-  }
-
-  .welcome {
+  .name {
     font-family: var(--font-display);
-    font-size: 1.3rem;
+    font-size: 2.2rem;
+    line-height: 1.15;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .role {
+    color: var(--muted);
+    margin-top: 0.25rem;
+  }
+
+  .lead {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    line-height: 1.45;
+    font-weight: 500;
+    color: var(--ink);
+    margin-top: 1.5rem;
+    text-wrap: balance;
+  }
+
+  .block {
+    margin-top: 1.4rem;
+    font-size: 1.08rem;
+    line-height: 1.8;
+  }
+
+  .block h2 {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
     font-weight: 600;
-    color: var(--ink);
+    color: var(--gold-deep);
+    margin-bottom: 0.15rem;
   }
 
-  .closing p + p {
-    margin-top: 1.25rem;
-  }
-
-  /* החתימה – עברית גם כאן, מיושרת לתחילת השורה של העמוד (שמאל ב-LTR). */
-  .signature {
-    font-family: 'Playpen Sans Hebrew', var(--font-display);
-    font-size: 2rem;
-    line-height: 1.3;
-    color: var(--ink);
-    margin-top: 2.5rem;
-    text-align: start;
-  }
-
-  /* הנ.ב. – פסקת האזור הספרדי + הפעולה אל הרגעים */
-  .ps {
-    margin-top: 3rem;
-    padding-top: 1.75rem;
-    border-top: 1px solid var(--line);
-  }
-
-  .ps-note {
-    color: var(--secondary);
-    font-size: 1rem;
-    line-height: 1.9;
-  }
-
-  .ps-action {
+  .about .cta {
+    display: block;
     text-align: center;
-    margin-top: 1.75rem;
+    margin-top: 1.6rem;
   }
 
-  /* נשימת קריאה – זהה לעברית */
-  .about-body :global(.will-reveal) {
-    opacity: 0;
-    transform: translateY(12px);
-    transition:
-      opacity 0.6s ease,
-      transform 0.6s ease;
+  .note {
+    color: var(--secondary);
+    font-size: 0.92rem;
+    text-align: center;
+    margin-top: 0.5rem;
   }
 
-  .about-body :global(.will-reveal.revealed) {
-    opacity: 1;
-    transform: none;
+  .sign {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    text-align: center;
+    margin-top: 1.1rem;
   }
 
-  .about-body :global(.photo.will-reveal) {
-    transform: rotate(2deg) translateY(12px);
+  .start-story {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    margin: 0.9rem auto 0;
+    padding: 0 0.5rem;
+    background: none;
+    border: 0;
+    font: inherit;
+    color: var(--teal);
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
   }
 
-  .about-body :global(.photo.will-reveal.revealed) {
-    transform: rotate(2deg);
+  .limits {
+    margin-top: 1.6rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.92rem;
   }
 </style>
