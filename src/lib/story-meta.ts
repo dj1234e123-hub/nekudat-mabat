@@ -10,8 +10,11 @@ export const NEW_DAYS = 10;
 
 type ViewsEntry = { he: number; es: number; total: number };
 
+/** בסיס קבוע שנוסף לכל סיפור (החלטת בעל הפרויקט 2026-11-03): המוצג פחות VIEWS_BASE = הספירה האמיתית. */
+export const VIEWS_BASE = 100;
+
 export function viewsOf(id: string): number {
-  return (viewsData.views as Record<string, ViewsEntry>)[id]?.total ?? 0;
+  return ((viewsData.views as Record<string, ViewsEntry>)[id]?.total ?? 0) + VIEWS_BASE;
 }
 
 export const showViews = (n: number) => n >= VIEWS_MIN;
