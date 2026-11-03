@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-02",
+  "updatedAt": "2026-11-03",
   "since": "2026-08-20",
   "views": {
     "001-kvar-hechlateti-mi-hem": {
@@ -53,9 +53,9 @@
       "total": 26
     },
     "014-nishar-li-rak-hashem-sheli": {
-      "he": 41,
-      "es": 18,
-      "total": 59
+      "he": 42,
+      "es": 19,
+      "total": 61
     },
     "017-mivrak-le-atzmecha": {
       "he": 49,
@@ -88,9 +88,9 @@
       "total": 24
     },
     "042-delet-bekoma-shivim": {
-      "he": 52,
-      "es": 35,
-      "total": 87
+      "he": 53,
+      "es": 36,
+      "total": 89
     },
     "048-milimeter-echad-shel-ometz": {
       "he": 19,
@@ -109,8 +109,8 @@
     },
     "738-yamim-vechatzi-shaa": {
       "he": 32,
-      "es": 19,
-      "total": 51
+      "es": 20,
+      "total": 52
     },
     "ayara-shel-zarim": {
       "he": 62,
@@ -118,14 +118,14 @@
       "total": 92
     },
     "betzad-hasheni-shel-hahar": {
-      "he": 68,
+      "he": 69,
       "es": 16,
-      "total": 84
+      "total": 85
     },
     "chamishim-chamishim": {
-      "he": 40,
+      "he": 41,
       "es": 23,
-      "total": 63
+      "total": 64
     },
     "chelek-baolam-haba": {
       "he": 31,
@@ -134,8 +134,8 @@
     },
     "habricha-hamushlemet": {
       "he": 133,
-      "es": 4,
-      "total": 137
+      "es": 6,
+      "total": 139
     },
     "hadag-shehorid-geshem": {
       "he": 37,
@@ -143,9 +143,9 @@
       "total": 44
     },
     "halayla-shelifney": {
-      "he": 48,
+      "he": 49,
       "es": 20,
-      "total": 68
+      "total": 69
     },
     "haner-batzintzenet": {
       "he": 37,
@@ -153,9 +153,9 @@
       "total": 55
     },
     "haohel-shel-haganan": {
-      "he": 46,
+      "he": 47,
       "es": 6,
-      "total": 52
+      "total": 53
     },
     "hapniya-shelo-tichnanti": {
       "he": 48,
@@ -169,13 +169,13 @@
     },
     "hatabaat-bakos": {
       "he": 130,
-      "es": 67,
-      "total": 197
+      "es": 68,
+      "total": 198
     },
     "hatur-hasheni": {
-      "he": 63,
+      "he": 64,
       "es": 11,
-      "total": 74
+      "total": 75
     },
     "im-lo-lemala-mize": {
       "he": 0,
@@ -189,18 +189,18 @@
     },
     "kach-gam-et-hameil": {
       "he": 50,
-      "es": 33,
-      "total": 83
+      "es": 34,
+      "total": 84
     },
     "kav-echad": {
       "he": 30,
-      "es": 26,
-      "total": 56
+      "es": 28,
+      "total": 58
     },
     "kedei-levade-shesalachti": {
       "he": 84,
-      "es": 63,
-      "total": 147
+      "es": 66,
+      "total": 150
     },
     "kol-boker-tefillin": {
       "he": 35,
@@ -219,18 +219,18 @@
     },
     "lo-nishlach": {
       "he": 39,
-      "es": 29,
-      "total": 68
+      "es": 30,
+      "total": 69
     },
     "ma-ata-rotze-bachayim": {
       "he": 70,
-      "es": 27,
-      "total": 97
+      "es": 31,
+      "total": 101
     },
     "maasar-haolam-shela": {
       "he": 123,
-      "es": 25,
-      "total": 148
+      "es": 26,
+      "total": 149
     },
     "meah-shana-beichur": {
       "he": 43,
@@ -248,9 +248,9 @@
       "total": 95
     },
     "rak-lelayla-echad": {
-      "he": 28,
-      "es": 16,
-      "total": 44
+      "he": 31,
+      "es": 26,
+      "total": 57
     },
     "shaarei-tikva": {
       "he": 0,
@@ -263,19 +263,24 @@
       "total": 143
     },
     "shiva-kilometer-bacheder": {
-      "he": 0,
-      "es": 0,
-      "total": 0
+      "he": 24,
+      "es": 22,
+      "total": 46
     },
     "shtei-dakot-bachoshech": {
       "he": 33,
       "es": 35,
       "total": 68
     },
+    "shtei-kasetot": {
+      "he": 0,
+      "es": 0,
+      "total": 0
+    },
     "tzaif-zahov": {
       "he": 114,
-      "es": 143,
-      "total": 257
+      "es": 145,
+      "total": 259
     }
   }
 }
