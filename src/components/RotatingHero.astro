@@ -1,0 +1,57 @@
+---
+// הסיפור המרכזי המתחלף (2026-11-03): בדף הבית ובעמוד הסיפורים הסיפור למעלה היה תמיד אותו סיפור (האחרון).
+// עכשיו בכל כניסה מוגרל אחד ממאגר קטן של הנצפים ביותר, בהסתברות לפי מספר הצפיות, ובלי סיפורים שהקורא כבר
+// קרא (nm_read, בדפדפן בלבד, אותו מפתח כמו סוף הסיפור). הסיפור החדש ביותר אינו במאגר: יש לו שורת "חדש" קבועה
+// מתחת. בלי JavaScript מוצג הראשון במאגר (הנצפה ביותר). אין הזזה אוטומטית: הסיפור מתחלף רק בכניסה חדשה.
+import type { CollectionEntry } from 'astro:content';
+import { STORY_UI, type Lang } from '../data/story-ui';
+import { viewsOf } from '../lib/story-meta';
+import StoryHero from './StoryHero.astro';
+
+type Story = CollectionEntry<'stories'> | CollectionEntry<'storiesEs'>;
+interface Props {
+  /** המאגר להגרלה, הראשון הוא ברירת המחדל */
+  pool: Story[];
+  lang?: Lang;
+  ph?: string;
+}
+const { pool, lang = 'he', ph } = Astro.props;
+const ui = STORY_UI[lang];
+---
+
+<div class="rhero" data-rhero>
+  {
+    pool.map((s, i) => (
+      <div data-story={s.id} data-w={viewsOf(s.id)} hidden={i > 0}>
+        <StoryHero story={s} {lang} {ph} label={ui.heroTop} lazy={i > 0} />
+      </div>
+    ))
+  }
+</div>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-rhero]');
+  if (root) {
+    const items = [...root.querySelectorAll<HTMLElement>('[data-story]')];
+    let read: string[] = [];
+    try {
+      read = JSON.parse(localStorage.getItem('nm_read') ?? '[]');
+    } catch {
+      read = [];
+    }
+    if (items.length > 1) {
+      const unread = items.filter((li) => !read.includes(li.dataset.story!));
+      const avail = unread.length > 0 ? unread : items;
+      let r = Math.random() * avail.reduce((a, li) => a + Number(li.dataset.w), 0);
+      let pick = avail[avail.length - 1];
+      for (const li of avail) {
+        r -= Number(li.dataset.w);
+        if (r <= 0) {
+          pick = li;
+          break;
+        }
+      }
+      items.forEach((li) => (li.hidden = li !== pick));
+    }
+  }
+</script>

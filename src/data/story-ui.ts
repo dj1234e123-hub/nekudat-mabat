@@ -29,6 +29,7 @@ export const STORY_UI = {
     heroNew: 'חדש השבוע',
     heroLatest: 'הסיפור האחרון',
     heroPick: 'מומלץ השבוע',
+    heroTop: 'מהנקראים ביותר',
     heroGo: 'לקרוא',
   },
   es: {
@@ -57,6 +58,7 @@ export const STORY_UI = {
     heroNew: 'Nueva esta semana',
     heroLatest: 'La última historia',
     heroPick: 'Recomendada de la semana',
+    heroTop: 'De las más leídas',
     heroGo: 'Leer',
   },
 } as const;

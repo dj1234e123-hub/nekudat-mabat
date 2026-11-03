@@ -17,8 +17,12 @@ interface Props {
   manual?: boolean;
   /** שם אירוע המדידה ללחיצה (data-ph) */
   ph?: string;
+  /** תווית במקום החישוב האוטומטי (למשל בסיפור מתחלף) */
+  label?: string;
+  /** תמונה בטעינה עצלה, לסיפורים מוסתרים במאגר ההגרלה */
+  lazy?: boolean;
 }
-const { story, lang = 'he', manual = false, ph } = Astro.props;
+const { story, lang = 'he', manual = false, ph, label: labelProp, lazy = false } = Astro.props;
 const es = lang === 'es';
 const ui = STORY_UI[lang];
 const { title, section, date } = story.data;
@@ -26,12 +30,12 @@ const cover = story.data.cover ?? DEFAULT_COVERS[section];
 const href = es ? esStoryPath(story.id) : `/stories/${story.id}/`;
 const worldLabel = es ? SECTIONS_ES[section].label : SECTIONS_META[section].label;
 const hook = hookOf(story);
-const label = manual ? ui.heroPick : isNew(date) ? ui.heroNew : ui.heroLatest;
+const label = labelProp ?? (manual ? ui.heroPick : isNew(date) ? ui.heroNew : ui.heroLatest);
 const mins = readingLabel(story, lang).replace(' קריאה', '').replace(' de lectura', '');
 ---
 
 <a class="hero" href={href} data-story-id={story.id} data-ph={ph}>
-  <Image src={cover} alt="" widths={[640, 960, 1280]} sizes="(max-width: 52rem) 100vw, 60vw" loading="eager" />
+  <Image src={cover} alt="" widths={[640, 960, 1280]} sizes="(max-width: 52rem) 100vw, 60vw" loading={lazy ? 'lazy' : 'eager'} />
   <span class="tx">
     <span class="lab">
       <span class="tag">{label}</span>

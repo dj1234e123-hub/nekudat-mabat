@@ -17,6 +17,17 @@ export function viewsOf(id: string): number {
   return ((viewsData.views as Record<string, ViewsEntry>)[id]?.total ?? 0) + VIEWS_BASE;
 }
 
+/**
+ * מאגר הסיפור המרכזי המתחלף: חמשת הנצפים ביותר, בלי הסיפור החדש ביותר (stories[0], מהחדש לישן)
+ * שיש לו שורת "חדש" קבועה. הראשון במאגר הוא ברירת המחדל בלי JavaScript.
+ */
+export function heroPool<T extends { id: string; data: { date: Date } }>(stories: T[], size = 5): T[] {
+  return stories
+    .slice(1)
+    .sort((a, b) => viewsOf(b.id) - viewsOf(a.id) || b.data.date.getTime() - a.data.date.getTime())
+    .slice(0, size);
+}
+
 export const showViews = (n: number) => n >= VIEWS_MIN;
 export const formatViews = (n: number) => n.toLocaleString('en-US');
 

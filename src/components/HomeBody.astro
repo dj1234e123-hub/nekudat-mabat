@@ -7,7 +7,8 @@ import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import { HERO_PICK } from '../data/stories-hero';
 import { STORY_UI, type Lang } from '../data/story-ui';
-import { viewsOf } from '../lib/story-meta';
+import { heroPool, viewsOf } from '../lib/story-meta';
+import RotatingHero from './RotatingHero.astro';
 import momentGate from '../assets/gates/moments.png';
 import efraim from '../assets/efraim.jpg';
 import StoryHero from './StoryHero.astro';
@@ -23,12 +24,15 @@ interface Props {
 const { stories, lang = 'he', week } = Astro.props;
 const es = lang === 'es';
 const ui = STORY_UI[lang];
-const hero = stories.find((s) => s.id === HERO_PICK) ?? stories[0];
-const manual = !!HERO_PICK && hero.id === HERO_PICK;
+// בחירה ידנית (HERO_PICK) מבטלת את ההגרלה; אחרת הסיפור המרכזי מוגרל מהנצפים ביותר (RotatingHero).
+const picked = stories.find((s) => s.id === HERO_PICK);
+const pool = heroPool(stories);
+const manual = !!picked;
 const top = [...stories]
-  .filter((s) => s.id !== hero.id)
+  .filter((s) => s.id !== (picked ?? pool[0] ?? stories[0]).id)
   .sort((a, b) => viewsOf(b.id) - viewsOf(a.id) || b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 6);
+const fresh = stories.slice(0, 3);
 const t = es
   ? {
       eyebrow: 'Historias. Momentos. Miradas.',
@@ -81,7 +85,18 @@ const t = es
   <p class="all"><a href={t.allHref} data-ph="home_all">{t.all} {es ? '→' : '←'}</a></p>
 </section>
 
-<StoryHero story={hero} {lang} {manual} ph="home_story" />
+{
+  picked || pool.length < 2 ? (
+    <StoryHero story={picked ?? pool[0] ?? stories[0]} {lang} {manual} ph="home_story" />
+  ) : (
+    <RotatingHero {pool} {lang} ph="home_story" />
+  )
+}
+
+<section class="block fresh">
+  <div class="sh"><h2>{ui.secNew}</h2><span>{ui.secNewNote}</span></div>
+  <ul class="rail">{fresh.map((s) => <StoryTile story={s} {lang} ph="home_new" />)}</ul>
+</section>
 
 {
   week.length > 0 && (

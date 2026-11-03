@@ -10,7 +10,8 @@ import { THEMES, themesOf } from '../data/themes.mjs';
 import { esSectionPath } from '../data/es-slugs';
 import { HERO_PICK } from '../data/stories-hero';
 import { STORY_UI, type Lang } from '../data/story-ui';
-import { viewsOf } from '../lib/story-meta';
+import { heroPool, viewsOf } from '../lib/story-meta';
+import RotatingHero from './RotatingHero.astro';
 import StorySearch from './StorySearch.astro';
 import StoryHero from './StoryHero.astro';
 import StoryTile from './StoryTile.astro';
@@ -29,10 +30,12 @@ const { stories, lang = 'he', tagsById } = Astro.props;
 const es = lang === 'es';
 const ui = STORY_UI[lang];
 
-const hero = stories.find((s) => s.id === HERO_PICK) ?? stories[0];
-const manual = !!HERO_PICK && hero.id === HERO_PICK;
+// בחירה ידנית (HERO_PICK) מבטלת את ההגרלה; אחרת הסיפור המרכזי מוגרל מהנצפים ביותר (RotatingHero).
+const picked = stories.find((s) => s.id === HERO_PICK);
+const pool = heroPool(stories);
+const manual = !!picked;
 const top = [...stories].sort((a, b) => viewsOf(b.id) - viewsOf(a.id) || b.data.date.getTime() - a.data.date.getTime()).slice(0, 8);
-const fresh = stories.filter((s) => s.id !== hero.id).slice(0, 8);
+const fresh = stories.slice(0, 8);
 
 const entries = stories.map((story) => {
   const tags = tagsById[story.id] ?? [];
@@ -71,13 +74,19 @@ const worldHref = (slug: string) => (es ? esSectionPath(slug) : `/sections/${slu
 <StorySearch {lang} />
 <!-- בזמן חיפוש כל מה שבין תיבת החיפוש לארכיון מוסתר (StoryBrowser), כדי שהתוצאות יופיעו מיד מתחת לתיבה ולא רחוק למטה -->
 <div data-hide-on-search>
-<StoryHero story={hero} {lang} {manual} />
-
-<div class="sh"><h2>{ui.secTop}</h2><span>{ui.secTopNote}</span></div>
-<ul class="rail">{top.map((s, i) => <StoryTile story={s} {lang} rank={i + 1} />)}</ul>
+{
+  picked || pool.length < 2 ? (
+    <StoryHero story={picked ?? pool[0] ?? stories[0]} {lang} {manual} />
+  ) : (
+    <RotatingHero {pool} {lang} />
+  )
+}
 
 <div class="sh"><h2>{ui.secNew}</h2><span>{ui.secNewNote}</span></div>
 <ul class="rail">{fresh.map((s) => <StoryTile story={s} {lang} />)}</ul>
+
+<div class="sh"><h2>{ui.secTop}</h2><span>{ui.secTopNote}</span></div>
+<ul class="rail">{top.map((s, i) => <StoryTile story={s} {lang} rank={i + 1} />)}</ul>
 
 <div class="sh"><h2>{ui.secWorlds}</h2></div>
 <div class="grid">
