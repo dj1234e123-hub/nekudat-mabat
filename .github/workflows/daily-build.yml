@@ -1,18 +1,48 @@
-# בנייה יומית של האתר (2026-11-02): כדי שמספרי הצפיות בכרטיסי הסיפורים יתעדכנו.
-# הסקריפט scripts/fetch-views.mjs רץ בכל בנייה ב-Vercel ומושך את הצפיות מ-PostHog,
-# אבל בנייה קורית רק כשדוחפים קוד. כאן Vercel מופעל פעם ביום דרך Deploy Hook.
+# בנייה של האתר דרך Deploy Hook של Vercel, בשני מצבים:
+#
+# 1. בנייה יומית (03:30 UTC): כדי שמספרי הצפיות בכרטיסי הסיפורים יתעדכנו.
+#    scripts/fetch-views.mjs רץ בכל בנייה ב-Vercel ומושך את הצפיות מ-PostHog,
+#    אבל בנייה קורית רק כשדוחפים קוד.
+#
+# 2. פרסום מתוזמן (2026-11-03): isPublished הוא שער ולא שעון. תוכן עם date עתידי לא נבנה,
+#    ולכן אחרי שהשעה עוברת צריך בנייה. בחלונות הפרסום הקבועים הפעולה רצה כל 15 דקות,
+#    בודקת (scripts/due-content.mjs) אם תאריך של תוכן הגיע ב-40 הדקות האחרונות,
+#    ורק אז מפעילה בנייה. בלי זה הפרסום תלוי בסשן פתוח שמפעיל פריסה ידנית.
+#    החלונות ב-UTC נקבעו רחבים כדי לכסות גם שעון קיץ וגם שעון חורף:
+#      שישי 04:00-10:59 UTC     = מבט לשבת (בישראל בערך 06:00-13:00)
+#      מוצאי שבת 16:00-18:59    = מעשה שהיה (בישראל בערך 18:00-22:00)
+#      כל יום 17:00-18:59       = סיפור יומי ב-20:00 שעון ישראל
+#    GitHub עלול לאחר הרצה מתוזמנת ב-5 עד 15 דקות. לדקה מדויקת צריך משימה מתוזמנת נוספת.
+#
 # נדרש סוד אחד בריפו: VERCEL_DEPLOY_HOOK_URL (Vercel > Settings > Git > Deploy Hooks, לענף הראשי).
 # בלי הסוד, הפעולה מדלגת ולא נכשלת.
 name: daily-build
 on:
   schedule:
-    - cron: '30 3 * * *' # 03:30 UTC, בלילה בישראל
+    - cron: '30 3 * * *'
+    - cron: '*/15 4-10 * * 5'
+    - cron: '*/15 16-18 * * 6'
+    - cron: '*/15 17-18 * * *'
   workflow_dispatch:
 jobs:
   rebuild:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            scripts
+            src/content
+      - name: Is publish time due?
+        id: due
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || [ "${{ github.event.schedule }}" = "30 3 * * *" ]; then
+            echo "due=true" >> "$GITHUB_OUTPUT"; echo "בנייה יומית או ידנית."
+          else
+            node scripts/due-content.mjs 40
+          fi
       - name: Trigger Vercel deploy hook
+        if: steps.due.outputs.due == 'true'
         env:
           HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
         run: |
