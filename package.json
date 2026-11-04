@@ -8,6 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "check:moments": "node scripts/check-moments.mjs",
+    "qa:visual": "node scripts/qa-visual.mjs",
     "sync:es-redirects": "node scripts/sync-es-redirects.mjs",
     "check:es-redirects": "node scripts/sync-es-redirects.mjs --check",
     "prebuild": "node scripts/check-dashes.mjs && node scripts/check-colors.mjs && node scripts/check-stories.mjs && node scripts/fetch-views.mjs",
