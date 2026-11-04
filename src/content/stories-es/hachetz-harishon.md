@@ -15,9 +15,9 @@ Cuando tenía dieciocho años, Ludwig Guttmann se ofreció como voluntario en un
 
 El minero murió de sepsis.
 
-Guttmann se hizo médico y huyó de la Alemania nazi con su familia. En 1944, en plena guerra, el gobierno británico le pidió que abriera una unidad para pacientes con lesiones de columna. El pedido vino de la fuerza aérea, por los pilotos que se estrellaban al aterrizar, con los aviones dañados.
+Guttmann se hizo médico y huyó de la Alemania nazi con su familia. En 1944, en plena guerra, el gobierno británico le pidió que abriera una unidad para pacientes con lesiones de columna. El pedido vino de la fuerza aérea, por pilotos que volvían con los aviones dañados y se estrellaban al aterrizar.
 
-Muchos de esos pacientes no morían por la lesión. Morían por estar acostados.
+Muchos de esos pacientes no morían por la lesión. Morían por estar acostados: por las llagas que se les abrían en la cama, y por la infección.
 
 Guttmann hizo lo contrario de lo que se acostumbraba. Los sacó de las camas y los sentó en sillas de ruedas, y después los puso a entrenar. Baloncesto. Bádminton. Y tiro con arco, porque el arco fortalece los músculos y se puede practicar sentado.
 
