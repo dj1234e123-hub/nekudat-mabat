@@ -40,7 +40,7 @@ Y al final, lo adoptó.
 
 > Lavó ventanas para cavar un pozo. El pozo le trajo un hermano.
 
-Ryan escuchó «dos mil» y no se puso a contar. Preguntó qué ventana tocaba lavar mañana temprano.
+Ryan escuchó «dos mil» y volvió a lavar ventanas.
 
 Yo me rindo justo en el momento del número. No cuando cuesta, sino cuando descubro cuánto va a costar.
 
