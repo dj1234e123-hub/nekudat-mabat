@@ -76,6 +76,7 @@ export const ES_STORY_SLUGS: Record<string, string> = {
   'shiva-kilometer-bacheder': 'siete-kilometros-en-una-habitacion',
   'shivim-dolar': 'setenta-dolares',
   'mishehu-shilem-lo': 'alguien-pago-por-el',
+  'hanituach-shehitzliach': 'la-operacion-que-salio-bien',
   'kol-boker-tefillin': 'cada-manana-tefilin',
   '004-chikiti-sheyitparetz': 'esperaba-que-explotara',
   'haner-batzintzenet': 'la-vela-en-el-frasco',
