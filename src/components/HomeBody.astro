@@ -37,7 +37,7 @@ const t = es
   ? {
       eyebrow: 'Historias. Momentos. Miradas.',
       h1: 'Ver distinto. Vivir distinto.',
-      promise: 'Un lugar para detenerse, obtener un nuevo punto de vista y llevar algo contigo en tu camino.',
+      promise: 'Aquí te detienes un momento, lees una historia breve y sales con un punto de vista nuevo.',
       all: `Todas las ${stories.length} historias`,
       allBtn: 'Todas las historias',
       week: 'Esta semana en Punto de Vista',
@@ -57,7 +57,7 @@ const t = es
   : {
       eyebrow: 'סיפורים. רגעים. תובנות.',
       h1: 'לראות אחרת. לחיות אחרת.',
-      promise: 'מקום לעצור, לקבל נקודת מבט חדשה, ולקחת משהו איתך להמשך הדרך.',
+      promise: 'כאן עוצרים רגע, קוראים סיפור קצר, ויוצאים עם נקודת מבט אחת.',
       all: `לכל ${stories.length} הסיפורים`,
       allBtn: 'לכל הסיפורים',
       week: 'השבוע בנקודת מבט',
@@ -159,6 +159,7 @@ const t = es
     line-height: 1.6;
     margin: 0 auto 0.4rem;
     max-width: 30rem;
+    text-wrap: balance;
   }
   .lang-invite {
     margin: 0.6rem 0 0;
@@ -313,9 +314,13 @@ const t = es
     h1 {
       font-size: 3.6rem;
     }
+    /* תת-כותרת: רוחב שמכיל משפט שלם ואיזון שורות (קודם "להמשך הדרך." נשארה
+       יתומה), וגוון הדיו במקום האפור-חום מול כותרת ענקית */
     .promise {
       margin-inline: auto;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
+      max-width: 40rem;
+      color: var(--ink);
     }
     .rail {
       display: grid;
