@@ -78,6 +78,7 @@ export const ES_STORY_SLUGS: Record<string, string> = {
   'mishehu-shilem-lo': 'alguien-pago-por-el',
   'hanituach-shehitzliach': 'la-operacion-que-salio-bien',
   'hatelefon-harishon': 'la-primera-llamada',
+  'hachetz-harishon': 'la-primera-flecha',
   'kol-boker-tefillin': 'cada-manana-tefilin',
   '004-chikiti-sheyitparetz': 'esperaba-que-explotara',
   'haner-batzintzenet': 'la-vela-en-el-frasco',
