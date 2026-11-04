@@ -16,3 +16,6 @@ dist/
 
 # os / editor
 .DS_Store
+
+# כרטיסי שיתוף שמופקים לבוקר (npm run card)
+.cards/

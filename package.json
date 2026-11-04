@@ -18,7 +18,8 @@
     "check:stories": "node scripts/check-stories.mjs",
     "fetch:views": "node scripts/fetch-views.mjs",
     "check:colors": "node scripts/check-colors.mjs",
-    "check:message": "node scripts/check-message.mjs"
+    "check:message": "node scripts/check-message.mjs",
+    "card": "node scripts/moment-card.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
