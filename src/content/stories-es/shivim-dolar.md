@@ -6,7 +6,7 @@ cover: ../../assets/covers/shivim-dolar.jpg
 coverAlt: "Una vieja caja de lata con unas monedas sobre el alféizar de una ventana al atardecer, y al otro lado del vidrio una bomba de agua manual en la tierra roja"
 date: 2026-11-04T17:46:00Z
 readingTime: "unos 2 minutos"
-excerpt: "Un niño de seis años en Canadá se enteró de que en África hay niños que caminan horas para conseguir agua. Empezó a hacer tareas en casa para ahorrar para un pozo."
+excerpt: "Setenta dólares, cuatro meses de tareas y una sola caja. Entonces le explicaron cuánto cuesta de verdad un pozo."
 hook: "¿Qué seguimos haciendo cuando descubrimos que cuesta treinta veces más de lo que pensábamos?"
 ---
 

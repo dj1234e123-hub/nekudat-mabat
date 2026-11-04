@@ -4,6 +4,47 @@
 
 ## המודלים
 
+### 4.11 – "שבעים דולר" (פתיחה: שאלה · פער: מה הבאר הביאה · לא "מים")
+```
+מה קורה כשילד
+בן שש מחליט
+לפתור בעיה של העולם?
+
+שבעים דולר, קופסה,
+וארבעה חודשים של מטלות.
+
+ומה שהבאר הביאה לו,
+לא היה רק מים.
+
+*שבעים דולר* 👇
+https://nekudatmabat.blog/stories/shivim-dolar/?s=wa-he
+
+להצטרפות לקבוצה:
+https://chat.whatsapp.com/EdI3EWz6WiQ6HlXCwJsdjh
+```
+אושרה על ידי בעל הפרויקט. תוקן מ"לא היה מים" ל"לא היה רק מים", כי הבאר כן הביאה מים לכפר.
+
+**ספרדית (אושרה, ללא בדיקת דוברת ילידית):**
+```
+¿Qué pasa cuando
+un niño de seis
+decide resolver
+un problema del mundo?
+
+Setenta dólares, una caja,
+y cuatro meses
+de tareas.
+
+El pozo le trajo
+algo más que agua.
+
+*Setenta dólares* 👇
+https://nekudatmabat.blog/es/historias/setenta-dolares/?s=wa-es
+
+Para unirte al grupo:
+https://chat.whatsapp.com/Guowx1In317DPruSb0iylo
+```
+
 ### 3.11 – "שתי קלטות של תשעים דקות" (פתיחה: סצנה · פער: מה היא שמעה · בלי המילים "פגיעה מינית")
 ```
 היא שתקה שנים.
@@ -158,5 +199,6 @@ https://chat.whatsapp.com/EdI3EWz6WiQ6HlXCwJsdjh
 | 1.11 | רק ללילה אחד | פרדוקס |
 | 2.11 | שבעה קילומטר בחדר | שאלה |
 | 3.11 | שתי קלטות של תשעים דקות | סצנה |
+| 4.11 | שבעים דולר | שאלה |
 
 הצלבה מול PostHog (כניסות עם `link_tag`, גלילה עד הסוף, שיתופים, "הסיפור הבא") טרם בוצעה. כשתתבצע, התוצאה נרשמת כאן כרמז ולא כהוכחה: 21 הודעות הן מדגם קטן, וסיפורי ארכיון מתערבבים עם חדשים.
