@@ -74,6 +74,7 @@ export const ES_STORY_SLUGS: Record<string, string> = {
   'lo-nishlach': 'no-enviada-no-firmada',
   'kav-echad': 'una-sola-linea',
   'shiva-kilometer-bacheder': 'siete-kilometros-en-una-habitacion',
+  'shivim-dolar': 'setenta-dolares',
   'kol-boker-tefillin': 'cada-manana-tefilin',
   '004-chikiti-sheyitparetz': 'esperaba-que-explotara',
   'haner-batzintzenet': 'la-vela-en-el-frasco',
