@@ -170,7 +170,7 @@ const ogImageDims = ogImage
   <body class={bodyClass}>
     {
       compact ? (
-        <header class="header-compact">
+        <header class="site-header header-compact">
           <a href={homeHref} class="brand-row">
             <Image src={logo} alt={logoAlt} width={80} densities={[1, 2]} class="logo-sm" />
             <span class="brand-text">
@@ -189,10 +189,19 @@ const ogImageDims = ogImage
               {altLang.label}
             </a>
           )}
+          {/* במחשב (מעל 34rem) הכותרת המצומצמת נראית כמו הרגילה: ניווט מלא במקום ☰ */}
+          <nav class="site-nav site-nav-desk" aria-label={es ? 'Navegación principal' : 'ניווט ראשי'}>
+            {navLinks.map((link) => <a href={link.href}>{link.label}</a>)}
+            {showLangPill && (
+              <a class="lang-pill" href={altLang.href} lang={altLang.lang} dir={altLang.dir} aria-label={altLang.aria}>
+                {altLang.label}
+              </a>
+            )}
+          </nav>
           <MenuDrawer es={es} homeHref={homeHref} brandName={brand.name} links={navLinks} current={Astro.url.pathname} />
         </header>
       ) : (
-        <header class={homeHeader ? 'header-home' : undefined}>
+        <header class={homeHeader ? 'site-header header-home' : 'site-header'}>
           <a href={homeHref} class="brand">
             <Image src={logo} alt={logoAlt} width={128} densities={[1, 2]} class="logo" />
             <span class="brand-text">
@@ -472,7 +481,7 @@ const ogImageDims = ogImage
   }
 
   /* כותרת האתר */
-  header {
+  .site-header {
     text-align: center;
     padding: 1.4rem 1rem 0.5rem;
   }
@@ -554,7 +563,7 @@ const ogImageDims = ogImage
      בטלפון זה לא נכנס – נמדד ב-390px: הניווט לבדו 218px, ונשארים 108px
      ללוגו ולשם שצריכים 124px. שם הכותרת נשארת שתי שורות. */
   @media (min-width: 34rem) {
-    header {
+    .site-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -568,6 +577,43 @@ const ogImageDims = ogImage
       margin-top: 0;
       gap: 0 1rem;
       font-size: 0.95rem;
+    }
+  }
+
+  /* כותרת אחת לכל עמוד במחשב (2026-11-04): בעמודי סיפור ומבט לשבת (כותרת
+     מצומצמת) היה ☰ ולוגו באמצע וגלולת שפה רחוקה בפינה, ובשאר העמודים ניווט
+     בקבוצה צרה של 48rem. עכשיו בכולם: המותג בצד אחד, הניווט והגלולה בצד השני,
+     והשורה ברוחב התוכן של דף הבית – שני הקצוות מתיישרים עם מה שמתחתיה. */
+  .site-nav-desk {
+    display: none;
+  }
+  @media (min-width: 34rem) {
+    .header-compact .site-nav-desk {
+      display: flex;
+    }
+    .header-compact .menu-btn,
+    .header-compact .lang-pill-corner {
+      display: none;
+    }
+    .header-compact .logo-sm {
+      width: 52px;
+      height: 52px;
+    }
+    .header-compact .site-name-sm {
+      font-size: 1.45rem;
+    }
+    .header-compact .brand-row {
+      gap: 0.7rem;
+    }
+    .site-header,
+    .site-header.header-compact {
+      width: 100%;
+      padding: 1.25rem 1.25rem 0.75rem;
+    }
+  }
+  @media (min-width: 64rem) {
+    .site-header {
+      max-width: 68rem;
     }
   }
 
@@ -629,19 +675,19 @@ const ogImageDims = ogImage
      הפיל את "מי אני" לשורה שנייה. עכשיו בטלפון: המותג באמצע, ☰ בפינה אחת
      וגלולת השפה בשנייה – שורה אחת, כמו בעמודי הסיפור. במסך רחב השורה נשארת. */
   @media (max-width: 33.99rem) {
-    header:not(.header-compact) .site-nav {
+    .site-header:not(.header-compact) .site-nav {
       display: none;
     }
 
     /* שתי הפינות שמורות ל-☰ ולגלולה: בגופן מערכת מוגדל המותג נשבר לשתי
        שורות במקום לגלוש מתחתיהן. */
-    header,
-    header.header-compact {
+    .site-header,
+    .site-header.header-compact {
       padding-inline: 4.6rem;
     }
 
     /* בספרדית הגלולה ("עברית") צרה, והסלוגן הספרדי רחב – פינות צרות יותר. */
-    html[lang='es'] header {
+    html[lang='es'] .site-header {
       padding-inline: 3.6rem;
     }
 
@@ -651,7 +697,7 @@ const ogImageDims = ogImage
   }
 
   @media (min-width: 34rem) {
-    header:not(.header-compact) .menu-btn,
+    .site-header:not(.header-compact) .menu-btn,
     .lang-pill-phone {
       display: none;
     }

@@ -55,6 +55,13 @@ const { kind, href, image, imageAlt, kicker, when, title, text, cta, isNew = fal
     aspect-ratio: 16 / 9;
     object-fit: cover;
   }
+  /* מחשב: שני הכרטיסים זה לצד זה, והתמונה נמוכה יותר כדי שהטקסט והכפתור יופיעו
+     בלי לגלול (ב-16:9 התמונה לבדה תפסה 290px מ-900) */
+  @media (min-width: 52rem) {
+    .wk :global(img) {
+      aspect-ratio: 2 / 1;
+    }
+  }
   .tx {
     display: block;
     padding: 0.9rem 1rem 1.1rem;

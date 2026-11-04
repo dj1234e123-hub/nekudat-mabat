@@ -302,15 +302,26 @@ const t = es
     font-weight: 600;
   }
   @media (min-width: 52rem) {
+    /* מחשב: הפתיחה במרכז מעל הכרטיס הרחב (בעבר: מיושרת לצד אחד, וחצי העמוד
+       הנגדי נשאר ריק עד 1920px). המדפים הופכים לרשת של 3 עמודות: 3 הסיפורים
+       החדשים ממלאים שורה, ו-6 הנקראים ביותר שתי שורות – בלי כרטיס חתוך ובלי
+       חור (ב-4 עמודות נשאר חור בשורת "חדש"). בטלפון נשארת הגלילה האופקית. */
     .intro {
-      text-align: start;
+      text-align: center;
+      padding-top: 1rem;
     }
     h1 {
       font-size: 3.6rem;
     }
     .promise {
-      margin-inline: 0;
+      margin-inline: auto;
       font-size: 1.2rem;
+    }
+    .rail {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.6rem 1.25rem;
+      overflow: visible;
     }
     .week {
       grid-template-columns: 1fr 1fr;

@@ -173,6 +173,14 @@ const worldHref = (slug: string) => (es ? esSectionPath(slug) : `/sections/${slu
     .sh h2 {
       font-size: 1.8rem;
     }
+    /* מחשב: 8 הסיפורים בכל מדף ברשת של 4 עמודות ושתי שורות, במקום גלילה
+       אופקית שחותכת כרטיס בקצה בלי שום רמז שיש עוד */
+    .rail {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1.6rem 1.1rem;
+      overflow: visible;
+    }
     .grid {
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 1.1rem;
