@@ -21,7 +21,7 @@
     "check:message": "node scripts/check-message.mjs"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.3",
+    "@astrojs/sitemap": "^3.7.4",
     "@resvg/resvg-js": "^2.6.2",
     "@vercel/analytics": "^2.0.1",
     "astro": "^7.2.7",
