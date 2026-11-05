@@ -8,12 +8,12 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import JoinGroup from '../components/JoinGroup.astro';
 import { SITE } from '../data/site';
-import portrait from '../assets/efraim-mic.jpg';
+import portrait from '../assets/efraim-portrait.jpg';
 import { profileJsonLd } from '../lib/structured-data';
 import { isPublished } from '../lib/published';
 
 // תמונת השיתוף של העמוד הזה היא הפנים ולא הלוגו.
-const portraitOg = await getImage({ src: portrait, width: 1080, format: 'jpeg' });
+const portraitOg = await getImage({ src: portrait, width: 765, format: 'jpeg' });
 const ogImage = new URL(portraitOg.src, Astro.site).href;
 
 const stories = await getCollection('stories', isPublished);
@@ -39,7 +39,7 @@ const DESCRIPTION =
       <Image
         class="portrait"
         src={portrait}
-        alt="אפרים עטייה מדבר במיקרופון"
+        alt="אפרים עטייה בחליפה כהה וכיפה, מחייך"
         widths={[360, 540, 720]}
         sizes="(min-width: 40rem) 30rem, 90vw"
         loading="eager"
@@ -138,11 +138,11 @@ const DESCRIPTION =
     border-radius: 4px;
     margin-bottom: 1.4rem;
   }
-  /* מחשב: הדיוקן הזמני לא תופס מסך שלם (ב-4:5 הוא 620px גובה); הפנים נשארות בחתך */
+  /* מחשב: הדיוקן לא תופס מסך שלם (ב-4:5 הוא 620px גובה); הפנים נשארות בחתך */
   @media (min-width: 52rem) {
     .portrait {
       aspect-ratio: 4 / 3;
-      object-position: 50% 22%;
+      object-position: 50% 0%;
     }
   }
 
