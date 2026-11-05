@@ -81,6 +81,7 @@ export const ES_STORY_SLUGS: Record<string, string> = {
   'hachetz-harishon': 'la-primera-flecha',
   'aba-aba': 'papa-papa',
   'nura-ktana': 'una-lucecita',
+  'hahafkadot-hakatanot': 'los-pequenos-depositos',
   'kol-boker-tefillin': 'cada-manana-tefilin',
   '004-chikiti-sheyitparetz': 'esperaba-que-explotara',
   'haner-batzintzenet': 'la-vela-en-el-frasco',
