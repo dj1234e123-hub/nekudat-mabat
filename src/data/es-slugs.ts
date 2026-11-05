@@ -79,6 +79,8 @@ export const ES_STORY_SLUGS: Record<string, string> = {
   'hanituach-shehitzliach': 'la-operacion-que-salio-bien',
   'hatelefon-harishon': 'la-primera-llamada',
   'hachetz-harishon': 'la-primera-flecha',
+  'aba-aba': 'papa-papa',
+  'nura-ktana': 'una-lucecita',
   'kol-boker-tefillin': 'cada-manana-tefilin',
   '004-chikiti-sheyitparetz': 'esperaba-que-explotara',
   'haner-batzintzenet': 'la-vela-en-el-frasco',
