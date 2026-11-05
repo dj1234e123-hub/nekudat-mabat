@@ -1,11 +1,10 @@
 ---
 # Traducción de "עשרים שתילים" (5.11.2026), según docs/SPANISH-EDITORIAL-GUIDELINES.md. Misma portada (sin texto).
-# Portada provisional: la imagen del mundo "De la vida". Se reemplazará por la imagen propia (plantón de bambú en arena agrietada).
 # La fecha es un marcador (2030): la historia está lista en la rama de trabajo y no está programada. Al decidir el día, cambiar solo date (igual que en hebreo).
 title: "Veinte plantones"
 section: chaim
-cover: ../../assets/covers/esrim-shtilim.png
-coverAlt: "Portada provisional del mundo De la vida"
+cover: ../../assets/covers/esrim-shtilim.jpg
+coverAlt: "Un plantón de bambú verde sobre una franja de arena agrietada a la orilla de un río ancho, con luz de la mañana"
 date: 2030-01-07T18:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Vio serpientes muertas sobre una franja de arena y plantó allí veinte plantones de bambú."
