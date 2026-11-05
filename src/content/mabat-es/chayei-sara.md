@@ -10,7 +10,7 @@ title: ¿Qué harías en los últimos diez metros?
 parasha: Jayé Sará
 hebrewDate: 27 de Jeshván 5787
 description: "España, 2012. A diez metros de la meta, el corredor que va primero se detiene. Está seguro de que ya llegó. El que viene detrás lo alcanza en segundos, y la victoria queda abierta frente a él."
-date: 2026-11-06T09:00:00Z
+date: 2026-11-05T21:24:00Z
 quoteImage: ../../assets/mabat-leshabbat/chayei-sara-quote-es.png
 quoteImageAlt: "El deseo quedó en la letra que falta. Las manos hicieron toda la misión."
 signoff: |
