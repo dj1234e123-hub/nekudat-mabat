@@ -114,8 +114,9 @@ const onBehalfHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURICompo
           <p class="talk-phone">
             או בטלפון: <a href={SITE.phoneHref} data-ph="phone_call">{SITE.phone}</a>
           </p>
+          {/* רווח מפורש לפני הקישור: Astro מוחק רווח בין טקסט לקישור שבשורה נפרדת */}
           <p class="talk-alt">
-            פונה בשם מישהו קרוב אליך?
+            פונה בשם מישהו קרוב אליך?{' '}
             <a href={onBehalfHref} rel="noopener" target="_blank" data-ph="liluy_on_behalf">אפשר לכתוב גם ככה</a>,
             ונתחיל משם.
           </p>

@@ -88,8 +88,9 @@ const tellMeHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURICompone
     }
 
     <p class="soon">מצבים נוספים ותכנים נוספים – בדרך.</p>
+    {/* רווח מפורש לפני הקישור: Astro מוחק רווח בין טקסט לקישור שבשורה נפרדת */}
     <p class="tell-me">
-      לא מצאת כאן את מה שעובר עליך?
+      לא מצאת כאן את מה שעובר עליך?{' '}
       <a href={tellMeHref} rel="noopener" target="_blank" data-ph="tell_me">אפשר לספר לי</a>
     </p>
     <JoinGroup />
