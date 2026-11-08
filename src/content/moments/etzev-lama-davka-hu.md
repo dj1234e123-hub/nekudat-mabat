@@ -1,6 +1,6 @@
 ---
 feeling: sadness
-date: 2026-11-09
+date: 2026-11-08T20:06:00Z
 title: למה דווקא הוא
 handle: |-
   לשבת ליד מי ששואל,

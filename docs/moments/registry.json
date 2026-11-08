@@ -2567,6 +2567,28 @@
       "verdict": "חזק",
       "status": "published",
       "season": "נושא ההורים והילד הרחוק; דוגרי לבקשת בעל הפרויקט (2026-11-04)"
+    },
+    {
+      "slug": "etzev-lama-davka-hu",
+      "title": "למה דווקא הוא",
+      "home": "sadness",
+      "gate": "someone",
+      "entries": [],
+      "move": "HOLD",
+      "move2": "OTHER",
+      "inner": "\"אם אין לי תשובה, לא עמדתי בזה\"",
+      "reader": "אדם קרוב שואל \"למה דווקא אני\" ואין מה להשיב",
+      "shift": "הוא לא ביקש תשובה, הוא ביקש מי שלא יברח",
+      "motion": 3,
+      "takeaway": "Y",
+      "opening": "סצנה",
+      "shape": "הפרדה",
+      "clusters": [
+        "מה שלהם, לא שלך"
+      ],
+      "twin": "etzev-lo-letaken",
+      "verdict": "חזק",
+      "status": "published"
     }
   ]
 }
