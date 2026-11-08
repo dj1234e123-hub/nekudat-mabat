@@ -3,6 +3,7 @@
 // כותב עם פנים. מי שהגיע מקישור מועבר יודע מיד מי מדבר אליו (שלב 4.99).
 import { Image } from 'astro:assets';
 import efraim from '../assets/efraim.jpg';
+import Views from './Views.astro';
 
 interface Props {
   lang?: 'he' | 'es';
@@ -14,9 +15,10 @@ interface Props {
   title: string;
   deck?: string;
   meta: string;
+  views?: number;
 }
 
-const { lang = 'he', corner, cornerHref, label, now, title, deck, meta } = Astro.props;
+const { lang = 'he', corner, cornerHref, label, now, title, deck, meta, views = 0 } = Astro.props;
 const name = lang === 'es' ? 'Rabino Efraim Atia' : 'אפרים עטייה';
 ---
 
@@ -34,7 +36,7 @@ const name = lang === 'es' ? 'Rabino Efraim Atia' : 'אפרים עטייה';
     <Image src={efraim} alt="" width={80} height={80} />
     <span>
       <span class="n">{name}</span>
-      <span class="m">{meta}</span>
+      <span class="m">{meta}{views > 0 ? <> · <Views count={views} {lang} always /></> : null}</span>
     </span>
   </div>
 </div>

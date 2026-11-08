@@ -7,12 +7,14 @@ import { STORY_UI, type Lang } from '../data/story-ui';
 interface Props {
   count: number;
   lang?: Lang;
+  /** בפינות השבועיות מציגים כל מספר, גם מתחת לסף (החלטת בעל הפרויקט, 2026-11-08). 0 לא מוצג. */
+  always?: boolean;
 }
-const { count, lang = 'he' } = Astro.props;
+const { count, lang = 'he', always = false } = Astro.props;
 ---
 
 {
-  showViews(count) && (
+  (always ? count > 0 : showViews(count)) && (
     <span class="views">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z" />

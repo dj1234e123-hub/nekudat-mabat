@@ -19,6 +19,7 @@ import { articleJsonLd, breadcrumbJsonLd } from '../../../lib/structured-data';
 import { isPublished } from '../../../lib/published';
 import { newestFirst } from '../../../lib/sort';
 import { readingLabel } from '../../../lib/reading-time';
+import { cornerViewsOf } from '../../../lib/story-meta';
 import { storyAfter, isThisWeek } from '../../../lib/corner';
 import JoinGroup from '../../../components/JoinGroup.astro';
 import JoinPopup from '../../../components/JoinPopup.astro';
@@ -55,8 +56,8 @@ const idx = issues.findIndex((p) => p.id === piece.id);
 const prev = issues[idx + 1];
 const sameParasha = issues.filter((p) => p.id !== piece.id && p.data.parasha === parasha);
 const rows = [
-  ...sameParasha.map((p) => ({ href: `/es/shabat/${p.id}/`, small: `Más sobre ${label(parasha)} · ${p.data.hebrewDate}`, title: p.data.title })),
-  ...(prev ? [{ href: `/es/shabat/${prev.id}/`, small: `La edición anterior · ${label(prev.data.parasha)}`, title: prev.data.title }] : []),
+  ...sameParasha.map((p) => ({ href: `/es/shabat/${p.id}/`, small: `Más sobre ${label(parasha)} · ${p.data.hebrewDate}`, title: p.data.title, views: cornerViewsOf('mabat', p.id) })),
+  ...(prev ? [{ href: `/es/shabat/${prev.id}/`, small: `La edición anterior · ${label(prev.data.parasha)}`, title: prev.data.title, views: cornerViewsOf('mabat', prev.id) }] : []),
   { href: '/es/shabat/', small: 'Todas las ediciones', title: `${issues.length} ediciones de ${MABAT_ES.name}` },
 ];
 ---
@@ -91,6 +92,7 @@ const rows = [
         title={title}
         deck={description}
         meta={readingLabel({ body: piece.body, data: {} }, 'es')}
+        views={cornerViewsOf('mabat', piece.id)}
       />
 
       <MabatBody blocks={blocks} pullQuote={quoteImageAlt} closingLabel="La pregunta para Shabat" />

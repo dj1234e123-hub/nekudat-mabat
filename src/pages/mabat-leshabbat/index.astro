@@ -12,6 +12,7 @@ import { parseBody, plainText, kicker } from '../../lib/mabat-format';
 import { isPublished } from '../../lib/published';
 import { readingLabel } from '../../lib/reading-time';
 import { monthLabel } from '../../lib/corner';
+import { cornerViewsOf } from '../../lib/story-meta';
 import { CORNER_COVERS } from '../../data/corner-covers';
 
 const pieces = (await getCollection('mabatLeshabbat', isPublished)).sort(newestFirst);
@@ -48,12 +49,14 @@ const og = cover ? await getImage({ src: cover.src, width: 1200, format: 'jpeg' 
         text: latestText,
         meta: readingLabel({ body: latest.body, data: {} }),
         cta: 'לקרוא ←',
+        views: cornerViewsOf('mabat', latest.id),
       }}
       items={rest.map((p) => ({
         href: `/mabat-leshabbat/${p.id}/`,
         small: `${kicker(p.data.parasha)} · ${p.data.hebrewDate}`,
         title: p.data.title,
         group: monthLabel(p.data.hebrewDate, 'he'),
+        views: cornerViewsOf('mabat', p.id),
       }))}
       bridge={{ href: '/besht/', small: 'ובמוצאי שבת', title: 'מעשה שהיה: סיפור של הבעל שם טוב', image: havdala }}
     />

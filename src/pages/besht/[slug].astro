@@ -18,6 +18,7 @@ import { isPublished } from '../../lib/published';
 import { newestFirst } from '../../lib/sort';
 import { esBeshtPath } from '../../data/es-slugs';
 import { readingLabel } from '../../lib/reading-time';
+import { cornerViewsOf } from '../../lib/story-meta';
 import { kicker } from '../../lib/mabat-format';
 import { issueBefore, isThisWeek } from '../../lib/corner';
 
@@ -46,7 +47,7 @@ const issue = paired ?? issues[0];
 const idx = all.findIndex((s) => s.id === story.id);
 const prev = all[idx + 1];
 const rows = [
-  ...(prev ? [{ href: `/besht/${prev.id}/`, small: `הסיפור הקודם · ${prev.data.occasion}`, title: prev.data.title }] : []),
+  ...(prev ? [{ href: `/besht/${prev.id}/`, small: `הסיפור הקודם · ${prev.data.occasion}`, title: prev.data.title, views: cornerViewsOf('besht', prev.id) }] : []),
   { href: '/besht/', small: 'כל הסיפורים', title: `${all.length} סיפורים של מעשה שהיה` },
 ];
 ---
@@ -80,6 +81,7 @@ const rows = [
         title={title}
         deck={excerpt}
         meta={readingLabel(story)}
+        views={cornerViewsOf('besht', story.id)}
       />
 
       <Image

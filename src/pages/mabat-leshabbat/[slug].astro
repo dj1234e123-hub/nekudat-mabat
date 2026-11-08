@@ -18,6 +18,7 @@ import { articleJsonLd, breadcrumbJsonLd } from '../../lib/structured-data';
 import { isPublished } from '../../lib/published';
 import { newestFirst } from '../../lib/sort';
 import { readingLabel } from '../../lib/reading-time';
+import { cornerViewsOf } from '../../lib/story-meta';
 import { storyAfter, isThisWeek } from '../../lib/corner';
 import JoinGroup from '../../components/JoinGroup.astro';
 import JoinPopup from '../../components/JoinPopup.astro';
@@ -62,8 +63,8 @@ const prev = issues[idx + 1];
 const sameParasha = issues.filter((p) => p.id !== piece.id && p.data.parasha === parasha);
 
 const rows = [
-  ...sameParasha.map((p) => ({ href: `/mabat-leshabbat/${p.id}/`, small: `עוד על ${kicker(parasha)} · ${p.data.hebrewDate}`, title: p.data.title })),
-  ...(prev ? [{ href: `/mabat-leshabbat/${prev.id}/`, small: `הגיליון הקודם · ${kicker(prev.data.parasha)}`, title: prev.data.title }] : []),
+  ...sameParasha.map((p) => ({ href: `/mabat-leshabbat/${p.id}/`, small: `עוד על ${kicker(parasha)} · ${p.data.hebrewDate}`, title: p.data.title, views: cornerViewsOf('mabat', p.id) })),
+  ...(prev ? [{ href: `/mabat-leshabbat/${prev.id}/`, small: `הגיליון הקודם · ${kicker(prev.data.parasha)}`, title: prev.data.title, views: cornerViewsOf('mabat', prev.id) }] : []),
   { href: '/mabat-leshabbat/', small: 'כל הגיליונות', title: `${issues.length} גיליונות של מבט לשבת` },
 ];
 ---
@@ -97,6 +98,7 @@ const rows = [
         title={title}
         deck={description}
         meta={readingLabel({ body: piece.body, data: {} })}
+        views={cornerViewsOf('mabat', piece.id)}
       />
 
       <MabatBody blocks={blocks} pullQuote={quoteImageAlt} closingLabel="השאלה לשבת" />

@@ -501,6 +501,11 @@
   min-height: 44px;
 }
 
+.ca-views {
+  display: block;
+  margin-top: 0.15rem;
+}
+
 .ca-more small,
 .ca-list small {
   display: block;
@@ -513,8 +518,8 @@
   font-weight: 600;
 }
 
-.ca-more b,
-.ca-list b {
+.ca-more a > span > b,
+.ca-list a > span > b {
   display: block;
   font-family: var(--font-display);
   font-weight: 500;
@@ -527,8 +532,8 @@
   color: var(--muted);
 }
 
-.ca-more a:hover b,
-.ca-list a:hover b {
+.ca-more a:hover > span > b,
+.ca-list a:hover > span > b {
   color: var(--ck);
 }
 
@@ -601,7 +606,7 @@
   color: var(--muted);
 }
 
-.ca-feat .m b {
+.ca-feat .m > b {
   color: var(--white);
   background: var(--btn, var(--blue));
   border-radius: 999px;

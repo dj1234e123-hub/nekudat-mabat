@@ -41,6 +41,37 @@ export function aggregate(rows, ids, esMap) {
   return out;
 }
 
+/**
+ * צפיות בפינות השבועיות (מבט לשבת, מעשה שהיה), בשתי השפות.
+ * rows: [[pathname, views], ...] -> { mabat: { id: { he, es, total } }, besht: { id: {...} } }
+ * מבט לשבת: אותו מזהה בעברית (/mabat-leshabbat/<id>) ובספרדית (/es/shabat/<id>).
+ * מעשה שהיה: בספרדית הכתובת היא סלאג ספרדי (/es/asi-sucedio/<slug>), ממופה בחזרה למזהה העברי.
+ */
+export function aggregateCorners(rows, ids, esMap) {
+  const esToId = Object.fromEntries(Object.entries(esMap).map(([id, slug]) => [slug, id]));
+  const out = {
+    mabat: Object.fromEntries(ids.mabat.map((id) => [id, { he: 0, es: 0, total: 0 }])),
+    besht: Object.fromEntries(ids.besht.map((id) => [id, { he: 0, es: 0, total: 0 }])),
+  };
+  const rules = [
+    ['/mabat-leshabbat/', 'mabat', 'he', (x) => x],
+    ['/es/shabat/', 'mabat', 'es', (x) => x],
+    ['/besht/', 'besht', 'he', (x) => x],
+    ['/es/asi-sucedio/', 'besht', 'es', (x) => esToId[x] ?? x],
+  ];
+  for (const [path, n] of rows) {
+    const p = String(path).replace(/\/$/, '');
+    for (const [prefix, corner, lang, toId] of rules) {
+      if (!p.startsWith(prefix)) continue;
+      const id = toId(p.slice(prefix.length));
+      if (out[corner][id]) out[corner][id][lang] += Number(n);
+      break;
+    }
+  }
+  for (const group of Object.values(out)) for (const v of Object.values(group)) v.total = v.he + v.es;
+  return out;
+}
+
 async function main() {
   const key = process.env.POSTHOG_PERSONAL_API_KEY;
   const project = process.env.POSTHOG_PROJECT_ID;
@@ -63,18 +94,36 @@ async function main() {
       AND (properties.$pathname LIKE '/stories/%' OR properties.$pathname LIKE '/es/historias/%')
     GROUP BY p
     LIMIT 1000`;
-  const res = await fetch(`${host}/api/projects/${project}/query/`, {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query: { kind: 'HogQLQuery', query: hogql } }),
-    signal: AbortSignal.timeout(20000),
-  });
-  if (!res.ok) throw new Error(`PostHog ${res.status}`);
-  const rows = (await res.json()).results;
-  if (!Array.isArray(rows) || rows.length === 0) throw new Error('תשובה ריקה');
-  const views = aggregate(rows, ids, esMap);
-  fs.writeFileSync(OUT, JSON.stringify({ updatedAt: new Date().toISOString().slice(0, 10), since: SINCE, views }, null, 2) + '\n');
-  console.log(`fetch-views: עודכנו ${ids.length} סיפורים.`);
+  const run = async (query) => {
+    const res = await fetch(`${host}/api/projects/${project}/query/`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query: { kind: 'HogQLQuery', query } }),
+      signal: AbortSignal.timeout(20000),
+    });
+    if (!res.ok) throw new Error(`PostHog ${res.status}`);
+    const rows = (await res.json()).results;
+    if (!Array.isArray(rows) || rows.length === 0) throw new Error('תשובה ריקה');
+    return rows;
+  };
+  const cornerIds = {
+    mabat: fs.readdirSync('src/content/mabat-leshabbat').filter((f) => f.endsWith('.md')).map((f) => f.replace(/\.md$/, '')),
+    besht: fs.readdirSync('src/content/besht').filter((f) => f.endsWith('.md')).map((f) => f.replace(/\.md$/, '')),
+  };
+  const cornersHogql = `
+    SELECT replaceRegexpOne(properties.$pathname, '/$', '') AS p, count() AS views
+    FROM events
+    WHERE event = '$pageview'
+      AND timestamp >= toDateTime('${SINCE}')
+      AND properties.$host = 'nekudatmabat.blog'
+      AND (properties.$pathname LIKE '/mabat-leshabbat/%' OR properties.$pathname LIKE '/es/shabat/%'
+        OR properties.$pathname LIKE '/besht/%' OR properties.$pathname LIKE '/es/asi-sucedio/%')
+    GROUP BY p
+    LIMIT 1000`;
+  const views = aggregate(await run(hogql), ids, esMap);
+  const corners = aggregateCorners(await run(cornersHogql), cornerIds, esMap);
+  fs.writeFileSync(OUT, JSON.stringify({ updatedAt: new Date().toISOString().slice(0, 10), since: SINCE, views, corners }, null, 2) + '\n');
+  console.log(`fetch-views: עודכנו ${ids.length} סיפורים ו-${cornerIds.mabat.length + cornerIds.besht.length} פריטי פינות.`);
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {

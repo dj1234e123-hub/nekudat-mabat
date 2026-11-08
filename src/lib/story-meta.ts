@@ -9,12 +9,18 @@ export const VIEWS_MIN = 30;
 export const NEW_DAYS = 10;
 
 type ViewsEntry = { he: number; es: number; total: number };
+type CornerViews = Record<'mabat' | 'besht', Record<string, ViewsEntry>>;
 
 /** בסיס קבוע שנוסף לכל סיפור: הוסר ב-2026-11-03 לבקשת בעל הפרויקט (היה 100). המוצג = הספירה האמיתית. */
 export const VIEWS_BASE = 0;
 
 export function viewsOf(id: string): number {
   return ((viewsData.views as Record<string, ViewsEntry>)[id]?.total ?? 0) + VIEWS_BASE;
+}
+
+/** צפיות בגיליון של מבט לשבת או בסיפור של מעשה שהיה (עברית + ספרדית). 0 = עוד לא נספר, ואז לא מוצג. */
+export function cornerViewsOf(kind: 'mabat' | 'besht', id: string): number {
+  return ((viewsData as { corners?: CornerViews }).corners?.[kind]?.[id]?.total ?? 0);
 }
 
 /**

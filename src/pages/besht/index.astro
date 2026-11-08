@@ -10,6 +10,7 @@ import { newestFirst } from '../../lib/sort';
 import { isPublished } from '../../lib/published';
 import { readingLabel } from '../../lib/reading-time';
 import { monthLabel } from '../../lib/corner';
+import { cornerViewsOf } from '../../lib/story-meta';
 import { CORNER_COVERS } from '../../data/corner-covers';
 
 const stories = (await getCollection('besht', isPublished)).sort(newestFirst);
@@ -41,12 +42,14 @@ const og = cover ? await getImage({ src: cover.src, width: 1200, format: 'jpeg' 
         text: latest.data.excerpt,
         meta: readingLabel(latest),
         cta: 'לקרוא ←',
+        views: cornerViewsOf('besht', latest.id),
       }}
       items={rest.map((s) => ({
         href: `/besht/${s.id}/`,
         small: s.data.occasion,
         title: s.data.title,
         group: monthLabel(s.data.hebrewDate, 'he'),
+        views: cornerViewsOf('besht', s.id),
       }))}
       bridge={{ href: '/mabat-leshabbat/', small: 'וביום שישי', title: 'מבט לשבת: הטור השבועי על הפרשה', image: CORNER_COVERS.mabat?.src }}
     />

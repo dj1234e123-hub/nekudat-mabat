@@ -3,11 +3,13 @@
 // (הקודם, עוד על הפרשה, הארכיון). דבר אחד שמזמין להמשיך, לא שלושה שווים.
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
+import Views from './Views.astro';
 
 interface Row {
   href: string;
   small: string;
   title: string;
+  views?: number;
 }
 
 interface Props {
@@ -64,6 +66,7 @@ const arrow = lang === 'es' ? '→' : '←';
           <span>
             <small>{r.small}</small>
             <b>{r.title}</b>
+            {r.views ? <span class="ca-views"><Views count={r.views} {lang} always /></span> : null}
           </span>
           <i aria-hidden="true">{arrow}</i>
         </a>

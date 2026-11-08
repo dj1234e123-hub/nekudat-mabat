@@ -12,6 +12,7 @@ import { newestFirst } from '../../../lib/sort';
 import { isPublished } from '../../../lib/published';
 import { readingLabel } from '../../../lib/reading-time';
 import { monthLabel } from '../../../lib/corner';
+import { cornerViewsOf } from '../../../lib/story-meta';
 import { CORNER_COVERS } from '../../../data/corner-covers';
 
 const stories = (await getCollection('beshtEs', isPublished)).sort(newestFirst);
@@ -45,12 +46,14 @@ const og = cover ? await getImage({ src: cover.src, width: 1200, format: 'jpeg' 
         text: latest.data.excerpt,
         meta: readingLabel(latest, 'es'),
         cta: 'Leer →',
+        views: cornerViewsOf('besht', latest.id),
       }}
       items={rest.map((s) => ({
         href: esBeshtPath(s.id),
         small: s.data.occasion,
         title: s.data.title,
         group: monthLabel(s.data.hebrewDate, 'es'),
+        views: cornerViewsOf('besht', s.id),
       }))}
       bridge={{ href: '/es/shabat/', small: 'Y el viernes', title: `${MABAT_ES.name}: la columna semanal sobre la parashá`, image: CORNER_COVERS.mabat?.src }}
     />

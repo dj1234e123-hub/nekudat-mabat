@@ -282,5 +282,116 @@
       "es": 145,
       "total": 259
     }
+  },
+  "corners": {
+    "mabat": {
+      "bereshit": {
+        "he": 34,
+        "es": 19,
+        "total": 53
+      },
+      "chayei-sara": {
+        "he": 27,
+        "es": 16,
+        "total": 43
+      },
+      "haazinu": {
+        "he": 95,
+        "es": 15,
+        "total": 110
+      },
+      "ki-tavo": {
+        "he": 16,
+        "es": 3,
+        "total": 19
+      },
+      "lech-lecha": {
+        "he": 60,
+        "es": 25,
+        "total": 85
+      },
+      "nitzavim": {
+        "he": 79,
+        "es": 10,
+        "total": 89
+      },
+      "noach": {
+        "he": 41,
+        "es": 22,
+        "total": 63
+      },
+      "simchat-torah": {
+        "he": 54,
+        "es": 18,
+        "total": 72
+      },
+      "sukkot": {
+        "he": 83,
+        "es": 11,
+        "total": 94
+      },
+      "vayera": {
+        "he": 40,
+        "es": 37,
+        "total": 77
+      },
+      "yom-kippur": {
+        "he": 69,
+        "es": 28,
+        "total": 97
+      }
+    },
+    "besht": {
+      "ad-shelo-yishaer-matar": {
+        "he": 28,
+        "es": 0,
+        "total": 28
+      },
+      "hakova-shehaya-lesuka": {
+        "he": 68,
+        "es": 31,
+        "total": 99
+      },
+      "hasfina-shechazra": {
+        "he": 30,
+        "es": 1,
+        "total": 31
+      },
+      "hayeled-shelo-pachad": {
+        "he": 43,
+        "es": 47,
+        "total": 90
+      },
+      "hem-lo-yadu-klum": {
+        "he": 47,
+        "es": 0,
+        "total": 47
+      },
+      "lama-kulam-nikraim-baruch": {
+        "he": 30,
+        "es": 1,
+        "total": 31
+      },
+      "mi-ba-lasuda-shlishit": {
+        "he": 49,
+        "es": 46,
+        "total": 95
+      },
+      "mima-osim-keter": {
+        "he": 4,
+        "es": 1,
+        "total": 5
+      },
+      "nigun-vidui": {
+        "he": 68,
+        "es": 0,
+        "total": 68
+      },
+      "tohav-oto-yoter": {
+        "he": 1,
+        "es": 0,
+        "total": 1
+      }
+    }
   }
 }

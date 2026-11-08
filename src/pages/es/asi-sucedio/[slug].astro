@@ -17,6 +17,7 @@ import { articleJsonLd, breadcrumbJsonLd } from '../../../lib/structured-data';
 import { isPublished } from '../../../lib/published';
 import { newestFirst } from '../../../lib/sort';
 import { readingLabel } from '../../../lib/reading-time';
+import { cornerViewsOf } from '../../../lib/story-meta';
 import { kickerEs } from '../../../lib/mabat-format';
 import { issueBefore, isThisWeek } from '../../../lib/corner';
 
@@ -40,7 +41,7 @@ const issue = paired ?? issues[0];
 const idx = all.findIndex((s) => s.id === story.id);
 const prev = all[idx + 1];
 const rows = [
-  ...(prev ? [{ href: esBeshtPath(prev.id), small: `La historia anterior · ${prev.data.occasion}`, title: prev.data.title }] : []),
+  ...(prev ? [{ href: esBeshtPath(prev.id), small: `La historia anterior · ${prev.data.occasion}`, title: prev.data.title, views: cornerViewsOf('besht', prev.id) }] : []),
   { href: '/es/asi-sucedio/', small: 'Todas las historias', title: `${all.length} historias de ${BESHT_ES.name}` },
 ];
 ---
@@ -75,6 +76,7 @@ const rows = [
         title={title}
         deck={excerpt}
         meta={readingLabel(story, 'es')}
+        views={cornerViewsOf('besht', story.id)}
       />
 
       <Image

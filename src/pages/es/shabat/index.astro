@@ -13,6 +13,7 @@ import { parseBody, plainText, kickerEs } from '../../../lib/mabat-format';
 import { isPublished } from '../../../lib/published';
 import { readingLabel } from '../../../lib/reading-time';
 import { monthLabel } from '../../../lib/corner';
+import { cornerViewsOf } from '../../../lib/story-meta';
 import { CORNER_COVERS } from '../../../data/corner-covers';
 
 const pieces = (await getCollection('mabatEs', isPublished)).sort(newestFirst);
@@ -52,12 +53,14 @@ const og = cover ? await getImage({ src: cover.src, width: 1200, format: 'jpeg' 
         text: latestText,
         meta: readingLabel({ body: latest.body, data: {} }, 'es'),
         cta: 'Leer →',
+        views: cornerViewsOf('mabat', latest.id),
       }}
       items={rest.map((p) => ({
         href: `/es/shabat/${p.id}/`,
         small: `${label(p.data.parasha)} · ${p.data.hebrewDate}`,
         title: p.data.title,
         group: monthLabel(p.data.hebrewDate, 'es'),
+        views: cornerViewsOf('mabat', p.id),
       }))}
       bridge={{ href: '/es/asi-sucedio/', small: 'Y al terminar Shabat', title: `${BESHT_ES.name}: una historia del Baal Shem Tov`, image: havdala }}
     />
