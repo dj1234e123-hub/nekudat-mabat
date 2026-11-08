@@ -29,7 +29,6 @@ const picked = stories.find((s) => s.id === HERO_PICK);
 const pool = heroPool(stories);
 const manual = !!picked;
 const top = [...stories]
-  .filter((s) => s.id !== (picked ?? pool[0] ?? stories[0]).id)
   .sort((a, b) => viewsOf(b.id) - viewsOf(a.id) || b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 6);
 const fresh = stories.slice(0, 3);
