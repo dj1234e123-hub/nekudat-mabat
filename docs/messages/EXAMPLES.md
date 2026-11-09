@@ -4,6 +4,54 @@
 
 ## המודלים
 
+### 9.11 – "אם לא למעלה מזה" (פתיחה: עוגן מועד, "חודש טוב" · פער: מה הליטאי ראה מתחת למיטה · עלה ערב ר"ח כסלו)
+```
+חודש טוב! 🌙
+
+בכל בוקר,
+לפני עלות השחר,
+הרבי נעלם.
+החסידים ידעו:
+הוא עולה לשמיים.
+
+ליטאי אחד התחבא
+מתחת למיטה שלו,
+ובא לראות.
+
+הוא יצא משם
+עם משפט אחד:
+*אם לא למעלה מזה* 👇
+https://nekudatmabat.blog/stories/im-lo-lemala-mize/?s=wa-he
+
+להצטרפות לקבוצה:
+https://chat.whatsapp.com/EdI3EWz6WiQ6HlXCwJsdjh
+```
+נבחר על ידי בעל הפרויקט (הנוסח הראשון מבין שניים; החלופי נפתח בשאלה "לאן נעלם הרבי"). לסטטוס: אותו נוסח עם `?s=st-he`, בלי קישור קבוצה.
+
+**ספרדית (ללא בדיקת דוברת ילידית):**
+```
+¡Buen mes! 🌙
+
+Cada mañana
+antes del amanecer
+el Rebe desaparecía.
+Los jasidim sabían:
+subía al cielo.
+
+Un lituano escéptico
+se escondió
+bajo su cama
+para verlo.
+
+Salió de allí
+con una sola frase:
+*Si no más arriba* 👇
+https://nekudatmabat.blog/es/historias/si-no-mas-arriba/?s=wa-es
+
+Para unirte al grupo:
+https://chat.whatsapp.com/Guowx1In317DPruSb0iylo
+```
+
 ### 4.11 – "שבעים דולר" (פתיחה: שאלה · פער: מה הבאר הביאה · לא "מים")
 ```
 מה קורה כשילד
@@ -200,5 +248,6 @@ https://chat.whatsapp.com/EdI3EWz6WiQ6HlXCwJsdjh
 | 2.11 | שבעה קילומטר בחדר | שאלה |
 | 3.11 | שתי קלטות של תשעים דקות | סצנה |
 | 4.11 | שבעים דולר | שאלה |
+| 9.11 | אם לא למעלה מזה | עוגן מועד |
 
 הצלבה מול PostHog (כניסות עם `link_tag`, גלילה עד הסוף, שיתופים, "הסיפור הבא") טרם בוצעה. כשתתבצע, התוצאה נרשמת כאן כרמז ולא כהוכחה: 21 הודעות הן מדגם קטן, וסיפורי ארכיון מתערבבים עם חדשים.
