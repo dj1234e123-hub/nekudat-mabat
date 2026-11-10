@@ -107,14 +107,9 @@ const altLangHref = hasEsTwin ? esStoryPath(story.id) : '/es/historias/';
     </article>
 
     <ShareRow title={title} url={pageUrl} />
-    <StoryEnd current={story.id} world={worldCandidates} related={nextCandidates} moments={relatedMoments} worldLabel={SECTIONS[section]} />
+    <StoryEnd current={story.id} world={worldCandidates} related={nextCandidates} moments={relatedMoments} worldLabel={SECTIONS[section]} random={otherStoryUrls.length > 0} />
+    <JoinGroup quiet />
     <WriteToMe title={title} />
-    <JoinGroup />
-
-    <nav class="story-footer">
-      <a href="/stories/">לכל {allStories.length} הסיפורים</a>
-      {otherStoryUrls.length > 0 && <button id="random-story" type="button" data-ph="random_story">לסיפור אקראי</button>}
-    </nav>
     <JoinPopup />
   </main>
 </Base>
@@ -122,7 +117,7 @@ const altLangHref = hasEsTwin ? esStoryPath(story.id) : '/es/historias/';
 {
   otherStoryUrls.length > 0 && (
     <script is:inline define:vars={{ otherStoryUrls }}>
-      document.getElementById('random-story').addEventListener('click', () => {
+      document.getElementById('random-story')?.addEventListener('click', () => {
         // אקראי מתוך מה שטרם נקרא (זיכרון הקריאה של NextUp); כשהכול נקרא – מכולם.
         let read = [];
         try {

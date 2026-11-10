@@ -104,13 +104,8 @@ const relatedMoments = momentsForStory(story, await getCollection('momentsEs', i
     </article>
 
     <ShareRow title={title} url={pageUrl} lang="es" />
-    <StoryEnd current={story.id} world={worldCandidates} related={nextCandidates} moments={relatedMoments} worldLabel={SECTIONS_ES[section].label} lang="es" />
-    <JoinGroup lang="es" />
-
-    <nav class="story-footer">
-      <a href="/es/historias/">Ver las {allStories.length} historias</a>
-      {otherStoryUrls.length > 0 && <button id="random-story" type="button" data-ph="random_story">Una historia al azar</button>}
-    </nav>
+    <StoryEnd current={story.id} world={worldCandidates} related={nextCandidates} moments={relatedMoments} worldLabel={SECTIONS_ES[section].label} lang="es" random={otherStoryUrls.length > 0} />
+    <JoinGroup lang="es" quiet />
     <JoinPopup lang="es" />
   </main>
 </Base>
@@ -118,7 +113,7 @@ const relatedMoments = momentsForStory(story, await getCollection('momentsEs', i
 {
   otherStoryUrls.length > 0 && (
     <script is:inline define:vars={{ otherStoryUrls }}>
-      document.getElementById('random-story').addEventListener('click', () => {
+      document.getElementById('random-story')?.addEventListener('click', () => {
         // Al azar entre lo que aún no se leyó (memoria de lectura de NextUp); si ya se leyó todo, entre todas.
         let read = [];
         try {

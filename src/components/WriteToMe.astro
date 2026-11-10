@@ -25,8 +25,7 @@ const href = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(mes
 ---
 
 <p class="write-to-me">
-  <span class="lead">סיפור הוא התחלה של שיחה.</span>
-  <span>אם משהו כאן נגע בך – <a href={href} rel="noopener" target="_blank" data-ph="write_private">אפשר להמשיך אותה איתי</a></span>
+  סיפור הוא התחלה של שיחה. <a href={href} rel="noopener" target="_blank" data-ph="write_private">אפשר להמשיך אותה איתי</a>
 </p>
 
 <style>
@@ -34,16 +33,9 @@ const href = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(mes
     text-align: center;
     color: var(--secondary);
     font-size: 0.95rem;
-    margin-top: 1.8rem;
+    margin-top: 2.2rem;
     line-height: 1.75;
-  }
-
-  /* שתי שורות ולא אחת: המשפט הפותח צריך רגע משלו לפני ההזמנה. */
-  .write-to-me span {
-    display: block;
-  }
-
-  .lead {
+    text-wrap: balance;
     color: var(--muted);
   }
 

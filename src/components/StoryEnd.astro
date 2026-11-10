@@ -33,12 +33,14 @@ interface Props {
   moments: (CollectionEntry<'moments'> | CollectionEntry<'momentsEs'>)[];
   worldLabel: string;
   lang?: Lang;
+  /** כפתור "לסיפור אקראי" ליד "לכל הסיפורים" (העמוד מחבר את הלחיצה לפי המזהה random-story) */
+  random?: boolean;
 }
-const { current, world, related, moments, worldLabel, lang = 'he' } = Astro.props;
+const { current, world, related, moments, worldLabel, lang = 'he', random = false } = Astro.props;
 const es = lang === 'es';
 const t = es
-  ? { title: '¿Quieres más?', sub: 'Formas de seguir desde aquí', world: `Más de ${worldLabel}`, moment: 'Un momento de Punto de Vista sobre esto', aria: 'Para seguir', all: 'Ver todas las historias', allHref: '/es/historias/' }
-  : { title: 'רוצה עוד?', sub: 'דרכים להמשיך מכאן', world: `עוד מ${worldLabel}`, moment: 'רגע של נקודת מבט על זה', aria: 'ההמשך', all: 'לכל הסיפורים', allHref: '/stories/' };
+  ? { title: '¿Quieres más?', sub: 'Formas de seguir desde aquí', world: `Más de ${worldLabel}`, moment: 'Un momento de Punto de Vista sobre esto', aria: 'Para seguir', all: 'Ver todas las historias', allHref: '/es/historias/', random: 'Una historia al azar' }
+  : { title: 'רוצה עוד?', sub: 'דרכים להמשיך מכאן', world: `עוד מ${worldLabel}`, moment: 'רגע של נקודת מבט על זה', aria: 'ההמשך', all: 'לכל הסיפורים', allHref: '/stories/', random: 'לסיפור אקראי' };
 
 const href = (id: string) => (es ? esStoryPath(id) : `/stories/${id}/`);
 const card = (story: Story, kicker: string, slot: string) => ({
@@ -75,9 +77,12 @@ const momentCards = moments.map((moment) => {
     <aside class="next-up end" data-current={current} aria-label={t.aria}>
       <h2>{t.title}</h2>
       <p class="sb">{t.sub}</p>
-      <a class="all" href={t.allHref} data-ph="all_stories">
-        {t.all} <span aria-hidden="true">{es ? '→' : '←'}</span>
-      </a>
+      <p class="links">
+        <a class="all" href={t.allHref} data-ph="all_stories">
+          {t.all} <span aria-hidden="true">{es ? '→' : '←'}</span>
+        </a>
+        {random && <button class="all rnd" id="random-story" type="button" data-ph="random_story">{t.random}</button>}
+      </p>
       <div class="opts">
         {[worldCards, relatedCards].map((list) =>
           list.length > 0 ? (
@@ -302,15 +307,29 @@ const momentCards = moments.map((moment) => {
   .nowrap {
     white-space: nowrap;
   }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0 1.6rem;
+    margin: 0 0 0.6rem;
+  }
   .all {
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 44px;
-    margin: 0 0 0.6rem;
     font-weight: 600;
     color: var(--teal);
     text-decoration: none;
+  }
+  .rnd {
+    font: inherit;
+    font-weight: 600;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
   }
   .all:hover,
   .all:focus-visible {

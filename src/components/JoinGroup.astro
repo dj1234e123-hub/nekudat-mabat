@@ -9,8 +9,10 @@ import { SITE_ES } from '../data/site-es';
 
 interface Props {
   lang?: 'he' | 'es';
+  /** סוף סיפור: בלי קופסה ובלי כותרת, שורה וכפתור על הנייר ("רוצה עוד?" שמעליו היא הקופסה היחידה) */
+  quiet?: boolean;
 }
-const { lang = 'he' } = Astro.props;
+const { lang = 'he', quiet = false } = Astro.props;
 const es = lang === 'es';
 const groupUrl = es ? SITE_ES.whatsappGroupUrl : SITE.whatsappGroupUrl;
 // ההבטחה מפוצלת לשתיים בכוונה: `text` אומר מה מקבלים, ו-`note` עונה על
@@ -34,8 +36,8 @@ const t = es
 
 {
   groupUrl && (
-    <aside class="join">
-      <p class="join-title">{t.title}</p>
+    <aside class:list={['join', { quiet }]}>
+      {!quiet && <p class="join-title">{t.title}</p>}
       <p class="join-text">{t.text}</p>
       <a class="join-btn" href={groupUrl} rel="noopener" target="_blank" data-ph="join_group">
         {t.btn}
@@ -53,6 +55,16 @@ const t = es
     text-align: center;
     padding: 1.5rem 1.25rem;
     margin-top: 2.5rem;
+  }
+
+  .join.quiet {
+    background: none;
+    border: none;
+    padding: 0;
+    margin-top: 2rem;
+  }
+  .join.quiet .join-text {
+    margin-top: 0;
   }
 
   .join-title {

@@ -194,30 +194,5 @@
   height: 0.55rem;
   border-radius: 50%;
   background: var(--gold);
-  margin: 2.75rem auto 0;
-}
-
-.story-footer {
-  margin-top: 2.5rem;
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-}
-/* שקט ואפור: ההצעות להמשך הן הדלת הראשית; אלה דלתות למי שרוצה את המפה */
-.story-footer a,
-.story-footer button {
-  font-family: inherit;
-  font-size: 0.92rem;
-  color: var(--muted);
-  background: none;
-  border: none;
-  padding: 0;
-  text-decoration: underline;
-  text-underline-offset: 0.25em;
-  font-weight: 500;
-  cursor: pointer;
-}
-.story-footer a:hover,
-.story-footer button:hover {
-  color: var(--teal);
+  margin: 2.75rem auto 4.5rem;
 }
