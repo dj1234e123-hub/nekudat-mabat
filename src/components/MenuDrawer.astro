@@ -10,6 +10,7 @@ interface Props {
   links: { href: string; label: string }[];
   current: string;
 }
+import ThemeToggle from './ThemeToggle.astro';
 const { es, homeHref, brandName, links, current } = Astro.props;
 // העמוד הנוכחי מסומן במגירה – גם בתוך אזור (סיפור בודד מסמן "סיפורים").
 const isCurrent = (href: string) => current.startsWith(href);
@@ -40,6 +41,7 @@ const isCurrent = (href: string) => current.startsWith(href);
   {links.map((link) => (
     <a href={link.href} aria-current={isCurrent(link.href) ? 'page' : undefined}>{link.label}</a>
   ))}
+  <ThemeToggle {es} row />
 </nav>
 {/* דפדפן בלי popover (Samsung Internet ו-Chrome ישנים) הציג את המגירה
     פתוחה תמיד, וה-✕ לא סגר. שם פותחים וסוגרים בכיתה. */}
