@@ -4,6 +4,49 @@
 
 ## המודלים
 
+### 10.11 – "הניתוח שהצליח" (פתיחה: פרדוקס · פער: למה לא זיהה את הפנים · "חודש טוב" כברכה לפני הכותרת, לא כפתיחה · ראש חודש כסלו)
+```
+ארבעים ושלוש שנים
+בלי לראות כלום.
+ואז, ניתוח אחד.
+
+אשתו עמדה מולו.
+הוא זיהה אותה
+רק לפי ההליכה.
+
+חודש טוב, ושנראה
+באמת מה שמולנו.
+
+*הניתוח שהצליח* 👇
+https://nekudatmabat.blog/stories/hanituach-shehitzliach/?s=wa-he
+
+להצטרפות לקבוצה:
+https://chat.whatsapp.com/EdI3EWz6WiQ6HlXCwJsdjh
+```
+נשלחה על ידי בעל הפרויקט (10.11). לסטטוס: אותו נוסח עם `?s=st-he`, בלי קישור קבוצה.
+
+**ספרדית (ללא בדיקת דוברת ילידית):**
+```
+Cuarenta y tres años
+sin ver nada.
+Luego, una operación.
+
+Su esposa estaba
+frente a él.
+La reconoció
+solo por su andar.
+
+¡Buen mes! Que veamos
+de verdad
+lo que tenemos delante.
+
+*La operación que salió bien* 👇
+https://nekudatmabat.blog/es/historias/la-operacion-que-salio-bien/?s=wa-es
+
+Para unirte al grupo:
+https://chat.whatsapp.com/Guowx1In317DPruSb0iylo
+```
+
 ### 9.11 – "אם לא למעלה מזה" (פתיחה: עוגן מועד, "חודש טוב" · פער: מה הליטאי ראה מתחת למיטה · עלה ערב ר"ח כסלו)
 ```
 חודש טוב! 🌙
@@ -249,5 +292,6 @@ https://chat.whatsapp.com/EdI3EWz6WiQ6HlXCwJsdjh
 | 3.11 | שתי קלטות של תשעים דקות | סצנה |
 | 4.11 | שבעים דולר | שאלה |
 | 9.11 | אם לא למעלה מזה | עוגן מועד |
+| 10.11 | הניתוח שהצליח | פרדוקס |
 
 הצלבה מול PostHog (כניסות עם `link_tag`, גלילה עד הסוף, שיתופים, "הסיפור הבא") טרם בוצעה. כשתתבצע, התוצאה נרשמת כאן כרמז ולא כהוכחה: 21 הודעות הן מדגם קטן, וסיפורי ארכיון מתערבבים עם חדשים.
