@@ -52,6 +52,17 @@ const ui = STORY_UI[lang];
         }
       }
       items.forEach((li) => (li.hidden = li !== pick));
+      // "הכי נקראים" באותו עמוד: הסיפור שהוגרל למעלה לא מופיע שוב ברצועה (topShelf בנה כרטיס עודף)
+      const tiles = [...document.querySelectorAll<HTMLElement>('[data-top-rail] > li')];
+      if (tiles.some((li) => li.hidden)) {
+        const dup = tiles.find((li) => li.querySelector('a')?.dataset.storyId === pick.dataset.story) ?? tiles[tiles.length - 1];
+        let n = 0;
+        tiles.forEach((li) => {
+          li.hidden = li === dup;
+          const rk = li.querySelector('.rk');
+          if (!li.hidden && rk) rk.textContent = String(++n);
+        });
+      }
     }
   }
 </script>

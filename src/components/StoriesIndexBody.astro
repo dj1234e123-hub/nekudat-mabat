@@ -10,7 +10,7 @@ import { THEMES, themesOf } from '../data/themes.mjs';
 import { esSectionPath } from '../data/es-slugs';
 import { HERO_PICK } from '../data/stories-hero';
 import { STORY_UI, type Lang } from '../data/story-ui';
-import { heroPool, viewsOf } from '../lib/story-meta';
+import { heroPool, topShelf, viewsOf } from '../lib/story-meta';
 import RotatingHero from './RotatingHero.astro';
 import StorySearch from './StorySearch.astro';
 import StoryHero from './StoryHero.astro';
@@ -34,7 +34,8 @@ const ui = STORY_UI[lang];
 const picked = stories.find((s) => s.id === HERO_PICK);
 const pool = heroPool(stories);
 const manual = !!picked;
-const top = [...stories].sort((a, b) => viewsOf(b.id) - viewsOf(a.id) || b.data.date.getTime() - a.data.date.getTime()).slice(0, 8);
+const hero = picked ?? pool[0] ?? stories[0];
+const top = topShelf(stories, 8, hero?.id);
 const fresh = stories.slice(0, 8);
 
 const entries = stories.map((story) => {
@@ -50,14 +51,16 @@ const themeCount = (slug: string) => entries.filter((e) => e.themes.includes(slu
 // עולם בלי תמונת שער, או בלי סיפורים בשפה הזאת, אינו מוצג כקובייה ("מבחר ולא מראה").
 const worlds = SECTION_SLUGS.filter((slug) => SECTION_GATE_IMAGES[slug] && stories.some((s) => s.data.section === slug));
 
-// תמונת קובייה לנושא: הסיפור הנקרא ביותר בנושא שטרם שימש תמונה לנושא אחר.
+// תמונת קובייה לנושא: הסיפור הנקרא ביותר בנושא שטרם שימש תמונה לנושא אחר, ושהשער שלו עוד לא הוצג
+// למעלה באותו עמוד (סיפור מרכזי, חדש, הכי נקראים). אם אין כזה בנושא – חוזרים לכלל הישן.
 const used = new Set<string>();
+const shown = new Set<string>([...(picked ? [picked] : pool), ...fresh, ...top.map((t) => t.story)].map((s) => s.id));
 const themeTiles = THEMES.map((t: { slug: string; label: string; labelEs: string }) => {
   const inTheme = entries
     .filter((e) => e.themes.includes(t.slug))
     .map((e) => e.story)
     .sort((a, b) => viewsOf(b.id) - viewsOf(a.id));
-  const pick = inTheme.find((s) => !used.has(s.id)) ?? inTheme[0];
+  const pick = inTheme.find((s) => !used.has(s.id) && !shown.has(s.id)) ?? inTheme.find((s) => !used.has(s.id)) ?? inTheme[0];
   if (pick) used.add(pick.id);
   return { slug: t.slug, label: es ? t.labelEs : t.label, cover: (pick?.data.cover ?? null) as ImageMetadata | null, count: inTheme.length };
 }).filter((t) => t.cover && t.count > 0);
@@ -76,7 +79,7 @@ const worldHref = (slug: string) => (es ? esSectionPath(slug) : `/sections/${slu
 <div data-hide-on-search>
 {
   picked || pool.length < 2 ? (
-    <StoryHero story={picked ?? pool[0] ?? stories[0]} {lang} {manual} />
+    <StoryHero story={hero} {lang} {manual} />
   ) : (
     <RotatingHero {pool} {lang} />
   )
@@ -86,7 +89,7 @@ const worldHref = (slug: string) => (es ? esSectionPath(slug) : `/sections/${slu
 <ul class="rail">{fresh.map((s) => <StoryTile story={s} {lang} />)}</ul>
 
 <div class="sh"><h2>{ui.secTop}</h2><span>{ui.secTopNote}</span></div>
-<ul class="rail">{top.map((s, i) => <StoryTile story={s} {lang} rank={i + 1} />)}</ul>
+<ul class="rail" data-top-rail>{top.map((t) => <StoryTile story={t.story} {lang} rank={t.rank} hidden={t.hidden} />)}</ul>
 
 <div class="sh"><h2>{ui.secWorlds}</h2></div>
 <div class="grid">

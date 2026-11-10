@@ -7,7 +7,7 @@ import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import { HERO_PICK } from '../data/stories-hero';
 import { STORY_UI, type Lang } from '../data/story-ui';
-import { heroPool, viewsOf } from '../lib/story-meta';
+import { heroPool, topShelf } from '../lib/story-meta';
 import RotatingHero from './RotatingHero.astro';
 import momentGate from '../assets/gates/moments.png';
 import efraim from '../assets/efraim.jpg';
@@ -28,9 +28,8 @@ const ui = STORY_UI[lang];
 const picked = stories.find((s) => s.id === HERO_PICK);
 const pool = heroPool(stories);
 const manual = !!picked;
-const top = [...stories]
-  .sort((a, b) => viewsOf(b.id) - viewsOf(a.id) || b.data.date.getTime() - a.data.date.getTime())
-  .slice(0, 6);
+const hero = picked ?? pool[0] ?? stories[0];
+const top = topShelf(stories, 6, hero?.id);
 const fresh = stories.slice(0, 3);
 const t = es
   ? {
@@ -86,7 +85,7 @@ const t = es
 
 {
   picked || pool.length < 2 ? (
-    <StoryHero story={picked ?? pool[0] ?? stories[0]} {lang} {manual} ph="home_story" />
+    <StoryHero story={hero} {lang} {manual} ph="home_story" />
   ) : (
     <RotatingHero {pool} {lang} ph="home_story" />
   )
@@ -108,7 +107,7 @@ const t = es
 
 <section class="block">
   <div class="sh"><h2>{ui.secTop}</h2><span>{ui.secTopNote}</span></div>
-  <ul class="rail">{top.map((s, i) => <StoryTile story={s} {lang} rank={i + 1} ph="home_top" />)}</ul>
+  <ul class="rail" data-top-rail>{top.map((t) => <StoryTile story={t.story} {lang} rank={t.rank} hidden={t.hidden} ph="home_top" />)}</ul>
   <p class="more"><a class="btn" href={t.allHref} data-ph="home_all">{t.allBtn}</a></p>
 </section>
 

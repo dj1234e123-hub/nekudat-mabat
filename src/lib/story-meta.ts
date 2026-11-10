@@ -34,6 +34,21 @@ export function heroPool<T extends { id: string; data: { date: Date } }>(stories
     .slice(0, size);
 }
 
+/**
+ * רצועת "הכי נקראים" בלי הסיפור שכבר מוצג כסיפור המרכזי באותו עמוד (2026-11-10): נבנה כרטיס אחד עודף,
+ * והכרטיס של הסיפור המרכזי (או האחרון, אם המרכזי אינו ברשימה) מוסתר. הדירוג נספר על הגלויים בלבד.
+ * כשהסיפור המרכזי מוגרל בדפדפן, RotatingHero מעביר את ההסתרה לכרטיס הנכון וממספר מחדש.
+ */
+export function topShelf<T extends { id: string; data: { date: Date } }>(stories: T[], size: number, heroId?: string) {
+  const all = [...stories]
+    .sort((a, b) => viewsOf(b.id) - viewsOf(a.id) || b.data.date.getTime() - a.data.date.getTime())
+    .slice(0, size + 1);
+  if (all.length <= size) return all.filter((s) => s.id !== heroId).map((story, i) => ({ story, rank: i + 1, hidden: false }));
+  const dup = all.findIndex((s) => s.id === heroId);
+  const hide = dup >= 0 ? dup : all.length - 1;
+  return all.map((story, i) => ({ story, rank: i + 1 - (i > hide ? 1 : 0), hidden: i === hide }));
+}
+
 export const showViews = (n: number) => n >= VIEWS_MIN;
 export const formatViews = (n: number) => n.toLocaleString('en-US');
 

@@ -15,10 +15,12 @@ interface Props {
   story: CollectionEntry<'stories'> | CollectionEntry<'storiesEs'>;
   lang?: Lang;
   rank?: number;
+  /** כרטיס עודף ברצועת "הכי נקראים": מוסתר כשהסיפור כבר מוצג כסיפור המרכזי (RotatingHero מחליף) */
+  hidden?: boolean;
   /** שם אירוע המדידה ללחיצה (data-ph) */
   ph?: string;
 }
-const { story, lang = 'he', rank, ph } = Astro.props;
+const { story, lang = 'he', rank, hidden, ph } = Astro.props;
 const es = lang === 'es';
 const { title, section, date } = story.data;
 const cover = story.data.cover ?? DEFAULT_COVERS[section];
@@ -28,7 +30,7 @@ const hook = hookOf(story);
 const views = viewsOf(story.id);
 ---
 
-<li class="tile">
+<li class="tile" hidden={hidden}>
   <a href={href} data-story-id={story.id} data-ph={ph}>
     <span class="im">
       <Image src={cover} alt="" widths={[240, 480]} sizes="11rem" />
@@ -59,6 +61,9 @@ const views = viewsOf(story.id);
     flex: 0 0 10.8rem;
     scroll-snap-align: start;
     list-style: none;
+  }
+  .tile[hidden] {
+    display: none;
   }
   @media (min-width: 52rem) {
     .tile {
