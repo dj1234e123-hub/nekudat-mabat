@@ -64,7 +64,10 @@ const tellMeHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURICompone
 
     <button id="random-moment" class="unsure" type="button" data-ph="random_moment">לא יודע מה אני מרגיש עכשיו</button>
 
-    <h2 class="map-label" id="all-feelings">כל המצבים</h2>
+    {/* המפה כולה מקופלת מאחורי שורה אחת (2026-11-10): סגורה, היא נראתה כמו חמשת שמות השערים פעם שנייה.
+        שום דבר לא ירד: לחיצה פותחת את חמש הקבוצות, ועוגן ישן פותח את המפה ואת הקבוצה שלו. */}
+    <details class="map" id="all-feelings">
+    <summary class="map-label">כל {FEELING_GROUPS.reduce((n, g) => n + g.feelings.length, 0)} המצבים</summary>
 
     {
       /* קבוצה מתקפלת: עם 22 מצבים, רשימה פתוחה אחת הופכת לעמוד ארוך שצריך
@@ -87,6 +90,8 @@ const tellMeHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURICompone
       ))
     }
 
+    </details>
+
     <p class="soon">מצבים נוספים ותכנים נוספים – בדרך.</p>
     {/* רווח מפורש לפני הקישור: Astro מוחק רווח בין טקסט לקישור שבשורה נפרדת */}
     <p class="tell-me">
@@ -108,6 +113,8 @@ const tellMeHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURICompone
   const target = location.hash && document.getElementById(location.hash.slice(1));
   if (target && target.tagName === 'DETAILS') {
     target.open = true;
+    const map = target.closest('.map');
+    if (map) map.open = true;
     target.scrollIntoView();
   }
 </script>
@@ -275,13 +282,44 @@ const tellMeHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURICompone
 
   /* ── מפת המצבים המלאה ── */
   .map-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    min-height: 44px;
     font-family: var(--font-body);
     font-size: 0.9rem;
     font-weight: 600;
     letter-spacing: 0.04em;
     color: var(--muted);
-    text-align: center;
-    margin: 0 0 0.9rem;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .map-label::-webkit-details-marker {
+    display: none;
+  }
+
+  .map-label::after {
+    content: '';
+    width: 0.4rem;
+    height: 0.4rem;
+    border-inline-start: 2px solid var(--gold);
+    border-block-end: 2px solid var(--gold);
+    transform: rotate(-45deg) translate(0.1rem, -0.1rem);
+    transition: transform 0.15s ease;
+  }
+
+  .map[open] > .map-label::after {
+    transform: rotate(135deg) translate(-0.05rem, -0.05rem);
+  }
+
+  .map[open] > .map-label {
+    margin-bottom: 0.5rem;
+  }
+
+  .map-label:hover {
+    color: var(--teal);
   }
 
   .group {
