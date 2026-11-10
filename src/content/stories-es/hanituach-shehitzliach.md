@@ -1,11 +1,11 @@
 ---
 # Traducción de "הניתוח שהצליח" (4.11.2026), según docs/SPANISH-EDITORIAL-GUIDELINES.md. Misma portada (sin texto).
-# La fecha es un marcador (2030): la historia está lista en la rama de trabajo y no está programada. Al decidir el día, cambiar solo date (igual que en hebreo).
+# Publicado 2026-11-10 (aprobado). Fecha = hora real de publicación.
 title: "La operación que salió bien"
 section: chaim
 cover: ../../assets/covers/hanituach-shehitzliach.jpg
 coverAlt: "Un bastón blanco apoyado en una pared junto a una gran ventana, en una habitación vacía con luz cálida de la mañana"
-date: 2030-01-01T18:00:00Z
+date: 2026-11-10T18:57:00Z
 readingTime: "unos 2 minutos"
 excerpt: "A los tres años perdió la vista. A los cuarenta y seis la recuperó. Y entonces descubrió que eso era solo la mitad."
 hook: "¿Qué pasa después de recibir lo que esperamos durante años?"
