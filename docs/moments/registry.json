@@ -2589,6 +2589,26 @@
       "twin": "etzev-lo-letaken",
       "verdict": "חזק",
       "status": "published"
+    },
+    {
+      "slug": "tikva-halach-vekatan",
+      "title": "הלך וקטן",
+      "home": "hope",
+      "gate": "heavy",
+      "entries": [],
+      "move": "Q",
+      "move2": "UP",
+      "inner": "\"הכוח הולך וקטן, אז זה הסוף\"",
+      "reader": "ימים שבהם הכוח והחשק מתמעטים, ונדמה שמשהו נגמר",
+      "shift": "ללילה שבו הירח כמעט נעלם קראנו ראש חודש",
+      "motion": 3,
+      "takeaway": "Y",
+      "opening": "תאריך/עובדה",
+      "shape": "שאלה",
+      "clusters": [],
+      "twin": "hatchala-harega-hanachon",
+      "verdict": "חזק",
+      "status": "published"
     }
   ]
 }
