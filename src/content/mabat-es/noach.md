@@ -3,7 +3,7 @@
 # Reglas: docs/SPANISH-EDITORIAL-GUIDELINES.md – tú neutro, raya en el diálogo, citas en « »
 # con el punto fuera, sin coma en el salto de línea.
 # Fuentes: memorias de Hiroo Onoda, "No Surrender"; Wikipedia; History Hit. Génesis 8:13–17;
-# Bereshit Rabá 34:4; Rashi a Génesis 8:17 (se escribe היצא y se lee הוצא).
+# Bereshit Rabá 34:4; Rashi a Génesis 8:17 (se escribe הוצא y se lee היצא).
 # La frase del cuadro de cita aparece palabra por palabra en el texto (regla del pull-quote).
 # Sin revisión de hablante nativa (decisión de lanzamiento, 2026-08-30).
 title: ¿Quién le dirá que el diluvio terminó?
