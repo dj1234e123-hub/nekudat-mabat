@@ -6,7 +6,7 @@ title: "Nos vemos el uno de septiembre"
 section: chaim
 cover: ../../assets/covers/nipagesh-beseptember.png
 coverAlt: "Un viejo escritorio de aula en el gueto, un fajo de diplomas amarillentos atado con una cinta roja, un vaso con lápices, y por la ventana los edificios en ruinas de la ciudad a la luz del atardecer"
-date: 2026-09-07T19:30:00Z
+date: 2026-09-07T19:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Al final del año escolar en el gueto de Varsovia, el director les deseó buenas vacaciones a los alumnos y les dijo: nos vemos el uno de septiembre. Pocas semanas después comenzó la gran deportación."
 hook: "¿Qué pasa con una promesa que nadie alcanzó a cumplir?"

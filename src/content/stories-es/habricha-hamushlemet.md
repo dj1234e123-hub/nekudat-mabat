@@ -31,11 +31,11 @@ Pero existía. Solo que ya no se llamaba Theodore.
 
 Se eligió un nombre nuevo. Thomas.
 
-Thomas se casa, cría una hija, vende autos, juega al golf. Cada fin de semana se para al costado de la cancha y alienta a su hija.
+Thomas se casa, cría una hija, vende autos, juega al golf. Cada fin de semana se para al costado de la cancha de fútbol y alienta a su hija.
 
 La hija crece. Conoce a su padre. O al menos, cree que lo conoce.
 
-Cincuenta y dos años. Ni su esposa, ni la hija, ni una sola de las personas que encontraba cada día – nadie lo supo. Y quizás también él, ya casi lo había olvidado.
+Cincuenta y dos años. Ni su esposa, ni la hija, ni una sola de las personas que encontraba cada día – nadie lo supo. Y quizá también él ya casi lo había olvidado.
 
 Y entonces llegó marzo de 2021. Los médicos dijeron que le quedaban semanas. Cáncer de pulmón.
 

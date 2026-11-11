@@ -25,7 +25,7 @@ Hoy es un bosque más grande que Central Park, en Nueva York. Hay tigres, rinoce
 
 Él contó después:
 
-> «Al principio pensaban que estaba loco. Pero no abandoné los plantones, y iba cada día a ver cómo avanzaban».
+> «Al principio pensaban que estaba loco. Pero no abandoné los plantones, e iba cada día a ver cómo avanzaban».
 
 Hay una arena así en mí. Una relación que se enfrió. Un hábito que intenté y no logré. Una parte de mí de la que ya hablo en pasado.
 

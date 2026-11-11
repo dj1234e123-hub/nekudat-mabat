@@ -46,7 +46,7 @@ Cuatro generaciones alrededor de una misma mesa.
 
 ![Jajam Rafael Cohen, de larga barba blanca y kipá negra, sostiene en brazos a su bisnieto el día del brit y lo mira sonriendo](../../assets/photos/chacham-rafael-yitzchak.jpg)
 
-<figcaption>Jajam Rafael Cohen z"l, con su bisnieto Itzjak, la mañana del brit</figcaption>
+<figcaption>Jajam Rafael Cohen, de bendita memoria, con su bisnieto Itzjak, la mañana del brit</figcaption>
 
 </figure>
 

@@ -7,7 +7,7 @@ title: "¿Qué quieres hacer con tu vida?"
 section: chaim
 cover: ../../assets/covers/ma-ata-rotze-bachayim.png
 coverAlt: "Un guante de boxeo antiguo y desgastado sobre una mesa de madera, junto a un cuaderno abierto con una lapicera, una pila de libros y un vaso de lápices, y por la ventana el perfil de una ciudad a la luz del atardecer"
-date: 2026-09-08T18:30:00Z
+date: 2026-09-08T18:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "A los 19 años, Jacob dio un solo puñetazo en la calle. El hombre frente a él murió nueve días después. Años más tarde, los padres de la víctima le hicieron una pregunta que él no esperaba."
 hook: "¿Qué se le pregunta a quien nos quitó todo?"

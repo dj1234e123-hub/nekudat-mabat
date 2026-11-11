@@ -9,7 +9,7 @@ coverAlt: "Un martillo y un cincel sobre fragmentos de roca, detrás un camino d
 date: 2026-09-09T18:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "El médico estaba al otro lado de la montaña, y el camino alrededor era demasiado largo. Después de que murió su esposa, Dashrath Manjhi vendió sus cabras, compró un martillo y un cincel, y subió a la montaña. La aldea se reía de él."
-hook: "¿Cuánto tiempo se puede seguir cuando todo el pueblo se ríe?"
+hook: "¿Cuánto tiempo se puede seguir cuando toda la aldea se ríe?"
 ---
 
 Entre la aldea y el pueblo hay una montaña.
@@ -26,7 +26,7 @@ Pero cada mañana él subía, y se plantaba frente a la roca.
 
 Un golpe. Y otro golpe.
 
-Después bajaba a trabajar, para tener qué comer. Y a fin de cuentas volvía a la montaña.
+Después bajaba a trabajar, para tener qué comer. Y al final del día volvía a la montaña.
 
 Pasaron cinco años, y el camino todavía no estaba. Diez años. Dashrath siguió. Con calor, con lluvia, a oscuras.
 
@@ -36,7 +36,7 @@ Veintidós años.
 
 Y entonces hubo un camino dentro de la montaña. Ciento diez metros de largo, nueve metros de ancho, tallados en la roca. La distancia al pueblo se acortó de cincuenta y cinco kilómetros a quince.
 
-Los niños lo cruzan para ir a la escuela. Lo usan los habitantes de sesenta aldeas. Y quien necesita un médico, llega a tiempo.
+Los niños lo cruzan para ir a la escuela. Lo usan los habitantes de sesenta aldeas. Y quien necesita un médico llega a tiempo.
 
 > Entre la aldea y el pueblo hay una montaña.<br />
 > Hoy la atraviesa un camino.

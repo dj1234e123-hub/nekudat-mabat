@@ -5,7 +5,7 @@ title: "El pañuelo dorado"
 section: yoman
 cover: ../../assets/covers/tzaif-zahov.jpg
 coverAlt: "Andén de una estación de tren al atardecer, con cintas de seda doradas atadas a un farol, a la barandilla y a los bancos a lo largo del andén, y un tren verde azulado al fondo"
-date: 2026-08-31T10:00:00Z
+date: 2026-08-31T09:00:00Z
 excerpt: "Desde la cárcel le escribió a su madre una sola condición: si quiere que vuelva, que cuelgue en la estación un pañuelo dorado – o no vuelve jamás. Ahora el tren se acerca, y él no sabe qué lo espera al otro lado de la ventana."
 hook: "¿Qué se ve en la ventana cuando no estamos seguros de que alguien aún nos espera?"
 ---
@@ -14,7 +14,9 @@ Iba sentado en el tren. El traqueteo de las ruedas sobre las vías, un silbido a
 
 Pero algo llamó mi atención. Roni, el chico sentado a mi lado, estaba muy callado. Sus manos temblaban sin parar.
 
-Después de unos minutos, Roni notó mi mirada. Una sonrisa vacilante, casi de disculpa. –Seguro te preguntas por qué estoy así –dijo.
+Después de unos minutos, Roni notó mi mirada. Una sonrisa vacilante, casi de disculpa.
+
+—Seguro te preguntas por qué estoy así —dijo.
 
 Asentí en silencio. Se echó hacia atrás, respiró hondo, y calló un momento más antes de hablar.
 

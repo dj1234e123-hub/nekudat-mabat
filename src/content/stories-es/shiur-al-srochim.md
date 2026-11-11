@@ -6,7 +6,7 @@ title: "Una lección sobre cordones"
 section: tzadikim
 cover: ../../assets/covers/shiur-al-srochim.png
 coverAlt: "Zapatos de niño viejos con los cordones sueltos sobre el piso de un aula a la luz de la mañana, libros y un sombrero sobre una silla de madera, y una pizarra vacía al fondo"
-date: 2026-09-05T18:00:00Z
+date: 2026-09-05T17:30:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Les enseñó a los niños cómo atarse los zapatos, y lo despidieron por eso. Veinte años después, alguien llamó a su puerta."
 hook: "¿Qué recuerda de verdad un niño de su maestro?"

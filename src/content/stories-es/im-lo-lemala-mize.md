@@ -54,6 +54,6 @@ Solo añadía en voz baja:
 
 Yo me mido con lo que suena alto: lo que estudié, de qué hablé, cuánto me concentré. La casa fría del extremo del pueblo nadie la mide, y por eso es fácil pasar de largo.
 
-<div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿Qué estufa fría hay a mi lado, que dejo atrás en mi camino hacia arriba?</p></div>
+<div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿Qué estufa fría hay a mi lado que dejo atrás en mi camino hacia arriba?</p></div>
 
 <p class="signature">Creo en ti,<br /><a class="signature-title" href="/es/sobre-mi/" data-ph="about_signature">Rabino Efraim Atia</a></p>

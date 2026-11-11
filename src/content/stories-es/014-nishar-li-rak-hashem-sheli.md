@@ -8,7 +8,7 @@ coverAlt: "Una tienda vieja y vacía en un mercado antiguo: estantes de madera d
 date: 2026-08-20T09:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Cada golpe en la puerta hacía saltar a Iosef de la cama. Le habían robado la mercadería, el negocio se vació. Y entonces escuchó a los hijos preguntarle a su madre: «¿Cuándo va a volver a sonreír papá?»"
-hook: "¿Cómo se le oculta la tristeza a unos hijos que lo ven todo?"
+hook: "¿Cómo se les oculta la tristeza a unos hijos que lo ven todo?"
 ---
 
 Cada golpe en la puerta hacía saltar a Iosef de la cama.
@@ -23,7 +23,7 @@ De noche ya no dormía. Solo se quedaba en la cama, mirando el techo.
 
 Una vez, escuchó a los hijos preguntarle a su madre:
 
-—¿Cuándo papá va a volver a sonreír?
+—¿Cuándo va a volver a sonreír papá?
 
 Y esa frase lo quebró más que las deudas.
 

@@ -4,7 +4,7 @@ title: "Por qué estacionaba lejos"
 section: yoman
 archiveId: "010"
 cover: ../../assets/covers/lama-hu-bachar-rachok.jpg
-coverAlt: "Un enorme aparcamiento vacío al amanecer, filas de plazas libres sobre asfalto húmedo, una fábrica larga al fondo y un único coche turquesa aparcado lejos"
+coverAlt: "Un enorme estacionamiento vacío al amanecer, filas de lugares libres sobre asfalto húmedo, una fábrica larga al fondo y un único auto turquesa estacionado lejos"
 date: 2026-08-17T09:00:00Z
 readingTime: "un minuto"
 excerpt: "Un estacionamiento vacío en Suecia, siete y media de la mañana, y miles de lugares libres. El vecino siempre estaciona lejos. Un día le pregunté por qué."
@@ -44,7 +44,7 @@ Terminé un poco más lejos de la puerta – y algo mío *se quedó ahí.*
 A las 7:30 no había nada que ganar. Y aun así, mi cuerpo corría.
 
 Esa presión no venía del reloj.<br />
-Venía de la sensación de que no alcanza: el tiempo, el lugar, las oportunidades. Y quien siente que no alcanza, agarra.
+Venía de la sensación de que no alcanza: el tiempo, el lugar, las oportunidades. Y quien siente que no alcanza agarra.
 
 Mi vecino sentía que tenía *suficiente.*<br />
 Por eso tenía algo que dejarle al que llegara después.

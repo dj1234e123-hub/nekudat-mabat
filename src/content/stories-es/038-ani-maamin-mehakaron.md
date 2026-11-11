@@ -2,7 +2,7 @@
 # תרגום של ארכיון #038 (2026-08-30).
 # תמונת שער נפרדת נוספה 2026-09-16 – תמונת השער העברית נושאת דף עם הכיתוב
 # "אני מאמין" בעברית, ולכן קיבלה תמונה נפרדת בלי כיתוב לגרסה הספרדית.
-title: 'El "Aní Maamín" del vagón'
+title: "El «Aní Maamín» del vagón"
 section: tzadikim
 archiveId: "038"
 cover: ../../assets/covers/038-es.png
@@ -21,7 +21,7 @@ En un vagón está sentado Reb Azriel David Fastag, jasid de Modzitz, hombre de 
 
 Susurra en su corazón los trece principios de la fe, y llega al principio número doce:
 
-«*Creo con fe completa en la llegada del Mashíaj.*»
+«*Creo con fe completa en la llegada del Mashíaj*».
 
 El cerebro le susurra: de qué estás hablando ahora, cuando solo se ve oscuridad.
 

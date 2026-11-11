@@ -26,7 +26,7 @@ Una noche escuchó tras la puerta a su padre decirle a su madre:
 
 —Esperé toda mi vida que Naftali Tzvi creciera para ser un erudito de la Torá. Pero parece que *no es para él*. Que aprenda un oficio: que sea un buen artesano, un judío recto.
 
-El niño entró a la habitación y pidió una oportunidad más.
+El niño entró al cuarto y pidió una oportunidad más.
 
 Y se la dieron.
 
@@ -34,7 +34,7 @@ Años después, sentado a la cabecera de aquel mismo banquete, dijo el Netziv:
 
 —Imagínense que me hubiera convertido en *zapatero*. Un buen zapatero, un judío recto, que aparta tiempo para la Torá entre puntada y puntada. Y después de ciento veinte años me preguntarían en el cielo: «*Naftali*, ¿dónde está tu Haamek Sheelá?»
 
-> Y no entendería en absoluto de qué me hablan.
+> Y no entendería en absoluto de qué me hablaban.
 
 Ese zapatero no habría sufrido. Por lo que tuvimos y se perdió, el corazón duele. Por lo que nunca existió, no hay ningún dolor que avise.
 

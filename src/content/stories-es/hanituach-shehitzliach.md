@@ -25,7 +25,7 @@ Unas semanas después subió con su familia a la montaña donde había aprendido
 
 Pero en la nieve no lograba distinguir una sombra de una persona, de un palo o de una roca. En el primer montículo le dieron ganas de cerrar los ojos y esquiar como siempre.
 
-A su esposa la reconocía solo por su forma de caminar, el largo del cabello y la ropa. Las caras no se le juntaban en una persona.
+Incluso a su esposa la reconocía solo por su forma de caminar, el largo del cabello y la ropa. Las caras no se le juntaban en una persona.
 
 Los ojos funcionaban. Pero el cerebro, que no había visto en cuarenta y tres años, todavía no sabía qué hacer con lo que le llegaba.
 

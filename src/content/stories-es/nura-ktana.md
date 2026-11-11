@@ -28,7 +28,7 @@ Sonrió, cansado, y señaló su auto con la cabeza.
 
 Respiró hondo.
 
-—El mecánico me dijo ahora que era una simple fuga. Si hubiera venido cuando se prendió, me habría costado casi nada. Hoy dejo aquí ocho mil shékeles. Y de paso se me atrasó la revisión, y me dio presión en el pecho.
+—El mecánico me dijo ahora que era una simple fuga. Si hubiera venido cuando se prendió, no me habría costado casi nada. Hoy dejo aquí ocho mil shékeles. Y de paso se me atrasó la revisión, y me dio presión en el pecho.
 
 Nos quedamos callados un momento. El ruido del taller seguía a nuestro alrededor.
 

@@ -18,11 +18,11 @@ En la Polonia de 1916, un niño llegó a los trece años.
 
 Su madre murió cuando él tenía diez, y a su padre se lo llevó el ejército ruso. Afuera rugía la guerra. No había familia que lo celebrara, ni hubo *bar mitzvá*.
 
-El niño, Yisrael Kristal, creció. Se mudó a Łódź, entró en el negocio de dulces de la familia, se casó, y tuvo dos hijos.
+El niño, Israel Kristal, creció. Se mudó a Łódź, entró en el negocio de dulces de la familia, se casó, y tuvo dos hijos.
 
 Entonces llegó el gueto de Łódź. Y después, Auschwitz.
 
-Su esposa y sus dos hijos fueron asesinados. El día en que fue liberado, Yisrael pesaba treinta y siete kilos.
+Su esposa y sus dos hijos fueron asesinados. El día en que fue liberado, Israel pesaba treinta y siete kilos.
 
 Lo reconstruyó todo.
 

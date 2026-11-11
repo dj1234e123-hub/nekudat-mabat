@@ -39,6 +39,6 @@ Durante treinta años cumplió una condena que nadie le había impuesto.
 
 Yo también cumplo condenas así. Por cosas en las que ya hice mi parte, y por las que nadie me culpó.
 
-<div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿Qué condena estoy cumpliendo, que nadie me impuso?</p></div>
+<div class="story-question"><span class="story-question-label">Una pregunta para el camino</span><p>¿Qué condena estoy cumpliendo que nadie me impuso?</p></div>
 
 <p class="signature">Creo en ti,<br /><a class="signature-title" href="/es/sobre-mi/" data-ph="about_signature">Rabino Efraim Atia</a></p>

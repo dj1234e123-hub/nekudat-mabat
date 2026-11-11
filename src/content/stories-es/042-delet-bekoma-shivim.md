@@ -45,7 +45,7 @@ Hasta que de pronto vio una puerta pequeña. Una puerta que nadie veía desde ab
 
 Y sobre ella estaba escrito:
 
-«*Para el que no se rindió. Ascensor al piso 150.*»
+«*Para el que no se rindió. Ascensor al piso 150*».
 
 Entró. Y en un instante llegó a la cima.
 

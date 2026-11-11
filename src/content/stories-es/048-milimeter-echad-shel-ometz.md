@@ -4,7 +4,7 @@ title: "Un milímetro de coraje"
 section: chaim
 archiveId: "048"
 cover: ../../assets/covers/milimeter-echad-shel-ometz.jpg
-coverAlt: "Un patio de barrio al anochecer: la rueda pesada de un coche viejo sobre asfalto agrietado, un gato mecánico tirado de lado junto a ella y, al fondo, la puerta abierta de una casa pequeña con luz cálida"
+coverAlt: "Un patio de barrio al anochecer: la rueda pesada de un auto viejo sobre asfalto agrietado, un gato hidráulico tirado de lado junto a ella y, al fondo, la puerta abierta de una casa pequeña con luz cálida"
 date: 2026-08-28T09:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "El gato hidráulico resbaló, y un auto de una tonelada y media quedó sobre Tony. Su madre salió de la cocina descalza, apoyó las dos manos sobre el metal frío – y lo levantó un milímetro. Una historia real."
@@ -39,7 +39,7 @@ Y otra voz por dentro susurraba: si no eres tú – entonces quién.
 
 Desde lo más profundo subió la frase: *esto no es un auto. Es tu hijo el que está ahí.*
 
-Cerró los ojos un instante, tomó una respiración corta, y empujó.
+Cerró los ojos un instante, tomó aire, y empujó.
 
 Al principio nada. Los músculos ardían, la espalda gritaba, y el mundo se redujo a un solo punto en sus brazos.
 

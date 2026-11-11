@@ -8,29 +8,29 @@ title: "Su cadena perpetua"
 section: chaim
 cover: ../../assets/covers/maasar-haolam-shela.png
 coverAlt: "Una celda oscura, unas esposas rotas y una cadena partida en el suelo, y un pequeño brote verde creciendo en una grieta junto a un rayo de luz que entra por una ventana enrejada"
-date: 2026-09-02T18:01:00Z
+date: 2026-09-02T18:00:00Z
 readingTime: "unos 2 minutos"
-excerpt: "El hombre que asesinó a su hijo fue condenado a 25 años de cárcel. \"La que recibió cadena perpetua fui yo\", dijo Mary Johnson. Doce años después pidió verlo en la cárcel – y lo que pasó en esa sala no terminó ahí."
+excerpt: "El hombre que asesinó a su hijo fue condenado a 25 años de cárcel. «La que recibió cadena perpetua fui yo», dijo Mary Johnson. Doce años después pidió verlo en la cárcel – y lo que pasó en esa sala no terminó ahí."
 hook: "¿Cómo se sale de una cárcel sin barrotes?"
 ---
 
-El hombre que asesinó a su hijo fue condenado a 25 años de cárcel. Pero Mary Johnson dijo: «La que recibió cadena perpetua fui yo.»
+El hombre que asesinó a su hijo fue condenado a 25 años de cárcel. Pero Mary Johnson dijo: «La que recibió cadena perpetua fui yo».
 
 A su hijo lo llamaban Laramiun. Tenía 20 años. Una discusión breve en una fiesta, un solo disparo – y no volvió a casa.
 
 Quien apretó el gatillo fue Oshea, un adolescente de 16 años. Fue enviado a prisión, y Mary se quedó afuera.
 
-En su juicio, contó ella después, quiso hacerlo pedazos. Durante 12 años cargó con eso: la rabia, el odio.
+En su juicio, contó ella después, quiso hacerlo pedazos. Durante doce años cargó con eso: la rabia, el odio.
 
 Y entonces Mary pidió verlo. Oshea se sorprendió. Al principio se negó, y al final aceptó.
 
 Se sentaron juntos en una sala de la cárcel y hablaron. Dos horas.
 
-Al terminar el encuentro, Mary le preguntó si podía abrazarlo. Oshea se levantó, y Mary se acercó a él. Le rodeó con los brazos, y apoyó la cabeza en su hombro.
+Al terminar el encuentro, Mary le preguntó si podía abrazarlo. Oshea se levantó, y Mary se acercó a él. Lo rodeó con los brazos, y apoyó la cabeza en su hombro.
 
 Y entonces las piernas simplemente le fallaron. El hombre que asesinó a su hijo *la sostuvo*, y la sujetó para que no cayera.
 
-Más tarde ella contó: «En ese instante sentí que algo salía de mí.»
+Más tarde ella contó: «En ese instante sentí que algo salía de mí».
 
 Su cadena perpetua terminó ahí.
 
@@ -42,7 +42,7 @@ Empezaron a contar juntos su historia, en cárceles y en comunidades.
 
 En los últimos años Mary enfermó de demencia, y Oshea se quedó a su lado.
 
-> Aquel hombre al que ella no pudo olvidar, estuvo ahí cuando ella ya no pudo recordar.
+> Aquel hombre al que ella no pudo olvidar estuvo ahí cuando ella ya no pudo recordar.
 
 Durante doce años Mary odió una imagen: un muchacho con un arma, el instante de un disparo. En la sala de la cárcel se encontró con otra cosa: una persona a la que se le puede hacer una pregunta, y que responde.
 

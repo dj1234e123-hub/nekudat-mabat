@@ -31,13 +31,13 @@ En el camino se encontró con su vecino. Miró el jarrón, y se rió.
 
 Pero Meir no escuchó una burla. Escuchó *una oportunidad.*
 
-«¿Alegrar al rey?», se dijo. «Eso es un privilegio.»
+«¿Alegrar al rey?», se dijo. «Eso es un privilegio».
 
 Fue al palacio. Los guardias se rieron.
 
 Pero el rey escuchó que había un judío que venía a entregarle un regalo.
 
-El rey pensó: «Si un hombre pobre me trae un regalo, cuánto corazón hay en eso.»
+El rey pensó: «Si un hombre pobre me trae un regalo, cuánto corazón hay en eso».
 
 Y ordenó entregarle una bolsa llena de monedas de oro.
 

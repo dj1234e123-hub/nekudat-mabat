@@ -56,7 +56,7 @@ El viejo calló. No empujó, no tironeó. Solo lo sostuvo y susurró:
 
 —Tú puedes. Yo lo sé.
 
-Y entonces extendió las alas hasta el final, tomó una respiración profunda, y se soltó.
+Y entonces extendió las alas hasta el final, respiró hondo, y se soltó.
 
 Un momento más de caída – y el cuerpo entero recordó lo que siempre estuvo en él.
 

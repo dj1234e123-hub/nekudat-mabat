@@ -19,7 +19,7 @@ No hubo guerra, no hubo rebelión. Solo un grano de polvo sobre *un antiguo jarr
 
 Ante cada guardia nuevo, el encargado se paraba en la entrada y susurraba la advertencia:
 
-—El que se equivoque al limpiar el jarrón, no sale vivo de aquí.
+—El que se equivoque al limpiar el jarrón no sale vivo de aquí.
 
 Guardias llegaban, guardias desaparecían. Los hijos esperaban en vano, y sus mujeres quedaban solas.
 
@@ -59,13 +59,13 @@ El anciano lo mira. No con miedo – sino con *dolor.*
 
 —Querido rey —dijo el anciano—, no rompí *un jarrón.* Rompí *una cárcel.*
 
-Vi cómo un objeto sin vida los convertía a todos ustedes en sus esclavos.
+»Vi cómo un objeto sin vida los convertía a todos ustedes en sus esclavos.
 
-Durante años murió gente por un objeto, por el honor, por la imagen.
+»Durante años murió gente por un objeto, por el honor, por la imagen.
 
-Yo soy viejo. Sin familia, sin hijos pequeños que me esperen en casa.
+»Yo soy viejo. Sin familia, sin hijos pequeños que me esperen en casa.
 
-Si de todos modos alguien tiene que morir – que sea uno que ya vivió una vida entera, y no otro joven que se sacrifica por un jarrón.
+»Si de todos modos alguien tiene que morir – que sea uno que ya vivió una vida entera, y no otro joven que se sacrifica por un jarrón.
 
 La sala en silencio.
 

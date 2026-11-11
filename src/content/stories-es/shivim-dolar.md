@@ -30,7 +30,7 @@ Los vecinos se enteraron. Después el periódico local. Empezaron a llegar donac
 
 Unos meses después llegó una carta de un niño llamado Jimmy. Escribió que antes del pozo se levantaba en plena noche a buscar agua, y solo después se iba a estudiar.
 
-Ryan viajó a visitarlo. Junto al pozo lo esperaban miles de niños, y gritaban su nombre.
+Ryan viajó a visitarlo. Lo esperaban miles de niños, y gritaban su nombre.
 
 Entonces llegó la guerra. Los padres de Jimmy desaparecieron, y unos rebeldes lo secuestraron. Logró escapar.
 

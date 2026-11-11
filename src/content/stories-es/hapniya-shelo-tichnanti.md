@@ -5,7 +5,7 @@ section: yoman
 archiveId: "027"
 topic: faith
 cover: ../../assets/covers/hapniya-shelo-tichnanti.jpg
-coverAlt: "Un arrancador de batería rojo y sus cables sobre la grava junto a una antigua pila de piedra a la que cae agua de un caño, entre olivos; al fondo un coche viejo con el capó abierto y una carretera sinuosa en el valle"
+coverAlt: "Un arrancador de batería rojo y sus cables sobre la grava junto a una antigua pila de piedra a la que cae agua de un caño, entre olivos; al fondo un auto viejo con el capó abierto y una carretera sinuosa en el valle"
 date: 2026-10-19T17:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Llegaba tarde al trabajo y aun así salí de la carretera hacia una pequeña fuente, solo por unos minutos de calma. En el estacionamiento me esperaba una mujer junto a un auto que no arrancaba."

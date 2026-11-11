@@ -79,7 +79,7 @@ voseo (`sos`, `tenés`, `querés`) · סלנג מקומי.
 
 ```
 ✓ «Yo soy así».
-✓ El rey pensó: «Si un hombre pobre me trae un regalo, cuánto corazón hay en eso.»
+✓ El rey pensó: «Si un hombre pobre me trae un regalo, cuánto corazón hay en eso».
 ✓ su libro «Haamek Sheelá»
 ```
 
