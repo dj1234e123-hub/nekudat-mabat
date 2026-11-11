@@ -8,7 +8,7 @@ handle: |-
 ---
 Imaginas la seguridad
 como una calma interior total.
-Y entonces esperas sentirla,
+Y entonces esperas sentirla
 antes de **hacer**.
 
 Y no llega.

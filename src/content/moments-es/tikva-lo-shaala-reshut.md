@@ -8,7 +8,7 @@ handle: |-
 ---
 Decidiste que este año
 no ibas a **pedir**.
-Porque duele demasiado,
+Porque duele demasiado
 esperar de nuevo.
 
 Y aun así

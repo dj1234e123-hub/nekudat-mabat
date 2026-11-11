@@ -18,10 +18,10 @@ ni algo que se pueda
 
 Pero no saliste de esto
 la misma persona.
-Cosas que antes pasabas de largo,
+Cosas que antes pasabas de largo
 hoy te **saltan a la vista**.
 
 ---
 
-Lo que no se ve,
+Lo que no se ve
 tampoco se pierde.

@@ -11,7 +11,7 @@ que de cualquier otra emoción.
 Por eso casi nunca
 se la **mira**.
 
-Porque qué habría que mirar.
+Porque ¿qué habría que mirar?
 Está claro lo que dice:
 que hay en ti algo
 **mezquino**.

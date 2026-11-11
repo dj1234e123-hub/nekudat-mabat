@@ -25,7 +25,7 @@ Una selva en una pequeña isla de Filipinas, 1944.
 Un joven oficial japonés recibe una última orden de su comandante:
 resistir. No rendirse. No quitarse la vida.
 
-—Tal vez tome tres años, tal vez cinco –le dice el comandante–.
+—Tal vez tome tres años, tal vez cinco —le dice el comandante—.
 Pero volveremos a buscarte.
 
 Un año después la guerra termina.

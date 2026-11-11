@@ -18,7 +18,7 @@ y otra **más**.
 
 Pero no nació ahí.
 Nació de la distancia
-entre lo que prometes,
+entre lo que prometes
 y lo que **hay**.
 
 ---

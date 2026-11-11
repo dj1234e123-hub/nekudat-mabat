@@ -6,7 +6,7 @@ handle: |-
   Después de la canción,
   volver al hoy sin calificar.
 ---
-Tres **minutos** en la radio,
+Tres **minutos** en la radio
 te devolvieron
 a una época
 que ya terminó.

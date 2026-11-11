@@ -6,7 +6,7 @@ parasha: Nitzavim-Vayelej
 hebrewDate: 22 de Elul 5786
 date: 2026-09-03
 signoff: |
-  Shabat Shalom umevoraj.
+  Shabat shalom umevoraj.
   Que merezcamos hacer nuestra parte,
   aunque nunca lleguemos a saber
   quién más se levantará gracias a ello.
@@ -21,7 +21,7 @@ No sabe exactamente por qué lo invitaron.
 
 Frente a él, la presentadora abre un cuaderno viejo.
 
-«Una lista de nombres», dice. «Del año 1939».
+—Una lista de nombres —dice—. Del año 1939.
 
 Empieza a contar sobre un joven de Inglaterra que viajó a Praga, cuando las fronteras de Europa se iban cerrando.
 
@@ -93,7 +93,7 @@ Quien aún será parte de la historia.
 
 En el estudio de Londres, la presentadora levanta la vista del cuaderno y se dirige al público:
 
-«Todo el que esté aquí y le deba la vida a Nicholas Winton – por favor, póngase de pie».
+—Todo el que esté aquí y le deba la vida a Nicholas Winton, por favor, póngase de pie.
 
 Por un momento se hace silencio.
 

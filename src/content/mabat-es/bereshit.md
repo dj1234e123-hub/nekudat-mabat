@@ -43,7 +43,7 @@ Una pregunta sin respuesta cómoda.
 
 ***
 
-En la parashá Bereshit, después del pecado, el hombre se esconde entre los árboles del jardín.
+En la parashá Bereshit, después de comer del árbol, el hombre se esconde entre los árboles del jardín.
 
 Y Dios lo llama:
 

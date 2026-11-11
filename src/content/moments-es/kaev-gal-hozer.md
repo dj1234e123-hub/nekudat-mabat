@@ -1,6 +1,6 @@
 ---
 feeling: pain
-date: 2026-08-21
+date: 2026-08-22
 title: Una ola que vuelve
 handle: |-
   Cuando llegue una ola hoy

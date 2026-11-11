@@ -16,7 +16,7 @@ queda solo eso.
 Justo con ellos.
 Justo los **cercanos**.
 
-Pero lo que se acumuló en el día,
+Pero lo que se acumuló en el día
 buscaba una salida.
 Y no buscaba justicia.
 Buscaba un **lugar**.

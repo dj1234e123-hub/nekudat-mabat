@@ -5,7 +5,7 @@ parasha: Ki Tavó
 hebrewDate: 15 de Elul 5786
 date: 2026-08-29
 signoff: |
-  Shabat Shalom umevoraj.
+  Shabat shalom umevoraj.
   Que merezcamos, también
   en los momentos
   que nadie ve,

@@ -8,7 +8,7 @@ handle: |-
 ---
 Te dijeron
 que hay que ser fuerte.
-Y quizás de verdad,
+Y quizás de verdad
 lo decían por tu **bien**.
 
 Y te quedaste a solas con esto.
@@ -16,7 +16,7 @@ Y entonces se siente un fracaso:
 ni siquiera aguantar
 te **salió**.
 
-Pero «sé fuerte»,
+Pero «sé fuerte»
 muchas veces dice
 otra cosa:
 no me muestres **esto**.

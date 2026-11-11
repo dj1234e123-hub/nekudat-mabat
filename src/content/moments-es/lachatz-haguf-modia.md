@@ -18,7 +18,7 @@ para no estar **bien**.
 
 Pero el cuerpo ya avisó
 otra cosa.
-Y avisó,
+Y avisó
 antes de que la cabeza **aceptara**.
 
 ---

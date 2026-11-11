@@ -16,7 +16,7 @@ date: 2026-09-18T07:00:00Z
 quoteImage: ../../assets/mabat-leshabbat/haazinu-quote-es.png
 quoteImageAlt: "El expediente no cambió. Solo quien lo leyó."
 signoff: |
-  Shabat Shalom umevoraj.
+  Shabat shalom umevoraj.
   Que este año lean en nuestro expediente
   también lo que todavía no está escrito,
   y que no cerremos el expediente

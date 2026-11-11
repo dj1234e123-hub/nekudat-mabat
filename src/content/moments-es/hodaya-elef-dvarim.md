@@ -17,7 +17,7 @@ queda anotado como:
 no pasó **nada**.
 
 Solo que para esa nada,
-trabajó todo el día:
+trabajaron todo el día:
 el cuerpo, la casa, el camino.
 Mil cosas **funcionaron**.
 

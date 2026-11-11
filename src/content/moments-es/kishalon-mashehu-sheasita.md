@@ -17,7 +17,7 @@ que ya no es algo que hiciste.
 Es algo que te **volviste**.
 
 Pero hay una diferencia
-entre «probé y no funcionó»,
+entre «probé y no funcionó»
 y «no valgo».
 La cabeza **mezcla** rápido.
 

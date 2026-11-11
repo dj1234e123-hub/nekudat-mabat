@@ -12,7 +12,7 @@ Y algo por dentro
 se **encogió**.
 
 Y enseguida gira hacia adentro.
-Si él tiene,
+Si él tiene
 y yo no,
 entonces yo no soy **nada**.
 

@@ -13,7 +13,7 @@ comió algo.
 
 La **mesa**
 en la que se sentaron
-ya se vació,
+ya se vació
 hace tiempo.
 
 Y se puede

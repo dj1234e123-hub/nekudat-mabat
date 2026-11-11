@@ -7,7 +7,7 @@ handle: |-
   se puede festejar sin público.
 ---
 Hiciste algo difícil,
-completamente solo
+completamente a solas
 sin testigos,
 y sin **ceremonia**.
 

@@ -7,7 +7,7 @@ handle: |-
   preguntar cuánto de él es guardar.
 ---
 Recordar qué contaste a quién.
-Revisar cada frase,
+Revisar cada frase
 antes de que salga.
 Estar alerta hasta en el **descanso**.
 

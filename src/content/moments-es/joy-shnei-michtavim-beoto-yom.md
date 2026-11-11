@@ -13,7 +13,7 @@ la mala.
 
 Entonces la escondiste
 por dentro
-como si una alegría **visible**,
+como si una alegría **visible**
 hiriera.
 
 Pero él no necesita

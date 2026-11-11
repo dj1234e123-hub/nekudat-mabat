@@ -84,7 +84,7 @@ Se metió en la paja.
 
 Cavó sobre su cabeza hasta ver las estrellas.
 
-Susurró la bendición: «leishev basuká».
+Susurró la bendición: «leishev basucá».
 
 Y volvió corriendo.
 

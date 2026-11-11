@@ -8,7 +8,7 @@ handle: |-
 ---
 En tu cabeza ya está lista
 una película entera.
-De cómo se vería,
+De cómo se vería
 si lo **contaras**.
 
 Y en ella todos reaccionan

@@ -23,5 +23,5 @@ Dice que algo
 
 ---
 
-La nostalgia sabe vivir,
+La nostalgia sabe vivir
 incluso en una casa llena.

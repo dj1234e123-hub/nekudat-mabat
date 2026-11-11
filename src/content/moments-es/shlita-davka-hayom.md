@@ -8,7 +8,7 @@ handle: |-
 ---
 De todos los días
 pasó justo **hoy**.
-El día en que más querías,
+El día en que más querías
 ser de otra manera.
 
 Y enseguida

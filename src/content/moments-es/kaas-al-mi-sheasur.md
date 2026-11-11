@@ -18,7 +18,7 @@ Y esa es la que pesa de **verdad**.
 
 Pero el primer enojo
 no lo elegiste.
-Apareció,
+Apareció
 antes de que **pudieras**.
 
 ---

@@ -13,7 +13,7 @@ Y vuelve de **noche**.
 
 Y cada frase así
 suena como una sentencia.
-De que no estuviste ahí,
+De que no estuviste ahí
 lo bastante **bien**.
 
 Pero debajo de cada «tendría que»

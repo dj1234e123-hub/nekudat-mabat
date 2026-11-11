@@ -11,7 +11,7 @@ que esto se va a arreglar.
 Y asentiste con cortesía
 sin **creerle**.
 
-Porque cómo va a saberlo él.
+Porque ¿cómo va a saberlo él?
 No está ahí, no ve,
 y a él
 le resulta fácil **creer**.

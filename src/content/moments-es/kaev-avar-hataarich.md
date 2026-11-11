@@ -16,7 +16,7 @@ porque ya pasó la fecha
 en la que se espera
 que estés **bien**.
 
-Pero ese calendario,
+Pero ese calendario
 nunca fue tuyo.
 Es de los que miran
 desde **afuera**.

@@ -7,7 +7,7 @@ handle: |-
   pedirle una al sidur.
 ---
 Abriste un sidur,
-y dijiste palabras,
+y dijiste palabras
 escritas mucho antes
 de que **nacieras**.
 

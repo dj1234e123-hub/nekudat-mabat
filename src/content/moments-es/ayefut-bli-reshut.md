@@ -8,7 +8,7 @@ handle: |-
 ---
 Hay gente que depende de ti.
 Entonces sigues.
-Y lo haces,
+Y lo haces
 **bien**.
 
 Y eso es justo lo que oculta.

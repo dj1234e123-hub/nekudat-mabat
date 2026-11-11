@@ -8,7 +8,7 @@ handle: |-
 ---
 Comparas lo de adentro
 con lo que se ve en otros.
-Y siempre sales,
+Y siempre sales
 **perdiendo**.
 
 Porque lo que muestran

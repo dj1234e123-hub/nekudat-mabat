@@ -17,7 +17,7 @@ de alguien que sabe
 qué le **conviene**.
 
 Pero en retrospectiva se ve
-que la vida se achicó,
+que la vida se achicó
 justo al tamaño
 de lo que **evitaste**.
 

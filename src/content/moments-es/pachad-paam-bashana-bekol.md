@@ -6,7 +6,7 @@ handle: |-
   La frase que se dijo en voz alta
   no hace falta cerrarla rápido.
 ---
-Todo el año lo logras
+Todo el año logras
 no pensar en eso.
 Y entonces llega una **frase**
 que se lee en voz alta.

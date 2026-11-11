@@ -6,7 +6,7 @@ handle: |-
   Basta una frase:
   «Vi que te dolió».
 ---
-Es fácil decidir,
+Es fácil decidir
 pedir **perdón**.
 Más difícil
 es imaginar la respuesta.

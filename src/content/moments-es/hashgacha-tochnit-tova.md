@@ -12,7 +12,7 @@ Y la vida se fue
 a otro **lado**.
 
 Y cuando comparas
-entre lo planeado,
+entre lo planeado
 y lo que hay
 la conclusión: te saliste del **camino**.
 

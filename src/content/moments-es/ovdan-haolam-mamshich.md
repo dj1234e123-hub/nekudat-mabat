@@ -8,7 +8,7 @@ handle: |-
 ---
 La gente viaja al trabajo.
 Las tiendas abren.
-Alguien se queja,
+Alguien se queja
 del **tráfico**.
 
 Y te quedas en medio

@@ -8,7 +8,7 @@ handle: |-
 ---
 Es fácil decir
 cuánto **orgullo** te da él.
-Y más difícil,
+Y más difícil
 decirlo sobre ti.
 
 Porque el orgullo por otra persona

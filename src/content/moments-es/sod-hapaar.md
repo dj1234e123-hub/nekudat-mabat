@@ -17,8 +17,8 @@ sin esa única cosa.
 Y cada elogio se frena **ahí**.
 
 Pero no es un disfraz.
-Hay en ti un cuarto,
-cuya puerta quedó,
+Hay en ti un cuarto
+cuya puerta quedó
 **cerrada**.
 
 ---

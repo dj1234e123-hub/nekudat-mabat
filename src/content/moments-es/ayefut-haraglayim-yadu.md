@@ -6,7 +6,7 @@ handle: |-
   Sin una respuesta lista
   también se puede empezar.
 ---
-El despertador sonó,
+El despertador sonó
 antes de que el mundo despertara.
 Y las **piernas** ya saben
 hacia dónde ir.
@@ -17,7 +17,7 @@ Simplemente te levantas,
 y eso **basta**.
 
 Porque no todo acto
-necesita una respuesta lista,
+necesita una respuesta lista
 antes de suceder.
 **Sucede**, y esa es toda la historia.
 

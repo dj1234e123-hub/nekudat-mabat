@@ -8,7 +8,7 @@ handle: |-
 ---
 Dijiste la palabra
 que había que decir.
-Y enseguida,
+Y enseguida
 llegó una **liviandad**.
 
 Y entonces pensaste

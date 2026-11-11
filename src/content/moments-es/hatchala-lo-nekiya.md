@@ -13,7 +13,7 @@ como estar en la **entrada**.
 
 Con todo lo que fue
 todavía colgando de ti.
-Y sin saber si queda,
+Y sin saber si queda
 suficiente **fuerza**.
 
 Pero se empieza justo así.

@@ -13,7 +13,7 @@ y solo **confunde**.
 
 Porque cuantas más opiniones se juntan
 más difícil es escuchar
-lo que pensabas,
+lo que pensabas
 antes de **preguntar**.
 
 Pero entre todas las voces

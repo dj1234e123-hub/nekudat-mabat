@@ -16,7 +16,7 @@ Las bendiciones, los símbolos, la mesa.
 Excepto una silla
 que quedó **vacía**.
 
-Y esperan que digas,
+Y esperan que digas
 «buen año».
 Cuando el año pasado
 se llevó algo que no **vuelve**.

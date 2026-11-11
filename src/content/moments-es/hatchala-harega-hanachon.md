@@ -11,7 +11,7 @@ El primero del mes.
 Después de las fiestas.
 Cuando esté un poco más **tranquilo**.
 
-Y ese momento correcto,
+Y ese momento correcto
 casi nunca llega.
 Y cada postergación parece
 falta de **seriedad**.

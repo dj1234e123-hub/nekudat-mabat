@@ -1,7 +1,7 @@
 ---
 # Traducción del número de Jayé Sará 5787. Misma fecha y hora exactas que el gemelo hebreo.
 # Reglas: docs/SPANISH-EDITORIAL-GUIDELINES.md – tú neutro, citas en « » con el punto fuera,
-# raya solo para el diálogo, sin coma en el salto de línea. Fuentes: Génesis 24:12, 24:39 y Rashí;
+# raya solo para el diálogo, sin coma en el salto de línea. Fuentes: Génesis 24:12, 24:39 y Rashi;
 # El País, 14 y 19.12.2012 (Iván Fernández Anaya y Abel Mutai, cross de Burlada, 2.12.2012).
 # En español los nombres vuelven: es una historia española conocida por este público.
 # La frase del cuadro de cita aparece palabra por palabra en el texto (regla del pull-quote).
@@ -52,7 +52,7 @@ Abraham envía a Eliezer, su siervo fiel, a buscar esposa para Itzjak.
 Y cuando Eliezer vuelve a contar todo lo que pasó, palabra por palabra, aparece en sus palabras la pregunta que le había hecho a Abraham antes de salir:
 «Tal vez la mujer no quiera venir tras de mí».
 
-En hebreo, «tal vez» es **ulai**. Pero aquí la palabra está escrita sin la letra vav, y Rashí dice: se escribe «elai», «hacia mí».
+En hebreo, «tal vez» es **ulai**. Pero aquí la palabra está escrita sin la letra vav, y Rashi dice: se escribe «elai», «hacia mí».
 Eliezer tenía una hija. Y esperaba, en silencio, que si la misión fracasaba se volvieran hacia él.
 
 Eso no lo dijo en voz alta. Quedó en una sola letra que falta.
