@@ -10,7 +10,7 @@ archiveId: "017"
 cover: ../../assets/covers/017.png
 coverAlt: "Dos etiquetas de viaje antiguas sobre un baúl de madera, cada una con una foto del mismo pueblo del desierto y el mismo camino de tierra – una en blanco y negro sombrío, la otra a color e iluminada por el atardecer; alrededor, maletas, botas y un farol encendido"
 date: 2026-08-21T09:00:00Z
-readingTime: "unos 90 segundos"
+readingTime: "un minuto y medio"
 excerpt: "Dos representantes fueron enviados al mismo lugar y vieron exactamente la misma realidad. Los telegramas que mandaron eran opuestos."
 hook: "¿Cómo la misma realidad se vuelve dos historias opuestas?"
 ---

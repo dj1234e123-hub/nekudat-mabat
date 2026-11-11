@@ -7,7 +7,7 @@ section: chaim
 cover: ../../assets/covers/shtei-kasetot.jpg
 coverAlt: "Una grabadora de casetes antigua, unos audífonos, una carta escrita a mano y un casete sobre una mesa de madera vieja, con luz de la mañana que entra por una ventana, y una pared de un verde azulado oscuro al fondo"
 date: 2026-11-03T16:00:00Z
-readingTime: "2 minutos"
+readingTime: "unos 2 minutos"
 excerpt: "Ella le pidió que fuera su papá, y no su vengador. Él le respondió con dos casetes, sin ponerse a la defensiva."
 hook: "¿Qué hace un padre cuando su hija le cuenta, años después, lo que vivió?"
 source: "Basado en la charla TEDx de Peter y Adenike Harris (2018) y en entrevistas con ellos (LA Parent, Voyage LA, 2020), con adaptación y redacción originales de Efraim Atia."
