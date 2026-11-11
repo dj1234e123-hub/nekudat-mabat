@@ -1,6 +1,6 @@
 ---
 feeling: new-beginning
-date: 2026-11-11T09:33:00Z
+date: 2026-11-11T09:37:00Z
 title: בלי סימן
 handle: |-
   היום, להתחיל
