@@ -158,6 +158,16 @@
       "permanent": true
     },
     {
+      "source": "/es/historias/rak-lelayla-echad/",
+      "destination": "/es/historias/solo-por-una-noche/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/shtei-kasetot/",
+      "destination": "/es/historias/dos-casetes-de-noventa-minutos/",
+      "permanent": true
+    },
+    {
       "source": "/es/historias/im-tisrod/",
       "destination": "/es/historias/si-sobrevives/",
       "permanent": true
@@ -210,6 +220,61 @@
     {
       "source": "/es/historias/kav-echad/",
       "destination": "/es/historias/una-sola-linea/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/shiva-kilometer-bacheder/",
+      "destination": "/es/historias/siete-kilometros-en-una-habitacion/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/shivim-dolar/",
+      "destination": "/es/historias/setenta-dolares/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/mishehu-shilem-lo/",
+      "destination": "/es/historias/alguien-pago-por-el/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/hanituach-shehitzliach/",
+      "destination": "/es/historias/la-operacion-que-salio-bien/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/hatelefon-harishon/",
+      "destination": "/es/historias/la-primera-llamada/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/hachetz-harishon/",
+      "destination": "/es/historias/la-primera-flecha/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/aba-aba/",
+      "destination": "/es/historias/papa-papa/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/nura-ktana/",
+      "destination": "/es/historias/una-lucecita/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/hahafkadot-hakatanot/",
+      "destination": "/es/historias/los-pequenos-depositos/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/esrim-shtilim/",
+      "destination": "/es/historias/veinte-plantones/",
+      "permanent": true
+    },
+    {
+      "source": "/es/historias/midim-lekita-alef/",
+      "destination": "/es/historias/uniforme-de-primer-grado/",
       "permanent": true
     },
     {
