@@ -414,7 +414,7 @@
   font-size: 1.5rem;
   font-weight: 500;
   line-height: 1.22;
-  color: var(--white);
+  color: var(--on-photo);
 }
 
 .ca-pair .art.type {

@@ -11,6 +11,7 @@ import { SITE_ES } from '../data/site-es';
 // הבסיס להחלטות תוכן ("איזה סיפור באמת נקרא"), במקום מונה לייקים גלוי.
 import Analytics from '@vercel/analytics/astro';
 import MenuDrawer from '../components/MenuDrawer.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
 
 interface Props {
   title: string;
@@ -123,6 +124,12 @@ const ogImageDims = ogImage
 <html lang={lang} dir={dir}>
   <head>
     <meta charset="utf-8" />
+    {/* מצב לילה: מוחל לפני הציור הראשון, כדי שעמוד כהה לא יהבהב בבהיר */}
+    <script is:inline>
+      try {
+        if (localStorage.getItem('nm_theme') === 'dark') document.documentElement.dataset.theme = 'dark';
+      } catch (e) {}
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex" />}
@@ -197,6 +204,7 @@ const ogImageDims = ogImage
                 {altLang.label}
               </a>
             )}
+            <ThemeToggle {es} />
           </nav>
           <MenuDrawer es={es} homeHref={homeHref} brandName={brand.name} links={navLinks} current={Astro.url.pathname} />
         </header>
@@ -226,6 +234,7 @@ const ogImageDims = ogImage
                 {altLang.label}
               </a>
             )}
+            <ThemeToggle {es} />
           </nav>
           {showLangPill && (
             <a
@@ -243,6 +252,30 @@ const ogImageDims = ogImage
       )
     }
     <slot />
+    <script is:inline>
+      (function () {
+        var root = document.documentElement;
+        var btns = document.querySelectorAll('[data-theme-toggle]');
+        function sync() {
+          var on = root.dataset.theme === 'dark';
+          btns.forEach(function (b) {
+            b.setAttribute('aria-pressed', on ? 'true' : 'false');
+          });
+        }
+        btns.forEach(function (b) {
+          b.addEventListener('click', function () {
+            var on = root.dataset.theme !== 'dark';
+            if (on) root.dataset.theme = 'dark';
+            else delete root.dataset.theme;
+            try {
+              localStorage.setItem('nm_theme', on ? 'dark' : 'light');
+            } catch (e) {}
+            sync();
+          });
+        });
+        sync();
+      })();
+    </script>
     <script>
       import posthog from 'posthog-js';
 
@@ -421,6 +454,23 @@ const ogImageDims = ogImage
     /* משטחים בהירים: כרטיס לבן, ונייר מוגבה למכתבים */
     --white: #fff;
     --paper-raised: #fffdf6;
+    /* טקסט על צילום (כותרת על קוביית תמונה): לבן בשני המצבים */
+    --on-photo: #ffffff;
+
+    /* מצב לילה: נייר כהה וחם ולא שחור, ואותם תפקידי צבע. כל ערך הוא טוקן משלו כדי ש-check:colors
+       ימשיך להשוות את פלטת היום לתמונות השיתוף. */
+    --night-paper: #1c1a16;
+    --night-surface: #27231c;
+    --night-line: #3b352b;
+    --night-ink: #efe7d6;
+    --night-secondary: #cdc3af;
+    --night-muted: #a59985;
+    --night-teal: #86c5bd;
+    --night-teal-deep: #a9d8d1;
+    --night-blue: #a3cbe3;
+    --night-brick: #e58577;
+    --night-gold-deep: #dcba6c;
+    --night-raised: #24211b;
 
     /* טיפוגרפיה – החלטה סופית: Frank Ruhl Libre לכותרות, Heebo לטקסט ולממשק */
     --font-display: 'Frank Ruhl Libre', 'David Libre', serif;
@@ -430,9 +480,63 @@ const ogImageDims = ogImage
     --shadow: 0 1px 3px rgba(46, 42, 36, 0.08);
   }
 
+  :root[data-theme='dark'] {
+    color-scheme: dark;
+    --paper: var(--night-paper);
+    --surface: var(--night-surface);
+    --line: var(--night-line);
+    --ink: var(--night-ink);
+    --secondary: var(--night-secondary);
+    --muted: var(--night-muted);
+    --teal: var(--night-teal);
+    --teal-deep: var(--night-teal-deep);
+    --blue: var(--night-blue);
+    --brick: var(--night-brick);
+    --gold-deep: var(--night-gold-deep);
+    --white: var(--night-raised);
+    --paper-raised: var(--night-raised);
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  }
+
   * {
     margin: 0;
     box-sizing: border-box;
+  }
+
+  /* ---------- מתג מצב לילה ---------- */
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    color: var(--muted);
+    cursor: pointer;
+  }
+  .theme-toggle:hover {
+    color: var(--teal);
+  }
+  .theme-toggle:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+  .theme-toggle[aria-pressed='true'] {
+    color: var(--gold);
+  }
+  .theme-toggle[aria-pressed='true'] svg {
+    fill: currentColor;
+  }
+  .theme-row {
+    justify-content: flex-start;
+    min-height: 52px;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
   }
 
   /* נוכח לקורא מסך ולגוגל, בלי להופיע על המסך – לעמוד שמעוצב בכוונה

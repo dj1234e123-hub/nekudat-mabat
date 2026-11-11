@@ -1,0 +1,19 @@
+---
+// מתג מצב לילה (2026-11-10). הבחירה נשמרת בדפדפן בלבד (nm_theme), כמו זיכרון הקריאה.
+// ברירת המחדל תמיד בהירה: האתר לא עוקב אחרי הגדרת המכשיר, רק אחרי לחיצה מפורשת.
+// הצבעים עצמם ב-Base.astro (‎:root[data-theme='dark']), והסקריפט שמחיל אותם לפני הציור בראש העמוד.
+interface Props {
+  es?: boolean;
+  /** במגירת הטלפון: שורה עם כיתוב. בלי זה: סמל בלבד (שורת הניווט במחשב) */
+  row?: boolean;
+}
+const { es = false, row = false } = Astro.props;
+const label = es ? 'Modo noche' : 'מצב לילה';
+---
+
+<button class:list={['theme-toggle', { 'theme-row': row }]} type="button" data-theme-toggle aria-pressed="false" aria-label={row ? undefined : label} data-ph="theme_toggle">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path>
+  </svg>
+  {row && <span>{label}</span>}
+</button>
