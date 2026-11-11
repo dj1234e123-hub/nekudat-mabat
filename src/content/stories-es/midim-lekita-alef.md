@@ -1,11 +1,11 @@
 ---
 # Traducción de "מדים לכיתה א'" (8.11.2026), según docs/SPANISH-EDITORIAL-GUIDELINES.md. Misma portada (sin texto). Texto reescrito: se quitaron detalles no verificados.
-# La fecha es un marcador (2030): la historia está lista en la rama de trabajo y no está programada. Al decidir el día, cambiar solo date (igual que en hebreo).
+# Publicado 2026-11-11 (aprobado). Fecha = hora real de publicación.
 title: "Uniforme de primer grado"
 section: chaim
 cover: ../../assets/covers/midim-lekita-alef.jpg
 coverAlt: "Un lápiz corto sobre un cuaderno abierto y vacío, en un pupitre de madera vieja de un aula vacía con sillitas pequeñas"
-date: 2030-01-08T18:00:00Z
+date: 2026-11-11T16:38:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Un anciano estaba de pie frente a la puerta de una escuela primaria en Kenia, y pidió inscribirse."
 hook: "¿Qué hacemos cuando la puerta que se cerró hace años se abre de pronto?"
