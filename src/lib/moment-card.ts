@@ -46,7 +46,7 @@ const HE_URL_Y = 1304;
 
 const PAPER = '#f3e9d3';
 const INK = '#2e2a24';
-const MUTED = '#75695a';
+const MUTED = '#706455';
 const GOLD = '#c9a24d';
 const GOLD_DEEP = '#80601a';
 const TEAL_DEEP = '#17453f';
