@@ -2609,6 +2609,26 @@
       "twin": "hatchala-harega-hanachon",
       "verdict": "חזק",
       "status": "published"
+    },
+    {
+      "slug": "kishalon-tamid",
+      "title": "תמיד?",
+      "home": "failure",
+      "gate": "self",
+      "entries": [],
+      "move": "Q",
+      "move2": "STEP",
+      "inner": "\"אצלי זה תמיד ככה\"",
+      "reader": "אחרי טעות קטנה, כשמשפט אחד הופך אותה לסיכום של שנים",
+      "shift": "לשאול את ה\"תמיד\": מתי זה לא קרה?",
+      "motion": 3,
+      "takeaway": "Y",
+      "opening": "סצנה",
+      "shape": "שאלה",
+      "clusters": [],
+      "twin": "kishalon-ma-shenishar",
+      "verdict": "חזק",
+      "status": "published"
     }
   ]
 }
