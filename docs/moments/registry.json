@@ -2629,6 +2629,26 @@
       "twin": "kishalon-ma-shenishar",
       "verdict": "חזק",
       "status": "published"
+    },
+    {
+      "slug": "kaas-tzaad-hatzida",
+      "title": "צעד אחד הצידה",
+      "home": "anger",
+      "gate": "someone",
+      "entries": [],
+      "move": "OTHER",
+      "move2": "STEP",
+      "inner": "\"ברור מי צודק\"",
+      "reader": "באמצע ויכוח חוזר עם מישהו קרוב, כשהקול עולה",
+      "shift": "לעמוד רגע במקום של השני ולשמוע את הוויכוח משם",
+      "motion": 3,
+      "takeaway": "Y",
+      "opening": "סצנה",
+      "shape": "צעד",
+      "clusters": [],
+      "twin": "kaas-lo-magia-rishon",
+      "verdict": "חזק",
+      "status": "published"
     }
   ]
 }
