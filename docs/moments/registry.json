@@ -2649,6 +2649,26 @@
       "twin": "kaas-lo-magia-rishon",
       "verdict": "חזק",
       "status": "published"
+    },
+    {
+      "slug": "busha-mi-machzik-bashlet",
+      "title": "מי מחזיק בשלט",
+      "home": "shame",
+      "gate": "self",
+      "entries": [],
+      "move": "LIGHT",
+      "move2": "STEP",
+      "inner": "\"הרגע ההוא לא יעזוב אותי\"",
+      "reader": "בלילה, כשרגע מביך חוזר ומוקרן שוב ושוב",
+      "shift": "השלט אצלך: להרחיק, להנמיך, להפוך לשחור-לבן",
+      "motion": 3,
+      "takeaway": "Y",
+      "opening": "סצנה",
+      "shape": "צעד",
+      "clusters": [],
+      "twin": "sod-haseret",
+      "verdict": "חזק",
+      "status": "published"
     }
   ]
 }
