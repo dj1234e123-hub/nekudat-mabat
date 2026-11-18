@@ -4,6 +4,47 @@
 
 ## המודלים
 
+### 18.11 – "הילד שאסף בולים" (שליחה חוזרת של סיפור ארכיון מאוגוסט, 15 צפיות · פתיחה: סצנה · פער: מי "גדול הדור" ולמה טרח בשביל ילד · הכותרת נוחתת: "עד שגדול הדור דפק בדלת של *הילד שאסף בולים*")
+```
+במשך חודשים
+מישהו אסף
+בשביל ילד אחד
+משהו שלא ביקש.
+
+הילד לא ידע.
+גם ההורים לא.
+
+עד שגדול הדור
+דפק בדלת של
+*הילד שאסף בולים* 👇
+https://nekudatmabat.blog/stories/007-hayeled-sheasaf-bulim/?s=wa-he
+
+להצטרפות לקבוצה:
+https://chat.whatsapp.com/EdI3EWz6WiQ6HlXCwJsdjh
+```
+נשלחה על ידי בעל הפרויקט (18.11). השם "הרב שך" לא נאמר בהודעה. נוסח חלופי קצר ("מכתבים מכל העולם הגיעו אליו. והוא שמר את הבולים בשביל...") לא נבחר.
+
+**ספרדית (ללא בדיקת דוברת ילידית):** "de El niño" אינו תקין (צריך "del"), ולכן הנחיתה היא "Todo era para *El niño...*". "golpeó a la puerta" כמו בסיפור עצמו.
+```
+Durante meses
+alguien juntó
+para un niño
+algo que no pidió.
+
+El niño no sabía.
+Sus padres tampoco.
+
+Hasta que el líder
+de la generación
+golpeó a la puerta.
+Todo era para
+*El niño que juntaba estampillas* 👇
+https://nekudatmabat.blog/es/historias/el-nino-que-juntaba-estampillas/?s=wa-es
+
+Para unirte al grupo:
+https://chat.whatsapp.com/Guowx1In317DPruSb0iylo
+```
+
 ### 17.11 – "לשבור כדי להשתחרר" (שליחה חוזרת של סיפור ארכיון מ-22.8, 12 צפיות · פתיחה: שאלה · פער: מה עשה המלך לזקן · הכותרת נוחתת: "עד שזקן אחד החליט *לשבור כדי להשתחרר*")
 ```
 כמה אנחנו מוכנים
@@ -424,5 +465,6 @@ https://chat.whatsapp.com/EdI3EWz6WiQ6HlXCwJsdjh
 | 11.11 | מדים לכיתה א' | סצנה |
 | 16.11 | בחר במפסיד | סצנה |
 | 17.11 | לשבור כדי להשתחרר | שאלה |
+| 18.11 | הילד שאסף בולים | סצנה |
 
 הצלבה מול PostHog (כניסות עם `link_tag`, גלילה עד הסוף, שיתופים, "הסיפור הבא") טרם בוצעה. כשתתבצע, התוצאה נרשמת כאן כרמז ולא כהוכחה: 21 הודעות הן מדגם קטן, וסיפורי ארכיון מתערבבים עם חדשים.
