@@ -2669,6 +2669,26 @@
       "twin": "sod-haseret",
       "verdict": "חזק",
       "status": "published"
+    },
+    {
+      "slug": "bitachon-heara-bateuda",
+      "title": "הערה בתעודה",
+      "home": "confidence",
+      "gate": "self",
+      "entries": [],
+      "move": "EXT",
+      "move2": "INT",
+      "inner": "\"העקשנות שלי היא פגם שצריך לרכך\"",
+      "reader": "מי שכל חייו שמע שהוא עקשן, וניסה להיות נוח",
+      "shift": "דווקא התכונה שניסו לתקן היא שהחזיקה בימים הקשים",
+      "motion": 3,
+      "takeaway": "Y",
+      "opening": "סצנה",
+      "shape": "הפרדה",
+      "clusters": [],
+      "twin": "bitachon-nishar-acharei",
+      "verdict": "חזק",
+      "status": "published"
     }
   ]
 }
