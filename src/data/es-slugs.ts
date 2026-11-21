@@ -118,6 +118,7 @@ export const ES_BESHT_SLUGS: Record<string, string> = {
   'mi-ba-lasuda-shlishit': 'quien-llego-a-la-tercera-comida',
   'lama-kulam-nikraim-baruch': 'por-que-todos-se-llaman-baruj',
   'tohav-oto-yoter': 'amalo-mas',
+  'haroe-shekafatz': 'el-pastor-que-saltaba-la-zanja',
 };
 
 /** הכתובת הציבורית של סיפור "מעשה שהיה" ספרדי. סיפור בלי סלאג מכשיל את הבנייה. */
