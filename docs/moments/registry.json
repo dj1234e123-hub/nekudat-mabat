@@ -2689,6 +2689,26 @@
       "twin": "bitachon-nishar-acharei",
       "verdict": "חזק",
       "status": "published"
+    },
+    {
+      "slug": "lachatz-doch-laila",
+      "title": "חשבון הלילה",
+      "home": "pressure",
+      "gate": "head",
+      "entries": [],
+      "move": "Q",
+      "move2": "PERM",
+      "inner": "\"גם היום לא התקדמתי\"",
+      "reader": "במיטה בלילה, הראש עובר על מה שלא הספיק",
+      "shift": "הדו\"ח סופר רק מה עשית; אין בו שורה למי שהיית, ומותר לא לחתום עליו",
+      "motion": 3,
+      "takeaway": "Y",
+      "opening": "סצנה",
+      "shape": "הפרדה",
+      "clusters": [],
+      "twin": "hashgacha-ad-haboker",
+      "verdict": "חזק",
+      "status": "published"
     }
   ]
 }
