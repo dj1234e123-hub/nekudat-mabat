@@ -2709,6 +2709,26 @@
       "twin": "hashgacha-ad-haboker",
       "verdict": "חזק",
       "status": "published"
+    },
+    {
+      "slug": "bdidut-mi-mesaper-kan",
+      "title": "מי מספר כאן?",
+      "home": "loneliness",
+      "gate": "pain",
+      "entries": [],
+      "move": "OTHER",
+      "move2": "Q",
+      "inner": "\"אני מקשיב, אני אפילו מזדהה\"",
+      "reader": "מישהו קרוב מספר על קושי, ואנחנו עונים ב\"גם אצלי\"",
+      "shift": "ה\"גם אצלי\" בא מאהבה, ובלי לשים לב לקח את השיחה; הוא בא לספר ויצא מקשיב",
+      "motion": 3,
+      "takeaway": "Y",
+      "opening": "סצנה",
+      "shape": "הפרדה",
+      "clusters": [],
+      "twin": "bdidut-mi-shemachzik",
+      "verdict": "חזק",
+      "status": "published"
     }
   ]
 }
