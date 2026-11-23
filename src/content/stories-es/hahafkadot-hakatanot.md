@@ -1,11 +1,11 @@
 ---
 # Traducción de "ההפקדות הקטנות" (5.11.2026), según docs/SPANISH-EDITORIAL-GUIDELINES.md. Misma portada (sin texto).
-# La fecha es un marcador (2030): la historia está lista en la rama de trabajo y no está programada. Al decidir el día, cambiar solo date (igual que en hebreo).
+# Publicada el 23.11.2026 a las 21:00 (hora de Israel), junto con el original hebreo.
 title: "Los pequeños depósitos"
 section: chaim
 cover: ../../assets/covers/hahafkadot-hakatanot.jpg
 coverAlt: "Un par de guantes de cuero gastados sobre los mandos de una avioneta en un hangar, con luz suave de la mañana"
-date: 2030-01-06T18:00:00Z
+date: 2026-11-23T19:00:00Z
 readingTime: "unos 2 minutos"
 excerpt: "Un avión de pasajeros aterrizó en un río y todos se salvaron. Todos lo llamaron milagro. El piloto lo llamó de otra manera."
 hook: "¿Qué hacemos hoy para un momento que no sabemos cuándo llegará?"
