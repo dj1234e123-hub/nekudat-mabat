@@ -2729,6 +2729,26 @@
       "twin": "bdidut-mi-shemachzik",
       "verdict": "חזק",
       "status": "published"
+    },
+    {
+      "slug": "tikva-tachazit-lemachar",
+      "title": "תחזית למחר",
+      "home": "hope",
+      "gate": "beginning",
+      "entries": [],
+      "move": "PERM",
+      "move2": "Q",
+      "inner": "\"הפעם זה אחרת\"",
+      "reader": "מי שמתחיל שוב (הרגל, החלטה) ושומע \"נראה\" מבחוץ ומבפנים",
+      "shift": "זו לא תחזית שמנחשת את המחר אלא בחירה שבוחרת בו; בחירה מחדשים כל בוקר",
+      "motion": 3,
+      "takeaway": "Y",
+      "opening": "סצנה",
+      "shape": "הפרדה",
+      "clusters": [],
+      "twin": "hatchala-bapaam-hachamishit",
+      "verdict": "חזק",
+      "status": "published"
     }
   ]
 }
