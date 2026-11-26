@@ -1,25 +1,25 @@
 ---
 feeling: missed-opportunity
 date: 2026-09-08
-title: El camino que no tomaste
+title: En la imaginación siempre hay sol
 handle: |-
-  En vez de imaginar lo de allá,
-  notar lo que hay aquí.
+  Cuando hoy aparezca el otro,
+  abrazar a alguien de este camino.
 ---
-Hay un camino
-que no tomaste.
-Y a veces,
-te preguntas qué **habría** sido.
+Hubo un cruce.
+Elegiste un camino.
+Y hasta hoy
+el otro vuelve a tu **mente**.
 
-Y sientes
-que hace falta
-de una vez
-saber con **certeza**.
+Y allá, en la imaginación,
+la casa es más grande,
+la mañana más tranquila,
+**todo** es más.
 
-Pero no se puede
-hacer una **comparación**
-con un lugar
-en el que nunca estuviste.
+Y aquí hay una mañana agitada,
+una cuenta pendiente
+y un niño que espera
+un **abrazo**.
 
 ---
 
