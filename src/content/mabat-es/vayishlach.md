@@ -10,7 +10,7 @@
 title: ¿Qué espera detrás de la puerta?
 parasha: Vayishlaj
 hebrewDate: 18 de Kislev 5787
-description: "Sur de Estados Unidos. Cuarenta y ocho años después de unos golpes en la entrada de una estación de autobuses, él ya pidió perdón, y lo perdonaron. Aun así, viaja."
+description: "Sur de Estados Unidos. Cuarenta y ocho años después de una golpiza en la entrada de una estación de autobuses, él ya pidió perdón, y lo perdonaron. Aun así, viaja."
 date: 2026-11-27T08:43:00Z
 quoteImage: ../../assets/mabat-leshabbat/vayishlach-quote-es.png
 quoteImageAlt: "El perdón se puede enviar. La cara hay que darla."
@@ -31,7 +31,7 @@ En las estaciones de autobuses de allí hay puertas con un letrero que decide qu
 Quien tiene la piel oscura se queda afuera.
 
 Un joven de veintiún años, de piel oscura, viaja con otros jóvenes de estación en estación.
-En cada una entran justo por esas puertas, en silencio, para mostrarles a todos que ese letrero no es justo.
+En cada una entran por esas mismas puertas, en silencio, para mostrarles a todos que ese letrero no es justo.
 
 Baja del autobús y va directo a la puerta.
 Allí lo esperan unos hombres del pueblo. Uno de ellos es Elwin Wilson.
@@ -41,11 +41,11 @@ El joven se levanta, sigue su camino y no presenta ninguna denuncia.
 
 Wilson ni siquiera sabe cómo se llama.
 
-Wilson carga esos golpes en el corazón durante todos esos años.
+Wilson carga con aquellos golpes en el corazón todos estos años.
 En el invierno de 2009 llama al periódico local, cuenta lo que hizo en aquella estación y pide perdón públicamente.
 
-Recién entonces descubre quién era el joven: John Lewis.
-En todo ese tiempo se convirtió en uno de los líderes de la lucha contra esos letreros, y desde hace más de veinte años es miembro de la Cámara de Representantes de Estados Unidos.
+Solo entonces descubre quién era el joven: John Lewis.
+En esos años, Lewis se había convertido en uno de los líderes de la lucha contra esos letreros, y desde hace más de veinte años es miembro de la Cámara de Representantes de Estados Unidos.
 
 Y Lewis lo perdona enseguida.
 
@@ -53,7 +53,7 @@ Todo podría haber terminado aquí. Las palabras ya se dijeron.
 
 Pero Wilson viaja a Washington, para estar frente a él.
 
-También Yaakov caminó una vez hacia un rostro que temía.
+También Yaakov caminó hacia un rostro que temía.
 
 Hace veinte años que no ve a su hermano. Desde que Esav se enojó con él por las bendiciones y él huyó de casa.
 Ahora va de regreso, y envía mensajeros delante de él. Vuelven con una respuesta:
@@ -61,7 +61,7 @@ tu hermano sale a tu encuentro, «y cuatrocientos hombres con él».
 
 «Y Yaakov tuvo mucho miedo, y se angustió».
 
-Divide el campamento en dos, para que si atacan a uno, el otro se salve. Reza.
+Divide el campamento en dos, para que, si atacan a uno, el otro se salve. Reza.
 Le envía regalos a su hermano, rebaños enteros, uno tras otro, y dice:
 «Lo apaciguaré con el regalo que va delante de mí, y después veré su rostro».
 
@@ -76,17 +76,17 @@ En la oficina, Wilson está frente a Lewis, y apenas le salen las palabras:
 Y Lewis le responde:
 —Está bien. Te perdono.
 
-Después contó lo que pasó en ese momento:
+Después contó cómo fue ese momento:
 «Me abrazó. Yo también lo abracé.
 **Él lloró un poco, y yo lloré**».
 
-Y con Yaakov, después de todo el miedo, así termina:
+Y la historia de Yaakov, después de todo el miedo, termina así:
 «Y Esav corrió a su encuentro, lo abrazó, se echó sobre su cuello, lo besó, y lloraron».
 
 No «lloró». Lloraron. Los dos.
 
 En su lucha, a Lewis lo golpearon muchas veces, muchas personas.
-Después de que Wilson murió, cuatro años después del encuentro, Lewis dijo de él:
+Tras la muerte de Wilson, cuatro años después del encuentro, Lewis dijo de él:
 «Fue el primero, realmente el primero, que vino a pedirme perdón».
 Que vino.
 
@@ -94,7 +94,7 @@ El perdón se puede enviar. La cara hay que darla.
 
 Yo también tengo a alguien así.
 Alguien a quien lastimé, y los dos lo sabemos.
-Quizá hasta le escribí «perdón». En un mensaje, entre otros dos mensajes.
+Quizá hasta le escribí «perdón». En un mensaje, entre otros dos.
 Y dar la cara, lo sigo postergando. Que el tiempo lo arregle.
 
 Y en mi cabeza, detrás de la puerta, esperan cuatrocientos hombres.
