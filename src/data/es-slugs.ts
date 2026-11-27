@@ -120,7 +120,7 @@ export const ES_BESHT_SLUGS: Record<string, string> = {
   'lama-kulam-nikraim-baruch': 'por-que-todos-se-llaman-baruj',
   'tohav-oto-yoter': 'amalo-mas',
   'haroe-shekafatz': 'el-pastor-que-saltaba-la-zanja',
-  'rega-lifnei-shenasa': 'justo-antes-de-volver-a-casa',
+  'lama-haaba-mitrachek': 'por-que-el-padre-se-aleja',
   'shloshet-alafim': 'tres-mil-antes-del-atardecer',
   'litra-shel-nerot': 'una-libra-de-velas',
   'hashaon-shehistiru': 'el-reloj-que-le-ocultaron',
