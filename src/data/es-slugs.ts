@@ -82,6 +82,7 @@ export const ES_STORY_SLUGS: Record<string, string> = {
   'aba-aba': 'papa-papa',
   'nura-ktana': 'una-lucecita',
   'hahafkadot-hakatanot': 'los-pequenos-depositos',
+  'hayom-harishon': 'el-primer-dia',
   'esrim-shtilim': 'veinte-plantones',
   'midim-lekita-alef': 'uniforme-de-primer-grado',
   'kol-boker-tefillin': 'cada-manana-tefilin',
