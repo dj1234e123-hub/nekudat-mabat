@@ -15,7 +15,7 @@ Una vez el Baal Shem Tov vio en un sueño a un judío, arrendatario en una aldea
 
 El judío no lo conocía, y lo recibió con alegría, como a cualquier huésped.
 
-Conversando, salió a la luz: le arrendaba al terrateniente un campo y un bosque, y en una semana tenía que pagarle todo el arriendo. *Tres mil*. Y no los tenía.
+En la conversación se supo que tenía arrendados un campo y un bosque del terrateniente, y en una semana tenía que pagarle todo el arriendo. *Tres mil florines*. Y no los tenía.
 
 —¿Y cómo vas a pagar? —le preguntó el Baal Shem Tov.
 
@@ -25,7 +25,9 @@ Conversando, salió a la luz: le arrendaba al terrateniente un campo y un bosque
 
 —Mejor es confiar en Dios que confiar en el hombre.
 
-Pasó la semana. El día del pago, por la mañana, llegó un sirviente del terrateniente a exigir el dinero. El arrendatario le contestó con calma:
+El Baal Shem Tov se quedó con él, para ver qué pasaría.
+
+Pasó la semana. El día del pago, por la mañana, llegó un sirviente del terrateniente a exigir el dinero. El arrendatario no se asustó:
 
 —Antes de que termine el día, pagaré.
 
