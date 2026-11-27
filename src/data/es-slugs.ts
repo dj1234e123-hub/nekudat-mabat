@@ -124,6 +124,7 @@ export const ES_BESHT_SLUGS: Record<string, string> = {
   'shloshet-alafim': 'tres-mil-antes-del-atardecer',
   'litra-shel-nerot': 'una-libra-de-velas',
   'hashaon-shehistiru': 'el-reloj-que-le-ocultaron',
+  'habachur-shehilich': 'el-muchacho-que-llevaba-a-los-ninos',
 };
 
 /** הכתובת הציבורית של סיפור "מעשה שהיה" ספרדי. סיפור בלי סלאג מכשיל את הבנייה. */
