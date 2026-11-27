@@ -120,6 +120,10 @@ export const ES_BESHT_SLUGS: Record<string, string> = {
   'lama-kulam-nikraim-baruch': 'por-que-todos-se-llaman-baruj',
   'tohav-oto-yoter': 'amalo-mas',
   'haroe-shekafatz': 'el-pastor-que-saltaba-la-zanja',
+  'rega-lifnei-shenasa': 'justo-antes-de-volver-a-casa',
+  'shloshet-alafim': 'tres-mil-antes-del-atardecer',
+  'litra-shel-nerot': 'una-libra-de-velas',
+  'hashaon-shehistiru': 'el-reloj-que-le-ocultaron',
 };
 
 /** הכתובת הציבורית של סיפור "מעשה שהיה" ספרדי. סיפור בלי סלאג מכשיל את הבנייה. */
