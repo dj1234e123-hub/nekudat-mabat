@@ -4,6 +4,34 @@
 
 ## המודלים
 
+### 27.11 – "¿Qué espera detrás de la puerta?" (ספרדית, תאום של מבט לשבת וישלח) (פתיחה: סצנה · פער: מה קורה מאחורי הדלת · היפוך: "se quedaba afuera" ← "Esta vez él está afuera" · הכותרת נוחתת: "Y queda una pregunta: *¿Qué espera detrás de la puerta?*")
+```
+En la puerta
+de la estación
+había un letrero:
+quien tenía piel oscura
+se quedaba afuera.
+
+Un joven
+se acercó igual.
+En la entrada
+lo esperaban.
+
+Décadas después
+uno de aquellos hombres
+está ante otra puerta.
+Esta vez
+él está afuera.
+
+Y queda una pregunta:
+*¿Qué espera detrás de la puerta?* 👇
+https://nekudatmabat.blog/es/shabat/vayishlach/?s=wa-es
+
+Para unirte al grupo:
+https://chat.whatsapp.com/Guowx1In317DPruSb0iylo
+```
+הועלה לקבוצה הספרדית (27.11) דרך חיה אלישבע, אחרי שהעמוד הספרדי עלה. תרגום שורה-שורה של ההודעה העברית שנשלחה באותו יום. "Esta vez él está afuera" ולא "se queda afuera" (שמשמעו "נשאר בחוץ", כאילו דחו אותו). ללא בדיקת דוברת ילידית.
+
 ### 27.11 – "מה מחכה מאחורי הדלת?" (מבט לשבת, וישלח) (פתיחה: סצנה · פער: מה קורה מאחורי הדלת · היפוך: "מי שעורו כהה נשאר בחוץ" ← "הפעם הוא זה שבחוץ" · הכותרת נוחתת: "ונשארה שאלה אחת: *מה מחכה מאחורי הדלת?*")
 ```
 על הדלת בתחנה
